@@ -144,8 +144,8 @@ function HeroSection() {
             </span>
           </h1>
           <p className="font-sans-jp text-white/80 text-base md:text-lg leading-relaxed mb-10 animate-fade-in-up opacity-0-init delay-200">
-            マイクロスコープによる精密診断で、あなたの頭皮の今を可視化。<br className="hidden md:block" />
-            薄毛になってから悩むのではなく、健康な頭皮を<strong className="text-[oklch(0.88_0.08_75)]">予防から守る</strong>新習慣。
+            マイクロスコープによる頭皮チェックで、あなたの頭皮の今を記録・確認。<br className="hidden md:block" />
+            薄毛になってから悩むのではなく、健康な頭皮を<strong className="text-[oklch(0.88_0.08_75)]">日頃からケアする</strong>新習慣。
           </p>
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up opacity-0-init delay-300">
             <a
@@ -203,7 +203,7 @@ function ProblemSection() {
             <span className="text-[oklch(0.88_0.08_75)]">最後にチェックしたのはいつですか？</span>
           </h2>
           <p className="font-sans-jp text-white/70 text-base max-w-2xl mx-auto leading-relaxed">
-            多くの人が頭皮トラブルに気づかないまま、ダメージを蓄積させています。
+            多くの人が頭皮の変化に気づかないまま、ケアが後回しになっています。
           </p>
         </div>
 
@@ -211,8 +211,8 @@ function ProblemSection() {
           {[
             {
               icon: "💊",
-              title: "薬剤ダメージの日常化",
-              desc: "ヘアカラー・パーマの普及により、若年層から継続的に頭皮環境が悪化しています。",
+              title: "薬剤による頭皮への影響",
+              desc: "ヘアカラー・パーマの普及により、若年層から継続的に頭皮環境への負担が増えています。",
               delay: 0,
             },
             {
@@ -254,12 +254,12 @@ function ConceptSection() {
       <div ref={ref} className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className={`transition-all duration-800 ${inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}>
-            <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
+              <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
               Our Concept
             </span>
             <h2 className="font-mincho text-[oklch(0.22_0.045_42)] text-3xl md:text-4xl font-bold leading-tight mb-8">
-              「歯科検診」が変えたように、<br />
-              <span className="text-[oklch(0.72_0.12_70)]">頭皮ケアの常識</span>を変える。
+              「歯科検診」が広めたように、<br />
+              <span className="text-[oklch(0.72_0.12_70)]">頭皮ケアの新習慣</span>を広めたい。
             </h2>
             <div className="section-divider mb-8" />
             <div className="space-y-6">
@@ -270,7 +270,7 @@ function ConceptSection() {
               </div>
               <div className="karte-border">
                 <p className="font-sans-jp text-[oklch(0.38_0.055_42)] text-sm leading-relaxed">
-                  スカルプ・ドックは、頭皮ケアに同じ変革をもたらします。「薄毛に悩んでから行く場所」ではなく、「健康を維持するために定期的に通う場所」へ。
+                  スカルプ・ドックは、頭皮ケアに同じ変化を目指します。「薄毛が気になってから行く場所」ではなく、「定期的に頭皮の状態を確認する場所」へ。
                 </p>
               </div>
             </div>
@@ -279,7 +279,7 @@ function ConceptSection() {
             <div className="relative">
               <img
                 src={IMAGES.microscope}
-                alt="マイクロスコープによる頭皮診断"
+                alt="マイクロスコープによる頭皮チェック"
                 className="w-full max-w-md mx-auto rounded-full shadow-2xl"
               />
               <div className="absolute -bottom-6 -right-6 bg-[oklch(0.22_0.045_42)] text-white p-6 rounded-sm shadow-xl max-w-xs">
@@ -287,7 +287,7 @@ function ConceptSection() {
                   Microscope Diagnosis
                 </p>
                 <p className="font-mincho text-white text-sm font-bold">
-                  マイクロスコープで<br />毛穴・皮脂・血行を精密診断
+                  マイクロスコープで<br />毛穴・皮脂・血行を記録・確認
                 </p>
               </div>
             </div>
@@ -366,11 +366,11 @@ function ServiceSection() {
       color: "oklch(0.88_0.08_75)",
       items: [
         "マイクロスコープによる頭皮撮影",
-        "毛穴の状態・皮脂量・血行の簡易評価",
-        "結果をその場で画像つきで説明",
+        "毛穴の状態・皮脂量・血行の簡易確認",
+        "結果をその場で画像つきでご説明",
         "LINEでデータ共有",
       ],
-      desc: "歯科の「無料検診」と同じ役割。ハードルを極限まで下げ、来店のきっかけを作ります。",
+      desc: "歯科の定期チェックと同じ感覚で。気軽に頭皮の状態を確認するきっかけを作ります。",
     },
     {
       layer: "Layer 2",
@@ -381,19 +381,19 @@ function ServiceSection() {
       price: "3,000〜5,000円",
       color: "oklch(0.72_0.12_70)",
       items: [
-        "マイクロスコープ詳細診断",
-        "頭皮温度・皮脂量・髪密度計測",
+        "マイクロスコープによる詳細チェック",
+        "頭皮温度・皮脂量・髪密度の計測",
         "生活習慣・ストレス・使用製品の問診",
         "パーソナルスカルプレポート（過去比較グラフ付き）",
       ],
-      desc: "過去データとの時系列比較で「改善/悪化」が一目でわかります。季節変動や施術の影響も可視化。",
+      desc: "過去データとの時系列比較で頭皮の変化が一目でわかります。季節変動や施術の影響も記録・確認できます。",
       featured: true,
     },
     {
       layer: "Layer 3",
       badge: "ケアプログラム",
       title: "パーソナルケア",
-      subtitle: "検診結果に基づく最適なケア提案",
+      subtitle: "チェック結果に基づくケアのご提案",
       time: "随時",
       price: "内容により異なる",
       color: "oklch(0.62_0.05_148)",
@@ -403,7 +403,7 @@ function ServiceSection() {
         "サブスクリプション型の製品定期便",
         "必要時の医療機関連携（AGAクリニック等）",
       ],
-      desc: "検診結果に基づいた最適なケアで、あなたの頭皮を長期的にサポートします。",
+      desc: "チェック結果をもとにしたケアのご提案で、あなたの頭皮を長期的にサポートします。",
     },
   ];
 
@@ -654,28 +654,28 @@ function TargetSection() {
       segment: "予防ケア男性",
       age: "20〜30代",
       message: "まだ大丈夫なうちに、始める安心",
-      desc: "「親が薄毛だから」「将来のために」という予防的動機で、早めのケアを始めたい方へ。",
+      desc: "「将来のために」という意識で、早めに頭皮の状態を把握しておきたい方へ。",
     },
     {
       emoji: "👩",
       segment: "ダメージケア女性",
       age: "20〜30代",
       message: "おしゃれを続けるための、頭皮メンテナンス",
-      desc: "カラー・パーマを繰り返す方の頭皮ダメージを可視化し、適切なケアをご提案します。",
+      desc: "カラー・パーマを繰り返す方の頭皮状態を記録・確認し、適切なケアをご提案します。",
     },
     {
       emoji: "💆‍♀️",
       segment: "美容意識層",
       age: "30〜40代女性",
-      message: "顔の美容は頭皮から",
-      desc: "リフトアップ・エイジングケアに関心がある方へ。頭皮の健康が美しい髪と肌を作ります。",
+      message: "美容習慣に、頭皮ケアをプラス",
+      desc: "エイジングケアに関心がある方へ。頭皮の状態を定期的に把握することが、美しい髪づくりをサポートします。",
     },
     {
       emoji: "🌿",
       segment: "育毛ケア層",
       age: "40〜50代男女",
       message: "見える化で不安を安心に変える",
-      desc: "薄毛・抜け毛の悩みを数値で把握し、科学的なアプローチでケアをサポートします。",
+      desc: "薄毛・抜け毛が気になる方の頭皮状態を数値で記録し、継続的なケアをサポートします。",
     },
   ];
 
@@ -750,12 +750,12 @@ function DigitalSection() {
                 {
                   icon: "📊",
                   title: "時系列レポート",
-                  desc: "頭皮状態の推移をグラフで可視化。改善・悪化が一目でわかります。",
+                  desc: "頭皮状態の推移をグラフで記録・確認。変化が一目でわかります。",
                 },
                 {
                   icon: "🤖",
                   title: "AI予測スコア",
-                  desc: "現在のケア状態を続けた場合の将来予測。ゲーミフィケーション要素で継続をサポート。",
+                  desc: "現在のケア状態をもとにした参考スコア表示。継続的なケアのモチベーションをサポートします。",
                 },
                 {
                   icon: "🔔",
@@ -801,7 +801,7 @@ function FlowSection() {
     {
       num: "03",
       title: "その場で結果を説明",
-      desc: "毛穴の状態・皮脂量・血行を画像つきでわかりやすく解説します。",
+            desc: "毛穴の状態・皮脂量・血行をスタッフが画像つきでわかりやすくご説明します。",
     },
     {
       num: "04",
@@ -858,7 +858,7 @@ function FaqSection() {
     },
     {
       q: "薄毛でなくても受けられますか？",
-      a: "はい、むしろ「まだ大丈夫」な段階からの予防ケアを強くおすすめしています。頭皮の状態を定期的に把握することが、将来の健康につながります。",
+      a: "はい、むしろ「まだ大丈夫」な段階からの定期チェックをおすすめしています。頭皮の状態を定期的に把握することが、日頃のケアに役立ちます。",
     },
     {
       q: "どのくらいの頻度で通えばいいですか？",
@@ -874,7 +874,7 @@ function FaqSection() {
     },
     {
       q: "医療行為ではないですか？",
-      a: "スカルプ・ドックは医療行為ではありません。「診断」ではなく「測定・チェック」として、頭皮の状態を可視化するサービスです。医療的な治療が必要と判断された場合は、提携医療機関をご紹介します。",
+      a: "スカルプ・ドックは医療行為ではありません。マイクロスコープによる頭皮の撮影・記録・確認を行うサービスです。医療機関への受診が適切と思われる場合は、提携医療機関をご案内することがあります。",
     },
   ];
 
@@ -947,7 +947,7 @@ function CtaSection() {
             頭皮の今を知ることから。
           </h2>
           <p className="font-sans-jp text-white/70 text-base mb-10 leading-relaxed">
-            5〜10分の無料スカルプチェックで、あなたの頭皮状態を可視化します。<br className="hidden md:block" />
+            5〜10分の無料スカルプチェックで、あなたの頭皮の状態を記録・確認します。<br className="hidden md:block" />
             予約はLINEまたはウェブから簡単に。
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
