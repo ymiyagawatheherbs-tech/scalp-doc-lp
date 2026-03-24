@@ -140,7 +140,7 @@ function HeroSection() {
               歯医者さんに行くように、
             </span>
             <span className="block text-3xl md:text-5xl lg:text-6xl font-bold text-[oklch(0.88_0.08_75)]">
-              頭皮も定期検診を。
+              頭皮も定期チェックを。
             </span>
           </h1>
           <p className="font-sans-jp text-white/80 text-base md:text-lg leading-relaxed mb-10 animate-fade-in-up opacity-0-init delay-200">
@@ -173,7 +173,7 @@ function HeroSection() {
               ))}
             </div>
             <p className="font-sans-jp text-white/70 text-sm">
-              <span className="text-white font-medium">1,200名以上</span>が頭皮検診を体験済み
+              <span className="text-white font-medium">1,200名以上</span>がスカルプチェックを体験済み（当社調べ）
             </p>
           </div>
         </div>
@@ -323,14 +323,14 @@ function StatsSection() {
               suffix: "代",
               prefix: "",
               label: "から始める予防ケアが急増",
-              sub: "若年層の予防意識が高まっています",
+              sub: "スカルプチェック利用者層の年代別内訳（当社調べ）",
             },
             {
               value: count3,
               suffix: "%",
               prefix: "",
               label: "の顧客が継続利用",
-              sub: "定期検診モデルの高いリピート率",
+              sub: "当社サブスクリプション会員の継続率（当社調べ・2024年度）",
             },
           ].map((stat, i) => (
             <div
@@ -374,9 +374,9 @@ function ServiceSection() {
     },
     {
       layer: "Layer 2",
-      badge: "定期検診",
+      badge: "定期ケア",
       title: "スカルプ・ドック",
-      subtitle: "3ヶ月に1回の精密検診コース",
+      subtitle: "3ヶ月に1回のプレミアムスカルプコース",
       time: "30〜40分",
       price: "3,000〜5,000円",
       color: "oklch(0.72_0.12_70)",
@@ -418,7 +418,7 @@ function ServiceSection() {
             3つのステップで、<br className="md:hidden" />頭皮の健康を守る
           </h2>
           <p className="font-sans-jp text-[oklch(0.55_0.04_42)] text-sm max-w-xl mx-auto">
-            無料チェックから始めて、定期検診へ。あなたのペースで頭皮ケアの習慣を作ります。
+            無料チェックから始めて、定期ケアへ。あなたのペースで頭皮ケアの習慣を作ります。
           </p>
         </div>
 
@@ -992,14 +992,14 @@ function Footer() {
               </div>
             </div>
             <p className="font-sans-jp text-white/40 text-xs leading-relaxed">
-              歯科検診モデルの頭皮ケア新習慣。<br />
-              定期的な頭皮検診で、健康な髪を守ります。
+              歯科ケアのように定期的に頭皮をケアする新習慣。<br />
+              マイクロスコープによる頭皮チェックで、健康な髪をサポート。
             </p>
           </div>
           <div>
             <h4 className="font-mincho text-white text-sm font-bold mb-4">サービス</h4>
             <ul className="space-y-2">
-              {["無料スカルプチェック", "スカルプ・ドック（定期検診）", "パーソナルケアプログラム", "サブスクリプションプラン"].map((item) => (
+              {["無料スカルプチェック", "スカルプ・ドック（定期ケア）", "パーソナルケアプログラム", "サブスクリプションプラン"].map((item) => (
                 <li key={item}>
                   <a href="#" className="font-sans-jp text-white/40 text-xs hover:text-white/70 transition-colors">
                     {item}
@@ -1021,9 +1021,15 @@ function Footer() {
             </ul>
           </div>
         </div>
-        <div className="border-t border-white/10 pt-8 text-center">
+        {/* 免責事項 */}
+        <div className="border-t border-white/10 pt-8 mb-6">
+          <p className="font-sans-jp text-white/25 text-[11px] leading-relaxed max-w-3xl mx-auto text-center">
+            【免責事項】本サービスは医療行為ではありません。疾病の診断・治療・予防を目的とするものではなく、頭皮の状態を記録・確認するサービスです。医療的な相談・治療が必要な場合は、医師または医療機関にご相談ください。掲載の数値・実績はすべて当社調べによるものです。個人の体験・効果には差があります。
+          </p>
+        </div>
+        <div className="text-center">
           <p className="font-sans-jp text-white/30 text-xs">
-            © 2024 スカルプ・ドック. All rights reserved.
+            © 2025 スカルプ・ドック. All rights reserved.
           </p>
         </div>
       </div>
