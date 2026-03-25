@@ -416,7 +416,7 @@ function Service() {
         "その場で画像つきの説明",
         "LINEでデータ共有",
       ],
-      img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/men-consultation_ef591684.jpg",
+      img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/men-microscope_54d18d0c.jpg",
     },
     {
       step: "Layer 02",
@@ -430,7 +430,7 @@ function Service() {
         "問診（生活習慣・使用製品）",
         "パーソナルスカルプレポート（時系列グラフ付き）",
       ],
-      img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/men-microscope_54d18d0c.jpg",
+      img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/men-consultation_ef591684.jpg",
     },
     {
       step: "Layer 03",
