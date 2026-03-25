@@ -1,5 +1,5 @@
 /**
- * スカルプ・ドック — 特定商取引法に基づく表記
+ * スカルプラボ — 特定商取引法に基づく表記
  * Design: モダン・ウェルネス・スタジオ
  */
 
@@ -30,7 +30,7 @@ function LegalLayout({ title, subtitle, children }: { title: string; subtitle: s
 
       <footer className="bg-[oklch(0.22_0.045_42)] py-8 text-center">
         <p className="font-sans-jp text-white/30 text-xs">
-          © 2025 スカルプ・ドック. All rights reserved.
+          © 2025 スカルプラボ. All rights reserved.
         </p>
       </footer>
     </div>
@@ -38,7 +38,7 @@ function LegalLayout({ title, subtitle, children }: { title: string; subtitle: s
 }
 
 const rows: { label: string; value: React.ReactNode }[] = [
-  { label: "販売事業者名", value: "スカルプ・ドック株式会社（※デモ用表記）" },
+  { label: "販売事業者名", value: "スカルプラボ株式会社（※デモ用表記）" },
   { label: "代表者名", value: "代表取締役　山田 太郎（※デモ用表記）" },
   {
     label: "所在地",
@@ -51,14 +51,14 @@ const rows: { label: string; value: React.ReactNode }[] = [
     ),
   },
   { label: "電話番号", value: "03-0000-0000（※デモ用番号）" },
-  { label: "メールアドレス", value: "info@scalp-doc.jp（※デモ用アドレス）" },
+  { label: "メールアドレス", value: "info@scalp-labo.jp（※デモ用アドレス）" },
   { label: "営業時間", value: "10:00〜19:00（月曜定休）" },
   {
     label: "サービス内容",
     value: (
       <ul className="list-disc list-inside space-y-1">
         <li>無料スカルプチェック（頭皮撮影・状態確認）</li>
-        <li>スカルプ・ドック（プレミアムスカルプコース）</li>
+        <li>スカルプラボ（プレミアムスカルプコース）</li>
         <li>パーソナルケアプログラム</li>
         <li>サブスクリプションプラン（月額定額サービス）</li>
       </ul>
@@ -70,7 +70,7 @@ const rows: { label: string; value: React.ReactNode }[] = [
       <>
         各サービスページに記載の価格（税込）<br />
         無料スカルプチェック：無料<br />
-        スカルプ・ドック：3,000〜5,000円（税込）<br />
+        スカルプラボ：3,000〜5,000円（税込）<br />
         サブスクリプション：月額1,980円〜7,980円（税込）
       </>
     ),

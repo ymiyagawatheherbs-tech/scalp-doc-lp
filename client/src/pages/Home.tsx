@@ -1,5 +1,5 @@
 /*
- * スカルプ・ドック LP — Home Page
+ * スカルプラボ LP — Home Page
  * Design: モダン・ウェルネス・スタジオ
  * Color: Cream × Deep Brown × Golden Amber
  * Font: Shippori Mincho B1 × Noto Sans JP × Cormorant Garamond
@@ -127,10 +127,10 @@ function Nav() {
               <div className={`font-mincho text-sm font-bold leading-tight tracking-widest transition-colors ${
                 scrolled ? "text-[oklch(0.22_0.045_42)]" : "text-white"
               }`}>
-                スカルプ・ドック
+                スカルプラボ
               </div>
               <div className="font-cormorant text-[oklch(0.72_0.12_70)] text-[10px] tracking-widest uppercase">
-                Scalp Doc
+                Scalp Labo
               </div>
             </div>
           </a>
@@ -211,7 +211,7 @@ function HeroSection() {
       <div className="absolute inset-0">
         <img
           src={IMAGES.hero}
-          alt="スカルプ・ドック ウェルネススタジオ"
+          alt="スカルプラボ ウェルネススタジオ"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.18_0.04_42/0.75)] via-[oklch(0.18_0.04_42/0.45)] to-transparent" />
@@ -360,7 +360,7 @@ function ConceptSection() {
               </div>
               <div className="karte-border">
                 <p className="font-sans-jp text-[oklch(0.38_0.055_42)] text-sm leading-relaxed">
-                  スカルプ・ドックは、頭皮ケアに同じ変化を目指します。「薄毛が気になってから行く場所」ではなく、「定期的に頭皮の状態を確認する場所」へ。
+                  スカルプラボは、頭皮ケアに同じ変化を目指します。「薄毛が気になってから行く場所」ではなく、「定期的に頭皮の状態を確認する場所」へ。
                 </p>
               </div>
             </div>
@@ -465,7 +465,7 @@ function ServiceSection() {
     {
       layer: "Layer 2",
       badge: "定期ケア",
-      title: "スカルプ・ドック",
+      title: "スカルプラボ",
       subtitle: "3ヶ月に1回のプレミアムスカルプコース",
       time: "30〜40分",
       price: "3,000〜5,000円",
@@ -615,7 +615,7 @@ function PricingSection() {
       price: "1,980",
       period: "月",
       features: [
-        "年2回 スカルプ・ドック",
+        "年2回 スカルプラボ",
         "製品10% OFF",
         "LINEデータ共有",
         "リマインド通知",
@@ -629,7 +629,7 @@ function PricingSection() {
       price: "3,980",
       period: "月",
       features: [
-        "年4回 スカルプ・ドック",
+        "年4回 スカルプラボ",
         "製品15% OFF",
         "ヘッドスパ 年2回",
         "パーソナルレポート",
@@ -646,7 +646,7 @@ function PricingSection() {
       price: "7,980",
       period: "月",
       features: [
-        "年4回 スカルプ・ドック",
+        "年4回 スカルプラボ",
         "製品20% OFF",
         "ヘッドスパ 毎月",
         "専属アドバイザー",
@@ -964,7 +964,7 @@ function FaqSection() {
     },
     {
       q: "医療行為ではないですか？",
-      a: "スカルプ・ドックは医療行為ではありません。マイクロスコープによる頭皮の撮影・記録・確認を行うサービスです。医療機関への受診が適切と思われる場合は、提携医療機関をご案内することがあります。",
+      a: "スカルプラボは医療行為ではありません。マイクロスコープによる頭皮の撮影・記録・確認を行うサービスです。医療機関への受診が適切と思われる場合は、提携医療機関をご案内することがあります。",
     },
   ];
 
@@ -1309,7 +1309,7 @@ function ReservationSection() {
               <div className="grid sm:grid-cols-3 gap-3">
                 {[
                   { value: "free", label: "無料スカルプチェック", sub: "5〜10分・無料" },
-                  { value: "standard", label: "スカルプ・ドック", sub: "30〜40分・3,000〜5,000円" },
+                  { value: "standard", label: "スカルプラボ", sub: "30〜40分・3,000〜5,000円" },
                   { value: "consult", label: "まずは相談したい", sub: "内容を相談" },
                 ].map((opt) => (
                   <button
@@ -1430,8 +1430,8 @@ function Footer() {
                 <span className="text-[oklch(0.72_0.12_70)] text-xs font-cormorant font-semibold">S</span>
               </div>
               <div>
-                <div className="font-mincho text-white text-sm font-bold tracking-widest">スカルプ・ドック</div>
-                <div className="font-cormorant text-[oklch(0.72_0.12_70)] text-[10px] tracking-widest uppercase">Scalp Doc</div>
+                <div className="font-mincho text-white text-sm font-bold tracking-widest">スカルプラボ</div>
+                <div className="font-cormorant text-[oklch(0.72_0.12_70)] text-[10px] tracking-widest uppercase">Scalp Labo</div>
               </div>
             </div>
             <p className="font-sans-jp text-white/40 text-xs leading-relaxed">
@@ -1442,7 +1442,7 @@ function Footer() {
           <div>
             <h4 className="font-mincho text-white text-sm font-bold mb-4">サービス</h4>
             <ul className="space-y-2">
-              {["無料スカルプチェック", "スカルプ・ドック（定期ケア）", "パーソナルケアプログラム", "サブスクリプションプラン"].map((item) => (
+              {["無料スカルプチェック", "スカルプラボ（定期ケア）", "パーソナルケアプログラム", "サブスクリプションプラン"].map((item) => (
                 <li key={item}>
                   <a href="#" className="font-sans-jp text-white/40 text-xs hover:text-white/70 transition-colors">
                     {item}
@@ -1477,7 +1477,7 @@ function Footer() {
         </div>
         <div className="text-center">
           <p className="font-sans-jp text-white/30 text-xs">
-            © 2025 スカルプ・ドック. All rights reserved.
+            © 2025 スカルプラボ. All rights reserved.
           </p>
         </div>
       </div>
