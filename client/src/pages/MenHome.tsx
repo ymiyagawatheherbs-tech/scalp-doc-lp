@@ -86,6 +86,14 @@ function Nav() {
 
           {/* CTA + Hamburger */}
           <div className="flex items-center gap-4">
+            {/* 女性版切り替えリンク */}
+            <Link
+              href="/"
+              className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/30 text-white/60 text-xs tracking-wider hover:border-white/70 hover:text-white/90 transition-all duration-300 font-['Noto_Sans_JP']"
+            >
+              <span className="text-[10px]">&#9792;</span>
+              レディース版
+            </Link>
             <button
               onClick={() => scrollTo("#reservation")}
               className="hidden md:block px-5 py-2 border border-[#C9A84C] text-[#C9A84C] text-sm tracking-wider hover:bg-[#C9A84C] hover:text-[#0D1B2A] transition-all duration-300 font-['Noto_Sans_JP']"
@@ -115,9 +123,17 @@ function Nav() {
               {link.label}
             </button>
           ))}
+          <Link
+            href="/"
+            className="mt-6 flex items-center justify-center gap-2 py-3 border border-white/30 text-white/60 text-base tracking-wider hover:border-white/60 hover:text-white/80 transition-all duration-300 font-['Noto_Sans_JP']"
+            onClick={() => setMenuOpen(false)}
+          >
+            <span>&#9792;</span>
+            レディース版はこちら
+          </Link>
           <button
             onClick={() => scrollTo("#reservation")}
-            className="mt-8 py-4 border border-[#C9A84C] text-[#C9A84C] text-lg tracking-wider hover:bg-[#C9A84C] hover:text-[#0D1B2A] transition-all duration-300"
+            className="mt-3 py-4 border border-[#C9A84C] text-[#C9A84C] text-lg tracking-wider hover:bg-[#C9A84C] hover:text-[#0D1B2A] transition-all duration-300"
           >
             無料チェックを予約する
           </button>
