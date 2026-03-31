@@ -313,7 +313,7 @@ function HeroSection() {
           </h1>
           <p className="font-sans-jp text-white/80 text-base md:text-lg leading-relaxed mb-10 animate-fade-in-up opacity-0-init delay-200">
             マイクロスコープによる頭皮チェックで、あなたの頭皮の今を記録・確認。<br className="hidden md:block" />
-            薄毛になってから悩むのではなく、健康な頭皮を<strong className="text-[oklch(0.88_0.08_75)]">日頃からケアする</strong>新習慣。
+            薄毛になってから悩むのではなく、健康な頭皮を<strong className="text-[oklch(0.88_0.08_75)]">意識的にケアする</strong>新習慣。
           </p>
           <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up opacity-0-init delay-300">
             <a
@@ -341,7 +341,7 @@ function HeroSection() {
               ))}
             </div>
             <p className="font-sans-jp text-white/70 text-sm">
-              <span className="text-white font-medium">1,200名以上</span>がスカルプチェックを体験済み（当社調べ）
+              <span className="text-white font-medium">2,200名以上</span>がスカルプチェックを体験済み（当社調べ）
             </p>
           </div>
         </div>
@@ -378,19 +378,19 @@ function ProblemSection() {
         <div className="grid md:grid-cols-3 gap-6">
           {[
             {
-              icon: "💊",
+              icon: "",
               title: "薬剤による頭皮への影響",
               desc: "ヘアカラー・パーマの普及により、若年層から継続的に頭皮環境への負担が増えています。",
               delay: 0,
             },
             {
-              icon: "🔍",
+              icon: "",
               title: "予防意識はあるのに…",
               desc: "「将来のために」と思っていても、定期的に気軽に相談できる場所がありませんでした。",
               delay: 100,
             },
             {
-              icon: "🏥",
+              icon: "",
               title: "受け皿の不在",
               desc: "病院は敷居が高く、サロンはスポット利用中心。継続的にモニタリングできる場所がない。",
               delay: 200,
@@ -456,7 +456,7 @@ function ConceptSection() {
                   Microscope Diagnosis
                 </p>
                 <p className="font-mincho text-white text-sm font-bold">
-                  マイクロスコープで<br />毛穴・皮脂・血行を記録・確認
+                  マイクロスコープで<br />頭皮の色・毛穴・皮脂・毛量を記録・確認
                 </p>
               </div>
               {/* 頭皮マイクロスコープ画像（右下サムネイル） */}
@@ -680,8 +680,8 @@ function ServiceSection() {
       badge: "ケアプログラム",
       title: "パーソナルケア",
       subtitle: "チェック結果に基づくケアのご提案",
-      time: "随時",
-      price: "要相談",
+      time: "45分〜",
+      price: "6,000円〜",
       color: "oklch(0.62_0.05_148)",
       image: IMAGES.herbGommage,
       items: [
@@ -818,28 +818,28 @@ function TargetSection() {
   const { ref, inView } = useInView();
   const targets = [
     {
-      emoji: "🟡",
+      emoji: "",
       segment: "予防ケア男性",
       age: "20〜30代",
       message: "まだ大丈夫なうちに、始める安心",
       desc: "「将来のために」という意識で、早めに頭皮の状態を把握しておきたい方へ。",
     },
     {
-      emoji: "🔵",
+      emoji: "",
       segment: "ダメージケア女性",
       age: "20〜30代",
       message: "おしゃれを続けるための、頭皮メンテナンス",
       desc: "カラー・パーマを繰り返す方の頭皮状態を記録・確認し、適切なケアをご提案します。",
     },
     {
-      emoji: "🟤",
+      emoji: "",
       segment: "美容意識層",
       age: "30〜40代女性",
       message: "美容習慣に、頭皮ケアをプラス",
       desc: "エイジングケアに関心がある方へ。頭皮の状態を定期的に把握することが、美しい髪づくりをサポートします。",
     },
     {
-      emoji: "🟠",
+      emoji: "",
       segment: "育毛ケア層",
       age: "40〜50代男女",
       message: "見える化で不安を安心に変える",
@@ -911,27 +911,27 @@ function DigitalSection() {
             </span>
             <h2 className="font-mincho text-white text-3xl md:text-4xl font-bold mb-8">
               マイ・スカルプカルテ<br />
-              <span className="text-[oklch(0.88_0.08_75)]">スカルプラボ頭皮手帳</span>
+              <span className="text-[oklch(0.88_0.08_75)]">スカルプラボ頭皮ケアアプリ</span>
             </h2>
             <div className="space-y-6">
               {[
                 {
-                  icon: "🟥",
+                  icon: "▫️",
                   title: "時系列レポート",
                   desc: "頭皮状態の推移をグラフで記録・確認。変化が一目でわかります。",
                 },
                 {
-                  icon: "🟫",
+                  icon: "▫️",
                   title: "AI予測スコア",
                   desc: "現在のケア状態をもとにした参考スコア表示。継続的なケアのモチベーションをサポートします。",
                 },
                 {
-                  icon: "🟨",
+                  icon: "▫️",
                   title: "リマインド通知",
                   desc: "次回の「定期チェックのご案内、季節に応じたケアTipsをLINEでお届け。",
                 },
                 {
-                  icon: "🟧",
+                  icon: "▫️",
                   title: "共有機能",
                   desc: "定期チェック、定期ケア、サロンケアでの情報共有が可能。チームでケアをサポート。",
                 },
@@ -987,7 +987,7 @@ function FlowSection() {
             How It Works
           </span>
           <h2 className="font-mincho text-[oklch(0.22_0.045_42)] text-3xl md:text-4xl font-bold">
-            頭皮定期チェックの流れ
+            定期スカルプチェックの流れ
           </h2>
         </div>
 
@@ -1089,8 +1089,8 @@ function FaqSection() {
                 className="w-full text-left p-6 flex items-center justify-between bg-white hover:bg-[oklch(0.977_0.012_85)] transition-colors"
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
               >
-                <span className="font-mincho text-[oklch(0.22_0.045_42)] text-base font-bold pr-4">
-                  {faq.q}
+              <span className="font-mincho text-[oklch(0.22_0.045_42)] text-lg font-bold">
+                スカルプラボ頭皮ケアアプリ {faq.q}
                 </span>
                 <span
                   className={`text-[oklch(0.72_0.12_70)] text-xl flex-shrink-0 transition-transform duration-300 ${
@@ -1621,7 +1621,7 @@ function CtaSection() {
             </a>
           </div>
           <p className="font-sans-jp text-white/40 text-xs mt-6">
-            ※ 無料チェックは所要5〜10分。施術は一切ありません。
+            ※ 無料チェックは所要5〜10分です。お気軽にお問い合わせください。
           </p>
         </div>
       </div>
