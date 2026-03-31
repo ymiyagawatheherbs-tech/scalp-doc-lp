@@ -102,7 +102,6 @@ function Nav() {
 
   const navLinks = [
     { label: "サービス", href: "#サービス" },
-    { label: "料金プラン", href: "#料金プラン" },
     { label: "お客様の声", href: "#お客様の声" },
     { label: "よくある質問", href: "#よくある質問" },
   ];
@@ -625,135 +624,6 @@ function ServiceSection() {
   );
 }
 
-// 料金プランセクション
-function PricingSection() {
-  const { ref, inView } = useInView();
-  const plans = [
-    {
-      name: "ライト",
-      nameEn: "Light",
-      price: "1,980",
-      period: "月",
-      features: [
-        "年2回 スカルプラボ",
-        "製品10% OFF",
-        "LINEデータ共有",
-        "リマインド通知",
-      ],
-      cta: "ライトプランで始める",
-      featured: false,
-    },
-    {
-      name: "スタンダード",
-      nameEn: "Standard",
-      price: "3,980",
-      period: "月",
-      features: [
-        "年4回 スカルプラボ",
-        "製品15% OFF",
-        "ヘッドスパ 年2回",
-        "パーソナルレポート",
-        "LINEデータ共有",
-        "リマインド通知",
-      ],
-      cta: "スタンダードで始める",
-      featured: true,
-      badge: "人気No.1",
-    },
-    {
-      name: "プレミアム",
-      nameEn: "Premium",
-      price: "7,980",
-      period: "月",
-      features: [
-        "年4回 スカルプラボ",
-        "製品20% OFF",
-        "ヘッドスパ 毎月",
-        "専属アドバイザー",
-        "優先予約",
-        "医療機関連携",
-      ],
-      cta: "プレミアムで始める",
-      featured: false,
-    },
-  ];
-
-  return (
-    <section className="py-28 bg-[oklch(0.955_0.018_82)]" id="料金プラン">
-      <div ref={ref} className="max-w-7xl mx-auto px-6">
-        <div className={`text-center mb-16 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
-            Subscription Plans
-          </span>
-          <h2 className="font-mincho text-[oklch(0.22_0.045_42)] text-3xl md:text-4xl font-bold mb-4">
-            サブスクリプションプラン
-          </h2>
-          <p className="font-sans-jp text-[oklch(0.55_0.04_42)] text-sm">
-            月額定額で、継続的な頭皮ケアを。いつでも解約可能です。
-          </p>
-        </div>
-
-        <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
-          {plans.map((plan, i) => (
-            <div
-              key={i}
-              className={`relative rounded-sm overflow-hidden transition-all duration-700 ${
-                plan.featured
-                  ? "bg-[oklch(0.22_0.045_42)] shadow-2xl"
-                  : "bg-white border border-[oklch(0.88_0.025_75)]"
-              } ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
-              style={{ transitionDelay: `${i * 150}ms` }}
-            >
-              {plan.badge && (
-                <div className="absolute top-4 right-4 bg-[oklch(0.72_0.12_70)] text-[oklch(0.18_0.04_42)] font-sans-jp text-xs font-bold px-3 py-1 rounded-full">
-                  {plan.badge}
-                </div>
-              )}
-              <div className="p-8">
-                <div className="mb-6">
-                  <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-xs tracking-widest uppercase block mb-1">
-                    {plan.nameEn}
-                  </span>
-                  <h3 className={`font-mincho text-xl font-bold ${plan.featured ? "text-white" : "text-[oklch(0.22_0.045_42)]"}`}>
-                    {plan.name}プラン
-                  </h3>
-                </div>
-                <div className="flex items-baseline gap-1 mb-8">
-                  <span className={`font-cormorant text-4xl font-light ${plan.featured ? "text-[oklch(0.88_0.08_75)]" : "text-[oklch(0.22_0.045_42)]"}`}>
-                    ¥{plan.price}
-                  </span>
-                  <span className={`font-sans-jp text-xs ${plan.featured ? "text-white/50" : "text-[oklch(0.55_0.04_42)]"}`}>
-                    /{plan.period}（税込）
-                  </span>
-                </div>
-                <ul className="space-y-3 mb-8">
-                  {plan.features.map((f, j) => (
-                    <li key={j} className="flex items-center gap-3">
-                      <span className="text-[oklch(0.72_0.12_70)] text-sm">✓</span>
-                      <span className={`font-sans-jp text-xs ${plan.featured ? "text-white/80" : "text-[oklch(0.38_0.055_42)]"}`}>
-                        {f}
-                      </span>
-                    </li>
-                  ))}
-                </ul>
-                <a
-                  href="#cta"
-                  className={`block text-center font-sans-jp text-sm font-medium py-3 rounded-sm transition-all ${
-                    plan.featured
-                      ? "btn-gold-shimmer text-[oklch(0.18_0.04_42)]"
-                      : "border border-[oklch(0.22_0.045_42)] text-[oklch(0.22_0.045_42)] hover:bg-[oklch(0.22_0.045_42)] hover:text-white"
-                  }`}
-                >
-                  {plan.cta}
-                </a>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
 
 // ターゲットセクション
 function TargetSection() {
@@ -1527,7 +1397,6 @@ export default function Home() {
       <ConceptSection />
       <StatsSection />
       <ServiceSection />
-      <PricingSection />
       <TargetSection />
       <DigitalSection />
       <FlowSection />
