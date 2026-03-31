@@ -460,6 +460,107 @@ function ConceptSection() {
   );
 }
 
+// 頭皮チェック習慣の価値討求セクション
+function HabitValueSection() {
+  const { ref, inView } = useInView();
+
+  const values = [
+    {
+      number: "01",
+      title: "変化に気づく",
+      subtitle: "Notice the Change",
+      desc: "頭皮の変化はゆっくり起きます。季節・ストレス・ホームケアの変化をデータで記録することで、「気のせいかな？」を「見える事実」に変えます。",
+    },
+    {
+      number: "02",
+      title: "山を小さなうちに打つ",
+      subtitle: "Act Before It's Too Late",
+      desc: "薄毛・幅広がり・屑性化は、気になり始めたときにはすでに進行していることがほとんど。定期チェックで早期発見することが、最大のケアです。",
+    },
+    {
+      number: "03",
+      title: "履歴が安心に変わる",
+      subtitle: "History Becomes Confidence",
+      desc: "「昨年より良くなった」「変化がなかった」——その一言が、将来への不安を安心に変えます。継続記録が、あなた自身の「頭皮カルテ」になります。",
+    },
+    {
+      number: "04",
+      title: "小さな習慣が大きな差を生む",
+      subtitle: "Small Habit, Big Difference",
+      desc: "歯科検診と同じように、定期的なチェックは「当たり前」になります。年に一度から始める、その小さな一歩が、将来の髮と頭皮を守ります。",
+    },
+  ];
+
+  return (
+    <section className="py-28 bg-[oklch(0.22_0.045_42)]" id="習慣の意義">
+      <div ref={ref} className="max-w-7xl mx-auto px-6">
+        {/* ヘッダー */}
+        <div className={`mb-20 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-6">
+            Why Scalp Check Matters
+          </span>
+          <div className="grid lg:grid-cols-2 gap-8 items-end">
+            <div>
+              <h2 className="font-mincho text-white text-3xl md:text-5xl font-bold leading-tight">
+                髮のお悩みは、<br />
+                <span className="text-[oklch(0.88_0.08_75)]">頭皮チェックから。</span>
+              </h2>
+            </div>
+            <div>
+              <p className="font-sans-jp text-white/60 text-sm leading-relaxed">
+                将来の不安を安心に変える「頭皮チェック習慣」。歯医者さんの定期検診と同じように、定期的に頭皮の状態を確認することで、問題が小さなうちに気づき、適切なケアを選ぶことができます。
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* 4つの価値 */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-0 border border-white/10">
+          {values.map((v, i) => (
+            <div
+              key={i}
+              className={`p-8 border-r border-white/10 last:border-r-0 transition-all duration-700 group hover:bg-white/5 ${
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: `${i * 120}ms` }}
+            >
+              <span className="font-cormorant text-[oklch(0.72_0.12_70)/40] text-5xl font-light block mb-6 group-hover:text-[oklch(0.72_0.12_70)/70] transition-colors">
+                {v.number}
+              </span>
+              <h3 className="font-mincho text-white text-lg font-bold mb-1 leading-snug">
+                {v.title}
+              </h3>
+              <p className="font-cormorant text-[oklch(0.72_0.12_70)] text-xs tracking-wider mb-4">
+                {v.subtitle}
+              </p>
+              <div className="w-8 h-px bg-[oklch(0.72_0.12_70)/40] mb-4 group-hover:w-16 transition-all duration-500" />
+              <p className="font-sans-jp text-white/55 text-xs leading-relaxed">
+                {v.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* ボトムCTA */}
+        <div className={`mt-16 text-center transition-all duration-700 delay-500 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <p className="font-mincho text-white/80 text-xl md:text-2xl font-bold mb-2">
+            小さな一歩から、将来の髮を守る。
+          </p>
+          <p className="font-sans-jp text-white/40 text-sm mb-8">
+            まずは無料の頭皮チェックから。
+          </p>
+          <a
+            href="#cta"
+            className="inline-block btn-gold-shimmer font-sans-jp text-[oklch(0.18_0.04_42)] text-sm font-bold px-10 py-4 rounded-sm tracking-wider"
+          >
+            無料スカルプチェックを予約する
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // 統計セクション
 function StatsSection() {
   const { ref, inView } = useInView();
@@ -1563,6 +1664,7 @@ export default function Home() {
       <HeroSection />
       <ProblemSection />
       <ConceptSection />
+      <HabitValueSection />
       <StatsSection />
       <ServiceSection />
       <TargetSection />
