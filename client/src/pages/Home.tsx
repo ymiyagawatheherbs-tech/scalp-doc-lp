@@ -69,6 +69,9 @@ const IMAGES = {
   scalpCheck: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp_check_dfbc71b8.jpg",
   botanicalMist: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/botanical_mist_b67f817f.jpg",
   herbGommage: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/herb_gommage_65dd1849.jpg",
+  scalpCheckReal: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp_check_real_8dbe88ff.png",
+  herbBottles: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/herb_bottles_b7827e42.jpg",
+  scalpMicroscopeReal: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp_microscope_real_722e5749.jpg",
 };
 
 // Intersection Observer フック
@@ -443,10 +446,10 @@ function ConceptSection() {
           <div className={`relative transition-all duration-800 delay-200 ${inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`}>
             <div className="relative">
               <img
-                src={IMAGES.scalpCheck}
-                alt="マイクロスコープによる頭皮チェック"
+                src={IMAGES.scalpCheckReal}
+                alt="マイクロスコープによる頭皮チェック実施中"
                 className="w-full max-w-md mx-auto rounded-sm shadow-2xl object-cover"
-                style={{ aspectRatio: '4/3' }}
+                style={{ aspectRatio: '3/4' }}
               />
               <div className="absolute -bottom-6 -right-6 bg-[oklch(0.22_0.045_42)] text-white p-6 rounded-sm shadow-xl max-w-xs">
                 <p className="font-cormorant text-[oklch(0.72_0.12_70)] text-xs tracking-widest uppercase mb-2">
@@ -455,6 +458,10 @@ function ConceptSection() {
                 <p className="font-mincho text-white text-sm font-bold">
                   マイクロスコープで<br />毛穴・皮脂・血行を記録・確認
                 </p>
+              </div>
+              {/* 頭皮マイクロスコープ画像（右下サムネイル） */}
+              <div className="absolute -top-6 -left-6 w-28 h-28 overflow-hidden rounded-sm shadow-xl border-2 border-[oklch(0.72_0.12_70)]">
+                <img src={IMAGES.scalpMicroscopeReal} alt="頭皮マイクロスコープ画像" className="w-full h-full object-cover" />
               </div>
             </div>
           </div>
@@ -515,6 +522,16 @@ function HabitValueSection() {
                 将来の不安を安心に変える「頭皮チェック習慣」。歯医者さんの定期検診と同じように、定期的に頭皮の状態を確認することで、問題が小さなうちに気づき、適切なケアを選ぶことができます。
               </p>
             </div>
+          </div>
+          {/* ハーブビン画像 — セクションの雰囲気を高める横長バナー */}
+          <div className="mt-10 overflow-hidden rounded-sm" style={{ height: '220px' }}>
+            <img
+              src={IMAGES.herbBottles}
+              alt="施術に使用するハーブ"
+              className="w-full h-full object-cover object-center"
+              style={{ objectPosition: 'center 40%' }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.22_0.045_42)/80] to-transparent pointer-events-none" />
           </div>
         </div>
 
@@ -948,7 +965,7 @@ function FlowSection() {
       num: "02",
       title: "マイクロスコープで頭皮をチェック、スタイル撮影",
       desc: "専門スタッフが丁寧に頭皮の状態を撮影・記録します。",
-      image: IMAGES.scalpCheck,
+      image: IMAGES.scalpCheckReal,
     },
     {
       num: "03",
