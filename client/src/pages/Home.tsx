@@ -306,7 +306,7 @@ function HeroSection() {
           </div>
           <h1 className="font-mincho text-white leading-tight mb-6 animate-fade-in-up opacity-0-init delay-100">
             <span className="block text-3xl md:text-5xl lg:text-6xl font-bold mb-2">
-              歯医者さんに行くように、
+              歯科検診に行くように、
             </span>
             <span className="block text-3xl md:text-5xl lg:text-6xl font-bold text-[oklch(0.88_0.08_75)]">
               頭皮も定期チェックを。
@@ -369,7 +369,7 @@ function ProblemSection() {
           </span>
           <h2 className="font-mincho text-white text-3xl md:text-4xl font-bold mb-6">
             あなたの頭皮、<br className="md:hidden" />
-            <span className="text-[oklch(0.88_0.08_75)]">最後にチェックしたのはいつですか？</span>
+            <span className="text-[oklch(0.88_0.08_75)]">最後のチェックはいつですか？</span>
           </h2>
           <p className="font-sans-jp text-white/70 text-base max-w-2xl mx-auto leading-relaxed">
             多くの人が頭皮の変化に気づかないまま、ケアが後回しになっています。
@@ -427,7 +427,7 @@ function ConceptSection() {
               Our Concept
             </span>
             <h2 className="font-mincho text-[oklch(0.22_0.045_42)] text-3xl md:text-4xl font-bold leading-tight mb-8">
-              「歯科検診」が広めたように、<br />
+              「歯科の定期検診」のように、<br />
               <span className="text-[oklch(0.72_0.12_70)]">頭皮ケアの新習慣</span>を広めたい。
             </h2>
             <div className="section-divider mb-8" />
@@ -438,7 +438,7 @@ function ConceptSection() {
                 </p>
               </div>
               <div className="karte-border">
-                <p className="font-sans-jp text-[oklch(0.38_0.055_42)] text-sm leading-relaxed">
+                <p className="font-sans-jp text-[oklch(0.38_0.055_42)] text-sm leading-relaxed font-semibold">
                   スカルプラボは、頭皮ケアに同じ変化を目指します。「薄毛が気になってから行く場所」ではなく、「定期的に頭皮の状態を確認する場所」へ。
                 </p>
               </div>
