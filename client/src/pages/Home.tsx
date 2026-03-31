@@ -7,6 +7,59 @@
 
 import { useEffect, useRef, useState } from "react";
 
+// ビフォーアフター画像URL
+const BA_IMAGES = [
+  {
+    id: 1,
+    src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/ba_01_495f4616.jpg",
+    label: "うねり・広がりケア",
+    period: "施術後",
+    gender: "女性",
+  },
+  {
+    id: 2,
+    src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/ba_02_da861a2d.jpg",
+    label: "くせ毛・まとまりケア",
+    period: "7ヶ月後",
+    gender: "女性",
+  },
+  {
+    id: 3,
+    src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/ba_03_2e97f8a1.jpg",
+    label: "薄毛・発毛ケア",
+    period: "継続ケア後",
+    gender: "男性",
+  },
+  {
+    id: 4,
+    src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/ba_04_4d6059d4.jpg",
+    label: "頭頂部・薄毛ケア",
+    period: "継続ケア後",
+    gender: "男性",
+  },
+  {
+    id: 5,
+    src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/ba_05_7dc53269.jpg",
+    label: "頭頂部・育毛ケア",
+    period: "継続ケア後",
+    gender: "男性",
+  },
+  {
+    id: 6,
+    src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/ba_06_5af26017.jpg",
+    label: "ボリュームアップケア",
+    period: "6ヶ月後",
+    gender: "男性",
+  },
+  {
+    id: 7,
+    src: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/ba_07_7a4e0e75.jpg",
+    label: "ダメージ・うねりケア",
+    period: "施術後",
+    gender: "女性",
+  },
+];
+
 // 画像URL定数
 const IMAGES = {
   hero: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/hero-main-7WiQYuuxpMEgAPgcyJcPik.webp",
@@ -1040,6 +1093,121 @@ function TestimonialsSection() {
   );
 }
 
+// ビフォーアフターセクション
+function BeforeAfterSection() {
+  const { ref, inView } = useInView();
+  const [active, setActive] = useState(0);
+
+  return (
+    <section className="py-28 bg-[oklch(0.97_0.012_82)]" id="ビフォーアフター">
+      <div ref={ref} className="max-w-7xl mx-auto px-6">
+        {/* ヘッダー */}
+        <div className={`text-center mb-16 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
+            Before &amp; After
+          </span>
+          <h2 className="font-mincho text-[oklch(0.22_0.045_42)] text-3xl md:text-4xl font-bold mb-4">
+            お客様のビフォーアフター
+          </h2>
+          <p className="font-sans-jp text-[oklch(0.55_0.04_42)] text-sm">
+            継続的な頭皮ケアで変わった、実際のお客様の記録です。
+          </p>
+        </div>
+
+        {/* メイン表示 */}
+        <div className={`transition-all duration-700 delay-200 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          {/* 大きい画像 */}
+          <div className="relative max-w-lg mx-auto mb-8">
+            <div className="relative overflow-hidden rounded-sm shadow-2xl bg-[oklch(0.22_0.045_42)]">
+              <img
+                src={BA_IMAGES[active].src}
+                alt={`${BA_IMAGES[active].label} ビフォーアフター`}
+                className="w-full object-cover transition-opacity duration-500"
+                style={{ aspectRatio: "3/4", objectFit: "cover" }}
+              />
+              {/* ラベル */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[oklch(0.12_0.04_42)/90] to-transparent px-6 py-5">
+                <div className="flex items-end justify-between">
+                  <div>
+                    <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-xs tracking-widest uppercase block mb-1">
+                      {BA_IMAGES[active].gender} · {BA_IMAGES[active].period}
+                    </span>
+                    <p className="font-mincho text-white text-lg font-bold">
+                      {BA_IMAGES[active].label}
+                    </p>
+                  </div>
+                  <div className="flex gap-2">
+                    <span className="font-sans-jp text-[oklch(0.88_0.08_75)] text-xs bg-[oklch(0.72_0.12_70)/20] border border-[oklch(0.72_0.12_70)/40] px-3 py-1 rounded-full">
+                      Before → After
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+            {/* ナビゲーション矢印 */}
+            <button
+              onClick={() => setActive((prev) => (prev - 1 + BA_IMAGES.length) % BA_IMAGES.length)}
+              className="absolute left-[-20px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center text-[oklch(0.22_0.045_42)] hover:bg-[oklch(0.72_0.12_70)] hover:text-white transition-all"
+              aria-label="前の画像"
+            >
+              ‹
+            </button>
+            <button
+              onClick={() => setActive((prev) => (prev + 1) % BA_IMAGES.length)}
+              className="absolute right-[-20px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center text-[oklch(0.22_0.045_42)] hover:bg-[oklch(0.72_0.12_70)] hover:text-white transition-all"
+              aria-label="次の画像"
+            >
+              ›
+            </button>
+          </div>
+
+          {/* サムネイルグリッド */}
+          <div className="grid grid-cols-4 md:grid-cols-7 gap-2 max-w-2xl mx-auto">
+            {BA_IMAGES.map((img, i) => (
+              <button
+                key={img.id}
+                onClick={() => setActive(i)}
+                className={`relative overflow-hidden rounded-sm transition-all duration-300 ${
+                  active === i
+                    ? "ring-2 ring-[oklch(0.72_0.12_70)] ring-offset-2 opacity-100 scale-105"
+                    : "opacity-60 hover:opacity-90"
+                }`}
+                aria-label={img.label}
+              >
+                <img
+                  src={img.src}
+                  alt={img.label}
+                  className="w-full object-cover"
+                  style={{ aspectRatio: "3/4", objectFit: "cover" }}
+                />
+              </button>
+            ))}
+          </div>
+
+          {/* ドットインジケーター */}
+          <div className="flex justify-center gap-2 mt-6">
+            {BA_IMAGES.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActive(i)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  active === i ? "bg-[oklch(0.72_0.12_70)] w-6" : "bg-[oklch(0.72_0.12_70)/30]"
+                }`}
+                aria-label={`画像${i + 1}`}
+              />
+            ))}
+          </div>
+
+          {/* 注意書き */}
+          <p className="text-center font-sans-jp text-[oklch(0.65_0.04_42)] text-[11px] mt-6">
+            ※ 個人の体験・感想です。効果には個人差があります。掲載にあたりご本人の同意を得ています。
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // 予約フォームセクション
 function ReservationSection() {
   const { ref, inView } = useInView();
@@ -1400,6 +1568,7 @@ export default function Home() {
       <TargetSection />
       <DigitalSection />
       <FlowSection />
+      <BeforeAfterSection />
       <TestimonialsSection />
       <FaqSection />
       <ReservationSection />
