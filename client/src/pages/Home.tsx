@@ -306,7 +306,7 @@ function HeroSection() {
           </div>
           <h1 className="font-mincho text-white leading-tight mb-6 animate-fade-in-up opacity-0-init delay-100">
             <span className="block text-3xl md:text-5xl lg:text-6xl font-bold mb-2">
-              歯科検診に行くように、
+              歯の定期検診のように、
             </span>
             <span className="block text-3xl md:text-5xl lg:text-6xl font-bold text-[oklch(0.88_0.08_75)]">
               頭皮も定期チェックを。
