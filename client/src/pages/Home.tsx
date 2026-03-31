@@ -169,11 +169,24 @@ function Nav() {
   return (
     <>
       <ScrollProgressBar />
+      {/* THE HERBS トップバー */}
+      <div className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 ${
+        scrolled ? "opacity-0 pointer-events-none -translate-y-full" : "opacity-100 translate-y-0"
+      }`}>
+        <div className="flex items-center justify-center gap-2 py-1.5 bg-[oklch(0.18_0.04_42)/0.85] backdrop-blur-sm">
+          <span className="font-cormorant text-white/50 text-[10px] tracking-[0.2em] uppercase">presented by</span>
+          <img
+            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
+            alt="THE HERBS"
+            className="h-4 w-auto brightness-0 invert opacity-80"
+          />
+        </div>
+      </div>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-[oklch(0.977_0.012_85/0.97)] backdrop-blur-md shadow-sm border-b border-[oklch(0.88_0.025_75)]"
-            : "bg-transparent"
+            ? "top-0 bg-[oklch(0.977_0.012_85/0.97)] backdrop-blur-md shadow-sm border-b border-[oklch(0.88_0.025_75)]"
+            : "top-[28px] bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -1645,6 +1658,15 @@ function Footer() {
                 <div className="font-mincho text-white text-sm font-bold tracking-widest">スカルプラボ</div>
                 <div className="font-cormorant text-[oklch(0.72_0.12_70)] text-[10px] tracking-widest uppercase">Scalp Labo</div>
               </div>
+            </div>
+            {/* THE HERBS ブランドリンク */}
+            <div className="flex items-center gap-2 mb-4 pb-4 border-b border-white/10">
+              <span className="font-cormorant text-white/30 text-[10px] tracking-[0.15em] uppercase">by</span>
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
+                alt="THE HERBS"
+                className="h-3.5 w-auto brightness-0 invert opacity-50"
+              />
             </div>
             <p className="font-sans-jp text-white/40 text-xs leading-relaxed">
               歯科ケアのように定期的に頭皮をケアする新習慣。<br />

@@ -54,12 +54,25 @@ function Nav() {
     <>
       {/* Progress bar */}
       <div
-        className="fixed top-0 left-0 h-0.5 z-[60] transition-all duration-100"
+        className="fixed top-0 left-0 h-0.5 z-[70] transition-all duration-100"
         style={{ width: `${progress}%`, background: "linear-gradient(90deg, #C9A84C, #E8C97A)" }}
       />
+      {/* THE HERBS トップバー */}
+      <div className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 ${
+        scrolled ? "opacity-0 pointer-events-none -translate-y-full" : "opacity-100 translate-y-0"
+      }`}>
+        <div className="flex items-center justify-center gap-2 py-1.5 bg-black/60 backdrop-blur-sm border-b border-[#C9A84C]/10">
+          <span className="font-['Cormorant_Garamond'] text-white/40 text-[10px] tracking-[0.2em] uppercase">presented by</span>
+          <img
+            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
+            alt="THE HERBS"
+            className="h-4 w-auto brightness-0 invert opacity-60"
+          />
+        </div>
+      </div>
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "py-3 bg-[#0D1B2A]/95 backdrop-blur-md border-b border-[#C9A84C]/20 shadow-lg shadow-black/30" : "py-6 bg-transparent"
+        className={`fixed left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled ? "top-0 py-3 bg-[#0D1B2A]/95 backdrop-blur-md border-b border-[#C9A84C]/20 shadow-lg shadow-black/30" : "top-[28px] py-6 bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
@@ -1154,6 +1167,15 @@ function Footer() {
             <div className="mb-4">
               <span className="font-['Cormorant_Garamond'] italic text-[#C9A84C] text-xs tracking-[0.3em] uppercase block">Scalp Labo</span>
               <span className="text-white font-['Shippori_Mincho'] text-2xl">for Men</span>
+            </div>
+            {/* THE HERBS ブランドリンク */}
+            <div className="flex items-center gap-2 mb-4 pb-4 border-b border-white/10">
+              <span className="font-['Cormorant_Garamond'] text-white/30 text-[10px] tracking-[0.15em] uppercase">by</span>
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
+                alt="THE HERBS"
+                className="h-3.5 w-auto brightness-0 invert opacity-50"
+              />
             </div>
             <p className="text-white/40 text-xs leading-relaxed font-['Noto_Sans_JP']">
               男性のための頭皮定期チェックサービス。<br />
