@@ -70,6 +70,7 @@ const IMAGES = {
   botanicalMist: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/botanical_mist_b67f817f.jpg",
   herbGommage: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/herb_gommage_65dd1849.jpg",
   scalpCheckReal: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp_check_real_8dbe88ff.png",
+  conceptCheck: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/concept_check_d8584f3a.jpg",
   herbBottles: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/herb_bottles_b7827e42.jpg",
   scalpMicroscopeReal: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp_microscope_real_722e5749.jpg",
 };
@@ -446,10 +447,10 @@ function ConceptSection() {
           <div className={`relative transition-all duration-800 delay-200 ${inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`}>
             <div className="relative">
               <img
-                src={IMAGES.scalpCheckReal}
+                src={IMAGES.conceptCheck}
                 alt="マイクロスコープによる頭皮チェック実施中"
                 className="w-full max-w-md mx-auto rounded-sm shadow-2xl object-cover"
-                style={{ aspectRatio: '3/4' }}
+                style={{ aspectRatio: '4/3' }}
               />
               <div className="absolute -bottom-6 -right-6 bg-[oklch(0.22_0.045_42)] text-white p-6 rounded-sm shadow-xl max-w-xs">
                 <p className="font-cormorant text-[oklch(0.72_0.12_70)] text-xs tracking-widest uppercase mb-2">
