@@ -57,35 +57,45 @@ function Nav() {
         className="fixed top-0 left-0 h-0.5 z-[70] transition-all duration-100"
         style={{ width: `${progress}%`, background: "linear-gradient(90deg, #C9A84C, #E8C97A)" }}
       />
-      {/* THE HERBS トップバー */}
-      <div className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 ${
-        scrolled ? "opacity-0 pointer-events-none -translate-y-full" : "opacity-100 translate-y-0"
-      }`}>
-        <div className="flex items-center justify-center gap-2 py-1.5 bg-black/60 backdrop-blur-sm border-b border-[#C9A84C]/10">
-          <span className="font-['Cormorant_Garamond'] text-white/40 text-[10px] tracking-[0.2em] uppercase">presented by</span>
-          <img
-            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
-            alt="THE HERBS"
-            className="h-4 w-auto brightness-0 invert opacity-60"
-          />
-        </div>
-      </div>
       <nav
-        className={`fixed left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "top-0 py-3 bg-[#0D1B2A]/95 backdrop-blur-md border-b border-[#C9A84C]/20 shadow-lg shadow-black/30" : "top-[28px] py-6 bg-transparent"
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          scrolled ? "py-3 bg-[#0D1B2A]/95 backdrop-blur-md border-b border-[#C9A84C]/20 shadow-lg shadow-black/30" : "py-3 md:py-6 bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between">
           {/* Logo */}
           <Link href="/men">
             <div className="flex flex-col cursor-pointer">
-              <span className="font-['Cormorant_Garamond'] italic text-[#C9A84C] text-xs tracking-[0.3em] uppercase">Scalp Labo</span>
-              <span className="text-white font-['Shippori_Mincho'] text-lg leading-tight tracking-wider">for Men</span>
+              <span className="font-['Cormorant_Garamond'] italic text-[#C9A84C] text-[10px] md:text-xs tracking-[0.3em] uppercase">Scalp Labo</span>
+              <span className="text-white font-['Shippori_Mincho'] text-base md:text-lg leading-tight tracking-wider">for Men</span>
             </div>
           </Link>
 
+          {/* THE HERBSロゴ — スマホ中央 */}
+          <div className={`md:hidden flex items-center gap-1.5 transition-all duration-500 ${
+            scrolled ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}>
+            <span className="font-['Cormorant_Garamond'] text-white/30 text-[8px] tracking-[0.15em] uppercase">by</span>
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
+              alt="THE HERBS"
+              className="h-3 w-auto brightness-0 invert opacity-50"
+            />
+          </div>
+
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-8">
+            {/* THE HERBSロゴ — デスクトップ */}
+            <div className={`flex items-center gap-1.5 transition-all duration-500 ${
+              scrolled ? "opacity-0 pointer-events-none" : "opacity-100"
+            }`}>
+              <span className="font-['Cormorant_Garamond'] text-white/30 text-[9px] tracking-[0.2em] uppercase">presented by</span>
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
+                alt="THE HERBS"
+                className="h-3.5 w-auto brightness-0 invert opacity-60"
+              />
+            </div>
             {navLinks.map((link) => (
               <button
                 key={link.href}
@@ -98,7 +108,7 @@ function Nav() {
           </div>
 
           {/* CTA + Hamburger */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-2 md:gap-4">
             {/* 女性版切り替えリンク */}
             <Link
               href="/"
@@ -113,12 +123,19 @@ function Nav() {
             >
               無料チェック予約
             </button>
+            {/* スマホ用CTAボタン */}
             <button
-              className="md:hidden text-white"
+              onClick={() => scrollTo("#reservation")}
+              className="md:hidden px-3 py-1.5 border border-[#C9A84C] text-[#C9A84C] text-xs tracking-wider hover:bg-[#C9A84C] hover:text-[#0D1B2A] transition-all duration-300 font-['Noto_Sans_JP']"
+            >
+              無料予約
+            </button>
+            <button
+              className="md:hidden text-white p-1"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="メニュー"
             >
-              {menuOpen ? <X size={24} /> : <Menu size={24} />}
+              {menuOpen ? <X size={22} /> : <Menu size={22} />}
             </button>
           </div>
         </div>
@@ -191,10 +208,10 @@ function Hero() {
       {/* Gold line decoration */}
       <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-[#C9A84C] to-transparent opacity-60" />
 
-      <div className="relative max-w-7xl mx-auto px-6 pt-32 pb-20">
+      <div className="relative max-w-7xl mx-auto px-5 md:px-6 pt-20 md:pt-32 pb-16 md:pb-20">
         <div className="max-w-2xl">
           {/* Eyebrow */}
-          <div className="flex items-center gap-3 mb-8">
+          <div className="hidden md:flex items-center gap-3 mb-8">
             <div className="h-px w-12 bg-[#C9A84C]" />
             <span className="text-[#C9A84C] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">
               Men's Scalp Care
@@ -202,52 +219,55 @@ function Hero() {
           </div>
 
           {/* Main headline */}
-          <h1 className="font-['Shippori_Mincho'] text-white leading-tight mb-6">
-            <span className="block text-4xl md:text-6xl font-bold mb-2">
+          <h1 className="font-['Shippori_Mincho'] text-white leading-tight mb-4 md:mb-6">
+            <span className="block text-2xl md:text-6xl font-bold mb-1 md:mb-2">
               頭皮の状態を、
             </span>
-            <span className="block text-4xl md:text-6xl font-bold mb-2">
+            <span className="block text-2xl md:text-6xl font-bold mb-1 md:mb-2">
               データで把握する。
             </span>
-            <span className="block text-xl md:text-2xl text-[#C9A84C] font-normal mt-4 tracking-wider">
-              それが、男の自己投資。
+            <span className="block text-base md:text-2xl text-[#C9A84C] font-normal mt-2 md:mt-4 tracking-wider">
+              それが、男の自己投賄。
             </span>
           </h1>
 
-          <p className="text-white/70 text-base md:text-lg leading-relaxed mb-10 font-['Noto_Sans_JP'] font-light max-w-xl">
+          <p className="hidden md:block text-white/70 text-base md:text-lg leading-relaxed mb-10 font-['Noto_Sans_JP'] font-light max-w-xl">
             スカルプラボ for Men は、マイクロスコープによる詳細な頭皮チェックと
             パーソナルデータの継続記録で、あなたの頭皮状態を科学的にサポートします。
           </p>
+          <p className="md:hidden text-white/65 text-sm leading-relaxed mb-6 font-['Noto_Sans_JP'] font-light">
+            マイクロスコープで頭皮状態を記録・科学的にサポート。
+          </p>
 
-          <div className="flex flex-col sm:flex-row gap-4">
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
             <button
               onClick={() => document.querySelector("#reservation")?.scrollIntoView({ behavior: "smooth" })}
-              className="px-8 py-4 bg-[#C9A84C] text-[#0D1B2A] font-bold tracking-widest text-sm hover:bg-[#E8C97A] transition-all duration-300 flex items-center gap-2 font-['Noto_Sans_JP']"
+              className="px-6 md:px-8 py-3.5 md:py-4 bg-[#C9A84C] text-[#0D1B2A] font-bold tracking-widest text-sm hover:bg-[#E8C97A] transition-all duration-300 flex items-center justify-center gap-2 font-['Noto_Sans_JP']"
             >
               無料チェックを予約する
               <ArrowRight size={16} />
             </button>
             <button
               onClick={() => document.querySelector("#service")?.scrollIntoView({ behavior: "smooth" })}
-              className="px-8 py-4 border border-white/30 text-white/80 text-sm tracking-widest hover:border-[#C9A84C] hover:text-[#C9A84C] transition-all duration-300 font-['Noto_Sans_JP']"
+              className="hidden sm:flex px-8 py-4 border border-white/30 text-white/80 text-sm tracking-widest hover:border-[#C9A84C] hover:text-[#C9A84C] transition-all duration-300 font-['Noto_Sans_JP'] items-center justify-center"
             >
               サービスを見る
             </button>
           </div>
 
           {/* Stats */}
-          <div className="flex gap-8 mt-14 pt-8 border-t border-white/10">
+          <div className="flex gap-4 md:gap-8 mt-8 md:mt-14 pt-6 md:pt-8 border-t border-white/10">
             {[
-              { num: "3", unit: "人に1人", label: "30代男性の薄毛悩み（当社調べ）" },
-              { num: "93", unit: "%", label: "継続利用率（当社調べ・2024年度）" },
-              { num: "1,200", unit: "名以上", label: "男性会員数（2025年3月時点）" },
+              { num: "3", unit: "人に1人", label: "30代男性の薄毛悩み" },
+              { num: "93", unit: "%", label: "継続利用率" },
+              { num: "1,200", unit: "名+", label: "男性会員数" },
             ].map((s) => (
               <div key={s.label} className="flex-1 min-w-0">
-                <div className="flex items-baseline gap-1">
-                  <span className="text-[#C9A84C] font-['Cormorant_Garamond'] text-3xl font-bold">{s.num}</span>
-                  <span className="text-[#C9A84C] text-xs">{s.unit}</span>
+                <div className="flex items-baseline gap-0.5 md:gap-1">
+                  <span className="text-[#C9A84C] font-['Cormorant_Garamond'] text-2xl md:text-3xl font-bold">{s.num}</span>
+                  <span className="text-[#C9A84C] text-[10px] md:text-xs">{s.unit}</span>
                 </div>
-                <p className="text-white/40 text-xs mt-1 leading-snug font-['Noto_Sans_JP']">{s.label}</p>
+                <p className="text-white/40 text-[10px] md:text-xs mt-1 leading-snug font-['Noto_Sans_JP']">{s.label}</p>
               </div>
             ))}
           </div>

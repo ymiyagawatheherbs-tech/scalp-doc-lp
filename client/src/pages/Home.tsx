@@ -169,46 +169,56 @@ function Nav() {
   return (
     <>
       <ScrollProgressBar />
-      {/* THE HERBS トップバー */}
-      <div className={`fixed top-0 left-0 right-0 z-[60] transition-all duration-500 ${
-        scrolled ? "opacity-0 pointer-events-none -translate-y-full" : "opacity-100 translate-y-0"
-      }`}>
-        <div className="flex items-center justify-center gap-2 py-1.5 bg-[oklch(0.18_0.04_42)/0.85] backdrop-blur-sm">
-          <span className="font-cormorant text-white/50 text-[10px] tracking-[0.2em] uppercase">presented by</span>
-          <img
-            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
-            alt="THE HERBS"
-            className="h-4 w-auto brightness-0 invert opacity-80"
-          />
-        </div>
-      </div>
       <nav
-        className={`fixed left-0 right-0 z-50 transition-all duration-500 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "top-0 bg-[oklch(0.977_0.012_85/0.97)] backdrop-blur-md shadow-sm border-b border-[oklch(0.88_0.025_75)]"
-            : "top-[28px] bg-transparent"
+            ? "bg-[oklch(0.977_0.012_85/0.97)] backdrop-blur-md shadow-sm border-b border-[oklch(0.88_0.025_75)]"
+            : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
           {/* ロゴ */}
-          <a href="/" className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-[oklch(0.22_0.045_42)] flex items-center justify-center">
+          <a href="/" className="flex items-center gap-2.5">
+            <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-[oklch(0.22_0.045_42)] flex items-center justify-center shrink-0">
               <span className="text-[oklch(0.72_0.12_70)] text-xs font-cormorant font-semibold">S</span>
             </div>
             <div>
-              <div className={`font-mincho text-sm font-bold leading-tight tracking-widest transition-colors ${
+              <div className={`font-mincho text-xs md:text-sm font-bold leading-tight tracking-widest transition-colors ${
                 scrolled ? "text-[oklch(0.22_0.045_42)]" : "text-white"
               }`}>
                 スカルプラボ
               </div>
-              <div className="font-cormorant text-[oklch(0.72_0.12_70)] text-[10px] tracking-widest uppercase">
+              <div className="font-cormorant text-[oklch(0.72_0.12_70)] text-[9px] md:text-[10px] tracking-widest uppercase leading-none">
                 Scalp Labo
               </div>
             </div>
           </a>
 
+          {/* THE HERBSロゴ — スマホでは中央、デスクトップでは非表示 */}
+          <div className={`md:hidden flex items-center gap-1.5 transition-all duration-500 ${
+            scrolled ? "opacity-0 pointer-events-none" : "opacity-100"
+          }`}>
+            <span className="font-cormorant text-white/40 text-[8px] tracking-[0.15em] uppercase">by</span>
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
+              alt="THE HERBS"
+              className="h-3 w-auto brightness-0 invert opacity-60"
+            />
+          </div>
+
           {/* デスクトップナビ */}
           <div className="hidden md:flex items-center gap-8">
+            {/* THE HERBSロゴ — デスクトップ */}
+            <div className={`flex items-center gap-1.5 transition-all duration-500 ${
+              scrolled ? "opacity-0 pointer-events-none" : "opacity-100"
+            }`}>
+              <span className="font-cormorant text-white/40 text-[9px] tracking-[0.2em] uppercase">presented by</span>
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
+                alt="THE HERBS"
+                className="h-3.5 w-auto brightness-0 invert opacity-70"
+              />
+            </div>
             {navLinks.map((item) => (
               <a
                 key={item.label}
@@ -240,22 +250,30 @@ function Nav() {
             </a>
           </div>
 
-          {/* ハンバーガーボタン */}
-          <button
-            className="md:hidden flex flex-col gap-1.5 p-2"
-            onClick={() => setMobileOpen(!mobileOpen)}
-            aria-label="メニューを開く"
-          >
-            <span className={`block w-6 h-0.5 transition-all duration-300 ${
-              scrolled ? "bg-[oklch(0.22_0.045_42)]" : "bg-white"
-            } ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
-            <span className={`block w-6 h-0.5 transition-all duration-300 ${
-              scrolled ? "bg-[oklch(0.22_0.045_42)]" : "bg-white"
-            } ${mobileOpen ? "opacity-0" : ""}`} />
-            <span className={`block w-6 h-0.5 transition-all duration-300 ${
-              scrolled ? "bg-[oklch(0.22_0.045_42)]" : "bg-white"
-            } ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
-          </button>
+          {/* スマホ右側：CTAボタン＋ハンバーガー */}
+          <div className="md:hidden flex items-center gap-2">
+            <a
+              href="#予約"
+              className="btn-gold-shimmer text-[oklch(0.18_0.04_42)] font-sans-jp text-xs font-semibold px-3 py-1.5 rounded-sm"
+            >
+              無料予約
+            </a>
+            <button
+              className="flex flex-col gap-1.5 p-2"
+              onClick={() => setMobileOpen(!mobileOpen)}
+              aria-label="メニューを開く"
+            >
+              <span className={`block w-5 h-0.5 transition-all duration-300 ${
+                scrolled ? "bg-[oklch(0.22_0.045_42)]" : "bg-white"
+              } ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
+              <span className={`block w-5 h-0.5 transition-all duration-300 ${
+                scrolled ? "bg-[oklch(0.22_0.045_42)]" : "bg-white"
+              } ${mobileOpen ? "opacity-0" : ""}`} />
+              <span className={`block w-5 h-0.5 transition-all duration-300 ${
+                scrolled ? "bg-[oklch(0.22_0.045_42)]" : "bg-white"
+              } ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+            </button>
+          </div>
         </div>
 
         {/* モバイルメニュー */}
@@ -310,52 +328,56 @@ function HeroSection() {
       </div>
 
       {/* コンテンツ */}
-      <div className="relative z-10 max-w-7xl mx-auto px-6 py-32">
+      <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-6 pt-24 pb-16 md:py-32">
         <div className="max-w-2xl">
-          <div className="animate-fade-in-up opacity-0-init">
+          <div className="hidden md:block animate-fade-in-up opacity-0-init">
             <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-6">
               Scalp Wellness Checkup
             </span>
           </div>
-          <h1 className="font-mincho text-white leading-tight mb-6 animate-fade-in-up opacity-0-init delay-100">
-            <span className="block text-3xl md:text-5xl lg:text-6xl font-bold mb-2">
+          <h1 className="font-mincho text-white leading-tight mb-4 md:mb-6 animate-fade-in-up opacity-0-init delay-100">
+            <span className="block text-2xl md:text-5xl lg:text-6xl font-bold mb-1 md:mb-2">
               歯の定期検診のように、
             </span>
-            <span className="block text-3xl md:text-5xl lg:text-6xl font-bold text-[oklch(0.88_0.08_75)]">
+            <span className="block text-2xl md:text-5xl lg:text-6xl font-bold text-[oklch(0.88_0.08_75)]">
               頭皮も定期チェックを。
             </span>
           </h1>
-          <p className="font-sans-jp text-white/80 text-base md:text-lg leading-relaxed mb-10 animate-fade-in-up opacity-0-init delay-200">
-            マイクロスコープによる頭皮チェックで、あなたの頭皮の今を記録・確認。<br className="hidden md:block" />
+          <p className="hidden md:block font-sans-jp text-white/80 text-base md:text-lg leading-relaxed mb-10 animate-fade-in-up opacity-0-init delay-200">
+            マイクロスコープによる頭皮チェックで、あなたの頭皮の今を記録・確認。<br />
             薄毛になってから悩むのではなく、健康な頭皮を<strong className="text-[oklch(0.88_0.08_75)]">意識的にケアする</strong>新習慣。
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 animate-fade-in-up opacity-0-init delay-300">
+          <p className="md:hidden font-sans-jp text-white/75 text-sm leading-relaxed mb-7 animate-fade-in-up opacity-0-init delay-200">
+            マイクロスコープで頭皮の今を記録。<br />
+            <strong className="text-[oklch(0.88_0.08_75)]">意識的にケアする</strong>新習慣。
+          </p>
+          <div className="flex flex-col sm:flex-row gap-3 md:gap-4 animate-fade-in-up opacity-0-init delay-300">
             <a
               href="#cta"
-              className="btn-gold-shimmer text-[oklch(0.18_0.04_42)] font-sans-jp font-semibold px-8 py-4 rounded-sm text-center text-base"
+              className="btn-gold-shimmer text-[oklch(0.18_0.04_42)] font-sans-jp font-semibold px-6 md:px-8 py-3.5 md:py-4 rounded-sm text-center text-sm md:text-base"
             >
               無料スカルプチェックを予約する
             </a>
             <a
               href="#サービス"
-              className="border border-white/60 text-white font-sans-jp font-medium px-8 py-4 rounded-sm text-center text-base hover:bg-white/10 transition-colors"
+              className="hidden sm:block border border-white/60 text-white font-sans-jp font-medium px-8 py-4 rounded-sm text-center text-base hover:bg-white/10 transition-colors"
             >
               サービスを見る
             </a>
           </div>
-          <div className="mt-12 flex items-center gap-6 animate-fade-in-up opacity-0-init delay-400">
+          <div className="mt-8 md:mt-12 flex items-center gap-4 md:gap-6 animate-fade-in-up opacity-0-init delay-400">
             <div className="flex -space-x-2">
               {["A", "B", "C", "D"].map((l) => (
                 <div
                   key={l}
-                  className="w-9 h-9 rounded-full bg-[oklch(0.72_0.12_70)] border-2 border-white flex items-center justify-center"
+                  className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-[oklch(0.72_0.12_70)] border-2 border-white flex items-center justify-center"
                 >
-                  <span className="text-[oklch(0.18_0.04_42)] text-xs font-semibold">{l}</span>
+                  <span className="text-[oklch(0.18_0.04_42)] text-[10px] md:text-xs font-semibold">{l}</span>
                 </div>
               ))}
             </div>
-            <p className="font-sans-jp text-white/70 text-sm">
-              <span className="text-white font-medium">2,200名以上</span>がスカルプチェックを体験済み（当社調べ）
+            <p className="font-sans-jp text-white/70 text-xs md:text-sm">
+              <span className="text-white font-medium">2,200名以上</span>が体験済み（当社調べ）
             </p>
           </div>
         </div>
