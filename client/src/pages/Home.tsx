@@ -66,6 +66,9 @@ const IMAGES = {
   microscope: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-microscope-iVWgVizXNK9WSGwKAftiPS.webp",
   consultation: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/consultation-oBRbvf7238DM5fVXz4vLdS.webp",
   report: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/report-visual-jwmtgLXxwHGpfod5ntuEan.webp",
+  scalpCheck: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp_check_dfbc71b8.jpg",
+  botanicalMist: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/botanical_mist_b67f817f.jpg",
+  herbGommage: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/herb_gommage_65dd1849.jpg",
 };
 
 // Intersection Observer フック
@@ -440,9 +443,10 @@ function ConceptSection() {
           <div className={`relative transition-all duration-800 delay-200 ${inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`}>
             <div className="relative">
               <img
-                src={IMAGES.microscope}
+                src={IMAGES.scalpCheck}
                 alt="マイクロスコープによる頭皮チェック"
-                className="w-full max-w-md mx-auto rounded-full shadow-2xl"
+                className="w-full max-w-md mx-auto rounded-sm shadow-2xl object-cover"
+                style={{ aspectRatio: '4/3' }}
               />
               <div className="absolute -bottom-6 -right-6 bg-[oklch(0.22_0.045_42)] text-white p-6 rounded-sm shadow-xl max-w-xs">
                 <p className="font-cormorant text-[oklch(0.72_0.12_70)] text-xs tracking-widest uppercase mb-2">
@@ -620,13 +624,14 @@ function ServiceSection() {
   const { ref, inView } = useInView();
   const services = [
     {
-      layer: "Layer 1",
+    layer: "Layer 1",
       badge: "無料",
       title: "スカルプチェック",
       subtitle: "まずは気軽に、頭皮の今を知る",
-      time: "5〜10分",
+      time: "5～10分",
       price: "無料",
       color: "oklch(0.88_0.08_75)",
+      image: IMAGES.scalpCheck,
       items: [
         "マイクロスコープによる頭皮撮影",
         "頭皮の色・毛穴の状態・皮脂量・毛量の簡易確認",
@@ -636,13 +641,14 @@ function ServiceSection() {
       desc: "歯科の定期チェックと同じ感覚で。気軽に頭皮の状態が確認できます。",
     },
     {
-      layer: "Layer 2",
+    layer: "Layer 2",
       badge: "定期チェック＆ケア",
       title: "スカルプラボ",
       subtitle: "1ヶ月に1回のボタニカルスカルプケア",
-      time: "30〜40分",
-      price: "3,500〜5,000円",
+      time: "30～40分",
+      price: "3,500～5,000円",
       color: "oklch(0.72_0.12_70)",
+      image: IMAGES.botanicalMist,
       items: [
         "頭皮チェック",
         "頭皮の色・毛穴の状態・皮脂量・毛量の確認",
@@ -660,6 +666,7 @@ function ServiceSection() {
       time: "随時",
       price: "要相談",
       color: "oklch(0.62_0.05_148)",
+      image: IMAGES.herbGommage,
       items: [
         "スカルプ　ボタニカルミスト",
         "スカルプハーブゴマージュまたはハーブエキス",
@@ -698,6 +705,16 @@ function ServiceSection() {
             >
               {svc.featured && (
                 <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[oklch(0.72_0.12_70)] to-[oklch(0.82_0.14_75)]" />
+              )}
+              {svc.image && (
+                <div className="relative overflow-hidden" style={{ height: '180px' }}>
+                  <img
+                    src={svc.image}
+                    alt={svc.title}
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-b from-transparent to-black/30" />
+                </div>
               )}
               <div className="p-8">
                 <div className="flex items-center justify-between mb-4">
@@ -931,6 +948,7 @@ function FlowSection() {
       num: "02",
       title: "マイクロスコープで頭皮をチェック、スタイル撮影",
       desc: "専門スタッフが丁寧に頭皮の状態を撮影・記録します。",
+      image: IMAGES.scalpCheck,
     },
     {
       num: "03",
@@ -970,6 +988,11 @@ function FlowSection() {
                 <div className="w-16 h-16 rounded-full bg-[oklch(0.22_0.045_42)] flex items-center justify-center mx-auto mb-6 relative z-10">
                   <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-lg font-semibold">{step.num}</span>
                 </div>
+                {step.image && (
+                  <div className="mb-4 overflow-hidden rounded-sm mx-auto" style={{ maxWidth: '160px', height: '110px' }}>
+                    <img src={step.image} alt={step.title} className="w-full h-full object-cover" />
+                  </div>
+                )}
                 <h3 className="font-mincho text-[oklch(0.22_0.045_42)] text-base font-bold mb-3">{step.title}</h3>
                 <p className="font-sans-jp text-[oklch(0.55_0.04_42)] text-xs leading-relaxed">{step.desc}</p>
               </div>
