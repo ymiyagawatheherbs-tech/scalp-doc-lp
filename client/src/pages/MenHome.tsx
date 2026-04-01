@@ -1145,6 +1145,191 @@ function Reservation() {
   );
 }
 
+// ========== STORE SECTION ==========
+function StoreSection() {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.1 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const stores = [
+    {
+      id: "hankyu",
+      name: "スカルプラボ 神戸阪急店",
+      nameEn: "SCALP LABO Kobe Hankyu",
+      badge: "百貨店内サロン",
+      address: "〒650-0001 兵庫県神戸市中央区加納町4-4-1 神戸阪急 B1F",
+      hours: [
+        { day: "月〜金", time: "10:30 〜 20:00" },
+        { day: "土・日・祝", time: "10:00 〜 20:00" },
+      ],
+      closed: "不定休（神戸阪急に準ずる）",
+      line: "https://lin.ee/WPbdXE5",
+      features: ["頭皮マイクロスコープチェック", "ハーブスチーマー", "頭皮データ記録・管理"],
+      mapUrl: "https://maps.google.com/?q=神戸阪急+神戸市中央区加納町4-4-1",
+      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.5!2d135.1955!3d34.6941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e6f7b8e5a3a3%3A0x1!2z56aP5oi45YWD5pys!5e0!3m2!1sja!2sjp!4v1",
+    },
+    {
+      id: "nada",
+      name: "スカルプラボ 灘区直営サロン",
+      nameEn: "SCALP LABO Nada Salon",
+      badge: "直営ヘッドスパサロン",
+      address: "〒657-0051 兵庫県神戸市灘区大内通1-7-17 1階",
+      hours: [
+        { day: "火〜土", time: "10:00 〜 19:00" },
+        { day: "日・祝", time: "10:00 〜 18:00" },
+      ],
+      closed: "月曜定休",
+      line: "https://lin.ee/WPbdXE5",
+      features: ["育毛メニュー", "ディープクレンジング", "ヘアカラー後頭皮ケア", "和漢カラー"],
+      mapUrl: "https://maps.google.com/?q=神戸市灘区大内通1-7-17",
+      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.5!2d135.2355!3d34.7141!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e7b8e5a3a3%3A0x1!2z56aP5oi45YWD5pys!5e0!3m2!1sja!2sjp!4v1",
+    },
+  ];
+
+  return (
+    <section className="bg-[#0D1B2A] py-24 border-t border-[#C9A84C]/20" id="store">
+      <div ref={ref} className="max-w-7xl mx-auto px-6">
+        {/* ヘッダー */}
+        <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <span className="font-['Cormorant_Garamond'] italic text-[#C9A84C] text-sm tracking-[0.4em] uppercase block mb-4">
+            Our Locations
+          </span>
+          <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-4">
+            店舗・アクセス
+          </h2>
+          <p className="text-white/75 text-sm font-['Noto_Sans_JP'] font-light leading-relaxed">
+            神戸市内2拠点で、頭皮の定期チェックをお受けしています。
+          </p>
+        </div>
+
+        {/* 店舗カード */}
+        <div className="grid md:grid-cols-2 gap-6">
+          {stores.map((store, i) => (
+            <div
+              key={store.id}
+              className={`border border-[#C9A84C]/20 hover:border-[#C9A84C]/50 transition-all duration-500 overflow-hidden ${
+                visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: `${i * 150}ms` }}
+            >
+              {/* マップエリア */}
+              <div className="relative h-48 overflow-hidden bg-[#1C2B3A]">
+                <iframe
+                  title={store.name}
+                  src={store.mapEmbed}
+                  className="w-full h-full border-0 opacity-80"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+                <div className="absolute top-3 left-3 font-['Noto_Sans_JP'] text-[#0D1B2A] text-xs font-bold px-3 py-1 bg-[#C9A84C]">
+                  {store.badge}
+                </div>
+              </div>
+
+              {/* 情報エリア */}
+              <div className="p-7 bg-[#1C2B3A]">
+                <div className="mb-5">
+                  <p className="font-['Cormorant_Garamond'] text-[#C9A84C] text-xs tracking-widest uppercase mb-1">
+                    {store.nameEn}
+                  </p>
+                  <h3 className="font-['Shippori_Mincho'] text-white text-xl font-bold">
+                    {store.name}
+                  </h3>
+                </div>
+
+                {/* 住所 */}
+                <div className="flex items-start gap-3 mb-4">
+                  <span className="text-[#C9A84C] text-sm mt-0.5 flex-shrink-0">📍</span>
+                  <p className="text-white/80 text-sm font-['Noto_Sans_JP'] leading-relaxed">{store.address}</p>
+                </div>
+
+                {/* 営業時間 */}
+                <div className="flex items-start gap-3 mb-5">
+                  <span className="text-[#C9A84C] text-sm mt-0.5 flex-shrink-0">🕐</span>
+                  <div>
+                    {store.hours.map((h) => (
+                      <div key={h.day} className="flex gap-3 mb-1">
+                        <span className="text-white/55 text-xs font-['Noto_Sans_JP'] w-16 flex-shrink-0">{h.day}</span>
+                        <span className="text-white text-xs font-['Noto_Sans_JP'] font-medium">{h.time}</span>
+                      </div>
+                    ))}
+                    <p className="text-white/55 text-xs font-['Noto_Sans_JP'] mt-1">定休日：{store.closed}</p>
+                  </div>
+                </div>
+
+                {/* 施術メニュー */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  {store.features.map((f) => (
+                    <span
+                      key={f}
+                      className="text-[#C9A84C] text-xs border border-[#C9A84C]/30 px-2.5 py-1 font-['Noto_Sans_JP']"
+                    >
+                      {f}
+                    </span>
+                  ))}
+                </div>
+
+                {/* CTA */}
+                <div className="flex gap-3">
+                  <a
+                    href={store.line}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 text-white text-xs font-bold py-3 font-['Noto_Sans_JP'] transition-opacity hover:opacity-90"
+                    style={{ backgroundColor: "#06C755" }}
+                  >
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
+                      <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+                    </svg>
+                    LINEで予約・問合せ
+                  </a>
+                  <a
+                    href={store.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 border border-[#C9A84C]/30 text-[#C9A84C] text-xs px-4 py-3 font-['Noto_Sans_JP'] hover:border-[#C9A84C] hover:bg-[#C9A84C]/10 transition-all"
+                  >
+                    <span>🗺</span>
+                    地図
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* サロン募集バナー */}
+        <div className={`mt-12 border border-[#C9A84C]/30 p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-700 delay-300 ${
+          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}>
+          <div>
+            <p className="font-['Cormorant_Garamond'] italic text-[#C9A84C] text-xs tracking-[0.3em] uppercase mb-2">For Salon Partners</p>
+            <h3 className="font-['Shippori_Mincho'] text-white text-xl md:text-2xl font-bold mb-2">
+              スカルプラボの認定サロンになりませんか？
+            </h3>
+            <p className="text-white/75 text-sm font-['Noto_Sans_JP'] font-light leading-relaxed">
+              エステサロン・美容師の方向けに、頭皮チェックの技術講習と認定制度をご用意しています。
+            </p>
+          </div>
+          <Link href="/salon">
+            <span className="flex-shrink-0 border border-[#C9A84C] text-[#C9A84C] font-['Noto_Sans_JP'] font-medium text-sm px-8 py-3.5 hover:bg-[#C9A84C] hover:text-[#0D1B2A] transition-all duration-300 whitespace-nowrap cursor-pointer">
+              認定サロン募集ページへ →
+            </span>
+          </Link>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ========== CTA ==========
 function CTA() {
   return (
@@ -1274,6 +1459,7 @@ export default function MenHome() {
       <Flow />
       <Testimonials />
       <FAQ />
+      <StoreSection />
       <Reservation />
       <CTA />
       <Footer />

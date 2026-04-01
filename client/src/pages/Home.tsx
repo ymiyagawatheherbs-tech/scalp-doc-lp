@@ -1635,7 +1635,7 @@ function StoreSection() {
         { day: "土・日・祝", time: "10:00 〜 20:00" },
       ],
       closed: "不定休（神戸阪急に準ずる）",
-      tel: "078-XXX-XXXX",
+      line: "https://lin.ee/WPbdXE5",
       features: ["頭皮マイクロスコープチェック", "ハーブスチーマー（ボタニカルミスト）", "頭皮データの記録・管理"],
       mapUrl: "https://maps.google.com/?q=神戸阪急+神戸市中央区加納町4-4-1",
       mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.5!2d135.1955!3d34.6941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e6f7b8e5a3a3%3A0x1!2z56aP5oi45YWD5pys!5e0!3m2!1sja!2sjp!4v1",
@@ -1646,13 +1646,13 @@ function StoreSection() {
       name: "スカルプラボ 灘区直営サロン",
       nameEn: "SCALP LABO Nada Salon",
       badge: "直営ヘッドスパサロン",
-      address: "〒657-0068 兵庫県神戸市灘区篠原北町（詳細はご予約後にご案内）",
+      address: "〒657-0051 兵庫県神戸市灘区大内通1-7-17 1階",
       hours: [
         { day: "火〜土", time: "10:00 〜 19:00" },
         { day: "日・祝", time: "10:00 〜 18:00" },
       ],
       closed: "月曜定休",
-      tel: "078-XXX-XXXX",
+      line: "https://lin.ee/WPbdXE5",
       features: ["育毛メニュー", "ディープクレンジング", "うねりケア", "ヘアカラー後の頭皮ケア", "和漢カラー"],
       mapUrl: "https://maps.google.com/?q=神戸市灘区篠原北町",
       mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.5!2d135.2355!3d34.7141!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e7b8e5a3a3%3A0x1!2z56aP5oi45YWD5pys!5e0!3m2!1sja!2sjp!4v1",
@@ -1760,10 +1760,16 @@ function StoreSection() {
                 {/* CTAボタン */}
                 <div className="flex gap-3">
                   <a
-                    href="#予約"
-                    className="flex-1 btn-gold-shimmer text-[oklch(0.18_0.04_42)] font-sans-jp text-xs font-semibold py-3 rounded-sm text-center"
+                    href={store.line}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 font-sans-jp text-white text-xs font-semibold py-3 rounded-sm text-center transition-opacity hover:opacity-90"
+                    style={{ backgroundColor: "#06C755" }}
                   >
-                    この店舗で予約する
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
+                      <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+                    </svg>
+                    LINEで予約・問合せ
                   </a>
                   <a
                     href={store.mapUrl}
