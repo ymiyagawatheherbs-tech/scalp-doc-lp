@@ -855,32 +855,32 @@ function BotanicalMistSection() {
 
   const effects = [
     {
-      icon: "💧",
+      icon: "",
       title: "植物成分を蒸気で浸透",
       desc: "超微細なミストが頭皮の角質層まで届き、植物由来の有効成分を肌に馴染ませます。液体では届かない層へのアプローチが可能です。",
     },
     {
-      icon: "🌿",
+      icon: "",
       title: "引き算のメソッド",
       desc: "トリートメントのように「足す」のではなく、頭皮に残る余分な皮脂・薬剤・化粧品残留物を「取り去る」ケア。素の頭皮本来の力を引き出します。",
     },
     {
-      icon: "✨",
+      icon: "",
       title: "重さゼロ・水分だけ",
       desc: "水分のみを噴霧するため、髪に余分な重さを与えません。ふんわりとしたボリューム感を保ちながら、頭皮に潤いを届けます。",
     },
     {
-      icon: "🌸",
+      icon: "",
       title: "カラー・パーマ後の頭皮ケア",
       desc: "アルカリカラーやパーマ後に残留する薬剤を天然ハーブで浄化。頭皮と髪の水分・タンパク質を補い、ダメージを受けた状態を整えます。",
     },
     {
-      icon: "🔬",
+      icon: "",
       title: "頭皮を「皮膚」として捉える",
       desc: "THE HERBSが独自に開発した植物美容メソッド。頭皮も顔と同じ「皮膚」として扱い、スキンケアと同様のアプローチで根本からケアします。",
     },
     {
-      icon: "📊",
+      icon: "",
       title: "継続で変化が見える",
       desc: "定期チェックと組み合わせることで、ボタニカルミストの効果を数値・画像で記録。季節ごとの頭皮変化も時系列で確認できます。",
     },
@@ -961,7 +961,7 @@ function BotanicalMistSection() {
               }`}
               style={{ transitionDelay: `${i * 100}ms` }}
             >
-              <span className="text-3xl block mb-4">{effect.icon}</span>
+              {effect.icon && <span className="text-3xl block mb-4">{effect.icon}</span>}
               <h3 className="font-mincho text-white text-base font-bold mb-3 leading-snug group-hover:text-[oklch(0.88_0.08_75)] transition-colors">
                 {effect.title}
               </h3>
