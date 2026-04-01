@@ -581,7 +581,7 @@ function HabitValueSection() {
               }`}
               style={{ transitionDelay: `${i * 120}ms` }}
             >
-              <span className="font-cormorant text-[oklch(0.72_0.12_70)/40] text-5xl font-light block mb-6 group-hover:text-[oklch(0.72_0.12_70)/70] transition-colors">
+              <span className="font-cormorant text-white/60 text-5xl font-light block mb-6 group-hover:text-white/90 transition-colors">
                 {v.number}
               </span>
               <h3 className="font-mincho text-white text-lg font-bold mb-1 leading-snug">
@@ -804,7 +804,7 @@ function ServiceSection() {
                 <div className="flex items-baseline gap-2 mb-6">
                   <span
                     className="font-mincho text-2xl font-bold"
-                    style={{ color: svc.featured ? "oklch(0.88_0.08_75)" : svc.color }}
+                    style={{ color: svc.featured ? "#FFFFFF" : svc.color }}
                   >
                     {svc.price}
                   </span>
