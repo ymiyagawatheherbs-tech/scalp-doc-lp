@@ -256,7 +256,7 @@ function Nav() {
               href="#予約"
               className="btn-gold-shimmer text-[oklch(0.18_0.04_42)] font-sans-jp text-xs font-semibold px-3 py-1.5 rounded-sm"
             >
-              無料予約
+              今すぐ予約
             </a>
             <button
               className="flex flex-col gap-1.5 p-2"
@@ -406,7 +406,7 @@ function ProblemSection() {
             あなたの頭皮、<br className="md:hidden" />
             <span className="text-[oklch(0.88_0.08_75)]">最後のチェックはいつですか？</span>
           </h2>
-          <p className="font-sans-jp text-white/70 text-base max-w-2xl mx-auto leading-relaxed">
+          <p className="font-sans-jp text-white/85 text-base max-w-2xl mx-auto leading-relaxed">
             多くの人が頭皮の変化に気づかないまま、ケアが後回しになっています。
           </p>
         </div>
@@ -441,7 +441,7 @@ function ProblemSection() {
             >
               <div className="text-3xl mb-4">{item.icon}</div>
               <h3 className="font-mincho text-white text-lg font-bold mb-3">{item.title}</h3>
-              <p className="font-sans-jp text-white/60 text-sm leading-relaxed">{item.desc}</p>
+              <p className="font-sans-jp text-white/80 text-sm leading-relaxed">{item.desc}</p>
             </div>
           ))}
         </div>
@@ -554,7 +554,7 @@ function HabitValueSection() {
               </h2>
             </div>
             <div>
-              <p className="font-sans-jp text-white/60 text-sm leading-relaxed">
+              <p className="font-sans-jp text-white/80 text-sm leading-relaxed">
                 将来の不安を安心に変える「頭皮チェック習慣」。歯医者さんの定期検診と同じように、定期的に頭皮の状態を確認することで、問題が小さなうちに気づき、適切なケアを選ぶことができます。
               </p>
             </div>
@@ -591,7 +591,7 @@ function HabitValueSection() {
                 {v.subtitle}
               </p>
               <div className="w-8 h-px bg-[oklch(0.72_0.12_70)/40] mb-4 group-hover:w-16 transition-all duration-500" />
-              <p className="font-sans-jp text-white/55 text-xs leading-relaxed">
+              <p className="font-sans-jp text-white/75 text-xs leading-relaxed">
                 {v.desc}
               </p>
             </div>
@@ -603,7 +603,7 @@ function HabitValueSection() {
           <p className="font-mincho text-white/80 text-xl md:text-2xl font-bold mb-2">
             小さな一歩から、将来の髮を守る。
           </p>
-          <p className="font-sans-jp text-white/40 text-sm mb-8">
+          <p className="font-sans-jp text-white/70 text-sm mb-8">
             まずは無料の頭皮チェックから。
           </p>
           <a
@@ -976,7 +976,7 @@ function DigitalSection() {
                   <span className="text-2xl flex-shrink-0">{item.icon}</span>
                   <div>
                     <h4 className="font-mincho text-white text-base font-bold mb-1">{item.title}</h4>
-                    <p className="font-sans-jp text-white/60 text-sm leading-relaxed">{item.desc}</p>
+                    <p className="font-sans-jp text-white/80 text-sm leading-relaxed">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -1247,7 +1247,7 @@ function TestimonialsSection() {
                 「{t.highlight}」
               </p>
               {/* 本文 */}
-              <p className="font-sans-jp text-white/60 text-xs leading-relaxed mb-5">
+              <p className="font-sans-jp text-white/80 text-xs leading-relaxed mb-5">
                 {t.text}
               </p>
               {/* プロフィール */}
@@ -1259,7 +1259,7 @@ function TestimonialsSection() {
                 </div>
                 <div>
                   <p className="font-mincho text-white text-sm font-bold">{t.name}</p>
-                  <p className="font-sans-jp text-white/40 text-[10px]">{t.age}・{t.segment}</p>
+                  <p className="font-sans-jp text-white/65 text-[10px]">{t.age}・{t.segment}</p>
                 </div>
               </div>
             </div>
@@ -1446,7 +1446,7 @@ function ReservationSection() {
           <h2 className="font-mincho text-white text-3xl md:text-4xl font-bold mb-4">
             無料スカルプチェックを予約する
           </h2>
-          <p className="font-sans-jp text-white/50 text-sm">
+          <p className="font-sans-jp text-white/75 text-sm">
             所要時間は5〜10分。お気軽にお申し込みください。
           </p>
         </div>
@@ -1457,11 +1457,11 @@ function ReservationSection() {
               <span className="text-[oklch(0.72_0.12_70)] text-3xl">✓</span>
             </div>
             <h3 className="font-mincho text-white text-2xl font-bold mb-4">ご予約を受け付けました</h3>
-            <p className="font-sans-jp text-white/60 text-sm leading-relaxed mb-2">
+            <p className="font-sans-jp text-white/80 text-sm leading-relaxed mb-2">
               ご登録の連絡先に確認のご連絡をさしあげます。<br />
               しばらくお待ちください。
             </p>
-            <p className="font-sans-jp text-white/30 text-xs mt-6">
+            <p className="font-sans-jp text-white/55 text-xs mt-6">
               ※ このフォームはデモ用です。実際の予約は担当スタッフがご確認します。
             </p>
           </div>
@@ -1656,7 +1656,7 @@ function CtaSection() {
               LINEで予約する
             </a>
           </div>
-          <p className="font-sans-jp text-white/40 text-xs mt-6">
+          <p className="font-sans-jp text-white/65 text-xs mt-6">
             ※ 無料チェックは所要5〜10分です。お気軽にお問い合わせください。
           </p>
         </div>
@@ -1690,7 +1690,7 @@ function Footer() {
                 className="h-3.5 w-auto brightness-0 invert opacity-50"
               />
             </div>
-            <p className="font-sans-jp text-white/40 text-xs leading-relaxed">
+            <p className="font-sans-jp text-white/65 text-xs leading-relaxed">
               歯科ケアのように定期的に頭皮をケアする新習慣。<br />
               マイクロスコープによる頭皮チェックで、健康な髪をサポート。
             </p>
@@ -1700,7 +1700,7 @@ function Footer() {
             <ul className="space-y-2">
               {["無料スカルプチェック", "スカルプラボ（定期ケア）", "パーソナルケアプログラム", "サブスクリプションプラン"].map((item) => (
                 <li key={item}>
-                  <a href="#" className="font-sans-jp text-white/40 text-xs hover:text-white/70 transition-colors">
+                  <a href="#" className="font-sans-jp text-white/60 text-xs hover:text-white/90 transition-colors">
                     {item}
                   </a>
                 </li>
@@ -1717,7 +1717,7 @@ function Footer() {
                 { label: "特定商取引法に基づく表記", href: "/tokushoho" },
               ].map((item) => (
                 <li key={item.label}>
-                  <a href={item.href} className="font-sans-jp text-white/40 text-xs hover:text-white/70 transition-colors">
+                  <a href={item.href} className="font-sans-jp text-white/60 text-xs hover:text-white/90 transition-colors">
                     {item.label}
                   </a>
                 </li>
@@ -1727,12 +1727,12 @@ function Footer() {
         </div>
         {/* 免責事項 */}
         <div className="border-t border-white/10 pt-8 mb-6">
-          <p className="font-sans-jp text-white/25 text-[11px] leading-relaxed max-w-3xl mx-auto text-center">
+          <p className="font-sans-jp text-white/55 text-[11px] leading-relaxed max-w-3xl mx-auto text-center">
             【免責事項】本サービスは医療行為ではありません。疾病の診断・治療・予防を目的とするものではなく、頭皮の状態を記録・確認するサービスです。医療的な相談・治療が必要な場合は、医師または医療機関にご相談ください。掲載の数値・実績はすべて当社調べによるものです。個人の体験・効果には差があります。
           </p>
         </div>
         <div className="text-center">
-          <p className="font-sans-jp text-white/30 text-xs">
+          <p className="font-sans-jp text-white/55 text-xs">
             © 2025 スカルプラボ. All rights reserved.
           </p>
         </div>

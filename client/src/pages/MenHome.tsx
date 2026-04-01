@@ -128,7 +128,7 @@ function Nav() {
               onClick={() => scrollTo("#reservation")}
               className="md:hidden px-3 py-1.5 border border-[#C9A84C] text-[#C9A84C] text-xs tracking-wider hover:bg-[#C9A84C] hover:text-[#0D1B2A] transition-all duration-300 font-['Noto_Sans_JP']"
             >
-              無料予約
+              今すぐ予約
             </button>
             <button
               className="md:hidden text-white p-1"
@@ -267,7 +267,7 @@ function Hero() {
                   <span className="text-[#C9A84C] font-['Cormorant_Garamond'] text-2xl md:text-3xl font-bold">{s.num}</span>
                   <span className="text-[#C9A84C] text-[10px] md:text-xs">{s.unit}</span>
                 </div>
-                <p className="text-white/40 text-[10px] md:text-xs mt-1 leading-snug font-['Noto_Sans_JP']">{s.label}</p>
+                <p className="text-white/65 text-[10px] md:text-xs mt-1 leading-snug font-['Noto_Sans_JP']">{s.label}</p>
               </div>
             ))}
           </div>
@@ -326,7 +326,7 @@ function Problem() {
                 {p.num}
               </div>
               <h3 className="font-['Shippori_Mincho'] text-white text-xl font-bold mb-4">{p.title}</h3>
-              <p className="text-white/60 text-sm leading-relaxed font-['Noto_Sans_JP'] font-light">{p.body}</p>
+              <p className="text-white/80 text-sm leading-relaxed font-['Noto_Sans_JP'] font-light">{p.body}</p>
             </div>
           ))}
         </div>
@@ -425,7 +425,7 @@ function Stats() {
                 {s.prefix}{s.count}{s.suffix}
               </div>
               <p className="text-white font-['Shippori_Mincho'] text-lg mb-1">{s.label}</p>
-              <p className="text-white/40 text-xs font-['Noto_Sans_JP']">{s.note}</p>
+              <p className="text-white/65 text-xs font-['Noto_Sans_JP']">{s.note}</p>
             </div>
           ))}
         </div>
@@ -491,7 +491,7 @@ function Service() {
         <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-4">
           3層構造のサービス設計
         </h2>
-        <p className="text-white/60 text-sm font-['Noto_Sans_JP'] font-light mb-16 max-w-xl">
+        <p className="text-white/80 text-sm font-['Noto_Sans_JP'] font-light mb-16 max-w-xl">
           「気軽に始める」から「本格的なデータ管理」まで、あなたのペースに合わせて選べます。
         </p>
 
@@ -515,7 +515,7 @@ function Service() {
               <div className={i % 2 === 1 ? "md:order-1" : ""}>
                 <span className="font-['Cormorant_Garamond'] italic text-[#C9A84C] text-sm tracking-widest block mb-2">{s.step}</span>
                 <h3 className="font-['Shippori_Mincho'] text-white text-2xl md:text-3xl font-bold mb-2">{s.title}</h3>
-                <p className="text-white/60 text-sm mb-1 font-['Noto_Sans_JP']">{s.subtitle}</p>
+                <p className="text-white/80 text-sm mb-1 font-['Noto_Sans_JP']">{s.subtitle}</p>
                 <div className="flex gap-4 mb-6 mt-4">
                   <span className="text-[#C9A84C] text-xs border border-[#C9A84C]/40 px-3 py-1 font-['Noto_Sans_JP']">{s.duration}</span>
                   <span className="text-[#C9A84C] text-xs border border-[#C9A84C]/40 px-3 py-1 font-['Noto_Sans_JP']">{s.price}</span>
@@ -591,7 +591,7 @@ function Pricing() {
         <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-4">
           月額サブスクリプション
         </h2>
-        <p className="text-white/60 text-sm font-['Noto_Sans_JP'] font-light mb-16">
+        <p className="text-white/80 text-sm font-['Noto_Sans_JP'] font-light mb-16">
           すべてのプランは月額（税込）。いつでもプラン変更・解約が可能です。
         </p>
 
@@ -640,7 +640,7 @@ function Pricing() {
             </div>
           ))}
         </div>
-        <p className="text-white/30 text-xs text-center mt-8 font-['Noto_Sans_JP']">
+        <p className="text-white/55 text-xs text-center mt-8 font-['Noto_Sans_JP']">
           ※ 価格はすべて税込表示です。サブスクリプションはいつでも解約可能です。
         </p>
       </div>
@@ -687,7 +687,7 @@ function Target() {
               <div className="text-3xl mb-4">{t.icon}</div>
               <h3 className="font-['Shippori_Mincho'] text-white text-xl font-bold mb-2">{t.title}</h3>
               <p className="text-[#C9A84C] text-sm italic font-['Cormorant_Garamond'] mb-3">{t.message}</p>
-              <p className="text-white/60 text-sm leading-relaxed font-['Noto_Sans_JP'] font-light">{t.body}</p>
+              <p className="text-white/80 text-sm leading-relaxed font-['Noto_Sans_JP'] font-light">{t.body}</p>
             </div>
           ))}
         </div>
@@ -726,7 +726,7 @@ function Digital() {
                   <div className="w-1 h-full min-h-[2rem] bg-[#C9A84C] shrink-0 mt-1" />
                   <div>
                     <h4 className="text-white font-['Shippori_Mincho'] font-bold text-sm mb-1">{item.title}</h4>
-                    <p className="text-white/50 text-xs font-['Noto_Sans_JP']">{item.desc}</p>
+                    <p className="text-white/75 text-xs font-['Noto_Sans_JP']">{item.desc}</p>
                   </div>
                 </div>
               ))}
@@ -775,7 +775,7 @@ function Flow() {
               <div className="relative z-10">
                 <div className="font-['Cormorant_Garamond'] text-[#C9A84C] text-4xl font-bold mb-4">{s.num}</div>
                 <h3 className="font-['Shippori_Mincho'] text-white text-xl font-bold mb-3">{s.title}</h3>
-                <p className="text-white/60 text-sm leading-relaxed font-['Noto_Sans_JP'] font-light">{s.desc}</p>
+                <p className="text-white/80 text-sm leading-relaxed font-['Noto_Sans_JP'] font-light">{s.desc}</p>
               </div>
             </div>
           ))}
@@ -848,7 +848,7 @@ function Testimonials() {
         <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-4">
           お客様の声
         </h2>
-        <p className="text-white/40 text-xs font-['Noto_Sans_JP'] mb-16">
+        <p className="text-white/65 text-xs font-['Noto_Sans_JP'] mb-16">
           ※ 個人の感想です。効果・体験には個人差があります。
         </p>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -860,14 +860,14 @@ function Testimonials() {
                 ))}
               </div>
               <p className="font-['Shippori_Mincho'] text-[#C9A84C] text-sm font-bold mb-3">{t.highlight}</p>
-              <p className="text-white/60 text-sm leading-relaxed font-['Noto_Sans_JP'] font-light mb-6">{t.body}</p>
+              <p className="text-white/80 text-sm leading-relaxed font-['Noto_Sans_JP'] font-light mb-6">{t.body}</p>
               <div className="flex items-center gap-2 pt-4 border-t border-white/10">
                 <div className="w-8 h-8 rounded-full bg-[#1C2B3A] border border-[#C9A84C]/30 flex items-center justify-center">
                   <span className="text-[#C9A84C] text-xs font-['Cormorant_Garamond']">{t.name[0]}</span>
                 </div>
                 <div>
                   <p className="text-white text-sm font-['Noto_Sans_JP']">{t.name} 様</p>
-                  <p className="text-white/40 text-xs font-['Noto_Sans_JP']">{t.age} · {t.attr}</p>
+                  <p className="text-white/65 text-xs font-['Noto_Sans_JP']">{t.age} · {t.attr}</p>
                 </div>
               </div>
             </div>
@@ -934,7 +934,7 @@ function FAQ() {
               </button>
               {open === i && (
                 <div className="px-6 pb-6 border-t border-white/5">
-                  <p className="text-white/60 text-sm leading-relaxed font-['Noto_Sans_JP'] font-light pt-4">{faq.a}</p>
+                  <p className="text-white/80 text-sm leading-relaxed font-['Noto_Sans_JP'] font-light pt-4">{faq.a}</p>
                 </div>
               )}
             </div>
@@ -989,7 +989,7 @@ function Reservation() {
           <h2 className="font-['Shippori_Mincho'] text-white text-3xl font-bold mb-4">
             ご予約を受け付けました
           </h2>
-          <p className="text-white/60 text-sm font-['Noto_Sans_JP'] font-light leading-relaxed">
+          <p className="text-white/80 text-sm font-['Noto_Sans_JP'] font-light leading-relaxed">
             担当スタッフより2営業日以内にご連絡いたします。<br />
             ご不明な点はお気軽にお問い合わせください。
           </p>
@@ -1008,7 +1008,7 @@ function Reservation() {
         <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-4">
           ご予約・お問い合わせ
         </h2>
-        <p className="text-white/60 text-sm font-['Noto_Sans_JP'] font-light mb-12">
+        <p className="text-white/80 text-sm font-['Noto_Sans_JP'] font-light mb-12">
           まずは無料スカルプチェックからお気軽にどうぞ。<br />
           ご入力いただいた個人情報は予約確認のみに使用します。
         </p>
@@ -1160,7 +1160,7 @@ function CTA() {
           まず、自分の頭皮を<br />
           <span className="text-[#C9A84C]">知ることから始めよう。</span>
         </h2>
-        <p className="text-white/60 text-sm font-['Noto_Sans_JP'] font-light mb-10 max-w-xl mx-auto leading-relaxed">
+        <p className="text-white/80 text-sm font-['Noto_Sans_JP'] font-light mb-10 max-w-xl mx-auto leading-relaxed">
           初回の無料スカルプチェックは5〜10分。費用は一切かかりません。
           まずは現状を把握することが、すべての始まりです。
         </p>
@@ -1197,7 +1197,7 @@ function Footer() {
                 className="h-3.5 w-auto brightness-0 invert opacity-50"
               />
             </div>
-            <p className="text-white/40 text-xs leading-relaxed font-['Noto_Sans_JP']">
+            <p className="text-white/65 text-xs leading-relaxed font-['Noto_Sans_JP']">
               男性のための頭皮定期チェックサービス。<br />
               データで頭皮を知り、自信ある毎日をサポートします。
             </p>
@@ -1205,7 +1205,7 @@ function Footer() {
 
           {/* Links */}
           <div>
-            <h4 className="text-white/60 text-xs tracking-widest mb-4 font-['Noto_Sans_JP']">MENU</h4>
+            <h4 className="text-white/75 text-xs tracking-widest mb-4 font-['Noto_Sans_JP']">MENU</h4>
             <ul className="space-y-2">
               {[
                 { label: "サービス", href: "#service" },
@@ -1217,7 +1217,7 @@ function Footer() {
                 <li key={l.href}>
                   <button
                     onClick={() => document.querySelector(l.href)?.scrollIntoView({ behavior: "smooth" })}
-                    className="text-white/40 hover:text-[#C9A84C] text-xs transition-colors font-['Noto_Sans_JP']"
+                    className="text-white/65 hover:text-[#C9A84C] text-xs transition-colors font-['Noto_Sans_JP']"
                   >
                     {l.label}
                   </button>
@@ -1228,17 +1228,17 @@ function Footer() {
 
           {/* Legal */}
           <div>
-            <h4 className="text-white/60 text-xs tracking-widest mb-4 font-['Noto_Sans_JP']">LEGAL</h4>
+            <h4 className="text-white/75 text-xs tracking-widest mb-4 font-['Noto_Sans_JP']">LEGAL</h4>
             <ul className="space-y-2">
-              <li><Link href="/privacy" className="text-white/40 hover:text-[#C9A84C] text-xs transition-colors font-['Noto_Sans_JP']">プライバシーポリシー</Link></li>
-              <li><Link href="/tokushoho" className="text-white/40 hover:text-[#C9A84C] text-xs transition-colors font-['Noto_Sans_JP']">特定商取引法に基づく表記</Link></li>
+              <li><Link href="/privacy" className="text-white/65 hover:text-[#C9A84C] text-xs transition-colors font-['Noto_Sans_JP']">プライバシーポリシー</Link></li>
+              <li><Link href="/tokushoho" className="text-white/65 hover:text-[#C9A84C] text-xs transition-colors font-['Noto_Sans_JP']">特定商取引法に基づく表記</Link></li>
             </ul>
           </div>
         </div>
 
         {/* Disclaimer */}
         <div className="border-t border-white/10 pt-8 mb-6">
-          <p className="text-white/30 text-xs leading-relaxed font-['Noto_Sans_JP']">
+          <p className="text-white/55 text-xs leading-relaxed font-['Noto_Sans_JP']">
             【免責事項】本サービスは医療行為ではありません。疾病の診断・治療・予防を目的とするものではありません。
             医療的な相談が必要な場合は医師にご相談ください。掲載の数値・実績はすべて当社調べによるものです。
             個人の体験・効果には差があります。
@@ -1246,7 +1246,7 @@ function Footer() {
         </div>
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-white/20 text-xs font-['Noto_Sans_JP']">
+          <p className="text-white/50 text-xs font-['Noto_Sans_JP']">
             © 2025 スカルプラボ for Men. All rights reserved.
           </p>
           <Link href="/" className="text-[#C9A84C]/50 hover:text-[#C9A84C] text-xs transition-colors font-['Noto_Sans_JP']">
