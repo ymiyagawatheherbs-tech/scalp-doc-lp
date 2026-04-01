@@ -8,6 +8,7 @@ import Home from "./pages/Home";
 import MenHome from "./pages/MenHome";
 import Privacy from "./pages/Privacy";
 import Tokushoho from "./pages/Tokushoho";
+import SalonPartner from "./pages/SalonPartner";
 
 
 function Router() {
@@ -17,6 +18,7 @@ function Router() {
       <Route path={"/men"} component={MenHome} />
       <Route path={"/privacy"} component={Privacy} />
       <Route path={"/tokushoho"} component={Tokushoho} />
+      <Route path={"/salon"} component={SalonPartner} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

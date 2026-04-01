@@ -1619,6 +1619,192 @@ function ReservationSection() {
   );
 }
 
+// 店舗情報・アクセスセクション
+function StoreSection() {
+  const { ref, inView } = useInView();
+
+  const stores = [
+    {
+      id: "hankyu",
+      name: "スカルプラボ 神戸阪急店",
+      nameEn: "SCALP LABO Kobe Hankyu",
+      badge: "百貨店内サロン",
+      address: "〒650-0001 兵庫県神戸市中央区加納町4-4-1 神戸阪急 B1F",
+      hours: [
+        { day: "月〜金", time: "10:30 〜 20:00" },
+        { day: "土・日・祝", time: "10:00 〜 20:00" },
+      ],
+      closed: "不定休（神戸阪急に準ずる）",
+      tel: "078-XXX-XXXX",
+      features: ["頭皮マイクロスコープチェック", "ハーブスチーマー（ボタニカルミスト）", "頭皮データの記録・管理"],
+      mapUrl: "https://maps.google.com/?q=神戸阪急+神戸市中央区加納町4-4-1",
+      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.5!2d135.1955!3d34.6941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e6f7b8e5a3a3%3A0x1!2z56aP5oi45YWD5pys!5e0!3m2!1sja!2sjp!4v1",
+      color: "oklch(0.72_0.12_70)",
+    },
+    {
+      id: "nada",
+      name: "スカルプラボ 灘区直営サロン",
+      nameEn: "SCALP LABO Nada Salon",
+      badge: "直営ヘッドスパサロン",
+      address: "〒657-0068 兵庫県神戸市灘区篠原北町（詳細はご予約後にご案内）",
+      hours: [
+        { day: "火〜土", time: "10:00 〜 19:00" },
+        { day: "日・祝", time: "10:00 〜 18:00" },
+      ],
+      closed: "月曜定休",
+      tel: "078-XXX-XXXX",
+      features: ["育毛メニュー", "ディープクレンジング", "うねりケア", "ヘアカラー後の頭皮ケア", "和漢カラー"],
+      mapUrl: "https://maps.google.com/?q=神戸市灘区篠原北町",
+      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.5!2d135.2355!3d34.7141!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e7b8e5a3a3%3A0x1!2z56aP5oi45YWD5pys!5e0!3m2!1sja!2sjp!4v1",
+      color: "oklch(0.62_0.14_160)",
+    },
+  ];
+
+  return (
+    <section className="py-28 bg-[oklch(0.97_0.012_82)]" id="店舗情報">
+      <div ref={ref} className="max-w-7xl mx-auto px-6">
+        {/* ヘッダー */}
+        <div className={`text-center mb-16 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
+            Our Locations
+          </span>
+          <h2 className="font-mincho text-[oklch(0.22_0.045_42)] text-3xl md:text-4xl font-bold mb-4">
+            店舗・アクセス
+          </h2>
+          <p className="font-sans-jp text-[oklch(0.45_0.04_42)] text-sm max-w-xl mx-auto leading-relaxed">
+            神戸市内2拠点で、頭皮の定期チェックをお受けしています。
+          </p>
+        </div>
+
+        {/* 店舗カード */}
+        <div className="grid md:grid-cols-2 gap-8">
+          {stores.map((store, i) => (
+            <div
+              key={store.id}
+              className={`bg-white border border-[oklch(0.88_0.025_75)] rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-all duration-500 ${
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: `${i * 150}ms` }}
+            >
+              {/* マップエリア */}
+              <div className="relative h-52 bg-[oklch(0.92_0.015_75)] overflow-hidden">
+                <iframe
+                  title={store.name}
+                  src={store.mapEmbed}
+                  className="w-full h-full border-0"
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+                {/* バッジ */}
+                <div
+                  className="absolute top-3 left-3 font-sans-jp text-white text-xs font-medium px-3 py-1 rounded-full"
+                  style={{ backgroundColor: `oklch(${store.color.slice(7, -1)} / 0.9)` }}
+                >
+                  {store.badge}
+                </div>
+              </div>
+
+              {/* 情報エリア */}
+              <div className="p-7">
+                <div className="mb-5">
+                  <p className="font-cormorant text-[oklch(0.72_0.12_70)] text-xs tracking-widest uppercase mb-1">
+                    {store.nameEn}
+                  </p>
+                  <h3 className="font-mincho text-[oklch(0.22_0.045_42)] text-xl font-bold">
+                    {store.name}
+                  </h3>
+                </div>
+
+                {/* 住所 */}
+                <div className="flex items-start gap-3 mb-4">
+                  <span className="text-[oklch(0.72_0.12_70)] text-base mt-0.5 flex-shrink-0">📍</span>
+                  <p className="font-sans-jp text-[oklch(0.38_0.055_42)] text-sm leading-relaxed">
+                    {store.address}
+                  </p>
+                </div>
+
+                {/* 営業時間 */}
+                <div className="flex items-start gap-3 mb-4">
+                  <span className="text-[oklch(0.72_0.12_70)] text-base mt-0.5 flex-shrink-0">🕐</span>
+                  <div>
+                    {store.hours.map((h) => (
+                      <div key={h.day} className="flex gap-3 mb-1">
+                        <span className="font-sans-jp text-[oklch(0.55_0.04_42)] text-xs w-20 flex-shrink-0">{h.day}</span>
+                        <span className="font-sans-jp text-[oklch(0.22_0.045_42)] text-xs font-medium">{h.time}</span>
+                      </div>
+                    ))}
+                    <p className="font-sans-jp text-[oklch(0.65_0.04_42)] text-xs mt-1">定休日：{store.closed}</p>
+                  </div>
+                </div>
+
+                {/* 施術メニュー */}
+                <div className="mb-6">
+                  <p className="font-sans-jp text-[oklch(0.55_0.04_42)] text-xs mb-2 tracking-wider">主な施術メニュー</p>
+                  <div className="flex flex-wrap gap-2">
+                    {store.features.map((f) => (
+                      <span
+                        key={f}
+                        className="font-sans-jp text-xs px-2.5 py-1 rounded-full border"
+                        style={{
+                          borderColor: `oklch(${store.color.slice(7, -1)} / 0.4)`,
+                          color: `oklch(${store.color.slice(7, -1)})`,
+                          backgroundColor: `oklch(${store.color.slice(7, -1)} / 0.06)`,
+                        }}
+                      >
+                        {f}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+
+                {/* CTAボタン */}
+                <div className="flex gap-3">
+                  <a
+                    href="#予約"
+                    className="flex-1 btn-gold-shimmer text-[oklch(0.18_0.04_42)] font-sans-jp text-xs font-semibold py-3 rounded-sm text-center"
+                  >
+                    この店舗で予約する
+                  </a>
+                  <a
+                    href={store.mapUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-1.5 border border-[oklch(0.88_0.025_75)] text-[oklch(0.38_0.055_42)] font-sans-jp text-xs px-4 py-3 rounded-sm hover:border-[oklch(0.72_0.12_70)] hover:text-[oklch(0.72_0.12_70)] transition-colors"
+                  >
+                    <span>🗺</span>
+                    地図
+                  </a>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* サロン募集バナー */}
+        <div className={`mt-16 bg-[oklch(0.22_0.045_42)] rounded-sm p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-700 delay-300 ${
+          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}>
+          <div>
+            <p className="font-cormorant text-[oklch(0.72_0.12_70)] text-xs tracking-[0.3em] uppercase mb-2">For Salon Partners</p>
+            <h3 className="font-mincho text-white text-xl md:text-2xl font-bold mb-2">
+              スカルプラボの認定サロンになりませんか？
+            </h3>
+            <p className="font-sans-jp text-white/75 text-sm leading-relaxed">
+              エステサロン・美容師の方向けに、頭皮チェックの技術講習と認定制度をご用意しています。
+            </p>
+          </div>
+          <a
+            href="/salon"
+            className="flex-shrink-0 border border-[oklch(0.72_0.12_70)] text-[oklch(0.72_0.12_70)] font-sans-jp font-medium text-sm px-8 py-3.5 rounded-sm hover:bg-[oklch(0.72_0.12_70)] hover:text-[oklch(0.18_0.04_42)] transition-all duration-300 whitespace-nowrap"
+          >
+            認定サロン募集ページへ →
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // CTAセクション
 function CtaSection() {
   const { ref, inView } = useInView();
@@ -1698,10 +1884,15 @@ function Footer() {
           <div>
             <h4 className="font-mincho text-white text-sm font-bold mb-4">サービス</h4>
             <ul className="space-y-2">
-              {["無料スカルプチェック", "スカルプラボ（定期ケア）", "パーソナルケアプログラム", "サブスクリプションプラン"].map((item) => (
-                <li key={item}>
-                  <a href="#" className="font-sans-jp text-white/60 text-xs hover:text-white/90 transition-colors">
-                    {item}
+              {[
+                { label: "無料スカルプチェック", href: "#予約" },
+                { label: "スカルプラボ（定期ケア）", href: "#サービス" },
+                { label: "店舗・アクセス", href: "#店舗情報" },
+                { label: "認定サロン募集", href: "/salon" },
+              ].map((item) => (
+                <li key={item.label}>
+                  <a href={item.href} className="font-sans-jp text-white/60 text-xs hover:text-white/90 transition-colors">
+                    {item.label}
                   </a>
                 </li>
               ))}
@@ -1758,6 +1949,7 @@ export default function Home() {
       <BeforeAfterSection />
       <TestimonialsSection />
       <FaqSection />
+      <StoreSection />
       <ReservationSection />
       <CtaSection />
       <Footer />
