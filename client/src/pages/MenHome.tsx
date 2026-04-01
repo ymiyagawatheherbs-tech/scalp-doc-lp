@@ -648,6 +648,151 @@ function Pricing() {
   );
 }
 
+// ========== BOTANICAL MIST ==========
+function BotanicalMist() {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.1 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  const MIST_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/botanical_mist_b67f817f.jpg";
+
+  const effects = [
+    {
+      icon: "💧",
+      title: "植物成分を蒸気で洸透",
+      desc: "超微細なミストが頭皮の角質層まで届き、植物由来成分を肌に馴染ませます。液体では届かない層へのアプローチ。",
+    },
+    {
+      icon: "🌿",
+      title: "引き算のメソッド",
+      desc: "頭皮に残る余分な皮脂・薬剤・化粧品残留物を「取り去る」ケア。素の頭皮本来の力を引き出します。",
+    },
+    {
+      icon: "✨",
+      title: "重さゼロ・水分だけ",
+      desc: "水分のみを噴霧するため、髪に余分な重さを与えません。スタイリングの仕上がりに影響なく、頭皮に潤いを届けます。",
+    },
+    {
+      icon: "🔬",
+      title: "頭皮を「皮膚」として捉える",
+      desc: "THE HERBSが独自開発した植物美容メソッド。頭皮も顔と同じ「皮膚」として扱い、スキンケアと同様のアプローチで根本ケア。",
+    },
+    {
+      icon: "🌸",
+      title: "カラー・パーマ後のリセット",
+      desc: "薬剤残留を天然ハーブで浄化。頭皮と髪の水分・タンパク質を補い、ダメージを受けた頭皮状態を整えます。",
+    },
+    {
+      icon: "📊",
+      title: "定期チェックとの相乗効果",
+      desc: "チェックデータと組み合わせることで、ミストの効果を数値・画像で記録。時系列で頭皮変化を確認できます。",
+    },
+  ];
+
+  return (
+    <section className="relative py-24 overflow-hidden" id="botanical-mist"
+      style={{ background: "linear-gradient(160deg, #0D1B2A 0%, #1C2B3A 100%)" }}
+    >
+      {/* 背景装飾 */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute top-0 right-0 w-[500px] h-[500px] rounded-full"
+          style={{ background: "radial-gradient(circle, #C9A84C15 0%, transparent 70%)", transform: "translate(20%, -20%)" }}
+        />
+        <div
+          className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full"
+          style={{ background: "radial-gradient(circle, #C9A84C10 0%, transparent 70%)", transform: "translate(-20%, 20%)" }}
+        />
+      </div>
+
+      <div ref={ref} className="max-w-7xl mx-auto px-6 relative">
+        {/* ヘッダーブロック */}
+        <div className={`flex flex-col lg:flex-row gap-16 items-center mb-20 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          {/* 画像（左） */}
+          <div className="flex-shrink-0 w-full lg:w-[420px] order-2 lg:order-1">
+            <div className="relative overflow-hidden">
+              <img
+                src={MIST_IMAGE}
+                alt="ボタニカルミスト施術"
+                className="w-full object-cover"
+                style={{ height: "380px", objectPosition: "center 30%" }}
+              />
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{ boxShadow: "inset 0 0 0 1px #C9A84C40" }}
+              />
+              <div className="absolute bottom-4 left-4 bg-[#C9A84C] text-[#0D1B2A] font-['Noto_Sans_JP'] text-xs font-bold px-4 py-2">
+                THE HERBS ボタニカルミスト
+              </div>
+            </div>
+          </div>
+
+          {/* テキスト（右） */}
+          <div className="flex-1 order-1 lg:order-2">
+            <span className="font-['Cormorant_Garamond'] italic text-[#C9A84C] text-sm tracking-[0.4em] uppercase block mb-4">
+              Botanical Mist Technology
+            </span>
+            <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+              植物の力を、<br />
+              <span className="text-[#C9A84C]">蒸気で頭皮へ。</span>
+            </h2>
+            <p className="text-white/80 text-sm font-['Noto_Sans_JP'] font-light leading-relaxed mb-6 max-w-lg">
+              THE HERBSが1986年から研究を重ねてきた「植物美容メソッド」の核心技術。
+              ハーブスチーマー（ボタニカルミスト）は、植物由来の美容成分を超微細な蒸気に変換し、
+              頭皮の奥まで届けます。
+            </p>
+            <p className="text-white/55 text-xs font-['Noto_Sans_JP'] leading-relaxed max-w-lg">
+              ※本施術は化粧品の使用感の向上を目的としたものです。効果・効能には個人差があります。
+            </p>
+          </div>
+        </div>
+
+        {/* 効果グリッド */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-[#C9A84C]/10">
+          {effects.map((effect, i) => (
+            <div
+              key={i}
+              className={`p-8 bg-[#1C2B3A] hover:bg-[#243547] transition-all duration-500 group ${
+                visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: `${i * 100}ms` }}
+            >
+              <span className="text-3xl block mb-4">{effect.icon}</span>
+              <h3 className="font-['Shippori_Mincho'] text-white text-base font-bold mb-3 leading-snug group-hover:text-[#C9A84C] transition-colors">
+                {effect.title}
+              </h3>
+              <p className="text-white/75 text-xs font-['Noto_Sans_JP'] leading-relaxed">
+                {effect.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* ボトムCTA */}
+        <div className={`mt-16 text-center transition-all duration-700 delay-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <p className="text-white/70 text-sm font-['Noto_Sans_JP'] mb-6">
+            ボタニカルミストは「スカルプラボ」定期ケアコースに含まれています
+          </p>
+          <button
+            onClick={() => document.getElementById('reservation')?.scrollIntoView({ behavior: 'smooth' })}
+            className="px-10 py-4 bg-[#C9A84C] text-[#0D1B2A] font-bold tracking-widest text-sm hover:bg-[#E8C97A] transition-all duration-300 font-['Noto_Sans_JP']"
+          >
+            ボタニカルミストを体験する
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ========== TARGET ==========
 function Target() {
   const targets = [
@@ -1454,6 +1599,7 @@ export default function MenHome() {
       <Stats />
       <Service />
       <Pricing />
+      <BotanicalMist />
       <Target />
       <Digital />
       <Flow />

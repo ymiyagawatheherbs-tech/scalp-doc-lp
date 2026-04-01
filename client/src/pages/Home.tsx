@@ -849,6 +849,146 @@ function ServiceSection() {
 }
 
 
+// ボタニカルミスト専用セクション
+function BotanicalMistSection() {
+  const { ref, inView } = useInView();
+
+  const effects = [
+    {
+      icon: "💧",
+      title: "植物成分を蒸気で浸透",
+      desc: "超微細なミストが頭皮の角質層まで届き、植物由来の有効成分を肌に馴染ませます。液体では届かない層へのアプローチが可能です。",
+    },
+    {
+      icon: "🌿",
+      title: "引き算のメソッド",
+      desc: "トリートメントのように「足す」のではなく、頭皮に残る余分な皮脂・薬剤・化粧品残留物を「取り去る」ケア。素の頭皮本来の力を引き出します。",
+    },
+    {
+      icon: "✨",
+      title: "重さゼロ・水分だけ",
+      desc: "水分のみを噴霧するため、髪に余分な重さを与えません。ふんわりとしたボリューム感を保ちながら、頭皮に潤いを届けます。",
+    },
+    {
+      icon: "🌸",
+      title: "カラー・パーマ後の頭皮ケア",
+      desc: "アルカリカラーやパーマ後に残留する薬剤を天然ハーブで浄化。頭皮と髪の水分・タンパク質を補い、ダメージを受けた状態を整えます。",
+    },
+    {
+      icon: "🔬",
+      title: "頭皮を「皮膚」として捉える",
+      desc: "THE HERBSが独自に開発した植物美容メソッド。頭皮も顔と同じ「皮膚」として扱い、スキンケアと同様のアプローチで根本からケアします。",
+    },
+    {
+      icon: "📊",
+      title: "継続で変化が見える",
+      desc: "定期チェックと組み合わせることで、ボタニカルミストの効果を数値・画像で記録。季節ごとの頭皮変化も時系列で確認できます。",
+    },
+  ];
+
+  return (
+    <section
+      className="py-28 relative overflow-hidden"
+      style={{ background: "linear-gradient(160deg, oklch(0.22_0.045_42) 0%, oklch(0.18_0.04_42) 100%)" }}
+      id="botanical-mist"
+    >
+      {/* 背景装飾 */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-10"
+          style={{ background: "radial-gradient(circle, oklch(0.72_0.12_70) 0%, transparent 70%)", transform: "translate(30%, -30%)" }}
+        />
+        <div
+          className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full opacity-8"
+          style={{ background: "radial-gradient(circle, oklch(0.62_0.14_160) 0%, transparent 70%)", transform: "translate(-30%, 30%)" }}
+        />
+      </div>
+
+      <div ref={ref} className="max-w-7xl mx-auto px-6 relative">
+        {/* ヘッダー */}
+        <div className={`flex flex-col lg:flex-row gap-16 items-center mb-20 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          {/* テキスト */}
+          <div className="flex-1">
+            <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.4em] uppercase block mb-4">
+              Botanical Mist Technology
+            </span>
+            <h2 className="font-mincho text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+              植物の力を、<br />
+              <span style={{ color: "oklch(0.72_0.12_70)" }}>蒸気で頭皮へ。</span>
+            </h2>
+            <p className="font-sans-jp text-white/80 text-sm leading-relaxed mb-6 max-w-lg">
+              THE HERBSが1986年から研究を重ねてきた「植物美容メソッド」の核心技術。
+              ハーブスチーマー（ボタニカルミスト）は、植物由来の美容成分を超微細な蒸気に変換し、
+              頭皮の奥まで届けます。
+            </p>
+            <p className="font-sans-jp text-white/65 text-xs leading-relaxed max-w-lg">
+              ※本施術は化粧品の使用感の向上を目的としたものです。効果・効能には個人差があります。
+            </p>
+          </div>
+
+          {/* 画像 */}
+          <div className="flex-shrink-0 w-full lg:w-[420px]">
+            <div className="relative overflow-hidden" style={{ borderRadius: "2px" }}>
+              <img
+                src={IMAGES.botanicalMist}
+                alt="ボタニカルミスト施術"
+                className="w-full object-cover"
+                style={{ height: "360px", objectPosition: "center 30%" }}
+              />
+              {/* ゴールドフレーム装飾 */}
+              <div
+                className="absolute inset-0 pointer-events-none"
+                style={{ boxShadow: "inset 0 0 0 1px oklch(0.72_0.12_70 / 0.3)" }}
+              />
+              {/* ラベル */}
+              <div
+                className="absolute bottom-4 left-4 font-sans-jp text-xs font-bold px-4 py-2"
+                style={{ backgroundColor: "oklch(0.72_0.12_70)", color: "oklch(0.18_0.04_42)" }}
+              >
+                THE HERBS ボタニカルミスト
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* 効果グリッド */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10">
+          {effects.map((effect, i) => (
+            <div
+              key={i}
+              className={`p-8 bg-[oklch(0.22_0.045_42)] hover:bg-[oklch(0.25_0.05_42)] transition-all duration-500 group ${
+                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+              }`}
+              style={{ transitionDelay: `${i * 100}ms` }}
+            >
+              <span className="text-3xl block mb-4">{effect.icon}</span>
+              <h3 className="font-mincho text-white text-base font-bold mb-3 leading-snug group-hover:text-[oklch(0.88_0.08_75)] transition-colors">
+                {effect.title}
+              </h3>
+              <p className="font-sans-jp text-white/75 text-xs leading-relaxed">
+                {effect.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+
+        {/* ボトムCTA */}
+        <div className={`mt-16 text-center transition-all duration-700 delay-500 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <p className="font-sans-jp text-white/70 text-sm mb-6">
+            ボタニカルミストは「スカルプラボ」定期ケアコースに含まれています
+          </p>
+          <button
+            onClick={() => document.getElementById('予約')?.scrollIntoView({ behavior: 'smooth' })}
+            className="btn-gold-shimmer font-sans-jp text-[oklch(0.18_0.04_42)] font-semibold px-10 py-4 text-sm tracking-wider"
+          >
+            ボタニカルミストを体験する
+          </button>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ターゲットセクション
 function TargetSection() {
   const { ref, inView } = useInView();
@@ -1949,6 +2089,7 @@ export default function Home() {
       <HabitValueSection />
       <StatsSection />
       <ServiceSection />
+      <BotanicalMistSection />
       <TargetSection />
       <DigitalSection />
       <FlowSection />
