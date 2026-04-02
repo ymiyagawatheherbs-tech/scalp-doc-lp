@@ -970,20 +970,22 @@ function BotanicalMistSection() {
         </div>
 
         {/* 効果グリッド */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-white/10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px" style={{ backgroundColor: "rgba(255,255,255,0.1)" }}>
           {effects.map((effect, i) => (
             <div
               key={i}
-              className={`p-8 bg-[oklch(0.22_0.045_42)] hover:bg-[oklch(0.25_0.05_42)] transition-all duration-500 group ${
+              className={`p-8 transition-all duration-500 group ${
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
-              style={{ transitionDelay: `${i * 100}ms` }}
+              style={{ backgroundColor: "oklch(0.22 0.045 42)", transitionDelay: `${i * 100}ms` }}
+              onMouseEnter={e => (e.currentTarget.style.backgroundColor = "oklch(0.25 0.05 42)")}
+              onMouseLeave={e => (e.currentTarget.style.backgroundColor = "oklch(0.22 0.045 42)")}
             >
               {effect.icon && <span className="text-3xl block mb-4">{effect.icon}</span>}
-              <h3 className="font-mincho text-white text-base font-bold mb-3 leading-snug group-hover:text-[oklch(0.88_0.08_75)] transition-colors">
+              <h3 className="font-mincho text-base font-bold mb-3 leading-snug transition-colors" style={{ color: "#ffffff" }}>
                 {effect.title}
               </h3>
-              <p className="font-sans-jp text-white/75 text-xs leading-relaxed">
+              <p className="font-sans-jp text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>
                 {effect.desc}
               </p>
             </div>

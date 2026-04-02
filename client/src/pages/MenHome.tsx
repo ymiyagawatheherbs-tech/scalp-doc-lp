@@ -770,20 +770,22 @@ function BotanicalMist() {
         </div>
 
         {/* 効果グリッド */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px bg-[#C9A84C]/10">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-px" style={{ backgroundColor: "rgba(201,168,76,0.1)" }}>
           {effects.map((effect, i) => (
             <div
               key={i}
-              className={`p-8 bg-[#1C2B3A] hover:bg-[#243547] transition-all duration-500 group ${
+              className={`p-8 transition-all duration-500 group ${
                 visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
-              style={{ transitionDelay: `${i * 100}ms` }}
+              style={{ backgroundColor: "#1C2B3A", transitionDelay: `${i * 100}ms` }}
+              onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#243547")}
+              onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#1C2B3A")}
             >
               <span className="text-3xl block mb-4">{effect.icon}</span>
-              <h3 className="font-['Shippori_Mincho'] text-white text-base font-bold mb-3 leading-snug group-hover:text-[#C9A84C] transition-colors">
+              <h3 className="font-['Shippori_Mincho'] text-base font-bold mb-3 leading-snug transition-colors" style={{ color: "#ffffff" }}>
                 {effect.title}
               </h3>
-              <p className="text-white/75 text-xs font-['Noto_Sans_JP'] leading-relaxed">
+              <p className="text-xs font-['Noto_Sans_JP'] leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>
                 {effect.desc}
               </p>
             </div>
