@@ -1,36 +1,41 @@
 /**
- * スカルプラボ 認定サロン募集ページ (/salon)
- *
- * Design Philosophy: B2B Premium — Dark Luxury × Professional
- * - ターゲット: エステサロン経営者・休眠美容師・副業希望者
- * - Color: Deep Brown × Gold × Cream
- * - Typography: Shippori Mincho B1 × Cormorant Garamond × Noto Sans JP
- * - Tone: 信頼・収益・成長の3軸で訴求
+ * SalonPartner.tsx
+ * Design: Clean Professional — ホワイト×ディープグリーン×ゴールド
+ * Philosophy: 「頭皮・髪の悩みを持つ方のサポートを一緒に」→ 自然な収益化
+ * Layout: 縦スクロール型ストーリーテリング構造
  */
 
-import { useState, useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
 
-// Intersection Observer フック
-function useInView(threshold = 0.12) {
+const IMAGES = {
+  interior: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/salon_interior_c8f3f7a4.jpg",
+  steamer: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/salon_steamer_treatment_ae0eacff.jpg",
+  scalpCheck: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/salon_scalp_check_ae329437.jpg",
+};
+
+const LINE_SALON = {
+  url: "https://lin.ee/oVzqlI7",
+  account: "@723lsjqi",
+};
+
+const HERBS_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp";
+
+function useInView(threshold = 0.15) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(false);
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
     const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) { setInView(true); observer.disconnect(); }
-      },
+      ([entry]) => { if (entry.isIntersecting) setInView(true); },
       { threshold }
     );
-    observer.observe(el);
+    if (ref.current) observer.observe(ref.current);
     return () => observer.disconnect();
   }, [threshold]);
   return { ref, inView };
 }
 
-// ナビゲーション
+// ========== NAV ==========
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -40,53 +45,51 @@ function Nav() {
   }, []);
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-      scrolled
-        ? "bg-[oklch(0.977_0.012_85/0.97)] backdrop-blur-md shadow-sm border-b border-[oklch(0.88_0.025_75)]"
-        : "bg-transparent"
-    }`}>
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
-        {/* ロゴ */}
+    <nav
+      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+      style={{
+        backgroundColor: scrolled ? "rgba(248,246,242,0.97)" : "transparent",
+        backdropFilter: scrolled ? "blur(12px)" : "none",
+        borderBottom: scrolled ? "1px solid #e0e0e0" : "none",
+      }}
+    >
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
         <Link href="/">
-          <div className="flex items-center gap-2.5 cursor-pointer">
-            <div className="w-7 h-7 rounded-full bg-[oklch(0.22_0.045_42)] flex items-center justify-center shrink-0">
-              <span className="text-[oklch(0.72_0.12_70)] text-xs font-['Cormorant_Garamond'] font-semibold">S</span>
+          <div className="flex items-center gap-2 cursor-pointer">
+            <div className="w-7 h-7 flex items-center justify-center" style={{ backgroundColor: "#2d5a27" }}>
+              <span className="text-white text-xs font-bold" style={{ fontFamily: "'Cormorant Garamond', serif" }}>S</span>
             </div>
             <div>
-              <div className={`font-['Shippori_Mincho'] text-xs md:text-sm font-bold leading-tight tracking-widest transition-colors ${
-                scrolled ? "text-[oklch(0.22_0.045_42)]" : "text-white"
-              }`}>スカルプラボ</div>
-              <div className="font-['Cormorant_Garamond'] text-[oklch(0.72_0.12_70)] text-[9px] tracking-widest uppercase leading-none">
+              <div className="text-sm font-bold leading-tight tracking-widest" style={{ fontFamily: "'Shippori Mincho', serif", color: scrolled ? "#1a1a1a" : "#ffffff" }}>
+                スカルプラボ
+              </div>
+              <div className="text-[9px] tracking-widest uppercase leading-none" style={{ color: "#2d5a27" }}>
                 Salon Partner
               </div>
             </div>
           </div>
         </Link>
 
-        {/* THE HERBS ロゴ */}
-        <div className={`hidden md:flex items-center gap-1.5 transition-all duration-500 ${scrolled ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
-          <span className="font-['Cormorant_Garamond'] text-white/40 text-[9px] tracking-[0.2em] uppercase">presented by</span>
-          <img
-            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
-            alt="THE HERBS"
-            className="h-3.5 w-auto brightness-0 invert opacity-70"
-          />
-        </div>
-
         <div className="flex items-center gap-3">
+          {!scrolled && (
+            <div className="hidden md:flex items-center gap-1.5">
+              <span className="text-[9px] tracking-[0.2em] uppercase" style={{ color: "rgba(255,255,255,0.5)" }}>presented by</span>
+              <img src={HERBS_LOGO} alt="THE HERBS" className="h-3.5 w-auto brightness-0 invert opacity-70" />
+            </div>
+          )}
           <Link href="/">
-            <span className={`hidden md:inline font-['Noto_Sans_JP'] text-xs transition-colors cursor-pointer ${
-              scrolled ? "text-[oklch(0.38_0.055_42)] hover:text-[oklch(0.22_0.045_42)]" : "text-white/70 hover:text-white"
-            }`}>
+            <span className="hidden md:inline text-xs cursor-pointer" style={{ color: scrolled ? "#555" : "rgba(255,255,255,0.7)", fontFamily: "'Noto Sans JP', sans-serif" }}>
               ← 一般向けページへ
             </span>
           </Link>
           <a
-            href="#contact"
-            className="font-['Noto_Sans_JP'] text-xs font-semibold px-4 py-2 rounded-sm"
-            style={{ background: "oklch(0.72_0.12_70)", color: "oklch(0.18_0.04_42)" }}
+            href={LINE_SALON.url}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-xs font-bold px-4 py-2 transition-all"
+            style={{ backgroundColor: "#06C755", color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}
           >
-            説明会に申し込む
+            LINEで相談
           </a>
         </div>
       </div>
@@ -94,144 +97,140 @@ function Nav() {
   );
 }
 
-// ヒーローセクション
+// ========== HERO ==========
 function Hero() {
+  const [loaded, setLoaded] = useState(false);
+  useEffect(() => { setTimeout(() => setLoaded(true), 100); }, []);
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-[oklch(0.18_0.04_42)]">
-      {/* 背景グラデーション */}
-      <div className="absolute inset-0">
-        <div className="absolute inset-0 bg-gradient-to-br from-[oklch(0.18_0.04_42)] via-[oklch(0.22_0.045_42)] to-[oklch(0.15_0.035_42)]" />
-        {/* ゴールドラインアクセント */}
-        <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[oklch(0.72_0.12_70)] to-transparent opacity-40" />
-        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[oklch(0.72_0.12_70)] to-transparent opacity-20" />
-        {/* 右側装飾 */}
-        <div className="absolute right-0 top-0 bottom-0 w-px bg-gradient-to-b from-transparent via-[oklch(0.72_0.12_70)/30] to-transparent" />
-        {/* テクスチャ */}
-        <div className="absolute inset-0 opacity-[0.03]"
-          style={{ backgroundImage: "radial-gradient(circle, oklch(0.72_0.12_70) 1px, transparent 1px)", backgroundSize: "40px 40px" }}
+    <section className="relative min-h-screen flex items-center overflow-hidden" style={{ backgroundColor: "#f8f6f2" }}>
+      {/* 背景画像（右半分） */}
+      <div className="absolute right-0 top-0 w-full lg:w-[55%] h-full">
+        <img
+          src={IMAGES.interior}
+          alt="スカルプラボ認定サロン"
+          className="w-full h-full object-cover"
+          style={{ objectPosition: "center center" }}
+        />
+        <div
+          className="absolute inset-0"
+          style={{ background: "linear-gradient(to right, #f8f6f2 0%, #f8f6f2 5%, rgba(248,246,242,0.7) 35%, transparent 65%)" }}
         />
       </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-6 pt-24 pb-16 md:py-32">
-        <div className="max-w-3xl">
-          {/* バッジ */}
-          <div className="inline-flex items-center gap-2 border border-[oklch(0.72_0.12_70)/40] px-4 py-2 mb-8 rounded-full">
-            <span className="w-1.5 h-1.5 rounded-full bg-[oklch(0.72_0.12_70)] animate-pulse" />
-            <span className="font-['Noto_Sans_JP'] text-[oklch(0.72_0.12_70)] text-xs tracking-wider">
-              認定サロンパートナー募集中
-            </span>
-          </div>
-
-          <h1 className="font-['Shippori_Mincho'] text-white leading-tight mb-6">
-            <span className="block text-2xl md:text-5xl lg:text-6xl font-bold mb-2">
-              頭皮ケアを、
-            </span>
-            <span className="block text-2xl md:text-5xl lg:text-6xl font-bold text-[oklch(0.88_0.08_75)] mb-2">
-              あなたのサロンの
-            </span>
-            <span className="block text-2xl md:text-5xl lg:text-6xl font-bold">
-              新収益に。
-            </span>
+      <div className="relative max-w-7xl mx-auto px-6 py-32 w-full">
+        <div
+          className="max-w-xl transition-all duration-1000"
+          style={{ opacity: loaded ? 1 : 0, transform: loaded ? "translateY(0)" : "translateY(30px)" }}
+        >
+          <span className="text-xs tracking-[0.4em] uppercase block mb-6 font-medium" style={{ color: "#2d5a27" }}>
+            Scalp Labo Partner Program
+          </span>
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
+            髪と頭皮の悩みを、<br />
+            <span style={{ color: "#2d5a27" }}>一緒に解決しませんか。</span>
           </h1>
-
-          <p className="font-['Noto_Sans_JP'] text-white/80 text-base md:text-lg leading-relaxed mb-10 max-w-2xl">
-            スカルプラボの認定サロンになることで、頭皮チェックの技術と顧客基盤を手に入れ、
-            既存サロンの売上アップ・新規集客を実現できます。
-            エステサロン・休眠美容師の方にも最適なプログラムです。
+          <p className="text-base leading-relaxed mb-4" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#444", lineHeight: "1.9" }}>
+            薄毛・抜け毛・うねり・頭皮トラブル。<br />
+            悩みを抱えながらも、どこに相談すればいいかわからない方が大勢います。<br />
+            スカルプラボは、そうした方々の「受け皿」をサロンと一緒につくります。
           </p>
-
+          <p className="text-sm leading-relaxed mb-10" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#888" }}>
+            エステサロン・美容師・ヘッドスパ店など、業種を問わず参加できます。
+          </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
-              href="#contact"
-              className="font-['Noto_Sans_JP'] font-bold text-sm px-8 py-4 text-center rounded-sm transition-all duration-300 hover:opacity-90"
-              style={{ background: "linear-gradient(135deg, oklch(0.72_0.12_70), oklch(0.82_0.14_75))", color: "oklch(0.18_0.04_42)" }}
+              href={LINE_SALON.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 font-bold text-sm tracking-wider transition-all duration-300"
+              style={{ backgroundColor: "#06C755", color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}
+              onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#05a847")}
+              onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#06C755")}
             >
-              無料説明会に申し込む
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.58 5.8 4.04 7.54L5.5 22l4.14-2.16C10.39 20.27 11.18 20.4 12 20.4c5.52 0 10-4.02 10-9S17.52 2 12 2z"/>
+              </svg>
+              LINEで詳しく聞く
             </a>
             <a
               href="#program"
-              className="border border-white/40 text-white font-['Noto_Sans_JP'] font-medium px-8 py-4 text-center rounded-sm hover:bg-white/10 transition-colors text-sm"
+              className="inline-flex items-center justify-center px-8 py-4 font-bold text-sm tracking-wider transition-all duration-300 border-2"
+              style={{ borderColor: "#2d5a27", color: "#2d5a27", fontFamily: "'Noto Sans JP', sans-serif", backgroundColor: "transparent" }}
+              onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#2d5a27"; e.currentTarget.style.color = "#ffffff"; }}
+              onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#2d5a27"; }}
             >
-              プログラム詳細を見る
+              プログラムを見る
             </a>
           </div>
-
-          {/* 実績バー */}
-          <div className="mt-14 pt-8 border-t border-white/10 grid grid-cols-3 gap-6">
-            {[
-              { num: "30+", label: "提携サロン数", sub: "2025年3月時点" },
-              { num: "93%", label: "継続率", sub: "認定サロン（当社調べ）" },
-              { num: "2.4x", label: "平均売上増加", sub: "導入6ヶ月後（当社調べ）" },
-            ].map((s) => (
-              <div key={s.label}>
-                <div className="font-['Cormorant_Garamond'] text-[oklch(0.72_0.12_70)] text-2xl md:text-3xl font-bold">{s.num}</div>
-                <div className="font-['Shippori_Mincho'] text-white text-xs md:text-sm mt-1">{s.label}</div>
-                <div className="font-['Noto_Sans_JP'] text-white/50 text-[10px] mt-0.5">{s.sub}</div>
-              </div>
-            ))}
-          </div>
+          <p className="mt-4 text-xs" style={{ color: "#aaa", fontFamily: "'Noto Sans JP', sans-serif" }}>
+            {LINE_SALON.account}
+          </p>
         </div>
       </div>
     </section>
   );
 }
 
-// ターゲットセクション
-function TargetSection() {
+// ========== MISSION ==========
+function Mission() {
   const { ref, inView } = useInView();
-  const targets = [
-    {
-      icon: "✦",
-      title: "エステサロン経営者",
-      desc: "フェイシャル・ボディケアに加えて頭皮ケアを追加メニュー化。単価アップと新規顧客獲得を同時に実現できます。",
-      points: ["既存設備を活用", "追加スペース不要", "リピート率向上"],
-    },
-    {
-      icon: "✦",
-      title: "休眠美容師・副業希望者",
-      desc: "美容師免許を活かしながら、スタイリング以外の収益源を確立。週1〜2日から始められる柔軟なスタイルで稼げます。",
-      points: ["週1日〜スタート可", "自宅サロン対応", "美容師免許活用"],
-    },
-    {
-      icon: "✦",
-      title: "ヘッドスパ・リラクゼーション店",
-      desc: "既存の頭皮・頭部ケアメニューに科学的根拠を加え、差別化と高単価化を実現。データ管理で顧客ロイヤルティを高めます。",
-      points: ["差別化メニュー追加", "高単価化", "顧客データ管理"],
-    },
-  ];
 
   return (
-    <section className="py-24 bg-[oklch(0.97_0.012_82)]" id="target">
-      <div ref={ref} className="max-w-7xl mx-auto px-6">
-        <div className={`text-center mb-16 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="font-['Cormorant_Garamond'] text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
-            Who Is This For
+    <section className="py-24" style={{ backgroundColor: "#ffffff" }}>
+      <div ref={ref} className="max-w-6xl mx-auto px-6">
+        <div
+          className="text-center mb-16 transition-all duration-700"
+          style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)" }}
+        >
+          <span className="text-xs tracking-[0.4em] uppercase block mb-4 font-medium" style={{ color: "#2d5a27" }}>
+            The Problem We Solve Together
           </span>
-          <h2 className="font-['Shippori_Mincho'] text-[oklch(0.22_0.045_42)] text-3xl md:text-4xl font-bold mb-4">
-            こんな方に最適です
+          <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
+            「相談できる場所がない」という現実
           </h2>
+          <p className="text-base max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#555", lineHeight: "1.9" }}>
+            薄毛・抜け毛・うねりで悩む方の多くは、皮膚科に行くほどではないと感じ、
+            美容室では「スタイリングの話」しかできないと思い込んでいます。
+            その「空白地帯」に、スカルプラボは存在します。
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
-          {targets.map((t, i) => (
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            {
+              num: "01",
+              title: "悩んでいるが相談できない",
+              body: "薄毛・抜け毛・頭皮トラブルを抱えながら、どこに相談すればいいかわからない方が増えています。",
+            },
+            {
+              num: "02",
+              title: "原因が見えていない",
+              body: "マイクロスコープによる頭皮チェックを受けたことがない方がほとんど。問題の「見える化」が最初の一歩です。",
+            },
+            {
+              num: "03",
+              title: "専門家とつながれていない",
+              body: "適切なケアを提供できるサロンが近くにあっても、出会う機会がありません。スカルプラボがその橋渡しをします。",
+            },
+          ].map((item, i) => (
             <div
-              key={t.title}
-              className={`bg-white border border-[oklch(0.88_0.025_75)] p-8 rounded-sm hover:shadow-lg hover:border-[oklch(0.72_0.12_70)/40] transition-all duration-500 ${
-                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: `${i * 120}ms` }}
+              key={i}
+              className="p-8 transition-all duration-700"
+              style={{
+                backgroundColor: "#f8f6f2",
+                opacity: inView ? 1 : 0,
+                transform: inView ? "translateY(0)" : "translateY(30px)",
+                transitionDelay: `${i * 150}ms`,
+              }}
             >
-              <div className="text-[oklch(0.72_0.12_70)] text-xl mb-4">{t.icon}</div>
-              <h3 className="font-['Shippori_Mincho'] text-[oklch(0.22_0.045_42)] text-xl font-bold mb-3">{t.title}</h3>
-              <p className="font-['Noto_Sans_JP'] text-[oklch(0.45_0.04_42)] text-sm leading-relaxed mb-5">{t.desc}</p>
-              <ul className="space-y-2">
-                {t.points.map((p) => (
-                  <li key={p} className="flex items-center gap-2">
-                    <span className="text-[oklch(0.72_0.12_70)] text-xs">✓</span>
-                    <span className="font-['Noto_Sans_JP'] text-[oklch(0.38_0.055_42)] text-xs">{p}</span>
-                  </li>
-                ))}
-              </ul>
+              <span className="text-3xl font-bold block mb-4" style={{ fontFamily: "'Cormorant Garamond', serif", color: "#2d5a27" }}>{item.num}</span>
+              <h3 className="text-base font-bold mb-3" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
+                {item.title}
+              </h3>
+              <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#666", lineHeight: "1.8" }}>
+                {item.body}
+              </p>
             </div>
           ))}
         </div>
@@ -240,256 +239,457 @@ function TargetSection() {
   );
 }
 
-// プログラム詳細セクション
-function ProgramSection() {
+// ========== WHAT WE DO TOGETHER ==========
+function WhatWeDo() {
   const { ref, inView } = useInView();
 
   const steps = [
     {
-      num: "01",
-      title: "無料説明会への参加",
-      desc: "オンライン・対面どちらでも対応。スカルプラボの理念・技術・収益モデルをご説明します。質疑応答の時間も十分に設けています。",
-      time: "約60分",
+      img: IMAGES.scalpCheck,
+      step: "STEP 01",
+      title: "頭皮チェックで「見える化」する",
+      body: "マイクロスコープで頭皮の状態を記録・分析。お客様が自分の頭皮を初めて「見る」体験が、ケアへの動機づけになります。データは時系列で蓄積され、変化を実感できます。",
+      note: "所要時間：約15〜20分 / 初回無料で提供可能",
     },
     {
-      num: "02",
-      title: "技術講習会（認定研修）",
-      desc: "マイクロスコープの使い方から頭皮チェックの手順、カウンセリングスクリプトまで。実技を含む充実した研修プログラムです。",
-      time: "1〜2日間",
+      img: IMAGES.steamer,
+      step: "STEP 02",
+      title: "ボタニカルミストで頭皮を整える",
+      body: "THE HERBSが開発したハーブスチーマーで、植物由来の成分を蒸気で頭皮に届けます。カラー・パーマ後の薬剤除去にも対応。チェックで見つかった課題に合わせたケアを提供します。",
+      note: "既存メニューへの追加・単品提供どちらも可能",
     },
     {
-      num: "03",
-      title: "認定証の取得・サロンリスト掲載",
-      desc: "研修修了後、スカルプラボ認定証を発行。スカルプラボ公式サイトのサロンリストに掲載され、新規顧客の流入が期待できます。",
-      time: "研修修了後",
-    },
-    {
-      num: "04",
-      title: "継続サポート・フォローアップ",
-      desc: "定期的な技術アップデート研修、製品供給、マーケティング素材の提供など、認定後も継続的にサポートします。",
-      time: "継続的",
+      img: IMAGES.interior,
+      step: "STEP 03",
+      title: "定期通院の仕組みをつくる",
+      body: "「歯の定期検診」のように、頭皮チェックを定期的に受ける習慣を一緒に育てます。定期来店が定着することで、安定した売上と深い顧客関係が生まれます。",
+      note: "3ヶ月・6ヶ月のフォローアップ設計をサポート",
     },
   ];
 
   return (
-    <section className="py-28 bg-[oklch(0.22_0.045_42)]" id="program">
-      <div ref={ref} className="max-w-7xl mx-auto px-6">
-        <div className={`mb-16 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="font-['Cormorant_Garamond'] text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
-            Certification Program
+    <section className="py-24" style={{ backgroundColor: "#f8f6f2" }} id="program">
+      <div ref={ref} className="max-w-6xl mx-auto px-6">
+        <div
+          className="text-center mb-16 transition-all duration-700"
+          style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)" }}
+        >
+          <span className="text-xs tracking-[0.4em] uppercase block mb-4 font-medium" style={{ color: "#2d5a27" }}>
+            What We Do Together
           </span>
-          <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-4">
-            認定プログラムの流れ
+          <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
+            一緒にできること
           </h2>
-          <p className="font-['Noto_Sans_JP'] text-white/75 text-sm leading-relaxed max-w-2xl">
-            説明会への参加から認定取得まで、最短2週間。既存サロン業務を続けながら無理なく進められます。
+          <p className="text-base max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#555", lineHeight: "1.9" }}>
+            スカルプラボは「技術を売る」のではなく、「悩みを持つ方のサポート体制」をサロンと共に構築します。
+            収益は、その結果として自然についてきます。
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-0 border border-white/10">
-          {steps.map((s, i) => (
+        <div className="space-y-20">
+          {steps.map((step, i) => (
             <div
-              key={s.num}
-              className={`p-8 border-r border-white/10 last:border-r-0 hover:bg-white/5 transition-all duration-500 ${
-                inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-              }`}
-              style={{ transitionDelay: `${i * 100}ms` }}
+              key={i}
+              className={`flex flex-col ${i % 2 === 1 ? "lg:flex-row-reverse" : "lg:flex-row"} gap-12 items-center transition-all duration-700`}
+              style={{
+                opacity: inView ? 1 : 0,
+                transform: inView ? "translateY(0)" : "translateY(40px)",
+                transitionDelay: `${i * 200}ms`,
+              }}
             >
-              <div className="font-['Cormorant_Garamond'] text-[oklch(0.72_0.12_70)/40] text-5xl font-bold mb-6">{s.num}</div>
-              <div className="inline-block font-['Noto_Sans_JP'] text-[oklch(0.72_0.12_70)] text-[10px] border border-[oklch(0.72_0.12_70)/40] px-2 py-0.5 mb-4 tracking-wider">
-                {s.time}
+              <div className="w-full lg:w-1/2 flex-shrink-0">
+                <div className="relative overflow-hidden">
+                  <img
+                    src={step.img}
+                    alt={step.title}
+                    className="w-full object-cover"
+                    style={{ height: "360px", objectPosition: "center center" }}
+                  />
+                  <div
+                    className="absolute top-4 left-4 px-4 py-2 text-xs font-bold tracking-widest"
+                    style={{ backgroundColor: "#2d5a27", color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}
+                  >
+                    {step.step}
+                  </div>
+                </div>
               </div>
-              <h3 className="font-['Shippori_Mincho'] text-white text-lg font-bold mb-3 leading-snug">{s.title}</h3>
-              <p className="font-['Noto_Sans_JP'] text-white/75 text-xs leading-relaxed">{s.desc}</p>
+
+              <div className="flex-1">
+                <h3 className="text-2xl md:text-3xl font-bold mb-4" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
+                  {step.title}
+                </h3>
+                <p className="text-sm leading-relaxed mb-4" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#555", lineHeight: "1.9" }}>
+                  {step.body}
+                </p>
+                <p className="text-xs px-4 py-2 inline-block" style={{ backgroundColor: "#e8f5e3", color: "#2d5a27", fontFamily: "'Noto Sans JP', sans-serif" }}>
+                  {step.note}
+                </p>
+              </div>
             </div>
           ))}
-        </div>
-
-        {/* 費用・条件 */}
-        <div className={`mt-16 grid md:grid-cols-2 gap-8 transition-all duration-700 delay-400 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <div className="border border-[oklch(0.72_0.12_70)/30] p-8 rounded-sm">
-            <h3 className="font-['Shippori_Mincho'] text-[oklch(0.88_0.08_75)] text-xl font-bold mb-6">参加条件</h3>
-            <ul className="space-y-3">
-              {[
-                "美容師免許またはエステ資格（いずれかひとつ）",
-                "施術スペースがあること（自宅サロン可）",
-                "月4回以上の施術が可能なこと",
-                "スカルプラボの理念に共感できること",
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <span className="text-[oklch(0.72_0.12_70)] text-sm mt-0.5 flex-shrink-0">✓</span>
-                  <span className="font-['Noto_Sans_JP'] text-white/80 text-sm leading-relaxed">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="border border-white/10 p-8 rounded-sm">
-            <h3 className="font-['Shippori_Mincho'] text-white text-xl font-bold mb-6">認定サロンの特典</h3>
-            <ul className="space-y-3">
-              {[
-                "スカルプラボ公式サロンリストへの掲載",
-                "マイクロスコープ機器の優待購入",
-                "THE HERBS製品の卸価格での仕入れ",
-                "集客用マーケティング素材の提供",
-                "定期的な技術アップデート研修（無料）",
-                "専任担当者によるサポート",
-              ].map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <span className="text-[oklch(0.72_0.12_70)] text-sm mt-0.5 flex-shrink-0">✦</span>
-                  <span className="font-['Noto_Sans_JP'] text-white/80 text-sm leading-relaxed">{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
         </div>
       </div>
     </section>
   );
 }
 
-// 収益モデルセクション
-function RevenueSection() {
+// ========== REVENUE MODEL ==========
+function Revenue() {
   const { ref, inView } = useInView();
 
   return (
-    <section className="py-28 bg-[oklch(0.97_0.012_82)]" id="revenue">
-      <div ref={ref} className="max-w-7xl mx-auto px-6">
-        <div className={`text-center mb-16 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="font-['Cormorant_Garamond'] text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
-            Revenue Model
+    <section className="py-24" style={{ backgroundColor: "#1a2e1a" }}>
+      <div ref={ref} className="max-w-6xl mx-auto px-6">
+        <div
+          className="text-center mb-16 transition-all duration-700"
+          style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)" }}
+        >
+          <span className="text-xs tracking-[0.4em] uppercase block mb-4 font-medium" style={{ color: "#a8d5a2" }}>
+            Revenue Flow
           </span>
-          <h2 className="font-['Shippori_Mincho'] text-[oklch(0.22_0.045_42)] text-3xl md:text-4xl font-bold mb-4">
-            収益シミュレーション
+          <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
+            サポートが、収益になる仕組み
           </h2>
-          <p className="font-['Noto_Sans_JP'] text-[oklch(0.45_0.04_42)] text-sm max-w-xl mx-auto leading-relaxed">
-            ※ 以下はモデルケースです。実際の収益は施術数・単価・地域等により異なります。
+          <p className="text-base max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.75)", lineHeight: "1.9" }}>
+            「売る」のではなく「寄り添う」ことで、お客様との長期的な関係が生まれます。
+            その関係が、安定した収益基盤になります。
           </p>
         </div>
 
-        <div className={`grid md:grid-cols-3 gap-6 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-px" style={{ backgroundColor: "rgba(255,255,255,0.1)" }}>
           {[
             {
-              plan: "スタートプラン",
-              sub: "週1〜2日・副業スタイル",
-              sessions: "月8回",
-              price: "¥5,500",
-              monthly: "約 44,000円",
-              color: "oklch(0.72_0.12_70)",
-              highlight: false,
+              phase: "Phase 1",
+              title: "頭皮チェック",
+              sub: "初回無料 → 定期有料",
+              body: "初回は無料で提供し、まず「見える化」を体験してもらいます。データが蓄積されるほど、定期受診の価値が高まります。",
+              revenue: "定期チェック料",
             },
             {
-              plan: "スタンダードプラン",
-              sub: "週3〜4日・メイン収益化",
-              sessions: "月20回",
-              price: "¥5,500〜8,800",
-              monthly: "約 110,000〜176,000円",
-              color: "oklch(0.72_0.12_70)",
-              highlight: true,
+              phase: "Phase 2",
+              title: "ケアメニュー",
+              sub: "課題に合わせた施術",
+              body: "チェックで見つかった課題に対して、ボタニカルミスト・ゴマージュ・頭皮ケアメニューを提案。必要な方に必要なケアを。",
+              revenue: "施術料・製品販売",
             },
             {
-              plan: "フルタイムプラン",
-              sub: "専業・サロン展開",
-              sessions: "月40回以上",
-              price: "¥5,500〜12,000",
-              monthly: "約 220,000円以上",
-              color: "oklch(0.72_0.12_70)",
-              highlight: false,
+              phase: "Phase 3",
+              title: "定期コース",
+              sub: "3ヶ月・6ヶ月プラン",
+              body: "定期チェック＋ケアをセットにしたコースで、継続来店を促します。歯医者の定期検診と同じ「習慣化」モデルです。",
+              revenue: "コース料金（安定収益）",
             },
-          ].map((p, i) => (
+            {
+              phase: "Phase 4",
+              title: "製品販売",
+              sub: "THE HERBS製品の卸",
+              body: "認定サロンにはTHE HERBS製品の卸販売権が付与されます。お客様のホームケアをサポートしながら、物販収益も得られます。",
+              revenue: "製品卸・物販",
+            },
+          ].map((item, i) => (
             <div
-              key={p.plan}
-              className={`rounded-sm p-8 border transition-all duration-500 ${
-                p.highlight
-                  ? "bg-[oklch(0.22_0.045_42)] border-[oklch(0.72_0.12_70)/50] shadow-xl"
-                  : "bg-white border-[oklch(0.88_0.025_75)]"
-              }`}
-              style={{ transitionDelay: `${i * 120}ms` }}
+              key={i}
+              className="p-8 transition-all duration-700"
+              style={{
+                backgroundColor: "#243824",
+                opacity: inView ? 1 : 0,
+                transform: inView ? "translateY(0)" : "translateY(30px)",
+                transitionDelay: `${i * 150}ms`,
+              }}
             >
-              {p.highlight && (
-                <div className="font-['Noto_Sans_JP'] text-[oklch(0.18_0.04_42)] text-[10px] font-bold px-3 py-1 rounded-full mb-4 inline-block"
-                  style={{ background: "oklch(0.72_0.12_70)" }}>
-                  人気プラン
-                </div>
-              )}
-              <h3 className={`font-['Shippori_Mincho'] text-xl font-bold mb-1 ${p.highlight ? "text-white" : "text-[oklch(0.22_0.045_42)]"}`}>
-                {p.plan}
+              <span className="text-xs tracking-widest block mb-2" style={{ color: "#a8d5a2", fontFamily: "'Noto Sans JP', sans-serif" }}>{item.phase}</span>
+              <h3 className="text-lg font-bold mb-1" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
+                {item.title}
               </h3>
-              <p className={`font-['Noto_Sans_JP'] text-xs mb-6 ${p.highlight ? "text-white/65" : "text-[oklch(0.55_0.04_42)]"}`}>
-                {p.sub}
+              <p className="text-xs mb-4" style={{ color: "#a8d5a2", fontFamily: "'Noto Sans JP', sans-serif" }}>{item.sub}</p>
+              <p className="text-xs leading-relaxed mb-6" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.7)", lineHeight: "1.8" }}>
+                {item.body}
               </p>
-              <div className="mb-2">
-                <span className={`font-['Noto_Sans_JP'] text-xs ${p.highlight ? "text-white/65" : "text-[oklch(0.55_0.04_42)]"}`}>月間施術数</span>
-                <div className={`font-['Shippori_Mincho'] text-2xl font-bold mt-1 ${p.highlight ? "text-[oklch(0.88_0.08_75)]" : "text-[oklch(0.22_0.045_42)]"}`}>
-                  {p.sessions}
-                </div>
-              </div>
-              <div className={`border-t pt-4 mt-4 ${p.highlight ? "border-white/10" : "border-[oklch(0.88_0.025_75)]"}`}>
-                <span className={`font-['Noto_Sans_JP'] text-xs ${p.highlight ? "text-white/65" : "text-[oklch(0.55_0.04_42)]"}`}>想定月収</span>
-                <div className="font-['Shippori_Mincho'] text-xl font-bold mt-1" style={{ color: "oklch(0.72_0.12_70)" }}>
-                  {p.monthly}
-                </div>
+              <div className="pt-4" style={{ borderTop: "1px solid rgba(168,213,162,0.3)" }}>
+                <span className="text-xs font-bold" style={{ color: "#a8d5a2", fontFamily: "'Noto Sans JP', sans-serif" }}>収益源：{item.revenue}</span>
               </div>
             </div>
           ))}
         </div>
 
-        <p className="font-['Noto_Sans_JP'] text-[oklch(0.55_0.04_42)] text-xs text-center mt-6">
-          ※ 上記は参考値です。実際の収益を保証するものではありません。
-        </p>
+        {/* 収益シミュレーション */}
+        <div
+          className="mt-16 p-8 transition-all duration-700"
+          style={{
+            backgroundColor: "#2d5a27",
+            opacity: inView ? 1 : 0,
+            transform: inView ? "translateY(0)" : "translateY(30px)",
+            transitionDelay: "600ms",
+          }}
+        >
+          <h3 className="text-xl font-bold mb-6 text-center" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
+            収益シミュレーション（月間）
+          </h3>
+          <div className="grid md:grid-cols-3 gap-6 text-center">
+            {[
+              { label: "定期チェック", value: "月10名", sub: "¥5,000 × 10 = ¥50,000" },
+              { label: "ケアメニュー", value: "月6名", sub: "¥8,000 × 6 = ¥48,000" },
+              { label: "製品販売", value: "月4名", sub: "¥6,000 × 4 = ¥24,000" },
+            ].map((sim, i) => (
+              <div key={i}>
+                <p className="text-xs mb-1" style={{ color: "rgba(255,255,255,0.7)", fontFamily: "'Noto Sans JP', sans-serif" }}>{sim.label}</p>
+                <p className="text-2xl font-bold mb-1" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>{sim.value}</p>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Noto Sans JP', sans-serif" }}>{sim.sub}</p>
+              </div>
+            ))}
+          </div>
+          <div className="mt-6 pt-6 text-center" style={{ borderTop: "1px solid rgba(255,255,255,0.2)" }}>
+            <p className="text-2xl font-bold" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
+              合計：月間 <span style={{ color: "#a8d5a2" }}>¥122,000〜</span> の追加収益
+            </p>
+            <p className="text-xs mt-2" style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'Noto Sans JP', sans-serif" }}>
+              ※あくまでも一例です。実際の収益は施術内容・単価・来店数により異なります。
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
 }
 
-// よくある質問
-function FaqSection() {
+// ========== WHO CAN JOIN ==========
+function WhoCanJoin() {
   const { ref, inView } = useInView();
-  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  return (
+    <section className="py-24" style={{ backgroundColor: "#ffffff" }}>
+      <div ref={ref} className="max-w-6xl mx-auto px-6">
+        <div
+          className="text-center mb-16 transition-all duration-700"
+          style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)" }}
+        >
+          <span className="text-xs tracking-[0.4em] uppercase block mb-4 font-medium" style={{ color: "#2d5a27" }}>
+            Who Can Join
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
+            こんな方と一緒に取り組みたい
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-3 gap-8">
+          {[
+            {
+              title: "エステサロン",
+              icon: "✨",
+              tags: ["フェイシャル", "ボディケア", "リラクゼーション"],
+              body: "お客様の「全身美容」をサポートしているサロンに。頭皮ケアは顔・体と同じ「皮膚ケア」です。既存のお客様に新しい価値を提供できます。",
+              fit: "特に相性が良い",
+            },
+            {
+              title: "美容師・ヘアサロン",
+              icon: "✂️",
+              tags: ["カラー", "パーマ", "ヘッドスパ"],
+              body: "スタイリングの合間に頭皮チェックを追加するだけ。カラー・パーマ後の頭皮ケアは、既存メニューとの親和性が高く、お客様の満足度向上にもつながります。",
+              fit: "既存メニューと相性抜群",
+            },
+            {
+              title: "副業・起業を考える方",
+              icon: "🌱",
+              tags: ["美容師免許あり", "エステ経験あり", "自宅サロン"],
+              body: "大きな初期投資なしに始められる頭皮ケアメニューとして。スカルプラボの認定を取得することで、専門性を持った差別化が図れます。",
+              fit: "低コストで始められる",
+            },
+          ].map((item, i) => (
+            <div
+              key={i}
+              className="p-8 transition-all duration-700"
+              style={{
+                border: "1px solid #e0e0e0",
+                opacity: inView ? 1 : 0,
+                transform: inView ? "translateY(0)" : "translateY(30px)",
+                transitionDelay: `${i * 150}ms`,
+              }}
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <span className="text-3xl">{item.icon}</span>
+                <div>
+                  <h3 className="font-bold text-lg" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
+                    {item.title}
+                  </h3>
+                  <span className="text-xs px-2 py-0.5" style={{ backgroundColor: "#e8f5e3", color: "#2d5a27", fontFamily: "'Noto Sans JP', sans-serif" }}>
+                    {item.fit}
+                  </span>
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {item.tags.map((tag, j) => (
+                  <span key={j} className="text-xs px-3 py-1" style={{ backgroundColor: "#f8f6f2", color: "#666", fontFamily: "'Noto Sans JP', sans-serif" }}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#555", lineHeight: "1.8" }}>
+                {item.body}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ========== PROGRAM STEPS ==========
+function ProgramSteps() {
+  const { ref, inView } = useInView();
+
+  return (
+    <section className="py-24" style={{ backgroundColor: "#f8f6f2" }}>
+      <div ref={ref} className="max-w-4xl mx-auto px-6">
+        <div
+          className="text-center mb-16 transition-all duration-700"
+          style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)" }}
+        >
+          <span className="text-xs tracking-[0.4em] uppercase block mb-4 font-medium" style={{ color: "#2d5a27" }}>
+            Certification Program
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
+            認定までの流れ
+          </h2>
+        </div>
+
+        <div className="space-y-6">
+          {[
+            {
+              num: "01",
+              title: "LINEで無料相談",
+              body: "まずはサロン向けLINEから気軽にご連絡ください。現在の状況・ご興味のある内容をお聞きし、最適なプランをご提案します。",
+              time: "いつでも",
+            },
+            {
+              num: "02",
+              title: "オンライン説明会への参加",
+              body: "スカルプラボのコンセプト・認定プログラムの内容・収益モデルについて詳しくご説明します。質問も自由にどうぞ。",
+              time: "約60分",
+            },
+            {
+              num: "03",
+              title: "技術講習会への参加",
+              body: "頭皮チェックの手順・ボタニカルミストの使い方・お客様へのカウンセリング方法を実習形式で学びます。THE HERBSの専門スタッフが直接指導します。",
+              time: "1日〜2日",
+            },
+            {
+              num: "04",
+              title: "認定サロンとして登録",
+              body: "認定後はスカルプラボの公式サロンリストに掲載されます。THE HERBS製品の卸販売権・販促ツールの提供・継続サポートを受けられます。",
+              time: "認定後すぐ",
+            },
+          ].map((step, i) => (
+            <div
+              key={i}
+              className="flex gap-6 items-start transition-all duration-700"
+              style={{
+                opacity: inView ? 1 : 0,
+                transform: inView ? "translateX(0)" : "translateX(-30px)",
+                transitionDelay: `${i * 150}ms`,
+              }}
+            >
+              <div
+                className="flex-shrink-0 w-14 h-14 flex items-center justify-center font-bold text-lg"
+                style={{ backgroundColor: "#2d5a27", color: "#ffffff", fontFamily: "'Cormorant Garamond', serif" }}
+              >
+                {step.num}
+              </div>
+              <div className="flex-1 pb-6" style={{ borderBottom: i < 3 ? "1px solid #e0e0e0" : "none" }}>
+                <div className="flex items-center gap-3 mb-2">
+                  <h3 className="font-bold text-lg" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
+                    {step.title}
+                  </h3>
+                  <span className="text-xs px-2 py-0.5" style={{ backgroundColor: "#e8f5e3", color: "#2d5a27", fontFamily: "'Noto Sans JP', sans-serif" }}>
+                    {step.time}
+                  </span>
+                </div>
+                <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#555", lineHeight: "1.8" }}>
+                  {step.body}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ========== FAQ ==========
+function Faq() {
+  const { ref, inView } = useInView();
+  const [open, setOpen] = useState<number | null>(null);
 
   const faqs = [
     {
-      q: "美容師免許がなくてもできますか？",
-      a: "エステ資格（国家資格・民間資格問わず）をお持ちの方も対象です。頭皮チェックは医療行為ではないため、美容師免許がなくても施術可能です。詳しくは説明会でご確認ください。",
-    },
-    {
-      q: "自宅サロンでも認定を受けられますか？",
-      a: "はい、自宅サロンでも認定を受けることができます。施術スペースと必要な衛生環境が整っていれば問題ありません。",
+      q: "美容師免許がなくても参加できますか？",
+      a: "はい。エステサロン・ヘッドスパ店・リラクゼーションサロンなど、美容師免許がなくても参加できます。頭皮チェック自体は医療行為ではなく、化粧品を用いたケアのため、業種を問わず提供可能です。",
     },
     {
       q: "初期費用はどのくらいかかりますか？",
-      a: "研修費用と機器の導入費用が主な初期投資となります。詳細は説明会でご案内しますが、既存設備を活用できるケースも多く、比較的低コストでスタートできます。",
+      a: "機器（マイクロスコープ）のご用意が必要です。詳細はLINEでのご相談の際にお伝えします。ボタニカルミスト機器については、導入サポートプランもご用意しています。",
     },
     {
-      q: "サロンリストへの掲載はいつから？",
-      a: "認定研修修了後、審査を経て掲載となります。通常、研修修了から2〜4週間程度でサイトへの掲載が完了します。",
+      q: "自宅サロンでも参加できますか？",
+      a: "はい、可能です。プライベートサロンや自宅サロンでも、適切な環境があれば認定を受けることができます。詳しくはご相談ください。",
     },
     {
-      q: "既存の美容室でも導入できますか？",
-      a: "はい、美容室での導入も歓迎しています。スタイリングの合間や待ち時間を活用した頭皮チェックメニューとして展開している認定サロンも多数あります。",
+      q: "既存のメニューと並行して提供できますか？",
+      a: "はい。スカルプラボのメニューは、既存のカラー・パーマ・フェイシャルなどと組み合わせて提供できます。「カラー後の頭皮ケア」として追加するだけでも十分な価値になります。",
+    },
+    {
+      q: "認定後のサポートはありますか？",
+      a: "はい。認定後も定期的な技術フォロー・新製品情報の提供・お客様対応のサポートを継続して行います。また、認定サロン同士のコミュニティへの参加も可能です。",
     },
   ];
 
   return (
-    <section className="py-24 bg-[oklch(0.22_0.045_42)]" id="faq">
+    <section className="py-24" style={{ backgroundColor: "#ffffff" }}>
       <div ref={ref} className="max-w-3xl mx-auto px-6">
-        <div className={`text-center mb-12 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="font-['Cormorant_Garamond'] text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">FAQ</span>
-          <h2 className="font-['Shippori_Mincho'] text-white text-3xl font-bold">よくある質問</h2>
+        <div
+          className="text-center mb-16 transition-all duration-700"
+          style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)" }}
+        >
+          <span className="text-xs tracking-[0.4em] uppercase block mb-4 font-medium" style={{ color: "#2d5a27" }}>
+            FAQ
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
+            よくあるご質問
+          </h2>
         </div>
 
-        <div className={`space-y-3 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+        <div className="space-y-2">
           {faqs.map((faq, i) => (
-            <div key={i} className="border border-white/10 rounded-sm overflow-hidden">
+            <div
+              key={i}
+              className="transition-all duration-700"
+              style={{
+                border: "1px solid #e0e0e0",
+                opacity: inView ? 1 : 0,
+                transform: inView ? "translateY(0)" : "translateY(20px)",
+                transitionDelay: `${i * 100}ms`,
+              }}
+            >
               <button
-                className="w-full flex items-center justify-between px-6 py-5 text-left hover:bg-white/5 transition-colors"
-                onClick={() => setOpenIndex(openIndex === i ? null : i)}
+                className="w-full text-left px-6 py-5 flex items-center justify-between gap-4"
+                onClick={() => setOpen(open === i ? null : i)}
               >
-                <span className="font-['Shippori_Mincho'] text-white text-sm font-bold pr-4">{faq.q}</span>
-                <span className="text-[oklch(0.72_0.12_70)] flex-shrink-0 text-lg">{openIndex === i ? "−" : "+"}</span>
+                <span className="font-bold text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#1a1a1a" }}>
+                  {faq.q}
+                </span>
+                <span
+                  className="flex-shrink-0 w-6 h-6 flex items-center justify-center font-bold transition-transform duration-300 text-lg"
+                  style={{ transform: open === i ? "rotate(45deg)" : "rotate(0deg)", color: "#2d5a27" }}
+                >
+                  +
+                </span>
               </button>
-              {openIndex === i && (
-                <div className="px-6 pb-5 border-t border-white/10">
-                  <p className="font-['Noto_Sans_JP'] text-white/80 text-sm leading-relaxed pt-4">{faq.a}</p>
+              {open === i && (
+                <div className="px-6 pb-5">
+                  <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#555", lineHeight: "1.8" }}>
+                    {faq.a}
+                  </p>
                 </div>
               )}
             </div>
@@ -500,274 +700,100 @@ function FaqSection() {
   );
 }
 
-// お問い合わせ・説明会申し込みセクション
-function ContactSection() {
+// ========== CTA ==========
+function Cta() {
   const { ref, inView } = useInView();
-  const [submitted, setSubmitted] = useState(false);
-  const [form, setForm] = useState({
-    name: "", salon: "", tel: "", email: "", type: "", message: "",
-  });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
 
   return (
-    <section className="py-28 bg-[oklch(0.15_0.035_42)]" id="contact">
-      <div ref={ref} className="max-w-2xl mx-auto px-6">
-        <div className={`text-center mb-12 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="font-['Cormorant_Garamond'] text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
-            Apply Now
-          </span>
-          <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-4">
-            無料説明会に申し込む
-          </h2>
-          <p className="font-['Noto_Sans_JP'] text-white/75 text-sm leading-relaxed">
-            オンライン・対面どちらでも対応。まずはお気軽にご相談ください。
-          </p>
-          {/* LINEで問い合わせ */}
-          <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a
-              href="https://lin.ee/oVzqlI7"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 px-8 py-4 font-['Noto_Sans_JP'] font-bold text-sm text-white transition-opacity hover:opacity-90 w-full sm:w-auto justify-center"
-              style={{ backgroundColor: "#06C755" }}
-            >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="white">
-                <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
-              </svg>
-              LINEで気軽に問い合わせる
-              <span className="text-white/75 text-xs font-normal">@723lsjqi</span>
-            </a>
-            <span className="font-['Noto_Sans_JP'] text-white/40 text-xs hidden sm:block">または</span>
-            <span className="font-['Noto_Sans_JP'] text-white/40 text-xs sm:hidden">または下記フォームから</span>
-          </div>
-          <div className="mt-6 border-t border-white/10 pt-6">
-            <p className="font-['Noto_Sans_JP'] text-white/50 text-xs text-center mb-6">フォームからのお申し込みも受け付けています</p>
-          </div>
-        </div>
-
-        {submitted ? (
-          <div className="text-center py-16">
-            <div className="w-20 h-20 rounded-full border border-[oklch(0.72_0.12_70)/40] flex items-center justify-center mx-auto mb-6">
-              <span className="text-[oklch(0.72_0.12_70)] text-3xl">✓</span>
-            </div>
-            <h3 className="font-['Shippori_Mincho'] text-white text-2xl font-bold mb-4">お申し込みを受け付けました</h3>
-            <p className="font-['Noto_Sans_JP'] text-white/75 text-sm leading-relaxed">
-              担当者より2営業日以内にご連絡いたします。<br />
-              しばらくお待ちください。
-            </p>
-          </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-5">
-            <div className="grid md:grid-cols-2 gap-5">
-              <div>
-                <label className="font-['Noto_Sans_JP'] text-white/70 text-xs block mb-2 tracking-wider">
-                  お名前 <span className="text-[oklch(0.72_0.12_70)]">*</span>
-                </label>
-                <input
-                  type="text"
-                  required
-                  value={form.name}
-                  onChange={(e) => setForm({ ...form, name: e.target.value })}
-                  className="w-full bg-white/5 border border-white/15 text-white font-['Noto_Sans_JP'] text-sm px-4 py-3 rounded-sm focus:outline-none focus:border-[oklch(0.72_0.12_70)/60] transition-colors"
-                  placeholder="山田 花子"
-                />
-              </div>
-              <div>
-                <label className="font-['Noto_Sans_JP'] text-white/70 text-xs block mb-2 tracking-wider">
-                  サロン名・屋号
-                </label>
-                <input
-                  type="text"
-                  value={form.salon}
-                  onChange={(e) => setForm({ ...form, salon: e.target.value })}
-                  className="w-full bg-white/5 border border-white/15 text-white font-['Noto_Sans_JP'] text-sm px-4 py-3 rounded-sm focus:outline-none focus:border-[oklch(0.72_0.12_70)/60] transition-colors"
-                  placeholder="○○サロン"
-                />
-              </div>
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-5">
-              <div>
-                <label className="font-['Noto_Sans_JP'] text-white/70 text-xs block mb-2 tracking-wider">
-                  電話番号 <span className="text-[oklch(0.72_0.12_70)]">*</span>
-                </label>
-                <input
-                  type="tel"
-                  required
-                  value={form.tel}
-                  onChange={(e) => setForm({ ...form, tel: e.target.value })}
-                  className="w-full bg-white/5 border border-white/15 text-white font-['Noto_Sans_JP'] text-sm px-4 py-3 rounded-sm focus:outline-none focus:border-[oklch(0.72_0.12_70)/60] transition-colors"
-                  placeholder="090-XXXX-XXXX"
-                />
-              </div>
-              <div>
-                <label className="font-['Noto_Sans_JP'] text-white/70 text-xs block mb-2 tracking-wider">
-                  メールアドレス <span className="text-[oklch(0.72_0.12_70)]">*</span>
-                </label>
-                <input
-                  type="email"
-                  required
-                  value={form.email}
-                  onChange={(e) => setForm({ ...form, email: e.target.value })}
-                  className="w-full bg-white/5 border border-white/15 text-white font-['Noto_Sans_JP'] text-sm px-4 py-3 rounded-sm focus:outline-none focus:border-[oklch(0.72_0.12_70)/60] transition-colors"
-                  placeholder="example@email.com"
-                />
-              </div>
-            </div>
-
-            <div>
-              <label className="font-['Noto_Sans_JP'] text-white/70 text-xs block mb-2 tracking-wider">
-                現在のお仕事・資格 <span className="text-[oklch(0.72_0.12_70)]">*</span>
-              </label>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-2">
-                {["エステサロン", "美容師", "ヘッドスパ", "その他"].map((opt) => (
-                  <label
-                    key={opt}
-                    className={`flex items-center justify-center gap-2 border text-xs font-['Noto_Sans_JP'] py-2.5 px-3 rounded-sm cursor-pointer transition-all ${
-                      form.type === opt
-                        ? "border-[oklch(0.72_0.12_70)] text-[oklch(0.72_0.12_70)] bg-[oklch(0.72_0.12_70)/10]"
-                        : "border-white/15 text-white/60 hover:border-white/30"
-                    }`}
-                  >
-                    <input
-                      type="radio"
-                      name="type"
-                      value={opt}
-                      className="sr-only"
-                      onChange={() => setForm({ ...form, type: opt })}
-                    />
-                    {opt}
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <label className="font-['Noto_Sans_JP'] text-white/70 text-xs block mb-2 tracking-wider">
-                ご質問・ご要望
-              </label>
-              <textarea
-                rows={4}
-                value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
-                className="w-full bg-white/5 border border-white/15 text-white font-['Noto_Sans_JP'] text-sm px-4 py-3 rounded-sm focus:outline-none focus:border-[oklch(0.72_0.12_70)/60] transition-colors resize-none"
-                placeholder="ご質問や気になる点があればお気軽にどうぞ。"
-              />
-            </div>
-
-            <button
-              type="submit"
-              className="w-full font-['Noto_Sans_JP'] font-bold text-sm py-4 rounded-sm transition-all duration-300 hover:opacity-90"
-              style={{ background: "linear-gradient(135deg, oklch(0.72_0.12_70), oklch(0.82_0.14_75))", color: "oklch(0.18_0.04_42)" }}
-            >
-              無料説明会に申し込む
-            </button>
-
-            <p className="font-['Noto_Sans_JP'] text-white/50 text-[11px] text-center leading-relaxed">
-              ※ このフォームはデモ用です。送信後、担当者よりご連絡いたします。<br />
-              個人情報は<Link href="/privacy"><span className="underline cursor-pointer">プライバシーポリシー</span></Link>に基づき適切に管理します。
-            </p>
-          </form>
-        )}
+    <section className="py-24 text-center" style={{ backgroundColor: "#2d5a27" }} id="contact">
+      <div
+        ref={ref}
+        className="max-w-3xl mx-auto px-6 transition-all duration-700"
+        style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)" }}
+      >
+        <span className="text-xs tracking-[0.4em] uppercase block mb-6 font-medium" style={{ color: "#a8d5a2" }}>
+          Let's Start Together
+        </span>
+        <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
+          まずは、話を聞かせてください。
+        </h2>
+        <p className="text-base leading-relaxed mb-10" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.8)", lineHeight: "1.9" }}>
+          「うちのサロンでできるかな？」「どんな機器が必要？」<br />
+          どんな小さな疑問でも、LINEで気軽にご相談ください。<br />
+          一緒に、頭皮と髪の悩みを抱える方の力になりましょう。
+        </p>
+        <a
+          href={LINE_SALON.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center justify-center gap-3 px-10 py-5 font-bold text-base tracking-wider transition-all duration-300"
+          style={{ backgroundColor: "#06C755", color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}
+          onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#05a847")}
+          onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#06C755")}
+        >
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.58 5.8 4.04 7.54L5.5 22l4.14-2.16C10.39 20.27 11.18 20.4 12 20.4c5.52 0 10-4.02 10-9S17.52 2 12 2z"/>
+          </svg>
+          LINEで無料相談する
+        </a>
+        <p className="mt-4 text-sm" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Noto Sans JP', sans-serif" }}>
+          {LINE_SALON.account} ／ 返信まで1〜2営業日
+        </p>
       </div>
     </section>
   );
 }
 
-// フッター
+// ========== FOOTER ==========
 function Footer() {
   return (
-    <footer className="bg-[oklch(0.12_0.03_42)] py-12">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8 pb-8 border-b border-white/10">
-          <div className="flex items-center gap-3">
-            <div className="w-8 h-8 rounded-full bg-[oklch(0.22_0.045_42)] border border-[oklch(0.72_0.12_70)/30] flex items-center justify-center">
-              <span className="text-[oklch(0.72_0.12_70)] text-xs font-['Cormorant_Garamond'] font-semibold">S</span>
-            </div>
-            <div>
-              <div className="font-['Shippori_Mincho'] text-white text-sm font-bold tracking-widest">スカルプラボ</div>
-              <div className="font-['Cormorant_Garamond'] text-[oklch(0.72_0.12_70)] text-[10px] tracking-widest uppercase">Salon Partner Program</div>
-            </div>
-          </div>
-          <div className="flex items-center gap-2">
-            <span className="font-['Cormorant_Garamond'] text-white/30 text-[10px] tracking-[0.15em] uppercase">by</span>
-            <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
-              alt="THE HERBS"
-              className="h-3.5 w-auto brightness-0 invert opacity-50"
-            />
-          </div>
-          <div className="flex gap-6">
-            <Link href="/"><span className="font-['Noto_Sans_JP'] text-white/55 text-xs hover:text-white/80 transition-colors cursor-pointer">一般向けLP</span></Link>
-            <Link href="/privacy"><span className="font-['Noto_Sans_JP'] text-white/55 text-xs hover:text-white/80 transition-colors cursor-pointer">プライバシーポリシー</span></Link>
-            <Link href="/tokushoho"><span className="font-['Noto_Sans_JP'] text-white/55 text-xs hover:text-white/80 transition-colors cursor-pointer">特定商取引法</span></Link>
-          </div>
-        </div>
-        <p className="font-['Noto_Sans_JP'] text-white/55 text-xs text-center">
-          © 2025 スカルプラボ / THE HERBS. All rights reserved.
-        </p>
+    <footer className="py-8 text-center" style={{ backgroundColor: "#1a1a1a" }}>
+      <div className="flex justify-center items-center gap-2 mb-3">
+        <img src={HERBS_LOGO} alt="THE HERBS" className="h-4 w-auto brightness-0 invert opacity-50" />
+      </div>
+      <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>
+        © 2025 スカルプラボ by THE HERBS. All rights reserved.
+      </p>
+      <div className="mt-3 flex justify-center gap-6">
+        <a href="/" className="text-xs transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}
+          onMouseEnter={e => (e.currentTarget.style.color = "rgba(255,255,255,0.8)")}
+          onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.4)")}>
+          一般の方はこちら（レディース）
+        </a>
+        <a href="/men" className="text-xs transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}
+          onMouseEnter={e => (e.currentTarget.style.color = "rgba(255,255,255,0.8)")}
+          onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.4)")}>
+          一般の方はこちら（メンズ）
+        </a>
       </div>
     </footer>
   );
 }
 
-// メインコンポーネント
+// ========== MAIN ==========
 export default function SalonPartner() {
-  // SEOメタタグを/salonページ向けに動的に設定
   useEffect(() => {
-    const prevTitle = document.title;
-    const prevDesc = document.querySelector('meta[name="description"]')?.getAttribute('content') || '';
-    const prevOgTitle = document.querySelector('meta[property="og:title"]')?.getAttribute('content') || '';
-    const prevOgDesc = document.querySelector('meta[property="og:description"]')?.getAttribute('content') || '';
-    const prevOgUrl = document.querySelector('meta[property="og:url"]')?.getAttribute('content') || '';
-    const prevTwTitle = document.querySelector('meta[name="twitter:title"]')?.getAttribute('content') || '';
-    const prevTwDesc = document.querySelector('meta[name="twitter:description"]')?.getAttribute('content') || '';
-
-    const title = 'スカルプラボ サロンパートナー募集 | 頭皮ケアの新メニューで稼ぐ';
-    const desc = 'エステサロン・美容師向けの頭皮チェック認定プログラム。副業・起業・新メニュー追加に最適。THE HERBSの技術とブランドを活かした頭皮定期チェックサービスをサロンに導入。無料説明会実施中。';
-    const url = 'https://scalpdoclp-vahdavie.manus.space/salon';
-
-    document.title = title;
-    document.querySelector('meta[name="description"]')?.setAttribute('content', desc);
-    document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
-    document.querySelector('meta[property="og:description"]')?.setAttribute('content', desc);
-    document.querySelector('meta[property="og:url"]')?.setAttribute('content', url);
-    document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', title);
-    document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', desc);
-
-    // キーワードメタタグを追加
-    let kwMeta = document.querySelector('meta[name="keywords"]');
-    if (!kwMeta) {
-      kwMeta = document.createElement('meta');
-      kwMeta.setAttribute('name', 'keywords');
-      document.head.appendChild(kwMeta);
-    }
-    kwMeta.setAttribute('content', '頭皮ケア, 頭皮チェック, エステサロン 新メニュー, 美容師 副業, 頭皮ケア 起業, スカルプラボ, ヘッドスパ, 頭皮 薄毛, THE HERBS, 認定サロン, 神戸');
-
-    return () => {
-      document.title = prevTitle;
-      document.querySelector('meta[name="description"]')?.setAttribute('content', prevDesc);
-      document.querySelector('meta[property="og:title"]')?.setAttribute('content', prevOgTitle);
-      document.querySelector('meta[property="og:description"]')?.setAttribute('content', prevOgDesc);
-      document.querySelector('meta[property="og:url"]')?.setAttribute('content', prevOgUrl);
-      document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', prevTwTitle);
-      document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', prevTwDesc);
+    document.title = "サロンパートナー募集 | スカルプラボ by THE HERBS";
+    const setMeta = (name: string, content: string) => {
+      let el = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
+      if (!el) { el = document.createElement("meta"); el.name = name; document.head.appendChild(el); }
+      el.content = content;
     };
+    setMeta("description", "頭皮・髪の悩みを抱えるお客様のサポートを一緒に。エステサロン・美容師・ヘッドスパ店向けのスカルプラボ認定パートナープログラム。頭皮チェック・ボタニカルミストで新しい収益の柱を。");
+    setMeta("keywords", "頭皮ケア 副業,エステサロン 新メニュー,美容師 副業,ヘッドスパ 開業,スカルプラボ 認定サロン");
   }, []);
 
   return (
-    <div className="min-h-screen">
+    <div style={{ fontFamily: "'Noto Sans JP', sans-serif" }}>
       <Nav />
       <Hero />
-      <TargetSection />
-      <ProgramSection />
-      <RevenueSection />
-      <FaqSection />
-      <ContactSection />
+      <Mission />
+      <WhatWeDo />
+      <Revenue />
+      <WhoCanJoin />
+      <ProgramSteps />
+      <Faq />
+      <Cta />
       <Footer />
     </div>
   );
