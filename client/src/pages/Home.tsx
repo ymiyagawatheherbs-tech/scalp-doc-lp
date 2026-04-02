@@ -1266,7 +1266,7 @@ function FaqSection() {
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
               >
               <span className="font-mincho text-[oklch(0.22_0.045_42)] text-lg font-bold">
-                スカルプラボ頭皮ケアアプリ {faq.q}
+                {faq.q}
                 </span>
                 <span
                   className={`text-[oklch(0.72_0.12_70)] text-xl flex-shrink-0 transition-transform duration-300 ${
