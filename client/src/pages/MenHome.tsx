@@ -109,6 +109,13 @@ function Nav() {
 
           {/* CTA + Hamburger */}
           <div className="flex items-center gap-2 md:gap-4">
+            {/* サロン向けリンク */}
+            <Link
+              href="/salon"
+              className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#C9A84C]/60 text-[#C9A84C]/80 text-xs tracking-wider hover:border-[#C9A84C] hover:text-[#C9A84C] transition-all duration-300 font-['Noto_Sans_JP']"
+            >
+              サロン向け
+            </Link>
             {/* 女性版切り替えリンク */}
             <Link
               href="/"
@@ -154,8 +161,15 @@ function Nav() {
             </button>
           ))}
           <Link
+            href="/salon"
+            className="mt-6 flex items-center justify-center gap-2 py-3 border border-[#C9A84C]/50 text-[#C9A84C] text-base tracking-wider hover:border-[#C9A84C] hover:bg-[#C9A84C]/10 transition-all duration-300 font-['Noto_Sans_JP']"
+            onClick={() => setMenuOpen(false)}
+          >
+            サロン・美容師の方へ
+          </Link>
+          <Link
             href="/"
-            className="mt-6 flex items-center justify-center gap-2 py-3 border border-white/30 text-white/60 text-base tracking-wider hover:border-white/60 hover:text-white/80 transition-all duration-300 font-['Noto_Sans_JP']"
+            className="mt-3 flex items-center justify-center gap-2 py-3 border border-white/30 text-white/60 text-base tracking-wider hover:border-white/60 hover:text-white/80 transition-all duration-300 font-['Noto_Sans_JP']"
             onClick={() => setMenuOpen(false)}
           >
             <span>&#9792;</span>

@@ -717,6 +717,48 @@ function Footer() {
 
 // メインコンポーネント
 export default function SalonPartner() {
+  // SEOメタタグを/salonページ向けに動的に設定
+  useEffect(() => {
+    const prevTitle = document.title;
+    const prevDesc = document.querySelector('meta[name="description"]')?.getAttribute('content') || '';
+    const prevOgTitle = document.querySelector('meta[property="og:title"]')?.getAttribute('content') || '';
+    const prevOgDesc = document.querySelector('meta[property="og:description"]')?.getAttribute('content') || '';
+    const prevOgUrl = document.querySelector('meta[property="og:url"]')?.getAttribute('content') || '';
+    const prevTwTitle = document.querySelector('meta[name="twitter:title"]')?.getAttribute('content') || '';
+    const prevTwDesc = document.querySelector('meta[name="twitter:description"]')?.getAttribute('content') || '';
+
+    const title = 'スカルプラボ サロンパートナー募集 | 頭皮ケアの新メニューで稼ぐ';
+    const desc = 'エステサロン・美容師向けの頭皮チェック認定プログラム。副業・起業・新メニュー追加に最適。THE HERBSの技術とブランドを活かした頭皮定期チェックサービスをサロンに導入。無料説明会実施中。';
+    const url = 'https://scalpdoclp-vahdavie.manus.space/salon';
+
+    document.title = title;
+    document.querySelector('meta[name="description"]')?.setAttribute('content', desc);
+    document.querySelector('meta[property="og:title"]')?.setAttribute('content', title);
+    document.querySelector('meta[property="og:description"]')?.setAttribute('content', desc);
+    document.querySelector('meta[property="og:url"]')?.setAttribute('content', url);
+    document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', title);
+    document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', desc);
+
+    // キーワードメタタグを追加
+    let kwMeta = document.querySelector('meta[name="keywords"]');
+    if (!kwMeta) {
+      kwMeta = document.createElement('meta');
+      kwMeta.setAttribute('name', 'keywords');
+      document.head.appendChild(kwMeta);
+    }
+    kwMeta.setAttribute('content', '頭皮ケア, 頭皮チェック, エステサロン 新メニュー, 美容師 副業, 頭皮ケア 起業, スカルプラボ, ヘッドスパ, 頭皮 薄毛, THE HERBS, 認定サロン, 神戸');
+
+    return () => {
+      document.title = prevTitle;
+      document.querySelector('meta[name="description"]')?.setAttribute('content', prevDesc);
+      document.querySelector('meta[property="og:title"]')?.setAttribute('content', prevOgTitle);
+      document.querySelector('meta[property="og:description"]')?.setAttribute('content', prevOgDesc);
+      document.querySelector('meta[property="og:url"]')?.setAttribute('content', prevOgUrl);
+      document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', prevTwTitle);
+      document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', prevTwDesc);
+    };
+  }, []);
+
   return (
     <div className="min-h-screen">
       <Nav />

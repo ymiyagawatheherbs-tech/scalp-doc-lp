@@ -230,6 +230,17 @@ function Nav() {
                 {item.label}
               </a>
             ))}
+            {/* サロン向けリンク */}
+            <a
+              href="/salon"
+              className={`font-sans-jp text-xs font-medium px-3 py-1.5 rounded-full border transition-all hover:scale-105 ${
+                scrolled
+                  ? "border-[oklch(0.72_0.12_70)] text-[oklch(0.72_0.12_70)] hover:bg-[oklch(0.72_0.12_70)] hover:text-white"
+                  : "border-[oklch(0.72_0.12_70)/70] text-[oklch(0.82_0.10_75)] hover:border-[oklch(0.72_0.12_70)] hover:text-[oklch(0.72_0.12_70)]"
+              }`}
+            >
+              サロン向け
+            </a>
             {/* メンズ版切り替えリンク */}
             <a
               href="/men"
@@ -291,6 +302,13 @@ function Nav() {
                 {item.label}
               </a>
             ))}
+            <a
+              href="/salon"
+              onClick={() => setMobileOpen(false)}
+              className="flex items-center justify-center gap-2 border border-[oklch(0.72_0.12_70)] text-[oklch(0.72_0.12_70)] font-sans-jp font-medium text-sm text-center py-3 rounded-sm mt-2 hover:bg-[oklch(0.72_0.12_70)] hover:text-white transition-colors"
+            >
+              サロン・美容師の方へ
+            </a>
             <a
               href="/men"
               onClick={() => setMobileOpen(false)}
