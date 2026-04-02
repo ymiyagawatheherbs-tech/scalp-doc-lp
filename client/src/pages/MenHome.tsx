@@ -676,7 +676,7 @@ function BotanicalMist() {
     return () => observer.disconnect();
   }, []);
 
-  const MIST_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/botanical_mist_b67f817f.jpg";
+  const MIST_IMAGE = "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/herb_steamer_8218d07e.jpg";
 
   const effects = [
     {
