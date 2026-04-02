@@ -907,7 +907,7 @@ function BotanicalMistSection() {
   return (
     <section
       className="py-28 relative overflow-hidden"
-      style={{ background: "linear-gradient(160deg, oklch(0.22_0.045_42) 0%, oklch(0.18_0.04_42) 100%)" }}
+      style={{ background: "linear-gradient(160deg, #3a2a1a 0%, #2a1e12 100%)" }}
       id="botanical-mist"
     >
       {/* 背景装飾 */}
@@ -927,19 +927,19 @@ function BotanicalMistSection() {
         <div className={`flex flex-col lg:flex-row gap-16 items-center mb-20 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           {/* テキスト */}
           <div className="flex-1">
-            <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.4em] uppercase block mb-4">
+            <span className="font-cormorant text-sm tracking-[0.4em] uppercase block mb-4" style={{ color: "#C9A84C" }}>
               Botanical Mist Technology
             </span>
-            <h2 className="font-mincho text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+            <h2 className="font-mincho text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight" style={{ color: "#ffffff" }}>
               植物の力を、<br />
-              <span style={{ color: "oklch(0.72_0.12_70)" }}>蒸気で頭皮へ。</span>
+              <span style={{ color: "#C9A84C" }}>蒸気で頭皮へ。</span>
             </h2>
-            <p className="font-sans-jp text-white/80 text-sm leading-relaxed mb-6 max-w-lg">
+            <p className="font-sans-jp text-sm leading-relaxed mb-6 max-w-lg" style={{ color: "rgba(255,255,255,0.85)" }}>
               THE HERBSが1986年から研究を重ねてきた「植物美容メソッド」の核心技術。
               ハーブスチーマー（ボタニカルミスト）は、植物由来の美容成分を超微細な蒸気に変換し、
               頭皮の奥まで届けます。
             </p>
-            <p className="font-sans-jp text-white/65 text-xs leading-relaxed max-w-lg">
+            <p className="font-sans-jp text-xs leading-relaxed max-w-lg" style={{ color: "rgba(255,255,255,0.65)" }}>
               ※本施術は化粧品の使用感の向上を目的としたものです。効果・効能には個人差があります。
             </p>
           </div>
@@ -961,7 +961,7 @@ function BotanicalMistSection() {
               {/* ラベル */}
               <div
                 className="absolute bottom-4 left-4 font-sans-jp text-xs font-bold px-4 py-2"
-                style={{ backgroundColor: "oklch(0.72_0.12_70)", color: "oklch(0.18_0.04_42)" }}
+                style={{ backgroundColor: "#C9A84C", color: "#2a1e12" }}
               >
                 THE HERBS ボタニカルミスト
               </div>
@@ -977,9 +977,9 @@ function BotanicalMistSection() {
               className={`p-8 transition-all duration-500 group ${
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
-              style={{ backgroundColor: "oklch(0.22 0.045 42)", transitionDelay: `${i * 100}ms` }}
-              onMouseEnter={e => (e.currentTarget.style.backgroundColor = "oklch(0.25 0.05 42)")}
-              onMouseLeave={e => (e.currentTarget.style.backgroundColor = "oklch(0.22 0.045 42)")}
+              style={{ backgroundColor: "#3a2a1a", transitionDelay: `${i * 100}ms` }}
+              onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#4a3828")}
+              onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#3a2a1a")}
             >
               {effect.icon && <span className="text-3xl block mb-4">{effect.icon}</span>}
               <h3 className="font-mincho text-base font-bold mb-3 leading-snug transition-colors" style={{ color: "#ffffff" }}>
@@ -994,12 +994,13 @@ function BotanicalMistSection() {
 
         {/* ボトムCTA */}
         <div className={`mt-16 text-center transition-all duration-700 delay-500 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <p className="font-sans-jp text-white/70 text-sm mb-6">
+          <p className="font-sans-jp text-sm mb-6" style={{ color: "rgba(255,255,255,0.75)" }}>
             ボタニカルミストは「スカルプラボ」定期ケアコースに含まれています
           </p>
           <button
             onClick={() => document.getElementById('予約')?.scrollIntoView({ behavior: 'smooth' })}
-            className="btn-gold-shimmer font-sans-jp text-[oklch(0.18_0.04_42)] font-semibold px-10 py-4 text-sm tracking-wider"
+            className="btn-gold-shimmer font-sans-jp font-semibold px-10 py-4 text-sm tracking-wider"
+            style={{ color: "#2a1e12" }}
           >
             ボタニカルミストを体験する
           </button>

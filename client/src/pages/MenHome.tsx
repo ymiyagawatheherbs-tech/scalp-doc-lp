@@ -743,7 +743,7 @@ function BotanicalMist() {
                 className="absolute inset-0 pointer-events-none"
                 style={{ boxShadow: "inset 0 0 0 1px #C9A84C40" }}
               />
-              <div className="absolute bottom-4 left-4 bg-[#C9A84C] text-[#0D1B2A] font-['Noto_Sans_JP'] text-xs font-bold px-4 py-2">
+              <div className="absolute bottom-4 left-4 font-['Noto_Sans_JP'] text-xs font-bold px-4 py-2" style={{ backgroundColor: "#C9A84C", color: "#0D1B2A" }}>
                 THE HERBS ボタニカルミスト
               </div>
             </div>
@@ -751,19 +751,19 @@ function BotanicalMist() {
 
           {/* テキスト（右） */}
           <div className="flex-1 order-1 lg:order-2">
-            <span className="font-['Cormorant_Garamond'] italic text-[#C9A84C] text-sm tracking-[0.4em] uppercase block mb-4">
+            <span className="font-['Cormorant_Garamond'] italic text-sm tracking-[0.4em] uppercase block mb-4" style={{ color: "#C9A84C" }}>
               Botanical Mist Technology
             </span>
-            <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
+            <h2 className="font-['Shippori_Mincho'] text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight" style={{ color: "#ffffff" }}>
               植物の力を、<br />
-              <span className="text-[#C9A84C]">蒸気で頭皮へ。</span>
+              <span style={{ color: "#C9A84C" }}>蒸気で頭皮へ。</span>
             </h2>
-            <p className="text-white/80 text-sm font-['Noto_Sans_JP'] font-light leading-relaxed mb-6 max-w-lg">
+            <p className="text-sm font-['Noto_Sans_JP'] font-light leading-relaxed mb-6 max-w-lg" style={{ color: "rgba(255,255,255,0.85)" }}>
               THE HERBSが1986年から研究を重ねてきた「植物美容メソッド」の核心技術。
               ハーブスチーマー（ボタニカルミスト）は、植物由来の美容成分を超微細な蒸気に変換し、
               頭皮の奥まで届けます。
             </p>
-            <p className="text-white/55 text-xs font-['Noto_Sans_JP'] leading-relaxed max-w-lg">
+            <p className="text-xs font-['Noto_Sans_JP'] leading-relaxed max-w-lg" style={{ color: "rgba(255,255,255,0.65)" }}>
               ※本施術は化粧品の使用感の向上を目的としたものです。効果・効能には個人差があります。
             </p>
           </div>
@@ -794,12 +794,15 @@ function BotanicalMist() {
 
         {/* ボトムCTA */}
         <div className={`mt-16 text-center transition-all duration-700 delay-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <p className="text-white/70 text-sm font-['Noto_Sans_JP'] mb-6">
+          <p className="text-sm font-['Noto_Sans_JP'] mb-6" style={{ color: "rgba(255,255,255,0.75)" }}>
             ボタニカルミストは「スカルプラボ」定期ケアコースに含まれています
           </p>
           <button
             onClick={() => document.getElementById('reservation')?.scrollIntoView({ behavior: 'smooth' })}
-            className="px-10 py-4 bg-[#C9A84C] text-[#0D1B2A] font-bold tracking-widest text-sm hover:bg-[#E8C97A] transition-all duration-300 font-['Noto_Sans_JP']"
+            className="px-10 py-4 font-bold tracking-widest text-sm transition-all duration-300 font-['Noto_Sans_JP']"
+            style={{ backgroundColor: "#C9A84C", color: "#0D1B2A" }}
+            onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#E8C97A")}
+            onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#C9A84C")}
           >
             ボタニカルミストを体験する
           </button>
