@@ -249,20 +249,20 @@ function WhatWeDo() {
       step: "STEP 01",
       title: "頭皮チェックで「見える化」する",
       body: "マイクロスコープで頭皮の状態を記録・分析。お客様が自分の頭皮を初めて「見る」体験が、ケアへの動機づけになります。データは時系列で蓄積され、変化を実感できます。",
-      note: "所要時間：約15〜20分 / 初回無料で提供可能",
+      note: "所要時間：約5〜10分 / 初回無料で提供可能",
     },
     {
       img: IMAGES.steamer,
       step: "STEP 02",
       title: "ボタニカルミストで頭皮を整える",
-      body: "THE HERBSが開発したハーブスチーマーで、植物由来の成分を蒸気で頭皮に届けます。カラー・パーマ後の薬剤除去にも対応。チェックで見つかった課題に合わせたケアを提供します。",
+      body: "THE HERBSが開発したハーブスチーマーで、植物成分そのものを蒸気で頭皮に届けます。カラー・パーマ後の薬剤除去にも対応。チェックで見つかった課題に合わせたケアを提供します。",
       note: "既存メニューへの追加・単品提供どちらも可能",
     },
     {
       img: IMAGES.interior,
       step: "STEP 03",
-      title: "定期通院の仕組みをつくる",
-      body: "「歯の定期検診」のように、頭皮チェックを定期的に受ける習慣を一緒に育てます。定期来店が定着することで、安定した売上と深い顧客関係が生まれます。",
+      title: "定期来店の仕組みをつくる",
+      body: "「歯の定期検診」のように、頭皮チェックを定期的に受ける習慣を一緒に育てます。定期来店が定着することで、安定した売上と深い信頼関係が生まれます。",
       note: "3ヶ月・6ヶ月のフォローアップ設計をサポート",
     },
   ];
@@ -383,7 +383,7 @@ function Revenue() {
               phase: "Phase 4",
               title: "製品販売",
               sub: "THE HERBS製品の卸",
-              body: "認定サロンにはTHE HERBS製品の卸販売権が付与されます。お客様のホームケアをサポートしながら、物販収益も得られます。",
+              body: "認定サロンにはTHE HERBS製品の卸販売権が得られます。お客様のホームケアをサポートしながら、物販収益に繋げます。",
               revenue: "製品卸・物販",
             },
           ].map((item, i) => (
@@ -715,7 +715,7 @@ function Cta() {
           Let's Start Together
         </span>
         <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
-          まずは、話を聞かせてください。
+          まずは、お話を聞かせてください。
         </h2>
         <p className="text-base leading-relaxed mb-10" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.8)", lineHeight: "1.9" }}>
           「うちのサロンでできるかな？」「どんな機器が必要？」<br />
