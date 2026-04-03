@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      .slide-container {
+        width: 1280px;
+        min-height: 720px;
+        background: #F8F6F2;
+        font-family: 'Noto Sans JP', sans-serif;
+        display: flex;
+        flex-direction: column;
+      }
+      .top-bar {
+        background: #1A2E1A;
+        padding: 28px 72px 24px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
+      .section-label {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 11px;
+        color: rgba(184,150,12,0.8);
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 8px;
+      }
+      .slide-title {
+        font-family: 'Shippori Mincho', serif;
+        font-size: 28px;
+        color: #ffffff;
+        font-weight: 700;
+      }
+      .slide-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 48px;
+        color: rgba(184,150,12,0.25);
+        font-weight: 300;
+        line-height: 1;
+      }
+      .content-area {
+        flex: 1;
+        padding: 36px 72px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .intro {
+        font-size: 14px;
+        color: #555;
+        line-height: 1.8;
+        font-weight: 300;
+        border-left: 3px solid #B8960C;
+        padding-left: 20px;
+      }
+      .positioning-grid {
+        display: grid;
+        grid-template-columns: 1fr 1.15fr 1fr;
+        gap: 0;
+        flex: 1;
+      }
+      .pos-col {
+        border: 1px solid #d0d0d0;
+        display: flex;
+        flex-direction: column;
+      }
+      .pos-col.center {
+        background: #1A2E1A;
+        border-color: #1A2E1A;
+        position: relative;
+      }
+      .pos-col-header {
+        padding: 20px 24px 16px;
+        border-bottom: 1px solid #e0e0e0;
+        background: #f0ede8;
+      }
+      .pos-col.center .pos-col-header {
+        background: #2D5A27;
+        border-bottom: 1px solid rgba(184,150,12,0.4);
+      }
+      .pos-badge {
+        display: inline-block;
+        font-size: 10px;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        font-family: 'Cormorant Garamond', serif;
+        color: #888;
+        margin-bottom: 8px;
+      }
+      .pos-col.center .pos-badge {
+        color: rgba(168,213,162,0.9);
+      }
+      .pos-title {
+        font-family: 'Shippori Mincho', serif;
+        font-size: 20px;
+        color: #1A2E1A;
+        font-weight: 700;
+      }
+      .pos-col.center .pos-title {
+        color: #ffffff;
+        font-size: 22px;
+      }
+      .pos-body {
+        padding: 20px 24px;
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .pos-row {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .pos-row-label {
+        font-size: 10px;
+        color: #999;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        font-family: 'Cormorant Garamond', serif;
+      }
+      .pos-col.center .pos-row-label {
+        color: rgba(168,213,162,0.7);
+      }
+      .pos-row-value {
+        font-size: 14px;
+        color: #444;
+        font-weight: 400;
+        line-height: 1.5;
+      }
+      .pos-col.center .pos-row-value {
+        color: rgba(255,255,255,0.9);
+        font-weight: 700;
+      }
+      .pos-row-divider {
+        height: 1px;
+        background: #e8e8e8;
+      }
+      .pos-col.center .pos-row-divider {
+        background: rgba(184,150,12,0.25);
+      }
+      .pos-highlight-tag {
+        margin-top: auto;
+        display: inline-block;
+        background: #B8960C;
+        color: #ffffff;
+        font-size: 11px;
+        font-weight: 700;
+        letter-spacing: 0.1em;
+        padding: 6px 14px;
+        font-family: 'Noto Sans JP', sans-serif;
+        align-self: flex-start;
+      }
+      .pos-dim-tag {
+        margin-top: auto;
+        display: inline-block;
+        background: #e8e8e8;
+        color: #999;
+        font-size: 11px;
+        font-weight: 400;
+        letter-spacing: 0.05em;
+        padding: 6px 14px;
+        font-family: 'Noto Sans JP', sans-serif;
+        align-self: flex-start;
+      }
+      .bottom-insight {
+        background: #2D5A27;
+        padding: 16px 72px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .insight-label {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 11px;
+        color: rgba(168,213,162,0.8);
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        flex-shrink: 0;
+      }
+      .insight-divider {
+        width: 1px;
+        height: 28px;
+        background: rgba(168,213,162,0.3);
+        flex-shrink: 0;
+      }
+      .insight-text {
+        font-size: 14px;
+        color: #ffffff;
+        font-weight: 700;
+        font-family: 'Shippori Mincho', serif;
+        letter-spacing: 0.05em;
+      }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+  <div class="top-bar">
+    <div>
+      <span class="section-label">Positioning</span>
+      <h2 class="slide-title">スカルプラボのポジション — 美容でも医療でもない第三の領域</h2>
+    </div>
+    <span class="slide-num">04</span>
+  </div>
+  <div class="content-area">
+    <p class="intro">
+      スキンケアと同じ感覚で頭皮ケアを日常に。「習慣化」を主役にした新カテゴリーとして、競争のないポジションを確立します。
+    </p>
+    <div class="positioning-grid">
+      <!-- 美容サービス -->
+      <div class="pos-col">
+        <div class="pos-col-header">
+          <span class="pos-badge">Existing Market</span>
+          <div class="pos-title">美容サービス</div>
+        </div>
+        <div class="pos-body">
+          <div class="pos-row">
+            <span class="pos-row-label">主な提供内容</span>
+            <span class="pos-row-value">スタイリング・施術・トリートメント</span>
+          </div>
+          <div class="pos-row-divider"></div>
+          <div class="pos-row">
+            <span class="pos-row-label">主役</span>
+            <span class="pos-row-value">商品・施術の提供</span>
+          </div>
+          <div class="pos-row-divider"></div>
+          <div class="pos-row">
+            <span class="pos-row-label">市場環境</span>
+            <span class="pos-row-value">全国25万店超。競争が激化し、差別化が困難</span>
+          </div>
+          <div class="pos-row-divider"></div>
+          <div class="pos-row">
+            <span class="pos-row-label">来店動機</span>
+            <span class="pos-row-value">スタイリング・見た目の改善</span>
+          </div>
+          <div class="pos-dim-tag">レッドオーシャン</div>
+        </div>
+      </div>
+      <!-- スカルプラボ（中央・ハイライト） -->
+      <div class="pos-col center">
+        <div class="pos-col-header">
+          <span class="pos-badge">◀ Blue Ocean ▶</span>
+          <div class="pos-title">スカルプラボ</div>
+        </div>
+        <div class="pos-body">
+          <div class="pos-row">
+            <span class="pos-row-label">主な提供内容</span>
+            <span class="pos-row-value">頭皮の定期チェック＋ケアの習慣化</span>
+          </div>
+          <div class="pos-row-divider"></div>
+          <div class="pos-row">
+            <span class="pos-row-label">主役</span>
+            <span class="pos-row-value">習慣化・予防・長期関係の構築</span>
+          </div>
+          <div class="pos-row-divider"></div>
+          <div class="pos-row">
+            <span class="pos-row-label">市場環境</span>
+            <span class="pos-row-value">定期チェック提供サロンはほぼゼロ。先行者優位</span>
+          </div>
+          <div class="pos-row-divider"></div>
+          <div class="pos-row">
+            <span class="pos-row-label">来店動機</span>
+            <span class="pos-row-value">予防・習慣・データ蓄積による安心感</span>
+          </div>
+          <div class="pos-highlight-tag">ブルーオーシャン</div>
+        </div>
+      </div>
+      <!-- 医療機関 -->
+      <div class="pos-col">
+        <div class="pos-col-header">
+          <span class="pos-badge">Out of Scope</span>
+          <div class="pos-title">医療機関</div>
+        </div>
+        <div class="pos-body">
+          <div class="pos-row">
+            <span class="pos-row-label">主な提供内容</span>
+            <span class="pos-row-value">診断・治療・処方（育毛外来など）</span>
+          </div>
+          <div class="pos-row-divider"></div>
+          <div class="pos-row">
+            <span class="pos-row-label">主役</span>
+            <span class="pos-row-value">疾患対応・医療行為</span>
+          </div>
+          <div class="pos-row-divider"></div>
+          <div class="pos-row">
+            <span class="pos-row-label">市場環境</span>
+            <span class="pos-row-value">免許・設備が必要。一般サロンは参入不可</span>
+          </div>
+          <div class="pos-row-divider"></div>
+          <div class="pos-row">
+            <span class="pos-row-label">来店動機</span>
+            <span class="pos-row-value">症状・疾患の治療</span>
+          </div>
+          <div class="pos-dim-tag">参入不可</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-insight">
+    <span class="insight-label">Key Point</span>
+    <div class="insight-divider"></div>
+    <span class="insight-text">頭皮は顔・体と同じ「皮膚」。スキンケアの延長線上に頭皮ケアを位置づけることで、美容サービスとして自然に提供できます。</span>
+  </div>
+</div>
+</body>
+</html>

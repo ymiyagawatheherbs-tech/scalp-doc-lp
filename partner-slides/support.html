@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      .slide-container {
+        width: 1280px;
+        min-height: 720px;
+        background: #1A2E1A;
+        font-family: 'Noto Sans JP', sans-serif;
+        display: flex;
+        flex-direction: column;
+      }
+      .top-bar {
+        padding: 26px 72px 22px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        border-bottom: 1px solid rgba(184,150,12,0.3);
+      }
+      .section-label {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 11px;
+        color: rgba(184,150,12,0.8);
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 8px;
+      }
+      .slide-title {
+        font-family: 'Shippori Mincho', serif;
+        font-size: 28px;
+        color: #ffffff;
+        font-weight: 700;
+      }
+      .slide-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 48px;
+        color: rgba(184,150,12,0.2);
+        font-weight: 300;
+        line-height: 1;
+      }
+      .content-area {
+        flex: 1;
+        padding: 32px 72px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .intro {
+        font-size: 13px;
+        color: rgba(255,255,255,0.6);
+        line-height: 1.8;
+        font-weight: 300;
+        border-left: 3px solid rgba(184,150,12,0.6);
+        padding-left: 18px;
+      }
+      .support-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        flex: 1;
+      }
+      .support-item {
+        background: rgba(255,255,255,0.05);
+        border: 1px solid rgba(255,255,255,0.08);
+        border-top: 2px solid rgba(184,150,12,0.5);
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 20px 24px;
+      }
+      .support-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 38px;
+        color: rgba(184,150,12,0.6);
+        font-weight: 600;
+        line-height: 1;
+        flex-shrink: 0;
+        min-width: 40px;
+      }
+      .support-body {}
+      .support-title {
+        font-family: 'Shippori Mincho', serif;
+        font-size: 16px;
+        color: #ffffff;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .support-desc {
+        font-size: 12px;
+        color: rgba(255,255,255,0.6);
+        line-height: 1.75;
+        font-weight: 300;
+      }
+      .support-tag {
+        display: inline-block;
+        background: rgba(45,90,39,0.6);
+        color: #a8d5a2;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 3px 10px;
+        margin-top: 6px;
+        letter-spacing: 0.05em;
+      }
+      .bottom-bar {
+        background: #2D5A27;
+        padding: 16px 72px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .bottom-label {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 10px;
+        color: rgba(168,213,162,0.8);
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        flex-shrink: 0;
+      }
+      .bottom-line {
+        width: 1px;
+        height: 24px;
+        background: rgba(168,213,162,0.3);
+        flex-shrink: 0;
+      }
+      .bottom-text {
+        font-size: 14px;
+        color: #ffffff;
+        font-weight: 700;
+        font-family: 'Shippori Mincho', serif;
+        letter-spacing: 0.05em;
+      }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+  <div class="top-bar">
+    <div>
+      <span class="section-label">Partner Support</span>
+      <h2 class="slide-title">認定サロンが受けられるサポート</h2>
+    </div>
+    <span class="slide-num">09</span>
+  </div>
+  <div class="content-area">
+    <p class="intro">
+      認定後も、THE HERBSが全力で伴走します。集客・技術・製品・コミュニティ、6つのサポートで安定した運営をバックアップ。
+    </p>
+    <div class="support-grid">
+      <div class="support-item">
+        <span class="support-num">01</span>
+        <div class="support-body">
+          <div class="support-title">公式サロンリストへの掲載</div>
+          <div class="support-desc">スカルプラボ公式サイトに認定サロンとして掲載。「近くの認定サロンを探す」機能で新規集客をサポートします。</div>
+          <span class="support-tag">集客支援</span>
+        </div>
+      </div>
+      <div class="support-item">
+        <span class="support-num">02</span>
+        <div class="support-body">
+          <div class="support-title">THE HERBS製品の卸販売権</div>
+          <div class="support-desc">一般価格より有利な条件でTHE HERBS製品を仕入れ可能。お客様のホームケアをサポートしながら物販収益に繋げます。</div>
+          <span class="support-tag">収益拡大</span>
+        </div>
+      </div>
+      <div class="support-item">
+        <span class="support-num">03</span>
+        <div class="support-body">
+          <div class="support-title">販促ツールの提供</div>
+          <div class="support-desc">チラシ・SNS素材・頭皮チェック説明資料・カウンセリングシートなど、すぐに使える販促ツールをご提供します。</div>
+          <span class="support-tag">マーケティング支援</span>
+        </div>
+      </div>
+      <div class="support-item">
+        <span class="support-num">04</span>
+        <div class="support-body">
+          <div class="support-title">継続的な技術フォロー</div>
+          <div class="support-desc">新製品情報・施術アップデート・最新の頭皮ケア研究を定期的にお届け。常に最新の知識と技術でお客様に対応できます。</div>
+          <span class="support-tag">技術サポート</span>
+        </div>
+      </div>
+      <div class="support-item">
+        <span class="support-num">05</span>
+        <div class="support-body">
+          <div class="support-title">認定サロンコミュニティ</div>
+          <div class="support-desc">全国の認定サロンとの情報交換・横のつながりが生まれます。成功事例の共有・悩み相談など、仲間と一緒に成長できます。</div>
+          <span class="support-tag">コミュニティ</span>
+        </div>
+      </div>
+      <div class="support-item">
+        <span class="support-num">06</span>
+        <div class="support-body">
+          <div class="support-title">お客様対応のサポート</div>
+          <div class="support-desc">難しいケース・判断に迷うケースへのアドバイスをTHE HERBSが提供。一人で抱え込まず、専門家に相談できる体制があります。</div>
+          <span class="support-tag">相談窓口</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="bottom-bar">
+    <span class="bottom-label">Our Commitment</span>
+    <div class="bottom-line"></div>
+    <span class="bottom-text">始めた後も、一人にしません。THE HERBSが伴走します。</span>
+  </div>
+</div>
+</body>
+</html>

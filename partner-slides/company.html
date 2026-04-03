@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      .slide-container {
+        width: 1280px;
+        min-height: 720px;
+        display: flex;
+        background: #F8F6F2;
+        font-family: 'Noto Sans JP', sans-serif;
+        overflow: hidden;
+      }
+      /* Left Panel */
+      .left-panel {
+        width: 38%;
+        background: #1A2E1A;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+      .left-panel::before {
+        content: '';
+        position: absolute;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: radial-gradient(ellipse at 30% 70%, rgba(45,90,39,0.5) 0%, transparent 65%);
+      }
+      .botanical-circle {
+        position: absolute;
+        border-radius: 50%;
+        border: 1px solid rgba(184,150,12,0.2);
+      }
+      .bc1 { width: 300px; height: 300px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+      .bc2 { width: 220px; height: 220px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+      .bc3 { width: 140px; height: 140px; top: 50%; left: 50%; transform: translate(-50%, -50%); }
+      .gold-line-h {
+        position: absolute;
+        height: 1px;
+        background: rgba(184,150,12,0.35);
+        left: 0; right: 0;
+      }
+      .left-content {
+        position: relative;
+        z-index: 2;
+        text-align: center;
+      }
+      .brand-mark {
+        width: 52px; height: 52px;
+        background: #2D5A27;
+        display: flex; align-items: center; justify-content: center;
+        margin: 0 auto 14px;
+        border: 1px solid rgba(184,150,12,0.5);
+      }
+      .brand-mark span {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 26px;
+        color: #B8960C;
+        font-weight: 600;
+      }
+      .company-name-en {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 18px;
+        color: #ffffff;
+        font-weight: 400;
+        letter-spacing: 0.2em;
+        margin-bottom: 4px;
+      }
+      .company-name-jp {
+        font-family: 'Noto Sans JP', sans-serif;
+        font-size: 11px;
+        color: rgba(255,255,255,0.5);
+        letter-spacing: 0.15em;
+        margin-bottom: 28px;
+      }
+      .gold-divider {
+        width: 40px; height: 1px;
+        background: rgba(184,150,12,0.6);
+        margin: 0 auto 24px;
+      }
+      .founding-label {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 10px;
+        color: rgba(184,150,12,0.7);
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 6px;
+      }
+      .founding-year {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 56px;
+        color: rgba(255,255,255,0.9);
+        font-weight: 300;
+        line-height: 1;
+        margin-bottom: 4px;
+      }
+      .founding-sub {
+        font-size: 11px;
+        color: rgba(255,255,255,0.4);
+        letter-spacing: 0.1em;
+      }
+      /* Right Panel */
+      .right-panel {
+        width: 62%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-left: 64px;
+        padding-right: 72px;
+        position: relative;
+      }
+      .right-panel::after {
+        content: '';
+        position: absolute;
+        top: 0; bottom: 0; left: 0;
+        width: 2px;
+        background: linear-gradient(to bottom, transparent, #B8960C 30%, #B8960C 70%, transparent);
+      }
+      .section-label {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 10px;
+        color: #B8960C;
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 12px;
+      }
+      .panel-title {
+        font-family: 'Shippori Mincho', serif;
+        font-size: 26px;
+        color: #1A2E1A;
+        font-weight: 700;
+        margin-bottom: 24px;
+      }
+      .info-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-bottom: 24px;
+      }
+      .info-table tr {
+        border-bottom: 1px solid #e8e4de;
+      }
+      .info-table tr:first-child {
+        border-top: 1px solid #e8e4de;
+      }
+      .info-table td {
+        padding: 11px 0;
+        font-size: 13px;
+        vertical-align: top;
+        line-height: 1.6;
+      }
+      .info-table td.label {
+        color: #999;
+        font-size: 11px;
+        font-family: 'Cormorant Garamond', serif;
+        letter-spacing: 0.1em;
+        width: 28%;
+        font-weight: 400;
+      }
+      .info-table td.value {
+        color: #333;
+        font-weight: 400;
+      }
+      .info-table td.value strong {
+        color: #1A2E1A;
+        font-weight: 700;
+      }
+      .track-record-row {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 24px;
+      }
+      .track-box {
+        flex: 1;
+        background: #1A2E1A;
+        padding: 16px 18px;
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .track-label {
+        font-size: 10px;
+        color: rgba(168,213,162,0.7);
+        letter-spacing: 0.2em;
+        font-family: 'Cormorant Garamond', serif;
+      }
+      .track-value {
+        font-family: 'Shippori Mincho', serif;
+        font-size: 22px;
+        color: #ffffff;
+        font-weight: 700;
+        line-height: 1.2;
+      }
+      .track-value .unit {
+        font-size: 13px;
+        font-weight: 400;
+        color: rgba(255,255,255,0.7);
+      }
+      .message-block {
+        border-left: 3px solid #B8960C;
+        padding-left: 16px;
+      }
+      .message-label {
+        font-size: 10px;
+        color: #B8960C;
+        letter-spacing: 0.3em;
+        text-transform: uppercase;
+        font-family: 'Cormorant Garamond', serif;
+        display: block;
+        margin-bottom: 6px;
+      }
+      .message-text {
+        font-size: 12px;
+        color: #555;
+        line-height: 1.85;
+        font-weight: 300;
+      }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+  <!-- Left Panel -->
+  <div class="left-panel">
+    <div class="botanical-circle bc1"></div>
+    <div class="botanical-circle bc2"></div>
+    <div class="botanical-circle bc3"></div>
+    <div class="gold-line-h" style="top: 22%;"></div>
+    <div class="gold-line-h" style="top: 78%;"></div>
+    <div class="left-content">
+      <div class="brand-mark"><span>T</span></div>
+      <div class="company-name-en">THE HERBS</div>
+      <div class="company-name-jp">株式会社THE HERBS</div>
+      <div class="gold-divider"></div>
+      <span class="founding-label">Est.</span>
+      <div class="founding-year">1986</div>
+      <div class="founding-sub">化粧品製造業</div>
+    </div>
+  </div>
+  <!-- Right Panel -->
+  <div class="right-panel">
+    <span class="section-label">Company Profile</span>
+    <h2 class="panel-title">会社概要</h2>
+    <table class="info-table">
+      <tr>
+        <td class="label">会社名</td>
+        <td class="value"><strong>株式会社THE HERBS</strong></td>
+      </tr>
+      <tr>
+        <td class="label">設立</td>
+        <td class="value">1986年（創業）</td>
+      </tr>
+      <tr>
+        <td class="label">事業内容</td>
+        <td class="value">化粧品製造業・頭皮ケアサービス・サロン向け卸販売・技術講習会</td>
+      </tr>
+      <tr>
+        <td class="label">直営サロン</td>
+        <td class="value">神戸市灘区（頭皮ケアサロン）</td>
+      </tr>
+      <tr>
+        <td class="label">直営店</td>
+        <td class="value">神戸阪急店（頭皮チェック＋ハーブスチーマー）</td>
+      </tr>
+    </table>
+    <div class="track-record-row">
+      <div class="track-box">
+        <span class="track-label">頭皮チェック体験者</span>
+        <div class="track-value">2,200<span class="unit">名以上</span></div>
+      </div>
+      <div class="track-box">
+        <span class="track-label">創業年数</span>
+        <div class="track-value">39<span class="unit">年</span></div>
+      </div>
+      <div class="track-box">
+        <span class="track-label">独自開発製品</span>
+        <div class="track-value">頭皮用<span class="unit">ゴマージュ</span></div>
+      </div>
+    </div>
+    <div class="message-block">
+      <span class="message-label">Representative Message</span>
+      <p class="message-text">
+        2009年から個人サロンを開業し、ハーブスチーマーとの出会いをきっかけに植物美容の効果を実感。心理学・リンパドレナージュ・経絡マッサージ・ハーブエステを経て、独自の頭皮ケアメソッドを開発しました。頭皮チェックの習慣を日本中に根付かせ、髪に対する不安をサポートする体制を一緒に創っていきましょう。
+      </p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
