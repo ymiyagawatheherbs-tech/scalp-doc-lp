@@ -467,7 +467,7 @@ function Service() {
     },
     {
       step: "Layer 02",
-      title: "スカルプラボ 定期チェック",
+      title: "スカルプラボ定期ケア",
       subtitle: "継続的な頭皮モニタリングと記録",
       duration: "所要 30〜40分",
       price: "3,000〜5,000円/回",
@@ -481,7 +481,7 @@ function Service() {
     },
     {
       step: "Layer 03",
-      title: "パーソナルケアプログラム",
+      title: "パーソナルスカルプケアプログラム",
       subtitle: "チェック結果に基づくケアのご提案",
       duration: "継続サポート",
       price: "サブスクプランあり",
@@ -795,7 +795,7 @@ function BotanicalMist() {
         {/* ボトムCTA */}
         <div className={`mt-16 text-center transition-all duration-700 delay-500 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <p className="text-sm font-['Noto_Sans_JP'] mb-6" style={{ color: "rgba(255,255,255,0.75)" }}>
-            ボタニカルミストは「スカルプラボ」定期ケアコースに含まれています
+            ボタニカルミストは「スカルプラボ定期ケア」「パーソナルスカルプケアコース」に含まれています
           </p>
           <button
             onClick={() => document.getElementById('reservation')?.scrollIntoView({ behavior: 'smooth' })}

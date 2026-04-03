@@ -1171,7 +1171,7 @@ function FlowSection() {
     },
     {
       num: "04",
-      title: "パーソナルケアプランを提案",
+      title: "パーソナルスカルプケアプランを提案",
       desc: "あなたの頭皮状態に合わせた最適なホームケアとケアプランをご提案します。",
     },
   ];
@@ -1717,7 +1717,7 @@ function ReservationSection() {
               <div className="grid sm:grid-cols-3 gap-3">
                 {[
                   { value: "free", label: "無料スカルプチェック", sub: "5〜10分・無料" },
-                  { value: "standard", label: "スカルプラボ", sub: "30〜40分・3,000〜5,000円" },
+                  { value: "standard", label: "スカルプラボ定期ケア", sub: "30〜40分・3,000〜5,000円" },
                   { value: "consult", label: "まずは相談したい", sub: "内容を相談" },
                 ].map((opt) => (
                   <button
@@ -2054,7 +2054,7 @@ function Footer() {
             <ul className="space-y-2">
               {[
                 { label: "無料スカルプチェック", href: "#予約" },
-                { label: "スカルプラボ（定期ケア）", href: "#サービス" },
+                { label: "スカルプラボ定期ケア", href: "#サービス" },
                 { label: "店舗・アクセス", href: "#店舗情報" },
                 { label: "認定サロン募集", href: "/salon" },
               ].map((item) => (
