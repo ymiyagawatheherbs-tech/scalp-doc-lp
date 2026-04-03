@@ -538,13 +538,13 @@ function HabitValueSection() {
     },
     {
       number: "02",
-      title: "山を小さなうちに打つ",
+      title: "先手を打つ",
       subtitle: "Act Before It's Too Late",
-      desc: "薄毛・幅広がり・屑性化は、気になり始めたときにはすでに進行していることがほとんど。定期チェックで早期発見することが、最大のケアです。",
+      desc: "薄毛・抜け毛・つむじ割れ・うねり・広がりは、気になり始めたときにはすでに進行していることがほとんど。定期チェックで早期発見することが、最大のケアです。",
     },
     {
       number: "03",
-      title: "履歴が安心に変わる",
+      title: "記録が安心に変わる",
       subtitle: "History Becomes Confidence",
       desc: "「昨年より良くなった」「変化がなかった」——その一言が、将来への不安を安心に変えます。継続記録が、あなた自身の「頭皮カルテ」になります。",
     },
@@ -714,7 +714,7 @@ function ServiceSection() {
     {
     layer: "Layer 2",
       badge: "定期チェック＆ケア",
-      title: "スカルプラボ",
+      title: "スカルプラボ定期ケア",
       subtitle: "1ヶ月に1回のボタニカルスカルプケア",
       time: "30～40分",
       price: "3,500～5,000円",
@@ -732,7 +732,7 @@ function ServiceSection() {
     {
       layer: "Layer 3",
       badge: "ケアプログラム",
-      title: "パーソナルケア",
+      title: "パーソナルスカルプケア",
       subtitle: "チェック結果に基づくケアのご提案",
       time: "45分〜",
       price: "6,000円〜",
@@ -995,7 +995,7 @@ function BotanicalMistSection() {
         {/* ボトムCTA */}
         <div className={`mt-16 text-center transition-all duration-700 delay-500 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <p className="font-sans-jp text-sm mb-6" style={{ color: "rgba(255,255,255,0.75)" }}>
-            ボタニカルミストは「スカルプラボ」定期ケアコースに含まれています
+            ボタニカルミストは「スカルプラボ定期ケア」「パーソナルスカルプケアコース」に含まれています
           </p>
           <button
             onClick={() => document.getElementById('予約')?.scrollIntoView({ behavior: 'smooth' })}
