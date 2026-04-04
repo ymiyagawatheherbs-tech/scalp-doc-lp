@@ -1458,20 +1458,7 @@ function StoreSection() {
                 <div className="absolute top-3 left-3 font-['Noto_Sans_JP'] text-[#0D1B2A] text-xs font-bold px-3 py-1 bg-[#C9A84C]">
                   {store.badge}
                 </div>
-                {/* マップで開くボタン */}
-                <a
-                  href={store.mapUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute top-3 right-3 flex items-center gap-1 bg-white/90 hover:bg-white text-[#0D1B2A] font-['Noto_Sans_JP'] text-[10px] font-bold px-2.5 py-1.5 rounded-full shadow-sm transition-all"
-                >
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                    <polyline points="15 3 21 3 21 9"/>
-                    <line x1="10" y1="14" x2="21" y2="3"/>
-                  </svg>
-                  マップで開く
-                </a>
+
               </div>
 
               {/* 情報エリア */}
@@ -1535,15 +1522,7 @@ function StoreSection() {
                     LINEで予約・問合せ
                     <span className="text-white/70 text-[10px] font-normal ml-1">{store.lineId}</span>
                   </a>
-                  <a
-                    href={store.mapUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-1.5 border border-[#C9A84C]/30 text-[#C9A84C] text-xs px-4 py-3 font-['Noto_Sans_JP'] hover:border-[#C9A84C] hover:bg-[#C9A84C]/10 transition-all"
-                  >
-                    <span>🗺</span>
-                    地図
-                  </a>
+
                 </div>
               </div>
             </div>
