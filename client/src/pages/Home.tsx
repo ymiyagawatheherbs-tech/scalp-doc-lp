@@ -865,7 +865,7 @@ function ServiceSection() {
     {
     layer: "Layer 2",
       badge: "定期チェック＆ケア",
-      title: "スカルプラボ定期ケア",
+      title: "定期スカルプチェック",
       subtitle: "1ヶ月に1回のボタニカルスカルプケア",
       time: "30～40分",
       price: "3,500～5,000円",
@@ -1082,13 +1082,13 @@ function BotanicalMistSection() {
               Botanical Mist Technology
             </span>
             <h2 className="font-mincho text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight" style={{ color: "#ffffff" }}>
-              定期チェックは、<br />
+              定期スカルプチェックは、<br />
               <span style={{ color: "#C9A84C" }}>頭皮リセットから始まる。</span>
             </h2>
             <p className="font-sans-jp text-sm leading-relaxed mb-6 max-w-lg" style={{ color: "rgba(255,255,255,0.85)" }}>
-              ボタニカルミスト（ハーブスチーマー）は、定期チェックの最初に行う「頭皮リセット」プログラムです。
-              毛穴に蔓積した皮脂・薬剤・汚れを植物由来の蕲気で浄化してからチェックすることで、
-              頭皮の本当の状態を正確に診断できます。
+              ボタニカルミスト（ハーブスチーマー）は、定期チェックで行う「頭皮リセット」プログラムです。
+              毛穴に蓄積した皮脂・薬剤・汚れを蒸気抽出した植物成分で浄化、保湿ケアを行います。施術後の頭皮チェックで、
+              頭皮の変化を確認できます。
             </p>
             {/* ステップバッジ */}
             <div className="flex items-center gap-3 mb-6">
