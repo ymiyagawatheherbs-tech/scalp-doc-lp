@@ -371,12 +371,12 @@ const MEN_SCALP_STATES = [
   },
   {
     img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2025-05-21-15-27-25-532_ec88191c.JPG",
-    label: "フケ・乾燥性頭皮",
+    label: "疲労の蓄積・毛根の退化",
     status: "ケア推奨",
     statusBg: "#8B6914",
     statusText: "#fff",
-    desc: "頭皮の角質が剖がれ、フケとして現れている状態。乾燥・刺激・ターンオーバーの乱れが原因として考えられます。",
-    detail: "乾燥・フケ",
+    desc: "慢性的な疲労から毛根が退化している状態。頭皮の水分量低下と毛量の減少がみられる。",
+    detail: "疲労・退化",
   },
   {
     img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2025-10-27-10-18-21-496_65c4010d.jpg",
