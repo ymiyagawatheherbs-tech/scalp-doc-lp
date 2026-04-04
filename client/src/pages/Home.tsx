@@ -867,8 +867,8 @@ function ServiceSection() {
       badge: "定期チェック＆ケア",
       title: "定期スカルプチェック",
       subtitle: "1ヶ月に1回のボタニカルスカルプケア",
-      time: "30～40分",
-      price: "3,500～5,000円",
+      time: "45分",
+      price: "3,800～5,000円",
       color: "oklch(0.72_0.12_70)",
       image: IMAGES.botanicalMist,
       items: [
@@ -885,8 +885,8 @@ function ServiceSection() {
       badge: "ケアプログラム",
       title: "パーソナルスカルプケア",
       subtitle: "チェック結果に基づくケアのご提案",
-      time: "45分〜",
-      price: "6,000円〜",
+      time: "50分～",
+      price: "6,000円～",
       color: "oklch(0.62_0.05_148)",
       image: IMAGES.herbGommage,
       items: [
@@ -1041,7 +1041,7 @@ function BotanicalMistSection() {
     {
       icon: "",
       title: "保湿・整肌ケア",
-      desc: "浄化後は植物成分の保湿ケアを行います。乾燥した頭皮に潤いを与え、皮脂分泌のバランスを整えることで、健康な頭皮環境をサポートします。",
+      desc: "ストレスの多い環境、季節の変わり目では、頭皮の状態が悪化しやすくなります。乾燥した頭皮に潤いを与え、皮脂分泌のバランスを整えることで、健康な頭皮環境をサポートします。",
     },
     {
       icon: "",
