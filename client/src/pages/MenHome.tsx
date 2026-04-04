@@ -11,6 +11,7 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Link } from "wouter";
+import { trpc } from "@/lib/trpc";
 import { Menu, X, ChevronDown, ChevronUp, Star, ArrowRight, Check } from "lucide-react";
 
 // ========== NAVIGATION ==========
@@ -1026,6 +1027,8 @@ function Reservation() {
   });
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const createReservation = trpc.reservation.create.useMutation();
 
   const courses = [
     "無料スカルプチェック（初回）",
@@ -1046,11 +1049,36 @@ function Reservation() {
     return e;
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length > 0) { setErrors(errs); return; }
-    setSubmitted(true);
+    setSubmitting(true);
+    try {
+      const planMap: Record<string, "free" | "standard" | "personal" | "consult"> = {
+        "無料スカルプチェック（初回）": "free",
+        "定期スカルプチェック（有料）": "standard",
+        "ライトプラン（月額1,980円）": "standard",
+        "スタンダードプラン（月額3,980円）": "standard",
+        "プレミアムプラン（月額7,980円）": "personal",
+        "その他・相談したい": "consult",
+      };
+      await createReservation.mutateAsync({
+        name: form.name,
+        phone: form.phone,
+        email: form.email || undefined,
+        desiredDate: form.date,
+        desiredTime: form.time || "--:--",
+        plan: planMap[form.course] ?? "consult",
+        message: form.message || undefined,
+        gender: "men",
+      });
+      setSubmitted(true);
+    } catch {
+      setErrors({ submit: "送信に失敗しました。お電話またはLINEでご予約ください。" });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
@@ -1208,11 +1236,15 @@ function Reservation() {
 
           <button
             type="submit"
-            className="w-full py-4 bg-[#C9A84C] text-[#0D1B2A] font-bold tracking-widest text-sm hover:bg-[#E8C97A] transition-all duration-300 flex items-center justify-center gap-2 font-['Noto_Sans_JP']"
+            disabled={submitting}
+            className="w-full py-4 bg-[#C9A84C] text-[#0D1B2A] font-bold tracking-widest text-sm hover:bg-[#E8C97A] transition-all duration-300 flex items-center justify-center gap-2 font-['Noto_Sans_JP'] disabled:opacity-60 disabled:cursor-not-allowed"
           >
-            予約を申し込む
-            <ArrowRight size={16} />
+            {submitting ? "送信中..." : "予約を申し込む"}
+            {!submitting && <ArrowRight size={16} />}
           </button>
+          {errors.submit && (
+            <p className="text-red-400 text-xs text-center mt-2 font-['Noto_Sans_JP']">{errors.submit}</p>
+          )}
         </form>
       </div>
     </section>

@@ -6,6 +6,7 @@
  */
 
 import { useEffect, useRef, useState } from "react";
+import { trpc } from "@/lib/trpc";
 
 // ビフォーアフター画像URL
 const BA_IMAGES = [
@@ -1558,7 +1559,7 @@ function BeforeAfterSection() {
   );
 }
 
-// 予約フォームセクション
+// // 予約フォームセクション
 function ReservationSection() {
   const { ref, inView } = useInView();
   const [form, setForm] = useState({
@@ -1572,14 +1573,14 @@ function ReservationSection() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
-
+  const [submitting, setSubmitting] = useState(false);
+  const createReservation = trpc.reservation.create.useMutation();
   const timeSlots = [
     "10:00", "10:30", "11:00", "11:30",
     "13:00", "13:30", "14:00", "14:30",
     "15:00", "15:30", "16:00", "16:30",
     "17:00", "17:30", "18:00",
   ];
-
   const validate = () => {
     const e: Record<string, string> = {};
     if (!form.name.trim()) e.name = "お名前を入力してください";
@@ -1591,15 +1592,31 @@ function ReservationSection() {
     if (!form.plan) e.plan = "コースを選択してください";
     return e;
   };
-
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length > 0) {
       setErrors(errs);
       return;
     }
-    setSubmitted(true);
+    setSubmitting(true);
+    try {
+      await createReservation.mutateAsync({
+        name: form.name,
+        phone: form.phone,
+        email: form.email || undefined,
+        desiredDate: form.date,
+        desiredTime: form.time,
+        plan: form.plan as "free" | "standard" | "personal" | "consult",
+        message: form.message || undefined,
+        gender: "women",
+      });
+      setSubmitted(true);
+    } catch {
+      setErrors({ submit: "送信に失敗しました。お電話またはLINEでご予約ください。" });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const inputClass = (field: string) =>
@@ -1776,10 +1793,14 @@ function ReservationSection() {
 
             <button
               type="submit"
-              className="w-full btn-gold-shimmer text-[oklch(0.18_0.04_42)] font-sans-jp font-semibold py-4 rounded-sm text-base transition-all hover:opacity-90"
+              disabled={submitting}
+              className="w-full btn-gold-shimmer text-[oklch(0.18_0.04_42)] font-sans-jp font-semibold py-4 rounded-sm text-base transition-all hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed"
             >
-              予約を申し込む
+              {submitting ? "送信中..." : "予約を申し込む"}
             </button>
+            {errors.submit && (
+              <p className="font-sans-jp text-red-400 text-xs text-center mt-2">{errors.submit}</p>
+            )}
 
             <p className="font-sans-jp text-white/25 text-[11px] text-center leading-relaxed">
               ※ ご予約後、担当スタッフよりご連絡いたします。
