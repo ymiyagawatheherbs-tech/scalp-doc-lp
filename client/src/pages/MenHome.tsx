@@ -1455,10 +1455,11 @@ function StoreSection() {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 />
-                <div className="absolute top-3 left-3 font-['Noto_Sans_JP'] text-[#0D1B2A] text-xs font-bold px-3 py-1 bg-[#C9A84C]">
+                {/* iframe左上のリンクを覆う透明オーバーレイ */}
+                <div className="absolute top-0 left-0 w-32 h-10 z-10" />
+                <div className="absolute top-3 left-3 font-['Noto_Sans_JP'] text-[#0D1B2A] text-xs font-bold px-3 py-1 bg-[#C9A84C] z-20">
                   {store.badge}
                 </div>
-
               </div>
 
               {/* 情報エリア */}
