@@ -352,6 +352,15 @@ function Problem() {
 // ========== SCALP GALLERY ==========
 const MEN_SCALP_STATES = [
   {
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2022-07-0216.27.17-1_35d2e8f2.jpg",
+    label: "健やかな頭皮環境",
+    status: "良好",
+    statusBg: "#2D6A4F",
+    statusText: "#fff",
+    desc: "毛根がしっかりと育ち、頭皮が清潔に保たれている状態。定期チェックでこの状態を維持することが大切です。",
+    detail: "健康・良好",
+  },
+  {
     img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2026-04-04-14-58-15-909_8fa65f43.jpg",
     label: "皮脂過多・毛穴詰まり",
     status: "要注意",
@@ -366,17 +375,8 @@ const MEN_SCALP_STATES = [
     status: "ケア推奨",
     statusBg: "#8B6914",
     statusText: "#fff",
-    desc: "頭皮の角質が剥がれ、フケとして現れている状態。乾燥・刺激・ターンオーバーの乱れが原因として考えられます。",
+    desc: "頭皮の角質が剖がれ、フケとして現れている状態。乾燥・刺激・ターンオーバーの乱れが原因として考えられます。",
     detail: "乾燥・フケ",
-  },
-  {
-    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2025-09-24-20-09-44-058_bf1c7806.JPG",
-    label: "健やかな頭皮環境",
-    status: "良好",
-    statusBg: "#2D6A4F",
-    statusText: "#fff",
-    desc: "毛根がしっかりと育ち、頭皮が清潔に保たれている状態。定期チェックでこの状態を維持することが大切です。",
-    detail: "健康・良好",
   },
   {
     img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2025-10-27-10-18-21-496_65c4010d.jpg",
