@@ -357,7 +357,7 @@ function Concept() {
           {/* Visual */}
           <div className="relative">
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/men-scalp-check2_78e68cbf.jpg"
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/men-microscope-check_bfd1313a.png"
               alt="マイクロスコープによる頭皮チェック"
               className="w-full object-cover"
               style={{ aspectRatio: "4/3" }}
