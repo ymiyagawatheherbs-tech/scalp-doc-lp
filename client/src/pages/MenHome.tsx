@@ -1411,8 +1411,8 @@ function StoreSection() {
       closed: "火曜・日曜・祝日定休",
       line: "https://lin.ee/oWeHStW",
       features: ["育毛メニュー", "ディープクレンジング", "ヘアカラー後頭皮ケア", "和漢カラー"],
-      mapUrl: "https://maps.google.com/?q=兵庫県神戸市灘区大内通1-7-17",
-      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.2!2d135.22890!3d34.71532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e7c8e5a3a3b3%3A0x7c8d9e0f1a2b3c4d!2z5aSn5oi45YWD5pys5pys6aSo6Ziz5rWm5Y-w5aSn5oi45YWD5pys!5e0!3m2!1sja!2sjp!4v1700000000001!5m2!1sja!2sjp",
+      mapUrl: "https://maps.app.goo.gl/a96J7E9gnPBXi9tA6",
+      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3279.8!2d135.2257085!3d34.7128842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60008dba49ad1097%3A0x351be9b6133f830b!2sMODE+VERDE+%E3%82%B5%E3%83%AD%E3%83%B3!5e0!3m2!1sja!2sjp!4v1700000000001!5m2!1sja!2sjp",
     },
   ];
 
