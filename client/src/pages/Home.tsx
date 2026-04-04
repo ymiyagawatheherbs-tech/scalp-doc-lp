@@ -1323,74 +1323,6 @@ function DigitalSection() {
   );
 }
 
-// 検診フローセクション
-function FlowSection() {
-  const { ref, inView } = useInView();
-  const steps = [
-    {
-      num: "01",
-      title: "頭皮チェック（状態確認・重点箇所の把握）",
-      desc: "マイクロスコープで頭皮を撮影・記録。毛穴の状態・皮脂量・毛量を確認し、今日のボタニカルミストで重点的にケアする箇所を把握します。",
-      image: IMAGES.scalpCheckReal,
-    },
-    {
-      num: "02",
-      title: "ボタニカルミスト（気になる箇所から全体リセット）",
-      desc: "最初に気になる箇所を集中的にミストでリセットし、その後頭皮全体をリセット。毛穴に蔓積した皮脂・薬剤・汚れを植物由来の蕲気で浄化します。",
-      image: IMAGES.botanicalMist,
-    },
-    {
-      num: "03",
-      title: "頭皮チェック（リセットを目視で確認・次回予約）",
-      desc: "ボタニカルミスト後の頭皮を再度マイクロスコープで撮影。リセット前後の変化を画像で確認し、次回の定期チェックを予約して完了です。",
-    },
-  ];
-
-  return (
-    <section className="py-28 bg-[oklch(0.955_0.018_82)]">
-      <div ref={ref} className="max-w-7xl mx-auto px-6">
-        <div className={`text-center mb-16 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
-            How It Works
-          </span>
-          <h2 className="font-mincho text-[oklch(0.22_0.045_42)] text-3xl md:text-4xl font-bold">
-            スカルプラボ定期ケアの流れ
-          </h2>
-          <p className="font-sans-jp text-[oklch(0.55_0.04_42)] text-sm mt-4 max-w-xl mx-auto">
-            チェック→リセット→チェックの3ステップで、頭皮の変化を正確に把握します。
-          </p>
-        </div>
-
-        <div className="relative">
-          <div className="hidden md:block absolute top-8 left-[calc(16.7%+2rem)] right-[calc(16.7%+2rem)] h-px bg-[oklch(0.88_0.025_75)]" />
-          <div className="grid md:grid-cols-3 gap-8">
-            {steps.map((step, i) => (
-              <div
-                key={i}
-                className={`text-center transition-all duration-700 ${
-                  inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-                }`}
-                style={{ transitionDelay: `${i * 150}ms` }}
-              >
-                <div className="w-16 h-16 rounded-full bg-[oklch(0.22_0.045_42)] flex items-center justify-center mx-auto mb-6 relative z-10">
-                  <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-lg font-semibold">{step.num}</span>
-                </div>
-                {step.image && (
-                  <div className="mb-4 overflow-hidden rounded-sm mx-auto" style={{ maxWidth: '160px', height: '110px' }}>
-                    <img src={step.image} alt={step.title} className="w-full h-full object-cover" />
-                  </div>
-                )}
-                <h3 className="font-mincho text-[oklch(0.22_0.045_42)] text-base font-bold mb-3">{step.title}</h3>
-                <p className="font-sans-jp text-[oklch(0.55_0.04_42)] text-xs leading-relaxed">{step.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 // FAQセクション
 function FaqSection() {
   const { ref, inView } = useInView();
@@ -2307,7 +2239,6 @@ export default function Home() {
       <BotanicalMistSection />
       <TargetSection />
       <DigitalSection />
-      <FlowSection />
       <BeforeAfterSection />
       <TestimonialsSection />
       <FaqSection />

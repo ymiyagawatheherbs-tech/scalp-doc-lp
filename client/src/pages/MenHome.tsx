@@ -978,57 +978,6 @@ function Digital() {
 }
 
 // ========== FLOW ==========
-function Flow() {
-  const steps = [
-    {
-      num: "01",
-      title: "頭皮チェック（状態確認・重点箇所の把握）",
-      desc: "マイクロスコープで頭皮を撮影・記録。毛穴の状態・皮脂量・毛量を確認し、今日のボタニカルミストで重点的にケアする箇所を把握。"
-    },
-    {
-      num: "02",
-      title: "ボタニカルミスト（気になる箇所から全体リセット）",
-      desc: "最初に気になる箇所を集中的にミストでリセットし、その後頭皮全体をリセット。毛穴に蔓積した皮脂・薬剤・汚れを植物由来の蕲気で浄化。"
-    },
-    {
-      num: "03",
-      title: "頭皮チェック（リセットを目視で確認・次回予約）",
-      desc: "ボタニカルミスト後の頭皮を再度マイクロスコープで撮影。リセット前後の変化を画像で確認し、次回の定期チェックを予約して完了。"
-    },
-  ];
-  return (
-    <section className="bg-[#1C2B3A] py-24">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center gap-4 mb-4">
-          <div className="h-px w-12 bg-[#C9A84C]" />
-          <span className="text-[#C9A84C] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">How It Works</span>
-        </div>
-        <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-4">
-          スカルプラボ定期ケアの流れ
-        </h2>
-        <p className="text-white/65 text-sm font-['Noto_Sans_JP'] mb-16">
-          チェック→リセット→チェックの3ステップで、頭皮の変化を正確に把握します。
-        </p>
-        <div className="grid md:grid-cols-3 gap-8">
-          {steps.map((s, i) => (
-            <div key={s.num} className="relative">
-              {i < steps.length - 1 && (
-                <div className="hidden md:block absolute top-6 left-full w-full h-px bg-[#C9A84C]/20 z-0" />
-              )}
-              <div className="relative z-10">
-                <div className="font-['Cormorant_Garamond'] text-[#C9A84C] text-4xl font-bold mb-4">{s.num}</div>
-                <h3 className="font-['Shippori_Mincho'] text-white text-xl font-bold mb-3">{s.title}</h3>
-                <p className="text-white/80 text-sm leading-relaxed font-['Noto_Sans_JP'] font-light">{s.desc}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// ========== TESTIMONIALS ==========
 function Testimonials() {
   const testimonials = [
     {
@@ -1731,7 +1680,6 @@ export default function MenHome() {
       <BotanicalMist />
       <Target />
       <Digital />
-      <Flow />
       <Testimonials />
       <FAQ />
       <StoreSection />
