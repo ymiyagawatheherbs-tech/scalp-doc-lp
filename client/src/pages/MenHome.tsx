@@ -352,7 +352,7 @@ function Problem() {
 // ========== SCALP GALLERY ==========
 const MEN_SCALP_STATES = [
   {
-    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2026-03-31-11-53-45-302_24bcccad.JPG",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2026-04-04-14-58-15-909_8fa65f43.jpg",
     label: "皮脂過多・毛穴詰まり",
     status: "要注意",
     statusBg: "#C9A84C",

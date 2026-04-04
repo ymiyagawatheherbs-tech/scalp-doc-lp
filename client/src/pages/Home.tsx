@@ -472,11 +472,11 @@ function ProblemSection() {
 // 頭皮状態ギャラリーセクション
 const SCALP_STATES = [
   {
-    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2026-03-31-11-53-45-302_24bcccad.JPG",
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2026-04-04-14-58-15-909_8fa65f43.jpg",
     label: "皮脂過多・毛穴詰まり",
     status: "要注意",
     statusColor: "oklch(0.65_0.18_30)",
-    desc: "毛穴に皮脂が蓄積し、毛根への栄養供給が滞っている状態。放置すると抜け毛の原因になることがあります。",
+    desc: "毛穴に皮脂が蔓積し、毛根への栄養供給が滞っている状態。放置すると抜け毛の原因になることがあります。",
     detail: "皮脂・毛穴",
   },
   {
