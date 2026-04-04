@@ -1981,11 +1981,18 @@ function StoreSection() {
                   title={store.name}
                   src={store.mapEmbed}
                   className="w-full h-full border-0"
+                  style={{ pointerEvents: 'none' }}
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 />
-                {/* iframe左上のリンクを覆う透明オーバーレイ */}
-                <div className="absolute top-0 left-0 w-32 h-10 z-10" />
+                {/* iframe全体を覆うクリック可能な透明オーバーレイ（マップで開く） */}
+                <a
+                  href={store.mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute inset-0 z-10"
+                  aria-label={`${store.name}の地図を開く`}
+                />
                 {/* バッジ */}
                 <div
                   className="absolute top-3 left-3 font-sans-jp text-white text-xs font-medium px-3 py-1 rounded-full z-20"
