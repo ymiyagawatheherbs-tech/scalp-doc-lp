@@ -1,0 +1,156 @@
+{
+  "project_info": {
+    "title": "表紙",
+    "created": 1775214521.919351,
+    "last_updated": 1775214864.7937737,
+    "total_slides": 12
+  },
+  "slides": [
+    {
+      "id": "cover",
+      "state": "edited",
+      "pageNum": 1
+    },
+    {
+      "id": "overview",
+      "state": "edited",
+      "pageNum": 2
+    },
+    {
+      "id": "market",
+      "state": "edited",
+      "pageNum": 3
+    },
+    {
+      "id": "position",
+      "state": "edited",
+      "pageNum": 4
+    },
+    {
+      "id": "concept",
+      "state": "edited",
+      "pageNum": 5
+    },
+    {
+      "id": "revenue_model",
+      "state": "edited",
+      "pageNum": 6
+    },
+    {
+      "id": "simulation",
+      "state": "edited",
+      "pageNum": 7
+    },
+    {
+      "id": "cost",
+      "state": "edited",
+      "pageNum": 8
+    },
+    {
+      "id": "support",
+      "state": "edited",
+      "pageNum": 9
+    },
+    {
+      "id": "who",
+      "state": "edited",
+      "pageNum": 10
+    },
+    {
+      "id": "next_step",
+      "state": "edited",
+      "pageNum": 11
+    },
+    {
+      "id": "company",
+      "state": "edited",
+      "pageNum": 12
+    }
+  ],
+  "outline": [
+    {
+      "id": "cover",
+      "title": "表紙",
+      "summary": "スカルプラボ パートナープログラム。予防型ヘルスケア×習慣化事業として、サロンに新しい収益の柱を。株式会社THE HERBS発行。",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "overview",
+      "title": "この資料でわかること",
+      "summary": "LINE登録者限定の資料。ブルーオーシャン市場の説明、収益モデル、シミュレーション、認定プログラム詳細、導入サロンの声の6項目を説明。",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "market",
+      "title": "市場の現状 — 美容業界は飽和、頭皮ケアは空白地帯",
+      "summary": "美容室は全国25万店超で過当競争。しかし頭皮の定期チェックを提供するサロンはほぼゼロ。予防ヘルスケア市場は年率15.5%成長で2029年に約90兆円規模。",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "position",
+      "title": "スカルプラボのポジション — 第三の領域",
+      "summary": "美容サービスでも医療機関でもない第三の領域。習慣化が主役のブルーオーシャン。スキンケアの延長線上にある頭皮ケアとしてポジショニング。",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "concept",
+      "title": "ビジネスモデルの本質 — 習慣をつくる事業",
+      "summary": "歯科の定期検診モデルとの対比。薄毛になる前に定期チェック、問題があれば施術へ、データ蓄積で経年変化を記録、習慣化で長期関係を構築。",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "revenue_model",
+      "title": "収益モデルの4フェーズ",
+      "summary": "Phase1：頭皮チェック（初回無料→定期有料）、Phase2：ケアメニュー、Phase3：定期コース、Phase4：製品販売。4段階の収益構造。",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "simulation",
+      "title": "収益シミュレーション — 月間・年間の試算",
+      "summary": "スモールスタート：月間¥122,000〜。スケールアップ後（認定1年目目安）：月間¥355,000〜。具体的な人数・単価・収益の表。",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "cost",
+      "title": "初期費用と認定プログラム",
+      "summary": "必要機器：マイクロスコープ（¥30,000〜¥80,000）、ハーブスチーマー（要相談）。認定プログラムの4ステップ。スモールスタートを全力サポート。",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "support",
+      "title": "認定サロンが受けられるサポート",
+      "summary": "公式サロンリスト掲載、製品卸販売権、販促ツール提供、継続技術フォロー、認定サロンコミュニティ、お客様対応サポートの6項目。",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "who",
+      "title": "こんな方と一緒に取り組みたい",
+      "summary": "エステサロン（特に相性が良い）、美容師・ヘアサロン（既存メニューと相性抜群）、副業・起業を考える方（低コストで始められる）の3セグメント。",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "next_step",
+      "title": "次のステップ",
+      "summary": "説明会希望はLINEでメッセージ。迷っている方は相談OK。すぐ始めたい方は技術講習会の日程案内。LINEアカウント情報と返信目安を記載。",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    },
+    {
+      "id": "company",
+      "title": "会社概要",
+      "summary": "株式会社THE HERBS。1986年創業。化粧品製造業・頭皮ケアサービス・サロン向け卸販売。直営サロン（神戸市灘区）・神戸阪急店。頭皮チェック体験者2,200名以上。",
+      "image_plan": "Use a suitable image if needed",
+      "slide_template_key": ""
+    }
+  ]
+}

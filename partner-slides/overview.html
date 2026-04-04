@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      .slide-container {
+        width: 1280px;
+        min-height: 720px;
+        background: #F8F6F2;
+        font-family: 'Noto Sans JP', sans-serif;
+        display: flex;
+        flex-direction: column;
+      }
+      .top-bar {
+        background: #1A2E1A;
+        padding: 28px 72px 24px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
+      .section-label {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 11px;
+        color: rgba(184,150,12,0.8);
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 8px;
+      }
+      .slide-title {
+        font-family: 'Shippori Mincho', serif;
+        font-size: 30px;
+        color: #ffffff;
+        font-weight: 700;
+        letter-spacing: 0.05em;
+      }
+      .slide-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 48px;
+        color: rgba(184,150,12,0.3);
+        font-weight: 300;
+        line-height: 1;
+      }
+      .content-area {
+        flex: 1;
+        padding: 40px 72px;
+        display: flex;
+        flex-direction: column;
+      }
+      .intro-text {
+        font-size: 14px;
+        color: #555;
+        line-height: 1.8;
+        margin-bottom: 36px;
+        font-weight: 300;
+        border-left: 3px solid #B8960C;
+        padding-left: 20px;
+      }
+      .items-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+        flex: 1;
+      }
+      .item-card {
+        background: #ffffff;
+        border: 1px solid #e0e0e0;
+        border-top: 2px solid #2D5A27;
+        display: flex;
+        align-items: flex-start;
+        gap: 20px;
+        padding: 20px 24px;
+      }
+      .item-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 36px;
+        color: #B8960C;
+        font-weight: 600;
+        line-height: 1;
+        flex-shrink: 0;
+        min-width: 36px;
+      }
+      .item-body {}
+      .item-title {
+        font-family: 'Shippori Mincho', serif;
+        font-size: 16px;
+        color: #1A2E1A;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .item-desc {
+        font-size: 12px;
+        color: #666;
+        line-height: 1.7;
+        font-weight: 300;
+      }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+  <div class="top-bar">
+    <div>
+      <span class="section-label">Contents</span>
+      <h2 class="slide-title">この資料でわかること</h2>
+    </div>
+    <span class="slide-num">02</span>
+  </div>
+  <div class="content-area">
+    <p class="intro-text">
+      LINE登録いただいた方だけにお届けする、スカルプラボの全貌。<br>
+      収益の仕組み・導入事例・詳細費用まで、包み隠さずお伝えします。
+    </p>
+    <div class="items-grid">
+      <div class="item-card">
+        <span class="item-num">01</span>
+        <div class="item-body">
+          <div class="item-title">ブルーオーシャン市場の実態</div>
+          <div class="item-desc">なぜ今「頭皮の定期チェック」が競争のない市場なのか。市場データで解説します。</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <span class="item-num">02</span>
+        <div class="item-body">
+          <div class="item-title">予防型ヘルスケアとしての市場ポジション</div>
+          <div class="item-desc">美容でも医療でもない「第三の領域」として、スカルプラボが目指すポジションを説明します。</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <span class="item-num">03</span>
+        <div class="item-body">
+          <div class="item-title">「習慣化」を軸にした収益モデル</div>
+          <div class="item-desc">歯科の定期検診と同じ仕組みで、定期来店を「当たり前」にする4フェーズの収益構造。</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <span class="item-num">04</span>
+        <div class="item-body">
+          <div class="item-title">具体的な収益シミュレーション</div>
+          <div class="item-desc">スモールスタート時：月間¥122,000〜。スケールアップ後：月間¥355,000〜の試算。</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <span class="item-num">05</span>
+        <div class="item-body">
+          <div class="item-title">認定パートナープログラムの詳細</div>
+          <div class="item-desc">初期費用の目安・認定までの4ステップ・認定後に受けられるサポートの全容。</div>
+        </div>
+      </div>
+      <div class="item-card">
+        <span class="item-num">06</span>
+        <div class="item-body">
+          <div class="item-title">次のステップ</div>
+          <div class="item-desc">説明会への参加方法・LINEでの相談方法・すぐに始めたい方への案内。</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

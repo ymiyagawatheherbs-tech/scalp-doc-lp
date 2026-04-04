@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      .slide-container {
+        width: 1280px;
+        min-height: 720px;
+        background: #F8F6F2;
+        font-family: 'Noto Sans JP', sans-serif;
+        display: flex;
+        flex-direction: column;
+      }
+      .top-bar {
+        background: #1A2E1A;
+        padding: 28px 72px 24px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
+      .section-label {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 11px;
+        color: rgba(184,150,12,0.8);
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 8px;
+      }
+      .slide-title {
+        font-family: 'Shippori Mincho', serif;
+        font-size: 28px;
+        color: #ffffff;
+        font-weight: 700;
+      }
+      .slide-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 48px;
+        color: rgba(184,150,12,0.25);
+        font-weight: 300;
+        line-height: 1;
+      }
+      .content-area {
+        flex: 1;
+        padding: 36px 72px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .intro-text {
+        font-size: 13px;
+        color: #555;
+        line-height: 1.8;
+        font-weight: 300;
+        border-left: 3px solid #B8960C;
+        padding-left: 18px;
+      }
+      .phases-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        gap: 0;
+        flex: 1;
+      }
+      .phase-col {
+        display: flex;
+        flex-direction: column;
+        border-top: 3px solid #2D5A27;
+        background: #ffffff;
+        border-right: 1px solid #e8e4de;
+      }
+      .phase-col:last-child {
+        border-right: none;
+      }
+      .phase-col.accent {
+        background: #1A2E1A;
+        border-top-color: #B8960C;
+      }
+      .phase-header {
+        padding: 20px 22px 16px;
+        border-bottom: 1px solid #f0ece6;
+      }
+      .phase-col.accent .phase-header {
+        border-bottom-color: rgba(255,255,255,0.1);
+      }
+      .phase-label {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 11px;
+        color: #B8960C;
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 10px;
+      }
+      .phase-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 52px;
+        color: rgba(45,90,39,0.12);
+        font-weight: 600;
+        line-height: 1;
+        display: block;
+        margin-bottom: 6px;
+      }
+      .phase-col.accent .phase-num {
+        color: rgba(184,150,12,0.2);
+      }
+      .phase-title {
+        font-family: 'Shippori Mincho', serif;
+        font-size: 17px;
+        color: #1A2E1A;
+        font-weight: 700;
+        line-height: 1.4;
+      }
+      .phase-col.accent .phase-title {
+        color: #ffffff;
+      }
+      .phase-sub {
+        font-size: 11px;
+        color: #2D5A27;
+        margin-top: 4px;
+        font-weight: 700;
+      }
+      .phase-col.accent .phase-sub {
+        color: #a8d5a2;
+      }
+      .phase-body {
+        padding: 18px 22px;
+        flex: 1;
+      }
+      .phase-desc {
+        font-size: 12px;
+        color: #666;
+        line-height: 1.75;
+        font-weight: 300;
+      }
+      .phase-col.accent .phase-desc {
+        color: rgba(255,255,255,0.7);
+      }
+      .phase-footer {
+        padding: 14px 22px;
+        border-top: 1px solid #f0ece6;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+      .phase-col.accent .phase-footer {
+        border-top-color: rgba(255,255,255,0.1);
+      }
+      .revenue-label {
+        font-size: 10px;
+        color: #aaa;
+        letter-spacing: 0.1em;
+        font-family: 'Cormorant Garamond', serif;
+      }
+      .phase-col.accent .revenue-label {
+        color: rgba(255,255,255,0.4);
+      }
+      .revenue-value {
+        font-size: 12px;
+        color: #2D5A27;
+        font-weight: 700;
+      }
+      .phase-col.accent .revenue-value {
+        color: #a8d5a2;
+      }
+      .bottom-note {
+        font-size: 12px;
+        color: #888;
+        text-align: center;
+        font-weight: 300;
+      }
+      .bottom-note strong {
+        color: #2D5A27;
+        font-weight: 700;
+      }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+  <div class="top-bar">
+    <div>
+      <span class="section-label">Revenue Flow</span>
+      <h2 class="slide-title">収益モデルの4フェーズ — 「寄り添う」ことで生まれる安定収益</h2>
+    </div>
+    <span class="slide-num">06</span>
+  </div>
+  <div class="content-area">
+    <p class="intro-text">
+      「売る」のではなく「寄り添う」ことで、お客様との長期的な関係が生まれます。その関係が、4段階の安定した収益基盤になります。
+    </p>
+    <div class="phases-row">
+      <!-- Phase 1 -->
+      <div class="phase-col">
+        <div class="phase-header">
+          <span class="phase-label">Phase 1</span>
+          <span class="phase-num">01</span>
+          <div class="phase-title">頭皮チェック</div>
+          <div class="phase-sub">初回無料 → 定期有料</div>
+        </div>
+        <div class="phase-body">
+          <p class="phase-desc">
+            初回は無料で提供し、まず「見える化」を体験してもらいます。マイクロスコープで頭皮を記録・分析。データが蓄積されるほど、定期受診の価値が高まります。
+          </p>
+        </div>
+        <div class="phase-footer">
+          <span class="revenue-label">収益源</span>
+          <span class="revenue-value">定期チェック料 ¥3,000〜¥5,000/回</span>
+        </div>
+      </div>
+      <!-- Phase 2 -->
+      <div class="phase-col">
+        <div class="phase-header">
+          <span class="phase-label">Phase 2</span>
+          <span class="phase-num">02</span>
+          <div class="phase-title">パーソナルスカルプケア</div>
+          <div class="phase-sub">課題に合わせた施術</div>
+        </div>
+        <div class="phase-body">
+          <p class="phase-desc">
+            チェックで見つかった課題に対して、ボタニカルミスト・ゴマージュ・頭皮ケアメニューを提案。必要な方に必要なケアを。歯医者の「虫歯治療」に相当します。
+          </p>
+        </div>
+        <div class="phase-footer">
+          <span class="revenue-label">収益源</span>
+          <span class="revenue-value">施術料 ¥5,000〜¥15,000/回</span>
+        </div>
+      </div>
+      <!-- Phase 3 -->
+      <div class="phase-col">
+        <div class="phase-header">
+          <span class="phase-label">Phase 3</span>
+          <span class="phase-num">03</span>
+          <div class="phase-title">スカルプラボ定期ケア</div>
+          <div class="phase-sub">3ヶ月・6ヶ月プラン</div>
+        </div>
+        <div class="phase-body">
+          <p class="phase-desc">
+            定期チェック＋ケアをセットにしたコースで、継続来店を促します。歯医者の定期検診と同じ「習慣化」モデル。コース化することで安定収益が生まれます。
+          </p>
+        </div>
+        <div class="phase-footer">
+          <span class="revenue-label">収益源</span>
+          <span class="revenue-value">コース料金（安定収益）</span>
+        </div>
+      </div>
+      <!-- Phase 4 (accent) -->
+      <div class="phase-col accent">
+        <div class="phase-header">
+          <span class="phase-label">Phase 4</span>
+          <span class="phase-num">04</span>
+          <div class="phase-title">THE HERBS製品販売</div>
+          <div class="phase-sub">認定サロン限定の卸販売権</div>
+        </div>
+        <div class="phase-body">
+          <p class="phase-desc">
+            認定サロンにはTHE HERBS製品の卸販売権が得られます。お客様のホームケアをサポートしながら、物販収益に繋げます。施術との相乗効果で客単価が向上します。
+          </p>
+        </div>
+        <div class="phase-footer">
+          <span class="revenue-label">収益源</span>
+          <span class="revenue-value">製品卸・物販収益</span>
+        </div>
+      </div>
+    </div>
+    <p class="bottom-note">
+      <strong>ポイント：</strong>Phase 1の「初回無料チェック」が入口となり、Phase 2→3→4へと自然に繋がる設計です。リピートではなく「習慣」が収益を生みます。
+    </p>
+  </div>
+</div>
+</body>
+</html>

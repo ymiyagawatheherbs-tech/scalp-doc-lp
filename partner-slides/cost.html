@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@400;700&family=Noto+Sans+JP:wght@300;400;700&family=Cormorant+Garamond:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      .slide-container {
+        width: 1280px;
+        min-height: 720px;
+        background: #F8F6F2;
+        font-family: 'Noto Sans JP', sans-serif;
+        display: flex;
+        flex-direction: column;
+      }
+      .top-bar {
+        background: #1A2E1A;
+        padding: 26px 72px 22px;
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+      }
+      .section-label {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 11px;
+        color: rgba(184,150,12,0.8);
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 8px;
+      }
+      .slide-title {
+        font-family: 'Shippori Mincho', serif;
+        font-size: 28px;
+        color: #ffffff;
+        font-weight: 700;
+      }
+      .slide-num {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 48px;
+        color: rgba(184,150,12,0.25);
+        font-weight: 300;
+        line-height: 1;
+      }
+      .content-area {
+        flex: 1;
+        padding: 34px 72px; /* reduced vertical padding to save 4px total */
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 48px;
+      }
+      .col-label {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 10px;
+        color: #B8960C;
+        letter-spacing: 0.5em;
+        text-transform: uppercase;
+        display: block;
+        margin-bottom: 18px;
+      }
+      .col-title {
+        font-family: 'Shippori Mincho', serif;
+        font-size: 18px;
+        color: #1A2E1A;
+        font-weight: 700;
+        margin-bottom: 20px;
+      }
+      /* Cost Table */
+      .cost-table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      .cost-table thead tr {
+        background: #1A2E1A;
+      }
+      .cost-table thead th {
+        font-family: 'Noto Sans JP', sans-serif;
+        font-size: 11px;
+        font-weight: 700;
+        color: rgba(255,255,255,0.8);
+        padding: 10px 14px;
+        text-align: left;
+        letter-spacing: 0.05em;
+      }
+      .cost-table tbody tr {
+        border-bottom: 1px solid #e0e0e0;
+        background: #ffffff;
+      }
+      .cost-table tbody tr:nth-child(even) {
+        background: #f4f2ee;
+      }
+      .cost-table tbody td {
+        font-size: 13px;
+        color: #333;
+        padding: 14px 14px;
+        vertical-align: top;
+        line-height: 1.6;
+      }
+      .cost-table tbody td:first-child {
+        font-weight: 700;
+        color: #1A2E1A;
+        width: 52%;
+      }
+      .cost-value {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 15px;
+        font-weight: 600;
+        color: #2D5A27;
+      }
+      .cost-note {
+        font-size: 11px;
+        color: #888;
+        margin-top: 4px;
+        font-weight: 300;
+      }
+      .support-badge {
+        display: inline-block;
+        background: #e8f5e3;
+        color: #2D5A27;
+        font-size: 10px;
+        font-weight: 700;
+        padding: 2px 8px;
+        margin-top: 4px;
+        letter-spacing: 0.05em;
+      }
+      /* Steps */
+      .steps-list {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+      }
+      .step-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 16px;
+      }
+      .step-num {
+        width: 44px;
+        height: 44px;
+        background: #2D5A27;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 20px;
+        color: #ffffff;
+        font-weight: 600;
+      }
+      .step-body {
+        flex: 1;
+        padding-top: 4px;
+      }
+      .step-title {
+        font-family: 'Shippori Mincho', serif;
+        font-size: 15px;
+        color: #1A2E1A;
+        font-weight: 700;
+        margin-bottom: 4px;
+      }
+      .step-desc {
+        font-size: 12px;
+        color: #666;
+        line-height: 1.65;
+        font-weight: 300;
+      }
+      .step-time {
+        display: inline-block;
+        font-size: 10px;
+        color: #2D5A27;
+        font-weight: 700;
+        background: #e8f5e3;
+        padding: 2px 8px;
+        margin-top: 4px;
+        letter-spacing: 0.05em;
+      }
+      .step-connector {
+        width: 2px;
+        height: 12px;
+        background: rgba(45,90,39,0.25);
+        margin-left: 21px;
+      }
+      .bottom-note {
+        background: #2D5A27;
+        padding: 16px 72px;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .bottom-note-label {
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 10px;
+        color: rgba(168,213,162,0.8);
+        letter-spacing: 0.4em;
+        text-transform: uppercase;
+        flex-shrink: 0;
+      }
+      .bottom-note-line {
+        width: 1px;
+        height: 24px;
+        background: rgba(168,213,162,0.3);
+        flex-shrink: 0;
+      }
+      .bottom-note-text {
+        font-size: 14px;
+        color: #ffffff;
+        font-weight: 700;
+        font-family: 'Shippori Mincho', serif;
+      }
+    </style>
+</head>
+<body>
+<div class="slide-container">
+  <div class="top-bar">
+    <div>
+      <span class="section-label">Investment & Program</span>
+      <h2 class="slide-title">初期費用と認定プログラム</h2>
+    </div>
+    <span class="slide-num">08</span>
+  </div>
+
+  <div class="content-area">
+    <!-- Left: Cost Table -->
+    <div>
+      <span class="col-label">Required Investment</span>
+      <div class="col-title">必要な機器・費用の目安</div>
+      <table class="cost-table">
+        <thead>
+          <tr>
+            <th>項目</th>
+            <th>費用目安</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>
+              マイクロスコープ<br>
+              <span style="font-size:11px;color:#888;font-weight:300;">頭皮チェック用（市販品でも可）</span>
+            </td>
+            <td>
+              <div class="cost-value">¥30,000〜¥80,000</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              ハーブスチーマー<br>
+              <span style="font-size:11px;color:#888;font-weight:300;">ボタニカルミスト機器</span>
+            </td>
+            <td>
+              <div class="cost-value">要相談</div>
+              <div class="support-badge">導入サポートプランあり</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              認定プログラム受講料<br>
+              <span style="font-size:11px;color:#888;font-weight:300;">技術講習・テキスト含む</span>
+            </td>
+            <td>
+              <div class="cost-value">要相談</div>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              THE HERBS製品（初回仕入れ）<br>
+              <span style="font-size:11px;color:#888;font-weight:300;">ホームケア製品・施術用品</span>
+            </td>
+            <td>
+              <div class="cost-value">要相談</div>
+              <div class="cost-note">最小ロットから対応</div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Right: Program Steps -->
+    <div>
+      <span class="col-label">Certification Flow</span>
+      <div class="col-title">認定までの4ステップ</div>
+      <div class="steps-list">
+        <div class="step-row">
+          <div class="step-num">01</div>
+          <div class="step-body">
+            <div class="step-title">LINEで資料を受け取る</div>
+            <div class="step-desc">収益モデル・導入事例・詳細資料を無料でお届け。勧誘・営業は一切ありません。</div>
+            <span class="step-time">今ここ / すぐに受け取れます</span>
+          </div>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step-row">
+          <div class="step-num">02</div>
+          <div class="step-body">
+            <div class="step-title">オンライン説明会への参加</div>
+            <div class="step-desc">コンセプト・認定プログラム・収益モデルを詳しくご説明。質問も自由にどうぞ。</div>
+            <span class="step-time">約60分</span>
+          </div>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step-row">
+          <div class="step-num">03</div>
+          <div class="step-body">
+            <div class="step-title">技術講習会への参加</div>
+            <div class="step-desc">頭皮チェック・ボタニカルミスト・カウンセリング方法を実習形式で習得。THE HERBSスタッフが直接指導。</div>
+            <span class="step-time">1日〜2日</span>
+          </div>
+        </div>
+        <div class="step-connector"></div>
+        <div class="step-row">
+          <div class="step-num">04</div>
+          <div class="step-body">
+            <div class="step-title">認定サロンとして登録</div>
+            <div class="step-desc">公式サロンリスト掲載・卸販売権・販促ツール・継続サポートがスタート。</div>
+            <span class="step-time">認定後すぐ</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="bottom-note">
+    <span class="bottom-note-label">Our Promise</span>
+    <div class="bottom-note-line"></div>
+    <span class="bottom-note-text">小さく始めて、確実に育てる。スモールスタートを全力でサポートします。</span>
+  </div>
+</div>
+</body>
+</html>
