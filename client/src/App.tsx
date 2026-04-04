@@ -10,8 +10,8 @@ import Privacy from "./pages/Privacy";
 import Tokushoho from "./pages/Tokushoho";
 import SalonPartner from "./pages/SalonPartner";
 
+
 function Router() {
-  // make sure to consider if you need authentication for certain routes
   return (
     <Switch>
       <Route path={"/"} component={Home} />

@@ -6,7 +6,6 @@
  */
 
 import { useEffect, useRef, useState } from "react";
-import { trpc } from "@/lib/trpc";
 
 // ビフォーアフター画像URL
 const BA_IMAGES = [
@@ -256,7 +255,7 @@ function Nav() {
             </a>
             <a
               href="#予約"
-              className="btn-gold-shimmer text-white font-sans-jp text-sm font-bold px-5 py-2.5 rounded-sm" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
+              className="btn-gold-shimmer text-[oklch(0.18_0.04_42)] font-sans-jp text-sm font-medium px-5 py-2.5 rounded-sm"
             >
               無料チェックを予約
             </a>
@@ -266,7 +265,7 @@ function Nav() {
           <div className="md:hidden flex items-center gap-2">
             <a
               href="#予約"
-              className="btn-gold-shimmer text-white font-sans-jp text-xs font-bold px-3 py-1.5 rounded-sm" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
+              className="btn-gold-shimmer text-[oklch(0.18_0.04_42)] font-sans-jp text-xs font-semibold px-3 py-1.5 rounded-sm"
             >
               今すぐ予約
             </a>
@@ -321,7 +320,7 @@ function Nav() {
             <a
               href="#予約"
               onClick={() => setMobileOpen(false)}
-              className="block btn-gold-shimmer text-white font-sans-jp font-bold text-center py-4 rounded-sm mt-2" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
+              className="block btn-gold-shimmer text-[oklch(0.18_0.04_42)] font-sans-jp font-semibold text-center py-4 rounded-sm mt-2"
             >
               無料スカルプチェックを予約する
             </a>
@@ -373,7 +372,7 @@ function HeroSection() {
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 animate-fade-in-up opacity-0-init delay-300">
             <a
               href="#cta"
-              className="btn-gold-shimmer text-white font-sans-jp font-bold px-6 md:px-8 py-3.5 md:py-4 rounded-sm text-center text-sm md:text-base" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
+              className="btn-gold-shimmer text-[oklch(0.18_0.04_42)] font-sans-jp font-semibold px-6 md:px-8 py-3.5 md:py-4 rounded-sm text-center text-sm md:text-base"
             >
               無料スカルプチェックを予約する
             </a>
@@ -463,156 +462,6 @@ function ProblemSection() {
               <p className="font-sans-jp text-white/80 text-sm leading-relaxed">{item.desc}</p>
             </div>
           ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-// 頭皮状態ギャラリーセクション
-const SCALP_STATES = [
-  {
-    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2022-07-0216.27.17-1_35d2e8f2.jpg",
-    label: "健やかな頭皮環境",
-    status: "良好",
-    statusColor: "oklch(0.65_0.15_145)",
-    desc: "毛根がしっかりと育ち、頭皮が清潔に保たれている状態。定期チェックでこの状態を維持することが大切です。",
-    detail: "健康・良好",
-  },
-  {
-    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2026-04-04-14-58-15-909_8fa65f43.jpg",
-    label: "皮脂過多・毛穴詰まり",
-    status: "要注意",
-    statusColor: "oklch(0.65_0.18_30)",
-    desc: "毛穴に皮脂が蔓積し、毛根への栄養供給が滞っている状態。放置すると抜け毛の原因になることがあります。",
-    detail: "皮脂・毛穴",
-  },
-  {
-    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2025-05-21-15-27-25-532_ec88191c.JPG",
-    label: "疲労の蓄積・毛根の退化",
-    status: "ケア推奨",
-    statusColor: "oklch(0.72_0.15_55)",
-    desc: "慢性的な疲労から毛根が退化している状態。頭皮の水分量低下と毛量の減少がみられる。",
-    detail: "疲労・退化",
-  },
-  {
-    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2025-10-27-10-18-21-496_65c4010d.jpg",
-    label: "皮脂過多・水分量低下",
-    status: "早期ケアを",
-    statusColor: "oklch(0.60_0.20_20)",
-    desc: "毛穴に油分が蔓積し始めている状態。過酸化脂質に変化し、汚れの蔓積、頭皮の炎症が起こり始める状態。",
-    detail: "皮脂・水分",
-  },
-];
-
-function ScalpGallerySection() {
-  const { ref, inView } = useInView();
-  const [active, setActive] = useState(0);
-
-  return (
-    <section className="py-24 bg-[oklch(0.14_0.03_42)]" id="scalp-gallery">
-      <div ref={ref} className="max-w-7xl mx-auto px-6">
-        {/* ヘッダー */}
-        <div className={`text-center mb-14 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
-            Scalp Microscope Gallery
-          </span>
-          <h2 className="font-mincho text-white text-3xl md:text-4xl font-bold mb-4">
-            あなたの頭皮は、<br />
-            <span className="text-[oklch(0.88_0.08_75)]">どの状態に近いですか？</span>
-          </h2>
-          <p className="font-sans-jp text-white/75 text-sm max-w-xl mx-auto leading-relaxed">
-            実際のマイクロスコープ映像です。頭皮の状態は人によって大きく異なります。<br />
-            自分の頭皮を「見たことがある」人は、ほとんどいません。
-          </p>
-        </div>
-
-        {/* メインレイアウト */}
-        <div className={`grid md:grid-cols-2 gap-10 items-center transition-all duration-700 delay-200 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          {/* 左：画像 */}
-          <div className="relative">
-            <div className="relative overflow-hidden rounded-sm" style={{ aspectRatio: "4/3" }}>
-              <img
-                key={active}
-                src={SCALP_STATES[active].img}
-                alt={SCALP_STATES[active].label}
-                className="w-full h-full object-cover transition-opacity duration-500"
-              />
-              {/* ステータスバッジ */}
-              <div
-                className="absolute top-4 left-4 px-3 py-1 text-xs font-sans-jp font-bold tracking-wider rounded-sm"
-                style={{ backgroundColor: SCALP_STATES[active].statusColor, color: "#fff" }}
-              >
-                {SCALP_STATES[active].status}
-              </div>
-              {/* 拡大鏡アイコン */}
-              <div className="absolute bottom-4 right-4 w-8 h-8 bg-black/50 backdrop-blur-sm flex items-center justify-center rounded-full">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
-                  <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
-                </svg>
-              </div>
-            </div>
-            {/* 凡例 */}
-            <p className="font-sans-jp text-white/40 text-[11px] text-center mt-2 tracking-wide">
-              ※ スカルプラボ実際のマイクロスコープ撮影画像
-            </p>
-          </div>
-
-          {/* 右：説明 */}
-          <div>
-            <div className="mb-6">
-              <div className="flex items-center gap-3 mb-3">
-                <div className="h-px w-8" style={{ backgroundColor: SCALP_STATES[active].statusColor }} />
-                <span className="font-cormorant italic text-[oklch(0.72_0.12_70)] text-sm tracking-widest">
-                  {SCALP_STATES[active].detail}
-                </span>
-              </div>
-              <h3 className="font-mincho text-white text-2xl md:text-3xl font-bold mb-4">
-                {SCALP_STATES[active].label}
-              </h3>
-              <p className="font-sans-jp text-white/80 text-sm leading-relaxed">
-                {SCALP_STATES[active].desc}
-              </p>
-            </div>
-
-            {/* サムネイル選択 */}
-            <div className="grid grid-cols-4 gap-2 mb-8">
-              {SCALP_STATES.map((s, i) => (
-                <button
-                  key={i}
-                  onClick={() => setActive(i)}
-                  className={`relative overflow-hidden rounded-sm transition-all duration-300 ${
-                    active === i ? "ring-2 ring-[oklch(0.72_0.12_70)] opacity-100" : "opacity-50 hover:opacity-80"
-                  }`}
-                  style={{ aspectRatio: "1" }}
-                  aria-label={s.label}
-                >
-                  <img src={s.img} alt={s.label} className="w-full h-full object-cover" />
-                  {active === i && (
-                    <div className="absolute inset-0 bg-[oklch(0.72_0.12_70)]/10" />
-                  )}
-                </button>
-              ))}
-            </div>
-
-            {/* CTA */}
-            <div className="border border-white/10 rounded-sm p-5 bg-white/5">
-              <p className="font-sans-jp text-white/90 text-sm leading-relaxed mb-4">
-                <span className="text-[oklch(0.88_0.08_75)] font-bold">あなたの頭皮は今、どんな状態？</span><br />
-                実際にマイクロスコープで確認してみましょう。初回チェックは無料です。
-              </p>
-              <button
-                onClick={() => {
-                  const el = document.getElementById("reservation");
-                  if (el) el.scrollIntoView({ behavior: "smooth" });
-                }}
-                className="w-full py-3 font-sans-jp text-sm font-semibold tracking-wider transition-all duration-300"
-                style={{ backgroundColor: "oklch(0.72_0.12_70)", color: "oklch(0.18_0.04_42)" }}
-              >
-                無料スカルプチェックを予約する
-              </button>
-            </div>
-          </div>
         </div>
       </div>
     </section>
@@ -865,19 +714,19 @@ function ServiceSection() {
     {
     layer: "Layer 2",
       badge: "定期チェック＆ケア",
-      title: "定期スカルプチェック",
+      title: "スカルプラボ定期ケア",
       subtitle: "1ヶ月に1回のボタニカルスカルプケア",
-      time: "45分",
-      price: "3,800～5,000円",
+      time: "30～40分",
+      price: "3,500～5,000円",
       color: "oklch(0.72_0.12_70)",
       image: IMAGES.botanicalMist,
       items: [
-        "① 頭皮チェック（状態確認・重点箇所の把握）",
-        "② ボタニカルミスト（気になる箇所から全体リセット）",
-        "③ 頭皮チェック（リセットを目視で確認・次回予約）",
-        "過去データとの時系列比較で頭皮変化を記録",
+        "頭皮チェック",
+        "頭皮の色・毛穴の状態・皮脂量・毛量の確認",
+        "生活習慣・ストレス・シャンプーチェック",
+        "スカルプラボアプリの利用",
       ],
-      desc: "チェック→リセット→チェックの3ステップで、頭皮の本当の変化を正確に把握。季節変動や施術の影響も時系列で記録できます。",
+      desc: "過去データとの時系列比較で頭皮の変化が一目でわかります。季節変動や施術の影響も記録・確認できます。",
       featured: true,
     },
     {
@@ -885,8 +734,8 @@ function ServiceSection() {
       badge: "ケアプログラム",
       title: "パーソナルスカルプケア",
       subtitle: "チェック結果に基づくケアのご提案",
-      time: "50分～",
-      price: "6,000円～",
+      time: "45分〜",
+      price: "6,000円〜",
       color: "oklch(0.62_0.05_148)",
       image: IMAGES.herbGommage,
       items: [
@@ -1025,33 +874,33 @@ function BotanicalMistSection() {
   const effects = [
     {
       icon: "",
-      title: "オーガニックハーブのミスト抽出",
-      desc: "ハーブスチーマーにより植物から薒気抽出した成分を頭皮に届けます。化学合成ではなく、天然ハーブの持つ浄化・保湿・整肌作用をそのまま頭皮に届けます。",
+      title: "植物成分を蒸気で浸透",
+      desc: "超微細なミストが頭皮の角質層まで届き、植物由来の有効成分を肌に馴染ませます。液体では届かない層へのアプローチが可能です。",
     },
     {
       icon: "",
-      title: "超微細ミストが毛孔の清浄に働く",
-      desc: "液体では届かない頭皮の角質層まで、超微細なミスト粒子が浸透します。毛穴に蓄積した皮脂・薬剤・汚れを浄化し、頭皮本来の吸収力を高めます。",
+      title: "引き算のメソッド",
+      desc: "トリートメントのように「足す」のではなく、頭皮に残る余分な皮脂・薬剤・化粧品残留物を「取り去る」ケア。素の頭皮本来の力を引き出します。",
     },
     {
       icon: "",
-      title: "引き算のリセットケア",
-      desc: "トリートメントのように「足す」のではなく、余分な皮脂・薬剤残留物を「取り去る」リセットケア。素の頭皮本来の力を引き出します。",
+      title: "重さゼロ・水分だけ",
+      desc: "水分のみを噴霧するため、髪に余分な重さを与えません。ふんわりとしたボリューム感を保ちながら、頭皮に潤いを届けます。",
     },
     {
       icon: "",
-      title: "保湿・整肌ケア",
-      desc: "ストレスの多い環境、季節の変わり目では、頭皮の状態が悪化しやすくなります。乾燥した頭皮に潤いを与え、皮脂分泌のバランスを整えることで、健康な頭皮環境をサポートします。",
+      title: "カラー・パーマ後の頭皮ケア",
+      desc: "アルカリカラーやパーマ後に残留する薬剤を天然ハーブで浄化。頭皮と髪の水分・タンパク質を補い、ダメージを受けた状態を整えます。",
     },
     {
       icon: "",
-      title: "カラー・パーマ後の薬剤浄化",
-      desc: "アルカリカラーやパーマ後に残留する薬剤をミスト抽出した植物成分によりクレンジング。頭皮への薬剤ダメージを軽減し、ケア後の頭皮環境を整えます。",
+      title: "頭皮を「皮膚」として捉える",
+      desc: "THE HERBSが独自に開発した植物美容メソッド。頭皮も顔と同じ「皮膚」として扱い、スキンケアと同様のアプローチで根本からケアします。",
     },
     {
       icon: "",
-      title: "季節変化に対応したハーブ配合",
-      desc: "季節や頭皮状態に応じてハーブ配合を調整。季節の変わり目に大きく変化する頭皮状態に対応したリセットケアを提供します。",
+      title: "継続で変化が見える",
+      desc: "定期チェックと組み合わせることで、ボタニカルミストの効果を数値・画像で記録。季節ごとの頭皮変化も時系列で確認できます。",
     },
   ];
 
@@ -1082,26 +931,14 @@ function BotanicalMistSection() {
               Botanical Mist Technology
             </span>
             <h2 className="font-mincho text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight" style={{ color: "#ffffff" }}>
-              定期スカルプチェックは、<br />
-              <span style={{ color: "#C9A84C" }}>頭皮リセットから始まる。</span>
+              植物の力を、<br />
+              <span style={{ color: "#C9A84C" }}>蒸気で頭皮へ。</span>
             </h2>
             <p className="font-sans-jp text-sm leading-relaxed mb-6 max-w-lg" style={{ color: "rgba(255,255,255,0.85)" }}>
-              ボタニカルミスト（ハーブスチーマー）は、定期チェックで行う「頭皮リセット」プログラムです。
-              毛穴に蓄積した皮脂・薬剤・汚れを蒸気抽出した植物成分で浄化、保湿ケアを行います。施術後の頭皮チェックで、
-              頭皮の変化を確認できます。
+              THE HERBSが1986年から研究を重ねてきた「植物美容メソッド」の核心技術。
+              ハーブスチーマー（ボタニカルミスト）は、植物由来の美容成分を超微細な蒸気に変換し、
+              頭皮の奥まで届けます。
             </p>
-            {/* ボタニカルミストの特徴バッジ */}
-            <div className="flex flex-wrap items-center gap-3 mb-6">
-              <div className="flex items-center gap-2 px-4 py-2 rounded-sm" style={{ backgroundColor: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.4)" }}>
-                <span className="font-sans-jp text-xs" style={{ color: "rgba(255,255,255,0.85)" }}>オーガニックハーブを使用</span>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-sm" style={{ backgroundColor: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.4)" }}>
-                <span className="font-sans-jp text-xs" style={{ color: "rgba(255,255,255,0.85)" }}>超微細ミストで毛孔清浄</span>
-              </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-sm" style={{ backgroundColor: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.4)" }}>
-                <span className="font-sans-jp text-xs" style={{ color: "rgba(255,255,255,0.85)" }}>頭皮クレンジング＋保湿ケア</span>
-              </div>
-            </div>
             <p className="font-sans-jp text-xs leading-relaxed max-w-lg" style={{ color: "rgba(255,255,255,0.65)" }}>
               ※本施術は化粧品の使用感の向上を目的としたものです。効果・効能には個人差があります。
             </p>
@@ -1144,7 +981,8 @@ function BotanicalMistSection() {
               onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#4a3828")}
               onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#3a2a1a")}
             >
-              <h3 className="font-mincho font-bold mb-3 leading-snug transition-colors" style={{ color: "#ffffff", fontSize: '18px' }}>
+              {effect.icon && <span className="text-3xl block mb-4">{effect.icon}</span>}
+              <h3 className="font-mincho text-base font-bold mb-3 leading-snug transition-colors" style={{ color: "#ffffff" }}>
                 {effect.title}
               </h3>
               <p className="font-sans-jp text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>
@@ -1157,14 +995,14 @@ function BotanicalMistSection() {
         {/* ボトムCTA */}
         <div className={`mt-16 text-center transition-all duration-700 delay-500 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <p className="font-sans-jp text-sm mb-6" style={{ color: "rgba(255,255,255,0.75)" }}>
-            ボタニカルミストは定期チェックのすべてのコースに含まれています
+            ボタニカルミストは「スカルプラボ定期ケア」「パーソナルスカルプケアコース」に含まれています
           </p>
           <button
             onClick={() => document.getElementById('予約')?.scrollIntoView({ behavior: 'smooth' })}
-            className="btn-gold-shimmer text-white font-sans-jp font-bold px-10 py-4 text-sm tracking-wider"
-            style={{ textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}
+            className="btn-gold-shimmer font-sans-jp font-semibold px-10 py-4 text-sm tracking-wider"
+            style={{ color: "#2a1e12" }}
           >
-            頭皮リセット＋チェックを予約する
+            ボタニカルミストを体験する
           </button>
         </div>
       </div>
@@ -1252,70 +1090,127 @@ function TargetSection() {
 
 // デジタル機能セクション
 function DigitalSection() {
+  const { ref, inView } = useInView();
   return (
-    <section className="py-24 border-t border-[#C9A84C]/20" style={{ backgroundColor: "#1a1208" }}>
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          {/* Text */}
-          <div>
-            <p className="text-xs tracking-[0.3em] mb-4" style={{ color: "#C9A84C", fontFamily: "'Noto Sans JP', sans-serif" }}>MY SCALP KARTE</p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
-              マイスカルプ<br />
-              <span style={{ color: "#C9A84C" }}>カルテ</span>
+    <section className="py-28 bg-[oklch(0.22_0.045_42)]">
+      <div ref={ref} className="max-w-7xl mx-auto px-6">
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
+          <div className={`transition-all duration-700 ${inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`}>
+            <img
+              src={IMAGES.report}
+              alt="スカルプカルテ - デジタル頭皮手帳"
+              className="w-full rounded-sm shadow-2xl"
+            />
+          </div>
+          <div className={`transition-all duration-700 delay-200 ${inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}>
+            <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
+              My Scalp Karte
+            </span>
+            <h2 className="font-mincho text-white text-3xl md:text-4xl font-bold mb-8">
+              マイ・スカルプカルテ<br />
+              <span className="text-[oklch(0.88_0.08_75)]">スカルプラボ頭皮ケアアプリ</span>
             </h2>
-            <p className="text-sm leading-relaxed mb-8" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.75)", lineHeight: "1.9" }}>
-              定期チェックのたびに頭皮の記録が蓄積される、<br />
-              女性のためのヘアケアカルテアプリ。<br />
-              自分の頭皮状態を知り、継続的なケアをサポートします。
-            </p>
-            <ul className="space-y-3 mb-10">
+            <div className="space-y-6">
               {[
-                "頭皮画像のアップロード・時系列記録",
-                "症状・生活習慣のログ管理",
-                "スカルプフォト・状態ガイド",
-                "サロンとのデータ共有機能",
+                {
+                  icon: "▫️",
+                  title: "時系列レポート",
+                  desc: "頭皮状態の推移をグラフで記録・確認。変化が一目でわかります。",
+                },
+                {
+                  icon: "▫️",
+                  title: "AI予測スコア",
+                  desc: "現在のケア状態をもとにした参考スコア表示。継続的なケアのモチベーションをサポートします。",
+                },
+                {
+                  icon: "▫️",
+                  title: "リマインド通知",
+                  desc: "次回の「定期チェックのご案内、季節に応じたケアTipsをLINEでお届け。",
+                },
+                {
+                  icon: "▫️",
+                  title: "共有機能",
+                  desc: "定期チェック、定期ケア、サロンケアでの情報共有が可能。チームでケアをサポート。",
+                },
               ].map((item, i) => (
-                <li key={i} className="flex items-center gap-3 text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.85)" }}>
-                  <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#C9A84C", fontSize: "10px", color: "#ffffff", fontWeight: 700 }}>✓</span>
-                  {item}
-                </li>
+                <div key={i} className="flex items-start gap-4">
+                  <span className="text-2xl flex-shrink-0">{item.icon}</span>
+                  <div>
+                    <h4 className="font-mincho text-white text-base font-bold mb-1">{item.title}</h4>
+                    <p className="font-sans-jp text-white/80 text-sm leading-relaxed">{item.desc}</p>
+                  </div>
+                </div>
               ))}
-            </ul>
-            {/* Store Buttons */}
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="#"
-                onClick={e => { e.preventDefault(); alert("App Store公開準備中です。しばらくお待ちください。"); }}
-                className="flex items-center gap-3 px-5 py-3 rounded-xl border hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: "#1a1208", borderColor: "rgba(201,168,76,0.4)" }}
-              >
-                <svg viewBox="0 0 24 24" className="w-7 h-7" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                <div>
-                  <div className="text-xs" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Noto Sans JP', sans-serif" }}>Download on the</div>
-                  <div className="text-sm font-semibold" style={{ color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}>App Store</div>
-                </div>
-              </a>
-              <a
-                href="#"
-                onClick={e => { e.preventDefault(); alert("Google Play公開準備中です。しばらくお待ちください。"); }}
-                className="flex items-center gap-3 px-5 py-3 rounded-xl border hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: "#1a1208", borderColor: "rgba(201,168,76,0.4)" }}
-              >
-                <svg viewBox="0 0 24 24" className="w-7 h-7" fill="white"><path d="M3.18 23.76c.3.17.64.24.99.2l12.6-7.27-2.72-2.72-10.87 9.79zm-1.7-20.4C1.18 3.7 1 4.08 1 4.56v14.88c0 .48.18.86.48 1.2l.07.06 8.34-8.34v-.2L1.55 3.82l-.07.06-.07.06zM20.49 10.7l-2.81-1.62-3.06 3.06 3.06 3.06 2.83-1.63c.81-.46.81-1.22-.02-1.87zm-18.3 12.3l.07-.06 9.4-9.4-2.72-2.72-6.75 12.18z"/></svg>
-                <div>
-                  <div className="text-xs" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Noto Sans JP', sans-serif" }}>GET IT ON</div>
-                  <div className="text-sm font-semibold" style={{ color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}>Google Play</div>
-                </div>
-              </a>
             </div>
           </div>
-          {/* Mockup Image */}
-          <div className="flex justify-center">
-            <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/app-mockup-hero-aPvm7rmSN3wqZSXwseC4wS.png"
-              alt="マイスカルプカルテ モックアップ"
-              className="w-full max-w-lg object-contain"
-            />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// 検診フローセクション
+function FlowSection() {
+  const { ref, inView } = useInView();
+  const steps = [
+    {
+      num: "01",
+      title: "無料スカルプチェックを予約",
+      desc: "LINEまたはウェブサイトから簡単予約。所要時間はわずか5〜10分です。",
+    },
+    {
+      num: "02",
+      title: "マイクロスコープで頭皮をチェック、スタイル撮影",
+      desc: "専門スタッフが丁寧に頭皮の状態を撮影・記録します。",
+      image: IMAGES.scalpCheckReal,
+    },
+    {
+      num: "03",
+      title: "その場で結果を説明",
+            desc: "毛穴の状態・皮脂量・毛量などをスタッフが画像つきでわかりやすくご説明します。",
+    },
+    {
+      num: "04",
+      title: "パーソナルスカルプケアプランを提案",
+      desc: "あなたの頭皮状態に合わせた最適なホームケアとケアプランをご提案します。",
+    },
+  ];
+
+  return (
+    <section className="py-28 bg-[oklch(0.955_0.018_82)]">
+      <div ref={ref} className="max-w-7xl mx-auto px-6">
+        <div className={`text-center mb-16 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
+            How It Works
+          </span>
+          <h2 className="font-mincho text-[oklch(0.22_0.045_42)] text-3xl md:text-4xl font-bold">
+            定期スカルプチェックの流れ
+          </h2>
+        </div>
+
+        <div className="relative">
+          <div className="hidden md:block absolute top-8 left-[calc(12.5%+2rem)] right-[calc(12.5%+2rem)] h-px bg-[oklch(0.88_0.025_75)]" />
+          <div className="grid md:grid-cols-4 gap-8">
+            {steps.map((step, i) => (
+              <div
+                key={i}
+                className={`text-center transition-all duration-700 ${
+                  inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+                }`}
+                style={{ transitionDelay: `${i * 150}ms` }}
+              >
+                <div className="w-16 h-16 rounded-full bg-[oklch(0.22_0.045_42)] flex items-center justify-center mx-auto mb-6 relative z-10">
+                  <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-lg font-semibold">{step.num}</span>
+                </div>
+                {step.image && (
+                  <div className="mb-4 overflow-hidden rounded-sm mx-auto" style={{ maxWidth: '160px', height: '110px' }}>
+                    <img src={step.image} alt={step.title} className="w-full h-full object-cover" />
+                  </div>
+                )}
+                <h3 className="font-mincho text-[oklch(0.22_0.045_42)] text-base font-bold mb-3">{step.title}</h3>
+                <p className="font-sans-jp text-[oklch(0.55_0.04_42)] text-xs leading-relaxed">{step.desc}</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
@@ -1651,7 +1546,7 @@ function BeforeAfterSection() {
   );
 }
 
-// // 予約フォームセクション
+// 予約フォームセクション
 function ReservationSection() {
   const { ref, inView } = useInView();
   const [form, setForm] = useState({
@@ -1665,14 +1560,14 @@ function ReservationSection() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [submitting, setSubmitting] = useState(false);
-  const createReservation = trpc.reservation.create.useMutation();
+
   const timeSlots = [
     "10:00", "10:30", "11:00", "11:30",
     "13:00", "13:30", "14:00", "14:30",
     "15:00", "15:30", "16:00", "16:30",
     "17:00", "17:30", "18:00",
   ];
+
   const validate = () => {
     const e: Record<string, string> = {};
     if (!form.name.trim()) e.name = "お名前を入力してください";
@@ -1684,31 +1579,15 @@ function ReservationSection() {
     if (!form.plan) e.plan = "コースを選択してください";
     return e;
   };
-  const handleSubmit = async (e: React.FormEvent) => {
+
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const errs = validate();
     if (Object.keys(errs).length > 0) {
       setErrors(errs);
       return;
     }
-    setSubmitting(true);
-    try {
-      await createReservation.mutateAsync({
-        name: form.name,
-        phone: form.phone,
-        email: form.email || undefined,
-        desiredDate: form.date,
-        desiredTime: form.time,
-        plan: form.plan as "free" | "standard" | "personal" | "consult",
-        message: form.message || undefined,
-        gender: "women",
-      });
-      setSubmitted(true);
-    } catch {
-      setErrors({ submit: "送信に失敗しました。お電話またはLINEでご予約ください。" });
-    } finally {
-      setSubmitting(false);
-    }
+    setSubmitted(true);
   };
 
   const inputClass = (field: string) =>
@@ -1885,14 +1764,10 @@ function ReservationSection() {
 
             <button
               type="submit"
-              disabled={submitting}
-              className="w-full btn-gold-shimmer text-white font-sans-jp font-bold py-4 rounded-sm text-base transition-all hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
+              className="w-full btn-gold-shimmer text-[oklch(0.18_0.04_42)] font-sans-jp font-semibold py-4 rounded-sm text-base transition-all hover:opacity-90"
             >
-              {submitting ? "送信中..." : "予約を申し込む"}
+              予約を申し込む
             </button>
-            {errors.submit && (
-              <p className="font-sans-jp text-red-400 text-xs text-center mt-2">{errors.submit}</p>
-            )}
 
             <p className="font-sans-jp text-white/25 text-[11px] text-center leading-relaxed">
               ※ ご予約後、担当スタッフよりご連絡いたします。
@@ -1912,39 +1787,36 @@ function StoreSection() {
   const stores = [
     {
       id: "hankyu",
-      name: "スカルプラボ THE HERBS神戸阪急店",
-      nameEn: "SCALP LABO THE HERBS Kobe Hankyu",
+      name: "スカルプラボ 神戸阪急店",
+      nameEn: "SCALP LABO Kobe Hankyu",
       badge: "百貨店内サロン",
-      address: "兵庫県神戸市中央区小野柄通８丁目１−8",
-      address2: "神戸阪急本館6階 モーニングフロー内",
+      address: "〒650-0001 兵庫県神戸市中央区加納町4-4-1 神戸阪急 B1F",
       hours: [
-        { day: "営業時間", time: "10:00 ～ 20:00" },
+        { day: "月〜金", time: "10:30 〜 20:00" },
+        { day: "土・日・祝", time: "10:00 〜 20:00" },
       ],
-      closed: "1月1日～2日",
-      line: "https://lin.ee/RhtIZDl",
-      lineId: "@theherbs_kobe",
-      features: ["頭皮チェック", "ハーブスチーマー（ボタニカルミスト）", "頭皮データの記録・管理"],
-      mapUrl: "https://maps.google.com/?q=兵庫県神戸市中央区小野柄通8丁目1番8号+神戸阪急本館6階",
-      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.0!2d135.19476!3d34.69344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e6f7b8e5a3a3%3A0x5b1e2c3d4e5f6a7b!2z56aP5oi45YWD5pys5pys6aSo6Ziz5bGxIOOBiOOBj-OBhOOBhOOBhA!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp",
+      closed: "不定休（神戸阪急に準ずる）",
+      line: "https://lin.ee/oWeHStW",
+      features: ["頭皮マイクロスコープチェック", "ハーブスチーマー（ボタニカルミスト）", "頭皮データの記録・管理"],
+      mapUrl: "https://maps.google.com/?q=神戸阪急+神戸市中央区加納町4-4-1",
+      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.5!2d135.1955!3d34.6941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e6f7b8e5a3a3%3A0x1!2z56aP5oi45YWD5pys!5e0!3m2!1sja!2sjp!4v1",
       color: "oklch(0.72_0.12_70)",
     },
     {
       id: "nada",
-      name: "スカルプラボ THE HERBSサロン",
-      nameEn: "SCALP LABO THE HERBS Salon",
+      name: "スカルプラボ 灘区直営サロン",
+      nameEn: "SCALP LABO Nada Salon",
       badge: "直営ヘッドスパサロン",
-      address: "兵庫県神戸市灘区大内通1-7-17 1F",
-      address2: "",
+      address: "〒657-0051 兵庫県神戸市灘区大内通1-7-17 1階",
       hours: [
-        { day: "水・金", time: "10:00 ～ 18:00" },
-        { day: "土", time: "13:00 ～ 20:00" },
+        { day: "火〜土", time: "10:00 〜 19:00" },
+        { day: "日・祝", time: "10:00 〜 18:00" },
       ],
-      closed: "火曜・日曜・祝日定休",
+      closed: "月曜定休",
       line: "https://lin.ee/oWeHStW",
-      lineId: "@theherbs39",
       features: ["育毛メニュー", "ディープクレンジング", "うねりケア", "ヘアカラー後の頭皮ケア", "和漢カラー"],
-      mapUrl: "https://maps.app.goo.gl/a96J7E9gnPBXi9tA6",
-      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3279.8!2d135.2257085!3d34.7128842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60008dba49ad1097%3A0x351be9b6133f830b!2sMODE+VERDE+%E3%82%B5%E3%83%AD%E3%83%B3!5e0!3m2!1sja!2sjp!4v1700000000001!5m2!1sja!2sjp",
+      mapUrl: "https://maps.google.com/?q=神戸市灘区篠原北町",
+      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.5!2d135.2355!3d34.7141!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e7b8e5a3a3%3A0x1!2z56aP5oi45YWD5pys!5e0!3m2!1sja!2sjp!4v1",
       color: "oklch(0.62_0.14_160)",
     },
   ];
@@ -1976,7 +1848,7 @@ function StoreSection() {
               style={{ transitionDelay: `${i * 150}ms` }}
             >
               {/* マップエリア */}
-                <div className="relative h-52 bg-[oklch(0.92_0.015_75)] overflow-hidden">
+              <div className="relative h-52 bg-[oklch(0.92_0.015_75)] overflow-hidden">
                 <iframe
                   title={store.name}
                   src={store.mapEmbed}
@@ -1991,20 +1863,6 @@ function StoreSection() {
                 >
                   {store.badge}
                 </div>
-                {/* マップで開くボタン */}
-                <a
-                  href={store.mapUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="absolute top-3 right-3 flex items-center gap-1 bg-white/90 hover:bg-white text-[oklch(0.38_0.055_42)] font-sans-jp text-[10px] font-medium px-2.5 py-1.5 rounded-full shadow-sm transition-all"
-                >
-                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                    <polyline points="15 3 21 3 21 9"/>
-                    <line x1="10" y1="14" x2="21" y2="3"/>
-                  </svg>
-                  マップで開く
-                </a>
               </div>
 
               {/* 情報エリア */}
@@ -2020,16 +1878,15 @@ function StoreSection() {
 
                 {/* 住所 */}
                 <div className="flex items-start gap-3 mb-4">
-                  <span className="text-[oklch(0.72_0.12_70)] text-base mt-0.5 flex-shrink-0"></span>
-                  <div className="font-sans-jp text-[oklch(0.38_0.055_42)] text-sm leading-relaxed">
-                    <p>{store.address}</p>
-                    {store.address2 && <p>{store.address2}</p>}
-                  </div>
+                  <span className="text-[oklch(0.72_0.12_70)] text-base mt-0.5 flex-shrink-0">📍</span>
+                  <p className="font-sans-jp text-[oklch(0.38_0.055_42)] text-sm leading-relaxed">
+                    {store.address}
+                  </p>
                 </div>
 
                 {/* 営業時間 */}
                 <div className="flex items-start gap-3 mb-4">
-                  <span className="text-[oklch(0.72_0.12_70)] text-base mt-0.5 flex-shrink-0"></span>
+                  <span className="text-[oklch(0.72_0.12_70)] text-base mt-0.5 flex-shrink-0">🕐</span>
                   <div>
                     {store.hours.map((h) => (
                       <div key={h.day} className="flex gap-3 mb-1">
@@ -2074,7 +1931,7 @@ function StoreSection() {
                       <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
                     </svg>
                     LINEで予約・問合せ
-                    <span className="text-white/70 text-[10px] font-normal ml-1">{store.lineId}</span>
+                    <span className="text-white/70 text-[10px] font-normal ml-1">@theherbs39</span>
                   </a>
                   <a
                     href={store.mapUrl}
@@ -2140,7 +1997,7 @@ function CtaSection() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="#予約"
-              className="btn-gold-shimmer text-white font-sans-jp font-bold px-10 py-5 rounded-sm text-base" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
+              className="btn-gold-shimmer text-[oklch(0.18_0.04_42)] font-sans-jp font-semibold px-10 py-5 rounded-sm text-base"
             >
               無料スカルプチェックを予約する
             </a>
@@ -2250,7 +2107,6 @@ export default function Home() {
       <Nav />
       <HeroSection />
       <ProblemSection />
-      <ScalpGallerySection />
       <ConceptSection />
       <HabitValueSection />
       <StatsSection />
@@ -2258,6 +2114,7 @@ export default function Home() {
       <BotanicalMistSection />
       <TargetSection />
       <DigitalSection />
+      <FlowSection />
       <BeforeAfterSection />
       <TestimonialsSection />
       <FaqSection />
