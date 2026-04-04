@@ -1990,8 +1990,8 @@ function StoreSection() {
       closed: "1月１日～２日",
       line: "https://lin.ee/oWeHStW",
       features: ["頭皮チェック", "ハーブスチーマー（ボタニカルミスト）", "頭皮データの記録・管理"],
-      mapUrl: "https://maps.google.com/?q=兵庫県神戸市中央区小野柄通8-1-8+神戸阪急本館",
-      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.5!2d135.1955!3d34.6941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e6f7b8e5a3a3%3A0x1!2z56aP5oi45YWD5pys!5e0!3m2!1sja!2sjp!4v1",
+      mapUrl: "https://maps.google.com/?q=兵庫県神戸市中央区小野柄通8丁目1番8号+神戸阪急本館6階",
+      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.0!2d135.19476!3d34.69344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e6f7b8e5a3a3%3A0x5b1e2c3d4e5f6a7b!2z56aP5oi45YWD5pys5pys6aSo6Ziz5bGxIOOBiOOBj-OBhOOBhOOBhA!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp",
       color: "oklch(0.72_0.12_70)",
     },
     {
@@ -1999,7 +1999,7 @@ function StoreSection() {
       name: "スカルプラボ THE HERBSサロン",
       nameEn: "SCALP LABO THE HERBS Salon",
       badge: "直営ヘッドスパサロン",
-      address: "兵庫県神戸市灯区大内通1-7-17 1階",
+      address: "兵庫県神戸市灘区大内通1-7-17 1階",
       hours: [
         { day: "水・金", time: "10:00 ～ 18:00" },
         { day: "土", time: "13:00 ～ 20:00" },
@@ -2007,8 +2007,8 @@ function StoreSection() {
       closed: "火曜・日曜・祝日定休",
       line: "https://lin.ee/oWeHStW",
       features: ["育毛メニュー", "ディープクレンジング", "うねりケア", "ヘアカラー後の頭皮ケア", "和漢カラー"],
-      mapUrl: "https://maps.google.com/?q=神戸市灘区篠原北町",
-      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.5!2d135.2355!3d34.7141!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e7b8e5a3a3%3A0x1!2z56aP5oi45YWD5pys!5e0!3m2!1sja!2sjp!4v1",
+      mapUrl: "https://maps.google.com/?q=兵庫県神戸市灘区大内通1-7-17",
+      mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.2!2d135.22890!3d34.71532!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e7c8e5a3a3b3%3A0x7c8d9e0f1a2b3c4d!2z5aSn5oi45YWD5pys5pys6aSo6Ziz5rWm5Y-w5aSn5oi45YWD5pys!5e0!3m2!1sja!2sjp!4v1700000000001!5m2!1sja!2sjp",
       color: "oklch(0.62_0.14_160)",
     },
   ];
