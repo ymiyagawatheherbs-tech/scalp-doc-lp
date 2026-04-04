@@ -490,7 +490,7 @@ function Service() {
         "サブスクリプション型の製品定期便",
         "深刻な状態が見られた場合の医療機関ご紹介",
       ],
-      img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/men-scalp-shampoo_7b5af6a8.jpg",
+      img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/men-personal-care_2c524aa8.jpg",
     },
   ];
 
