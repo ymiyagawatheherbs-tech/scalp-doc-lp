@@ -1090,58 +1090,70 @@ function TargetSection() {
 
 // デジタル機能セクション
 function DigitalSection() {
-  const { ref, inView } = useInView();
   return (
-    <section className="py-28 bg-[oklch(0.22_0.045_42)]">
-      <div ref={ref} className="max-w-7xl mx-auto px-6">
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
-          <div className={`transition-all duration-700 ${inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`}>
-            <img
-              src={IMAGES.report}
-              alt="スカルプカルテ - デジタル頭皮手帳"
-              className="w-full rounded-sm shadow-2xl"
-            />
-          </div>
-          <div className={`transition-all duration-700 delay-200 ${inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}>
-            <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
-              My Scalp Karte
-            </span>
-            <h2 className="font-mincho text-white text-3xl md:text-4xl font-bold mb-8">
-              マイ・スカルプカルテ<br />
-              <span className="text-[oklch(0.88_0.08_75)]">スカルプラボ頭皮ケアアプリ</span>
+    <section className="py-24 border-t border-[#C9A84C]/20" style={{ backgroundColor: "#1a1208" }}>
+      <div className="max-w-6xl mx-auto px-6">
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          {/* Text */}
+          <div>
+            <p className="text-xs tracking-[0.3em] mb-4" style={{ color: "#C9A84C", fontFamily: "'Noto Sans JP', sans-serif" }}>MY SCALP KARTE</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
+              マイスカルプ<br />
+              <span style={{ color: "#C9A84C" }}>カルテ</span>
             </h2>
-            <div className="space-y-6">
+            <p className="text-sm leading-relaxed mb-8" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.75)", lineHeight: "1.9" }}>
+              定期チェックのたびに頭皮の記録が蓄積される、<br />
+              女性のためのヘアケアカルテアプリ。<br />
+              自分の頭皮状態を知り、継続的なケアをサポートします。
+            </p>
+            <ul className="space-y-3 mb-10">
               {[
-                {
-                  icon: "▫️",
-                  title: "時系列レポート",
-                  desc: "頭皮状態の推移をグラフで記録・確認。変化が一目でわかります。",
-                },
-                {
-                  icon: "▫️",
-                  title: "AI予測スコア",
-                  desc: "現在のケア状態をもとにした参考スコア表示。継続的なケアのモチベーションをサポートします。",
-                },
-                {
-                  icon: "▫️",
-                  title: "リマインド通知",
-                  desc: "次回の「定期チェックのご案内、季節に応じたケアTipsをLINEでお届け。",
-                },
-                {
-                  icon: "▫️",
-                  title: "共有機能",
-                  desc: "定期チェック、定期ケア、サロンケアでの情報共有が可能。チームでケアをサポート。",
-                },
+                "頭皮画像のアップロード・時系列記録",
+                "症状・生活習慣のログ管理",
+                "スカルプフォト・状態ガイド",
+                "サロンとのデータ共有機能",
               ].map((item, i) => (
-                <div key={i} className="flex items-start gap-4">
-                  <span className="text-2xl flex-shrink-0">{item.icon}</span>
-                  <div>
-                    <h4 className="font-mincho text-white text-base font-bold mb-1">{item.title}</h4>
-                    <p className="font-sans-jp text-white/80 text-sm leading-relaxed">{item.desc}</p>
-                  </div>
-                </div>
+                <li key={i} className="flex items-center gap-3 text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.85)" }}>
+                  <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#C9A84C", fontSize: "10px", color: "#ffffff", fontWeight: 700 }}>✓</span>
+                  {item}
+                </li>
               ))}
+            </ul>
+            {/* Store Buttons */}
+            <div className="flex flex-wrap gap-4">
+              <a
+                href="#"
+                onClick={e => { e.preventDefault(); alert("App Store公開準備中です。しばらくお待ちください。"); }}
+                className="flex items-center gap-3 px-5 py-3 rounded-xl border hover:opacity-80 transition-opacity"
+                style={{ backgroundColor: "#1a1208", borderColor: "rgba(201,168,76,0.4)" }}
+              >
+                <svg viewBox="0 0 24 24" className="w-7 h-7" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                <div>
+                  <div className="text-xs" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Noto Sans JP', sans-serif" }}>Download on the</div>
+                  <div className="text-sm font-semibold" style={{ color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}>App Store</div>
+                </div>
+              </a>
+              <a
+                href="#"
+                onClick={e => { e.preventDefault(); alert("Google Play公開準備中です。しばらくお待ちください。"); }}
+                className="flex items-center gap-3 px-5 py-3 rounded-xl border hover:opacity-80 transition-opacity"
+                style={{ backgroundColor: "#1a1208", borderColor: "rgba(201,168,76,0.4)" }}
+              >
+                <svg viewBox="0 0 24 24" className="w-7 h-7" fill="white"><path d="M3.18 23.76c.3.17.64.24.99.2l12.6-7.27-2.72-2.72-10.87 9.79zm-1.7-20.4C1.18 3.7 1 4.08 1 4.56v14.88c0 .48.18.86.48 1.2l.07.06 8.34-8.34v-.2L1.55 3.82l-.07.06-.07.06zM20.49 10.7l-2.81-1.62-3.06 3.06 3.06 3.06 2.83-1.63c.81-.46.81-1.22-.02-1.87zm-18.3 12.3l.07-.06 9.4-9.4-2.72-2.72-6.75 12.18z"/></svg>
+                <div>
+                  <div className="text-xs" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Noto Sans JP', sans-serif" }}>GET IT ON</div>
+                  <div className="text-sm font-semibold" style={{ color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}>Google Play</div>
+                </div>
+              </a>
             </div>
+          </div>
+          {/* Mockup Image */}
+          <div className="flex justify-center">
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/app-mockup-hero-aPvm7rmSN3wqZSXwseC4wS.png"
+              alt="マイスカルプカルテ モックアップ"
+              className="w-full max-w-lg object-contain"
+            />
           </div>
         </div>
       </div>
@@ -1974,79 +1986,6 @@ function StoreSection() {
 }
 
 // CTAセクション
-// ========== APP SECTION ==========
-function AppSection() {
-  return (
-    <section className="py-24 border-t border-[#C9A84C]/20" style={{ backgroundColor: "#1a1208" }}>
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          {/* Text */}
-          <div>
-            <p className="text-xs tracking-[0.3em] mb-4" style={{ color: "#C9A84C", fontFamily: "'Noto Sans JP', sans-serif" }}>MY SCALP KARTE</p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
-              マイスカルプ<br />
-              <span style={{ color: "#C9A84C" }}>カルテ</span>
-            </h2>
-            <p className="text-sm leading-relaxed mb-8" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.75)", lineHeight: "1.9" }}>
-              定期チェックのたびに頭皮の記録が蓄積される、<br />
-              女性のためのヘアケアカルテアプリ。<br />
-              自分の頭皮状態を知り、継続的なケアをサポートします。
-            </p>
-            <ul className="space-y-3 mb-10">
-              {[
-                "頭皮画像のアップロード・時系列記録",
-                "症状・生活習慣のログ管理",
-                "スカルプフォト・状態ガイド",
-                "サロンとのデータ共有機能",
-              ].map((item, i) => (
-                <li key={i} className="flex items-center gap-3 text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.85)" }}>
-                  <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#C9A84C", fontSize: "10px", color: "#ffffff", fontWeight: 700 }}>✓</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            {/* Store Buttons */}
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="#"
-                onClick={e => { e.preventDefault(); alert("App Store公開準備中です。しばらくお待ちください。"); }}
-                className="flex items-center gap-3 px-5 py-3 rounded-xl border hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: "#1a1208", borderColor: "rgba(26,18,8,0.3)" }}
-              >
-                <svg viewBox="0 0 24 24" className="w-7 h-7" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                <div>
-                  <div className="text-xs" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Noto Sans JP', sans-serif" }}>Download on the</div>
-                  <div className="text-sm font-semibold" style={{ color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}>App Store</div>
-                </div>
-              </a>
-              <a
-                href="#"
-                onClick={e => { e.preventDefault(); alert("Google Play公開準備中です。しばらくお待ちください。"); }}
-                className="flex items-center gap-3 px-5 py-3 rounded-xl border hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: "#1a1208", borderColor: "rgba(26,18,8,0.3)" }}
-              >
-                <svg viewBox="0 0 24 24" className="w-7 h-7" fill="white"><path d="M3.18 23.76c.3.17.64.24.99.2l12.6-7.27-2.72-2.72-10.87 9.79zm-1.7-20.4C1.18 3.7 1 4.08 1 4.56v14.88c0 .48.18.86.48 1.2l.07.06 8.34-8.34v-.2L1.55 3.82l-.07.06-.07.06zM20.49 10.7l-2.81-1.62-3.06 3.06 3.06 3.06 2.83-1.63c.81-.46.81-1.22-.02-1.87zm-18.3 12.3l.07-.06 9.4-9.4-2.72-2.72-6.75 12.18z"/></svg>
-                <div>
-                  <div className="text-xs" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Noto Sans JP', sans-serif" }}>GET IT ON</div>
-                  <div className="text-sm font-semibold" style={{ color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}>Google Play</div>
-                </div>
-              </a>
-            </div>
-          </div>
-          {/* Mockup Image */}
-          <div className="flex justify-center">
-            <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/app-mockup-hero-aPvm7rmSN3wqZSXwseC4wS.png"
-              alt="スカルプラボアプリ モックアップ"
-              className="w-full max-w-lg object-contain"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function CtaSection() {
   const { ref, inView } = useInView();
   return (
@@ -2193,7 +2132,6 @@ export default function Home() {
       <FaqSection />
       <StoreSection />
       <ReservationSection />
-      <AppSection />
       <CtaSection />
       <Footer />
     </div>

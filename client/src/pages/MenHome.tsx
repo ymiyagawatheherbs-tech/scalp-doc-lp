@@ -751,47 +751,69 @@ function Target() {
 // ========== DIGITAL ==========
 function Digital() {
   return (
-    <section className="bg-[#0D1B2A] py-24">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="py-24 border-t border-[#C9A84C]/20" style={{ backgroundColor: "#0D1B2A" }}>
+      <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-16 items-center">
+          {/* Text */}
           <div>
-            <div className="flex items-center gap-4 mb-4">
-              <div className="h-px w-12 bg-[#C9A84C]" />
-              <span className="text-[#C9A84C] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">Digital Feature</span>
-            </div>
-            <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-6">
+            <p className="text-xs tracking-[0.3em] text-[#C9A84C] mb-4 font-['Noto_Sans_JP']" style={{ fontFamily: "'Noto Sans JP', sans-serif" }}>SCALP LABO DIGITAL REPORT</p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
               スカルプラボ<br />
-              <span className="text-[#C9A84C]">デジタルレポート</span>
+              <span style={{ color: "#C9A84C" }}>デジタルレポート</span>
             </h2>
-            <p className="text-white/70 text-sm leading-relaxed mb-8 font-['Noto_Sans_JP'] font-light">
-              チェックのたびにデータが蓄積され、頭皮状態の時系列変化をグラフで確認できます。
-              「変化が見える」ことが、継続ケアの動機になります。
+            <p className="text-sm leading-relaxed mb-8" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.75)", lineHeight: "1.9" }}>
+              定期チェックのたびに頭皮データが蓄積される、<br />
+              男性のためのデジタル頭皮記録ツール。<br />
+              変化をグラフで可視化し、ケアの効果を実感できます。
             </p>
-            <div className="space-y-4">
+            <ul className="space-y-3 mb-10">
               {[
-                { title: "時系列レポート", desc: "頭皮状態の推移をグラフで記録・確認" },
-                { title: "参考スコア表示", desc: "現在のケア状態の継続モチベーション指標" },
-                { title: "リマインド通知", desc: "次回チェックの案内・季節別ケアTips" },
-                { title: "製品レコメンド", desc: "チェック結果に連動したケア製品のご提案" },
-              ].map((item) => (
-                <div key={item.title} className="flex items-start gap-4 p-4 border border-white/5 hover:border-[#C9A84C]/20 transition-colors">
-                  <div className="w-1 h-full min-h-[2rem] bg-[#C9A84C] shrink-0 mt-1" />
-                  <div>
-                    <h4 className="text-white font-['Shippori_Mincho'] font-bold text-sm mb-1">{item.title}</h4>
-                    <p className="text-white/75 text-xs font-['Noto_Sans_JP']">{item.desc}</p>
-                  </div>
-                </div>
+                "頭皮画像のアップロード・時系列記録",
+                "症状・生活習慣のログ管理",
+                "チェック結果のグラフ可視化",
+                "サロンとのデータ共有機能",
+              ].map((item, i) => (
+                <li key={i} className="flex items-center gap-3 text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.85)" }}>
+                  <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#C9A84C", fontSize: "10px", color: "#0D1B2A", fontWeight: 700 }}>✓</span>
+                  {item}
+                </li>
               ))}
+            </ul>
+            {/* Store Buttons */}
+            <div className="flex flex-wrap gap-4">
+              <a
+                href="#"
+                onClick={e => { e.preventDefault(); alert("App Store公開準備中です。しばらくお待ちください。"); }}
+                className="flex items-center gap-3 px-5 py-3 rounded-xl border hover:opacity-80 transition-opacity"
+                style={{ backgroundColor: "#1C2B3A", borderColor: "rgba(201,168,76,0.3)" }}
+              >
+                <svg viewBox="0 0 24 24" className="w-7 h-7" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+                <div>
+                  <div className="text-xs" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Noto Sans JP', sans-serif" }}>Download on the</div>
+                  <div className="text-sm font-semibold" style={{ color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}>App Store</div>
+                </div>
+              </a>
+              <a
+                href="#"
+                onClick={e => { e.preventDefault(); alert("Google Play公開準備中です。しばらくお待ちください。"); }}
+                className="flex items-center gap-3 px-5 py-3 rounded-xl border hover:opacity-80 transition-opacity"
+                style={{ backgroundColor: "#1C2B3A", borderColor: "rgba(201,168,76,0.3)" }}
+              >
+                <svg viewBox="0 0 24 24" className="w-7 h-7" fill="white"><path d="M3.18 23.76c.3.17.64.24.99.2l12.6-7.27-2.72-2.72-10.87 9.79zm-1.7-20.4C1.18 3.7 1 4.08 1 4.56v14.88c0 .48.18.86.48 1.2l.07.06 8.34-8.34v-.2L1.55 3.82l-.07.06-.07.06zM20.49 10.7l-2.81-1.62-3.06 3.06 3.06 3.06 2.83-1.63c.81-.46.81-1.22-.02-1.87zm-18.3 12.3l.07-.06 9.4-9.4-2.72-2.72-6.75 12.18z"/></svg>
+                <div>
+                  <div className="text-xs" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Noto Sans JP', sans-serif" }}>GET IT ON</div>
+                  <div className="text-sm font-semibold" style={{ color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}>Google Play</div>
+                </div>
+              </a>
             </div>
           </div>
-          <div className="relative">
+          {/* Mockup Image */}
+          <div className="flex justify-center">
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/men-report_22a12908.jpg"
-              alt="スカルプラボ デジタルレポート"
-              className="w-full object-cover"
-              style={{ aspectRatio: "4/3" }}
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/app-mockup-hero-aPvm7rmSN3wqZSXwseC4wS.png"
+              alt="スカルプラボ デジタルレポート モックアップ"
+              className="w-full max-w-lg object-contain"
             />
-            <div className="absolute -bottom-4 -left-4 w-32 h-32 border border-[#C9A84C]/30" />
           </div>
         </div>
       </div>
@@ -1383,78 +1405,6 @@ function StoreSection() {
   );
 }
 
-// ========== APP SECTION ==========
-function AppSection() {
-  return (
-    <section className="bg-[#0D1B2A] py-24 border-t border-[#C9A84C]/20">
-      <div className="max-w-6xl mx-auto px-6">
-        <div className="grid md:grid-cols-2 gap-16 items-center">
-          {/* Text */}
-          <div>
-            <p className="text-xs tracking-[0.3em] text-[#C9A84C] mb-4 font-['Noto_Sans_JP']" style={{ fontFamily: "'Noto Sans JP', sans-serif" }}>SCALP LABO DIGITAL REPORT</p>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
-              スカルプラボ<br />
-              <span style={{ color: "#C9A84C" }}>デジタルレポート</span>
-            </h2>
-            <p className="text-sm leading-relaxed mb-8" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.75)", lineHeight: "1.9" }}>
-              定期チェックのたびに頭皮データが蓄積される、<br />
-              男性のためのデジタル頭皮記録ツール。<br />
-              変化をグラフで可視化し、ケアの効果を実感できます。
-            </p>
-            <ul className="space-y-3 mb-10">
-              {[
-                "頭皮画像のアップロード・時系列記録",
-                "症状・生活習慣のログ管理",
-                "チェック結果のグラフ可視化",
-                "サロンとのデータ共有機能",
-              ].map((item, i) => (
-                <li key={i} className="flex items-center gap-3 text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.85)" }}>
-                  <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#C9A84C", fontSize: "10px", color: "#0D1B2A", fontWeight: 700 }}>✓</span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            {/* Store Buttons */}
-            <div className="flex flex-wrap gap-4">
-              <a
-                href="#"
-                onClick={e => { e.preventDefault(); alert("App Store公開準備中です。しばらくお待ちください。"); }}
-                className="flex items-center gap-3 px-5 py-3 rounded-xl border border-white/20 hover:border-[#C9A84C]/60 transition-colors"
-                style={{ backgroundColor: "rgba(255,255,255,0.05)" }}
-              >
-                <svg viewBox="0 0 24 24" className="w-7 h-7" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
-                <div>
-                  <div className="text-xs" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Noto Sans JP', sans-serif" }}>Download on the</div>
-                  <div className="text-sm font-semibold" style={{ color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}>App Store</div>
-                </div>
-              </a>
-              <a
-                href="#"
-                onClick={e => { e.preventDefault(); alert("Google Play公開準備中です。しばらくお待ちください。"); }}
-                className="flex items-center gap-3 px-5 py-3 rounded-xl border border-white/20 hover:border-[#C9A84C]/60 transition-colors"
-                style={{ backgroundColor: "rgba(255,255,255,0.05)" }}
-              >
-                <svg viewBox="0 0 24 24" className="w-7 h-7" fill="white"><path d="M3.18 23.76c.3.17.64.24.99.2l12.6-7.27-2.72-2.72-10.87 9.79zm-1.7-20.4C1.18 3.7 1 4.08 1 4.56v14.88c0 .48.18.86.48 1.2l.07.06 8.34-8.34v-.2L1.55 3.82l-.07.06-.07.06zM20.49 10.7l-2.81-1.62-3.06 3.06 3.06 3.06 2.83-1.63c.81-.46.81-1.22-.02-1.87zm-18.3 12.3l.07-.06 9.4-9.4-2.72-2.72-6.75 12.18z"/></svg>
-                <div>
-                  <div className="text-xs" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Noto Sans JP', sans-serif" }}>GET IT ON</div>
-                  <div className="text-sm font-semibold" style={{ color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}>Google Play</div>
-                </div>
-              </a>
-            </div>
-          </div>
-          {/* Mockup Image */}
-          <div className="flex justify-center">
-            <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/app-mockup-hero-aPvm7rmSN3wqZSXwseC4wS.png"
-              alt="スカルプラボアプリ モックアップ"
-              className="w-full max-w-lg object-contain"
-            />
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
 
 // ========== CTA ==========
 function CTA() {
@@ -1586,7 +1536,6 @@ export default function MenHome() {
       <FAQ />
       <StoreSection />
       <Reservation />
-      <AppSection />
       <CTA />
       <Footer />
     </div>
