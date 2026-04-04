@@ -349,6 +349,149 @@ function Problem() {
   );
 }
 
+// ========== SCALP GALLERY ==========
+const MEN_SCALP_STATES = [
+  {
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2026-03-31-11-53-45-302_24bcccad.JPG",
+    label: "皮脂過多・毛穴詰まり",
+    status: "要注意",
+    statusBg: "#C9A84C",
+    statusText: "#0D1B2A",
+    desc: "毛穴に皮脂が蔓積し、毛根への栄養供給が滞っている状態。放置すると抜け毛の原因になることがあります。",
+    detail: "皮脂・毛穴",
+  },
+  {
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2025-05-21-15-27-25-532_ec88191c.JPG",
+    label: "フケ・乾燥性頭皮",
+    status: "ケア推奨",
+    statusBg: "#8B6914",
+    statusText: "#fff",
+    desc: "頭皮の角質が剥がれ、フケとして現れている状態。乾燥・刺激・ターンオーバーの乱れが原因として考えられます。",
+    detail: "乾燥・フケ",
+  },
+  {
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2025-09-24-20-09-44-058_bf1c7806.JPG",
+    label: "健やかな頭皮環境",
+    status: "良好",
+    statusBg: "#2D6A4F",
+    statusText: "#fff",
+    desc: "毛根がしっかりと育ち、頭皮が清潔に保たれている状態。定期チェックでこの状態を維持することが大切です。",
+    detail: "健康・良好",
+  },
+  {
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2025-10-27-10-18-21-496_65c4010d.jpg",
+    label: "毛根の細化・弱体化",
+    status: "早期ケアを",
+    statusBg: "#8B1A1A",
+    statusText: "#fff",
+    desc: "毛根が細くなり、毛髪が弱くなっている状態。早期に頭皮環境を整えることで、改善が期待できます。",
+    detail: "細毛・弱体化",
+  },
+];
+
+function ScalpGallery() {
+  const [active, setActive] = useState(0);
+  const s = MEN_SCALP_STATES[active];
+
+  return (
+    <section className="bg-[#0D1B2A] py-24" id="scalp-gallery">
+      <div className="max-w-7xl mx-auto px-6">
+        {/* ヘッダー */}
+        <div className="text-center mb-14">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="h-px w-12 bg-[#C9A84C]" />
+            <span className="text-[#C9A84C] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">Scalp Microscope Gallery</span>
+            <div className="h-px w-12 bg-[#C9A84C]" />
+          </div>
+          <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-4">
+            あなたの頭皮は、<br />
+            <span className="text-[#C9A84C]">どの状態に近いですか？</span>
+          </h2>
+          <p className="text-white/70 text-sm font-['Noto_Sans_JP'] font-light max-w-xl mx-auto leading-relaxed">
+            実際のマイクロスコープ映像です。頭皮の状態は人によって大きく異なります。<br />
+            自分の頭皮を「見たことがある」男性は、ほとんどいません。
+          </p>
+        </div>
+
+        {/* メインレイアウト */}
+        <div className="grid md:grid-cols-2 gap-10 items-center">
+          {/* 左：画像 */}
+          <div className="relative">
+            <div className="relative overflow-hidden" style={{ aspectRatio: "4/3" }}>
+              <img
+                key={active}
+                src={s.img}
+                alt={s.label}
+                className="w-full h-full object-cover"
+              />
+              <div
+                className="absolute top-4 left-4 px-3 py-1 text-xs font-['Noto_Sans_JP'] font-bold tracking-wider"
+                style={{ backgroundColor: s.statusBg, color: s.statusText }}
+              >
+                {s.status}
+              </div>
+              <div className="absolute bottom-4 right-4 w-8 h-8 bg-black/60 flex items-center justify-center">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#C9A84C" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+                </svg>
+              </div>
+            </div>
+            <p className="text-white/30 text-[11px] text-center mt-2 font-['Noto_Sans_JP']">
+              ※ スカルプラボ実際のマイクロスコープ撮影画像
+            </p>
+          </div>
+
+          {/* 右：説明 */}
+          <div>
+            <div className="mb-6">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="h-px w-8 bg-[#C9A84C]" />
+                <span className="font-['Cormorant_Garamond'] italic text-[#C9A84C] text-sm tracking-widest">{s.detail}</span>
+              </div>
+              <h3 className="font-['Shippori_Mincho'] text-white text-2xl md:text-3xl font-bold mb-4">{s.label}</h3>
+              <p className="text-white/80 text-sm leading-relaxed font-['Noto_Sans_JP'] font-light">{s.desc}</p>
+            </div>
+
+            {/* サムネイル */}
+            <div className="grid grid-cols-4 gap-2 mb-8">
+              {MEN_SCALP_STATES.map((st, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActive(i)}
+                  className={`relative overflow-hidden transition-all duration-300 ${
+                    active === i ? "ring-2 ring-[#C9A84C] opacity-100" : "opacity-40 hover:opacity-70"
+                  }`}
+                  style={{ aspectRatio: "1" }}
+                  aria-label={st.label}
+                >
+                  <img src={st.img} alt={st.label} className="w-full h-full object-cover" />
+                </button>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <div className="border border-[#C9A84C]/30 p-5 bg-[#1C2B3A]">
+              <p className="text-white/90 text-sm font-['Noto_Sans_JP'] font-light leading-relaxed mb-4">
+                <span className="text-[#C9A84C] font-bold">あなたの頭皮は今、どんな状態？</span><br />
+                実際にマイクロスコープで確認してみましょう。初回チェックは無料です。
+              </p>
+              <button
+                onClick={() => {
+                  const el = document.getElementById("reservation");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="w-full py-3 bg-[#C9A84C] text-[#0D1B2A] font-['Noto_Sans_JP'] font-bold text-sm tracking-widest hover:bg-[#E8C97A] transition-all duration-300"
+              >
+                無料スカルプチェックを予約する
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ========== CONCEPT ==========
 function Concept() {
   return (
@@ -1557,6 +1700,7 @@ export default function MenHome() {
       <Nav />
       <Hero />
       <Problem />
+      <ScalpGallery />
       <Concept />
       <Stats />
       <Service />

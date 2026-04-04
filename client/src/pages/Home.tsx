@@ -469,6 +469,156 @@ function ProblemSection() {
   );
 }
 
+// 頭皮状態ギャラリーセクション
+const SCALP_STATES = [
+  {
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2026-03-31-11-53-45-302_24bcccad.JPG",
+    label: "皮脂過多・毛穴詰まり",
+    status: "要注意",
+    statusColor: "oklch(0.65_0.18_30)",
+    desc: "毛穴に皮脂が蓄積し、毛根への栄養供給が滞っている状態。放置すると抜け毛の原因になることがあります。",
+    detail: "皮脂・毛穴",
+  },
+  {
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2025-05-21-15-27-25-532_ec88191c.JPG",
+    label: "フケ・乾燥性頭皮",
+    status: "ケア推奨",
+    statusColor: "oklch(0.72_0.15_55)",
+    desc: "頭皮の角質が剥がれ、フケとして現れている状態。乾燥・刺激・ターンオーバーの乱れが原因として考えられます。",
+    detail: "乾燥・フケ",
+  },
+  {
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2025-09-24-20-09-44-058_bf1c7806.JPG",
+    label: "健やかな頭皮環境",
+    status: "良好",
+    statusColor: "oklch(0.65_0.15_145)",
+    desc: "毛根がしっかりと育ち、頭皮が清潔に保たれている状態。定期チェックでこの状態を維持することが大切です。",
+    detail: "健康・良好",
+  },
+  {
+    img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2025-10-27-10-18-21-496_65c4010d.jpg",
+    label: "毛根の細化・弱体化",
+    status: "早期ケアを",
+    statusColor: "oklch(0.60_0.20_20)",
+    desc: "毛根が細くなり、毛髪が弱くなっている状態。早期に頭皮環境を整えることで、改善が期待できます。",
+    detail: "細毛・弱体化",
+  },
+];
+
+function ScalpGallerySection() {
+  const { ref, inView } = useInView();
+  const [active, setActive] = useState(0);
+
+  return (
+    <section className="py-24 bg-[oklch(0.14_0.03_42)]" id="scalp-gallery">
+      <div ref={ref} className="max-w-7xl mx-auto px-6">
+        {/* ヘッダー */}
+        <div className={`text-center mb-14 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
+            Scalp Microscope Gallery
+          </span>
+          <h2 className="font-mincho text-white text-3xl md:text-4xl font-bold mb-4">
+            あなたの頭皮は、<br />
+            <span className="text-[oklch(0.88_0.08_75)]">どの状態に近いですか？</span>
+          </h2>
+          <p className="font-sans-jp text-white/75 text-sm max-w-xl mx-auto leading-relaxed">
+            実際のマイクロスコープ映像です。頭皮の状態は人によって大きく異なります。<br />
+            自分の頭皮を「見たことがある」人は、ほとんどいません。
+          </p>
+        </div>
+
+        {/* メインレイアウト */}
+        <div className={`grid md:grid-cols-2 gap-10 items-center transition-all duration-700 delay-200 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          {/* 左：画像 */}
+          <div className="relative">
+            <div className="relative overflow-hidden rounded-sm" style={{ aspectRatio: "4/3" }}>
+              <img
+                key={active}
+                src={SCALP_STATES[active].img}
+                alt={SCALP_STATES[active].label}
+                className="w-full h-full object-cover transition-opacity duration-500"
+              />
+              {/* ステータスバッジ */}
+              <div
+                className="absolute top-4 left-4 px-3 py-1 text-xs font-sans-jp font-bold tracking-wider rounded-sm"
+                style={{ backgroundColor: SCALP_STATES[active].statusColor, color: "#fff" }}
+              >
+                {SCALP_STATES[active].status}
+              </div>
+              {/* 拡大鏡アイコン */}
+              <div className="absolute bottom-4 right-4 w-8 h-8 bg-black/50 backdrop-blur-sm flex items-center justify-center rounded-full">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
+                  <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
+                </svg>
+              </div>
+            </div>
+            {/* 凡例 */}
+            <p className="font-sans-jp text-white/40 text-[11px] text-center mt-2 tracking-wide">
+              ※ スカルプラボ実際のマイクロスコープ撮影画像
+            </p>
+          </div>
+
+          {/* 右：説明 */}
+          <div>
+            <div className="mb-6">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="h-px w-8" style={{ backgroundColor: SCALP_STATES[active].statusColor }} />
+                <span className="font-cormorant italic text-[oklch(0.72_0.12_70)] text-sm tracking-widest">
+                  {SCALP_STATES[active].detail}
+                </span>
+              </div>
+              <h3 className="font-mincho text-white text-2xl md:text-3xl font-bold mb-4">
+                {SCALP_STATES[active].label}
+              </h3>
+              <p className="font-sans-jp text-white/80 text-sm leading-relaxed">
+                {SCALP_STATES[active].desc}
+              </p>
+            </div>
+
+            {/* サムネイル選択 */}
+            <div className="grid grid-cols-4 gap-2 mb-8">
+              {SCALP_STATES.map((s, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActive(i)}
+                  className={`relative overflow-hidden rounded-sm transition-all duration-300 ${
+                    active === i ? "ring-2 ring-[oklch(0.72_0.12_70)] opacity-100" : "opacity-50 hover:opacity-80"
+                  }`}
+                  style={{ aspectRatio: "1" }}
+                  aria-label={s.label}
+                >
+                  <img src={s.img} alt={s.label} className="w-full h-full object-cover" />
+                  {active === i && (
+                    <div className="absolute inset-0 bg-[oklch(0.72_0.12_70)]/10" />
+                  )}
+                </button>
+              ))}
+            </div>
+
+            {/* CTA */}
+            <div className="border border-white/10 rounded-sm p-5 bg-white/5">
+              <p className="font-sans-jp text-white/90 text-sm leading-relaxed mb-4">
+                <span className="text-[oklch(0.88_0.08_75)] font-bold">あなたの頭皮は今、どんな状態？</span><br />
+                実際にマイクロスコープで確認してみましょう。初回チェックは無料です。
+              </p>
+              <button
+                onClick={() => {
+                  const el = document.getElementById("reservation");
+                  if (el) el.scrollIntoView({ behavior: "smooth" });
+                }}
+                className="w-full py-3 font-sans-jp text-sm font-semibold tracking-wider transition-all duration-300"
+                style={{ backgroundColor: "oklch(0.72_0.12_70)", color: "oklch(0.18_0.04_42)" }}
+              >
+                無料スカルプチェックを予約する
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // コンセプトセクション
 function ConceptSection() {
   const { ref, inView } = useInView();
@@ -2140,6 +2290,7 @@ export default function Home() {
       <Nav />
       <HeroSection />
       <ProblemSection />
+      <ScalpGallerySection />
       <ConceptSection />
       <HabitValueSection />
       <StatsSection />
