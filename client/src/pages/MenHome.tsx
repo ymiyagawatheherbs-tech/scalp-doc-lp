@@ -476,7 +476,7 @@ function Service() {
         "問診（生活習慣・使用製品）",
         "パーソナルスカルプレポート（時系列グラフ付き）",
       ],
-      img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/men-scalp-closeup_01f136bf.png",
+      img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/men-steamer-check_49af7a59.jpg",
     },
     {
       step: "Layer 03",
