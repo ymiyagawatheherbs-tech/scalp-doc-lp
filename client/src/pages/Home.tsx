@@ -1024,34 +1024,34 @@ function BotanicalMistSection() {
 
   const effects = [
     {
-      icon: "",
-      title: "植物成分を蒸気で浸透",
-      desc: "超微細なミストが頭皮の角質層まで届き、植物由来の有効成分を肌に馴染ませます。液体では届かない層へのアプローチが可能です。",
+      icon: "🔍",
+      title: "定期チェックの最初に行う頭皮リセット",
+      desc: "ボタニカルミストは、マイクロスコープチェックの前に必ず行う「頭皮リセット」ステップです。毛穴の汚れや皮脂を浄化してからチェックすることで、頭皮の本当の状態が正確に診断できます。",
     },
     {
-      icon: "",
-      title: "引き算のメソッド",
-      desc: "トリートメントのように「足す」のではなく、頭皮に残る余分な皮脂・薬剤・化粧品残留物を「取り去る」ケア。素の頭皮本来の力を引き出します。",
+      icon: "🌿",
+      title: "引き算のリセットケア",
+      desc: "トリートメントのように「足す」のではなく、毛穴に蔓積した余分な皮脂・薬剤・化粧品残留物を「取り去る」ケア。素の頭皮本来の力を引き出します。",
     },
     {
-      icon: "",
-      title: "重さゼロ・水分だけ",
-      desc: "水分のみを噴霧するため、髪に余分な重さを与えません。ふんわりとしたボリューム感を保ちながら、頭皮に潤いを届けます。",
+      icon: "💧",
+      title: "超微細蕲気が毛穴の奥まで届く",
+      desc: "液体では届かない頭皮の角質層まで、植物由来の有効成分を届けます。水分のみの噴霧のため髪に余分な重さを与えず、リセット後のチェック精度が高まります。",
     },
     {
-      icon: "",
-      title: "カラー・パーマ後の頭皮ケア",
-      desc: "アルカリカラーやパーマ後に残留する薬剤を天然ハーブで浄化。頭皮と髪の水分・タンパク質を補い、ダメージを受けた状態を整えます。",
+      icon: "📅",
+      title: "定期リセットで季節変化に対応",
+      desc: "季節の変わり目に頭皮状態は大きく変化します。定期チェックごとにボタニカルミストでリセットすることで、季節に応じた頭皮環境を常に整えられます。",
     },
     {
-      icon: "",
-      title: "頭皮を「皮膚」として捉える",
-      desc: "THE HERBSが独自に開発した植物美容メソッド。頭皮も顔と同じ「皮膚」として扱い、スキンケアと同様のアプローチで根本からケアします。",
+      icon: "📊",
+      title: "リセット前後の画像で変化を記録",
+      desc: "ボタニカルミスト前後の頭皮状態をマイクロスコープで撮影・記録。定期チェックの度にデータが蔓み重なり、頭皮カルテとして時系列で確認できます。",
     },
     {
-      icon: "",
-      title: "継続で変化が見える",
-      desc: "定期チェックと組み合わせることで、ボタニカルミストの効果を数値・画像で記録。季節ごとの頭皮変化も時系列で確認できます。",
+      icon: "✨",
+      title: "カラー・パーマ後の頭皮リセットにも",
+      desc: "アルカリカラーやパーマ後に残留する薬剤を天然ハーブで浄化。定期チェック前のリセットとして特に有効で、頭皮と髪の本来の状態を正確に診断できます。",
     },
   ];
 
@@ -1082,14 +1082,26 @@ function BotanicalMistSection() {
               Botanical Mist Technology
             </span>
             <h2 className="font-mincho text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight" style={{ color: "#ffffff" }}>
-              植物の力を、<br />
-              <span style={{ color: "#C9A84C" }}>蒸気で頭皮へ。</span>
+              定期チェックは、<br />
+              <span style={{ color: "#C9A84C" }}>頭皮リセットから始まる。</span>
             </h2>
             <p className="font-sans-jp text-sm leading-relaxed mb-6 max-w-lg" style={{ color: "rgba(255,255,255,0.85)" }}>
-              THE HERBSが1986年から研究を重ねてきた「植物美容メソッド」の核心技術。
-              ハーブスチーマー（ボタニカルミスト）は、植物由来の美容成分を超微細な蒸気に変換し、
-              頭皮の奥まで届けます。
+              ボタニカルミスト（ハーブスチーマー）は、定期チェックの最初に行う「頭皮リセット」プログラムです。
+              毛穴に蔓積した皮脂・薬剤・汚れを植物由来の蕲気で浄化してからチェックすることで、
+              頭皮の本当の状態を正確に診断できます。
             </p>
+            {/* ステップバッジ */}
+            <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-sm" style={{ backgroundColor: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.4)" }}>
+                <span className="font-cormorant text-xs tracking-widest uppercase" style={{ color: "#C9A84C" }}>Step 1</span>
+                <span className="font-sans-jp text-xs" style={{ color: "rgba(255,255,255,0.85)" }}>ボタニカルミストで頭皮リセット</span>
+              </div>
+              <span style={{ color: "rgba(255,255,255,0.4)" }}>→</span>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-sm" style={{ backgroundColor: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.4)" }}>
+                <span className="font-cormorant text-xs tracking-widest uppercase" style={{ color: "#C9A84C" }}>Step 2</span>
+                <span className="font-sans-jp text-xs" style={{ color: "rgba(255,255,255,0.85)" }}>マイクロスコープで頭皮チェック</span>
+              </div>
+            </div>
             <p className="font-sans-jp text-xs leading-relaxed max-w-lg" style={{ color: "rgba(255,255,255,0.65)" }}>
               ※本施術は化粧品の使用感の向上を目的としたものです。効果・効能には個人差があります。
             </p>
@@ -1146,14 +1158,14 @@ function BotanicalMistSection() {
         {/* ボトムCTA */}
         <div className={`mt-16 text-center transition-all duration-700 delay-500 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <p className="font-sans-jp text-sm mb-6" style={{ color: "rgba(255,255,255,0.75)" }}>
-            ボタニカルミストは「スカルプラボ定期ケア」「パーソナルスカルプケアコース」に含まれています
+            ボタニカルミストは定期チェックのすべてのコースに含まれています
           </p>
           <button
             onClick={() => document.getElementById('予約')?.scrollIntoView({ behavior: 'smooth' })}
-            className="btn-gold-shimmer font-sans-jp font-semibold px-10 py-4 text-sm tracking-wider"
-            style={{ color: "#2a1e12" }}
+            className="btn-gold-shimmer text-white font-sans-jp font-bold px-10 py-4 text-sm tracking-wider"
+            style={{ textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}
           >
-            ボタニカルミストを体験する
+            頭皮リセット＋チェックを予約する
           </button>
         </div>
       </div>
