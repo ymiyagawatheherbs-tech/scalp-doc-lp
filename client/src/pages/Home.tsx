@@ -1980,32 +1980,31 @@ function StoreSection() {
   const stores = [
     {
       id: "hankyu",
-      name: "スカルプラボ 神戸阪急店",
-      nameEn: "SCALP LABO Kobe Hankyu",
+      name: "スカルプラボ THE HERBS神戸阪急店",
+      nameEn: "SCALP LABO THE HERBS Kobe Hankyu",
       badge: "百貨店内サロン",
-      address: "〒650-0001 兵庫県神戸市中央区加納町4-4-1 神戸阪急 B1F",
+      address: "兵庫県神戸市中央区小野柄通８丁目１−8 神戸阪急本館６階　モーニングフロー内",
       hours: [
-        { day: "月〜金", time: "10:30 〜 20:00" },
-        { day: "土・日・祝", time: "10:00 〜 20:00" },
+        { day: "営業時間", time: "10:00 ～ 20:00" },
       ],
-      closed: "不定休（神戸阪急に準ずる）",
+      closed: "1月１日～２日",
       line: "https://lin.ee/oWeHStW",
-      features: ["頭皮マイクロスコープチェック", "ハーブスチーマー（ボタニカルミスト）", "頭皮データの記録・管理"],
-      mapUrl: "https://maps.google.com/?q=神戸阪急+神戸市中央区加納町4-4-1",
+      features: ["頭皮チェック", "ハーブスチーマー（ボタニカルミスト）", "頭皮データの記録・管理"],
+      mapUrl: "https://maps.google.com/?q=兵庫県神戸市中央区小野柄通8-1-8+神戸阪急本館",
       mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3280.5!2d135.1955!3d34.6941!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e6f7b8e5a3a3%3A0x1!2z56aP5oi45YWD5pys!5e0!3m2!1sja!2sjp!4v1",
       color: "oklch(0.72_0.12_70)",
     },
     {
       id: "nada",
-      name: "スカルプラボ 灘区直営サロン",
-      nameEn: "SCALP LABO Nada Salon",
+      name: "スカルプラボ THE HERBSサロン",
+      nameEn: "SCALP LABO THE HERBS Salon",
       badge: "直営ヘッドスパサロン",
-      address: "〒657-0051 兵庫県神戸市灘区大内通1-7-17 1階",
+      address: "兵庫県神戸市灯区大内通1-7-17 1階",
       hours: [
-        { day: "火〜土", time: "10:00 〜 19:00" },
-        { day: "日・祝", time: "10:00 〜 18:00" },
+        { day: "水・金", time: "10:00 ～ 18:00" },
+        { day: "土", time: "13:00 ～ 20:00" },
       ],
-      closed: "月曜定休",
+      closed: "火曜・日曜・祝日定休",
       line: "https://lin.ee/oWeHStW",
       features: ["育毛メニュー", "ディープクレンジング", "うねりケア", "ヘアカラー後の頭皮ケア", "和漢カラー"],
       mapUrl: "https://maps.google.com/?q=神戸市灘区篠原北町",
@@ -2071,7 +2070,7 @@ function StoreSection() {
 
                 {/* 住所 */}
                 <div className="flex items-start gap-3 mb-4">
-                  <span className="text-[oklch(0.72_0.12_70)] text-base mt-0.5 flex-shrink-0">📍</span>
+                  <span className="text-[oklch(0.72_0.12_70)] text-base mt-0.5 flex-shrink-0"></span>
                   <p className="font-sans-jp text-[oklch(0.38_0.055_42)] text-sm leading-relaxed">
                     {store.address}
                   </p>
@@ -2079,7 +2078,7 @@ function StoreSection() {
 
                 {/* 営業時間 */}
                 <div className="flex items-start gap-3 mb-4">
-                  <span className="text-[oklch(0.72_0.12_70)] text-base mt-0.5 flex-shrink-0">🕐</span>
+                  <span className="text-[oklch(0.72_0.12_70)] text-base mt-0.5 flex-shrink-0"></span>
                   <div>
                     {store.hours.map((h) => (
                       <div key={h.day} className="flex gap-3 mb-1">
