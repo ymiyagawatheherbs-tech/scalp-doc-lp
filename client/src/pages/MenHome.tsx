@@ -1388,7 +1388,8 @@ function StoreSection() {
       name: "スカルプラボ THE HERBS神戸阪急店",
       nameEn: "SCALP LABO THE HERBS Kobe Hankyu",
       badge: "百貨店内サロン",
-      address: "兵庫県神戸市中央区小野柄通8丁目1番8号 神戸阪急本館6階 モーニングフロー内",
+      address: "兵庫県神戸市中央区小野柄通8丁目1番8号",
+      address2: "神戸阪急本館6階 モーニングフロー内",
       hours: [
         { day: "営業時間", time: "10:00 ～ 20:00" },
       ],
@@ -1404,6 +1405,7 @@ function StoreSection() {
       nameEn: "SCALP LABO THE HERBS Salon",
       badge: "直営ヘッドスパサロン",
       address: "兵庫県神戸市灘区大内通1-7-17 1F",
+      address2: "",
       hours: [
         { day: "水・金", time: "10:00 ～ 18:00" },
         { day: "土", time: "13:00 ～ 20:00" },
@@ -1454,6 +1456,20 @@ function StoreSection() {
                 <div className="absolute top-3 left-3 font-['Noto_Sans_JP'] text-[#0D1B2A] text-xs font-bold px-3 py-1 bg-[#C9A84C]">
                   {store.badge}
                 </div>
+                {/* マップで開くボタン */}
+                <a
+                  href={store.mapUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="absolute top-3 right-3 flex items-center gap-1 bg-white/90 hover:bg-white text-[#0D1B2A] font-['Noto_Sans_JP'] text-[10px] font-bold px-2.5 py-1.5 rounded-full shadow-sm transition-all"
+                >
+                  <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+                    <polyline points="15 3 21 3 21 9"/>
+                    <line x1="10" y1="14" x2="21" y2="3"/>
+                  </svg>
+                  マップで開く
+                </a>
               </div>
 
               {/* 情報エリア */}
@@ -1470,7 +1486,10 @@ function StoreSection() {
                 {/* 住所 */}
                 <div className="flex items-start gap-3 mb-4">
                   <span className="text-[#C9A84C] text-sm mt-0.5 flex-shrink-0">📍</span>
-                  <p className="text-white/80 text-sm font-['Noto_Sans_JP'] leading-relaxed">{store.address}</p>
+                  <div className="text-white/80 text-sm font-['Noto_Sans_JP'] leading-relaxed">
+                    <p>{store.address}</p>
+                    {store.address2 && <p>{store.address2}</p>}
+                  </div>
                 </div>
 
                 {/* 営業時間 */}
