@@ -241,7 +241,7 @@ function Hero() {
               データで把握する。
             </span>
             <span className="block text-base md:text-2xl text-[#C9A84C] font-normal mt-2 md:mt-4 tracking-wider">
-              それが、男の自己投賄。
+              抜け毛を未然に防ぎ、不安のない髪へ
             </span>
           </h1>
 
@@ -680,32 +680,32 @@ function BotanicalMist() {
 
   const effects = [
     {
-      icon: "💧",
+      icon: "",
       title: "植物成分を蒸気で洸透",
       desc: "超微細なミストが頭皮の角質層まで届き、植物由来成分を肌に馴染ませます。液体では届かない層へのアプローチ。",
     },
     {
-      icon: "🌿",
+      icon: "",
       title: "引き算のメソッド",
       desc: "頭皮に残る余分な皮脂・薬剤・化粧品残留物を「取り去る」ケア。素の頭皮本来の力を引き出します。",
     },
     {
-      icon: "✨",
+      icon: "",
       title: "重さゼロ・水分だけ",
       desc: "水分のみを噴霧するため、髪に余分な重さを与えません。スタイリングの仕上がりに影響なく、頭皮に潤いを届けます。",
     },
     {
-      icon: "🔬",
+      icon: "",
       title: "頭皮を「皮膚」として捉える",
       desc: "THE HERBSが独自開発した植物美容メソッド。頭皮も顔と同じ「皮膚」として扱い、スキンケアと同様のアプローチで根本ケア。",
     },
     {
-      icon: "🌸",
+      icon: "",
       title: "カラー・パーマ後のリセット",
       desc: "薬剤残留を天然ハーブで浄化。頭皮と髪の水分・タンパク質を補い、ダメージを受けた頭皮状態を整えます。",
     },
     {
-      icon: "📊",
+      icon: "",
       title: "定期チェックとの相乗効果",
       desc: "チェックデータと組み合わせることで、ミストの効果を数値・画像で記録。時系列で頭皮変化を確認できます。",
     },
@@ -782,7 +782,7 @@ function BotanicalMist() {
               onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#1C2B3A")}
             >
               <span className="text-3xl block mb-4">{effect.icon}</span>
-              <h3 className="font-['Shippori_Mincho'] text-base font-bold mb-3 leading-snug transition-colors" style={{ color: "#ffffff" }}>
+              <h3 className="font-['Shippori_Mincho'] text-base font-bold mb-3 leading-snug transition-colors" style={{ color: "#ffffff", fontSize: '18px' }}>
                 {effect.title}
               </h3>
               <p className="text-xs font-['Noto_Sans_JP'] leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>
@@ -816,19 +816,19 @@ function BotanicalMist() {
 function Target() {
   const targets = [
     {
-      icon: "🧬",
+      icon: "",
       title: "予防ケア層（20〜30代）",
       message: "「まだ大丈夫なうちに、始める安心」",
       body: "親が薄毛、将来が不安。早めに頭皮の状態を把握しておきたい方に。データを積み重ねることで、変化に気づけます。",
     },
     {
-      icon: "💼",
+      icon: "",
       title: "ビジネスパーソン（30〜40代）",
       message: "「見た目の自信が、仕事の自信になる」",
       body: "第一印象は髪から。定期的な頭皮ケアを習慣にすることで、清潔感と自信を保ち続けられます。",
     },
     {
-      icon: "🔬",
+      icon: "",
       title: "育毛ケア層（40〜50代）",
       message: "「見える化で、不安を安心に変える」",
       body: "薄毛・抜け毛が気になり始めた方に。状態を数値で把握し、適切なケアの選択をサポートします。",
