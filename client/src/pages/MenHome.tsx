@@ -1391,21 +1391,21 @@ function AppSection() {
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Text */}
           <div>
-            <p className="text-xs tracking-[0.3em] text-[#C9A84C] mb-4 font-['Noto_Sans_JP']" style={{ fontFamily: "'Noto Sans JP', sans-serif" }}>SCALP LABO APP</p>
+            <p className="text-xs tracking-[0.3em] text-[#C9A84C] mb-4 font-['Noto_Sans_JP']" style={{ fontFamily: "'Noto Sans JP', sans-serif" }}>SCALP LABO DIGITAL REPORT</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
-              頭皮の変化を、<br />
-              <span style={{ color: "#C9A84C" }}>データで記録・管理。</span>
+              スカルプラボ<br />
+              <span style={{ color: "#C9A84C" }}>デジタルレポート</span>
             </h2>
             <p className="text-sm leading-relaxed mb-8" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.75)", lineHeight: "1.9" }}>
-              スカルプラボアプリで頭皮画像・症状・生活習慣を記録。<br />
-              定期チェックのデータをLINEで共有し、<br />
-              あなただけのパーソナルケアプランを提案します。
+              定期チェックのたびに頭皮データが蓄積される、<br />
+              男性のためのデジタル頭皮記録ツール。<br />
+              変化をグラフで可視化し、ケアの効果を実感できます。
             </p>
             <ul className="space-y-3 mb-10">
               {[
-                "頭皮画像のアップロード・記録",
+                "頭皮画像のアップロード・時系列記録",
                 "症状・生活習慣のログ管理",
-                "スカルプフォト・状態ガイド",
+                "チェック結果のグラフ可視化",
                 "サロンとのデータ共有機能",
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.85)" }}>

@@ -1982,19 +1982,19 @@ function AppSection() {
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Text */}
           <div>
-            <p className="text-xs tracking-[0.3em] mb-4" style={{ color: "#C9A84C", fontFamily: "'Noto Sans JP', sans-serif" }}>SCALP LABO APP</p>
+            <p className="text-xs tracking-[0.3em] mb-4" style={{ color: "#C9A84C", fontFamily: "'Noto Sans JP', sans-serif" }}>MY SCALP KARTE</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
-              頭皮の変化を、<br />
-              <span style={{ color: "#C9A84C" }}>データで記録・管理。</span>
+              マイスカルプ<br />
+              <span style={{ color: "#C9A84C" }}>カルテ</span>
             </h2>
             <p className="text-sm leading-relaxed mb-8" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.75)", lineHeight: "1.9" }}>
-              スカルプラボアプリで頭皮画像・症状・生活習慣を記録。<br />
-              定期チェックのデータをLINEで共有し、<br />
-              あなただけのパーソナルスカルプケアプランを提案します。
+              定期チェックのたびに頭皮の記録が蓄積される、<br />
+              女性のためのヘアケアカルテアプリ。<br />
+              自分の頭皮状態を知り、継続的なケアをサポートします。
             </p>
             <ul className="space-y-3 mb-10">
               {[
-                "頭皮画像のアップロード・記録",
+                "頭皮画像のアップロード・時系列記録",
                 "症状・生活習慣のログ管理",
                 "スカルプフォト・状態ガイド",
                 "サロンとのデータ共有機能",
