@@ -1024,32 +1024,32 @@ function BotanicalMistSection() {
 
   const effects = [
     {
-      icon: "🌿",
-      title: "植物由来の蕲気抽出成分",
-      desc: "ハーブスチーマーにより植物から蕲気抽出した成分を頭皮に届けます。化学合成ではなく、天然ハーブの持つ浄化・保湿・整肌作用をそのまま頭皮に届けます。",
+      icon: "",
+      title: "オーガニックハーブのミスト抽出",
+      desc: "ハーブスチーマーにより植物から薒気抽出した成分を頭皮に届けます。化学合成ではなく、天然ハーブの持つ浄化・保湿・整肌作用をそのまま頭皮に届けます。",
     },
     {
-      icon: "💧",
-      title: "超微細蕲気が毛穴の奥まで浸透",
-      desc: "液体では届かない頭皮の角質層まで、超微細な蕲気粒子が浸透します。毛穴に蓄積した皮脂・薬剤・汚れを浄化し、頭皮本来の吸収力を高めます。",
+      icon: "",
+      title: "超微細ミストが毛孔の清浄に働く",
+      desc: "液体では届かない頭皮の角質層まで、超微細なミスト粒子が浸透します。毛穴に蓄積した皮脂・薬剤・汚れを浄化し、頭皮本来の吸収力を高めます。",
     },
     {
-      icon: "✨",
+      icon: "",
       title: "引き算のリセットケア",
       desc: "トリートメントのように「足す」のではなく、余分な皮脂・薬剤残留物を「取り去る」リセットケア。素の頭皮本来の力を引き出します。",
     },
     {
-      icon: "💚",
+      icon: "",
       title: "保湿・整肌ケア",
       desc: "浄化後は植物成分の保湿ケアを行います。乾燥した頭皮に潤いを与え、皮脂分泌のバランスを整えることで、健康な頭皮環境をサポートします。",
     },
     {
-      icon: "🌸",
+      icon: "",
       title: "カラー・パーマ後の薬剤浄化",
-      desc: "アルカリカラーやパーマ後に残留する薬剤を天然ハーブの蕲気成分で浄剴。頭皮への小身荷荷を軽減し、ケア後の頭皮環境を整えます。",
+      desc: "アルカリカラーやパーマ後に残留する薬剤をミスト抽出した植物成分によりクレンジング。頭皮への薬剤ダメージを軽減し、ケア後の頭皮環境を整えます。",
     },
     {
-      icon: "🌼",
+      icon: "",
       title: "季節変化に対応したハーブ配合",
       desc: "季節や頭皮状態に応じてハーブ配合を調整。季節の変わり目に大きく変化する頭皮状態に対応したリセットケアを提供します。",
     },
@@ -1093,13 +1093,13 @@ function BotanicalMistSection() {
             {/* ボタニカルミストの特徴バッジ */}
             <div className="flex flex-wrap items-center gap-3 mb-6">
               <div className="flex items-center gap-2 px-4 py-2 rounded-sm" style={{ backgroundColor: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.4)" }}>
-                <span className="font-sans-jp text-xs" style={{ color: "rgba(255,255,255,0.85)" }}>🌿 植物由来の天然成分</span>
+                <span className="font-sans-jp text-xs" style={{ color: "rgba(255,255,255,0.85)" }}>オーガニックハーブを使用</span>
               </div>
               <div className="flex items-center gap-2 px-4 py-2 rounded-sm" style={{ backgroundColor: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.4)" }}>
-                <span className="font-sans-jp text-xs" style={{ color: "rgba(255,255,255,0.85)" }}>💧 超微細蕲気で毛穴浸透</span>
+                <span className="font-sans-jp text-xs" style={{ color: "rgba(255,255,255,0.85)" }}>超微細ミストで毛孔清浄</span>
               </div>
               <div className="flex items-center gap-2 px-4 py-2 rounded-sm" style={{ backgroundColor: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.4)" }}>
-                <span className="font-sans-jp text-xs" style={{ color: "rgba(255,255,255,0.85)" }}>✨ 浄化＋保湿ケア</span>
+                <span className="font-sans-jp text-xs" style={{ color: "rgba(255,255,255,0.85)" }}>頭皮クレンジング＋保湿ケア</span>
               </div>
             </div>
             <p className="font-sans-jp text-xs leading-relaxed max-w-lg" style={{ color: "rgba(255,255,255,0.65)" }}>
@@ -1144,8 +1144,7 @@ function BotanicalMistSection() {
               onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#4a3828")}
               onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#3a2a1a")}
             >
-              {effect.icon && <span className="text-3xl block mb-4">{effect.icon}</span>}
-              <h3 className="font-mincho text-base font-bold mb-3 leading-snug transition-colors" style={{ color: "#ffffff" }}>
+              <h3 className="font-mincho font-bold mb-3 leading-snug transition-colors" style={{ color: "#ffffff", fontSize: '18px' }}>
                 {effect.title}
               </h3>
               <p className="font-sans-jp text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.75)" }}>
