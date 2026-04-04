@@ -38,7 +38,6 @@ function Nav() {
 
   const navLinks = [
     { label: "サービス", href: "#service" },
-    { label: "料金プラン", href: "#pricing" },
     { label: "お客様の声", href: "#testimonials" },
     { label: "よくある質問", href: "#faq" },
     { label: "ご予約", href: "#reservation" },
@@ -546,117 +545,6 @@ function Service() {
             </div>
           ))}
         </div>
-      </div>
-    </section>
-  );
-}
-
-// ========== PRICING ==========
-function Pricing() {
-  const plans = [
-    {
-      name: "ライト",
-      en: "Light",
-      price: "1,980",
-      features: [
-        "年2回 定期スカルプチェック",
-        "製品10%OFF",
-        "スカルプレポート提供",
-        "LINEデータ共有",
-      ],
-      highlight: false,
-    },
-    {
-      name: "スタンダード",
-      en: "Standard",
-      price: "3,980",
-      features: [
-        "年4回 定期スカルプチェック",
-        "製品15%OFF",
-        "ヘッドスパ 年2回",
-        "スカルプレポート提供",
-        "LINEデータ共有",
-      ],
-      highlight: true,
-    },
-    {
-      name: "プレミアム",
-      en: "Premium",
-      price: "7,980",
-      features: [
-        "年4回 定期スカルプチェック",
-        "製品20%OFF",
-        "ヘッドスパ 毎月",
-        "専属アドバイザー",
-        "スカルプレポート提供",
-        "優先予約・特別ご招待",
-      ],
-      highlight: false,
-    },
-  ];
-
-  return (
-    <section id="pricing" className="bg-[#0D1B2A] py-24">
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center gap-4 mb-4">
-          <div className="h-px w-12 bg-[#C9A84C]" />
-          <span className="text-[#C9A84C] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">Membership Plans</span>
-        </div>
-        <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-4">
-          月額サブスクリプション
-        </h2>
-        <p className="text-white/80 text-sm font-['Noto_Sans_JP'] font-light mb-16">
-          すべてのプランは月額（税込）。いつでもプラン変更・解約が可能です。
-        </p>
-
-        <div className="grid md:grid-cols-3 gap-6">
-          {plans.map((plan) => (
-            <div
-              key={plan.name}
-              className={`relative p-8 transition-all duration-300 ${
-                plan.highlight
-                  ? "border-2 border-[#C9A84C] bg-[#1C2B3A]"
-                  : "border border-white/10 hover:border-[#C9A84C]/40"
-              }`}
-            >
-              {plan.highlight && (
-                <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#C9A84C] text-[#0D1B2A] text-xs px-4 py-1 font-bold tracking-widest font-['Noto_Sans_JP']">
-                  MOST POPULAR
-                </div>
-              )}
-              <div className="mb-6">
-                <span className="font-['Cormorant_Garamond'] italic text-[#C9A84C] text-sm tracking-widest block">{plan.en}</span>
-                <h3 className="font-['Shippori_Mincho'] text-white text-2xl font-bold">{plan.name}プラン</h3>
-              </div>
-              <div className="flex items-baseline gap-1 mb-8">
-                <span className="text-white/60 text-sm font-['Noto_Sans_JP']">月額</span>
-                <span className="font-['Cormorant_Garamond'] text-[#C9A84C] text-5xl font-bold">¥{plan.price}</span>
-                <span className="text-white/60 text-sm font-['Noto_Sans_JP']">（税込）</span>
-              </div>
-              <ul className="space-y-3 mb-8">
-                {plan.features.map((f) => (
-                  <li key={f} className="flex items-start gap-3">
-                    <Check size={14} className="text-[#C9A84C] mt-0.5 shrink-0" />
-                    <span className="text-white/70 text-sm font-['Noto_Sans_JP'] font-light">{f}</span>
-                  </li>
-                ))}
-              </ul>
-              <button
-                onClick={() => document.querySelector("#reservation")?.scrollIntoView({ behavior: "smooth" })}
-                className={`w-full py-3 text-sm tracking-widest transition-all duration-300 font-['Noto_Sans_JP'] ${
-                  plan.highlight
-                    ? "bg-[#C9A84C] text-[#0D1B2A] font-bold hover:bg-[#E8C97A]"
-                    : "border border-[#C9A84C]/40 text-[#C9A84C] hover:bg-[#C9A84C]/10"
-                }`}
-              >
-                このプランで始める
-              </button>
-            </div>
-          ))}
-        </div>
-        <p className="text-white/55 text-xs text-center mt-8 font-['Noto_Sans_JP']">
-          ※ 価格はすべて税込表示です。サブスクリプションはいつでも解約可能です。
-        </p>
       </div>
     </section>
   );
@@ -1559,7 +1447,6 @@ function Footer() {
             <ul className="space-y-2">
               {[
                 { label: "サービス", href: "#service" },
-                { label: "料金プラン", href: "#pricing" },
                 { label: "お客様の声", href: "#testimonials" },
                 { label: "よくある質問", href: "#faq" },
                 { label: "ご予約", href: "#reservation" },
@@ -1618,7 +1505,6 @@ export default function MenHome() {
       <Concept />
       <Stats />
       <Service />
-      <Pricing />
       <BotanicalMist />
       <Target />
       <Digital />
