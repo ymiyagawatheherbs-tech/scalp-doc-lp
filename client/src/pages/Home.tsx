@@ -1024,34 +1024,34 @@ function BotanicalMistSection() {
 
   const effects = [
     {
-      icon: "🔍",
-      title: "定期チェックの最初に行う頭皮リセット",
-      desc: "ボタニカルミストは、マイクロスコープチェックの前に必ず行う「頭皮リセット」ステップです。毛穴の汚れや皮脂を浄化してからチェックすることで、頭皮の本当の状態が正確に診断できます。",
-    },
-    {
       icon: "🌿",
-      title: "引き算のリセットケア",
-      desc: "トリートメントのように「足す」のではなく、毛穴に蔓積した余分な皮脂・薬剤・化粧品残留物を「取り去る」ケア。素の頭皮本来の力を引き出します。",
+      title: "植物由来の蕲気抽出成分",
+      desc: "ハーブスチーマーにより植物から蕲気抽出した成分を頭皮に届けます。化学合成ではなく、天然ハーブの持つ浄化・保湿・整肌作用をそのまま頭皮に届けます。",
     },
     {
       icon: "💧",
-      title: "超微細蕲気が毛穴の奥まで届く",
-      desc: "液体では届かない頭皮の角質層まで、植物由来の有効成分を届けます。水分のみの噴霧のため髪に余分な重さを与えず、リセット後のチェック精度が高まります。",
-    },
-    {
-      icon: "📅",
-      title: "定期リセットで季節変化に対応",
-      desc: "季節の変わり目に頭皮状態は大きく変化します。定期チェックごとにボタニカルミストでリセットすることで、季節に応じた頭皮環境を常に整えられます。",
-    },
-    {
-      icon: "📊",
-      title: "リセット前後の画像で変化を記録",
-      desc: "ボタニカルミスト前後の頭皮状態をマイクロスコープで撮影・記録。定期チェックの度にデータが蔓み重なり、頭皮カルテとして時系列で確認できます。",
+      title: "超微細蕲気が毛穴の奥まで浸透",
+      desc: "液体では届かない頭皮の角質層まで、超微細な蕲気粒子が浸透します。毛穴に蓄積した皮脂・薬剤・汚れを浄化し、頭皮本来の吸収力を高めます。",
     },
     {
       icon: "✨",
-      title: "カラー・パーマ後の頭皮リセットにも",
-      desc: "アルカリカラーやパーマ後に残留する薬剤を天然ハーブで浄化。定期チェック前のリセットとして特に有効で、頭皮と髪の本来の状態を正確に診断できます。",
+      title: "引き算のリセットケア",
+      desc: "トリートメントのように「足す」のではなく、余分な皮脂・薬剤残留物を「取り去る」リセットケア。素の頭皮本来の力を引き出します。",
+    },
+    {
+      icon: "💚",
+      title: "保湿・整肌ケア",
+      desc: "浄化後は植物成分の保湿ケアを行います。乾燥した頭皮に潤いを与え、皮脂分泌のバランスを整えることで、健康な頭皮環境をサポートします。",
+    },
+    {
+      icon: "🌸",
+      title: "カラー・パーマ後の薬剤浄化",
+      desc: "アルカリカラーやパーマ後に残留する薬剤を天然ハーブの蕲気成分で浄剴。頭皮への小身荷荷を軽減し、ケア後の頭皮環境を整えます。",
+    },
+    {
+      icon: "🌼",
+      title: "季節変化に対応したハーブ配合",
+      desc: "季節や頭皮状態に応じてハーブ配合を調整。季節の変わり目に大きく変化する頭皮状態に対応したリセットケアを提供します。",
     },
   ];
 
@@ -1090,16 +1090,16 @@ function BotanicalMistSection() {
               毛穴に蓄積した皮脂・薬剤・汚れを蒸気抽出した植物成分で浄化、保湿ケアを行います。施術後の頭皮チェックで、
               頭皮の変化を確認できます。
             </p>
-            {/* ステップバッジ */}
-            <div className="flex items-center gap-3 mb-6">
+            {/* ボタニカルミストの特徴バッジ */}
+            <div className="flex flex-wrap items-center gap-3 mb-6">
               <div className="flex items-center gap-2 px-4 py-2 rounded-sm" style={{ backgroundColor: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.4)" }}>
-                <span className="font-cormorant text-xs tracking-widest uppercase" style={{ color: "#C9A84C" }}>Step 1</span>
-                <span className="font-sans-jp text-xs" style={{ color: "rgba(255,255,255,0.85)" }}>ボタニカルミストで頭皮リセット</span>
+                <span className="font-sans-jp text-xs" style={{ color: "rgba(255,255,255,0.85)" }}>🌿 植物由来の天然成分</span>
               </div>
-              <span style={{ color: "rgba(255,255,255,0.4)" }}>→</span>
               <div className="flex items-center gap-2 px-4 py-2 rounded-sm" style={{ backgroundColor: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.4)" }}>
-                <span className="font-cormorant text-xs tracking-widest uppercase" style={{ color: "#C9A84C" }}>Step 2</span>
-                <span className="font-sans-jp text-xs" style={{ color: "rgba(255,255,255,0.85)" }}>マイクロスコープで頭皮チェック</span>
+                <span className="font-sans-jp text-xs" style={{ color: "rgba(255,255,255,0.85)" }}>💧 超微細蕲気で毛穴浸透</span>
+              </div>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-sm" style={{ backgroundColor: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.4)" }}>
+                <span className="font-sans-jp text-xs" style={{ color: "rgba(255,255,255,0.85)" }}>✨ 浄化＋保湿ケア</span>
               </div>
             </div>
             <p className="font-sans-jp text-xs leading-relaxed max-w-lg" style={{ color: "rgba(255,255,255,0.65)" }}>
