@@ -872,12 +872,12 @@ function ServiceSection() {
       color: "oklch(0.72_0.12_70)",
       image: IMAGES.botanicalMist,
       items: [
-        "頭皮チェック",
-        "頭皮の色・毛穴の状態・皮脂量・毛量の確認",
-        "生活習慣・ストレス・シャンプーチェック",
-        "スカルプラボアプリの利用",
+        "① 頭皮チェック（状態確認・重点箇所の把握）",
+        "② ボタニカルミスト（気になる箇所から全体リセット）",
+        "③ 頭皮チェック（リセットを目視で確認・次回予約）",
+        "過去データとの時系列比較で頭皮変化を記録",
       ],
-      desc: "過去データとの時系列比較で頭皮の変化が一目でわかります。季節変動や施術の影響も記録・確認できます。",
+      desc: "チェック→リセット→チェックの3ステップで、頭皮の本当の変化を正確に把握。季節変動や施術の影響も時系列で記録できます。",
       featured: true,
     },
     {
@@ -1330,24 +1330,20 @@ function FlowSection() {
   const steps = [
     {
       num: "01",
-      title: "無料スカルプチェックを予約",
-      desc: "LINEまたはウェブサイトから簡単予約。所要時間はわずか5〜10分です。",
-    },
-    {
-      num: "02",
-      title: "マイクロスコープで頭皮をチェック、スタイル撮影",
-      desc: "専門スタッフが丁寧に頭皮の状態を撮影・記録します。",
+      title: "頭皮チェック（状態確認・重点箇所の把握）",
+      desc: "マイクロスコープで頭皮を撮影・記録。毛穴の状態・皮脂量・毛量を確認し、今日のボタニカルミストで重点的にケアする箇所を把握します。",
       image: IMAGES.scalpCheckReal,
     },
     {
-      num: "03",
-      title: "その場で結果を説明",
-            desc: "毛穴の状態・皮脂量・毛量などをスタッフが画像つきでわかりやすくご説明します。",
+      num: "02",
+      title: "ボタニカルミスト（気になる箇所から全体リセット）",
+      desc: "最初に気になる箇所を集中的にミストでリセットし、その後頭皮全体をリセット。毛穴に蔓積した皮脂・薬剤・汚れを植物由来の蕲気で浄化します。",
+      image: IMAGES.botanicalMist,
     },
     {
-      num: "04",
-      title: "パーソナルスカルプケアプランを提案",
-      desc: "あなたの頭皮状態に合わせた最適なホームケアとケアプランをご提案します。",
+      num: "03",
+      title: "頭皮チェック（リセットを目視で確認・次回予約）",
+      desc: "ボタニカルミスト後の頭皮を再度マイクロスコープで撮影。リセット前後の変化を画像で確認し、次回の定期チェックを予約して完了です。",
     },
   ];
 
@@ -1359,13 +1355,16 @@ function FlowSection() {
             How It Works
           </span>
           <h2 className="font-mincho text-[oklch(0.22_0.045_42)] text-3xl md:text-4xl font-bold">
-            定期スカルプチェックの流れ
+            スカルプラボ定期ケアの流れ
           </h2>
+          <p className="font-sans-jp text-[oklch(0.55_0.04_42)] text-sm mt-4 max-w-xl mx-auto">
+            チェック→リセット→チェックの3ステップで、頭皮の変化を正確に把握します。
+          </p>
         </div>
 
         <div className="relative">
-          <div className="hidden md:block absolute top-8 left-[calc(12.5%+2rem)] right-[calc(12.5%+2rem)] h-px bg-[oklch(0.88_0.025_75)]" />
-          <div className="grid md:grid-cols-4 gap-8">
+          <div className="hidden md:block absolute top-8 left-[calc(16.7%+2rem)] right-[calc(16.7%+2rem)] h-px bg-[oklch(0.88_0.025_75)]" />
+          <div className="grid md:grid-cols-3 gap-8">
             {steps.map((step, i) => (
               <div
                 key={i}

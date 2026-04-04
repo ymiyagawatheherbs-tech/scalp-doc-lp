@@ -980,12 +980,22 @@ function Digital() {
 // ========== FLOW ==========
 function Flow() {
   const steps = [
-    { num: "01", title: "ご予約", desc: "WEB・LINEから24時間予約可能。初回は無料チェックからお気軽にどうぞ。" },
-    { num: "02", title: "来店・問診", desc: "生活習慣・使用製品・気になる症状などをヒアリングします。" },
-    { num: "03", title: "頭皮チェック", desc: "マイクロスコープで頭皮を撮影・記録。その場で状態をご説明します。" },
-    { num: "04", title: "レポート・提案", desc: "パーソナルスカルプレポートをお渡し。ケアのご提案をいたします。" },
+    {
+      num: "01",
+      title: "頭皮チェック（状態確認・重点箇所の把握）",
+      desc: "マイクロスコープで頭皮を撮影・記録。毛穴の状態・皮脂量・毛量を確認し、今日のボタニカルミストで重点的にケアする箇所を把握。"
+    },
+    {
+      num: "02",
+      title: "ボタニカルミスト（気になる箇所から全体リセット）",
+      desc: "最初に気になる箇所を集中的にミストでリセットし、その後頭皮全体をリセット。毛穴に蔓積した皮脂・薬剤・汚れを植物由来の蕲気で浄化。"
+    },
+    {
+      num: "03",
+      title: "頭皮チェック（リセットを目視で確認・次回予約）",
+      desc: "ボタニカルミスト後の頭皮を再度マイクロスコープで撮影。リセット前後の変化を画像で確認し、次回の定期チェックを予約して完了。"
+    },
   ];
-
   return (
     <section className="bg-[#1C2B3A] py-24">
       <div className="max-w-7xl mx-auto px-6">
@@ -993,10 +1003,13 @@ function Flow() {
           <div className="h-px w-12 bg-[#C9A84C]" />
           <span className="text-[#C9A84C] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">How It Works</span>
         </div>
-        <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-16">
-          ご利用の流れ
+        <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-4">
+          スカルプラボ定期ケアの流れ
         </h2>
-        <div className="grid md:grid-cols-4 gap-8">
+        <p className="text-white/65 text-sm font-['Noto_Sans_JP'] mb-16">
+          チェック→リセット→チェックの3ステップで、頭皮の変化を正確に把握します。
+        </p>
+        <div className="grid md:grid-cols-3 gap-8">
           {steps.map((s, i) => (
             <div key={s.num} className="relative">
               {i < steps.length - 1 && (
