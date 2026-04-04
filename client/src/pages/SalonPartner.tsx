@@ -124,24 +124,21 @@ function Hero() {
           className="max-w-xl transition-all duration-1000"
           style={{ opacity: loaded ? 1 : 0, transform: loaded ? "translateY(0)" : "translateY(30px)" }}
         >
-          {/* ブルーオーシャンバッジ */}
-          <div className="inline-flex items-center gap-2 px-4 py-2 mb-6" style={{ backgroundColor: "#e8f5e3", border: "1px solid #a8d5a2" }}>
-            <span className="text-xs font-bold tracking-widest" style={{ color: "#2d5a27", fontFamily: "'Noto Sans JP', sans-serif" }}>
-              ブルーオーシャン市場 × 予防型ヘルスケア
-            </span>
-          </div>
+          <span className="text-xs tracking-[0.4em] uppercase block mb-6 font-medium" style={{ color: "#2d5a27" }}>
+            Scalp Labo Partner Program
+          </span>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
-            「売る」のではなく、<br />
-            <span style={{ color: "#2d5a27" }}>「習慣」をつくる。</span>
+            髪と頭皮の悩みを、<br />
+            <span style={{ color: "#2d5a27" }}>一緒に解決しませんか。</span>
           </h1>
           <p className="text-base leading-relaxed mb-4" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#444", lineHeight: "1.9" }}>
-            頭皮の定期チェックは、まだほとんどのサロンが手がけていない領域です。<br />
-            商品や施術を「売る」のではなく、<strong>ケアの習慣化を創る事業</strong>として、<br />
-            スカルプラボはこの市場を一緒に開拓するパートナーを募集しています。
+            薄毛・抜け毛・うねり・頭皮トラブル。<br />
+            悩みを抱えながらも、どこに相談すればいいかわからない方が大勢います。<br />
+            スカルプラボは、そうした方々の「受け皿」をサロンと一緒につくります。
           </p>
           <p className="text-sm leading-relaxed mb-10" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#888" }}>
-            収益の仕組み・導入事例・詳細資料はLINE登録後にお届けします。
+            エステサロン・美容師・ヘッドスパ店など、業種を問わず参加できます。
           </p>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
