@@ -256,7 +256,7 @@ function Nav() {
             </a>
             <a
               href="#予約"
-              className="btn-gold-shimmer text-[oklch(0.18_0.04_42)] font-sans-jp text-sm font-medium px-5 py-2.5 rounded-sm"
+              className="btn-gold-shimmer text-white font-sans-jp text-sm font-bold px-5 py-2.5 rounded-sm" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
             >
               無料チェックを予約
             </a>
@@ -266,7 +266,7 @@ function Nav() {
           <div className="md:hidden flex items-center gap-2">
             <a
               href="#予約"
-              className="btn-gold-shimmer text-[oklch(0.18_0.04_42)] font-sans-jp text-xs font-semibold px-3 py-1.5 rounded-sm"
+              className="btn-gold-shimmer text-white font-sans-jp text-xs font-bold px-3 py-1.5 rounded-sm" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
             >
               今すぐ予約
             </a>
@@ -321,7 +321,7 @@ function Nav() {
             <a
               href="#予約"
               onClick={() => setMobileOpen(false)}
-              className="block btn-gold-shimmer text-[oklch(0.18_0.04_42)] font-sans-jp font-semibold text-center py-4 rounded-sm mt-2"
+              className="block btn-gold-shimmer text-white font-sans-jp font-bold text-center py-4 rounded-sm mt-2" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
             >
               無料スカルプチェックを予約する
             </a>
@@ -373,7 +373,7 @@ function HeroSection() {
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 animate-fade-in-up opacity-0-init delay-300">
             <a
               href="#cta"
-              className="btn-gold-shimmer text-[oklch(0.18_0.04_42)] font-sans-jp font-semibold px-6 md:px-8 py-3.5 md:py-4 rounded-sm text-center text-sm md:text-base"
+              className="btn-gold-shimmer text-white font-sans-jp font-bold px-6 md:px-8 py-3.5 md:py-4 rounded-sm text-center text-sm md:text-base" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
             >
               無料スカルプチェックを予約する
             </a>
@@ -497,11 +497,11 @@ const SCALP_STATES = [
   },
   {
     img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2025-10-27-10-18-21-496_65c4010d.jpg",
-    label: "毛根の細化・弱体化",
+    label: "皮脂過多・水分量低下",
     status: "早期ケアを",
     statusColor: "oklch(0.60_0.20_20)",
-    desc: "毛根が細くなり、毛髪が弱くなっている状態。早期に頭皮環境を整えることで、改善が期待できます。",
-    detail: "細毛・弱体化",
+    desc: "毛穴に油分が蔓積し始めている状態。過酸化脂質に変化し、汚れの蔓積、頭皮の炎症が起こり始める状態。",
+    detail: "皮脂・水分",
   },
 ];
 
@@ -1944,7 +1944,7 @@ function ReservationSection() {
             <button
               type="submit"
               disabled={submitting}
-              className="w-full btn-gold-shimmer text-[oklch(0.18_0.04_42)] font-sans-jp font-semibold py-4 rounded-sm text-base transition-all hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed"
+              className="w-full btn-gold-shimmer text-white font-sans-jp font-bold py-4 rounded-sm text-base transition-all hover:opacity-90 disabled:opacity-60 disabled:cursor-not-allowed" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
             >
               {submitting ? "送信中..." : "予約を申し込む"}
             </button>
@@ -2180,7 +2180,7 @@ function CtaSection() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
               href="#予約"
-              className="btn-gold-shimmer text-[oklch(0.18_0.04_42)] font-sans-jp font-semibold px-10 py-5 rounded-sm text-base"
+              className="btn-gold-shimmer text-white font-sans-jp font-bold px-10 py-5 rounded-sm text-base" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
             >
               無料スカルプチェックを予約する
             </a>

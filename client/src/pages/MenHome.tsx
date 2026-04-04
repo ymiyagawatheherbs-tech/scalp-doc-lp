@@ -256,7 +256,7 @@ function Hero() {
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
             <button
               onClick={() => document.querySelector("#reservation")?.scrollIntoView({ behavior: "smooth" })}
-              className="px-6 md:px-8 py-3.5 md:py-4 bg-[#C9A84C] text-[#0D1B2A] font-bold tracking-widest text-sm hover:bg-[#E8C97A] transition-all duration-300 flex items-center justify-center gap-2 font-['Noto_Sans_JP']"
+              className="px-6 md:px-8 py-3.5 md:py-4 bg-[#C9A84C] text-white font-bold tracking-widest text-sm hover:bg-[#E8C97A] transition-all duration-300 flex items-center justify-center gap-2 font-['Noto_Sans_JP']" style={{textShadow: '0 1px 3px rgba(0,0,0,0.5)'}}
             >
               無料チェックを予約する
               <ArrowRight size={16} />
@@ -480,7 +480,7 @@ function ScalpGallery() {
                   const el = document.getElementById("reservation");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="w-full py-3 bg-[#C9A84C] text-[#0D1B2A] font-['Noto_Sans_JP'] font-bold text-sm tracking-widest hover:bg-[#E8C97A] transition-all duration-300"
+                className="w-full py-3 bg-[#C9A84C] text-white font-['Noto_Sans_JP'] font-bold text-sm tracking-widest hover:bg-[#E8C97A] transition-all duration-300" style={{textShadow: '0 1px 3px rgba(0,0,0,0.5)'}}
               >
                 無料スカルプチェックを予約する
               </button>
@@ -1380,7 +1380,7 @@ function Reservation() {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full py-4 bg-[#C9A84C] text-[#0D1B2A] font-bold tracking-widest text-sm hover:bg-[#E8C97A] transition-all duration-300 flex items-center justify-center gap-2 font-['Noto_Sans_JP'] disabled:opacity-60 disabled:cursor-not-allowed"
+            className="w-full py-4 bg-[#C9A84C] text-white font-bold tracking-widest text-sm hover:bg-[#E8C97A] transition-all duration-300 flex items-center justify-center gap-2 font-['Noto_Sans_JP'] disabled:opacity-60 disabled:cursor-not-allowed" style={{textShadow: '0 1px 3px rgba(0,0,0,0.5)'}}
           >
             {submitting ? "送信中..." : "予約を申し込む"}
             {!submitting && <ArrowRight size={16} />}
