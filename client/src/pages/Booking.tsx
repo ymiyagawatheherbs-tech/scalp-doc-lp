@@ -27,7 +27,7 @@ const SQUARE_BOOKING_URL = "https://book.squareup.com/appointments/jsufqo133zf3e
 const STORES = [
   {
     value: "hankyu",
-    label: "スカルプラボ 神戸阪急店",
+    label: "THE HERBS神戸阪急店",
     address: "神戸阪急本館6階 モーニングフロー内",
     courses: ["free", "standard", "consult"],
     useSquare: false,
@@ -35,7 +35,7 @@ const STORES = [
   },
   {
     value: "salon",
-    label: "スカルプラボ THE HERBSサロン",
+    label: "THE HERBSサロン",
     address: "兵庫県神戸市灘区大内通1-7-17 1F",
     courses: ["free", "standard", "consult"],
     useSquare: true,
