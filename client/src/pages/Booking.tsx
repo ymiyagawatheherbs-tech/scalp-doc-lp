@@ -8,10 +8,27 @@
 import { useState } from "react";
 import { trpc } from "@/lib/trpc";
 
-const COURSES = [
+// 全コース定義
+const ALL_COURSES = [
   { value: "free", label: "無料スカルプチェック", sub: "5〜10分・無料", desc: "マイクロスコープで頭皮の状態を確認。初めての方に最適です。" },
   { value: "standard", label: "スカルプラボ定期ケア", sub: "30〜40分・3,000〜5,000円", desc: "定期的な頭皮チェック＋ボタニカルミストケア。継続的なサポートを希望の方に。" },
   { value: "consult", label: "まずは相談したい", sub: "内容を相談", desc: "コースや料金など、まずはお気軽にご相談ください。" },
+];
+
+// 店舗定義
+const STORES = [
+  {
+    value: "hankyu",
+    label: "スカルプラボ 神戸阪急店",
+    address: "神戸阪急本館6階 モーニングフロー内",
+    courses: ["free", "standard"], // パーソナルケア（personal）以外
+  },
+  {
+    value: "salon",
+    label: "スカルプラボ THE HERBSサロン",
+    address: "兵庫県神戸市灘区大内通1-7-17 1F",
+    courses: ["free", "standard", "consult"], // 全コース
+  },
 ];
 
 const TIME_SLOTS = [
@@ -24,6 +41,7 @@ const TIME_SLOTS = [
 type FormState = {
   name: string;
   phone: string;
+  store: string;
   desiredDate: string;
   desiredTime: string;
   plan: string;
@@ -32,15 +50,38 @@ type FormState = {
 
 type Errors = Partial<Record<keyof FormState, string>>;
 
+// 店舗ごとの時間帯
+const STORE_TIME_SLOTS: Record<string, string[]> = {
+  hankyu: [
+    "10:00", "10:30", "11:00", "11:30", "12:00", "12:30",
+    "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
+    "16:00", "16:30", "17:00", "17:30", "18:00", "18:30",
+    "19:00", "19:30",
+  ],
+  salon: [
+    "10:00", "10:30", "11:00", "11:30", "12:00", "12:30",
+    "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
+    "16:00", "16:30", "17:00", "17:30",
+  ],
+};
+
 export default function Booking() {
   const [form, setForm] = useState<FormState>({
     name: "",
     phone: "",
+    store: "",
     desiredDate: "",
     desiredTime: "",
     plan: "",
     message: "",
   });
+
+  // 選択中の店舗情報
+  const selectedStore = STORES.find((s) => s.value === form.store);
+  const availableCourses = selectedStore
+    ? ALL_COURSES.filter((c) => selectedStore.courses.includes(c.value))
+    : [];
+  const availableTimeSlots = form.store ? (STORE_TIME_SLOTS[form.store] ?? TIME_SLOTS) : TIME_SLOTS;
   const [errors, setErrors] = useState<Errors>({});
   const [submitted, setSubmitted] = useState(false);
 
@@ -55,6 +96,7 @@ export default function Booking() {
     if (!form.name.trim()) e.name = "お名前を入力してください";
     if (!form.phone.trim()) e.phone = "電話番号を入力してください";
     else if (!/^[\d\-\+\(\)\s]{7,20}$/.test(form.phone.trim())) e.phone = "正しい電話番号を入力してください";
+    if (!form.store) e.store = "ご希望の店舗を選択してください";
     if (!form.desiredDate) e.desiredDate = "ご希望日を選択してください";
     if (!form.desiredTime) e.desiredTime = "ご希望時間を選択してください";
     if (!form.plan) e.plan = "コースを選択してください";
@@ -71,7 +113,7 @@ export default function Booking() {
       desiredDate: form.desiredDate,
       desiredTime: form.desiredTime,
       plan: form.plan as "free" | "standard" | "personal" | "consult",
-      message: form.message.trim() || undefined,
+      message: `【店舗】${selectedStore?.label ?? form.store}\n${form.message.trim()}`.trim(),
       gender: "women",
     });
   }
@@ -281,6 +323,54 @@ export default function Booking() {
               {errors.phone && <p style={errorStyle}>{errors.phone}</p>}
             </div>
 
+            {/* 店舗選択 */}
+            <div>
+              <label style={labelStyle}>
+                ご希望店舗 <span style={requiredStyle}>*</span>
+              </label>
+              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "0.5rem" }}>
+                {STORES.map((store) => (
+                  <button
+                    key={store.value}
+                    type="button"
+                    onClick={() => setForm({ ...form, store: store.value, plan: "", desiredTime: "" })}
+                    style={{
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "flex-start",
+                      padding: "0.875rem 1.25rem",
+                      border: form.store === store.value
+                        ? "2px solid oklch(0.72 0.12 70)"
+                        : "1.5px solid oklch(0.88 0.025 75)",
+                      borderRadius: "4px",
+                      background: form.store === store.value ? "oklch(0.97 0.025 75)" : "white",
+                      cursor: "pointer",
+                      textAlign: "left",
+                      transition: "all 0.15s",
+                    }}
+                  >
+                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                      <div
+                        style={{
+                          width: "16px",
+                          height: "16px",
+                          borderRadius: "50%",
+                          border: form.store === store.value ? "5px solid oklch(0.72 0.12 70)" : "2px solid oklch(0.75 0.04 75)",
+                          flexShrink: 0,
+                        }}
+                      />
+                      <span style={{ fontWeight: 600, fontSize: "0.9rem", color: "oklch(0.22 0.045 42)" }}>
+                        {store.label}
+                      </span>
+                    </div>
+                    <p style={{ fontSize: "0.78rem", color: "oklch(0.5 0.04 42)", marginTop: "0.25rem", paddingLeft: "1.5rem" }}>
+                      {store.address}
+                    </p>
+                  </button>
+                ))}
+              </div>
+              {errors.store && <p style={errorStyle}>{errors.store}</p>}
+            </div>
             {/* 希望日 */}
             <div>
               <label style={labelStyle}>
@@ -307,7 +397,7 @@ export default function Booking() {
                 style={errors.desiredTime ? { ...inputStyle, borderColor: "#ef4444" } : inputStyle}
               >
                 <option value="">時間を選択してください</option>
-                {TIME_SLOTS.map((t) => (
+                {availableTimeSlots.map((t) => (
                   <option key={t} value={t}>{t}</option>
                 ))}
               </select>
@@ -320,7 +410,12 @@ export default function Booking() {
                 ご希望コース <span style={requiredStyle}>*</span>
               </label>
               <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "0.5rem" }}>
-                {COURSES.map((course) => (
+                {!form.store && (
+                  <p style={{ fontSize: "0.82rem", color: "oklch(0.55 0.04 75)", padding: "0.75rem", background: "oklch(0.96 0.01 75)", borderRadius: "4px" }}>
+                    まず上の「ご希望店舗」を選択してください
+                  </p>
+                )}
+                {availableCourses.map((course) => (
                   <button
                     key={course.value}
                     type="button"
