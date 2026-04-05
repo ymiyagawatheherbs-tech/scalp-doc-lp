@@ -15,6 +15,9 @@ const ALL_COURSES = [
   { value: "consult", label: "まずは相談したい", sub: "内容を相談", desc: "コースや料金など、まずはお気軽にご相談ください。" },
 ];
 
+// Square予約URL（THE HERBSサロン）
+const SQUARE_BOOKING_URL = "https://book.squareup.com/appointments/jsufqo133zf3ec/location/LEWSC49JS30BF/services";
+
 // 店舗定義
 const STORES = [
   {
@@ -24,6 +27,7 @@ const STORES = [
     courses: ["free", "standard"],
     lineUrl: "https://lin.ee/RhtIZDl",
     lineId: "@theherbs_kobe",
+    useSquare: false,
   },
   {
     value: "salon",
@@ -32,13 +36,15 @@ const STORES = [
     courses: ["free", "standard", "consult"],
     lineUrl: "https://lin.ee/oWeHStW",
     lineId: "@theherbs39",
+    useSquare: true,
   },
 ];
 
 // 店舗ごとの時間帯
 const STORE_TIME_SLOTS: Record<string, string[]> = {
+  // 神戸阪急店：10:30〜
   hankyu: [
-    "10:00", "10:30", "11:00", "11:30", "12:00", "12:30",
+    "10:30", "11:00", "11:30", "12:00", "12:30",
     "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
     "16:00", "16:30", "17:00", "17:30", "18:00", "18:30",
     "19:00", "19:30",
@@ -285,6 +291,41 @@ export default function Booking() {
           </p>
         </div>
 
+        {/* ご予約に関するご注意 */}
+        <div
+          style={{
+            background: "oklch(0.98 0.018 75)",
+            border: "1px solid oklch(0.88 0.04 70)",
+            borderRadius: "6px",
+            padding: "1.25rem 1.5rem",
+            marginBottom: "2rem",
+          }}
+        >
+          <p
+            style={{
+              fontSize: "0.72rem",
+              letterSpacing: "0.15em",
+              color: "oklch(0.72 0.12 70)",
+              marginBottom: "0.75rem",
+              fontWeight: 600,
+            }}
+          >
+            ご予約に関するご注意
+          </p>
+          <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
+            {[
+              "ご希望の日時に添えない場合がございます。",
+              "担当者からのご返信をもってご予約確定となります。",
+              "お日にちに余裕を持ったご予約をお願いいたします。",
+            ].map((note, i) => (
+              <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", fontSize: "0.82rem", color: "oklch(0.38 0.045 42)", lineHeight: 1.6 }}>
+                <span style={{ color: "oklch(0.72 0.12 70)", fontWeight: 700, flexShrink: 0, marginTop: "0.05rem" }}>・</span>
+                {note}
+              </li>
+            ))}
+          </ul>
+        </div>
+
         {/* 予約方法選択 */}
         <div
           style={{
@@ -315,12 +356,9 @@ export default function Booking() {
               boxShadow: bookingMethod === "line" ? "0 0 0 3px rgba(6,199,85,0.15)" : "0 2px 8px rgba(0,0,0,0.04)",
             }}
           >
-            {/* LINEアイコン */}
             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="40" height="40" rx="10" fill="#06C755"/>
               <path d="M33 18.8C33 13.4 27.6 9 21 9C14.4 9 9 13.4 9 18.8C9 23.6 13.2 27.6 18.8 28.6C19.2 28.7 19.8 28.9 19.9 29.3C20 29.7 19.9 30.3 19.8 30.7C19.8 30.7 19.6 31.7 19.6 31.9C19.5 32.3 19.3 33.3 21 32.6C22.7 31.9 30.4 27.1 33.6 23.5C34.8 22.2 33 20.9 33 18.8Z" fill="white"/>
-              <path d="M17.5 16.5H16.5C16.2 16.5 16 16.7 16 17V22C16 22.3 16.2 22.5 16.5 22.5H17.5C17.8 22.5 18 22.3 18 22V17C18 16.7 17.8 16.5 17.5 16.5Z" fill="#06C755"/>
-              <path d="M25.5 16.5H24.5C24.2 16.5 24 16.7 24 17V19.8L21.8 16.7C21.7 16.6 21.6 16.5 21.5 16.5H20.5C20.2 16.5 20 16.7 20 17V22C20 22.3 20.2 22.5 20.5 22.5H21.5C21.8 22.5 22 22.3 22 22V19.2L24.2 22.3C24.3 22.4 24.4 22.5 24.5 22.5H25.5C25.8 22.5 26 22.3 26 22V17C26 16.7 25.8 16.5 25.5 16.5Z" fill="#06C755"/>
             </svg>
             <div>
               <p style={{ fontWeight: 700, fontSize: "0.95rem", color: "oklch(0.22 0.045 42)", marginBottom: "0.2rem" }}>
@@ -353,7 +391,6 @@ export default function Booking() {
               boxShadow: bookingMethod === "form" ? "0 0 0 3px rgba(180,130,60,0.15)" : "0 2px 8px rgba(0,0,0,0.04)",
             }}
           >
-            {/* フォームアイコン */}
             <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
               <rect width="40" height="40" rx="10" fill="oklch(0.72 0.12 70)"/>
               <rect x="11" y="12" width="18" height="2.5" rx="1.25" fill="white"/>
@@ -399,48 +436,87 @@ export default function Booking() {
             </p>
 
             <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
-              {STORES.map((store) => (
-                <div
-                  key={store.value}
+              {/* 神戸阪急店 */}
+              <div
+                style={{
+                  border: "1.5px solid oklch(0.88 0.025 75)",
+                  borderRadius: "8px",
+                  padding: "1.25rem",
+                  background: "oklch(0.99 0.008 75)",
+                }}
+              >
+                <p style={{ fontWeight: 700, fontSize: "0.9rem", color: "oklch(0.22 0.045 42)", marginBottom: "0.25rem" }}>
+                  スカルプラボ 神戸阪急店
+                </p>
+                <p style={{ fontSize: "0.78rem", color: "oklch(0.55 0.04 42)", marginBottom: "1rem" }}>
+                  神戸阪急本館6階 モーニングフロー内
+                </p>
+                <a
+                  href="https://lin.ee/RhtIZDl"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   style={{
-                    border: "1.5px solid oklch(0.88 0.025 75)",
-                    borderRadius: "8px",
-                    padding: "1.25rem",
-                    background: "oklch(0.99 0.008 75)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "0.5rem",
+                    padding: "0.75rem 1.25rem",
+                    background: "#06C755",
+                    color: "white",
+                    textDecoration: "none",
+                    borderRadius: "6px",
+                    fontWeight: 700,
+                    fontSize: "0.9rem",
+                    letterSpacing: "0.03em",
                   }}
                 >
-                  <p style={{ fontWeight: 700, fontSize: "0.9rem", color: "oklch(0.22 0.045 42)", marginBottom: "0.25rem" }}>
-                    {store.label}
-                  </p>
-                  <p style={{ fontSize: "0.78rem", color: "oklch(0.55 0.04 42)", marginBottom: "1rem" }}>
-                    {store.address}
-                  </p>
-                  <a
-                    href={store.lineUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "center",
-                      gap: "0.5rem",
-                      padding: "0.75rem 1.25rem",
-                      background: "#06C755",
-                      color: "white",
-                      textDecoration: "none",
-                      borderRadius: "6px",
-                      fontWeight: 700,
-                      fontSize: "0.9rem",
-                      letterSpacing: "0.03em",
-                    }}
-                  >
-                    <svg width="20" height="20" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                      <path d="M33 18.8C33 13.4 27.6 9 21 9C14.4 9 9 13.4 9 18.8C9 23.6 13.2 27.6 18.8 28.6C19.2 28.7 19.8 28.9 19.9 29.3C20 29.7 19.9 30.3 19.8 30.7C19.8 30.7 19.6 31.7 19.6 31.9C19.5 32.3 19.3 33.3 21 32.6C22.7 31.9 30.4 27.1 33.6 23.5C34.8 22.2 33 20.9 33 18.8Z" fill="white"/>
-                    </svg>
-                    {store.lineId} を友だち追加
-                  </a>
-                </div>
-              ))}
+                  <svg width="20" height="20" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M33 18.8C33 13.4 27.6 9 21 9C14.4 9 9 13.4 9 18.8C9 23.6 13.2 27.6 18.8 28.6C19.2 28.7 19.8 28.9 19.9 29.3C20 29.7 19.9 30.3 19.8 30.7C19.8 30.7 19.6 31.7 19.6 31.9C19.5 32.3 19.3 33.3 21 32.6C22.7 31.9 30.4 27.1 33.6 23.5C34.8 22.2 33 20.9 33 18.8Z" fill="white"/>
+                  </svg>
+                  @theherbs_kobe を友だち追加
+                </a>
+              </div>
+
+              {/* THE HERBSサロン */}
+              <div
+                style={{
+                  border: "1.5px solid oklch(0.88 0.025 75)",
+                  borderRadius: "8px",
+                  padding: "1.25rem",
+                  background: "oklch(0.99 0.008 75)",
+                }}
+              >
+                <p style={{ fontWeight: 700, fontSize: "0.9rem", color: "oklch(0.22 0.045 42)", marginBottom: "0.25rem" }}>
+                  スカルプラボ THE HERBSサロン
+                </p>
+                <p style={{ fontSize: "0.78rem", color: "oklch(0.55 0.04 42)", marginBottom: "1rem" }}>
+                  兵庫県神戸市灘区大内通1-7-17 1F
+                </p>
+                <a
+                  href="https://lin.ee/oWeHStW"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: "0.5rem",
+                    padding: "0.75rem 1.25rem",
+                    background: "#06C755",
+                    color: "white",
+                    textDecoration: "none",
+                    borderRadius: "6px",
+                    fontWeight: 700,
+                    fontSize: "0.9rem",
+                    letterSpacing: "0.03em",
+                  }}
+                >
+                  <svg width="20" height="20" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M33 18.8C33 13.4 27.6 9 21 9C14.4 9 9 13.4 9 18.8C9 23.6 13.2 27.6 18.8 28.6C19.2 28.7 19.8 28.9 19.9 29.3C20 29.7 19.9 30.3 19.8 30.7C19.8 30.7 19.6 31.7 19.6 31.9C19.5 32.3 19.3 33.3 21 32.6C22.7 31.9 30.4 27.1 33.6 23.5C34.8 22.2 33 20.9 33 18.8Z" fill="white"/>
+                  </svg>
+                  @theherbs39 を友だち追加
+                </a>
+              </div>
             </div>
 
             <p style={{ fontSize: "0.75rem", color: "oklch(0.6 0.04 75)", marginTop: "1.25rem", lineHeight: 1.7, textAlign: "center" }}>
@@ -533,6 +609,21 @@ export default function Booking() {
                         <span style={{ fontWeight: 600, fontSize: "0.9rem", color: "oklch(0.22 0.045 42)" }}>
                           {store.label}
                         </span>
+                        {store.useSquare && (
+                          <span
+                            style={{
+                              fontSize: "0.65rem",
+                              background: "oklch(0.22 0.045 42)",
+                              color: "white",
+                              padding: "0.1rem 0.45rem",
+                              borderRadius: "20px",
+                              letterSpacing: "0.03em",
+                              flexShrink: 0,
+                            }}
+                          >
+                            Square予約
+                          </span>
+                        )}
                       </div>
                       <p style={{ fontSize: "0.78rem", color: "oklch(0.5 0.04 42)", marginTop: "0.25rem", paddingLeft: "1.5rem" }}>
                         {store.address}
@@ -543,152 +634,218 @@ export default function Booking() {
                 {errors.store && <p style={errorStyle}>{errors.store}</p>}
               </div>
 
-              {/* 希望日 */}
-              <div>
-                <label style={labelStyle}>
-                  ご希望日 <span style={requiredStyle}>*</span>
-                </label>
-                <input
-                  type="date"
-                  min={today}
-                  value={form.desiredDate}
-                  onChange={(e) => setForm({ ...form, desiredDate: e.target.value })}
-                  style={errors.desiredDate ? { ...inputStyle, borderColor: "#ef4444" } : inputStyle}
-                />
-                {errors.desiredDate && <p style={errorStyle}>{errors.desiredDate}</p>}
-              </div>
-
-              {/* 希望時間 */}
-              <div>
-                <label style={labelStyle}>
-                  ご希望時間 <span style={requiredStyle}>*</span>
-                </label>
-                <select
-                  value={form.desiredTime}
-                  onChange={(e) => setForm({ ...form, desiredTime: e.target.value })}
-                  style={errors.desiredTime ? { ...inputStyle, borderColor: "#ef4444" } : inputStyle}
-                >
-                  <option value="">時間を選択してください</option>
-                  {availableTimeSlots.map((t) => (
-                    <option key={t} value={t}>{t}</option>
-                  ))}
-                </select>
-                {errors.desiredTime && <p style={errorStyle}>{errors.desiredTime}</p>}
-              </div>
-
-              {/* 希望コース */}
-              <div>
-                <label style={labelStyle}>
-                  ご希望コース <span style={requiredStyle}>*</span>
-                </label>
-                <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "0.5rem" }}>
-                  {!form.store && (
-                    <p style={{ fontSize: "0.82rem", color: "oklch(0.55 0.04 75)", padding: "0.75rem", background: "oklch(0.96 0.01 75)", borderRadius: "4px" }}>
-                      まず上の「ご希望店舗」を選択してください
-                    </p>
-                  )}
-                  {availableCourses.map((course) => (
-                    <button
-                      key={course.value}
-                      type="button"
-                      onClick={() => setForm({ ...form, plan: course.value })}
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "flex-start",
-                        padding: "1rem 1.25rem",
-                        border: form.plan === course.value
-                          ? "2px solid oklch(0.72 0.12 70)"
-                          : "1.5px solid oklch(0.88 0.025 75)",
-                        borderRadius: "4px",
-                        background: form.plan === course.value ? "oklch(0.97 0.025 75)" : "white",
-                        cursor: "pointer",
-                        textAlign: "left",
-                        transition: "all 0.15s",
-                      }}
-                    >
-                      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.25rem" }}>
-                        <div
-                          style={{
-                            width: "16px",
-                            height: "16px",
-                            borderRadius: "50%",
-                            border: form.plan === course.value ? "5px solid oklch(0.72 0.12 70)" : "2px solid oklch(0.75 0.04 75)",
-                            flexShrink: 0,
-                          }}
-                        />
-                        <span style={{ fontWeight: 600, fontSize: "0.9rem", color: "oklch(0.22 0.045 42)" }}>
-                          {course.label}
-                        </span>
-                        <span style={{ fontSize: "0.75rem", color: "oklch(0.72 0.12 70)", marginLeft: "0.25rem" }}>
-                          {course.sub}
-                        </span>
-                      </div>
-                      <p style={{ fontSize: "0.78rem", color: "oklch(0.5 0.04 42)", lineHeight: 1.6, paddingLeft: "1.5rem" }}>
-                        {course.desc}
-                      </p>
-                    </button>
-                  ))}
-                </div>
-                {errors.plan && <p style={errorStyle}>{errors.plan}</p>}
-              </div>
-
-              {/* ご質問・ご要望 */}
-              <div>
-                <label style={labelStyle}>
-                  ご質問・ご要望 <span style={{ fontSize: "0.7rem", color: "oklch(0.6 0.04 75)" }}>（任意）</span>
-                </label>
-                <textarea
-                  placeholder="気になる症状、ご要望などをご記入ください"
-                  value={form.message}
-                  onChange={(e) => setForm({ ...form, message: e.target.value })}
-                  rows={4}
-                  style={{ ...inputStyle, resize: "vertical", minHeight: "100px" }}
-                />
-              </div>
-
-              {/* 送信エラー */}
-              {createReservation.isError && (
+              {/* THE HERBSサロン選択時：Squareへ誘導 */}
+              {form.store === "salon" && (
                 <div
                   style={{
-                    padding: "0.75rem 1rem",
-                    background: "#fef2f2",
-                    border: "1px solid #fecaca",
-                    borderRadius: "4px",
-                    fontSize: "0.85rem",
-                    color: "#dc2626",
+                    background: "oklch(0.97 0.015 75)",
+                    border: "1.5px solid oklch(0.85 0.04 70)",
+                    borderRadius: "8px",
+                    padding: "1.5rem",
+                    textAlign: "center",
                   }}
                 >
-                  送信中にエラーが発生しました。しばらくしてから再度お試しください。
+                  <p
+                    style={{
+                      fontFamily: "'Shippori Mincho B1', serif",
+                      fontSize: "1rem",
+                      fontWeight: 700,
+                      color: "oklch(0.22 0.045 42)",
+                      marginBottom: "0.5rem",
+                    }}
+                  >
+                    THE HERBSサロンのご予約
+                  </p>
+                  <p style={{ fontSize: "0.82rem", color: "oklch(0.45 0.04 42)", lineHeight: 1.8, marginBottom: "1.25rem" }}>
+                    THE HERBSサロンはオンライン予約システム（Square）を<br />
+                    ご利用いただけます。空き状況をリアルタイムで確認しながら<br />
+                    ご予約が可能です。
+                  </p>
+                  <a
+                    href={SQUARE_BOOKING_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "inline-flex",
+                      alignItems: "center",
+                      gap: "0.5rem",
+                      padding: "0.875rem 2rem",
+                      background: "oklch(0.22 0.045 42)",
+                      color: "white",
+                      textDecoration: "none",
+                      borderRadius: "4px",
+                      fontWeight: 700,
+                      fontSize: "0.95rem",
+                      letterSpacing: "0.05em",
+                    }}
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+                      <line x1="16" y1="2" x2="16" y2="6"/>
+                      <line x1="8" y1="2" x2="8" y2="6"/>
+                      <line x1="3" y1="10" x2="21" y2="10"/>
+                    </svg>
+                    Square予約システムへ
+                  </a>
+                  <p style={{ fontSize: "0.72rem", color: "oklch(0.6 0.04 75)", marginTop: "1rem", lineHeight: 1.6 }}>
+                    ※ Square予約ページが新しいタブで開きます
+                  </p>
                 </div>
               )}
 
-              {/* 送信ボタン */}
-              <button
-                type="submit"
-                disabled={createReservation.isPending}
-                style={{
-                  width: "100%",
-                  padding: "1rem",
-                  background: createReservation.isPending ? "oklch(0.65 0.08 70)" : "oklch(0.72 0.12 70)",
-                  color: "white",
-                  fontSize: "1rem",
-                  fontWeight: 700,
-                  fontFamily: "'Noto Sans JP', sans-serif",
-                  border: "none",
-                  borderRadius: "2px",
-                  cursor: createReservation.isPending ? "not-allowed" : "pointer",
-                  letterSpacing: "0.05em",
-                  transition: "background 0.2s",
-                }}
-              >
-                {createReservation.isPending ? "送信中..." : "予約を申し込む"}
-              </button>
+              {/* 神戸阪急店選択時のみ：日時・コース入力 */}
+              {form.store === "hankyu" && (
+                <>
+                  {/* 希望日 */}
+                  <div>
+                    <label style={labelStyle}>
+                      ご希望日 <span style={requiredStyle}>*</span>
+                    </label>
+                    <input
+                      type="date"
+                      min={today}
+                      value={form.desiredDate}
+                      onChange={(e) => setForm({ ...form, desiredDate: e.target.value })}
+                      style={errors.desiredDate ? { ...inputStyle, borderColor: "#ef4444" } : inputStyle}
+                    />
+                    {errors.desiredDate && <p style={errorStyle}>{errors.desiredDate}</p>}
+                  </div>
 
-              <p style={{ fontSize: "0.75rem", color: "oklch(0.6 0.04 75)", textAlign: "center", lineHeight: 1.7 }}>
-                ご入力いただいた情報は予約管理のみに使用し、<br />
-                第三者への提供は行いません。
-              </p>
+                  {/* 希望時間 */}
+                  <div>
+                    <label style={labelStyle}>
+                      ご希望時間 <span style={requiredStyle}>*</span>
+                    </label>
+                    <select
+                      value={form.desiredTime}
+                      onChange={(e) => setForm({ ...form, desiredTime: e.target.value })}
+                      style={errors.desiredTime ? { ...inputStyle, borderColor: "#ef4444" } : inputStyle}
+                    >
+                      <option value="">時間を選択してください</option>
+                      {availableTimeSlots.map((t) => (
+                        <option key={t} value={t}>{t}</option>
+                      ))}
+                    </select>
+                    {errors.desiredTime && <p style={errorStyle}>{errors.desiredTime}</p>}
+                  </div>
+
+                  {/* 希望コース */}
+                  <div>
+                    <label style={labelStyle}>
+                      ご希望コース <span style={requiredStyle}>*</span>
+                    </label>
+                    <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "0.5rem" }}>
+                      {availableCourses.map((course) => (
+                        <button
+                          key={course.value}
+                          type="button"
+                          onClick={() => setForm({ ...form, plan: course.value })}
+                          style={{
+                            display: "flex",
+                            flexDirection: "column",
+                            alignItems: "flex-start",
+                            padding: "1rem 1.25rem",
+                            border: form.plan === course.value
+                              ? "2px solid oklch(0.72 0.12 70)"
+                              : "1.5px solid oklch(0.88 0.025 75)",
+                            borderRadius: "4px",
+                            background: form.plan === course.value ? "oklch(0.97 0.025 75)" : "white",
+                            cursor: "pointer",
+                            textAlign: "left",
+                            transition: "all 0.15s",
+                          }}
+                        >
+                          <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.25rem" }}>
+                            <div
+                              style={{
+                                width: "16px",
+                                height: "16px",
+                                borderRadius: "50%",
+                                border: form.plan === course.value ? "5px solid oklch(0.72 0.12 70)" : "2px solid oklch(0.75 0.04 75)",
+                                flexShrink: 0,
+                              }}
+                            />
+                            <span style={{ fontWeight: 600, fontSize: "0.9rem", color: "oklch(0.22 0.045 42)" }}>
+                              {course.label}
+                            </span>
+                            <span style={{ fontSize: "0.75rem", color: "oklch(0.72 0.12 70)", marginLeft: "0.25rem" }}>
+                              {course.sub}
+                            </span>
+                          </div>
+                          <p style={{ fontSize: "0.78rem", color: "oklch(0.5 0.04 42)", lineHeight: 1.6, paddingLeft: "1.5rem" }}>
+                            {course.desc}
+                          </p>
+                        </button>
+                      ))}
+                    </div>
+                    {errors.plan && <p style={errorStyle}>{errors.plan}</p>}
+                  </div>
+
+                  {/* ご質問・ご要望 */}
+                  <div>
+                    <label style={labelStyle}>
+                      ご質問・ご要望 <span style={{ fontSize: "0.7rem", color: "oklch(0.6 0.04 75)" }}>（任意）</span>
+                    </label>
+                    <textarea
+                      placeholder="気になる症状、ご要望などをご記入ください"
+                      value={form.message}
+                      onChange={(e) => setForm({ ...form, message: e.target.value })}
+                      rows={4}
+                      style={{ ...inputStyle, resize: "vertical", minHeight: "100px" }}
+                    />
+                  </div>
+
+                  {/* 送信エラー */}
+                  {createReservation.isError && (
+                    <div
+                      style={{
+                        padding: "0.75rem 1rem",
+                        background: "#fef2f2",
+                        border: "1px solid #fecaca",
+                        borderRadius: "4px",
+                        fontSize: "0.85rem",
+                        color: "#dc2626",
+                      }}
+                    >
+                      送信中にエラーが発生しました。しばらくしてから再度お試しください。
+                    </div>
+                  )}
+
+                  {/* 送信ボタン */}
+                  <button
+                    type="submit"
+                    disabled={createReservation.isPending}
+                    style={{
+                      width: "100%",
+                      padding: "1rem",
+                      background: createReservation.isPending ? "oklch(0.65 0.08 70)" : "oklch(0.72 0.12 70)",
+                      color: "white",
+                      fontSize: "1rem",
+                      fontWeight: 700,
+                      fontFamily: "'Noto Sans JP', sans-serif",
+                      border: "none",
+                      borderRadius: "2px",
+                      cursor: createReservation.isPending ? "not-allowed" : "pointer",
+                      letterSpacing: "0.05em",
+                      transition: "background 0.2s",
+                    }}
+                  >
+                    {createReservation.isPending ? "送信中..." : "予約を申し込む"}
+                  </button>
+
+                  <p style={{ fontSize: "0.75rem", color: "oklch(0.6 0.04 75)", textAlign: "center", lineHeight: 1.7 }}>
+                    ご入力いただいた情報は予約管理のみに使用し、<br />
+                    第三者への提供は行いません。
+                  </p>
+                </>
+              )}
+
+              {/* 店舗未選択時のガイド */}
+              {!form.store && (
+                <p style={{ fontSize: "0.82rem", color: "oklch(0.55 0.04 75)", padding: "0.75rem", background: "oklch(0.96 0.01 75)", borderRadius: "4px", textAlign: "center" }}>
+                  上の「ご希望店舗」を選択してください
+                </p>
+              )}
             </div>
           </form>
         )}
@@ -714,7 +871,7 @@ export default function Booking() {
               <p style={{ fontSize: "0.8rem", color: "oklch(0.45 0.04 42)", lineHeight: 1.7 }}>
                 兵庫県神戸市中央区小野柄通8丁目1番8号<br />
                 神戸阪急本館6階 モーニングフロー内<br />
-                営業時間：10:00〜20:00
+                営業時間：10:30〜20:00
               </p>
             </div>
             <div>

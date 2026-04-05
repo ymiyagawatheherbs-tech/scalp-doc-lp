@@ -1,1 +1,4 @@
 - [x] /bookingページにLINE予約オプションを追加（フォーム入力とLINEの2択）
+- [x] 神戸阪急店の予約時間帯を10:30〜に変更
+- [x] 予約注意事項（ご希望に添えない場合あり・返信をもって確定・余裕を持ったご予約）を追加
+- [x] THE HERBSサロンをSquare予約システム（https://book.squareup.com/appointments/jsufqo133zf3ec/location/LEWSC49JS30BF/services）へ直接誘導
