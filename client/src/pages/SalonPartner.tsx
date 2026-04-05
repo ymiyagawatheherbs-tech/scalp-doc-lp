@@ -62,7 +62,7 @@ function Nav() {
             </div>
             <div>
               <div className="text-sm font-bold leading-tight tracking-widest" style={{ fontFamily: "'Shippori Mincho', serif", color: scrolled ? "#1a1a1a" : "#ffffff" }}>
-                スカルプラボ
+                THE HERBS SCALP LAB
               </div>
               <div className="text-[9px] tracking-widest uppercase leading-none" style={{ color: "#2d5a27" }}>
                 Salon Partner
@@ -109,7 +109,7 @@ function Hero() {
       <div className="absolute right-0 top-0 w-full lg:w-[55%] h-full">
         <img
           src={IMAGES.interior}
-          alt="スカルプラボ認定サロン"
+          alt="THE HERBS SCALP LAB認定サロン"
           className="w-full h-full object-cover"
           style={{ objectPosition: "center center" }}
         />
@@ -135,7 +135,7 @@ function Hero() {
           <p className="text-base leading-relaxed mb-4" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#444", lineHeight: "1.9" }}>
             薄毛・抜け毛・うねり・頭皮トラブル。<br />
             悩みを抱えながらも、どこに相談すればいいかわからない方が大勢います。<br />
-            スカルプラボは、そうした方々の「受け皿」をサロンと一緒につくります。
+            THE HERBS SCALP LABは、そうした方々の「受け皿」をサロンと一緒につくります。
           </p>
           <p className="text-sm leading-relaxed mb-10" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#888" }}>
             エステサロン・美容師・ヘッドスパ店など、業種を問わず参加できます。
@@ -249,7 +249,7 @@ function BlueOcean() {
           }}
         >
           <h3 className="text-xl font-bold mb-2 text-center" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
-            スカルプラボが目指すポジション
+            THE HERBS SCALP LABが目指すポジション
           </h3>
           <p className="text-sm text-center mb-10" style={{ color: "rgba(255,255,255,0.65)", fontFamily: "'Noto Sans JP', sans-serif" }}>
             「美容」でも「医療」でもない、第三の領域
@@ -257,7 +257,7 @@ function BlueOcean() {
           <div className="grid md:grid-cols-3 gap-6 text-center">
             {[
               { area: "美容サービス", desc: "スタイリング・施術の提供", color: "rgba(255,255,255,0.15)", textColor: "rgba(255,255,255,0.5)", note: "商品・施術が主役" },
-              { area: "スカルプラボ", desc: "頭皮の定期チェック＋ケアの習慣化", color: "#a8d5a2", textColor: "#1a2e1a", note: "習慣化が主役（ブルーオーシャン）", highlight: true },
+              { area: "THE HERBS SCALP LAB", desc: "頭皮の定期チェック＋ケアの習慣化", color: "#a8d5a2", textColor: "#1a2e1a", note: "習慣化が主役（ブルーオーシャン）", highlight: true },
               { area: "医療機関", desc: "診断・治療・処方", color: "rgba(255,255,255,0.15)", textColor: "rgba(255,255,255,0.5)", note: "疾患対応が主役" },
             ].map((pos, i) => (
               <div
@@ -305,7 +305,7 @@ function Concept() {
           </h2>
           <p className="text-base max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#555", lineHeight: "1.9" }}>
             歯科の定期検診が当たり前になったように、<br />
-            頭皮の定期チェックを「当たり前の習慣」にすることが、スカルプラボのミッションです。
+            頭皮の定期チェックを「当たり前の習慣」にすることが、THE HERBS SCALP LABのミッションです。
           </p>
         </div>
 
@@ -365,7 +365,7 @@ function Concept() {
           }}
         >
           <h3 className="text-xl font-bold mb-8 text-center" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
-            歯科との対比で見るスカルプラボのモデル
+            歯科との対比で見るTHE HERBS SCALP LABのモデル
           </h3>
           <div className="grid md:grid-cols-2 gap-8">
             {[
@@ -376,7 +376,7 @@ function Concept() {
                 label: "確立されたモデル",
               },
               {
-                title: "スカルプラボの定期チェックモデル",
+                title: "THE HERBS SCALP LABの定期チェックモデル",
                 items: ["薄毛になる前に定期的にチェック", "問題が見つかれば施術・ケアへ", "マイクロスコープで経年変化を記録", "習慣化でお客様との長期関係"],
                 color: "#e8f5e3",
                 label: "これから創るモデル",
@@ -595,7 +595,7 @@ function WhoCanJoin() {
               title: "副業・起業を考える方",
               icon: "🌱",
               tags: ["美容師免許あり", "エステ経験あり", "自宅サロン"],
-              body: "大きな初期投資なしに始められる頭皮ケアメニューとして。スカルプラボの認定を取得することで、専門性を持った差別化が図れます。",
+              body: "大きな初期投資なしに始められる頭皮ケアメニューとして。THE HERBS SCALP LABの認定を取得することで、専門性を持った差別化が図れます。",
               fit: "低コストで始められる",
             },
           ].map((item, i) => (
@@ -668,7 +668,7 @@ function ProgramSteps() {
             {
               num: "02",
               title: "オンライン説明会への参加",
-              body: "スカルプラボのコンセプト・認定プログラムの内容・収益モデルについて詳しくご説明します。質問も自由にどうぞ。",
+              body: "THE HERBS SCALP LABのコンセプト・認定プログラムの内容・収益モデルについて詳しくご説明します。質問も自由にどうぞ。",
               time: "約60分",
             },
             {
@@ -680,7 +680,7 @@ function ProgramSteps() {
             {
               num: "04",
               title: "認定サロンとして登録",
-              body: "認定後はスカルプラボの公式サロンリストに掲載されます。THE HERBS製品の卸販売権・販促ツールの提供・継続サポートを受けられます。",
+              body: "認定後はTHE HERBS SCALP LABの公式サロンリストに掲載されます。THE HERBS製品の卸販売権・販促ツールの提供・継続サポートを受けられます。",
               time: "認定後すぐ",
             },
           ].map((step, i) => (
@@ -740,7 +740,7 @@ function Faq() {
     },
     {
       q: "既存のメニューと並行して提供できますか？",
-      a: "はい。スカルプラボのメニューは、既存のカラー・パーマ・フェイシャルなどと組み合わせて提供できます。「カラー後の頭皮ケア」として追加するだけでも十分な価値になります。",
+      a: "はい。THE HERBS SCALP LABのメニューは、既存のカラー・パーマ・フェイシャルなどと組み合わせて提供できます。「カラー後の頭皮ケア」として追加するだけでも十分な価値になります。",
     },
     {
       q: "認定後のサポートはありますか？",
@@ -818,7 +818,7 @@ function AppSection() {
               <span style={{ color: "#a8d5a2" }}>アプリで管理・共有。</span>
             </h2>
             <p className="text-sm leading-relaxed mb-8" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.75)", lineHeight: "1.9" }}>
-              スカルプラボアプリでクライアントの頭皮画像・症状・生活習慣を記録・管理。<br />
+              THE HERBS SCALP LABアプリでクライアントの頭皮画像・症状・生活習慣を記録・管理。<br />
               定期チェックのデータを共有し、<br />
               パーソナルケアの提案と定期来店を促進します。
             </p>
@@ -867,7 +867,7 @@ function AppSection() {
           <div className="flex justify-center">
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/app-mockup-hero-aPvm7rmSN3wqZSXwseC4wS.png"
-              alt="スカルプラボアプリ モックアップ"
+              alt="THE HERBS SCALP LABアプリ モックアップ"
               className="w-full max-w-lg object-contain"
             />
           </div>
@@ -929,7 +929,7 @@ function Footer() {
         <img src={HERBS_LOGO} alt="THE HERBS" className="h-4 w-auto brightness-0 invert opacity-50" />
       </div>
       <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>
-        © 2025 スカルプラボ by THE HERBS. All rights reserved.
+        © 2025 THE HERBS SCALP LAB. All rights reserved.
       </p>
       <div className="mt-3 flex justify-center gap-6">
         <a href="/" className="text-xs transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}
@@ -950,14 +950,14 @@ function Footer() {
 // ========== MAIN ==========
 export default function SalonPartner() {
   useEffect(() => {
-    document.title = "サロンパートナー募集 | スカルプラボ by THE HERBS";
+    document.title = "サロンパートナー募集 | THE HERBS SCALP LAB";
     const setMeta = (name: string, content: string) => {
       let el = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
       if (!el) { el = document.createElement("meta"); el.name = name; document.head.appendChild(el); }
       el.content = content;
     };
-    setMeta("description", "頭皮ケアのブルーオーシャン市場へ。予防型ヘルスケア×習慣化事業として、スカルプラボ認定パートナーを募集。収益の仕組みはLINE登録後に無料でお届けします。");
-    setMeta("keywords", "頭皮ケア 副業,エステサロン 新メニュー,美容師 副業,ヘッドスパ 開業,スカルプラボ 認定サロン,ブルーオーシャン 美容");
+    setMeta("description", "頭皮ケアのブルーオーシャン市場へ。予防型ヘルスケア×習慣化事業として、THE HERBS SCALP LAB認定パートナーを募集。収益の仕組みはLINE登録後に無料でお届けします。");
+    setMeta("keywords", "頭皮ケア 副業,エステサロン 新メニュー,美容師 副業,ヘッドスパ 開業,THE HERBS SCALP LAB 認定サロン,ブルーオーシャン 美容");
   }, []);
 
   return (

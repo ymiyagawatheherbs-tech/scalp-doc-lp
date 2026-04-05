@@ -1,5 +1,5 @@
 /*
- * スカルプラボ LP — Home Page
+ * THE HERBS SCALP LAB LP — Home Page
  * Design: モダン・ウェルネス・スタジオ
  * Color: Cream × Deep Brown × Golden Amber
  * Font: Shippori Mincho B1 × Noto Sans JP × Cormorant Garamond
@@ -187,7 +187,7 @@ function Nav() {
               <div className={`font-mincho text-xs md:text-sm font-bold leading-tight tracking-widest transition-colors ${
                 scrolled ? "text-[oklch(0.22_0.045_42)]" : "text-white"
               }`}>
-                スカルプラボ
+                THE HERBS SCALP LAB
               </div>
               <div className="font-cormorant text-[oklch(0.72_0.12_70)] text-[9px] md:text-[10px] tracking-widest uppercase leading-none">
                 Scalp Labo
@@ -304,7 +304,7 @@ function HeroSection() {
       <div className="absolute inset-0">
         <img
           src={IMAGES.hero}
-          alt="スカルプラボ ウェルネススタジオ"
+          alt="THE HERBS SCALP LAB ウェルネススタジオ"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.18_0.04_42/0.75)] via-[oklch(0.18_0.04_42/0.45)] to-transparent" />
@@ -518,7 +518,7 @@ function ScalpGallerySection() {
             </div>
             {/* 凡例 */}
             <p className="font-sans-jp text-white/40 text-[11px] text-center mt-2 tracking-wide">
-              ※ スカルプラボ実際のマイクロスコープ撮影画像
+              ※ THE HERBS SCALP LAB実際のマイクロスコープ撑影画像
             </p>
           </div>
 
@@ -604,7 +604,7 @@ function ConceptSection() {
               </div>
               <div className="karte-border">
                 <p className="font-sans-jp text-[oklch(0.38_0.055_42)] text-sm leading-relaxed font-semibold">
-                  スカルプラボは、頭皮ケアに同じ変化を目指します。「薄毛が気になってから行く場所」ではなく、「定期的に頭皮の状態を確認する場所」へ。
+                  THE HERBS SCALP LABは、頭皮ケアに同じ変化を目指します。「薄毛が気になってから行く場所」ではなく、「定期的に頭皮の状態を確認する場所」へ。
                 </p>
               </div>
             </div>
@@ -1323,7 +1323,7 @@ function FaqSection() {
     },
     {
       q: "医療行為ではないですか？",
-      a: "スカルプラボは医療行為ではありません。マイクロスコープによる頭皮の撮影・記録・確認を行うサービスです。医療機関への受診が適切と思われる場合は、提携医療機関をご案内することがあります。",
+      a: "THE HERBS SCALP LABは医療行為ではありません。マイクロスコープによる頭皮の撮影・記録・確認を行うサービスです。医療機関への受診が適切と思われる場合は、提携医療機関をご案内することがあります。",
     },
   ];
 
@@ -1799,7 +1799,7 @@ function ReservationSection() {
               <div className="grid sm:grid-cols-3 gap-3">
                 {[
                   { value: "free", label: "無料スカルプチェック", sub: "5〜10分・無料" },
-                  { value: "standard", label: "スカルプラボ定期ケア", sub: "30〜40分・3,000〜5,000円" },
+                  { value: "standard", label: "THE HERBS SCALP LAB定期ケア", sub: "30～40分・3,000～5,000円" },
                   { value: "consult", label: "まずは相談したい", sub: "内容を相談" },
                 ].map((opt) => (
                   <button
@@ -1873,7 +1873,7 @@ function StoreSection() {
   const stores = [
     {
       id: "hankyu",
-      name: "スカルプラボ THE HERBS神戸阪急店",
+      name: "THE HERBS SCALP LAB 神戸阪急店",
       nameEn: "SCALP LABO THE HERBS Kobe Hankyu",
       badge: "百貨店内サロン",
       address: "兵庫県神戸市中央区小野柄通８丁目１−8",
@@ -1891,7 +1891,7 @@ function StoreSection() {
     },
     {
       id: "nada",
-      name: "スカルプラボ THE HERBSサロン",
+      name: "THE HERBS SCALP LAB サロン",
       nameEn: "SCALP LABO THE HERBS Salon",
       badge: "直営ヘッドスパサロン",
       address: "兵庫県神戸市灘区大内通1-7-17 1F",
@@ -2046,7 +2046,7 @@ function StoreSection() {
           <div>
             <p className="font-cormorant text-[oklch(0.72_0.12_70)] text-xs tracking-[0.3em] uppercase mb-2">For Salon Partners</p>
             <h3 className="font-mincho text-white text-xl md:text-2xl font-bold mb-2">
-              スカルプラボの認定サロンになりませんか？
+              THE HERBS SCALP LABの認定サロンになりませんか？
             </h3>
             <p className="font-sans-jp text-white/75 text-sm leading-relaxed">
               エステサロン・美容師の方向けに、頭皮チェックの技術講習と認定制度をご用意しています。
@@ -2063,7 +2063,7 @@ function StoreSection() {
     </section>
   );
 }
-// CTAセクションン
+// CTAセクション
 function CtaSection() {
   const { ref, inView } = useInView();
   return (
@@ -2121,7 +2121,7 @@ function Footer() {
                 <span className="text-[oklch(0.72_0.12_70)] text-xs font-cormorant font-semibold">S</span>
               </div>
               <div>
-                <div className="font-mincho text-white text-sm font-bold tracking-widest">スカルプラボ</div>
+                <div className="font-mincho text-white text-sm font-bold tracking-widest">THE HERBS SCALP LAB</div>
                 <div className="font-cormorant text-[oklch(0.72_0.12_70)] text-[10px] tracking-widest uppercase">Scalp Labo</div>
               </div>
             </div>
@@ -2144,7 +2144,7 @@ function Footer() {
             <ul className="space-y-2">
               {[
                 { label: "無料スカルプチェック", href: "/booking" },
-                { label: "スカルプラボ定期ケア", href: "#サービス" },
+                { label: "THE HERBS SCALP LAB定期ケア", href: "#サービス" },
                 { label: "店舗・アクセス", href: "#店舗情報" },
                 { label: "認定サロン募集", href: "/salon" },
               ].map((item) => (
@@ -2182,7 +2182,7 @@ function Footer() {
         </div>
         <div className="text-center">
           <p className="font-sans-jp text-white/55 text-xs">
-            © 2025 スカルプラボ. All rights reserved.
+            © 2025 THE HERBS SCALP LAB. All rights reserved.
           </p>
         </div>
       </div>

@@ -7,3 +7,4 @@
 - [x] Booking.tsxの予約フローを再設計：LINEフォロワーが直接フォーム入力できる構造に変更（LINEで予約ボタンを廃止、神戸阪急店はフォーム、THE HERBSサロンはSquare直接誘導）
 - [x] Booking.tsxの店舗名を修正：「スカルプラボ 神戸阪急店」→「THE HERBS神戸阪急店」、「スカルプラボ THE HERBSサロン」→「THE HERBSサロン」
 - [x] Home.tsxの「認定サロンになりませんか？」セクションを非表示にする（内容確定後に再表示予定）
+- [x] サイト全体のブランド名を「THE HERBS SCALP LAB」に変更（タイトル・ナビ・メタタグ・フッター・Home.tsx・Booking.tsx等）

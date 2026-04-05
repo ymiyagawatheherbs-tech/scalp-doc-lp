@@ -1,5 +1,5 @@
 /**
- * スカルプラボ — プライバシーポリシー
+ * * THE HERBS SCALP LAB プライバシーポリシー
  * Design: モダン・ウェルネス・スタジオ
  */
 
@@ -33,7 +33,7 @@ function LegalLayout({ title, subtitle, children }: { title: string; subtitle: s
       {/* フッター */}
       <footer className="bg-[oklch(0.22_0.045_42)] py-8 text-center">
         <p className="font-sans-jp text-white/30 text-xs">
-          © 2025 スカルプラボ. All rights reserved.
+          © 2025 THE HERBS SCALP LAB. All rights reserved.
         </p>
       </footer>
     </div>
@@ -61,7 +61,7 @@ export default function Privacy() {
       </p>
 
       <p className="font-sans-jp text-[oklch(0.38_0.055_42)] text-sm leading-relaxed mb-10">
-        スカルプラボ（以下「当社」）は、お客様の個人情報の保護を重要な責務と認識し、以下のプライバシーポリシーに従って個人情報を適切に取り扱います。
+        THE HERBS SCALP LAB（以下「当社」）は、お客様の個人情報の保護を重要な責務と認識し、以下のプライバシーポリシーに従って個人情報を適切に取り扱います。
       </p>
 
       <Section title="第1条　個人情報の定義">
@@ -118,7 +118,7 @@ export default function Privacy() {
           お客様は、当社が保有するご自身の個人情報について、開示・訂正・追加・削除・利用停止を請求することができます。ご請求の際は、本人確認のうえ対応いたします。
         </p>
         <p>
-          お問い合わせ先：スカルプラボ 個人情報担当窓口<br />
+          お問い合わせ先：THE HERBS SCALP LAB 個人情報担当窓口<br />
           メール：privacy@scalp-labo.jp（※デモ用アドレスです）
         </p>
       </Section>
@@ -140,7 +140,7 @@ export default function Privacy() {
           本ポリシーに関するお問い合わせは、以下の窓口までご連絡ください。
         </p>
         <p>
-          スカルプラボ 個人情報保護担当<br />
+          THE HERBS SCALP LAB 個人情報保護担当<br />
           メール：privacy@scalp-labo.jp（※デモ用アドレスです）
         </p>
       </Section>
