@@ -2,3 +2,5 @@
 - [x] 神戸阪急店の予約時間帯を10:30〜に変更
 - [x] 予約注意事項（ご希望に添えない場合あり・返信をもって確定・余裕を持ったご予約）を追加
 - [x] THE HERBSサロンをSquare予約システム（https://book.squareup.com/appointments/jsufqo133zf3ec/location/LEWSC49JS30BF/services）へ直接誘導
+- [x] Home.tsxの全CTAボタン（今すぐ予約・無料チェックを予約など）を/bookingへ誘導
+- [x] 神戸阪急店にも「まずは相談したい」コースを追加（Booking.tsx）

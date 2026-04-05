@@ -233,7 +233,7 @@ function Nav() {
             ))}
             {/* サロン向け・メンズ版：準備中のため非表示 */}
             <a
-              href="#予約"
+              href="/booking"
               className="btn-gold-shimmer text-white font-sans-jp text-sm font-bold px-5 py-2.5 rounded-sm" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
             >
               無料チェックを予約
@@ -243,7 +243,7 @@ function Nav() {
           {/* スマホ右側：CTAボタン＋ハンバーガー */}
           <div className="md:hidden flex items-center gap-2">
             <a
-              href="#予約"
+              href="/booking"
               className="btn-gold-shimmer text-white font-sans-jp text-xs font-bold px-3 py-1.5 rounded-sm" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
             >
               今すぐ予約
@@ -283,7 +283,7 @@ function Nav() {
             ))}
             {/* サロン向け・メンズ版：準備中のため非表示 */}
             <a
-              href="#予約"
+              href="/booking"
               onClick={() => setMobileOpen(false)}
               className="block btn-gold-shimmer text-white font-sans-jp font-bold text-center py-4 rounded-sm mt-2" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
             >
@@ -336,7 +336,7 @@ function HeroSection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 animate-fade-in-up opacity-0-init delay-300">
             <a
-              href="#cta"
+              href="/booking"
               className="btn-gold-shimmer text-white font-sans-jp font-bold px-6 md:px-8 py-3.5 md:py-4 rounded-sm text-center text-sm md:text-base" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
             >
               無料スカルプチェックを予約する
@@ -566,10 +566,7 @@ function ScalpGallerySection() {
                 実際にマイクロスコープで確認してみましょう。初回チェックは無料です。
               </p>
               <button
-                onClick={() => {
-                  const el = document.getElementById("reservation");
-                  if (el) el.scrollIntoView({ behavior: "smooth" });
-                }}
+                onClick={() => window.location.href = '/booking'}
                 className="w-full py-3 font-sans-jp text-sm font-semibold tracking-wider transition-all duration-300"
                 style={{ backgroundColor: "oklch(0.72_0.12_70)", color: "oklch(0.18_0.04_42)" }}
               >
@@ -740,7 +737,7 @@ function HabitValueSection() {
             まずは無料の頭皮チェックから。
           </p>
           <a
-            href="#cta"
+            href="/booking"
             className="inline-block btn-gold-shimmer font-sans-jp text-[oklch(0.18_0.04_42)] text-sm font-bold px-10 py-4 rounded-sm tracking-wider"
           >
             無料スカルプチェックを予約する
@@ -1124,7 +1121,7 @@ function BotanicalMistSection() {
             ボタニカルミストは定期チェックのすべてのコースに含まれています
           </p>
           <button
-            onClick={() => document.getElementById('予約')?.scrollIntoView({ behavior: 'smooth' })}
+            onClick={() => window.location.href = '/booking'}
             className="btn-gold-shimmer text-white font-sans-jp font-bold px-10 py-4 text-sm tracking-wider"
             style={{ textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}
           >
@@ -2090,7 +2087,7 @@ function CtaSection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a
-              href="#予約"
+              href="/booking"
               className="btn-gold-shimmer text-white font-sans-jp font-bold px-10 py-5 rounded-sm text-base" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
             >
               無料スカルプチェックを予約する
@@ -2147,7 +2144,7 @@ function Footer() {
             <h4 className="font-mincho text-white text-sm font-bold mb-4">サービス</h4>
             <ul className="space-y-2">
               {[
-                { label: "無料スカルプチェック", href: "#予約" },
+                { label: "無料スカルプチェック", href: "/booking" },
                 { label: "スカルプラボ定期ケア", href: "#サービス" },
                 { label: "店舗・アクセス", href: "#店舗情報" },
                 { label: "認定サロン募集", href: "/salon" },
@@ -2164,7 +2161,7 @@ function Footer() {
             <h4 className="font-mincho text-white text-sm font-bold mb-4">お問い合わせ</h4>
             <ul className="space-y-2">
               {[
-                { label: "予約・お問い合わせ", href: "#予約" },
+                { label: "予約・お問い合わせ", href: "/booking" },
                 { label: "よくある質問", href: "#よくある質問" },
                 { label: "プライバシーポリシー", href: "/privacy" },
                 { label: "特定商取引法に基づく表記", href: "/tokushoho" },

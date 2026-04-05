@@ -23,8 +23,8 @@ const STORES = [
   {
     value: "hankyu",
     label: "スカルプラボ 神戸阪急店",
-    address: "神戸阪急本館6階 モーニングフロー内",
-    courses: ["free", "standard"],
+    address: "神戸阪急本栈6階 モーニングフロー内",
+    courses: ["free", "standard", "consult"],
     lineUrl: "https://lin.ee/RhtIZDl",
     lineId: "@theherbs_kobe",
     useSquare: false,
