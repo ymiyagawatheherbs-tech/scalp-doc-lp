@@ -4,3 +4,4 @@
 - [x] THE HERBSサロンをSquare予約システム（https://book.squareup.com/appointments/jsufqo133zf3ec/location/LEWSC49JS30BF/services）へ直接誘導
 - [x] Home.tsxの全CTAボタン（今すぐ予約・無料チェックを予約など）を/bookingへ誘導
 - [x] 神戸阪急店にも「まずは相談したい」コースを追加（Booking.tsx）
+- [x] Booking.tsxの予約フローを再設計：LINEフォロワーが直接フォーム入力できる構造に変更（LINEで予約ボタンを廃止、神戸阪急店はフォーム、THE HERBSサロンはSquare直接誘導）
