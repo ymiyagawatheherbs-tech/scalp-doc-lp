@@ -231,29 +231,7 @@ function Nav() {
                 {item.label}
               </a>
             ))}
-            {/* サロン向けリンク */}
-            <a
-              href="/salon"
-              className={`font-sans-jp text-xs font-medium px-3 py-1.5 rounded-full border transition-all hover:scale-105 ${
-                scrolled
-                  ? "border-[oklch(0.72_0.12_70)] text-[oklch(0.72_0.12_70)] hover:bg-[oklch(0.72_0.12_70)] hover:text-white"
-                  : "border-[oklch(0.72_0.12_70)/70] text-[oklch(0.82_0.10_75)] hover:border-[oklch(0.72_0.12_70)] hover:text-[oklch(0.72_0.12_70)]"
-              }`}
-            >
-              サロン向け
-            </a>
-            {/* メンズ版切り替えリンク */}
-            <a
-              href="/men"
-              className={`flex items-center gap-1.5 font-sans-jp text-xs font-medium px-3 py-1.5 rounded-full border transition-all hover:scale-105 ${
-                scrolled
-                  ? "border-[oklch(0.22_0.045_42)] text-[oklch(0.22_0.045_42)] hover:bg-[oklch(0.22_0.045_42)] hover:text-white"
-                  : "border-white/60 text-white/80 hover:border-white hover:text-white"
-              }`}
-            >
-              <span className="text-[10px]">&#9794;</span>
-              メンズ版
-            </a>
+            {/* サロン向け・メンズ版：準備中のため非表示 */}
             <a
               href="#予約"
               className="btn-gold-shimmer text-white font-sans-jp text-sm font-bold px-5 py-2.5 rounded-sm" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
@@ -303,21 +281,7 @@ function Nav() {
                 {item.label}
               </a>
             ))}
-            <a
-              href="/salon"
-              onClick={() => setMobileOpen(false)}
-              className="flex items-center justify-center gap-2 border border-[oklch(0.72_0.12_70)] text-[oklch(0.72_0.12_70)] font-sans-jp font-medium text-sm text-center py-3 rounded-sm mt-2 hover:bg-[oklch(0.72_0.12_70)] hover:text-white transition-colors"
-            >
-              サロン・美容師の方へ
-            </a>
-            <a
-              href="/men"
-              onClick={() => setMobileOpen(false)}
-              className="flex items-center justify-center gap-2 border border-[oklch(0.22_0.045_42)] text-[oklch(0.22_0.045_42)] font-sans-jp font-medium text-sm text-center py-3 rounded-sm mt-2 hover:bg-[oklch(0.22_0.045_42)] hover:text-white transition-colors"
-            >
-              <span>&#9794;</span>
-              メンズ版はこちら
-            </a>
+            {/* サロン向け・メンズ版：準備中のため非表示 */}
             <a
               href="#予約"
               onClick={() => setMobileOpen(false)}
