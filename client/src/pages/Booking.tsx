@@ -21,34 +21,19 @@ const STORES = [
     value: "hankyu",
     label: "スカルプラボ 神戸阪急店",
     address: "神戸阪急本館6階 モーニングフロー内",
-    courses: ["free", "standard"], // パーソナルケア（personal）以外
+    courses: ["free", "standard"],
+    lineUrl: "https://lin.ee/RhtIZDl",
+    lineId: "@theherbs_kobe",
   },
   {
     value: "salon",
     label: "スカルプラボ THE HERBSサロン",
     address: "兵庫県神戸市灘区大内通1-7-17 1F",
-    courses: ["free", "standard", "consult"], // 全コース
+    courses: ["free", "standard", "consult"],
+    lineUrl: "https://lin.ee/oWeHStW",
+    lineId: "@theherbs39",
   },
 ];
-
-const TIME_SLOTS = [
-  "10:00", "10:30", "11:00", "11:30", "12:00", "12:30",
-  "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
-  "16:00", "16:30", "17:00", "17:30", "18:00", "18:30",
-  "19:00", "19:30",
-];
-
-type FormState = {
-  name: string;
-  phone: string;
-  store: string;
-  desiredDate: string;
-  desiredTime: string;
-  plan: string;
-  message: string;
-};
-
-type Errors = Partial<Record<keyof FormState, string>>;
 
 // 店舗ごとの時間帯
 const STORE_TIME_SLOTS: Record<string, string[]> = {
@@ -65,7 +50,29 @@ const STORE_TIME_SLOTS: Record<string, string[]> = {
   ],
 };
 
+const DEFAULT_TIME_SLOTS = [
+  "10:00", "10:30", "11:00", "11:30", "12:00", "12:30",
+  "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
+  "16:00", "16:30", "17:00", "17:30", "18:00", "18:30",
+  "19:00", "19:30",
+];
+
+type BookingMethod = "form" | "line";
+
+type FormState = {
+  name: string;
+  phone: string;
+  store: string;
+  desiredDate: string;
+  desiredTime: string;
+  plan: string;
+  message: string;
+};
+
+type Errors = Partial<Record<keyof FormState, string>>;
+
 export default function Booking() {
+  const [bookingMethod, setBookingMethod] = useState<BookingMethod | null>(null);
   const [form, setForm] = useState<FormState>({
     name: "",
     phone: "",
@@ -76,12 +83,11 @@ export default function Booking() {
     message: "",
   });
 
-  // 選択中の店舗情報
   const selectedStore = STORES.find((s) => s.value === form.store);
   const availableCourses = selectedStore
     ? ALL_COURSES.filter((c) => selectedStore.courses.includes(c.value))
     : [];
-  const availableTimeSlots = form.store ? (STORE_TIME_SLOTS[form.store] ?? TIME_SLOTS) : TIME_SLOTS;
+  const availableTimeSlots = form.store ? (STORE_TIME_SLOTS[form.store] ?? DEFAULT_TIME_SLOTS) : DEFAULT_TIME_SLOTS;
   const [errors, setErrors] = useState<Errors>({});
   const [submitted, setSubmitted] = useState(false);
 
@@ -275,250 +281,417 @@ export default function Booking() {
             ご予約・お申し込み
           </h1>
           <p style={{ fontSize: "0.85rem", color: "oklch(0.45 0.04 42)", lineHeight: 1.7 }}>
-            下記フォームにご入力の上、送信してください。<br />
-            担当者よりご連絡いたします。
+            ご希望の予約方法をお選びください。
           </p>
         </div>
 
-        {/* フォーム */}
-        <form onSubmit={handleSubmit} noValidate>
+        {/* 予約方法選択 */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gap: "1rem",
+            marginBottom: "2rem",
+          }}
+        >
+          {/* LINEで予約 */}
+          <button
+            type="button"
+            onClick={() => setBookingMethod("line")}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.75rem",
+              padding: "1.5rem 1rem",
+              border: bookingMethod === "line"
+                ? "2px solid #06C755"
+                : "1.5px solid oklch(0.88 0.025 75)",
+              borderRadius: "8px",
+              background: bookingMethod === "line" ? "#f0fff4" : "white",
+              cursor: "pointer",
+              transition: "all 0.15s",
+              boxShadow: bookingMethod === "line" ? "0 0 0 3px rgba(6,199,85,0.15)" : "0 2px 8px rgba(0,0,0,0.04)",
+            }}
+          >
+            {/* LINEアイコン */}
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="40" height="40" rx="10" fill="#06C755"/>
+              <path d="M33 18.8C33 13.4 27.6 9 21 9C14.4 9 9 13.4 9 18.8C9 23.6 13.2 27.6 18.8 28.6C19.2 28.7 19.8 28.9 19.9 29.3C20 29.7 19.9 30.3 19.8 30.7C19.8 30.7 19.6 31.7 19.6 31.9C19.5 32.3 19.3 33.3 21 32.6C22.7 31.9 30.4 27.1 33.6 23.5C34.8 22.2 33 20.9 33 18.8Z" fill="white"/>
+              <path d="M17.5 16.5H16.5C16.2 16.5 16 16.7 16 17V22C16 22.3 16.2 22.5 16.5 22.5H17.5C17.8 22.5 18 22.3 18 22V17C18 16.7 17.8 16.5 17.5 16.5Z" fill="#06C755"/>
+              <path d="M25.5 16.5H24.5C24.2 16.5 24 16.7 24 17V19.8L21.8 16.7C21.7 16.6 21.6 16.5 21.5 16.5H20.5C20.2 16.5 20 16.7 20 17V22C20 22.3 20.2 22.5 20.5 22.5H21.5C21.8 22.5 22 22.3 22 22V19.2L24.2 22.3C24.3 22.4 24.4 22.5 24.5 22.5H25.5C25.8 22.5 26 22.3 26 22V17C26 16.7 25.8 16.5 25.5 16.5Z" fill="#06C755"/>
+            </svg>
+            <div>
+              <p style={{ fontWeight: 700, fontSize: "0.95rem", color: "oklch(0.22 0.045 42)", marginBottom: "0.2rem" }}>
+                LINEで予約
+              </p>
+              <p style={{ fontSize: "0.72rem", color: "oklch(0.5 0.04 42)", lineHeight: 1.5 }}>
+                LINEで直接<br />やりとりできます
+              </p>
+            </div>
+          </button>
+
+          {/* フォームで予約 */}
+          <button
+            type="button"
+            onClick={() => setBookingMethod("form")}
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "0.75rem",
+              padding: "1.5rem 1rem",
+              border: bookingMethod === "form"
+                ? "2px solid oklch(0.72 0.12 70)"
+                : "1.5px solid oklch(0.88 0.025 75)",
+              borderRadius: "8px",
+              background: bookingMethod === "form" ? "oklch(0.97 0.025 75)" : "white",
+              cursor: "pointer",
+              transition: "all 0.15s",
+              boxShadow: bookingMethod === "form" ? "0 0 0 3px rgba(180,130,60,0.15)" : "0 2px 8px rgba(0,0,0,0.04)",
+            }}
+          >
+            {/* フォームアイコン */}
+            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="40" height="40" rx="10" fill="oklch(0.72 0.12 70)"/>
+              <rect x="11" y="12" width="18" height="2.5" rx="1.25" fill="white"/>
+              <rect x="11" y="18" width="14" height="2.5" rx="1.25" fill="white"/>
+              <rect x="11" y="24" width="10" height="2.5" rx="1.25" fill="white"/>
+            </svg>
+            <div>
+              <p style={{ fontWeight: 700, fontSize: "0.95rem", color: "oklch(0.22 0.045 42)", marginBottom: "0.2rem" }}>
+                フォームで予約
+              </p>
+              <p style={{ fontSize: "0.72rem", color: "oklch(0.5 0.04 42)", lineHeight: 1.5 }}>
+                24時間いつでも<br />お申し込みできます
+              </p>
+            </div>
+          </button>
+        </div>
+
+        {/* LINE予約パネル */}
+        {bookingMethod === "line" && (
           <div
             style={{
               background: "white",
-              borderRadius: "4px",
+              borderRadius: "8px",
               boxShadow: "0 2px 16px rgba(0,0,0,0.05)",
               padding: "2rem 1.5rem",
-              display: "flex",
-              flexDirection: "column",
-              gap: "1.5rem",
+              marginBottom: "2rem",
             }}
           >
-            {/* お名前 */}
-            <div>
-              <label style={labelStyle}>
-                お名前 <span style={requiredStyle}>*</span>
-              </label>
-              <input
-                type="text"
-                placeholder="山田 花子"
-                value={form.name}
-                onChange={(e) => setForm({ ...form, name: e.target.value })}
-                style={errors.name ? { ...inputStyle, borderColor: "#ef4444" } : inputStyle}
-              />
-              {errors.name && <p style={errorStyle}>{errors.name}</p>}
-            </div>
-
-            {/* 電話番号 */}
-            <div>
-              <label style={labelStyle}>
-                電話番号 <span style={requiredStyle}>*</span>
-              </label>
-              <input
-                type="tel"
-                placeholder="090-0000-0000"
-                value={form.phone}
-                onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                style={errors.phone ? { ...inputStyle, borderColor: "#ef4444" } : inputStyle}
-              />
-              {errors.phone && <p style={errorStyle}>{errors.phone}</p>}
-            </div>
-
-            {/* 店舗選択 */}
-            <div>
-              <label style={labelStyle}>
-                ご希望店舗 <span style={requiredStyle}>*</span>
-              </label>
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "0.5rem" }}>
-                {STORES.map((store) => (
-                  <button
-                    key={store.value}
-                    type="button"
-                    onClick={() => setForm({ ...form, store: store.value, plan: "", desiredTime: "" })}
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                      padding: "0.875rem 1.25rem",
-                      border: form.store === store.value
-                        ? "2px solid oklch(0.72 0.12 70)"
-                        : "1.5px solid oklch(0.88 0.025 75)",
-                      borderRadius: "4px",
-                      background: form.store === store.value ? "oklch(0.97 0.025 75)" : "white",
-                      cursor: "pointer",
-                      textAlign: "left",
-                      transition: "all 0.15s",
-                    }}
-                  >
-                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
-                      <div
-                        style={{
-                          width: "16px",
-                          height: "16px",
-                          borderRadius: "50%",
-                          border: form.store === store.value ? "5px solid oklch(0.72 0.12 70)" : "2px solid oklch(0.75 0.04 75)",
-                          flexShrink: 0,
-                        }}
-                      />
-                      <span style={{ fontWeight: 600, fontSize: "0.9rem", color: "oklch(0.22 0.045 42)" }}>
-                        {store.label}
-                      </span>
-                    </div>
-                    <p style={{ fontSize: "0.78rem", color: "oklch(0.5 0.04 42)", marginTop: "0.25rem", paddingLeft: "1.5rem" }}>
-                      {store.address}
-                    </p>
-                  </button>
-                ))}
-              </div>
-              {errors.store && <p style={errorStyle}>{errors.store}</p>}
-            </div>
-            {/* 希望日 */}
-            <div>
-              <label style={labelStyle}>
-                ご希望日 <span style={requiredStyle}>*</span>
-              </label>
-              <input
-                type="date"
-                min={today}
-                value={form.desiredDate}
-                onChange={(e) => setForm({ ...form, desiredDate: e.target.value })}
-                style={errors.desiredDate ? { ...inputStyle, borderColor: "#ef4444" } : inputStyle}
-              />
-              {errors.desiredDate && <p style={errorStyle}>{errors.desiredDate}</p>}
-            </div>
-
-            {/* 希望時間 */}
-            <div>
-              <label style={labelStyle}>
-                ご希望時間 <span style={requiredStyle}>*</span>
-              </label>
-              <select
-                value={form.desiredTime}
-                onChange={(e) => setForm({ ...form, desiredTime: e.target.value })}
-                style={errors.desiredTime ? { ...inputStyle, borderColor: "#ef4444" } : inputStyle}
-              >
-                <option value="">時間を選択してください</option>
-                {availableTimeSlots.map((t) => (
-                  <option key={t} value={t}>{t}</option>
-                ))}
-              </select>
-              {errors.desiredTime && <p style={errorStyle}>{errors.desiredTime}</p>}
-            </div>
-
-            {/* 希望コース */}
-            <div>
-              <label style={labelStyle}>
-                ご希望コース <span style={requiredStyle}>*</span>
-              </label>
-              <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "0.5rem" }}>
-                {!form.store && (
-                  <p style={{ fontSize: "0.82rem", color: "oklch(0.55 0.04 75)", padding: "0.75rem", background: "oklch(0.96 0.01 75)", borderRadius: "4px" }}>
-                    まず上の「ご希望店舗」を選択してください
-                  </p>
-                )}
-                {availableCourses.map((course) => (
-                  <button
-                    key={course.value}
-                    type="button"
-                    onClick={() => setForm({ ...form, plan: course.value })}
-                    style={{
-                      display: "flex",
-                      flexDirection: "column",
-                      alignItems: "flex-start",
-                      padding: "1rem 1.25rem",
-                      border: form.plan === course.value
-                        ? "2px solid oklch(0.72 0.12 70)"
-                        : "1.5px solid oklch(0.88 0.025 75)",
-                      borderRadius: "4px",
-                      background: form.plan === course.value ? "oklch(0.97 0.025 75)" : "white",
-                      cursor: "pointer",
-                      textAlign: "left",
-                      transition: "all 0.15s",
-                    }}
-                  >
-                    <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.25rem" }}>
-                      <div
-                        style={{
-                          width: "16px",
-                          height: "16px",
-                          borderRadius: "50%",
-                          border: form.plan === course.value ? "5px solid oklch(0.72 0.12 70)" : "2px solid oklch(0.75 0.04 75)",
-                          flexShrink: 0,
-                        }}
-                      />
-                      <span style={{ fontWeight: 600, fontSize: "0.9rem", color: "oklch(0.22 0.045 42)" }}>
-                        {course.label}
-                      </span>
-                      <span style={{ fontSize: "0.75rem", color: "oklch(0.72 0.12 70)", marginLeft: "0.25rem" }}>
-                        {course.sub}
-                      </span>
-                    </div>
-                    <p style={{ fontSize: "0.78rem", color: "oklch(0.5 0.04 42)", lineHeight: 1.6, paddingLeft: "1.5rem" }}>
-                      {course.desc}
-                    </p>
-                  </button>
-                ))}
-              </div>
-              {errors.plan && <p style={errorStyle}>{errors.plan}</p>}
-            </div>
-
-            {/* ご質問・ご要望 */}
-            <div>
-              <label style={labelStyle}>
-                ご質問・ご要望 <span style={{ fontSize: "0.7rem", color: "oklch(0.6 0.04 75)" }}>（任意）</span>
-              </label>
-              <textarea
-                placeholder="気になる症状、ご要望などをご記入ください"
-                value={form.message}
-                onChange={(e) => setForm({ ...form, message: e.target.value })}
-                rows={4}
-                style={{ ...inputStyle, resize: "vertical", minHeight: "100px" }}
-              />
-            </div>
-
-            {/* 送信エラー */}
-            {createReservation.isError && (
-              <div
-                style={{
-                  padding: "0.75rem 1rem",
-                  background: "#fef2f2",
-                  border: "1px solid #fecaca",
-                  borderRadius: "4px",
-                  fontSize: "0.85rem",
-                  color: "#dc2626",
-                }}
-              >
-                送信中にエラーが発生しました。しばらくしてから再度お試しください。
-              </div>
-            )}
-
-            {/* 送信ボタン */}
-            <button
-              type="submit"
-              disabled={createReservation.isPending}
+            <p
               style={{
-                width: "100%",
-                padding: "1rem",
-                background: createReservation.isPending ? "oklch(0.65 0.08 70)" : "oklch(0.72 0.12 70)",
-                color: "white",
-                fontSize: "1rem",
+                fontFamily: "'Shippori Mincho B1', serif",
+                fontSize: "1.1rem",
                 fontWeight: 700,
-                fontFamily: "'Noto Sans JP', sans-serif",
-                border: "none",
-                borderRadius: "2px",
-                cursor: createReservation.isPending ? "not-allowed" : "pointer",
-                letterSpacing: "0.05em",
-                transition: "background 0.2s",
+                color: "oklch(0.22 0.045 42)",
+                marginBottom: "0.5rem",
               }}
             >
-              {createReservation.isPending ? "送信中..." : "予約を申し込む"}
-            </button>
+              LINEでご予約
+            </p>
+            <p style={{ fontSize: "0.83rem", color: "oklch(0.45 0.04 42)", lineHeight: 1.8, marginBottom: "1.5rem" }}>
+              各店舗のLINE公式アカウントを友だち追加して、<br />
+              メッセージでご希望の日時・コースをお送りください。
+            </p>
 
-            <p style={{ fontSize: "0.75rem", color: "oklch(0.6 0.04 75)", textAlign: "center", lineHeight: 1.7 }}>
-              ご入力いただいた情報は予約管理のみに使用し、<br />
-              第三者への提供は行いません。
+            <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+              {STORES.map((store) => (
+                <div
+                  key={store.value}
+                  style={{
+                    border: "1.5px solid oklch(0.88 0.025 75)",
+                    borderRadius: "8px",
+                    padding: "1.25rem",
+                    background: "oklch(0.99 0.008 75)",
+                  }}
+                >
+                  <p style={{ fontWeight: 700, fontSize: "0.9rem", color: "oklch(0.22 0.045 42)", marginBottom: "0.25rem" }}>
+                    {store.label}
+                  </p>
+                  <p style={{ fontSize: "0.78rem", color: "oklch(0.55 0.04 42)", marginBottom: "1rem" }}>
+                    {store.address}
+                  </p>
+                  <a
+                    href={store.lineUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      gap: "0.5rem",
+                      padding: "0.75rem 1.25rem",
+                      background: "#06C755",
+                      color: "white",
+                      textDecoration: "none",
+                      borderRadius: "6px",
+                      fontWeight: 700,
+                      fontSize: "0.9rem",
+                      letterSpacing: "0.03em",
+                    }}
+                  >
+                    <svg width="20" height="20" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M33 18.8C33 13.4 27.6 9 21 9C14.4 9 9 13.4 9 18.8C9 23.6 13.2 27.6 18.8 28.6C19.2 28.7 19.8 28.9 19.9 29.3C20 29.7 19.9 30.3 19.8 30.7C19.8 30.7 19.6 31.7 19.6 31.9C19.5 32.3 19.3 33.3 21 32.6C22.7 31.9 30.4 27.1 33.6 23.5C34.8 22.2 33 20.9 33 18.8Z" fill="white"/>
+                    </svg>
+                    {store.lineId} を友だち追加
+                  </a>
+                </div>
+              ))}
+            </div>
+
+            <p style={{ fontSize: "0.75rem", color: "oklch(0.6 0.04 75)", marginTop: "1.25rem", lineHeight: 1.7, textAlign: "center" }}>
+              友だち追加後、「予約希望」とメッセージを送ると<br />
+              担当者よりご返信いたします。
             </p>
           </div>
-        </form>
+        )}
+
+        {/* フォーム予約パネル */}
+        {bookingMethod === "form" && (
+          <form onSubmit={handleSubmit} noValidate>
+            <div
+              style={{
+                background: "white",
+                borderRadius: "4px",
+                boxShadow: "0 2px 16px rgba(0,0,0,0.05)",
+                padding: "2rem 1.5rem",
+                display: "flex",
+                flexDirection: "column",
+                gap: "1.5rem",
+              }}
+            >
+              {/* お名前 */}
+              <div>
+                <label style={labelStyle}>
+                  お名前 <span style={requiredStyle}>*</span>
+                </label>
+                <input
+                  type="text"
+                  placeholder="山田 花子"
+                  value={form.name}
+                  onChange={(e) => setForm({ ...form, name: e.target.value })}
+                  style={errors.name ? { ...inputStyle, borderColor: "#ef4444" } : inputStyle}
+                />
+                {errors.name && <p style={errorStyle}>{errors.name}</p>}
+              </div>
+
+              {/* 電話番号 */}
+              <div>
+                <label style={labelStyle}>
+                  電話番号 <span style={requiredStyle}>*</span>
+                </label>
+                <input
+                  type="tel"
+                  placeholder="090-0000-0000"
+                  value={form.phone}
+                  onChange={(e) => setForm({ ...form, phone: e.target.value })}
+                  style={errors.phone ? { ...inputStyle, borderColor: "#ef4444" } : inputStyle}
+                />
+                {errors.phone && <p style={errorStyle}>{errors.phone}</p>}
+              </div>
+
+              {/* 店舗選択 */}
+              <div>
+                <label style={labelStyle}>
+                  ご希望店舗 <span style={requiredStyle}>*</span>
+                </label>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "0.5rem" }}>
+                  {STORES.map((store) => (
+                    <button
+                      key={store.value}
+                      type="button"
+                      onClick={() => setForm({ ...form, store: store.value, plan: "", desiredTime: "" })}
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "flex-start",
+                        padding: "0.875rem 1.25rem",
+                        border: form.store === store.value
+                          ? "2px solid oklch(0.72 0.12 70)"
+                          : "1.5px solid oklch(0.88 0.025 75)",
+                        borderRadius: "4px",
+                        background: form.store === store.value ? "oklch(0.97 0.025 75)" : "white",
+                        cursor: "pointer",
+                        textAlign: "left",
+                        transition: "all 0.15s",
+                      }}
+                    >
+                      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                        <div
+                          style={{
+                            width: "16px",
+                            height: "16px",
+                            borderRadius: "50%",
+                            border: form.store === store.value ? "5px solid oklch(0.72 0.12 70)" : "2px solid oklch(0.75 0.04 75)",
+                            flexShrink: 0,
+                          }}
+                        />
+                        <span style={{ fontWeight: 600, fontSize: "0.9rem", color: "oklch(0.22 0.045 42)" }}>
+                          {store.label}
+                        </span>
+                      </div>
+                      <p style={{ fontSize: "0.78rem", color: "oklch(0.5 0.04 42)", marginTop: "0.25rem", paddingLeft: "1.5rem" }}>
+                        {store.address}
+                      </p>
+                    </button>
+                  ))}
+                </div>
+                {errors.store && <p style={errorStyle}>{errors.store}</p>}
+              </div>
+
+              {/* 希望日 */}
+              <div>
+                <label style={labelStyle}>
+                  ご希望日 <span style={requiredStyle}>*</span>
+                </label>
+                <input
+                  type="date"
+                  min={today}
+                  value={form.desiredDate}
+                  onChange={(e) => setForm({ ...form, desiredDate: e.target.value })}
+                  style={errors.desiredDate ? { ...inputStyle, borderColor: "#ef4444" } : inputStyle}
+                />
+                {errors.desiredDate && <p style={errorStyle}>{errors.desiredDate}</p>}
+              </div>
+
+              {/* 希望時間 */}
+              <div>
+                <label style={labelStyle}>
+                  ご希望時間 <span style={requiredStyle}>*</span>
+                </label>
+                <select
+                  value={form.desiredTime}
+                  onChange={(e) => setForm({ ...form, desiredTime: e.target.value })}
+                  style={errors.desiredTime ? { ...inputStyle, borderColor: "#ef4444" } : inputStyle}
+                >
+                  <option value="">時間を選択してください</option>
+                  {availableTimeSlots.map((t) => (
+                    <option key={t} value={t}>{t}</option>
+                  ))}
+                </select>
+                {errors.desiredTime && <p style={errorStyle}>{errors.desiredTime}</p>}
+              </div>
+
+              {/* 希望コース */}
+              <div>
+                <label style={labelStyle}>
+                  ご希望コース <span style={requiredStyle}>*</span>
+                </label>
+                <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginTop: "0.5rem" }}>
+                  {!form.store && (
+                    <p style={{ fontSize: "0.82rem", color: "oklch(0.55 0.04 75)", padding: "0.75rem", background: "oklch(0.96 0.01 75)", borderRadius: "4px" }}>
+                      まず上の「ご希望店舗」を選択してください
+                    </p>
+                  )}
+                  {availableCourses.map((course) => (
+                    <button
+                      key={course.value}
+                      type="button"
+                      onClick={() => setForm({ ...form, plan: course.value })}
+                      style={{
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "flex-start",
+                        padding: "1rem 1.25rem",
+                        border: form.plan === course.value
+                          ? "2px solid oklch(0.72 0.12 70)"
+                          : "1.5px solid oklch(0.88 0.025 75)",
+                        borderRadius: "4px",
+                        background: form.plan === course.value ? "oklch(0.97 0.025 75)" : "white",
+                        cursor: "pointer",
+                        textAlign: "left",
+                        transition: "all 0.15s",
+                      }}
+                    >
+                      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.25rem" }}>
+                        <div
+                          style={{
+                            width: "16px",
+                            height: "16px",
+                            borderRadius: "50%",
+                            border: form.plan === course.value ? "5px solid oklch(0.72 0.12 70)" : "2px solid oklch(0.75 0.04 75)",
+                            flexShrink: 0,
+                          }}
+                        />
+                        <span style={{ fontWeight: 600, fontSize: "0.9rem", color: "oklch(0.22 0.045 42)" }}>
+                          {course.label}
+                        </span>
+                        <span style={{ fontSize: "0.75rem", color: "oklch(0.72 0.12 70)", marginLeft: "0.25rem" }}>
+                          {course.sub}
+                        </span>
+                      </div>
+                      <p style={{ fontSize: "0.78rem", color: "oklch(0.5 0.04 42)", lineHeight: 1.6, paddingLeft: "1.5rem" }}>
+                        {course.desc}
+                      </p>
+                    </button>
+                  ))}
+                </div>
+                {errors.plan && <p style={errorStyle}>{errors.plan}</p>}
+              </div>
+
+              {/* ご質問・ご要望 */}
+              <div>
+                <label style={labelStyle}>
+                  ご質問・ご要望 <span style={{ fontSize: "0.7rem", color: "oklch(0.6 0.04 75)" }}>（任意）</span>
+                </label>
+                <textarea
+                  placeholder="気になる症状、ご要望などをご記入ください"
+                  value={form.message}
+                  onChange={(e) => setForm({ ...form, message: e.target.value })}
+                  rows={4}
+                  style={{ ...inputStyle, resize: "vertical", minHeight: "100px" }}
+                />
+              </div>
+
+              {/* 送信エラー */}
+              {createReservation.isError && (
+                <div
+                  style={{
+                    padding: "0.75rem 1rem",
+                    background: "#fef2f2",
+                    border: "1px solid #fecaca",
+                    borderRadius: "4px",
+                    fontSize: "0.85rem",
+                    color: "#dc2626",
+                  }}
+                >
+                  送信中にエラーが発生しました。しばらくしてから再度お試しください。
+                </div>
+              )}
+
+              {/* 送信ボタン */}
+              <button
+                type="submit"
+                disabled={createReservation.isPending}
+                style={{
+                  width: "100%",
+                  padding: "1rem",
+                  background: createReservation.isPending ? "oklch(0.65 0.08 70)" : "oklch(0.72 0.12 70)",
+                  color: "white",
+                  fontSize: "1rem",
+                  fontWeight: 700,
+                  fontFamily: "'Noto Sans JP', sans-serif",
+                  border: "none",
+                  borderRadius: "2px",
+                  cursor: createReservation.isPending ? "not-allowed" : "pointer",
+                  letterSpacing: "0.05em",
+                  transition: "background 0.2s",
+                }}
+              >
+                {createReservation.isPending ? "送信中..." : "予約を申し込む"}
+              </button>
+
+              <p style={{ fontSize: "0.75rem", color: "oklch(0.6 0.04 75)", textAlign: "center", lineHeight: 1.7 }}>
+                ご入力いただいた情報は予約管理のみに使用し、<br />
+                第三者への提供は行いません。
+              </p>
+            </div>
+          </form>
+        )}
 
         {/* 店舗案内 */}
         <div
