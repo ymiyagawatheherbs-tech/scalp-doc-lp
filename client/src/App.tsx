@@ -9,6 +9,7 @@ import MenHome from "./pages/MenHome";
 import Privacy from "./pages/Privacy";
 import Tokushoho from "./pages/Tokushoho";
 import SalonPartner from "./pages/SalonPartner";
+import Booking from "./pages/Booking";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -19,6 +20,7 @@ function Router() {
       <Route path={"/privacy"} component={Privacy} />
       <Route path={"/tokushoho"} component={Tokushoho} />
       <Route path={"/salon"} component={SalonPartner} />
+      <Route path={"/booking"} component={Booking} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
