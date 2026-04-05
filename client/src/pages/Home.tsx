@@ -2039,8 +2039,8 @@ function StoreSection() {
           ))}
         </div>
 
-        {/* サロン募集バナー */}
-        <div className={`mt-16 bg-[oklch(0.22_0.045_42)] rounded-sm p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-700 delay-300 ${
+        {/* サロン募集バナー — 内容確定まで一時非表示 */}
+        {false && <div className={`mt-16 bg-[oklch(0.22_0.045_42)] rounded-sm p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-700 delay-300 ${
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}>
           <div>
@@ -2058,13 +2058,12 @@ function StoreSection() {
           >
             認定サロン募集ページへ →
           </a>
-        </div>
+        </div>}
       </div>
     </section>
   );
 }
-
-// CTAセクション
+// CTAセクションン
 function CtaSection() {
   const { ref, inView } = useInView();
   return (
