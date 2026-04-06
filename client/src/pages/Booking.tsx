@@ -28,7 +28,9 @@ const STORES = [
   {
     value: "hankyu",
     label: "THE HERBS神戸阪急店",
-    address: "神戸阪急本館6階 モーニングフロー内",
+    address: "神戸阪急本案6階 モーニングフロー内",
+    hours: "10:00 〜 20:00（年中無休）",
+    checkHours: "頭皮チェック受付時間：12:00 〜 16:00（随時受付も可）",
     courses: ["free", "standard", "consult"],
     useSquare: false,
     note: "担当者よりお電話またはLINEにてご返信いたします。",
@@ -254,6 +256,11 @@ export default function Booking() {
                 <p style={{ fontSize: "0.72rem", color: "oklch(0.55 0.04 42)", lineHeight: 1.5 }}>
                   {s.address}
                 </p>
+                {"hours" in s && s.hours && (
+                  <p style={{ fontSize: "0.68rem", color: "oklch(0.45 0.04 42)", marginTop: "0.3rem", lineHeight: 1.5 }}>
+                    営業時間：{(s as { hours: string }).hours}
+                  </p>
+                )}
                 {s.useSquare && (
                   <p style={{ fontSize: "0.68rem", color: "oklch(0.72 0.12 70)", marginTop: "0.4rem", fontWeight: 600 }}>
                     Square予約システム利用
@@ -316,6 +323,21 @@ export default function Booking() {
         {/* 神戸阪急店選択時 → フォーム */}
         {selectedStore === "hankyu" && (
           <form onSubmit={handleSubmit} noValidate>
+            {/* 営業時間・受付時間インフォ */}
+            <div style={{ background: "oklch(0.97 0.02 70)", border: "1px solid oklch(0.85 0.06 70)", borderRadius: "6px", padding: "0.9rem 1.1rem", marginBottom: "1rem", display: "flex", flexDirection: "column", gap: "0.35rem" }}>
+              <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="oklch(0.6 0.1 70)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                  <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+                </svg>
+                <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "oklch(0.35 0.06 60)" }}>THE HERBS神戸阪急店</span>
+              </div>
+              <p style={{ fontSize: "0.72rem", color: "oklch(0.4 0.04 42)", lineHeight: 1.6, margin: 0, paddingLeft: "1.3rem" }}>
+                営業時間：<strong>10:00 〜 20:00</strong>（年中無休）
+              </p>
+              <p style={{ fontSize: "0.72rem", color: "oklch(0.4 0.04 42)", lineHeight: 1.6, margin: 0, paddingLeft: "1.3rem" }}>
+                頭皮チェック受付：<strong>12:00 〜 16:00</strong>（それ以外は随時受付）
+              </p>
+            </div>
             <p style={{ fontSize: "0.72rem", letterSpacing: "0.15em", color: "oklch(0.72 0.12 70)", fontWeight: 600, marginBottom: "0.75rem" }}>
               STEP 2 — ご予約内容を入力する
             </p>
