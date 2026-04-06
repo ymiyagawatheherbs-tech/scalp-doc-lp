@@ -43,12 +43,14 @@ const STORES = [
   },
 ];
 
-// 神戸阪急店の時間帯（10:30〜）
+// 神戸阪急店の時間帯（12:00〜16:00 / それ以外は随時受付）
 const HANKYU_TIME_SLOTS = [
-  "10:30", "11:00", "11:30", "12:00", "12:30",
+  "12:00", "12:30",
   "13:00", "13:30", "14:00", "14:30", "15:00", "15:30",
-  "16:00", "16:30", "17:00", "17:30", "18:00", "18:30",
-  "19:00", "19:30",
+  "16:00",
+];
+const HANKYU_TIME_SLOTS_OTHER = [
+  "随時受付（時間帯ご相談）",
 ];
 
 type FormState = {
@@ -367,9 +369,16 @@ export default function Booking() {
                   style={errors.desiredTime ? { ...inputStyle, borderColor: "#ef4444" } : inputStyle}
                 >
                   <option value="">時間を選択してください</option>
-                  {HANKYU_TIME_SLOTS.map((t) => (
-                    <option key={t} value={t}>{t}</option>
-                  ))}
+                  <optgroup label="予約可能時間帯（12:00〜16:00）">
+                    {HANKYU_TIME_SLOTS.map((t) => (
+                      <option key={t} value={t}>{t}</option>
+                    ))}
+                  </optgroup>
+                  <optgroup label="その他">
+                    {HANKYU_TIME_SLOTS_OTHER.map((t) => (
+                      <option key={t} value={t}>{t}</option>
+                    ))}
+                  </optgroup>
                 </select>
                 {errors.desiredTime && <p style={errorStyle}>{errors.desiredTime}</p>}
               </div>

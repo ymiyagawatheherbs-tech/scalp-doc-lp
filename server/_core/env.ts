@@ -12,4 +12,8 @@ export const ENV = {
   lineKobeChannelSecret: process.env.LINE_KOBE_CHANNEL_SECRET ?? "",
   lineSalonChannelAccessToken: process.env.LINE_SALON_CHANNEL_ACCESS_TOKEN ?? "",
   lineSalonChannelSecret: process.env.LINE_SALON_CHANNEL_SECRET ?? "",
+  // Outlook SMTP
+  smtpUser: process.env.SMTP_USER ?? "",
+  smtpPass: process.env.SMTP_PASS ?? "",
+  notifyEmail: process.env.NOTIFY_EMAIL ?? "cx@the-herbs.co.jp",
 };

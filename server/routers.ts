@@ -9,6 +9,7 @@ import { storagePut } from "./storage";
 import { desc } from "drizzle-orm";
 import { z } from "zod";
 import { nanoid } from "nanoid";
+import { sendBookingNotification } from "./mailer";
 
 export const appRouter = router({
   system: systemRouter,
@@ -64,6 +65,25 @@ export const appRouter = router({
           title: `【新規予約】${input.name}様 — ${planLabel[input.plan] ?? input.plan}`,
           content: `日時: ${input.desiredDate} ${input.desiredTime}\n電話: ${input.phone}\nメール: ${input.email || "未記入"}\nメッセージ: ${input.message || "なし"}`,
         }).catch(() => {});
+
+        // Outlook SMTP経由でcx@the-herbs.co.jpへメール通知
+        const courseMap: Record<string, string> = {
+          free: "free_check",
+          standard: "regular_care",
+          personal: "regular_care",
+          consult: "consultation",
+        };
+        await sendBookingNotification({
+          storeName: "THE HERBS神戸阪急店",
+          name: input.name,
+          phone: input.phone,
+          email: input.email || "未記入",
+          course: courseMap[input.plan] ?? input.plan,
+          preferredDate: input.desiredDate,
+          preferredTime: input.desiredTime,
+          message: input.message,
+          submittedAt: new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" }),
+        }).catch((err) => console.error("[reservation] email notification failed:", err));
 
         return { success: true };
       }),

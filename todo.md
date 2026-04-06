@@ -13,3 +13,5 @@
 - [ ] LINEアクセストークン・シークレットをSecretsに登録- [x] SEO修正：タイトルを 30～60文字に変更（キーワード含む）
 - [x] SEO修正：metaキーワード・ description追加- [x] SEO修正：altテキストが未設定の画像を修正
 - [x] LINE Messaging API連携：中止（2026-04-06）
+- [ ] 神戸阪急店フォーム送信時にcx@the-herbs.co.jpへメール通知を送る機能を実装
+- [ ] メール通知先をcx1@the-herbs.co.jpに修正（SMTP_USERとenv.tsのnotifyEmail）
