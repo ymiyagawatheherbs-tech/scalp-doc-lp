@@ -8,3 +8,8 @@
 - [x] Booking.tsxの店舗名を修正：「スカルプラボ 神戸阪急店」→「THE HERBS神戸阪急店」、「スカルプラボ THE HERBSサロン」→「THE HERBSサロン」
 - [x] Home.tsxの「認定サロンになりませんか？」セクションを非表示にする（内容確定後に再表示予定）
 - [x] サイト全体のブランド名を「THE HERBS SCALP LAB」に変更（タイトル・ナビ・メタタグ・フッター・Home.tsx・Booking.tsx等）
+- [ ] LINE Messaging API連携：神戸阪急店フォーム送信時に@theherbs_kobeへ予約通知を送信
+- [ ] LINE Messaging API連携：THE HERBSサロン（Square誘導）フォーム送信時に@theherbs39へ通知
+- [ ] LINEアクセストークン・シークレットをSecretsに登録- [x] SEO修正：タイトルを 30～60文字に変更（キーワード含む）
+- [x] SEO修正：metaキーワード・ description追加- [x] SEO修正：altテキストが未設定の画像を修正
+- [x] LINE Messaging API連携：中止（2026-04-06）

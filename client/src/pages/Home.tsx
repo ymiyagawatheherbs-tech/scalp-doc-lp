@@ -2069,7 +2069,7 @@ function CtaSection() {
   return (
     <section className="py-28 bg-[oklch(0.22_0.045_42)] relative overflow-hidden" id="cta">
       <div className="absolute inset-0 opacity-10">
-        <img src={IMAGES.consultation} alt="" className="w-full h-full object-cover" />
+        <img src={IMAGES.consultation} alt="頭皮ケアコンサルテーションの様子" className="w-full h-full object-cover" aria-hidden="true" />
       </div>
       <div ref={ref} className="relative z-10 max-w-3xl mx-auto px-6 text-center">
         <div className={`transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
@@ -2192,6 +2192,10 @@ function Footer() {
 
 // メインコンポーネント
 export default function Home() {
+  useEffect(() => {
+    document.title = "THE HERBS SCALP LAB | 頭皮の定期チェック・スカルプケア専門サロン 神戸";
+  }, []);
+
   return (
     <div className="min-h-screen">
       <Nav />

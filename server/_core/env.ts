@@ -7,4 +7,9 @@ export const ENV = {
   isProduction: process.env.NODE_ENV === "production",
   forgeApiUrl: process.env.BUILT_IN_FORGE_API_URL ?? "",
   forgeApiKey: process.env.BUILT_IN_FORGE_API_KEY ?? "",
+  // LINE Messaging API
+  lineKobeChannelAccessToken: process.env.LINE_KOBE_CHANNEL_ACCESS_TOKEN ?? "",
+  lineKobeChannelSecret: process.env.LINE_KOBE_CHANNEL_SECRET ?? "",
+  lineSalonChannelAccessToken: process.env.LINE_SALON_CHANNEL_ACCESS_TOKEN ?? "",
+  lineSalonChannelSecret: process.env.LINE_SALON_CHANNEL_SECRET ?? "",
 };
