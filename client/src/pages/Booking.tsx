@@ -17,7 +17,7 @@ import { trpc } from "@/lib/trpc";
 const ALL_COURSES = [
   { value: "free",     label: "無料スカルプチェック",  sub: "5〜10分・無料",            desc: "マイクロスコープで頭皮の状態を確認。初めての方に最適です。" },
   { value: "standard", label: "THE HERBS SCALP LAB定期ケア",  sub: "30〜40分・3,000〜5,000円", desc: "定期的な頭皮チェック＋ボタニカルミストケア。継続的なサポートを希望の方に。" },
-  { value: "consult",  label: "まずは相談したい",       sub: "内容を相談",               desc: "コースや料金など、まずはお気軽にご相談ください。" },
+  { value: "consult",  label: "まずは相談したい",       sub: "内容を相談",               desc: "お気軽にご相談ください。" },
 ];
 
 // Square予約URL（THE HERBSサロン）
@@ -29,7 +29,7 @@ const STORES = [
     value: "hankyu",
     label: "THE HERBS神戸阪急店",
     address: "神戸阪急本案6階 モーニングフロー内",
-    hours: "10:00 〜 20:00（年中無休）",
+    hours: "10:00 〜 20:00",
     checkHours: "頭皮チェック受付時間：12:00 〜 16:00（随時受付も可）",
     courses: ["free", "standard", "consult"],
     useSquare: false,
@@ -332,10 +332,10 @@ export default function Booking() {
                 <span style={{ fontSize: "0.75rem", fontWeight: 700, color: "oklch(0.35 0.06 60)" }}>THE HERBS神戸阪急店</span>
               </div>
               <p style={{ fontSize: "0.72rem", color: "oklch(0.4 0.04 42)", lineHeight: 1.6, margin: 0, paddingLeft: "1.3rem" }}>
-                営業時間：<strong>10:00 〜 20:00</strong>（年中無休）
+                営業時間：<strong>10:00 〜 20:00</strong>
               </p>
               <p style={{ fontSize: "0.72rem", color: "oklch(0.4 0.04 42)", lineHeight: 1.6, margin: 0, paddingLeft: "1.3rem" }}>
-                頭皮チェック受付：<strong>12:00 〜 16:00</strong>（それ以外は随時受付）
+                頭皮チェック受付：<strong>12:00 〜 16:00</strong>（それ以外は随時受付となります）
               </p>
             </div>
             <p style={{ fontSize: "0.72rem", letterSpacing: "0.15em", color: "oklch(0.72 0.12 70)", fontWeight: 600, marginBottom: "0.75rem" }}>
@@ -477,7 +477,7 @@ export default function Booking() {
               </button>
 
               <p style={{ fontSize: "0.75rem", color: "oklch(0.6 0.04 75)", textAlign: "center", lineHeight: 1.7 }}>
-                ※ 担当者よりお電話またはLINEにてご連絡いたします。<br />
+                ※ 担当者よりメールにてご連絡いたします。<br />
                 個人情報は予約確認の目的のみに使用し、第三者に提供しません。
               </p>
             </div>
