@@ -201,29 +201,27 @@ function Nav() {
             </div>
           </a>
 
-          {/* THE HERBSロゴ — スマホでは中央、デスクトップでは非表示 */}
-          <div className={`md:hidden flex items-center gap-1.5 transition-all duration-500 ${
+          {/* SCALP LABOロゴ — スマホ中央 */}
+          <div className={`md:hidden flex items-center transition-all duration-500 ${
             scrolled ? "opacity-0 pointer-events-none" : "opacity-100"
           }`}>
-            <span className="font-cormorant text-white/40 text-[8px] tracking-[0.15em] uppercase">by</span>
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
-              alt="THE HERBS"
-              className="h-3 w-auto brightness-0 invert opacity-60"
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-transparent_0357bebe.png"
+              alt="SCALP LABO"
+              className="h-6 w-auto object-contain"
             />
           </div>
 
           {/* デスクトップナビ */}
           <div className="hidden md:flex items-center gap-8">
-            {/* THE HERBSロゴ — デスクトップ */}
-            <div className={`flex items-center gap-1.5 transition-all duration-500 ${
+            {/* SCALP LABOロゴ — デスクトップ中央 */}
+            <div className={`flex items-center transition-all duration-500 ${
               scrolled ? "opacity-0 pointer-events-none" : "opacity-100"
             }`}>
-              <span className="font-cormorant text-white/40 text-[9px] tracking-[0.2em] uppercase">presented by</span>
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
-                alt="THE HERBS"
-                className="h-3.5 w-auto brightness-0 invert opacity-70"
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-transparent_0357bebe.png"
+                alt="SCALP LABO"
+                className="h-7 w-auto object-contain"
               />
             </div>
             {navLinks.map((item) => (
@@ -321,10 +319,9 @@ function HeroSection() {
         <div className="max-w-2xl">
           <div className="animate-fade-in-up opacity-0-init mb-6 md:mb-8">
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-cutout_146defca.webp"
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-transparent_0357bebe.png"
               alt="SCALP LABO - BOTANICAL BEAUTY SCIENCE"
               className="h-14 md:h-20 w-auto object-contain"
-              style={{ filter: 'brightness(0) invert(1)', opacity: 0.92 }}
             />
           </div>
           <div className="hidden md:block animate-fade-in-up opacity-0-init">

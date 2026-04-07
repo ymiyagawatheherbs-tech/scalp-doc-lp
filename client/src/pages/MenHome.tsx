@@ -82,29 +82,27 @@ function Nav() {
             </div>
           </Link>
 
-          {/* THE HERBSロゴ — スマホ中央 */}
-          <div className={`md:hidden flex items-center gap-1.5 transition-all duration-500 ${
+          {/* SCALP LABOロゴ — スマホ中央 */}
+          <div className={`md:hidden flex items-center transition-all duration-500 ${
             scrolled ? "opacity-0 pointer-events-none" : "opacity-100"
           }`}>
-            <span className="font-['Cormorant_Garamond'] text-white/30 text-[8px] tracking-[0.15em] uppercase">by</span>
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
-              alt="THE HERBS"
-              className="h-3 w-auto brightness-0 invert opacity-50"
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-transparent_0357bebe.png"
+              alt="SCALP LABO"
+              className="h-6 w-auto object-contain"
             />
           </div>
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-8">
-            {/* THE HERBSロゴ — デスクトップ */}
-            <div className={`flex items-center gap-1.5 transition-all duration-500 ${
+            {/* SCALP LABOロゴ — デスクトップ中央 */}
+            <div className={`flex items-center transition-all duration-500 ${
               scrolled ? "opacity-0 pointer-events-none" : "opacity-100"
             }`}>
-              <span className="font-['Cormorant_Garamond'] text-white/30 text-[9px] tracking-[0.2em] uppercase">presented by</span>
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
-                alt="THE HERBS"
-                className="h-3.5 w-auto brightness-0 invert opacity-60"
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-transparent_0357bebe.png"
+                alt="SCALP LABO"
+                className="h-7 w-auto object-contain"
               />
             </div>
             {navLinks.map((link) => (
@@ -238,10 +236,9 @@ function Hero() {
           {/* SCALP LABO Logo */}
           <div className="mb-6 md:mb-8">
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-cutout_146defca.webp"
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-transparent_0357bebe.png"
               alt="SCALP LABO - BOTANICAL BEAUTY SCIENCE"
               className="h-12 md:h-18 w-auto object-contain"
-              style={{ filter: 'brightness(0) invert(1)', opacity: 0.9 }}
             />
           </div>
 
