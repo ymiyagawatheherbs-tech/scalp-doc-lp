@@ -1307,23 +1307,27 @@ function DigitalSection() {
               </a>
             </div>
           </div>
-          {/* App Screenshots */}
-          <div className="flex justify-center items-end gap-4">
-            <div className="relative" style={{ width: '48%' }}>
+          {/* App Screenshots — staggered layout */}
+          <div className="flex justify-center items-start gap-5" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
+            {/* 左：上対齐 */}
+            <div style={{ width: '47%', marginTop: '0' }}>
               <img
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/app_screen_log_78a5d0f2.png"
                 alt="スカルププログ アプリ画面"
                 className="w-full object-contain rounded-2xl"
-                style={{ boxShadow: '0 8px 40px rgba(0,0,0,0.5)' }}
+                style={{ boxShadow: '0 12px 48px rgba(0,0,0,0.55)' }}
               />
+              <p className="text-center text-xs mt-3" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: "'Noto Sans JP', sans-serif", letterSpacing: '0.05em' }}>スカルププログ</p>
             </div>
-            <div className="relative" style={{ width: '48%' }}>
+            {/* 右：60px下にスタガー */}
+            <div style={{ width: '47%', marginTop: '60px' }}>
               <img
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/app_screen_advice_1bc0e66a.png"
                 alt="スカルプアドバイス アプリ画面"
                 className="w-full object-contain rounded-2xl"
-                style={{ boxShadow: '0 8px 40px rgba(0,0,0,0.5)', marginBottom: '1.5rem' }}
+                style={{ boxShadow: '0 12px 48px rgba(0,0,0,0.55)' }}
               />
+              <p className="text-center text-xs mt-3" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: "'Noto Sans JP', sans-serif", letterSpacing: '0.05em' }}>スカルプアドバイス</p>
             </div>
           </div>
         </div>
