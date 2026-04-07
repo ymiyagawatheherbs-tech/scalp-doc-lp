@@ -178,27 +178,22 @@ function Nav() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
-          {/* ロゴ：SCALP LABOロゴ + THE HERBS商標 */}
-          <a href="/" className="flex items-center gap-2 md:gap-3">
+          {/* ロゴ：マーク＋文字横並び */}
+          <a href="/" className="flex items-center gap-2 md:gap-2.5">
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo-transparent_e6faa3cd.png"
-              alt="SCALP LABO"
-              className="h-9 md:h-11 w-auto object-contain"
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
+              alt="SCALP LABO mark"
+              className={`h-9 md:h-11 w-auto object-contain transition-all ${
+                scrolled ? "" : "brightness-0 invert"
+              }`}
             />
-            <div className="flex flex-col justify-center gap-0.5">
-              <div className={`font-cormorant text-[8px] md:text-[9px] tracking-[0.2em] uppercase leading-none transition-colors ${
-                scrolled ? "text-[oklch(0.55_0.08_42)]" : "text-white/60"
-              }`}>
-                presented by
-              </div>
-              <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
-                alt="THE HERBS"
-                className={`h-3 md:h-3.5 w-auto transition-all ${
-                  scrolled ? "brightness-0" : "brightness-0 invert opacity-80"
-                }`}
-              />
-            </div>
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-greige-transparent_123f5ff1.png"
+              alt="SCALP LABO"
+              className={`h-6 md:h-7 w-auto object-contain transition-all ${
+                scrolled ? "" : "brightness-0 invert"
+              }`}
+            />
           </a>
 
           {/* デスクトップナビ */}
@@ -2101,9 +2096,14 @@ function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo-transparent_e6faa3cd.png"
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
+                alt="SCALP LABO mark"
+                className="h-10 w-auto object-contain brightness-0 invert opacity-80"
+              />
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-greige-transparent_123f5ff1.png"
                 alt="SCALP LABO"
-                className="h-10 w-auto object-contain"
+                className="h-6 w-auto object-contain brightness-0 invert opacity-80"
               />
             </div>
             {/* THE HERBS ブランドリンク */}

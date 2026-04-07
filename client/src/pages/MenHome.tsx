@@ -63,22 +63,19 @@ function Nav() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between">
-          {/* Logo: SCALP LABOロゴ + THE HERBS商標 */}
+          {/* Logo: マーク＋文字横並び */}
           <Link href="/men">
-            <div className="flex items-center gap-2 md:gap-3 cursor-pointer">
+            <div className="flex items-center gap-2 md:gap-2.5 cursor-pointer">
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo-transparent_e6faa3cd.png"
-                alt="SCALP LABO"
-                className="h-9 md:h-11 w-auto object-contain"
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
+                alt="SCALP LABO mark"
+                className="h-9 md:h-11 w-auto object-contain brightness-0 invert"
               />
-              <div className="flex flex-col justify-center gap-0.5">
-                <span className="font-['Cormorant_Garamond'] text-white/40 text-[8px] md:text-[9px] tracking-[0.2em] uppercase leading-none">presented by</span>
-                <img
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
-                  alt="THE HERBS"
-                  className="h-3 md:h-3.5 w-auto brightness-0 invert opacity-70"
-                />
-              </div>
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-greige-transparent_123f5ff1.png"
+                alt="SCALP LABO"
+                className="h-6 md:h-7 w-auto object-contain brightness-0 invert"
+              />
             </div>
           </Link>
 
@@ -1589,13 +1586,20 @@ function Footer() {
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           {/* Brand */}
           <div>
-            <div className="mb-4">
+            <div className="flex items-center gap-2 mb-4">
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo-transparent_e6faa3cd.png"
-                alt="SCALP LABO"
-                className="h-10 w-auto object-contain"
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
+                alt="SCALP LABO mark"
+                className="h-10 w-auto object-contain brightness-0 invert opacity-80"
               />
-              <span className="text-white/60 font-['Noto_Sans_JP'] text-xs tracking-widest">for Men</span>
+              <div className="flex flex-col gap-0.5">
+                <img
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-greige-transparent_123f5ff1.png"
+                  alt="SCALP LABO"
+                  className="h-5 w-auto object-contain brightness-0 invert opacity-80"
+                />
+                <span className="text-white/60 font-['Noto_Sans_JP'] text-[10px] tracking-widest">for Men</span>
+              </div>
             </div>
             {/* THE HERBS ブランドリンク */}
             <div className="flex items-center gap-2 mb-4 pb-4 border-b border-white/10">

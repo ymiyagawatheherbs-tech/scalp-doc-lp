@@ -56,22 +56,19 @@ function Nav() {
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
         <Link href="/">
-          <div className="flex items-center gap-2 md:gap-3 cursor-pointer">
+          <div className="flex items-center gap-2 md:gap-2.5 cursor-pointer">
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo-transparent_e6faa3cd.png"
-              alt="SCALP LABO"
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
+              alt="SCALP LABO mark"
               className="h-9 md:h-11 w-auto object-contain"
-
+              style={{ filter: scrolled ? "none" : "brightness(0) invert(1)" }}
             />
-            <div className="flex flex-col justify-center gap-0.5">
-              <span className="text-[8px] md:text-[9px] tracking-[0.2em] uppercase leading-none" style={{ color: scrolled ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.4)" }}>presented by</span>
-              <img
-                src={HERBS_LOGO}
-                alt="THE HERBS"
-                className="h-3 md:h-3.5 w-auto opacity-70"
-                style={{ filter: scrolled ? "none" : "brightness(0) invert(1)" }}
-              />
-            </div>
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-greige-transparent_123f5ff1.png"
+              alt="SCALP LABO"
+              className="h-6 md:h-7 w-auto object-contain"
+              style={{ filter: scrolled ? "none" : "brightness(0) invert(1)" }}
+            />
           </div>
         </Link>
 
@@ -924,16 +921,17 @@ function Cta() {
 function Footer() {
   return (
     <footer className="py-8 text-center" style={{ backgroundColor: "#1a1a1a" }}>
-      <div className="flex flex-col justify-center items-center gap-2 mb-3">
+      <div className="flex items-center justify-center gap-2 mb-3">
         <img
-          src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo-transparent_e6faa3cd.png"
-          alt="SCALP LABO"
-          className="h-8 w-auto object-contain"
+          src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
+          alt="SCALP LABO mark"
+          className="h-8 w-auto object-contain brightness-0 invert opacity-70"
         />
-        <div className="flex items-center gap-1.5">
-          <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "10px", fontFamily: "'Cormorant Garamond', serif", letterSpacing: "0.15em" }}>presented by</span>
-          <img src={HERBS_LOGO} alt="THE HERBS" className="h-3 w-auto brightness-0 invert opacity-40" />
-        </div>
+        <img
+          src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-greige-transparent_123f5ff1.png"
+          alt="SCALP LABO"
+          className="h-5 w-auto object-contain brightness-0 invert opacity-70"
+        />
       </div>
       <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>
         © 2025 SCALP LABO / THE HERBS. All rights reserved.
