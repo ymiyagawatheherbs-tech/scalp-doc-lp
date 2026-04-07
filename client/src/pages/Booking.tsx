@@ -183,14 +183,15 @@ export default function Booking() {
       <header style={{ background: "oklch(0.42 0.055 130)", padding: "0.75rem 1rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.75rem" }}>
         <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem", flexShrink: 0 }}>
           <img
-            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_olive_12a41c11.webp"
+            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
             alt="SCALP LABO"
             style={{ height: "40px", width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)" }}
           />
-          <div style={{ display: "flex", flexDirection: "column", lineHeight: 1 }}>
-            <span style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 700, fontSize: "0.72rem", letterSpacing: "0.15em", color: "rgba(255,255,255,0.95)" }}>スカルプラボ</span>
-            <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "0.55rem", letterSpacing: "0.18em", color: "rgba(255,255,255,0.45)" }}>SCALP LABO</span>
-          </div>
+          <img
+            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-greige-transparent_123f5ff1.png"
+            alt="SCALP LABO"
+            style={{ height: "28px", width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)" }}
+          />
         </a>
         {/* 中央：presented by THE HERBS（sm以上のみ） */}
         <div className="hidden sm:flex" style={{ flexDirection: "column", alignItems: "center" }}>
