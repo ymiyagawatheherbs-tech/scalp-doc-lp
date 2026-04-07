@@ -63,21 +63,53 @@ function Nav() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between">
-          {/* Logo: マーク＋文字横並び */}
+          {/* Logo: アプリアイコン風（濃い茶色角丸背景＋マーク）＋文字 */}
           <Link href="/men">
-            <div className="flex items-center gap-2 md:gap-3 cursor-pointer">
-              <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
-                alt="SCALP LABO mark"
-                className="h-9 md:h-11 w-auto object-contain transition-all"
-                style={{ filter: "brightness(0) invert(1)" }}
-              />
-              <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-greige-transparent_123f5ff1.png"
-                alt="SCALP LABO"
-                className="h-7 md:h-9 w-auto object-contain transition-all"
-                style={{ filter: "brightness(0) invert(1)" }}
-              />
+            <div className="flex items-center gap-2.5 md:gap-3 cursor-pointer">
+              <div
+                className="flex items-center justify-center rounded-xl"
+                style={{
+                  width: "40px",
+                  height: "40px",
+                  background: "oklch(0.22 0.045 42)",
+                  flexShrink: 0,
+                }}
+              >
+                <img
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
+                  alt="SCALP LABO mark"
+                  style={{
+                    width: "26px",
+                    height: "26px",
+                    objectFit: "contain",
+                    filter: "brightness(10) saturate(0.3)",
+                  }}
+                />
+              </div>
+              <div className="flex flex-col justify-center gap-0">
+                <img
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-greige-transparent_123f5ff1.png"
+                  alt="SCALP LABO"
+                  style={{
+                    height: "16px",
+                    width: "auto",
+                    objectFit: "contain",
+                    filter: "brightness(0) invert(1)",
+                  }}
+                />
+                <span
+                  style={{
+                    fontSize: "8px",
+                    color: "rgba(255,255,255,0.55)",
+                    letterSpacing: "0.18em",
+                    textTransform: "uppercase",
+                    marginTop: "3px",
+                    fontFamily: "'Cormorant Garamond', serif",
+                  }}
+                >
+                  Botanical Beauty Science
+                </span>
+              </div>
             </div>
           </Link>
 

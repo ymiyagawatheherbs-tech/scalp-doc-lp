@@ -178,17 +178,35 @@ export default function Booking() {
 
       {/* ヘッダー */}
       <header style={{ background: "oklch(0.22 0.045 42)", padding: "1rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem" }}>
-          <img
-            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
-            alt="SCALP LABO mark"
-            style={{ height: "40px", width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)" }}
-          />
-          <img
-            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-greige-transparent_123f5ff1.png"
-            alt="SCALP LABO"
-            style={{ height: "30px", width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)" }}
-          />
+        <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.625rem" }}>
+          {/* アイコン部分 */}
+          <div style={{
+            width: "40px",
+            height: "40px",
+            background: "oklch(0.22 0.045 42)",
+            borderRadius: "10px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            flexShrink: 0,
+          }}>
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
+              alt="SCALP LABO mark"
+              style={{ width: "26px", height: "26px", objectFit: "contain", filter: "brightness(10) saturate(0.3)" }}
+            />
+          </div>
+          {/* 文字部分 */}
+          <div style={{ display: "flex", flexDirection: "column", justifyContent: "center", gap: 0 }}>
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-greige-transparent_123f5ff1.png"
+              alt="SCALP LABO"
+              style={{ height: "16px", width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)" }}
+            />
+            <span style={{ fontSize: "8px", color: "rgba(255,255,255,0.55)", letterSpacing: "0.18em", textTransform: "uppercase", marginTop: "3px", fontFamily: "'Cormorant Garamond', serif" }}>
+              Botanical Beauty Science
+            </span>
+          </div>
         </a>
         <span style={{ fontSize: "0.75rem", color: "oklch(0.75 0.06 75)", letterSpacing: "0.05em" }}>ご予約フォーム</span>
       </header>
