@@ -746,10 +746,10 @@ function HabitValueSection() {
           {/* コンサルテーション画像 — セクションの雰囲気を高める横長バナー */}
           <div className="mt-10 overflow-hidden rounded-sm relative" style={{ height: '220px' }}>
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/consultation_cropped_v3_IMG2348_a876fcfa.jpg"
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/crop_A_y600_b01ff694.jpg"
               alt="頭皮チェックコンサルテーションの様子"
               className="w-full h-full object-cover"
-              style={{ objectPosition: 'center 30%' }}
+              style={{ objectPosition: 'center top' }}
             />
             <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.25_0.050_65)]/70 to-transparent pointer-events-none" />
           </div>
