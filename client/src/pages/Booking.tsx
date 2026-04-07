@@ -180,9 +180,9 @@ export default function Booking() {
       <header style={{ background: "oklch(0.22 0.045 42)", padding: "1rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.75rem" }}>
           <img
-            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo_76d63a41.png"
+            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo-transparent_e6faa3cd.png"
             alt="SCALP LABO"
-            style={{ height: "40px", width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)" }}
+            style={{ height: "40px", width: "auto", objectFit: "contain" }}
           />
           <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
             <span style={{ fontSize: "0.55rem", color: "rgba(255,255,255,0.5)", letterSpacing: "0.2em", textTransform: "uppercase" }}>presented by</span>
@@ -498,9 +498,9 @@ export default function Booking() {
       <footer style={{ backgroundColor: "#1a1a1a", padding: "2rem 1.5rem", textAlign: "center" }}>
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem", marginBottom: "0.75rem" }}>
           <img
-            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo_76d63a41.png"
+            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo-transparent_e6faa3cd.png"
             alt="SCALP LABO"
-            style={{ height: "2rem", width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.7 }}
+            style={{ height: "2rem", width: "auto", objectFit: "contain" }}
           />
           <div style={{ display: "flex", alignItems: "center", gap: "0.375rem" }}>
             <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "10px", fontFamily: "'Cormorant Garamond', serif", letterSpacing: "0.15em" }}>presented by</span>

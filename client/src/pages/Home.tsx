@@ -181,7 +181,7 @@ function Nav() {
           {/* ロゴ：SCALP LABOロゴ + THE HERBS商標 */}
           <a href="/" className="flex items-center gap-2 md:gap-3">
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo_76d63a41.png"
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo-transparent_e6faa3cd.png"
               alt="SCALP LABO"
               className="h-9 md:h-11 w-auto object-contain"
             />
@@ -2101,9 +2101,9 @@ function Footer() {
           <div>
             <div className="flex items-center gap-3 mb-4">
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo_76d63a41.png"
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo-transparent_e6faa3cd.png"
                 alt="SCALP LABO"
-                className="h-10 w-auto object-contain brightness-0 invert"
+                className="h-10 w-auto object-contain"
               />
             </div>
             {/* THE HERBS ブランドリンク */}

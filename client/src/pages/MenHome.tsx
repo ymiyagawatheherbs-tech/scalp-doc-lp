@@ -67,9 +67,9 @@ function Nav() {
           <Link href="/men">
             <div className="flex items-center gap-2 md:gap-3 cursor-pointer">
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo_76d63a41.png"
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo-transparent_e6faa3cd.png"
                 alt="SCALP LABO"
-                className="h-9 md:h-11 w-auto object-contain brightness-0 invert"
+                className="h-9 md:h-11 w-auto object-contain"
               />
               <div className="flex flex-col justify-center gap-0.5">
                 <span className="font-['Cormorant_Garamond'] text-white/40 text-[8px] md:text-[9px] tracking-[0.2em] uppercase leading-none">presented by</span>
@@ -1591,9 +1591,9 @@ function Footer() {
           <div>
             <div className="mb-4">
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo_76d63a41.png"
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo-transparent_e6faa3cd.png"
                 alt="SCALP LABO"
-                className="h-10 w-auto object-contain brightness-0 invert"
+                className="h-10 w-auto object-contain"
               />
               <span className="text-white/60 font-['Noto_Sans_JP'] text-xs tracking-widest">for Men</span>
             </div>

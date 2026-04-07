@@ -58,10 +58,10 @@ function Nav() {
         <Link href="/">
           <div className="flex items-center gap-2 md:gap-3 cursor-pointer">
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo_76d63a41.png"
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo-transparent_e6faa3cd.png"
               alt="SCALP LABO"
               className="h-9 md:h-11 w-auto object-contain"
-              style={{ filter: scrolled ? "none" : "brightness(0) invert(1)" }}
+
             />
             <div className="flex flex-col justify-center gap-0.5">
               <span className="text-[8px] md:text-[9px] tracking-[0.2em] uppercase leading-none" style={{ color: scrolled ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.4)" }}>presented by</span>
@@ -926,9 +926,9 @@ function Footer() {
     <footer className="py-8 text-center" style={{ backgroundColor: "#1a1a1a" }}>
       <div className="flex flex-col justify-center items-center gap-2 mb-3">
         <img
-          src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo_76d63a41.png"
+          src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo-transparent_e6faa3cd.png"
           alt="SCALP LABO"
-          className="h-8 w-auto object-contain brightness-0 invert opacity-70"
+          className="h-8 w-auto object-contain"
         />
         <div className="flex items-center gap-1.5">
           <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "10px", fontFamily: "'Cormorant Garamond', serif", letterSpacing: "0.15em" }}>presented by</span>
