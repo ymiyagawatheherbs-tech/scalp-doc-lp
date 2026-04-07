@@ -346,7 +346,7 @@ export default function Booking() {
                 営業時間：<strong>10:00 〜 20:00</strong>
               </p>
               <p style={{ fontSize: "0.72rem", color: "oklch(0.4 0.04 42)", lineHeight: 1.6, margin: 0, paddingLeft: "1.3rem" }}>
-                頭皮チェック受付：<strong>12:00 〜 16:00</strong>（それ以外は随時受付となります）
+                    頭皮チェック予約可能時間帯：<strong>12:00 〜 16:00</strong>（それ以外は随時受付となります）
               </p>
             </div>
             <p style={{ fontSize: "0.72rem", letterSpacing: "0.15em", color: "oklch(0.69 0.060 130)", fontWeight: 600, marginBottom: "0.75rem" }}>
