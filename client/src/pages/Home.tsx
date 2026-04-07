@@ -331,45 +331,58 @@ function HeroSection() {
           alt="THE HERBS SCALP LABO ウェルネススタジオ"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.32_0.050_65/0.50)] via-[oklch(0.32_0.050_65/0.20)] to-transparent" />
+        {/* 全体暗化レイヤー */}
+        <div className="absolute inset-0 bg-black/45" />
+        {/* 左側強調グラデーション */}
+        <div className="absolute inset-0 bg-gradient-to-r from-black/70 via-black/30 to-transparent" />
+        {/* 下部フェード */}
+        <div className="absolute bottom-0 left-0 right-0 h-48 bg-gradient-to-t from-black/50 to-transparent" />
       </div>
 
       {/* コンテンツ */}
       <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-6 pt-24 pb-16 md:py-32">
         <div className="max-w-2xl">
-          <div className="hidden md:block animate-fade-in-up opacity-0-init">
-            <span className="font-cormorant text-[oklch(0.88_0.025_93)] text-sm tracking-[0.3em] uppercase block mb-6">
-              Scalp Wellness Checkup
+          <div className="animate-fade-in-up opacity-0-init">
+            <span className="font-cormorant text-sm tracking-[0.4em] uppercase block mb-5 md:mb-6" style={{color: '#d4c5a0', letterSpacing: '0.35em'}}>
+              ✦ &nbsp;Scalp Wellness Checkup&nbsp; ✦
             </span>
           </div>
-          <h1 className="font-mincho text-white leading-tight mb-4 md:mb-6 animate-fade-in-up opacity-0-init delay-100">
-            <span className="block text-2xl md:text-5xl lg:text-6xl font-bold mb-1 md:mb-2">
+          <h1 className="font-mincho leading-tight mb-4 md:mb-6 animate-fade-in-up opacity-0-init delay-100" style={{textShadow: '0 2px 20px rgba(0,0,0,0.5)'}}>
+            <span className="block text-3xl md:text-5xl lg:text-6xl font-bold mb-1 md:mb-2 text-white">
               歯の定期検診のように、
             </span>
-            <span className="block text-2xl md:text-5xl lg:text-6xl font-bold text-[oklch(0.90_0.020_93)]" style={{color: '#f5e6a3'}}>
+            <span className="block text-3xl md:text-5xl lg:text-6xl font-bold" style={{color: '#f0d98a', textShadow: '0 0 40px rgba(240,217,138,0.4), 0 2px 20px rgba(0,0,0,0.5)'}}>
               頭皮も定期チェックを。
             </span>
           </h1>
-          <p className="hidden md:block font-sans-jp text-white/80 text-base md:text-lg leading-relaxed mb-10 animate-fade-in-up opacity-0-init delay-200">
+          <p className="hidden md:block font-sans-jp text-white/90 text-base md:text-lg leading-relaxed mb-10 animate-fade-in-up opacity-0-init delay-200" style={{textShadow: '0 1px 8px rgba(0,0,0,0.6)'}}>
             マイクロスコープによる頭皮チェックで、あなたの頭皮の今を記録・確認。<br />
-            薄毛になってから悩むのではなく、健康な頭皮を<strong className="text-[oklch(0.88_0.025_93)]">意識的にケアする</strong>新習慣。
+            薄毛になってから悩むのではなく、健康な頭皮を<strong style={{color: '#f0d98a'}}>意識的にケアする</strong>新習慣。
           </p>
-          <p className="md:hidden font-sans-jp text-white/75 text-sm leading-relaxed mb-7 animate-fade-in-up opacity-0-init delay-200">
+          <p className="md:hidden font-sans-jp text-white/90 text-sm leading-relaxed mb-7 animate-fade-in-up opacity-0-init delay-200" style={{textShadow: '0 1px 8px rgba(0,0,0,0.6)'}}>
             マイクロスコープで頭皮の今を記録。<br />
-            <strong className="text-[oklch(0.88_0.025_93)]">意識的にケアする</strong>新習慣。
+            <strong style={{color: '#f0d98a'}}>意識的にケアする</strong>新習慣。
           </p>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 animate-fade-in-up opacity-0-init delay-300">
             <a
               href="/booking"
-              className="btn-gold-shimmer text-white font-sans-jp font-bold px-6 md:px-8 py-3.5 md:py-4 rounded-sm text-center text-sm md:text-base" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
+              className="font-sans-jp font-bold px-7 md:px-10 py-4 md:py-5 text-center text-sm md:text-base tracking-wider transition-all duration-300 hover:-translate-y-1"
+              style={{
+                background: 'linear-gradient(135deg, #b8956a 0%, #d4aa7d 40%, #c49a6c 70%, #8b6845 100%)',
+                color: '#fff',
+                boxShadow: '0 4px 24px rgba(180,140,90,0.55), 0 1px 0 rgba(255,255,255,0.15) inset',
+                textShadow: '0 1px 3px rgba(0,0,0,0.4)',
+                letterSpacing: '0.08em',
+              }}
             >
-              無料スカルプチェックを予約する
+              ✦ &nbsp;無料スカルプチェックを予約する
             </a>
             <a
               href="#サービス"
-              className="hidden sm:block border border-white/60 text-white font-sans-jp font-medium px-8 py-4 rounded-sm text-center text-base hover:bg-white/10 transition-colors"
+              className="hidden sm:flex items-center gap-2 border border-white/70 text-white font-sans-jp font-medium px-8 py-4 text-center text-base hover:bg-white/15 hover:border-white transition-all duration-300"
+              style={{letterSpacing: '0.05em'}}
             >
-              サービスを見る
+              サービスを見る →
             </a>
           </div>
           <div className="mt-8 md:mt-12 flex items-center gap-4 md:gap-6 animate-fade-in-up opacity-0-init delay-400">
