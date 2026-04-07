@@ -1,8 +1,14 @@
 /*
  * スカルプラボ LP — デザイントークン
  * Design: モダン・ウェルネス・スタジオ
- * Color: Cream × Olive Green × Deep Brown
+ * Color: Warm Cream × Sage Green × Warm Moss
  * Font: Shippori Mincho B1 (見出し) × Noto Sans JP (本文) × Cormorant Garamond (英語アクセント)
+ *
+ * カラー設計方針:
+ *   - メインアクセント: ウォームセージグリーン oklch(0.52 0.07 145) — 落ち着いた自然系グリーン
+ *   - ライトアクセント: ソフトセージ oklch(0.78 0.06 145) — 女性向けの柔らかいグリーン
+ *   - ダーク: ウォームモス oklch(0.30 0.06 145) — 深みのある森林色
+ *   - 背景: ウォームクリーム oklch(0.978 0.010 90) — クリームホワイト
  */
 
 @import "tailwindcss";
@@ -48,53 +54,55 @@
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-ring: var(--sidebar-ring);
 
-  /* カスタムカラートークン */
-  --color-cream: oklch(0.975 0.018 100);
-  --color-cream-dark: oklch(0.955 0.022 105);
-  --color-brown-deep: oklch(0.22 0.045 42);
-  --color-brown-mid: oklch(0.32 0.08 140);
-  --color-brown-light: oklch(0.48 0.08 140);
-  --color-olive: oklch(0.42 0.1 140);
-  --color-olive-mid: oklch(0.52 0.1 140);
-  --color-olive-light: oklch(0.72 0.1 130);
-  --color-sage: oklch(0.82 0.07 130);
-  --color-sage-light: oklch(0.92 0.04 120);
+  /* カスタムカラートークン — Warm Sage Palette */
+  --color-cream: oklch(0.978 0.010 90);
+  --color-cream-dark: oklch(0.958 0.014 90);
+  --color-sage-deep: oklch(0.30 0.06 145);
+  --color-sage-mid: oklch(0.42 0.07 145);
+  --color-sage-main: oklch(0.52 0.07 145);
+  --color-sage-light: oklch(0.78 0.06 145);
+  --color-sage-pale: oklch(0.92 0.03 145);
+  /* 後方互換性 */
+  --color-brown-deep: oklch(0.30 0.06 145);
+  --color-brown-mid: oklch(0.42 0.07 145);
+  --color-amber-gold: oklch(0.52 0.07 145);
+  --color-amber-light: oklch(0.78 0.06 145);
 }
 
 :root {
   --radius: 0.5rem;
-  --background: oklch(0.975 0.018 100);
-  --foreground: oklch(0.18 0.04 42);
+  --background: oklch(0.978 0.010 90);
+  --foreground: oklch(0.25 0.05 145);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.04 42);
+  --card-foreground: oklch(0.25 0.05 145);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.04 42);
-  --primary: oklch(0.32 0.08 140);
-  --primary-foreground: oklch(0.975 0.018 100);
-  --secondary: oklch(0.955 0.022 105);
-  --secondary-foreground: oklch(0.32 0.08 140);
-  --muted: oklch(0.955 0.022 105);
-  --muted-foreground: oklch(0.48 0.08 140);
-  --accent: oklch(0.52 0.1 140);
-  --accent-foreground: oklch(0.975 0.018 100);
+  --popover-foreground: oklch(0.25 0.05 145);
+  --primary: oklch(0.35 0.07 145);
+  --primary-foreground: oklch(0.978 0.010 90);
+  --secondary: oklch(0.958 0.014 90);
+  --secondary-foreground: oklch(0.42 0.06 145);
+  --muted: oklch(0.958 0.014 90);
+  --muted-foreground: oklch(0.55 0.05 145);
+  --accent: oklch(0.52 0.07 145);
+  --accent-foreground: oklch(0.978 0.010 90);
   --destructive: oklch(0.577 0.245 27.325);
   --destructive-foreground: oklch(0.985 0 0);
-  --border: oklch(0.88 0.03 130);
-  --input: oklch(0.88 0.03 130);
-  --ring: oklch(0.52 0.1 140);
-  --chart-1: oklch(0.52 0.1 140);
-  --chart-2: oklch(0.42 0.1 140);
-  --chart-3: oklch(0.32 0.08 140);
-  --chart-4: oklch(0.22 0.045 42);
-  --chart-5: oklch(0.82 0.07 130);
-  --sidebar: oklch(0.955 0.022 105);
-  --sidebar-foreground: oklch(0.18 0.04 42);
-  --sidebar-primary: oklch(0.32 0.08 140);
-  --sidebar-primary-foreground: oklch(0.975 0.018 100);
-  --sidebar-accent: oklch(0.88 0.03 130);
-  --sidebar-accent-foreground: oklch(0.18 0.04 42);
-  --sidebar-border: oklch(0.88 0.03 130);
-  --sidebar-ring: oklch(0.52 0.1 140);
+  --border: oklch(0.88 0.025 130);
+  --input: oklch(0.88 0.025 130);
+  --ring: oklch(0.52 0.07 145);
+  --chart-1: oklch(0.52 0.07 145);
+  --chart-2: oklch(0.62 0.05 148);
+  --chart-3: oklch(0.42 0.07 145);
+  --chart-4: oklch(0.30 0.06 145);
+  --chart-5: oklch(0.78 0.06 145);
+  --sidebar: oklch(0.958 0.014 90);
+  --sidebar-foreground: oklch(0.25 0.05 145);
+  --sidebar-primary: oklch(0.35 0.07 145);
+  --sidebar-primary-foreground: oklch(0.978 0.010 90);
+  --sidebar-accent: oklch(0.88 0.025 130);
+  --sidebar-accent-foreground: oklch(0.25 0.05 145);
+  --sidebar-border: oklch(0.88 0.025 130);
+  --sidebar-ring: oklch(0.52 0.07 145);
 }
 
 @layer base {
@@ -217,14 +225,14 @@
     opacity: 0;
   }
 
-  /* オリーブシマーボタン */
+  /* ウォームセージシマーボタン */
   .btn-gold-shimmer {
     background: linear-gradient(
       90deg,
-      oklch(0.42 0.1 140) 0%,
-      oklch(0.52 0.1 140) 30%,
-      oklch(0.42 0.1 140) 60%,
-      oklch(0.35 0.09 140) 100%
+      oklch(0.42 0.07 145) 0%,
+      oklch(0.52 0.08 145) 30%,
+      oklch(0.42 0.07 145) 60%,
+      oklch(0.36 0.06 145) 100%
     );
     background-size: 200% auto;
     transition: background-position 0.5s ease, transform 0.2s ease, box-shadow 0.2s ease;
@@ -233,19 +241,20 @@
   .btn-gold-shimmer:hover {
     background-position: right center;
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px oklch(0.42 0.1 140 / 0.4);
+    box-shadow: 0 8px 25px oklch(0.42 0.07 145 / 0.35);
   }
+
   /* セクション区切り */
   .section-divider {
     width: 60px;
     height: 2px;
-    background: oklch(0.52 0.1 140);
+    background: oklch(0.52 0.07 145);
     margin: 1rem 0;
   }
 
   /* カルテ風ボーダー */
   .karte-border {
-    border-left: 3px solid oklch(0.52 0.1 140);
+    border-left: 3px solid oklch(0.52 0.07 145);
     padding-left: 1.5rem;
   }
 }

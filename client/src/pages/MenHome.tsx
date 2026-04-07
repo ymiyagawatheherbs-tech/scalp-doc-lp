@@ -2,7 +2,7 @@
  * THE HERBS SCALP LABO for Men — メンズ向けLP
  *
  * Design Philosophy: Dark Luxury（ダーク・ラグジュアリー）
- * - Color: Deep Navy oklch(0.14 0.04 140) × Charcoal oklch(0.20 0.06 140) × Gold oklch(0.52 0.1 140)
+ * - Color: Deep Navy oklch(0.14 0.04 140) × Charcoal oklch(0.20 0.06 140) × Gold oklch(0.52 0.07 145)
  * - Typography: Shippori Mincho (見出し) × Cormorant Garamond (英字装飾) × Noto Sans JP (本文)
  * - Layout: Full-screen dark sections, asymmetric right-text/left-visual
  * - Mood: High-end men's grooming brand (Aesop/Molton Brown level)
@@ -55,11 +55,11 @@ function Nav() {
       {/* Progress bar */}
       <div
         className="fixed top-0 left-0 h-0.5 z-[70] transition-all duration-100"
-        style={{ width: `${progress}%`, background: "linear-gradient(90deg, oklch(0.52 0.1 140), oklch(0.72 0.1 130))" }}
+        style={{ width: `${progress}%`, background: "linear-gradient(90deg, oklch(0.52 0.07 145), oklch(0.72 0.1 130))" }}
       />
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-          scrolled ? "py-3 bg-[oklch(0.14 0.04 140)]/95 backdrop-blur-md border-b border-[oklch(0.52 0.1 140)]/20 shadow-lg shadow-black/30" : "py-3 md:py-6 bg-transparent"
+          scrolled ? "py-3 bg-[oklch(0.14 0.04 140)]/95 backdrop-blur-md border-b border-[oklch(0.52 0.07 145)]/20 shadow-lg shadow-black/30" : "py-3 md:py-6 bg-transparent"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
@@ -97,7 +97,7 @@ function Nav() {
               <button
                 key={link.href}
                 onClick={() => scrollTo(link.href)}
-                className="text-white/70 hover:text-[oklch(0.52 0.1 140)] text-sm tracking-wider transition-colors duration-200 font-['Noto_Sans_JP'] whitespace-nowrap"
+                className="text-white/70 hover:text-[oklch(0.52 0.07 145)] text-sm tracking-wider transition-colors duration-200 font-['Noto_Sans_JP'] whitespace-nowrap"
               >
                 {link.label}
               </button>
@@ -109,7 +109,7 @@ function Nav() {
             {/* サロン向けリンク */}
             <Link
               href="/salon"
-              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[oklch(0.52 0.1 140)]/60 text-[oklch(0.52 0.1 140)]/80 text-xs tracking-wider hover:border-[oklch(0.52 0.1 140)] hover:text-[oklch(0.52 0.1 140)] transition-all duration-300 font-['Noto_Sans_JP'] whitespace-nowrap"
+              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[oklch(0.52 0.07 145)]/60 text-[oklch(0.52 0.07 145)]/80 text-xs tracking-wider hover:border-[oklch(0.52 0.07 145)] hover:text-[oklch(0.52 0.07 145)] transition-all duration-300 font-['Noto_Sans_JP'] whitespace-nowrap"
             >
               サロン向け
             </Link>
@@ -123,14 +123,14 @@ function Nav() {
             </Link>
             <button
               onClick={() => scrollTo("#reservation")}
-              className="hidden md:block px-4 py-2 border border-[oklch(0.52 0.1 140)] text-[oklch(0.52 0.1 140)] text-xs tracking-wider hover:bg-[oklch(0.52 0.1 140)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300 font-['Noto_Sans_JP'] whitespace-nowrap"
+              className="hidden md:block px-4 py-2 border border-[oklch(0.52 0.07 145)] text-[oklch(0.52 0.07 145)] text-xs tracking-wider hover:bg-[oklch(0.52 0.07 145)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300 font-['Noto_Sans_JP'] whitespace-nowrap"
             >
               無料チェック予約
             </button>
             {/* スマホ用CTAボタン */}
             <button
               onClick={() => scrollTo("#reservation")}
-              className="md:hidden px-3 py-1.5 border border-[oklch(0.52 0.1 140)] text-[oklch(0.52 0.1 140)] text-xs tracking-wider hover:bg-[oklch(0.52 0.1 140)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300 font-['Noto_Sans_JP']"
+              className="md:hidden px-3 py-1.5 border border-[oklch(0.52 0.07 145)] text-[oklch(0.52 0.07 145)] text-xs tracking-wider hover:bg-[oklch(0.52 0.07 145)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300 font-['Noto_Sans_JP']"
             >
               今すぐ予約
             </button>
@@ -152,14 +152,14 @@ function Nav() {
             <button
               key={link.href}
               onClick={() => scrollTo(link.href)}
-              className="py-5 text-left text-white/80 hover:text-[oklch(0.52 0.1 140)] text-xl font-['Shippori_Mincho'] border-b border-white/10 transition-colors"
+              className="py-5 text-left text-white/80 hover:text-[oklch(0.52 0.07 145)] text-xl font-['Shippori_Mincho'] border-b border-white/10 transition-colors"
             >
               {link.label}
             </button>
           ))}
           <Link
             href="/salon"
-            className="mt-6 flex items-center justify-center gap-2 py-3 border border-[oklch(0.52 0.1 140)]/50 text-[oklch(0.52 0.1 140)] text-base tracking-wider hover:border-[oklch(0.52 0.1 140)] hover:bg-[oklch(0.52 0.1 140)]/10 transition-all duration-300 font-['Noto_Sans_JP']"
+            className="mt-6 flex items-center justify-center gap-2 py-3 border border-[oklch(0.52 0.07 145)]/50 text-[oklch(0.52 0.07 145)] text-base tracking-wider hover:border-[oklch(0.52 0.07 145)] hover:bg-[oklch(0.52 0.07 145)]/10 transition-all duration-300 font-['Noto_Sans_JP']"
             onClick={() => setMenuOpen(false)}
           >
             サロン・美容師の方へ
@@ -174,7 +174,7 @@ function Nav() {
           </Link>
           <button
             onClick={() => scrollTo("#reservation")}
-            className="mt-3 py-4 border border-[oklch(0.52 0.1 140)] text-[oklch(0.52 0.1 140)] text-lg tracking-wider hover:bg-[oklch(0.52 0.1 140)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300"
+            className="mt-3 py-4 border border-[oklch(0.52 0.07 145)] text-[oklch(0.52 0.07 145)] text-lg tracking-wider hover:bg-[oklch(0.52 0.07 145)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300"
           >
             無料チェックを予約する
           </button>
@@ -217,14 +217,14 @@ function Hero() {
       </div>
 
       {/* Gold line decoration */}
-      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-[oklch(0.52 0.1 140)] to-transparent opacity-60" />
+      <div className="absolute left-0 top-0 bottom-0 w-1 bg-gradient-to-b from-transparent via-[oklch(0.52 0.07 145)] to-transparent opacity-60" />
 
       <div className="relative max-w-7xl mx-auto px-5 md:px-6 pt-20 md:pt-32 pb-16 md:pb-20">
         <div className="max-w-2xl">
           {/* Eyebrow */}
           <div className="hidden md:flex items-center gap-3 mb-8">
-            <div className="h-px w-12 bg-[oklch(0.52 0.1 140)]" />
-            <span className="text-[oklch(0.52 0.1 140)] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">
+            <div className="h-px w-12 bg-[oklch(0.52 0.07 145)]" />
+            <span className="text-[oklch(0.52 0.07 145)] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">
               Men's Scalp Care
             </span>
           </div>
@@ -237,7 +237,7 @@ function Hero() {
             <span className="block text-2xl md:text-6xl font-bold mb-1 md:mb-2">
               データで把握する。
             </span>
-            <span className="block text-base md:text-2xl text-[oklch(0.52 0.1 140)] font-normal mt-2 md:mt-4 tracking-wider">
+            <span className="block text-base md:text-2xl text-[oklch(0.52 0.07 145)] font-normal mt-2 md:mt-4 tracking-wider">
               抜け毛を未然に防ぎ、不安のない髪へ
             </span>
           </h1>
@@ -253,14 +253,14 @@ function Hero() {
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
             <button
               onClick={() => document.querySelector("#reservation")?.scrollIntoView({ behavior: "smooth" })}
-              className="px-6 md:px-8 py-3.5 md:py-4 bg-[oklch(0.52 0.1 140)] text-white font-bold tracking-widest text-sm hover:bg-[oklch(0.72 0.1 130)] transition-all duration-300 flex items-center justify-center gap-2 font-['Noto_Sans_JP']" style={{textShadow: '0 1px 3px rgba(0,0,0,0.5)'}}
+              className="px-6 md:px-8 py-3.5 md:py-4 bg-[oklch(0.52 0.07 145)] text-white font-bold tracking-widest text-sm hover:bg-[oklch(0.72 0.1 130)] transition-all duration-300 flex items-center justify-center gap-2 font-['Noto_Sans_JP']" style={{textShadow: '0 1px 3px rgba(0,0,0,0.5)'}}
             >
               無料チェックを予約する
               <ArrowRight size={16} />
             </button>
             <button
               onClick={() => document.querySelector("#service")?.scrollIntoView({ behavior: "smooth" })}
-              className="hidden sm:flex px-8 py-4 border border-white/30 text-white/80 text-sm tracking-widest hover:border-[oklch(0.52 0.1 140)] hover:text-[oklch(0.52 0.1 140)] transition-all duration-300 font-['Noto_Sans_JP'] items-center justify-center"
+              className="hidden sm:flex px-8 py-4 border border-white/30 text-white/80 text-sm tracking-widest hover:border-[oklch(0.52 0.07 145)] hover:text-[oklch(0.52 0.07 145)] transition-all duration-300 font-['Noto_Sans_JP'] items-center justify-center"
             >
               サービスを見る
             </button>
@@ -275,8 +275,8 @@ function Hero() {
             ].map((s) => (
               <div key={s.label} className="flex-1 min-w-0">
                 <div className="flex items-baseline gap-0.5 md:gap-1">
-                  <span className="text-[oklch(0.52 0.1 140)] font-['Cormorant_Garamond'] text-2xl md:text-3xl font-bold">{s.num}</span>
-                  <span className="text-[oklch(0.52 0.1 140)] text-[10px] md:text-xs">{s.unit}</span>
+                  <span className="text-[oklch(0.52 0.07 145)] font-['Cormorant_Garamond'] text-2xl md:text-3xl font-bold">{s.num}</span>
+                  <span className="text-[oklch(0.52 0.07 145)] text-[10px] md:text-xs">{s.unit}</span>
                 </div>
                 <p className="text-white/65 text-[10px] md:text-xs mt-1 leading-snug font-['Noto_Sans_JP']">{s.label}</p>
               </div>
@@ -288,7 +288,7 @@ function Hero() {
       {/* Scroll indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-bounce">
         <span className="text-white/30 text-xs tracking-widest font-['Cormorant_Garamond'] italic">Scroll</span>
-        <ChevronDown size={16} className="text-[oklch(0.52 0.1 140)]" />
+        <ChevronDown size={16} className="text-[oklch(0.52 0.07 145)]" />
       </div>
     </section>
   );
@@ -318,22 +318,22 @@ function Problem() {
     <section className="bg-[oklch(0.14 0.04 140)] py-24 relative overflow-hidden">
       {/* Background texture */}
       <div className="absolute inset-0 opacity-5"
-        style={{ backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 40px, oklch(0.52 0.1 140) 40px, oklch(0.52 0.1 140) 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, oklch(0.52 0.1 140) 40px, oklch(0.52 0.1 140) 41px)" }}
+        style={{ backgroundImage: "repeating-linear-gradient(0deg, transparent, transparent 40px, oklch(0.52 0.07 145) 40px, oklch(0.52 0.07 145) 41px), repeating-linear-gradient(90deg, transparent, transparent 40px, oklch(0.52 0.07 145) 40px, oklch(0.52 0.07 145) 41px)" }}
       />
       <div className="max-w-7xl mx-auto px-6 relative">
         <div className="flex items-center gap-4 mb-4">
-          <div className="h-px w-12 bg-[oklch(0.52 0.1 140)]" />
-          <span className="text-[oklch(0.52 0.1 140)] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">The Problem</span>
+          <div className="h-px w-12 bg-[oklch(0.52 0.07 145)]" />
+          <span className="text-[oklch(0.52 0.07 145)] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">The Problem</span>
         </div>
         <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-16">
           男性の頭皮ケアに<br />
-          <span className="text-[oklch(0.52 0.1 140)]">3つの課題</span>があります
+          <span className="text-[oklch(0.52 0.07 145)]">3つの課題</span>があります
         </h2>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {problems.map((p) => (
-            <div key={p.num} className="border border-white/10 p-6 md:p-8 hover:border-[oklch(0.52 0.1 140)]/40 transition-colors duration-300 group">
-              <div className="font-['Cormorant_Garamond'] text-[oklch(0.52 0.1 140)]/30 text-6xl font-bold mb-4 group-hover:text-[oklch(0.52 0.1 140)]/50 transition-colors">
+            <div key={p.num} className="border border-white/10 p-6 md:p-8 hover:border-[oklch(0.52 0.07 145)]/40 transition-colors duration-300 group">
+              <div className="font-['Cormorant_Garamond'] text-[oklch(0.52 0.07 145)]/30 text-6xl font-bold mb-4 group-hover:text-[oklch(0.52 0.07 145)]/50 transition-colors">
                 {p.num}
               </div>
               <h3 className="font-['Shippori_Mincho'] text-white text-xl font-bold mb-4">{p.title}</h3>
@@ -361,7 +361,7 @@ const MEN_SCALP_STATES = [
     img: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/2026-04-04-14-58-15-909_8fa65f43.jpg",
     label: "皮脂過多・毛穴詰まり",
     status: "要注意",
-    statusBg: "oklch(0.52 0.1 140)",
+    statusBg: "oklch(0.52 0.07 145)",
     statusText: "oklch(0.14 0.04 140)",
     desc: "毛穴に皮脂が蔓積し、毛根への栄養供給が滞っている状態。放置すると抜け毛の原因になることがあります。",
     detail: "皮脂・毛穴",
@@ -396,13 +396,13 @@ function ScalpGallery() {
         {/* ヘッダー */}
         <div className="text-center mb-14">
           <div className="flex items-center justify-center gap-4 mb-4">
-            <div className="h-px w-12 bg-[oklch(0.52 0.1 140)]" />
-            <span className="text-[oklch(0.52 0.1 140)] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">Scalp Microscope Gallery</span>
-            <div className="h-px w-12 bg-[oklch(0.52 0.1 140)]" />
+            <div className="h-px w-12 bg-[oklch(0.52 0.07 145)]" />
+            <span className="text-[oklch(0.52 0.07 145)] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">Scalp Microscope Gallery</span>
+            <div className="h-px w-12 bg-[oklch(0.52 0.07 145)]" />
           </div>
           <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-4">
             あなたの頭皮は、<br />
-            <span className="text-[oklch(0.52 0.1 140)]">どの状態に近いですか？</span>
+            <span className="text-[oklch(0.52 0.07 145)]">どの状態に近いですか？</span>
           </h2>
           <p className="text-white/70 text-sm font-['Noto_Sans_JP'] font-light max-w-xl mx-auto leading-relaxed">
             実際のマイクロスコープ映像です。頭皮の状態は人によって大きく異なります。<br />
@@ -428,7 +428,7 @@ function ScalpGallery() {
                 {s.status}
               </div>
               <div className="absolute bottom-4 right-4 w-8 h-8 bg-black/60 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="oklch(0.52 0.1 140)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="oklch(0.52 0.07 145)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                   <circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/>
                 </svg>
               </div>
@@ -442,8 +442,8 @@ function ScalpGallery() {
           <div>
             <div className="mb-6">
               <div className="flex items-center gap-3 mb-3">
-                <div className="h-px w-8 bg-[oklch(0.52 0.1 140)]" />
-                <span className="font-['Cormorant_Garamond'] italic text-[oklch(0.52 0.1 140)] text-sm tracking-widest">{s.detail}</span>
+                <div className="h-px w-8 bg-[oklch(0.52 0.07 145)]" />
+                <span className="font-['Cormorant_Garamond'] italic text-[oklch(0.52 0.07 145)] text-sm tracking-widest">{s.detail}</span>
               </div>
               <h3 className="font-['Shippori_Mincho'] text-white text-2xl md:text-3xl font-bold mb-4">{s.label}</h3>
               <p className="text-white/80 text-sm leading-relaxed font-['Noto_Sans_JP'] font-light">{s.desc}</p>
@@ -456,7 +456,7 @@ function ScalpGallery() {
                   key={i}
                   onClick={() => setActive(i)}
                   className={`relative overflow-hidden transition-all duration-300 ${
-                    active === i ? "ring-2 ring-[oklch(0.52 0.1 140)] opacity-100" : "opacity-40 hover:opacity-70"
+                    active === i ? "ring-2 ring-[oklch(0.52 0.07 145)] opacity-100" : "opacity-40 hover:opacity-70"
                   }`}
                   style={{ aspectRatio: "1" }}
                   aria-label={st.label}
@@ -467,9 +467,9 @@ function ScalpGallery() {
             </div>
 
             {/* CTA */}
-            <div className="border border-[oklch(0.52 0.1 140)]/30 p-5 bg-[oklch(0.20 0.06 140)]">
+            <div className="border border-[oklch(0.52 0.07 145)]/30 p-5 bg-[oklch(0.20 0.06 140)]">
               <p className="text-white/90 text-sm font-['Noto_Sans_JP'] font-light leading-relaxed mb-4">
-                <span className="text-[oklch(0.52 0.1 140)] font-bold">あなたの頭皮は今、どんな状態？</span><br />
+                <span className="text-[oklch(0.52 0.07 145)] font-bold">あなたの頭皮は今、どんな状態？</span><br />
                 実際にマイクロスコープで確認してみましょう。初回チェックは無料です。
               </p>
               <button
@@ -477,7 +477,7 @@ function ScalpGallery() {
                   const el = document.getElementById("reservation");
                   if (el) el.scrollIntoView({ behavior: "smooth" });
                 }}
-                className="w-full py-3 bg-[oklch(0.52 0.1 140)] text-white font-['Noto_Sans_JP'] font-bold text-sm tracking-widest hover:bg-[oklch(0.72 0.1 130)] transition-all duration-300" style={{textShadow: '0 1px 3px rgba(0,0,0,0.5)'}}
+                className="w-full py-3 bg-[oklch(0.52 0.07 145)] text-white font-['Noto_Sans_JP'] font-bold text-sm tracking-widest hover:bg-[oklch(0.72 0.1 130)] transition-all duration-300" style={{textShadow: '0 1px 3px rgba(0,0,0,0.5)'}}
               >
                 無料スカルプチェックを予約する
               </button>
@@ -503,19 +503,19 @@ function Concept() {
               className="w-full object-cover"
               style={{ aspectRatio: "4/3" }}
             />
-            <div className="absolute -bottom-4 -right-4 w-24 h-24 border border-[oklch(0.52 0.1 140)]/40" />
-            <div className="absolute -top-4 -left-4 w-24 h-24 border border-[oklch(0.52 0.1 140)]/20" />
+            <div className="absolute -bottom-4 -right-4 w-24 h-24 border border-[oklch(0.52 0.07 145)]/40" />
+            <div className="absolute -top-4 -left-4 w-24 h-24 border border-[oklch(0.52 0.07 145)]/20" />
           </div>
 
           {/* Text */}
           <div>
             <div className="flex items-center gap-4 mb-4">
-              <div className="h-px w-12 bg-[oklch(0.52 0.1 140)]" />
-              <span className="text-[oklch(0.52 0.1 140)] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">Our Concept</span>
+              <div className="h-px w-12 bg-[oklch(0.52 0.07 145)]" />
+              <span className="text-[oklch(0.52 0.07 145)] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">Our Concept</span>
             </div>
             <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-6 leading-tight">
               歯科検診のように、<br />
-              <span className="text-[oklch(0.52 0.1 140)]">頭皮も定期的に</span><br />
+              <span className="text-[oklch(0.52 0.07 145)]">頭皮も定期的に</span><br />
               チェックする時代へ。
             </h2>
             <p className="text-white/70 text-sm leading-relaxed mb-6 font-['Noto_Sans_JP'] font-light">
@@ -535,7 +535,7 @@ function Concept() {
                 "専門スタッフによるアドバイス",
               ].map((item) => (
                 <div key={item} className="flex items-start gap-2">
-                  <Check size={14} className="text-[oklch(0.52 0.1 140)] mt-0.5 shrink-0" />
+                  <Check size={14} className="text-[oklch(0.52 0.07 145)] mt-0.5 shrink-0" />
                   <span className="text-white/70 text-xs font-['Noto_Sans_JP']">{item}</span>
                 </div>
               ))}
@@ -566,16 +566,16 @@ function Stats() {
   const c3 = useCounter(1200, 2200, visible);
 
   return (
-    <section ref={ref} className="bg-[oklch(0.14 0.04 140)] py-20 border-y border-[oklch(0.52 0.1 140)]/20">
+    <section ref={ref} className="bg-[oklch(0.14 0.04 140)] py-20 border-y border-[oklch(0.52 0.07 145)]/20">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-[oklch(0.52 0.1 140)]/20">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-0 divide-y md:divide-y-0 md:divide-x divide-[oklch(0.52 0.07 145)]/20">
           {[
             { count: c1, suffix: "代", prefix: "", label: "男性の薄毛悩みが急増している年代", note: "（当社調べ・2024年度）" },
             { count: c2, suffix: "%", prefix: "", label: "男性会員の継続利用率", note: "（当社調べ・2024年度・N=320名）" },
             { count: c3, suffix: "名以上", prefix: "", label: "男性会員数", note: "（2025年3月時点）" },
           ].map((s, i) => (
             <div key={i} className="py-12 px-8 text-center">
-              <div className="font-['Cormorant_Garamond'] text-[oklch(0.52 0.1 140)] text-6xl md:text-7xl font-bold mb-2">
+              <div className="font-['Cormorant_Garamond'] text-[oklch(0.52 0.07 145)] text-6xl md:text-7xl font-bold mb-2">
                 {s.prefix}{s.count}{s.suffix}
               </div>
               <p className="text-white font-['Shippori_Mincho'] text-lg mb-1">{s.label}</p>
@@ -639,8 +639,8 @@ function Service() {
     <section id="service" className="bg-[oklch(0.20 0.06 140)] py-24">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center gap-4 mb-4">
-          <div className="h-px w-12 bg-[oklch(0.52 0.1 140)]" />
-          <span className="text-[oklch(0.52 0.1 140)] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">Our Service</span>
+          <div className="h-px w-12 bg-[oklch(0.52 0.07 145)]" />
+          <span className="text-[oklch(0.52 0.07 145)] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">Our Service</span>
         </div>
         <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-4">
           3層構造のサービス設計
@@ -662,22 +662,22 @@ function Service() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.14 0.04 140)]/60 to-transparent" />
                   <div className="absolute bottom-4 left-4">
-                    <span className="font-['Cormorant_Garamond'] italic text-[oklch(0.52 0.1 140)] text-sm tracking-widest">{s.step}</span>
+                    <span className="font-['Cormorant_Garamond'] italic text-[oklch(0.52 0.07 145)] text-sm tracking-widest">{s.step}</span>
                   </div>
                 </div>
               </div>
               <div className={i % 2 === 1 ? "md:order-1" : ""}>
-                <span className="font-['Cormorant_Garamond'] italic text-[oklch(0.52 0.1 140)] text-sm tracking-widest block mb-2">{s.step}</span>
+                <span className="font-['Cormorant_Garamond'] italic text-[oklch(0.52 0.07 145)] text-sm tracking-widest block mb-2">{s.step}</span>
                 <h3 className="font-['Shippori_Mincho'] text-white text-2xl md:text-3xl font-bold mb-2">{s.title}</h3>
                 <p className="text-white/80 text-sm mb-1 font-['Noto_Sans_JP']">{s.subtitle}</p>
                 <div className="flex gap-4 mb-6 mt-4">
-                  <span className="text-[oklch(0.52 0.1 140)] text-xs border border-[oklch(0.52 0.1 140)]/40 px-3 py-1 font-['Noto_Sans_JP']">{s.duration}</span>
-                  <span className="text-[oklch(0.52 0.1 140)] text-xs border border-[oklch(0.52 0.1 140)]/40 px-3 py-1 font-['Noto_Sans_JP']">{s.price}</span>
+                  <span className="text-[oklch(0.52 0.07 145)] text-xs border border-[oklch(0.52 0.07 145)]/40 px-3 py-1 font-['Noto_Sans_JP']">{s.duration}</span>
+                  <span className="text-[oklch(0.52 0.07 145)] text-xs border border-[oklch(0.52 0.07 145)]/40 px-3 py-1 font-['Noto_Sans_JP']">{s.price}</span>
                 </div>
                 <ul className="space-y-3">
                   {s.features.map((f) => (
                     <li key={f} className="flex items-start gap-3">
-                      <div className="w-1 h-1 rounded-full bg-[oklch(0.52 0.1 140)] mt-2 shrink-0" />
+                      <div className="w-1 h-1 rounded-full bg-[oklch(0.52 0.07 145)] mt-2 shrink-0" />
                       <span className="text-white/70 text-sm font-['Noto_Sans_JP'] font-light">{f}</span>
                     </li>
                   ))}
@@ -770,9 +770,9 @@ function BotanicalMist() {
               />
               <div
                 className="absolute inset-0 pointer-events-none"
-                style={{ boxShadow: "inset 0 0 0 1px oklch(0.52 0.1 140)40" }}
+                style={{ boxShadow: "inset 0 0 0 1px oklch(0.52 0.07 145)40" }}
               />
-              <div className="absolute bottom-4 left-4 font-['Noto_Sans_JP'] text-xs font-bold px-4 py-2" style={{ backgroundColor: "oklch(0.52 0.1 140)", color: "oklch(0.14 0.04 140)" }}>
+              <div className="absolute bottom-4 left-4 font-['Noto_Sans_JP'] text-xs font-bold px-4 py-2" style={{ backgroundColor: "oklch(0.52 0.07 145)", color: "oklch(0.14 0.04 140)" }}>
                 THE HERBS ボタニカルミスト
               </div>
             </div>
@@ -780,12 +780,12 @@ function BotanicalMist() {
 
           {/* テキスト（右） */}
           <div className="flex-1 order-1 lg:order-2">
-            <span className="font-['Cormorant_Garamond'] italic text-sm tracking-[0.4em] uppercase block mb-4" style={{ color: "oklch(0.52 0.1 140)" }}>
+            <span className="font-['Cormorant_Garamond'] italic text-sm tracking-[0.4em] uppercase block mb-4" style={{ color: "oklch(0.52 0.07 145)" }}>
               Botanical Mist Technology
             </span>
             <h2 className="font-['Shippori_Mincho'] text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight" style={{ color: "#ffffff" }}>
               定期チェックは、<br />
-              <span style={{ color: "oklch(0.52 0.1 140)" }}>頭皮リセットから始まる。</span>
+              <span style={{ color: "oklch(0.52 0.07 145)" }}>頭皮リセットから始まる。</span>
             </h2>
             <p className="text-sm font-['Noto_Sans_JP'] font-light leading-relaxed mb-6 max-w-lg" style={{ color: "rgba(255,255,255,0.85)" }}>
               ボタニカルミスト（ハーブスチーマー）は、定期チェックの最初に行う「頭皮リセット」プログラムです。
@@ -819,7 +819,7 @@ function BotanicalMist() {
                 visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ backgroundColor: "oklch(0.20 0.06 140)", transitionDelay: `${i * 100}ms` }}
-              onMouseEnter={e => (e.currentTarget.style.backgroundColor = "oklch(0.22 0.06 140)")}
+              onMouseEnter={e => (e.currentTarget.style.backgroundColor = "oklch(0.25 0.05 145)")}
               onMouseLeave={e => (e.currentTarget.style.backgroundColor = "oklch(0.20 0.06 140)")}
             >
               <span className="text-3xl block mb-4">{effect.icon}</span>
@@ -841,9 +841,9 @@ function BotanicalMist() {
           <button
             onClick={() => document.getElementById('reservation')?.scrollIntoView({ behavior: 'smooth' })}
             className="px-10 py-4 font-bold tracking-widest text-sm transition-all duration-300 font-['Noto_Sans_JP'] text-white"
-            style={{ backgroundColor: "oklch(0.52 0.1 140)", textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}
+            style={{ backgroundColor: "oklch(0.52 0.07 145)", textShadow: '0 1px 3px rgba(0,0,0,0.5)' }}
             onMouseEnter={e => (e.currentTarget.style.backgroundColor = "oklch(0.72 0.1 130)")}
-            onMouseLeave={e => (e.currentTarget.style.backgroundColor = "oklch(0.52 0.1 140)")}
+            onMouseLeave={e => (e.currentTarget.style.backgroundColor = "oklch(0.52 0.07 145)")}
           >
             頭皮リセット＋チェックを予約する
           </button>
@@ -880,18 +880,18 @@ function Target() {
     <section className="bg-[oklch(0.20 0.06 140)] py-24">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center gap-4 mb-4">
-          <div className="h-px w-12 bg-[oklch(0.52 0.1 140)]" />
-          <span className="text-[oklch(0.52 0.1 140)] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">For You</span>
+          <div className="h-px w-12 bg-[oklch(0.52 0.07 145)]" />
+          <span className="text-[oklch(0.52 0.07 145)] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">For You</span>
         </div>
         <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-16">
           こんな方に選ばれています
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {targets.map((t) => (
-            <div key={t.title} className="border-l-2 border-[oklch(0.52 0.1 140)]/40 pl-5 md:pl-6 hover:border-[oklch(0.52 0.1 140)] transition-colors duration-300">
+            <div key={t.title} className="border-l-2 border-[oklch(0.52 0.07 145)]/40 pl-5 md:pl-6 hover:border-[oklch(0.52 0.07 145)] transition-colors duration-300">
               <div className="text-3xl mb-4">{t.icon}</div>
               <h3 className="font-['Shippori_Mincho'] text-white text-xl font-bold mb-2">{t.title}</h3>
-              <p className="text-[oklch(0.52 0.1 140)] text-sm italic font-['Cormorant_Garamond'] mb-3">{t.message}</p>
+              <p className="text-[oklch(0.52 0.07 145)] text-sm italic font-['Cormorant_Garamond'] mb-3">{t.message}</p>
               <p className="text-white/80 text-sm leading-relaxed font-['Noto_Sans_JP'] font-light">{t.body}</p>
             </div>
           ))}
@@ -904,15 +904,15 @@ function Target() {
 // ========== DIGITAL ==========
 function Digital() {
   return (
-    <section className="py-24 border-t border-[oklch(0.52 0.1 140)]/20" style={{ backgroundColor: "oklch(0.14 0.04 140)" }}>
+    <section className="py-24 border-t border-[oklch(0.52 0.07 145)]/20" style={{ backgroundColor: "oklch(0.14 0.04 140)" }}>
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Text */}
           <div>
-            <p className="text-xs tracking-[0.3em] text-[oklch(0.52 0.1 140)] mb-4 font-['Noto_Sans_JP']" style={{ fontFamily: "'Noto Sans JP', sans-serif" }}>SCALP LABO DIGITAL REPORT</p>
+            <p className="text-xs tracking-[0.3em] text-[oklch(0.52 0.07 145)] mb-4 font-['Noto_Sans_JP']" style={{ fontFamily: "'Noto Sans JP', sans-serif" }}>SCALP LABO DIGITAL REPORT</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
               THE HERBS SCALP LABO<br />
-              <span style={{ color: "oklch(0.52 0.1 140)" }}>デジタルレポート</span>
+              <span style={{ color: "oklch(0.52 0.07 145)" }}>デジタルレポート</span>
             </h2>
             <p className="text-sm leading-relaxed mb-8" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.75)", lineHeight: "1.9" }}>
               定期チェックのたびに頭皮データが蓄積される、<br />
@@ -927,7 +927,7 @@ function Digital() {
                 "サロンとのデータ共有機能",
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.85)" }}>
-                  <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "oklch(0.52 0.1 140)", fontSize: "10px", color: "oklch(0.14 0.04 140)", fontWeight: 700 }}>✓</span>
+                  <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "oklch(0.52 0.07 145)", fontSize: "10px", color: "oklch(0.14 0.04 140)", fontWeight: 700 }}>✓</span>
                   {item}
                 </li>
               ))}
@@ -1031,8 +1031,8 @@ function Testimonials() {
     <section id="testimonials" className="bg-[oklch(0.14 0.04 140)] py-24">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center gap-4 mb-4">
-          <div className="h-px w-12 bg-[oklch(0.52 0.1 140)]" />
-          <span className="text-[oklch(0.52 0.1 140)] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">Testimonials</span>
+          <div className="h-px w-12 bg-[oklch(0.52 0.07 145)]" />
+          <span className="text-[oklch(0.52 0.07 145)] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">Testimonials</span>
         </div>
         <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-4">
           お客様の声
@@ -1042,17 +1042,17 @@ function Testimonials() {
         </p>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {testimonials.map((t, i) => (
-            <div key={i} className="border border-white/10 p-5 md:p-6 hover:border-[oklch(0.52 0.1 140)]/30 transition-colors duration-300">
+            <div key={i} className="border border-white/10 p-5 md:p-6 hover:border-[oklch(0.52 0.07 145)]/30 transition-colors duration-300">
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, j) => (
-                  <Star key={j} size={12} className={j < t.stars ? "text-[oklch(0.52 0.1 140)] fill-[oklch(0.52 0.1 140)]" : "text-white/20"} />
+                  <Star key={j} size={12} className={j < t.stars ? "text-[oklch(0.52 0.07 145)] fill-[oklch(0.52 0.07 145)]" : "text-white/20"} />
                 ))}
               </div>
-              <p className="font-['Shippori_Mincho'] text-[oklch(0.52 0.1 140)] text-sm font-bold mb-3">{t.highlight}</p>
+              <p className="font-['Shippori_Mincho'] text-[oklch(0.52 0.07 145)] text-sm font-bold mb-3">{t.highlight}</p>
               <p className="text-white/80 text-sm leading-relaxed font-['Noto_Sans_JP'] font-light mb-6">{t.body}</p>
               <div className="flex items-center gap-2 pt-4 border-t border-white/10">
-                <div className="w-8 h-8 rounded-full bg-[oklch(0.20 0.06 140)] border border-[oklch(0.52 0.1 140)]/30 flex items-center justify-center">
-                  <span className="text-[oklch(0.52 0.1 140)] text-xs font-['Cormorant_Garamond']">{t.name[0]}</span>
+                <div className="w-8 h-8 rounded-full bg-[oklch(0.20 0.06 140)] border border-[oklch(0.52 0.07 145)]/30 flex items-center justify-center">
+                  <span className="text-[oklch(0.52 0.07 145)] text-xs font-['Cormorant_Garamond']">{t.name[0]}</span>
                 </div>
                 <div>
                   <p className="text-white text-sm font-['Noto_Sans_JP']">{t.name} 様</p>
@@ -1101,24 +1101,24 @@ function FAQ() {
     <section id="faq" className="bg-[oklch(0.20 0.06 140)] py-24">
       <div className="max-w-4xl mx-auto px-6">
         <div className="flex items-center gap-4 mb-4">
-          <div className="h-px w-12 bg-[oklch(0.52 0.1 140)]" />
-          <span className="text-[oklch(0.52 0.1 140)] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">FAQ</span>
+          <div className="h-px w-12 bg-[oklch(0.52 0.07 145)]" />
+          <span className="text-[oklch(0.52 0.07 145)] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">FAQ</span>
         </div>
         <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-16">
           よくあるご質問
         </h2>
         <div className="space-y-2">
           {faqs.map((faq, i) => (
-            <div key={i} className="border border-white/10 hover:border-[oklch(0.52 0.1 140)]/30 transition-colors">
+            <div key={i} className="border border-white/10 hover:border-[oklch(0.52 0.07 145)]/30 transition-colors">
               <button
                 className="w-full flex items-center justify-between p-6 text-left"
                 onClick={() => setOpen(open === i ? null : i)}
               >
                 <span className="text-white font-['Shippori_Mincho'] font-bold text-sm pr-4">{faq.q}</span>
                 {open === i ? (
-                  <ChevronUp size={16} className="text-[oklch(0.52 0.1 140)] shrink-0" />
+                  <ChevronUp size={16} className="text-[oklch(0.52 0.07 145)] shrink-0" />
                 ) : (
-                  <ChevronDown size={16} className="text-[oklch(0.52 0.1 140)] shrink-0" />
+                  <ChevronDown size={16} className="text-[oklch(0.52 0.07 145)] shrink-0" />
                 )}
               </button>
               {open === i && (
@@ -1199,8 +1199,8 @@ function Reservation() {
     return (
       <section id="reservation" className="bg-[oklch(0.14 0.04 140)] py-24">
         <div className="max-w-2xl mx-auto px-6 text-center">
-          <div className="w-16 h-16 border-2 border-[oklch(0.52 0.1 140)] flex items-center justify-center mx-auto mb-8">
-            <Check size={28} className="text-[oklch(0.52 0.1 140)]" />
+          <div className="w-16 h-16 border-2 border-[oklch(0.52 0.07 145)] flex items-center justify-center mx-auto mb-8">
+            <Check size={28} className="text-[oklch(0.52 0.07 145)]" />
           </div>
           <h2 className="font-['Shippori_Mincho'] text-white text-3xl font-bold mb-4">
             ご予約を受け付けました
@@ -1218,8 +1218,8 @@ function Reservation() {
     <section id="reservation" className="bg-[oklch(0.14 0.04 140)] py-24">
       <div className="max-w-3xl mx-auto px-6">
         <div className="flex items-center gap-4 mb-4">
-          <div className="h-px w-12 bg-[oklch(0.52 0.1 140)]" />
-          <span className="text-[oklch(0.52 0.1 140)] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">Reservation</span>
+          <div className="h-px w-12 bg-[oklch(0.52 0.07 145)]" />
+          <span className="text-[oklch(0.52 0.07 145)] text-xs tracking-[0.4em] uppercase font-['Cormorant_Garamond'] italic">Reservation</span>
         </div>
         <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-4">
           ご予約・お問い合わせ
@@ -1233,26 +1233,26 @@ function Reservation() {
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <label className="block text-white/70 text-xs mb-2 font-['Noto_Sans_JP'] tracking-wider">
-                お名前 <span className="text-[oklch(0.52 0.1 140)]">*</span>
+                お名前 <span className="text-[oklch(0.52 0.07 145)]">*</span>
               </label>
               <input
                 type="text"
                 value={form.name}
                 onChange={(e) => setForm({ ...form, name: e.target.value })}
-                className="w-full bg-[oklch(0.20 0.06 140)] border border-white/10 focus:border-[oklch(0.52 0.1 140)] text-white px-4 py-3 text-sm outline-none transition-colors font-['Noto_Sans_JP']"
+                className="w-full bg-[oklch(0.20 0.06 140)] border border-white/10 focus:border-[oklch(0.52 0.07 145)] text-white px-4 py-3 text-sm outline-none transition-colors font-['Noto_Sans_JP']"
                 placeholder="山田 太郎"
               />
               {errors.name && <p className="text-red-400 text-xs mt-1 font-['Noto_Sans_JP']">{errors.name}</p>}
             </div>
             <div>
               <label className="block text-white/70 text-xs mb-2 font-['Noto_Sans_JP'] tracking-wider">
-                電話番号 <span className="text-[oklch(0.52 0.1 140)]">*</span>
+                電話番号 <span className="text-[oklch(0.52 0.07 145)]">*</span>
               </label>
               <input
                 type="tel"
                 value={form.phone}
                 onChange={(e) => setForm({ ...form, phone: e.target.value })}
-                className="w-full bg-[oklch(0.20 0.06 140)] border border-white/10 focus:border-[oklch(0.52 0.1 140)] text-white px-4 py-3 text-sm outline-none transition-colors font-['Noto_Sans_JP']"
+                className="w-full bg-[oklch(0.20 0.06 140)] border border-white/10 focus:border-[oklch(0.52 0.07 145)] text-white px-4 py-3 text-sm outline-none transition-colors font-['Noto_Sans_JP']"
                 placeholder="090-0000-0000"
               />
               {errors.phone && <p className="text-red-400 text-xs mt-1 font-['Noto_Sans_JP']">{errors.phone}</p>}
@@ -1267,7 +1267,7 @@ function Reservation() {
               type="email"
               value={form.email}
               onChange={(e) => setForm({ ...form, email: e.target.value })}
-              className="w-full bg-[oklch(0.20 0.06 140)] border border-white/10 focus:border-[oklch(0.52 0.1 140)] text-white px-4 py-3 text-sm outline-none transition-colors font-['Noto_Sans_JP']"
+              className="w-full bg-[oklch(0.20 0.06 140)] border border-white/10 focus:border-[oklch(0.52 0.07 145)] text-white px-4 py-3 text-sm outline-none transition-colors font-['Noto_Sans_JP']"
               placeholder="example@email.com"
             />
           </div>
@@ -1275,13 +1275,13 @@ function Reservation() {
           <div className="grid md:grid-cols-2 gap-6">
             <div>
               <label className="block text-white/70 text-xs mb-2 font-['Noto_Sans_JP'] tracking-wider">
-                ご希望日 <span className="text-[oklch(0.52 0.1 140)]">*</span>
+                ご希望日 <span className="text-[oklch(0.52 0.07 145)]">*</span>
               </label>
               <input
                 type="date"
                 value={form.date}
                 onChange={(e) => setForm({ ...form, date: e.target.value })}
-                className="w-full bg-[oklch(0.20 0.06 140)] border border-white/10 focus:border-[oklch(0.52 0.1 140)] text-white px-4 py-3 text-sm outline-none transition-colors font-['Noto_Sans_JP']"
+                className="w-full bg-[oklch(0.20 0.06 140)] border border-white/10 focus:border-[oklch(0.52 0.07 145)] text-white px-4 py-3 text-sm outline-none transition-colors font-['Noto_Sans_JP']"
               />
               {errors.date && <p className="text-red-400 text-xs mt-1 font-['Noto_Sans_JP']">{errors.date}</p>}
             </div>
@@ -1292,7 +1292,7 @@ function Reservation() {
               <select
                 value={form.time}
                 onChange={(e) => setForm({ ...form, time: e.target.value })}
-                className="w-full bg-[oklch(0.20 0.06 140)] border border-white/10 focus:border-[oklch(0.52 0.1 140)] text-white px-4 py-3 text-sm outline-none transition-colors font-['Noto_Sans_JP']"
+                className="w-full bg-[oklch(0.20 0.06 140)] border border-white/10 focus:border-[oklch(0.52 0.07 145)] text-white px-4 py-3 text-sm outline-none transition-colors font-['Noto_Sans_JP']"
               >
                 <option value="">選択してください</option>
                 <option value="morning">午前（10:00〜12:00）</option>
@@ -1304,12 +1304,12 @@ function Reservation() {
 
           <div>
             <label className="block text-white/70 text-xs mb-2 font-['Noto_Sans_JP'] tracking-wider">
-              ご希望のコース <span className="text-[oklch(0.52 0.1 140)]">*</span>
+              ご希望のコース <span className="text-[oklch(0.52 0.07 145)]">*</span>
             </label>
             <select
               value={form.course}
               onChange={(e) => setForm({ ...form, course: e.target.value })}
-              className="w-full bg-[oklch(0.20 0.06 140)] border border-white/10 focus:border-[oklch(0.52 0.1 140)] text-white px-4 py-3 text-sm outline-none transition-colors font-['Noto_Sans_JP']"
+              className="w-full bg-[oklch(0.20 0.06 140)] border border-white/10 focus:border-[oklch(0.52 0.07 145)] text-white px-4 py-3 text-sm outline-none transition-colors font-['Noto_Sans_JP']"
             >
               <option value="">選択してください</option>
               {courses.map((c) => (
@@ -1327,7 +1327,7 @@ function Reservation() {
               value={form.message}
               onChange={(e) => setForm({ ...form, message: e.target.value })}
               rows={4}
-              className="w-full bg-[oklch(0.20 0.06 140)] border border-white/10 focus:border-[oklch(0.52 0.1 140)] text-white px-4 py-3 text-sm outline-none transition-colors resize-none font-['Noto_Sans_JP']"
+              className="w-full bg-[oklch(0.20 0.06 140)] border border-white/10 focus:border-[oklch(0.52 0.07 145)] text-white px-4 py-3 text-sm outline-none transition-colors resize-none font-['Noto_Sans_JP']"
               placeholder="気になる症状・ご要望などをご記入ください"
             />
           </div>
@@ -1338,10 +1338,10 @@ function Reservation() {
                 type="checkbox"
                 checked={form.privacy}
                 onChange={(e) => setForm({ ...form, privacy: e.target.checked })}
-                className="mt-1 accent-[oklch(0.52 0.1 140)]"
+                className="mt-1 accent-[oklch(0.52 0.07 145)]"
               />
               <span className="text-white/60 text-xs font-['Noto_Sans_JP'] leading-relaxed">
-                <Link href="/privacy" className="text-[oklch(0.52 0.1 140)] hover:underline">プライバシーポリシー</Link>に同意します。
+                <Link href="/privacy" className="text-[oklch(0.52 0.07 145)] hover:underline">プライバシーポリシー</Link>に同意します。
                 ご入力いただいた個人情報は予約確認・サービス提供の目的のみに使用し、第三者への提供は行いません。
               </span>
             </label>
@@ -1351,7 +1351,7 @@ function Reservation() {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full py-4 bg-[oklch(0.52 0.1 140)] text-white font-bold tracking-widest text-sm hover:bg-[oklch(0.72 0.1 130)] transition-all duration-300 flex items-center justify-center gap-2 font-['Noto_Sans_JP'] disabled:opacity-60 disabled:cursor-not-allowed" style={{textShadow: '0 1px 3px rgba(0,0,0,0.5)'}}
+            className="w-full py-4 bg-[oklch(0.52 0.07 145)] text-white font-bold tracking-widest text-sm hover:bg-[oklch(0.72 0.1 130)] transition-all duration-300 flex items-center justify-center gap-2 font-['Noto_Sans_JP'] disabled:opacity-60 disabled:cursor-not-allowed" style={{textShadow: '0 1px 3px rgba(0,0,0,0.5)'}}
           >
             {submitting ? "送信中..." : "予約を申し込む"}
             {!submitting && <ArrowRight size={16} />}
@@ -1418,11 +1418,11 @@ function StoreSection() {
   ];
 
   return (
-    <section className="bg-[oklch(0.14 0.04 140)] py-24 border-t border-[oklch(0.52 0.1 140)]/20" id="store">
+    <section className="bg-[oklch(0.14 0.04 140)] py-24 border-t border-[oklch(0.52 0.07 145)]/20" id="store">
       <div ref={ref} className="max-w-7xl mx-auto px-6">
         {/* ヘッダー */}
         <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="font-['Cormorant_Garamond'] italic text-[oklch(0.52 0.1 140)] text-sm tracking-[0.4em] uppercase block mb-4">
+          <span className="font-['Cormorant_Garamond'] italic text-[oklch(0.52 0.07 145)] text-sm tracking-[0.4em] uppercase block mb-4">
             Our Locations
           </span>
           <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-4">
@@ -1438,7 +1438,7 @@ function StoreSection() {
           {stores.map((store, i) => (
             <div
               key={store.id}
-              className={`border border-[oklch(0.52 0.1 140)]/20 hover:border-[oklch(0.52 0.1 140)]/50 transition-all duration-500 overflow-hidden ${
+              className={`border border-[oklch(0.52 0.07 145)]/20 hover:border-[oklch(0.52 0.07 145)]/50 transition-all duration-500 overflow-hidden ${
                 visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${i * 150}ms` }}
@@ -1461,7 +1461,7 @@ function StoreSection() {
                   className="absolute inset-0 z-10"
                   aria-label={`${store.name}の地図を開く`}
                 />
-                <div className="absolute top-3 left-3 font-['Noto_Sans_JP'] text-[oklch(0.14 0.04 140)] text-xs font-bold px-3 py-1 bg-[oklch(0.52 0.1 140)] z-20">
+                <div className="absolute top-3 left-3 font-['Noto_Sans_JP'] text-[oklch(0.14 0.04 140)] text-xs font-bold px-3 py-1 bg-[oklch(0.52 0.07 145)] z-20">
                   {store.badge}
                 </div>
               </div>
@@ -1469,7 +1469,7 @@ function StoreSection() {
               {/* 情報エリア */}
               <div className="p-7 bg-[oklch(0.20 0.06 140)]">
                 <div className="mb-5">
-                  <p className="font-['Cormorant_Garamond'] text-[oklch(0.52 0.1 140)] text-xs tracking-widest uppercase mb-1">
+                  <p className="font-['Cormorant_Garamond'] text-[oklch(0.52 0.07 145)] text-xs tracking-widest uppercase mb-1">
                     {store.nameEn}
                   </p>
                   <h3 className="font-['Shippori_Mincho'] text-white text-xl font-bold">
@@ -1479,7 +1479,7 @@ function StoreSection() {
 
                 {/* 住所 */}
                 <div className="flex items-start gap-3 mb-4">
-                  <span className="text-[oklch(0.52 0.1 140)] text-sm mt-0.5 flex-shrink-0">📍</span>
+                  <span className="text-[oklch(0.52 0.07 145)] text-sm mt-0.5 flex-shrink-0">📍</span>
                   <div className="text-white/80 text-sm font-['Noto_Sans_JP'] leading-relaxed">
                     <p>{store.address}</p>
                     {store.address2 && <p>{store.address2}</p>}
@@ -1488,7 +1488,7 @@ function StoreSection() {
 
                 {/* 営業時間 */}
                 <div className="flex items-start gap-3 mb-5">
-                  <span className="text-[oklch(0.52 0.1 140)] text-sm mt-0.5 flex-shrink-0">🕐</span>
+                  <span className="text-[oklch(0.52 0.07 145)] text-sm mt-0.5 flex-shrink-0">🕐</span>
                   <div>
                     {store.hours.map((h) => (
                       <div key={h.day} className="flex gap-3 mb-1">
@@ -1505,7 +1505,7 @@ function StoreSection() {
                   {store.features.map((f) => (
                     <span
                       key={f}
-                      className="text-[oklch(0.52 0.1 140)] text-xs border border-[oklch(0.52 0.1 140)]/30 px-2.5 py-1 font-['Noto_Sans_JP']"
+                      className="text-[oklch(0.52 0.07 145)] text-xs border border-[oklch(0.52 0.07 145)]/30 px-2.5 py-1 font-['Noto_Sans_JP']"
                     >
                       {f}
                     </span>
@@ -1535,11 +1535,11 @@ function StoreSection() {
         </div>
 
         {/* サロン募集バナー */}
-        <div className={`mt-12 border border-[oklch(0.52 0.1 140)]/30 p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-700 delay-300 ${
+        <div className={`mt-12 border border-[oklch(0.52 0.07 145)]/30 p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-700 delay-300 ${
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}>
           <div>
-            <p className="font-['Cormorant_Garamond'] italic text-[oklch(0.52 0.1 140)] text-xs tracking-[0.3em] uppercase mb-2">For Salon Partners</p>
+            <p className="font-['Cormorant_Garamond'] italic text-[oklch(0.52 0.07 145)] text-xs tracking-[0.3em] uppercase mb-2">For Salon Partners</p>
             <h3 className="font-['Shippori_Mincho'] text-white text-xl md:text-2xl font-bold mb-2">
               THE HERBS SCALP LABの認定サロンになりませんか？
             </h3>
@@ -1548,7 +1548,7 @@ function StoreSection() {
             </p>
           </div>
           <Link href="/salon">
-            <span className="flex-shrink-0 border border-[oklch(0.52 0.1 140)] text-[oklch(0.52 0.1 140)] font-['Noto_Sans_JP'] font-medium text-sm px-8 py-3.5 hover:bg-[oklch(0.52 0.1 140)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300 whitespace-nowrap cursor-pointer">
+            <span className="flex-shrink-0 border border-[oklch(0.52 0.07 145)] text-[oklch(0.52 0.07 145)] font-['Noto_Sans_JP'] font-medium text-sm px-8 py-3.5 hover:bg-[oklch(0.52 0.07 145)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300 whitespace-nowrap cursor-pointer">
               認定サロン募集ページへ →
             </span>
           </Link>
@@ -1567,12 +1567,12 @@ function CTA() {
         style={{ backgroundImage: "radial-gradient(circle at 30% 50%, rgba(80,120,60,0.13) 0%, transparent 60%)" }}
       />
       <div className="max-w-4xl mx-auto px-6 text-center relative">
-        <span className="font-['Cormorant_Garamond'] italic text-[oklch(0.52 0.1 140)] text-sm tracking-[0.4em] uppercase block mb-6">
+        <span className="font-['Cormorant_Garamond'] italic text-[oklch(0.52 0.07 145)] text-sm tracking-[0.4em] uppercase block mb-6">
           Start Your Journey
         </span>
         <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-5xl font-bold mb-6 leading-tight">
           まず、自分の頭皮を<br />
-          <span className="text-[oklch(0.52 0.1 140)]">知ることから始めよう。</span>
+          <span className="text-[oklch(0.52 0.07 145)]">知ることから始めよう。</span>
         </h2>
         <p className="text-white/80 text-sm font-['Noto_Sans_JP'] font-light mb-10 max-w-xl mx-auto leading-relaxed">
           初回の無料スカルプチェックは5〜10分。費用は一切かかりません。
@@ -1580,7 +1580,7 @@ function CTA() {
         </p>
         <button
           onClick={() => document.querySelector("#reservation")?.scrollIntoView({ behavior: "smooth" })}
-          className="px-10 py-4 bg-[oklch(0.52 0.1 140)] text-[oklch(0.14 0.04 140)] font-bold tracking-widest text-sm hover:bg-[oklch(0.72 0.1 130)] transition-all duration-300 inline-flex items-center gap-3 font-['Noto_Sans_JP']"
+          className="px-10 py-4 bg-[oklch(0.52 0.07 145)] text-[oklch(0.14 0.04 140)] font-bold tracking-widest text-sm hover:bg-[oklch(0.72 0.1 130)] transition-all duration-300 inline-flex items-center gap-3 font-['Noto_Sans_JP']"
         >
           無料チェックを予約する
           <ArrowRight size={16} />
@@ -1626,7 +1626,7 @@ function Footer() {
                 <li key={l.href}>
                   <button
                     onClick={() => document.querySelector(l.href)?.scrollIntoView({ behavior: "smooth" })}
-                    className="text-white/65 hover:text-[oklch(0.52 0.1 140)] text-xs transition-colors font-['Noto_Sans_JP']"
+                    className="text-white/65 hover:text-[oklch(0.52 0.07 145)] text-xs transition-colors font-['Noto_Sans_JP']"
                   >
                     {l.label}
                   </button>
@@ -1639,8 +1639,8 @@ function Footer() {
           <div>
             <h4 className="text-white/75 text-xs tracking-widest mb-4 font-['Noto_Sans_JP']">LEGAL</h4>
             <ul className="space-y-2">
-              <li><Link href="/privacy" className="text-white/65 hover:text-[oklch(0.52 0.1 140)] text-xs transition-colors font-['Noto_Sans_JP']">プライバシーポリシー</Link></li>
-              <li><Link href="/tokushoho" className="text-white/65 hover:text-[oklch(0.52 0.1 140)] text-xs transition-colors font-['Noto_Sans_JP']">特定商取引法に基づく表記</Link></li>
+              <li><Link href="/privacy" className="text-white/65 hover:text-[oklch(0.52 0.07 145)] text-xs transition-colors font-['Noto_Sans_JP']">プライバシーポリシー</Link></li>
+              <li><Link href="/tokushoho" className="text-white/65 hover:text-[oklch(0.52 0.07 145)] text-xs transition-colors font-['Noto_Sans_JP']">特定商取引法に基づく表記</Link></li>
             </ul>
           </div>
         </div>
@@ -1683,7 +1683,7 @@ function Footer() {
           <p className="text-white/50 text-xs font-['Noto_Sans_JP']">
             © 2025 SCALP LABO / THE HERBS. All rights reserved.
           </p>
-          <Link href="/" className="text-[oklch(0.52 0.1 140)]/50 hover:text-[oklch(0.52 0.1 140)] text-xs transition-colors font-['Noto_Sans_JP']">
+          <Link href="/" className="text-[oklch(0.52 0.07 145)]/50 hover:text-[oklch(0.52 0.07 145)] text-xs transition-colors font-['Noto_Sans_JP']">
             ← THE HERBS SCALP LABO（女性版）はこちら
           </Link>
         </div>

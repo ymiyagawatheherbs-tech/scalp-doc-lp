@@ -83,10 +83,10 @@ const requiredStyle: React.CSSProperties = {
 const inputStyle: React.CSSProperties = {
   width: "100%",
   padding: "0.7rem 0.9rem",
-  border: "1.5px solid oklch(0.88 0.03 130)",
+  border: "1.5px solid oklch(0.88 0.025 130)",
   borderRadius: "4px",
   fontSize: "0.9rem",
-  color: "oklch(0.28 0.08 140)",
+  color: "oklch(0.30 0.06 145)",
   background: "oklch(0.99 0.008 75)",
   outline: "none",
   boxSizing: "border-box",
@@ -155,19 +155,19 @@ export default function Booking() {
       <div style={{ minHeight: "100dvh", background: "oklch(0.97 0.015 75)", display: "flex", alignItems: "center", justifyContent: "center", padding: "2rem 1rem", fontFamily: "'Noto Sans JP', sans-serif" }}>
         <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet" />
         <div style={{ maxWidth: "480px", width: "100%", textAlign: "center", padding: "3rem 2rem", background: "white", borderRadius: "4px", boxShadow: "0 4px 32px rgba(0,0,0,0.06)" }}>
-          <div style={{ width: "64px", height: "64px", borderRadius: "50%", background: "oklch(0.52 0.1 140)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.5rem" }}>
+          <div style={{ width: "64px", height: "64px", borderRadius: "50%", background: "oklch(0.52 0.07 145)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.5rem" }}>
             <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
               <polyline points="20 6 9 17 4 12" />
             </svg>
           </div>
-          <p style={{ fontFamily: "'Shippori Mincho B1', serif", fontSize: "1.5rem", fontWeight: 700, color: "oklch(0.28 0.08 140)", marginBottom: "1rem" }}>
+          <p style={{ fontFamily: "'Shippori Mincho B1', serif", fontSize: "1.5rem", fontWeight: 700, color: "oklch(0.30 0.06 145)", marginBottom: "1rem" }}>
             ご予約を受け付けました
           </p>
           <p style={{ fontSize: "0.9rem", color: "oklch(0.42 0.07 140)", lineHeight: 1.8, marginBottom: "2rem" }}>
             ご予約内容を確認後、担当者よりメールまたはお電話にてご連絡いたします。<br />
             しばらくお待ちください。
           </p>
-          <a href="/" style={{ display: "inline-block", padding: "0.75rem 2rem", background: "oklch(0.28 0.08 140)", color: "white", fontSize: "0.875rem", fontWeight: 500, textDecoration: "none", borderRadius: "2px" }}>
+          <a href="/" style={{ display: "inline-block", padding: "0.75rem 2rem", background: "oklch(0.30 0.06 145)", color: "white", fontSize: "0.875rem", fontWeight: 500, textDecoration: "none", borderRadius: "2px" }}>
             トップページへ戻る
           </a>
         </div>
@@ -176,11 +176,11 @@ export default function Booking() {
   }
 
   return (
-    <div style={{ minHeight: "100dvh", background: "oklch(0.977 0.012 100)", fontFamily: "'Noto Sans JP', sans-serif" }}>
+    <div style={{ minHeight: "100dvh", background: "oklch(0.978 0.010 90)", fontFamily: "'Noto Sans JP', sans-serif" }}>
       <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet" />
 
       {/* ヘッダー */}
-      <header style={{ background: "oklch(0.28 0.08 140)", padding: "0.75rem 1rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.75rem" }}>
+      <header style={{ background: "oklch(0.30 0.06 145)", padding: "0.75rem 1rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.75rem" }}>
         <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem", flexShrink: 0 }}>
           <img
             src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_olive_12a41c11.webp"
@@ -197,15 +197,15 @@ export default function Booking() {
           <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "0.52rem", letterSpacing: "0.22em", color: "rgba(255,255,255,0.35)", textTransform: "uppercase" }}>presented by</span>
           <span style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: "0.78rem", letterSpacing: "0.22em", color: "rgba(255,255,255,0.75)", textTransform: "uppercase" }}>THE HERBS</span>
         </div>
-        <span style={{ fontSize: "0.72rem", color: "oklch(0.82 0.08 130)", letterSpacing: "0.05em", flexShrink: 0 }}>ご予約フォーム</span>
+        <span style={{ fontSize: "0.72rem", color: "oklch(0.82 0.06 145)", letterSpacing: "0.05em", flexShrink: 0 }}>ご予約フォーム</span>
       </header>
 
       <main style={{ maxWidth: "600px", margin: "0 auto", padding: "2.5rem 1rem 5rem" }}>
 
         {/* タイトル */}
         <div style={{ textAlign: "center", marginBottom: "2rem" }}>
-          <p style={{ fontSize: "0.7rem", letterSpacing: "0.2em", color: "oklch(0.52 0.1 140)", marginBottom: "0.5rem" }}>RESERVATION</p>
-          <h1 style={{ fontFamily: "'Shippori Mincho B1', serif", fontSize: "1.6rem", fontWeight: 700, color: "oklch(0.28 0.08 140)", lineHeight: 1.4, marginBottom: "0.75rem" }}>
+          <p style={{ fontSize: "0.7rem", letterSpacing: "0.2em", color: "oklch(0.52 0.07 145)", marginBottom: "0.5rem" }}>RESERVATION</p>
+          <h1 style={{ fontFamily: "'Shippori Mincho B1', serif", fontSize: "1.6rem", fontWeight: 700, color: "oklch(0.30 0.06 145)", lineHeight: 1.4, marginBottom: "0.75rem" }}>
             ご予約・お申し込み
           </h1>
           <p style={{ fontSize: "0.85rem", color: "oklch(0.42 0.07 140)", lineHeight: 1.7 }}>
@@ -215,7 +215,7 @@ export default function Booking() {
 
         {/* ご予約に関するご注意 */}
         <div style={{ background: "oklch(0.98 0.018 75)", border: "1px solid oklch(0.88 0.04 70)", borderRadius: "6px", padding: "1.25rem 1.5rem", marginBottom: "2rem" }}>
-          <p style={{ fontSize: "0.72rem", letterSpacing: "0.15em", color: "oklch(0.52 0.1 140)", marginBottom: "0.75rem", fontWeight: 600 }}>
+          <p style={{ fontSize: "0.72rem", letterSpacing: "0.15em", color: "oklch(0.52 0.07 145)", marginBottom: "0.75rem", fontWeight: 600 }}>
             ご予約に関するご注意
           </p>
           <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
@@ -224,7 +224,7 @@ export default function Booking() {
               "担当者の返信をもってご予約確定となります。",
             ].map((note, i) => (
               <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", fontSize: "0.82rem", color: "oklch(0.4 0.04 42)", lineHeight: 1.7 }}>
-                <span style={{ color: "oklch(0.52 0.1 140)", fontWeight: 700, flexShrink: 0, marginTop: "0.1rem" }}>・</span>
+                <span style={{ color: "oklch(0.52 0.07 145)", fontWeight: 700, flexShrink: 0, marginTop: "0.1rem" }}>・</span>
                 {note}
               </li>
             ))}
@@ -233,7 +233,7 @@ export default function Booking() {
 
         {/* STEP 1: 店舗選択 */}
         <div style={{ marginBottom: "2rem" }}>
-          <p style={{ fontSize: "0.72rem", letterSpacing: "0.15em", color: "oklch(0.52 0.1 140)", fontWeight: 600, marginBottom: "0.75rem" }}>
+          <p style={{ fontSize: "0.72rem", letterSpacing: "0.15em", color: "oklch(0.52 0.07 145)", fontWeight: 600, marginBottom: "0.75rem" }}>
             STEP 1 — 店舗を選ぶ
           </p>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem" }}>
@@ -249,8 +249,8 @@ export default function Booking() {
                 style={{
                   padding: "1.25rem 1rem",
                   border: selectedStore === s.value
-                    ? "2px solid oklch(0.52 0.1 140)"
-                    : "1.5px solid oklch(0.88 0.03 130)",
+                    ? "2px solid oklch(0.52 0.07 145)"
+                    : "1.5px solid oklch(0.88 0.025 130)",
                   borderRadius: "8px",
                   background: selectedStore === s.value ? "oklch(0.97 0.025 75)" : "white",
                   cursor: "pointer",
@@ -261,10 +261,10 @@ export default function Booking() {
                   transition: "all 0.15s",
                 }}
               >
-                <p style={{ fontWeight: 700, fontSize: "0.88rem", color: "oklch(0.28 0.08 140)", marginBottom: "0.3rem", lineHeight: 1.4 }}>
+                <p style={{ fontWeight: 700, fontSize: "0.88rem", color: "oklch(0.30 0.06 145)", marginBottom: "0.3rem", lineHeight: 1.4 }}>
                   {s.label}
                 </p>
-                <p style={{ fontSize: "0.72rem", color: "oklch(0.52 0.06 140)", lineHeight: 1.5 }}>
+                <p style={{ fontSize: "0.72rem", color: "oklch(0.52 0.05 145)", lineHeight: 1.5 }}>
                   {s.address}
                 </p>
                 {"hours" in s && s.hours && (
@@ -273,7 +273,7 @@ export default function Booking() {
                   </p>
                 )}
                 {s.useSquare && (
-                  <p style={{ fontSize: "0.68rem", color: "oklch(0.52 0.1 140)", marginTop: "0.4rem", fontWeight: 600 }}>
+                  <p style={{ fontSize: "0.68rem", color: "oklch(0.52 0.07 145)", marginTop: "0.4rem", fontWeight: 600 }}>
                     Square予約システム利用
                   </p>
                 )}
@@ -286,14 +286,14 @@ export default function Booking() {
         {selectedStore === "salon" && (
           <div style={{ background: "white", borderRadius: "8px", boxShadow: "0 2px 16px rgba(0,0,0,0.06)", padding: "2rem 1.5rem", marginBottom: "2rem", textAlign: "center" }}>
             <div style={{ width: "56px", height: "56px", borderRadius: "50%", background: "oklch(0.97 0.025 75)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.25rem" }}>
-              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="oklch(0.52 0.1 140)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="oklch(0.52 0.07 145)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
                 <line x1="16" y1="2" x2="16" y2="6" />
                 <line x1="8" y1="2" x2="8" y2="6" />
                 <line x1="3" y1="10" x2="21" y2="10" />
               </svg>
             </div>
-            <p style={{ fontFamily: "'Shippori Mincho B1', serif", fontSize: "1.1rem", fontWeight: 700, color: "oklch(0.28 0.08 140)", marginBottom: "0.5rem" }}>
+            <p style={{ fontFamily: "'Shippori Mincho B1', serif", fontSize: "1.1rem", fontWeight: 700, color: "oklch(0.30 0.06 145)", marginBottom: "0.5rem" }}>
               THE HERBSサロンのご予約
             </p>
             <p style={{ fontSize: "0.83rem", color: "oklch(0.42 0.07 140)", lineHeight: 1.8, marginBottom: "1.5rem" }}>
@@ -309,7 +309,7 @@ export default function Booking() {
                 alignItems: "center",
                 gap: "0.5rem",
                 padding: "0.9rem 2rem",
-                background: "oklch(0.28 0.08 140)",
+                background: "oklch(0.30 0.06 145)",
                 color: "white",
                 textDecoration: "none",
                 borderRadius: "4px",
@@ -349,7 +349,7 @@ export default function Booking() {
                 頭皮チェック受付：<strong>12:00 〜 16:00</strong>（それ以外は随時受付となります）
               </p>
             </div>
-            <p style={{ fontSize: "0.72rem", letterSpacing: "0.15em", color: "oklch(0.52 0.1 140)", fontWeight: 600, marginBottom: "0.75rem" }}>
+            <p style={{ fontSize: "0.72rem", letterSpacing: "0.15em", color: "oklch(0.52 0.07 145)", fontWeight: 600, marginBottom: "0.75rem" }}>
               STEP 2 — ご予約内容を入力する
             </p>
             <div style={{ background: "white", borderRadius: "4px", boxShadow: "0 2px 16px rgba(0,0,0,0.05)", padding: "2rem 1.5rem", display: "flex", flexDirection: "column", gap: "1.5rem" }}>
@@ -442,8 +442,8 @@ export default function Booking() {
                       style={{
                         padding: "0.9rem 1rem",
                         border: form.plan === course.value
-                          ? "2px solid oklch(0.52 0.1 140)"
-                          : "1.5px solid oklch(0.88 0.03 130)",
+                          ? "2px solid oklch(0.52 0.07 145)"
+                          : "1.5px solid oklch(0.88 0.025 130)",
                         borderRadius: "6px",
                         background: form.plan === course.value ? "oklch(0.97 0.025 75)" : "white",
                         cursor: "pointer",
@@ -452,8 +452,8 @@ export default function Booking() {
                       }}
                     >
                       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.2rem" }}>
-                        <span style={{ fontWeight: 700, fontSize: "0.88rem", color: "oklch(0.28 0.08 140)" }}>{course.label}</span>
-                        <span style={{ fontSize: "0.72rem", color: "oklch(0.52 0.1 140)", fontWeight: 600 }}>{course.sub}</span>
+                        <span style={{ fontWeight: 700, fontSize: "0.88rem", color: "oklch(0.30 0.06 145)" }}>{course.label}</span>
+                        <span style={{ fontSize: "0.72rem", color: "oklch(0.52 0.07 145)", fontWeight: 600 }}>{course.sub}</span>
                       </div>
                       <p style={{ fontSize: "0.75rem", color: "oklch(0.5 0.04 42)", lineHeight: 1.6, margin: 0 }}>{course.desc}</p>
                     </button>
@@ -486,7 +486,7 @@ export default function Booking() {
                 style={{
                   width: "100%",
                   padding: "1rem",
-                  background: createReservation.isPending ? "oklch(0.75 0.06 75)" : "oklch(0.28 0.08 140)",
+                  background: createReservation.isPending ? "oklch(0.75 0.06 75)" : "oklch(0.30 0.06 145)",
                   color: "white",
                   border: "none",
                   borderRadius: "4px",
