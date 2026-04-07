@@ -78,7 +78,7 @@ function Nav() {
             <div className="flex flex-col leading-none">
               <span
                 className="font-['Noto_Sans_JP'] font-bold tracking-widest"
-                style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.95)", letterSpacing: "0.18em" }}
+                style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.95)", letterSpacing: "0.18em" }}
               >
                 スカルプラボ
               </span>

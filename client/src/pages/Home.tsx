@@ -196,7 +196,7 @@ function Nav() {
               <span
                 className="font-sans-jp font-bold tracking-widest transition-colors"
                 style={{
-                  fontSize: "1.05rem",
+                  fontSize: "0.75rem",
                   color: scrolled ? "oklch(0.22 0.045 42)" : "rgba(255,255,255,0.95)",
                   letterSpacing: "0.18em",
                 }}

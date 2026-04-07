@@ -185,7 +185,7 @@ export default function Booking() {
             style={{ height: "44px", width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)" }}
           />
           <div style={{ display: "flex", flexDirection: "column", lineHeight: 1 }}>
-            <span style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 700, fontSize: "1rem", letterSpacing: "0.18em", color: "rgba(255,255,255,0.95)" }}>スカルプラボ</span>
+            <span style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 700, fontSize: "0.75rem", letterSpacing: "0.18em", color: "rgba(255,255,255,0.95)" }}>スカルプラボ</span>
             <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "0.58rem", letterSpacing: "0.2em", color: "rgba(255,255,255,0.45)" }}>SCALP LABO</span>
           </div>
         </a>
