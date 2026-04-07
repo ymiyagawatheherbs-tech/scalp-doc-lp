@@ -2091,7 +2091,7 @@ function StoreSection() {
 function CtaSection() {
   const { ref, inView } = useInView();
   return (
-    <section className="py-28 bg-[oklch(0.28_0.08_140)] relative overflow-hidden" id="cta">
+    <section className="py-28 bg-[oklch(0.22_0.06_140)] relative overflow-hidden" id="cta">
       <div className="absolute inset-0 opacity-10">
         <img src={IMAGES.consultation} alt="頭皮ケアコンサルテーションの様子" className="w-full h-full object-cover" aria-hidden="true" />
       </div>
@@ -2136,7 +2136,7 @@ function CtaSection() {
 // フッター
 function Footer() {
   return (
-    <footer className="bg-[oklch(0.15_0.035_42)] py-16">
+    <footer className="bg-[oklch(0.12_0.04_140)] py-16">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 mb-12">
           <div>
