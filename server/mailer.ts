@@ -178,3 +178,141 @@ export async function sendBookingNotification(data: BookingNotificationData): Pr
     return false;
   }
 }
+
+export interface CustomerConfirmationData {
+  name: string;
+  phone: string;
+  email: string;
+  course: string;
+  preferredDate: string;
+  preferredTime: string;
+  storeName: string;
+  message?: string;
+  submittedAt: string;
+}
+
+/**
+ * お客様へ予約受付確認メールを送信する
+ * Microsoft Graph API (Mail.Send) を使用
+ */
+export async function sendCustomerConfirmation(data: CustomerConfirmationData): Promise<boolean> {
+  if (!ENV.smtpUser || !ENV.azureClientId || !ENV.azureTenantId || !ENV.azureClientSecret) {
+    console.warn("[mailer] Graph API credentials not configured. Skipping customer confirmation.");
+    return false;
+  }
+
+  const courseLabels: Record<string, string> = {
+    free_check: "無料頭皮チェック（初回）",
+    regular_care: "定期頭皮ケア",
+    consultation: "まずは相談したい",
+  };
+  const courseLabel = courseLabels[data.course] ?? data.course;
+
+  const subject = `【THE HERBS SCALP LABO】ご予約を受け付けました — ${data.name} 様`;
+  const htmlBody = `
+<!DOCTYPE html>
+<html lang="ja">
+<head><meta charset="UTF-8"></head>
+<body style="font-family: 'Helvetica Neue', Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+  <div style="background: #2a1a0a; color: #c9a96e; padding: 20px 24px; border-radius: 4px 4px 0 0;">
+    <h1 style="margin: 0; font-size: 18px; letter-spacing: 0.1em;">THE HERBS SCALP LABO</h1>
+    <p style="margin: 4px 0 0; font-size: 12px; opacity: 0.8;">ご予約受付確認</p>
+  </div>
+  <div style="background: #fff; border: 1px solid #e8ddd0; border-top: none; padding: 24px; border-radius: 0 0 4px 4px;">
+    <p style="font-size: 15px; margin-top: 0;">${data.name} 様</p>
+    <p style="font-size: 14px; line-height: 1.8; color: #555;">
+      この度はTHE HERBS SCALP LABOへのご予約申し込みをいただき、誠にありがとうございます。<br>
+      以下の内容でご予約を受け付けました。<br>
+      担当者より改めてご連絡いたしますので、しばらくお待ちください。
+    </p>
+    <div style="background: #fdf8f3; border: 1px solid #e8ddd0; border-radius: 4px; padding: 16px 20px; margin: 20px 0;">
+      <p style="font-size: 12px; letter-spacing: 0.1em; color: #c9a96e; font-weight: bold; margin: 0 0 12px;">ご予約内容</p>
+      <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+        <tr style="border-bottom: 1px solid #f0e8e0;">
+          <td style="padding: 8px 6px; color: #888; width: 120px;">店舗</td>
+          <td style="padding: 8px 6px; font-weight: bold;">${data.storeName}</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #f0e8e0;">
+          <td style="padding: 8px 6px; color: #888;">ご希望コース</td>
+          <td style="padding: 8px 6px; font-weight: bold; color: #8b5e3c;">${courseLabel}</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #f0e8e0;">
+          <td style="padding: 8px 6px; color: #888;">ご希望日時</td>
+          <td style="padding: 8px 6px;">${data.preferredDate}（${data.preferredTime}〜）</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #f0e8e0;">
+          <td style="padding: 8px 6px; color: #888;">お名前</td>
+          <td style="padding: 8px 6px;">${data.name} 様</td>
+        </tr>
+        <tr style="border-bottom: 1px solid #f0e8e0;">
+          <td style="padding: 8px 6px; color: #888;">電話番号</td>
+          <td style="padding: 8px 6px;">${data.phone}</td>
+        </tr>
+        ${data.message ? `
+        <tr>
+          <td style="padding: 8px 6px; color: #888; vertical-align: top;">ご要望</td>
+          <td style="padding: 8px 6px;">${data.message.replace(/\n/g, "<br>")}</td>
+        </tr>` : ""}
+      </table>
+    </div>
+    <div style="padding: 14px 16px; background: #f9f5f0; border-left: 3px solid #c9a96e; font-size: 13px; color: #666; line-height: 1.8;">
+      ※ このメールは自動送信です。ご返信いただいても対応できない場合があります。<br>
+      ※ 担当者より改めてご連絡いたします。しばらくお待ちください。<br>
+      ※ ご希望日時に添えない場合がございます。あらかじめご了承ください。
+    </div>
+    <p style="font-size: 13px; color: #555; margin-top: 20px; line-height: 1.8;">
+      ご不明な点は下記までお気軽にお問い合わせください。<br>
+      <strong>THE HERBS神戸阪急店</strong>（神戸阪急本館6階 モーニングフロー内）<br>
+      営業時間：10:00〜20:00
+    </p>
+  </div>
+  <p style="font-size: 11px; color: #aaa; text-align: center; margin-top: 16px;">
+    THE HERBS SCALP LABO | presented by THE HERBS
+  </p>
+</body>
+</html>
+`.trim();
+
+  try {
+    const accessToken = await getGraphAccessToken();
+    const sendMailUrl = `https://graph.microsoft.com/v1.0/users/${ENV.smtpUser}/sendMail`;
+    const mailBody = {
+      message: {
+        subject,
+        body: {
+          contentType: "HTML",
+          content: htmlBody,
+        },
+        toRecipients: [
+          {
+            emailAddress: {
+              address: data.email,
+            },
+          },
+        ],
+      },
+      saveToSentItems: false,
+    };
+
+    const response = await fetch(sendMailUrl, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(mailBody),
+    });
+
+    if (response.status === 202) {
+      console.log(`[mailer] Customer confirmation sent to ${data.email} via Graph API`);
+      return true;
+    } else {
+      const errorText = await response.text();
+      console.error(`[mailer] Graph API error (customer): ${response.status} ${errorText.substring(0, 200)}`);
+      return false;
+    }
+  } catch (err) {
+    console.error("[mailer] Failed to send customer confirmation:", err);
+    return false;
+  }
+}

@@ -1,7 +1,7 @@
 import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
-import { publicProcedure, router } from "./_core/trpc";
+import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
 import { notifyOwner } from "./_core/notification";
 import { getDb } from "./db";
 import { reservations, scalpImages } from "../drizzle/schema";
@@ -9,7 +9,7 @@ import { storagePut } from "./storage";
 import { desc } from "drizzle-orm";
 import { z } from "zod";
 import { nanoid } from "nanoid";
-import { sendBookingNotification } from "./mailer";
+import { sendBookingNotification, sendCustomerConfirmation } from "./mailer";
 
 export const appRouter = router({
   system: systemRouter,
@@ -73,8 +73,9 @@ export const appRouter = router({
           personal: "regular_care",
           consult: "consultation",
         };
+        const submittedAt = new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" });
         await sendBookingNotification({
-          storeName: "THE HERBS神戸阪急店",
+          storeName: "THE HERBS神戸阥急店",
           name: input.name,
           phone: input.phone,
           email: input.email || "未記入",
@@ -82,8 +83,23 @@ export const appRouter = router({
           preferredDate: input.desiredDate,
           preferredTime: input.desiredTime,
           message: input.message,
-          submittedAt: new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" }),
+          submittedAt,
         }).catch((err) => console.error("[reservation] email notification failed:", err));
+
+        // メールアドレスを入力した場合のみ、お客様向け確認メールを送信
+        if (input.email) {
+          await sendCustomerConfirmation({
+            name: input.name,
+            phone: input.phone,
+            email: input.email,
+            course: courseMap[input.plan] ?? input.plan,
+            preferredDate: input.desiredDate,
+            preferredTime: input.desiredTime,
+            storeName: "THE HERBS神戸阥急店",
+            message: input.message,
+            submittedAt,
+          }).catch((err) => console.error("[reservation] customer confirmation failed:", err));
+        }
 
         return { success: true };
       }),
@@ -92,6 +108,32 @@ export const appRouter = router({
       const db = await getDb();
       if (!db) return [];
       return db.select().from(reservations).orderBy(desc(reservations.createdAt)).limit(100);
+    }),
+
+    // 管理者向け：ステータス更新（ログイン必須）
+    updateStatus: protectedProcedure
+      .input(
+        z.object({
+          id: z.number(),
+          status: z.enum(["pending", "confirmed", "cancelled"]),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const db = await getDb();
+        if (!db) throw new Error("DB unavailable");
+        const { eq } = await import("drizzle-orm");
+        await db
+          .update(reservations)
+          .set({ status: input.status })
+          .where(eq(reservations.id, input.id));
+        return { success: true };
+      }),
+
+    // 管理者向け：全件取得（ログイン必須）
+    adminList: protectedProcedure.query(async () => {
+      const db = await getDb();
+      if (!db) return [];
+      return db.select().from(reservations).orderBy(desc(reservations.createdAt)).limit(500);
     }),
   }),
 
