@@ -194,8 +194,26 @@
 
   .opacity-0-init { opacity: 0; }
 
-  /* セージシマーボタン */
+  /* レディース用グレージュ×ブラウンシマーボタン */
   .btn-gold-shimmer {
+    background: linear-gradient(
+      90deg,
+      oklch(0.40 0.065 65) 0%,
+      oklch(0.52 0.055 75) 30%,
+      oklch(0.40 0.065 65) 60%,
+      oklch(0.32 0.055 65) 100%
+    );
+    background-size: 200% auto;
+    transition: background-position 0.5s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  .btn-gold-shimmer:hover {
+    background-position: right center;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px oklch(0.40 0.065 65 / 0.30);
+  }
+
+  /* メンズ用セージグリーンシマーボタン */
+  .btn-sage-shimmer {
     background: linear-gradient(
       90deg,
       oklch(0.42 0.055 130) 0%,
@@ -206,7 +224,7 @@
     background-size: 200% auto;
     transition: background-position 0.5s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
-  .btn-gold-shimmer:hover {
+  .btn-sage-shimmer:hover {
     background-position: right center;
     transform: translateY(-2px);
     box-shadow: 0 8px 25px oklch(0.42 0.055 130 / 0.30);
@@ -215,12 +233,12 @@
   .section-divider {
     width: 60px;
     height: 2px;
-    background: oklch(0.69 0.060 130);
+    background: oklch(0.72 0.038 93);
     margin: 1rem 0;
   }
 
   .karte-border {
-    border-left: 3px solid oklch(0.69 0.060 130);
+    border-left: 3px solid oklch(0.72 0.038 93);
     padding-left: 1.5rem;
   }
 }
