@@ -344,26 +344,11 @@ function HeroSection() {
       {/* コンテンツ */}
       <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-6 pt-24 pb-16 md:py-32">
         <div className="max-w-2xl">
-          {/* スリガラスパネルバックグラウンド */}
-          <div
-            className="absolute inset-0 pointer-events-none"
-            style={{
-              background: 'radial-gradient(ellipse 55% 70% at 15% 55%, rgba(30,20,10,0.35) 0%, transparent 70%)',
-            }}
-          />
           <div className="animate-fade-in-up opacity-0-init">
             <span className="font-cormorant text-sm tracking-[0.4em] uppercase block mb-5 md:mb-6" style={{color: '#d4c5a0', letterSpacing: '0.35em'}}>
               ✦ &nbsp;Scalp Wellness Checkup&nbsp; ✦
             </span>
           </div>
-          {/* すりガラスパネル — テキスト背景 */}
-          <div
-            className="absolute -inset-x-6 -inset-y-4 rounded-2xl pointer-events-none hidden md:block"
-            style={{
-              backdropFilter: 'blur(2px)',
-              background: 'linear-gradient(135deg, rgba(20,14,8,0.28) 0%, rgba(20,14,8,0.12) 60%, transparent 100%)',
-            }}
-          />
           <h1 className="relative font-mincho leading-tight mb-4 md:mb-6 animate-fade-in-up opacity-0-init delay-100" style={{textShadow: '0 2px 20px rgba(0,0,0,0.5)'}}>
             <span className="block text-3xl md:text-5xl lg:text-6xl font-bold mb-1 md:mb-2 text-white">
               歯の定期検診のように、
