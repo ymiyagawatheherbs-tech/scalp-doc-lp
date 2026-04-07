@@ -66,27 +66,27 @@ function Nav() {
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between gap-4">
           <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_grayge_p_transparent_47bbd755.png"
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_olive_12a41c11.webp"
               alt="SCALP LABO"
               className="object-contain transition-all cursor-pointer"
               style={{
                 height: "44px",
                 width: "auto",
                 filter: scrolled
-                  ? "sepia(1) saturate(0.8) brightness(0.35)"
+                  ? "none"
                   : "brightness(0) invert(1)",
               }}
             />
             <div className="flex flex-col leading-none">
               <span
                 className="font-sans-jp font-bold tracking-widest transition-colors"
-                style={{ fontSize: "0.75rem", letterSpacing: "0.18em", color: scrolled ? "oklch(0.22 0.045 42)" : "rgba(255,255,255,0.95)" }}
+                style={{ fontSize: "0.75rem", letterSpacing: "0.18em", color: scrolled ? "oklch(0.32 0.08 140)" : "rgba(255,255,255,0.95)" }}
               >
                 スカルプラボ
               </span>
               <span
                 className="font-cormorant transition-colors"
-                style={{ fontSize: "0.6rem", letterSpacing: "0.2em", color: scrolled ? "oklch(0.55 0.08 70)" : "rgba(255,255,255,0.45)" }}
+                style={{ fontSize: "0.6rem", letterSpacing: "0.2em", color: scrolled ? "oklch(0.48 0.08 140)" : "rgba(255,255,255,0.45)" }}
               >
                 SCALP LABO
               </span>
@@ -97,13 +97,13 @@ function Nav() {
           <div className="hidden md:flex flex-col items-center">
             <span
               className="font-cormorant transition-colors"
-              style={{ fontSize: "0.58rem", letterSpacing: "0.22em", color: scrolled ? "oklch(0.55 0.06 70)" : "rgba(255,255,255,0.35)", textTransform: "uppercase" }}
+              style={{ fontSize: "0.58rem", letterSpacing: "0.22em", color: scrolled ? "oklch(0.48 0.06 140)" : "rgba(255,255,255,0.35)", textTransform: "uppercase" }}
             >
               presented by
             </span>
             <span
               className="font-cormorant font-semibold transition-colors"
-              style={{ fontSize: "0.85rem", letterSpacing: "0.25em", color: scrolled ? "oklch(0.35 0.06 42)" : "rgba(255,255,255,0.75)", textTransform: "uppercase" }}
+              style={{ fontSize: "0.85rem", letterSpacing: "0.25em", color: scrolled ? "oklch(0.32 0.08 140)" : "rgba(255,255,255,0.75)", textTransform: "uppercase" }}
             >
               THE HERBS
             </span>
@@ -1012,7 +1012,7 @@ function Footer() {
     <footer className="py-8 text-center" style={{ backgroundColor: "#1a1a1a" }}>
       <div className="flex items-center justify-center mb-3">
         <img
-          src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_grayge_p_transparent_47bbd755.png"
+          src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_olive_12a41c11.webp"
           alt="SCALP LABO"
           className="w-auto object-contain"
           style={{ height: "56px", filter: "brightness(0) invert(1)", opacity: 0.7 }}

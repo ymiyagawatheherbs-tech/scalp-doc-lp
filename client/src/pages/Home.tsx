@@ -1,7 +1,7 @@
 /*
  * THE HERBS SCALP LABO LP — Home Page
  * Design: モダン・ウェルネス・スタジオ
- * Color: Cream × Deep Brown × Golden Amber
+ * Color: Cream × Olive Green × Deep Brown
  * Font: Shippori Mincho B1 × Noto Sans JP × Cormorant Garamond
  */
 
@@ -63,7 +63,7 @@ const BA_IMAGES = [
 
 // 画像URL定数
 const IMAGES = {
-  hero: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/hero-main-7WiQYuuxpMEgAPgcyJcPik.webp",
+  hero: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/094A5755_9b12c6b5.jpg",
   microscope: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-microscope-iVWgVizXNK9WSGwKAftiPS.webp",
   consultation: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/consultation-oBRbvf7238DM5fVXz4vLdS.webp",
   report: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/report-visual-jwmtgLXxwHGpfod5ntuEan.webp",
@@ -138,7 +138,7 @@ function ScrollProgressBar() {
   return (
     <div className="fixed top-0 left-0 right-0 z-[60] h-0.5 bg-transparent">
       <div
-        className="h-full bg-gradient-to-r from-[oklch(0.72_0.12_70)] to-[oklch(0.82_0.14_75)] transition-all duration-100"
+        className="h-full bg-gradient-to-r from-[oklch(0.42_0.1_140)] to-[oklch(0.62_0.1_140)] transition-all duration-100"
         style={{ width: `${progress}%` }}
       />
     </div>
@@ -173,7 +173,7 @@ function Nav() {
       <nav
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-[oklch(0.977_0.012_85/0.97)] backdrop-blur-md shadow-sm border-b border-[oklch(0.88_0.025_75)]"
+            ? "bg-[oklch(0.975_0.018_100/0.97)] backdrop-blur-md shadow-sm border-b border-[oklch(0.88_0.03_130)]"
             : "bg-transparent"
         }`}
       >
@@ -181,23 +181,23 @@ function Nav() {
           {/* ロゴ：マーク＋スカルプラボ カタカナ表記 */}
           <a href="/" className="flex items-center gap-2.5 flex-shrink-0">
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_grayge_p_transparent_47bbd755.png"
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_olive_12a41c11.webp"
               alt="SCALP LABO"
               className="object-contain transition-all"
               style={{
                 height: "44px",
                 width: "auto",
                 filter: scrolled
-                  ? "sepia(1) saturate(0.8) brightness(0.35)"
+                  ? "none"
                   : "brightness(0) invert(1)",
               }}
             />
             <div className="flex flex-col leading-none">
               <span
                 className="font-sans-jp font-bold tracking-widest transition-colors"
-                style={{
-                  fontSize: "0.75rem",
-                  color: scrolled ? "oklch(0.22 0.045 42)" : "rgba(255,255,255,0.95)",
+              style={{
+                fontSize: "0.75rem",
+                color: scrolled ? "oklch(0.32 0.08 140)" : "rgba(255,255,255,0.95)",
                   letterSpacing: "0.18em",
                 }}
               >
@@ -208,7 +208,7 @@ function Nav() {
                 style={{
                   fontSize: "0.6rem",
                   letterSpacing: "0.2em",
-                  color: scrolled ? "oklch(0.55 0.08 70)" : "rgba(255,255,255,0.55)",
+                  color: scrolled ? "oklch(0.48 0.08 140)" : "rgba(255,255,255,0.55)",
                 }}
               >
                 SCALP LABO
@@ -223,7 +223,7 @@ function Nav() {
               style={{
                 fontSize: "0.58rem",
                 letterSpacing: "0.22em",
-                color: scrolled ? "oklch(0.55 0.06 70)" : "rgba(255,255,255,0.45)",
+                color: scrolled ? "oklch(0.48 0.06 140)" : "rgba(255,255,255,0.45)",
                 textTransform: "uppercase",
               }}
             >
@@ -231,10 +231,10 @@ function Nav() {
             </span>
             <span
               className="font-cormorant font-semibold transition-colors"
-              style={{
+                style={{
                 fontSize: "0.85rem",
                 letterSpacing: "0.25em",
-                color: scrolled ? "oklch(0.35 0.06 42)" : "rgba(255,255,255,0.75)",
+                color: scrolled ? "oklch(0.32 0.08 140)" : "rgba(255,255,255,0.75)",
                 textTransform: "uppercase",
               }}
             >
@@ -248,8 +248,8 @@ function Nav() {
               <a
                 key={item.label}
                 href={item.href}
-                className={`font-sans-jp text-sm transition-colors hover:text-[oklch(0.72_0.12_70)] ${
-                  scrolled ? "text-[oklch(0.38_0.055_42)]" : "text-white/80"
+                className={`font-sans-jp text-sm transition-colors hover:text-[oklch(0.45_0.1_140)] ${
+                  scrolled ? "text-[oklch(0.32_0.08_140)]" : "text-white/80"
                 }`}
               >
                 {item.label}
@@ -278,13 +278,13 @@ function Nav() {
               aria-label="メニューを開く"
             >
               <span className={`block w-5 h-0.5 transition-all duration-300 ${
-                scrolled ? "bg-[oklch(0.22_0.045_42)]" : "bg-white"
+                scrolled ? "bg-[oklch(0.25_0.08_140)]" : "bg-white"
               } ${mobileOpen ? "rotate-45 translate-y-2" : ""}`} />
               <span className={`block w-5 h-0.5 transition-all duration-300 ${
-                scrolled ? "bg-[oklch(0.22_0.045_42)]" : "bg-white"
+                scrolled ? "bg-[oklch(0.25_0.08_140)]" : "bg-white"
               } ${mobileOpen ? "opacity-0" : ""}`} />
               <span className={`block w-5 h-0.5 transition-all duration-300 ${
-                scrolled ? "bg-[oklch(0.22_0.045_42)]" : "bg-white"
+                scrolled ? "bg-[oklch(0.25_0.08_140)]" : "bg-white"
               } ${mobileOpen ? "-rotate-45 -translate-y-2" : ""}`} />
             </button>
           </div>
@@ -294,13 +294,13 @@ function Nav() {
         <div className={`md:hidden transition-all duration-300 overflow-hidden ${
           mobileOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0"
         }`}>
-          <div className="bg-[oklch(0.977_0.012_85/0.98)] backdrop-blur-md border-t border-[oklch(0.88_0.025_75)] px-6 py-6 space-y-4">
+          <div className="bg-[oklch(0.975_0.018_100/0.98)] backdrop-blur-md border-t border-[oklch(0.88_0.03_130)] px-6 py-6 space-y-4">
             {navLinks.map((item) => (
               <a
                 key={item.label}
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
-                className="block font-sans-jp text-[oklch(0.22_0.045_42)] text-base py-2 border-b border-[oklch(0.88_0.025_75)] hover:text-[oklch(0.72_0.12_70)] transition-colors"
+                className="block font-sans-jp text-[oklch(0.25_0.08_140)] text-base py-2 border-b border-[oklch(0.88_0.03_130)] hover:text-[oklch(0.45_0.1_140)] transition-colors"
               >
                 {item.label}
               </a>
@@ -331,14 +331,14 @@ function HeroSection() {
           alt="THE HERBS SCALP LABO ウェルネススタジオ"
           className="w-full h-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.18_0.04_42/0.75)] via-[oklch(0.18_0.04_42/0.45)] to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.22_0.06_140/0.72)] via-[oklch(0.22_0.06_140/0.42)] to-transparent" />
       </div>
 
       {/* コンテンツ */}
       <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-6 pt-24 pb-16 md:py-32">
         <div className="max-w-2xl">
           <div className="hidden md:block animate-fade-in-up opacity-0-init">
-            <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-6">
+            <span className="font-cormorant text-[oklch(0.82_0.1_130)] text-sm tracking-[0.3em] uppercase block mb-6">
               Scalp Wellness Checkup
             </span>
           </div>
@@ -346,17 +346,17 @@ function HeroSection() {
             <span className="block text-2xl md:text-5xl lg:text-6xl font-bold mb-1 md:mb-2">
               歯の定期検診のように、
             </span>
-            <span className="block text-2xl md:text-5xl lg:text-6xl font-bold text-[oklch(0.88_0.08_75)]">
+            <span className="block text-2xl md:text-5xl lg:text-6xl font-bold text-[oklch(0.88_0.08_130)]">
               頭皮も定期チェックを。
             </span>
           </h1>
           <p className="hidden md:block font-sans-jp text-white/80 text-base md:text-lg leading-relaxed mb-10 animate-fade-in-up opacity-0-init delay-200">
             マイクロスコープによる頭皮チェックで、あなたの頭皮の今を記録・確認。<br />
-            薄毛になってから悩むのではなく、健康な頭皮を<strong className="text-[oklch(0.88_0.08_75)]">意識的にケアする</strong>新習慣。
+            薄毛になってから悩むのではなく、健康な頭皮を<strong className="text-[oklch(0.82_0.08_130)]">意識的にケアする</strong>新習慣。
           </p>
           <p className="md:hidden font-sans-jp text-white/75 text-sm leading-relaxed mb-7 animate-fade-in-up opacity-0-init delay-200">
             マイクロスコープで頭皮の今を記録。<br />
-            <strong className="text-[oklch(0.88_0.08_75)]">意識的にケアする</strong>新習慣。
+            <strong className="text-[oklch(0.88_0.08_130)]">意識的にケアする</strong>新習慣。
           </p>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 animate-fade-in-up opacity-0-init delay-300">
             <a
@@ -377,9 +377,9 @@ function HeroSection() {
               {["A", "B", "C", "D"].map((l) => (
                 <div
                   key={l}
-                  className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-[oklch(0.72_0.12_70)] border-2 border-white flex items-center justify-center"
+                  className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-[oklch(0.52_0.1_140)] border-2 border-white flex items-center justify-center"
                 >
-                  <span className="text-[oklch(0.18_0.04_42)] text-[10px] md:text-xs font-semibold">{l}</span>
+                  <span className="text-white text-[10px] md:text-xs font-semibold">{l}</span>
                 </div>
               ))}
             </div>
@@ -403,15 +403,15 @@ function HeroSection() {
 function ProblemSection() {
   const { ref, inView } = useInView();
   return (
-    <section className="py-24 bg-[oklch(0.22_0.045_42)]" id="問題">
+    <section className="py-24 bg-[oklch(0.22_0.06_140)]" id="問題">
       <div ref={ref} className="max-w-7xl mx-auto px-6">
         <div className={`text-center mb-16 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
+          <span className="font-cormorant text-[oklch(0.72_0.1_130)] text-sm tracking-[0.3em] uppercase block mb-4">
             The Problem
           </span>
           <h2 className="font-mincho text-white text-3xl md:text-4xl font-bold mb-6">
             あなたの頭皮、<br className="md:hidden" />
-            <span className="text-[oklch(0.88_0.08_75)]">最後のチェックはいつですか？</span>
+            <span className="text-[oklch(0.82_0.07_130)]">最後のチェックはいつですか？</span>
           </h2>
           <p className="font-sans-jp text-white/85 text-base max-w-2xl mx-auto leading-relaxed">
             多くの人が頭皮の変化に気づかないまま、ケアが後回しになっています。
@@ -498,16 +498,16 @@ function ScalpGallerySection() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="py-24 bg-[oklch(0.14_0.03_42)]" id="scalp-gallery">
+    <section className="py-24 bg-[oklch(0.16_0.04_140)]" id="scalp-gallery">
       <div ref={ref} className="max-w-7xl mx-auto px-6">
         {/* ヘッダー */}
         <div className={`text-center mb-14 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
+          <span className="font-cormorant text-[oklch(0.72_0.1_130)] text-sm tracking-[0.3em] uppercase block mb-4">
             Scalp Microscope Gallery
           </span>
           <h2 className="font-mincho text-white text-3xl md:text-4xl font-bold mb-4">
             あなたの頭皮は、<br />
-            <span className="text-[oklch(0.88_0.08_75)]">どの状態に近いですか？</span>
+            <span className="text-[oklch(0.82_0.07_130)]">どの状態に近いですか？</span>
           </h2>
           <p className="font-sans-jp text-white/75 text-sm max-w-xl mx-auto leading-relaxed">
             実際のマイクロスコープ映像です。頭皮の状態は人によって大きく異なります。<br />
@@ -551,7 +551,7 @@ function ScalpGallerySection() {
             <div className="mb-6">
               <div className="flex items-center gap-3 mb-3">
                 <div className="h-px w-8" style={{ backgroundColor: SCALP_STATES[active].statusColor }} />
-                <span className="font-cormorant italic text-[oklch(0.72_0.12_70)] text-sm tracking-widest">
+                <span className="font-cormorant italic text-[oklch(0.72_0.1_130)] text-sm tracking-widest">
                   {SCALP_STATES[active].detail}
                 </span>
               </div>
@@ -570,14 +570,14 @@ function ScalpGallerySection() {
                   key={i}
                   onClick={() => setActive(i)}
                   className={`relative overflow-hidden rounded-sm transition-all duration-300 ${
-                    active === i ? "ring-2 ring-[oklch(0.72_0.12_70)] opacity-100" : "opacity-50 hover:opacity-80"
+                    active === i ? "ring-2 ring-[oklch(0.52_0.1_140)] opacity-100" : "opacity-50 hover:opacity-80"
                   }`}
                   style={{ aspectRatio: "1" }}
                   aria-label={s.label}
                 >
                   <img src={s.img} alt={s.label} className="w-full h-full object-cover" />
                   {active === i && (
-                    <div className="absolute inset-0 bg-[oklch(0.72_0.12_70)]/10" />
+                    <div className="absolute inset-0 bg-[oklch(0.52_0.1_140)]/10" />
                   )}
                 </button>
               ))}
@@ -586,13 +586,13 @@ function ScalpGallerySection() {
             {/* CTA */}
             <div className="border border-white/10 rounded-sm p-5 bg-white/5">
               <p className="font-sans-jp text-white/90 text-sm leading-relaxed mb-4">
-                <span className="text-[oklch(0.88_0.08_75)] font-bold">あなたの頭皮は今、どんな状態？</span><br />
+                <span className="text-[oklch(0.82_0.07_130)] font-bold">あなたの頭皮は今、どんな状態？</span><br />
                 実際にマイクロスコープで確認してみましょう。初回チェックは無料です。
               </p>
               <button
                 onClick={() => window.location.href = '/booking'}
                 className="w-full py-3 font-sans-jp text-sm font-semibold tracking-wider transition-all duration-300"
-                style={{ backgroundColor: "oklch(0.72_0.12_70)", color: "oklch(0.18_0.04_42)" }}
+                style={{ backgroundColor: "oklch(0.42 0.1 140)", color: "#fff" }}
               >
                 無料スカルプチェックを予約する
               </button>
@@ -608,26 +608,26 @@ function ScalpGallerySection() {
 function ConceptSection() {
   const { ref, inView } = useInView();
   return (
-    <section className="py-28 bg-[oklch(0.977_0.012_85)]" id="コンセプト">
+    <section className="py-28 bg-[oklch(0.975_0.018_100)]" id="コンセプト">
       <div ref={ref} className="max-w-7xl mx-auto px-6">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           <div className={`transition-all duration-800 ${inView ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-8"}`}>
-              <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
+              <span className="font-cormorant text-[oklch(0.48_0.08_140)] text-sm tracking-[0.3em] uppercase block mb-4">
               Our Concept
             </span>
-            <h2 className="font-mincho text-[oklch(0.22_0.045_42)] text-3xl md:text-4xl font-bold leading-tight mb-8">
+            <h2 className="font-mincho text-[oklch(0.28_0.08_140)] text-3xl md:text-4xl font-bold leading-tight mb-8">
               「歯科の定期検診」のように、<br />
-              <span className="text-[oklch(0.72_0.12_70)]">頭皮ケアの新習慣</span>を広めたい。
+              <span className="text-[oklch(0.42_0.1_140)]">頭皮ケアの新習慣</span>を広めたい。
             </h2>
             <div className="section-divider mb-8" />
             <div className="space-y-6">
               <div className="karte-border">
-                <p className="font-sans-jp text-[oklch(0.38_0.055_42)] text-sm leading-relaxed">
+                <p className="font-sans-jp text-[oklch(0.32_0.08_140)] text-sm leading-relaxed">
                   かつて歯科検診は「虫歯になってから行く場所」でした。今は「予防のために定期的に通う場所」として定着しています。
                 </p>
               </div>
               <div className="karte-border">
-                <p className="font-sans-jp text-[oklch(0.38_0.055_42)] text-sm leading-relaxed font-semibold">
+                <p className="font-sans-jp text-[oklch(0.32_0.08_140)] text-sm leading-relaxed font-semibold">
                   THE HERBS SCALP LABは、頭皮ケアに同じ変化を目指します。「薄毛が気になってから行く場所」ではなく、「定期的に頭皮の状態を確認する場所」へ。
                 </p>
               </div>
@@ -641,8 +641,8 @@ function ConceptSection() {
                 className="w-full max-w-md mx-auto rounded-sm shadow-2xl object-cover"
                 style={{ aspectRatio: '4/3' }}
               />
-              <div className="absolute -bottom-6 -right-6 bg-[oklch(0.22_0.045_42)] text-white p-6 rounded-sm shadow-xl max-w-xs">
-                <p className="font-cormorant text-[oklch(0.72_0.12_70)] text-xs tracking-widest uppercase mb-2">
+              <div className="absolute -bottom-6 -right-6 bg-[oklch(0.22_0.06_140)] text-white p-6 rounded-sm shadow-xl max-w-xs">
+                <p className="font-cormorant text-[oklch(0.72_0.1_130)] text-xs tracking-widest uppercase mb-2">
                   Microscope Diagnosis
                 </p>
                 <p className="font-mincho text-white text-sm font-bold">
@@ -650,7 +650,7 @@ function ConceptSection() {
                 </p>
               </div>
               {/* 頭皮マイクロスコープ画像（右下サムネイル） */}
-              <div className="absolute -top-6 -left-6 w-28 h-28 overflow-hidden rounded-sm shadow-xl border-2 border-[oklch(0.72_0.12_70)]">
+              <div className="absolute -top-6 -left-6 w-28 h-28 overflow-hidden rounded-sm shadow-xl border-2 border-[oklch(0.52_0.1_140)]">
                 <img src={IMAGES.scalpMicroscopeReal} alt="頭皮マイクロスコープ画像" className="w-full h-full object-cover" />
               </div>
             </div>
@@ -693,18 +693,18 @@ function HabitValueSection() {
   ];
 
   return (
-    <section className="py-28 bg-[oklch(0.22_0.045_42)]" id="習慣の意義">
+    <section className="py-28 bg-[oklch(0.22_0.06_140)]" id="習慣の意義">
       <div ref={ref} className="max-w-7xl mx-auto px-6">
         {/* ヘッダー */}
         <div className={`mb-20 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-6">
+          <span className="font-cormorant text-[oklch(0.72_0.1_130)] text-sm tracking-[0.3em] uppercase block mb-6">
             Why Scalp Check Matters
           </span>
           <div className="grid lg:grid-cols-2 gap-8 items-end">
             <div>
               <h2 className="font-mincho text-white text-3xl md:text-5xl font-bold leading-tight">
                 髮のお悩みは、<br />
-                <span className="text-[oklch(0.88_0.08_75)]">頭皮チェックから。</span>
+                <span className="text-[oklch(0.82_0.07_130)]">頭皮チェックから。</span>
               </h2>
             </div>
             <div>
@@ -721,7 +721,7 @@ function HabitValueSection() {
               className="w-full h-full object-cover object-center"
               style={{ objectPosition: 'center 40%' }}
             />
-            <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.22_0.045_42)/80] to-transparent pointer-events-none" />
+              <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.22_0.06_140)/80] to-transparent pointer-events-none" />
           </div>
         </div>
 
@@ -741,10 +741,10 @@ function HabitValueSection() {
               <h3 className="font-mincho text-white text-lg font-bold mb-1 leading-snug">
                 {v.title}
               </h3>
-              <p className="font-cormorant text-[oklch(0.72_0.12_70)] text-xs tracking-wider mb-4">
+              <p className="font-cormorant text-[oklch(0.72_0.1_130)] text-xs tracking-wider mb-4">
                 {v.subtitle}
               </p>
-              <div className="w-8 h-px bg-[oklch(0.72_0.12_70)/40] mb-4 group-hover:w-16 transition-all duration-500" />
+              <div className="w-8 h-px bg-[oklch(0.52_0.1_140)/40] mb-4 group-hover:w-16 transition-all duration-500" />
               <p className="font-sans-jp text-white/75 text-xs leading-relaxed">
                 {v.desc}
               </p>
@@ -762,7 +762,7 @@ function HabitValueSection() {
           </p>
           <a
             href="/booking"
-            className="inline-block btn-gold-shimmer font-sans-jp text-[oklch(0.18_0.04_42)] text-sm font-bold px-10 py-4 rounded-sm tracking-wider"
+            className="inline-block btn-gold-shimmer font-sans-jp text-[oklch(0.22_0.06_140)] text-sm font-bold px-10 py-4 rounded-sm tracking-wider"
           >
             無料スカルプチェックを予約する
           </a>
@@ -812,12 +812,12 @@ function StatsSection() {
               className={`transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               style={{ transitionDelay: `${i * 150}ms` }}
             >
-              <div className="font-cormorant text-[oklch(0.22_0.045_42)] text-6xl md:text-7xl font-light mb-2">
+              <div className="font-cormorant text-[oklch(0.28_0.08_140)] text-6xl md:text-7xl font-light mb-2">
                 {stat.prefix}{stat.value}
-                <span className="text-[oklch(0.72_0.12_70)] text-4xl">{stat.suffix}</span>
+                <span className="text-[oklch(0.52_0.1_140)] text-4xl">{stat.suffix}</span>
               </div>
-              <p className="font-mincho text-[oklch(0.22_0.045_42)] text-base font-bold mb-1">{stat.label}</p>
-              <p className="font-sans-jp text-[oklch(0.55_0.04_42)] text-xs">{stat.sub}</p>
+              <p className="font-mincho text-[oklch(0.28_0.08_140)] text-base font-bold mb-1">{stat.label}</p>
+              <p className="font-sans-jp text-[oklch(0.52_0.06_140)] text-xs">{stat.sub}</p>
             </div>
           ))}
         </div>
@@ -837,7 +837,7 @@ function ServiceSection() {
       subtitle: "まずは気軽に、頭皮の今を知る",
       time: "5～10分",
       price: "無料",
-      color: "oklch(0.88_0.08_75)",
+      color: "oklch(0.82 0.07 130)",
       image: IMAGES.scalpCheck,
       items: [
         "マイクロスコープによる頭皮撮影",
@@ -854,7 +854,7 @@ function ServiceSection() {
       subtitle: "1ヶ月に1回のボタニカルスカルプケア",
       time: "45分",
       price: "3,800～5,000円",
-      color: "oklch(0.72_0.12_70)",
+      color: "oklch(0.52 0.1 140)",
       image: IMAGES.botanicalMist,
       items: [
         "① 頭皮チェック（状態確認・重点箇所の把握）",
@@ -872,7 +872,7 @@ function ServiceSection() {
       subtitle: "チェック結果に基づくケアのご提案",
       time: "50分～",
       price: "6,000円～",
-      color: "oklch(0.62_0.05_148)",
+      color: "oklch(0.42 0.1 140)",
       image: IMAGES.herbGommage,
       items: [
         "スカルプ　ボタニカルミスト",
@@ -885,16 +885,16 @@ function ServiceSection() {
   ];
 
   return (
-    <section className="py-28 bg-[oklch(0.977_0.012_85)]" id="サービス">
+    <section className="py-28 bg-[oklch(0.977_0.012_100)]" id="サービス">
       <div ref={ref} className="max-w-7xl mx-auto px-6">
         <div className={`text-center mb-16 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
+          <span className="font-cormorant text-[oklch(0.52_0.1_140)] text-sm tracking-[0.3em] uppercase block mb-4">
             Our Services
           </span>
-          <h2 className="font-mincho text-[oklch(0.22_0.045_42)] text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="font-mincho text-[oklch(0.28_0.08_140)] text-3xl md:text-4xl font-bold mb-4">
             3つのステップで、<br className="md:hidden" />頭皮の健康を守る
           </h2>
-          <p className="font-sans-jp text-[oklch(0.55_0.04_42)] text-sm max-w-xl mx-auto">
+          <p className="font-sans-jp text-[oklch(0.52_0.06_140)] text-sm max-w-xl mx-auto">
             無料チェックから始めて、定期ケアへ。あなたのペースで頭皮ケアの習慣を作ります。
           </p>
         </div>
@@ -905,13 +905,13 @@ function ServiceSection() {
               key={i}
               className={`relative rounded-sm overflow-hidden transition-all duration-700 ${
                 svc.featured
-                  ? "bg-[oklch(0.22_0.045_42)] shadow-2xl scale-105 z-10"
-                  : "bg-white border border-[oklch(0.88_0.025_75)] hover:shadow-lg"
+                  ? "bg-[oklch(0.28_0.08_140)] shadow-2xl scale-105 z-10"
+                  : "bg-white border border-[oklch(0.88_0.03_130)] hover:shadow-lg"
               } ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
               style={{ transitionDelay: `${i * 150}ms` }}
             >
               {svc.featured && (
-                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[oklch(0.72_0.12_70)] to-[oklch(0.82_0.14_75)]" />
+                <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[oklch(0.42_0.1_140)] to-[oklch(0.62_0.1_140)]" />
               )}
               {svc.image && (
                 <div className="relative overflow-hidden" style={{ height: '180px' }}>
@@ -935,7 +935,7 @@ function ServiceSection() {
                     className="font-sans-jp text-xs px-3 py-1 rounded-full font-medium"
                     style={{
                       backgroundColor: `${svc.color}20`,
-                      color: svc.featured ? "oklch(0.88_0.08_75)" : svc.color,
+                      color: svc.featured ? "oklch(0.82_0.08_130)" : svc.color,
                     }}
                   >
                     {svc.badge}
@@ -943,14 +943,14 @@ function ServiceSection() {
                 </div>
                 <h3
                   className={`font-mincho text-xl font-bold mb-1 ${
-                    svc.featured ? "text-white" : "text-[oklch(0.22_0.045_42)]"
+                    svc.featured ? "text-white" : "text-[oklch(0.28_0.08_140)]"
                   }`}
                 >
                   {svc.title}
                 </h3>
                 <p
                   className={`font-sans-jp text-xs mb-6 ${
-                    svc.featured ? "text-white/60" : "text-[oklch(0.55_0.04_42)]"
+                    svc.featured ? "text-white/60" : "text-[oklch(0.52_0.06_140)]"
                   }`}
                 >
                   {svc.subtitle}
@@ -964,7 +964,7 @@ function ServiceSection() {
                   </span>
                   <span
                     className={`font-sans-jp text-xs ${
-                      svc.featured ? "text-white/50" : "text-[oklch(0.55_0.04_42)]"
+                      svc.featured ? "text-white/50" : "text-[oklch(0.52_0.06_140)]"
                     }`}
                   >
                     / {svc.time}
@@ -976,7 +976,7 @@ function ServiceSection() {
                       <span style={{ color: svc.color }} className="text-sm mt-0.5 flex-shrink-0">✓</span>
                       <span
                         className={`font-sans-jp text-xs leading-relaxed ${
-                          svc.featured ? "text-white/80" : "text-[oklch(0.38_0.055_42)]"
+                          svc.featured ? "text-white/80" : "text-[oklch(0.38_0.08_140)]"
                         }`}
                       >
                         {item}
@@ -988,7 +988,7 @@ function ServiceSection() {
                   className={`font-sans-jp text-xs leading-relaxed border-t pt-6 ${
                     svc.featured
                       ? "text-white/50 border-white/10"
-                      : "text-[oklch(0.55_0.04_42)] border-[oklch(0.88_0.025_75)]"
+                      : "text-[oklch(0.52_0.06_140)] border-[oklch(0.88_0.03_130)]"
                   }`}
                 >
                   {svc.desc}
@@ -1043,14 +1043,14 @@ function BotanicalMistSection() {
   return (
     <section
       className="py-28 relative overflow-hidden"
-      style={{ background: "linear-gradient(160deg, #3a2a1a 0%, #2a1e12 100%)" }}
+      style={{ background: "linear-gradient(160deg, #1e2d1a 0%, #162212 100%)" }}
       id="botanical-mist"
     >
       {/* 背景装飾 */}
       <div className="absolute inset-0 pointer-events-none">
         <div
           className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full opacity-10"
-          style={{ background: "radial-gradient(circle, oklch(0.72_0.12_70) 0%, transparent 70%)", transform: "translate(30%, -30%)" }}
+          style={{ background: "radial-gradient(circle, oklch(0.52_0.1_140) 0%, transparent 70%)", transform: "translate(30%, -30%)" }}
         />
         <div
           className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full opacity-8"
@@ -1063,12 +1063,12 @@ function BotanicalMistSection() {
         <div className={`flex flex-col lg:flex-row gap-16 items-center mb-20 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           {/* テキスト */}
           <div className="flex-1">
-            <span className="font-cormorant text-sm tracking-[0.4em] uppercase block mb-4" style={{ color: "#C9A84C" }}>
+            <span className="font-cormorant text-sm tracking-[0.4em] uppercase block mb-4" style={{ color: "oklch(0.72 0.1 130)" }}>
               Botanical Mist Technology
             </span>
             <h2 className="font-mincho text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight" style={{ color: "#ffffff" }}>
               定期スカルプチェックは、<br />
-              <span style={{ color: "#C9A84C" }}>頭皮リセットから始まる。</span>
+              <span style={{ color: "oklch(0.72 0.1 130)" }}>頭皮リセットから始まる。</span>
             </h2>
             <p className="font-sans-jp text-sm leading-relaxed mb-6 max-w-lg" style={{ color: "rgba(255,255,255,0.85)" }}>
               ボタニカルミスト（ハーブスチーマー）は、定期チェックで行う「頭皮リセット」プログラムです。
@@ -1077,13 +1077,13 @@ function BotanicalMistSection() {
             </p>
             {/* ボタニカルミストの特徴バッジ */}
             <div className="flex flex-wrap items-center gap-3 mb-6">
-              <div className="flex items-center gap-2 px-4 py-2 rounded-sm" style={{ backgroundColor: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.4)" }}>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-sm" style={{ backgroundColor: "rgba(80,120,60,0.2)", border: "1px solid rgba(100,150,80,0.4)" }}>
                 <span className="font-sans-jp text-xs" style={{ color: "rgba(255,255,255,0.85)" }}>オーガニックハーブを使用</span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-sm" style={{ backgroundColor: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.4)" }}>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-sm" style={{ backgroundColor: "rgba(80,120,60,0.2)", border: "1px solid rgba(100,150,80,0.4)" }}>
                 <span className="font-sans-jp text-xs" style={{ color: "rgba(255,255,255,0.85)" }}>超微細ミストで毛孔清浄</span>
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-sm" style={{ backgroundColor: "rgba(201,168,76,0.15)", border: "1px solid rgba(201,168,76,0.4)" }}>
+              <div className="flex items-center gap-2 px-4 py-2 rounded-sm" style={{ backgroundColor: "rgba(80,120,60,0.2)", border: "1px solid rgba(100,150,80,0.4)" }}>
                 <span className="font-sans-jp text-xs" style={{ color: "rgba(255,255,255,0.85)" }}>頭皮クレンジング＋保湿ケア</span>
               </div>
             </div>
@@ -1104,12 +1104,12 @@ function BotanicalMistSection() {
               {/* ゴールドフレーム装飾 */}
               <div
                 className="absolute inset-0 pointer-events-none"
-                style={{ boxShadow: "inset 0 0 0 1px oklch(0.72_0.12_70 / 0.3)" }}
+                style={{ boxShadow: "inset 0 0 0 1px oklch(0.52 0.1 140 / 0.3)" }}
               />
               {/* ラベル */}
               <div
                 className="absolute bottom-4 left-4 font-sans-jp text-xs font-bold px-4 py-2"
-                style={{ backgroundColor: "#C9A84C", color: "#2a1e12" }}
+                style={{ backgroundColor: "oklch(0.42 0.1 140)", color: "#fff" }}
               >
                 THE HERBS ボタニカルミスト
               </div>
@@ -1125,9 +1125,9 @@ function BotanicalMistSection() {
               className={`p-8 transition-all duration-500 group ${
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
-              style={{ backgroundColor: "#3a2a1a", transitionDelay: `${i * 100}ms` }}
-              onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#4a3828")}
-              onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#3a2a1a")}
+              style={{ backgroundColor: "#1e2d1a", transitionDelay: `${i * 100}ms` }}
+              onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#2a3d22")}
+              onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#1e2d1a")}
             >
               <h3 className="font-mincho font-bold mb-3 leading-snug transition-colors" style={{ color: "#ffffff", fontSize: '18px' }}>
                 {effect.title}
@@ -1192,13 +1192,13 @@ function TargetSection() {
   ];
 
   return (
-    <section className="py-28 bg-[oklch(0.977_0.012_85)]">
+    <section className="py-28 bg-[oklch(0.977_0.012_100)]">
       <div ref={ref} className="max-w-7xl mx-auto px-6">
         <div className={`text-center mb-16 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
+          <span className="font-cormorant text-[oklch(0.52_0.1_140)] text-sm tracking-[0.3em] uppercase block mb-4">
             For You
           </span>
-          <h2 className="font-mincho text-[oklch(0.22_0.045_42)] text-3xl md:text-4xl font-bold">
+          <h2 className="font-mincho text-[oklch(0.28_0.08_140)] text-3xl md:text-4xl font-bold">
             こんな方におすすめです
           </h2>
         </div>
@@ -1207,7 +1207,7 @@ function TargetSection() {
           {targets.map((t, i) => (
             <div
               key={i}
-              className={`bg-white border border-[oklch(0.88_0.025_75)] rounded-sm p-5 md:p-8 hover:shadow-lg transition-all duration-500 ${
+              className={`bg-white border border-[oklch(0.88_0.03_130)] rounded-sm p-5 md:p-8 hover:shadow-lg transition-all duration-500 ${
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${i * 100}ms` }}
@@ -1216,15 +1216,15 @@ function TargetSection() {
                 <div className="text-4xl flex-shrink-0">{t.emoji}</div>
                 <div>
                   <div className="flex items-center gap-3 mb-2">
-                    <span className="font-sans-jp text-xs text-[oklch(0.55_0.04_42)] bg-[oklch(0.955_0.018_82)] px-2 py-0.5 rounded-full">
+                    <span className="font-sans-jp text-xs text-[oklch(0.52_0.06_140)] bg-[oklch(0.955_0.018_82)] px-2 py-0.5 rounded-full">
                       {t.age}
                     </span>
-                    <span className="font-sans-jp text-xs text-[oklch(0.72_0.12_70)] font-medium">{t.segment}</span>
+                    <span className="font-sans-jp text-xs text-[oklch(0.52_0.1_140)] font-medium">{t.segment}</span>
                   </div>
-                  <h3 className="font-mincho text-[oklch(0.22_0.045_42)] text-lg font-bold mb-3">
+                  <h3 className="font-mincho text-[oklch(0.28_0.08_140)] text-lg font-bold mb-3">
                     「{t.message}」
                   </h3>
-                  <p className="font-sans-jp text-[oklch(0.55_0.04_42)] text-sm leading-relaxed">{t.desc}</p>
+                  <p className="font-sans-jp text-[oklch(0.52_0.06_140)] text-sm leading-relaxed">{t.desc}</p>
                 </div>
               </div>
             </div>
@@ -1238,15 +1238,15 @@ function TargetSection() {
 // デジタル機能セクション
 function DigitalSection() {
   return (
-    <section className="py-24 border-t border-[#C9A84C]/20" style={{ backgroundColor: "#1a1208" }}>
+    <section className="py-24 border-t border-[oklch(0.42_0.1_140)]/20" style={{ backgroundColor: "#162212" }}>
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Text */}
           <div>
-            <p className="text-xs tracking-[0.3em] mb-4" style={{ color: "#C9A84C", fontFamily: "'Noto Sans JP', sans-serif" }}>MY SCALP KARTE</p>
+            <p className="text-xs tracking-[0.3em] mb-4" style={{ color: "oklch(0.72 0.1 130)", fontFamily: "'Noto Sans JP', sans-serif" }}>MY SCALP KARTE</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
               マイスカルプ<br />
-              <span style={{ color: "#C9A84C" }}>カルテ</span>
+              <span style={{ color: "oklch(0.72 0.1 130)" }}>カルテ</span>
             </h2>
             <p className="text-sm leading-relaxed mb-8" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.75)", lineHeight: "1.9" }}>
               定期チェックのたびに頭皮の記録が蓄積される、<br />
@@ -1261,7 +1261,7 @@ function DigitalSection() {
                 "サロンとのデータ共有機能",
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.85)" }}>
-                  <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#C9A84C", fontSize: "10px", color: "#ffffff", fontWeight: 700 }}>✓</span>
+                  <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "oklch(0.42 0.1 140)", fontSize: "10px", color: "#ffffff", fontWeight: 700 }}>✓</span>
                   {item}
                 </li>
               ))}
@@ -1272,7 +1272,7 @@ function DigitalSection() {
                 href="#"
                 onClick={e => { e.preventDefault(); alert("App Store公開準備中です。しばらくお待ちください。"); }}
                 className="flex items-center gap-3 px-5 py-3 rounded-xl border hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: "#1a1208", borderColor: "rgba(201,168,76,0.4)" }}
+                style={{ backgroundColor: "#162212", borderColor: "rgba(80,140,60,0.4)" }}
               >
                 <svg viewBox="0 0 24 24" className="w-7 h-7" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
                 <div>
@@ -1284,7 +1284,7 @@ function DigitalSection() {
                 href="#"
                 onClick={e => { e.preventDefault(); alert("Google Play公開準備中です。しばらくお待ちください。"); }}
                 className="flex items-center gap-3 px-5 py-3 rounded-xl border hover:opacity-80 transition-opacity"
-                style={{ backgroundColor: "#1a1208", borderColor: "rgba(201,168,76,0.4)" }}
+                style={{ backgroundColor: "#162212", borderColor: "rgba(80,140,60,0.4)" }}
               >
                 <svg viewBox="0 0 24 24" className="w-7 h-7" fill="white"><path d="M3.18 23.76c.3.17.64.24.99.2l12.6-7.27-2.72-2.72-10.87 9.79zm-1.7-20.4C1.18 3.7 1 4.08 1 4.56v14.88c0 .48.18.86.48 1.2l.07.06 8.34-8.34v-.2L1.55 3.82l-.07.06-.07.06zM20.49 10.7l-2.81-1.62-3.06 3.06 3.06 3.06 2.83-1.63c.81-.46.81-1.22-.02-1.87zm-18.3 12.3l.07-.06 9.4-9.4-2.72-2.72-6.75 12.18z"/></svg>
                 <div>
@@ -1352,13 +1352,13 @@ function FaqSection() {
   ];
 
   return (
-    <section className="py-28 bg-[oklch(0.977_0.012_85)]" id="よくある質問">
+    <section className="py-28 bg-[oklch(0.977_0.012_100)]" id="よくある質問">
       <div ref={ref} className="max-w-3xl mx-auto px-6">
         <div className={`text-center mb-16 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
+          <span className="font-cormorant text-[oklch(0.52_0.1_140)] text-sm tracking-[0.3em] uppercase block mb-4">
             FAQ
           </span>
-          <h2 className="font-mincho text-[oklch(0.22_0.045_42)] text-3xl md:text-4xl font-bold">
+          <h2 className="font-mincho text-[oklch(0.28_0.08_140)] text-3xl md:text-4xl font-bold">
             よくあるご質問
           </h2>
         </div>
@@ -1367,20 +1367,20 @@ function FaqSection() {
           {faqs.map((faq, i) => (
             <div
               key={i}
-              className={`border border-[oklch(0.88_0.025_75)] rounded-sm overflow-hidden transition-all duration-700 ${
+              className={`border border-[oklch(0.88_0.03_130)] rounded-sm overflow-hidden transition-all duration-700 ${
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
               }`}
               style={{ transitionDelay: `${i * 80}ms` }}
             >
               <button
-                className="w-full text-left p-6 flex items-center justify-between bg-white hover:bg-[oklch(0.977_0.012_85)] transition-colors"
+                className="w-full text-left p-6 flex items-center justify-between bg-white hover:bg-[oklch(0.977_0.012_100)] transition-colors"
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
               >
-              <span className="font-sans-jp text-[oklch(0.22_0.045_42)] font-bold" style={{fontSize: '17px'}}>
+              <span className="font-sans-jp text-[oklch(0.28_0.08_140)] font-bold" style={{fontSize: '17px'}}>
                 {faq.q}
                 </span>
                 <span
-                  className={`text-[oklch(0.72_0.12_70)] text-xl flex-shrink-0 transition-transform duration-300 ${
+                  className={`text-[oklch(0.52_0.1_140)] text-xl flex-shrink-0 transition-transform duration-300 ${
                     openIndex === i ? "rotate-45" : ""
                   }`}
                 >
@@ -1388,8 +1388,8 @@ function FaqSection() {
                 </span>
               </button>
               {openIndex === i && (
-                <div className="px-6 pb-6 bg-white border-t border-[oklch(0.88_0.025_75)]">
-                  <p className="font-sans-jp text-[oklch(0.55_0.04_42)] text-sm leading-relaxed pt-4">
+                <div className="px-6 pb-6 bg-white border-t border-[oklch(0.88_0.03_130)]">
+                  <p className="font-sans-jp text-[oklch(0.52_0.06_140)] text-sm leading-relaxed pt-4">
                     {faq.a}
                   </p>
                 </div>
@@ -1457,10 +1457,10 @@ function TestimonialsSection() {
   ];
 
   return (
-    <section className="py-28 bg-[oklch(0.22_0.045_42)]" id="お客様の声">
+    <section className="py-28 bg-[oklch(0.28_0.08_140)]" id="お客様の声">
       <div ref={ref} className="max-w-7xl mx-auto px-6">
         <div className={`text-center mb-16 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
+          <span className="font-cormorant text-[oklch(0.52_0.1_140)] text-sm tracking-[0.3em] uppercase block mb-4">
             Testimonials
           </span>
           <h2 className="font-mincho text-white text-3xl md:text-4xl font-bold mb-4">
@@ -1475,7 +1475,7 @@ function TestimonialsSection() {
           {testimonials.map((t, i) => (
             <div
               key={i}
-              className={`bg-[oklch(0.28_0.05_42)] border border-white/10 rounded-sm p-5 md:p-7 transition-all duration-700 hover:border-[oklch(0.72_0.12_70)/40] hover:shadow-xl ${
+              className={`bg-[oklch(0.28_0.08_140)] border border-white/10 rounded-sm p-5 md:p-7 transition-all duration-700 hover:border-[oklch(0.52_0.1_140)/40] hover:shadow-xl ${
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${i * 100}ms` }}
@@ -1486,7 +1486,7 @@ function TestimonialsSection() {
                   <span
                     key={j}
                     className={`text-sm ${
-                      j < t.rating ? "text-[oklch(0.72_0.12_70)]" : "text-white/20"
+                      j < t.rating ? "text-[oklch(0.52_0.1_140)]" : "text-white/20"
                     }`}
                   >
                     ★
@@ -1494,7 +1494,7 @@ function TestimonialsSection() {
                 ))}
               </div>
               {/* ハイライト */}
-              <p className="font-mincho text-[oklch(0.88_0.08_75)] text-sm font-bold mb-3 leading-snug">
+              <p className="font-mincho text-[oklch(0.82_0.08_130)] text-sm font-bold mb-3 leading-snug">
                 「{t.highlight}」
               </p>
               {/* 本文 */}
@@ -1503,8 +1503,8 @@ function TestimonialsSection() {
               </p>
               {/* プロフィール */}
               <div className="flex items-center gap-3 pt-4 border-t border-white/10">
-                <div className="w-9 h-9 rounded-full bg-[oklch(0.72_0.12_70)/20] flex items-center justify-center flex-shrink-0">
-                  <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm font-semibold">
+                <div className="w-9 h-9 rounded-full bg-[oklch(0.52_0.1_140)/20] flex items-center justify-center flex-shrink-0">
+                  <span className="font-cormorant text-[oklch(0.52_0.1_140)] text-sm font-semibold">
                     {t.name.charAt(0)}
                   </span>
                 </div>
@@ -1527,17 +1527,17 @@ function BeforeAfterSection() {
   const [active, setActive] = useState(0);
 
   return (
-    <section className="py-28 bg-[oklch(0.97_0.012_82)]" id="ビフォーアフター">
+    <section className="py-28 bg-[oklch(0.977_0.012_100)]" id="ビフォーアフター">
       <div ref={ref} className="max-w-7xl mx-auto px-6">
         {/* ヘッダー */}
         <div className={`text-center mb-16 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
+          <span className="font-cormorant text-[oklch(0.52_0.1_140)] text-sm tracking-[0.3em] uppercase block mb-4">
             Before &amp; After
           </span>
-          <h2 className="font-mincho text-[oklch(0.22_0.045_42)] text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="font-mincho text-[oklch(0.28_0.08_140)] text-3xl md:text-4xl font-bold mb-4">
             お客様のビフォーアフター
           </h2>
-          <p className="font-sans-jp text-[oklch(0.55_0.04_42)] text-sm">
+          <p className="font-sans-jp text-[oklch(0.52_0.06_140)] text-sm">
             継続的な頭皮ケアで変わった、実際のお客様の記録です。
           </p>
         </div>
@@ -1546,7 +1546,7 @@ function BeforeAfterSection() {
         <div className={`transition-all duration-700 delay-200 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           {/* 大きい画像 */}
           <div className="relative max-w-lg mx-auto mb-8">
-            <div className="relative overflow-hidden rounded-sm shadow-2xl bg-[oklch(0.22_0.045_42)]">
+            <div className="relative overflow-hidden rounded-sm shadow-2xl bg-[oklch(0.28_0.08_140)]">
               <img
                 src={BA_IMAGES[active].src}
                 alt={`${BA_IMAGES[active].label} ビフォーアフター`}
@@ -1557,7 +1557,7 @@ function BeforeAfterSection() {
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-[oklch(0.12_0.04_42)/90] to-transparent px-6 py-5">
                 <div className="flex items-end justify-between">
                   <div>
-                    <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-xs tracking-widest uppercase block mb-1">
+                    <span className="font-cormorant text-[oklch(0.52_0.1_140)] text-xs tracking-widest uppercase block mb-1">
                       {BA_IMAGES[active].gender} · {BA_IMAGES[active].period}
                     </span>
                     <p className="font-mincho text-white text-lg font-bold">
@@ -1565,7 +1565,7 @@ function BeforeAfterSection() {
                     </p>
                   </div>
                   <div className="flex gap-2">
-                    <span className="font-sans-jp text-[oklch(0.88_0.08_75)] text-xs bg-[oklch(0.72_0.12_70)/20] border border-[oklch(0.72_0.12_70)/40] px-3 py-1 rounded-full">
+                    <span className="font-sans-jp text-[oklch(0.82_0.08_130)] text-xs bg-[oklch(0.52_0.1_140)/20] border border-[oklch(0.52_0.1_140)/40] px-3 py-1 rounded-full">
                       Before → After
                     </span>
                   </div>
@@ -1575,14 +1575,14 @@ function BeforeAfterSection() {
             {/* ナビゲーション矢印 */}
             <button
               onClick={() => setActive((prev) => (prev - 1 + BA_IMAGES.length) % BA_IMAGES.length)}
-              className="absolute left-[-20px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center text-[oklch(0.22_0.045_42)] hover:bg-[oklch(0.72_0.12_70)] hover:text-white transition-all"
+              className="absolute left-[-20px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center text-[oklch(0.28_0.08_140)] hover:bg-[oklch(0.52_0.1_140)] hover:text-white transition-all"
               aria-label="前の画像"
             >
               ‹
             </button>
             <button
               onClick={() => setActive((prev) => (prev + 1) % BA_IMAGES.length)}
-              className="absolute right-[-20px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center text-[oklch(0.22_0.045_42)] hover:bg-[oklch(0.72_0.12_70)] hover:text-white transition-all"
+              className="absolute right-[-20px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center text-[oklch(0.28_0.08_140)] hover:bg-[oklch(0.52_0.1_140)] hover:text-white transition-all"
               aria-label="次の画像"
             >
               ›
@@ -1597,7 +1597,7 @@ function BeforeAfterSection() {
                 onClick={() => setActive(i)}
                 className={`relative overflow-hidden rounded-sm transition-all duration-300 ${
                   active === i
-                    ? "ring-2 ring-[oklch(0.72_0.12_70)] ring-offset-2 opacity-100 scale-105"
+                    ? "ring-2 ring-[oklch(0.52_0.1_140)] ring-offset-2 opacity-100 scale-105"
                     : "opacity-60 hover:opacity-90"
                 }`}
                 aria-label={img.label}
@@ -1619,7 +1619,7 @@ function BeforeAfterSection() {
                 key={i}
                 onClick={() => setActive(i)}
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  active === i ? "bg-[oklch(0.72_0.12_70)] w-6" : "bg-[oklch(0.72_0.12_70)/30]"
+                  active === i ? "bg-[oklch(0.52_0.1_140)] w-6" : "bg-[oklch(0.52_0.1_140)/30]"
                 }`}
                 aria-label={`画像${i + 1}`}
               />
@@ -1627,7 +1627,7 @@ function BeforeAfterSection() {
           </div>
 
           {/* 注意書き */}
-          <p className="text-center font-sans-jp text-[oklch(0.65_0.04_42)] text-[11px] mt-6">
+          <p className="text-center font-sans-jp text-[oklch(0.55_0.06_140)] text-[11px] mt-6">
             ※ 個人の体験・感想です。効果には個人差があります。掲載にあたりご本人の同意を得ています。
           </p>
         </div>
@@ -1697,17 +1697,17 @@ function ReservationSection() {
   };
 
   const inputClass = (field: string) =>
-    `w-full font-sans-jp text-sm bg-[oklch(0.28_0.05_42)] border ${
+    `w-full font-sans-jp text-sm bg-[oklch(0.28_0.08_140)] border ${
       errors[field]
         ? "border-red-400"
-        : "border-white/15 focus:border-[oklch(0.72_0.12_70)]"
+        : "border-white/15 focus:border-[oklch(0.52_0.1_140)]"
     } text-white placeholder-white/30 rounded-sm px-4 py-3 outline-none transition-colors`;
 
   return (
-    <section className="py-28 bg-[oklch(0.18_0.04_42)]" id="予約">
+    <section className="py-28 bg-[oklch(0.22_0.06_140)]" id="予約">
       <div ref={ref} className="max-w-3xl mx-auto px-6">
         <div className={`text-center mb-14 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
+          <span className="font-cormorant text-[oklch(0.52_0.1_140)] text-sm tracking-[0.3em] uppercase block mb-4">
             Reservation
           </span>
           <h2 className="font-mincho text-white text-3xl md:text-4xl font-bold mb-4">
@@ -1720,8 +1720,8 @@ function ReservationSection() {
 
         {submitted ? (
           <div className={`text-center py-16 transition-all duration-700 ${inView ? "opacity-100 scale-100" : "opacity-0 scale-95"}`}>
-            <div className="w-20 h-20 rounded-full bg-[oklch(0.72_0.12_70)/20] flex items-center justify-center mx-auto mb-6">
-              <span className="text-[oklch(0.72_0.12_70)] text-3xl">✓</span>
+            <div className="w-20 h-20 rounded-full bg-[oklch(0.52_0.1_140)/20] flex items-center justify-center mx-auto mb-6">
+              <span className="text-[oklch(0.52_0.1_140)] text-3xl">✓</span>
             </div>
             <h3 className="font-mincho text-white text-2xl font-bold mb-4">ご予約を受け付けました</h3>
             <p className="font-sans-jp text-white/80 text-sm leading-relaxed mb-2">
@@ -1740,7 +1740,7 @@ function ReservationSection() {
             {/* お名前 */}
             <div>
               <label className="font-sans-jp text-white/70 text-xs block mb-2">
-                お名前 <span className="text-[oklch(0.72_0.12_70)]">*</span>
+                お名前 <span className="text-[oklch(0.52_0.1_140)]">*</span>
               </label>
               <input
                 type="text"
@@ -1756,7 +1756,7 @@ function ReservationSection() {
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <label className="font-sans-jp text-white/70 text-xs block mb-2">
-                  電話番号 <span className="text-[oklch(0.72_0.12_70)]">*</span>
+                  電話番号 <span className="text-[oklch(0.52_0.1_140)]">*</span>
                 </label>
                 <input
                   type="tel"
@@ -1786,7 +1786,7 @@ function ReservationSection() {
             <div className="grid sm:grid-cols-2 gap-4">
               <div>
                 <label className="font-sans-jp text-white/70 text-xs block mb-2">
-                  ご希望日 <span className="text-[oklch(0.72_0.12_70)]">*</span>
+                  ご希望日 <span className="text-[oklch(0.52_0.1_140)]">*</span>
                 </label>
                 <input
                   type="date"
@@ -1799,7 +1799,7 @@ function ReservationSection() {
               </div>
               <div>
                 <label className="font-sans-jp text-white/70 text-xs block mb-2">
-                  ご希望時間 <span className="text-[oklch(0.72_0.12_70)]">*</span>
+                  ご希望時間 <span className="text-[oklch(0.52_0.1_140)]">*</span>
                 </label>
                 <select
                   value={form.time}
@@ -1808,7 +1808,7 @@ function ReservationSection() {
                 >
                   <option value="" disabled>時間を選択</option>
                   {timeSlots.map((t) => (
-                    <option key={t} value={t} className="bg-[oklch(0.22_0.045_42)]">{t}</option>
+                    <option key={t} value={t} className="bg-[oklch(0.28_0.08_140)]">{t}</option>
                   ))}
                 </select>
                 {errors.time && <p className="font-sans-jp text-red-400 text-xs mt-1">{errors.time}</p>}
@@ -1818,7 +1818,7 @@ function ReservationSection() {
             {/* コース選択 */}
             <div>
               <label className="font-sans-jp text-white/70 text-xs block mb-3">
-                ご希望コース <span className="text-[oklch(0.72_0.12_70)]">*</span>
+                ご希望コース <span className="text-[oklch(0.52_0.1_140)]">*</span>
               </label>
               <div className="grid sm:grid-cols-3 gap-3">
                 {[
@@ -1832,12 +1832,12 @@ function ReservationSection() {
                     onClick={() => { setForm({ ...form, plan: opt.value }); setErrors({ ...errors, plan: "" }); }}
                     className={`text-left p-4 rounded-sm border transition-all ${
                       form.plan === opt.value
-                        ? "border-[oklch(0.72_0.12_70)] bg-[oklch(0.72_0.12_70)/15]"
-                        : "border-white/15 bg-[oklch(0.28_0.05_42)] hover:border-white/30"
+                        ? "border-[oklch(0.52_0.1_140)] bg-[oklch(0.52_0.1_140)/15]"
+                        : "border-white/15 bg-[oklch(0.28_0.08_140)] hover:border-white/30"
                     }`}
                   >
                     <p className={`font-mincho text-xs font-bold mb-1 ${
-                      form.plan === opt.value ? "text-[oklch(0.88_0.08_75)]" : "text-white"
+                      form.plan === opt.value ? "text-[oklch(0.82_0.08_130)]" : "text-white"
                     }`}>{opt.label}</p>
                     <p className="font-sans-jp text-white/40 text-[10px]">{opt.sub}</p>
                   </button>
@@ -1862,9 +1862,9 @@ function ReservationSection() {
 
             {/* 同意チェック */}
             <div className="flex items-start gap-3">
-              <input type="checkbox" id="privacy" required className="mt-1 accent-[oklch(0.72_0.12_70)]" />
+              <input type="checkbox" id="privacy" required className="mt-1 accent-[oklch(0.52_0.1_140)]" />
               <label htmlFor="privacy" className="font-sans-jp text-white/50 text-xs leading-relaxed">
-                <a href="/privacy" target="_blank" className="text-[oklch(0.72_0.12_70)] underline hover:text-[oklch(0.82_0.10_75)]">プライバシーポリシー</a>に同意の上、送信します。
+                <a href="/privacy" target="_blank" className="text-[oklch(0.52_0.1_140)] underline hover:text-[oklch(0.82_0.10_75)]">プライバシーポリシー</a>に同意の上、送信します。
               </label>
             </div>
 
@@ -1911,7 +1911,7 @@ function StoreSection() {
       features: ["頭皮チェック", "ハーブスチーマー（ボタニカルミスト）", "頭皮データの記録・管理"],
       mapUrl: "https://maps.google.com/?q=兵庫県神戸市中央区小野柄通8丁目1番8号+神戸阪急本館6階",
       mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.0!2d135.19476!3d34.69344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e6f7b8e5a3a3%3A0x5b1e2c3d4e5f6a7b!2z56aP5oi45YWD5pys5pys6aSo6Ziz5bGxIOOBiOOBj-OBhOOBhOOBhA!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp",
-      color: "oklch(0.72_0.12_70)",
+      color: "oklch(0.52_0.1_140)",
     },
     {
       id: "nada",
@@ -1935,17 +1935,17 @@ function StoreSection() {
   ];
 
   return (
-    <section className="py-28 bg-[oklch(0.97_0.012_82)]" id="店舗情報">
+    <section className="py-28 bg-[oklch(0.977_0.012_100)]" id="店舗情報">
       <div ref={ref} className="max-w-7xl mx-auto px-6">
         {/* ヘッダー */}
         <div className={`text-center mb-16 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-4">
+          <span className="font-cormorant text-[oklch(0.52_0.1_140)] text-sm tracking-[0.3em] uppercase block mb-4">
             Our Locations
           </span>
-          <h2 className="font-mincho text-[oklch(0.22_0.045_42)] text-3xl md:text-4xl font-bold mb-4">
+          <h2 className="font-mincho text-[oklch(0.28_0.08_140)] text-3xl md:text-4xl font-bold mb-4">
             店舗・アクセス
           </h2>
-          <p className="font-sans-jp text-[oklch(0.45_0.04_42)] text-sm max-w-xl mx-auto leading-relaxed">
+          <p className="font-sans-jp text-[oklch(0.42_0.07_140)] text-sm max-w-xl mx-auto leading-relaxed">
             神戸市内2拠点で、頭皮の定期チェックをお受けしています。
           </p>
         </div>
@@ -1955,7 +1955,7 @@ function StoreSection() {
           {stores.map((store, i) => (
             <div
               key={store.id}
-              className={`bg-white border border-[oklch(0.88_0.025_75)] rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-all duration-500 ${
+              className={`bg-white border border-[oklch(0.88_0.03_130)] rounded-sm overflow-hidden shadow-sm hover:shadow-md transition-all duration-500 ${
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${i * 150}ms` }}
@@ -1990,18 +1990,18 @@ function StoreSection() {
               {/* 情報エリア */}
               <div className="p-7">
                 <div className="mb-5">
-                  <p className="font-cormorant text-[oklch(0.72_0.12_70)] text-xs tracking-widest uppercase mb-1">
+                  <p className="font-cormorant text-[oklch(0.52_0.1_140)] text-xs tracking-widest uppercase mb-1">
                     {store.nameEn}
                   </p>
-                  <h3 className="font-mincho text-[oklch(0.22_0.045_42)] text-xl font-bold">
+                  <h3 className="font-mincho text-[oklch(0.28_0.08_140)] text-xl font-bold">
                     {store.name}
                   </h3>
                 </div>
 
                 {/* 住所 */}
                 <div className="flex items-start gap-3 mb-4">
-                  <span className="text-[oklch(0.72_0.12_70)] text-base mt-0.5 flex-shrink-0"></span>
-                  <div className="font-sans-jp text-[oklch(0.38_0.055_42)] text-sm leading-relaxed">
+                  <span className="text-[oklch(0.52_0.1_140)] text-base mt-0.5 flex-shrink-0"></span>
+                  <div className="font-sans-jp text-[oklch(0.38_0.08_140)] text-sm leading-relaxed">
                     <p>{store.address}</p>
                     {store.address2 && <p>{store.address2}</p>}
                   </div>
@@ -2009,21 +2009,21 @@ function StoreSection() {
 
                 {/* 営業時間 */}
                 <div className="flex items-start gap-3 mb-4">
-                  <span className="text-[oklch(0.72_0.12_70)] text-base mt-0.5 flex-shrink-0"></span>
+                  <span className="text-[oklch(0.52_0.1_140)] text-base mt-0.5 flex-shrink-0"></span>
                   <div>
                     {store.hours.map((h) => (
                       <div key={h.day} className="flex gap-3 mb-1">
-                        <span className="font-sans-jp text-[oklch(0.55_0.04_42)] text-xs w-20 flex-shrink-0">{h.day}</span>
-                        <span className="font-sans-jp text-[oklch(0.22_0.045_42)] text-xs font-medium">{h.time}</span>
+                        <span className="font-sans-jp text-[oklch(0.52_0.06_140)] text-xs w-20 flex-shrink-0">{h.day}</span>
+                        <span className="font-sans-jp text-[oklch(0.28_0.08_140)] text-xs font-medium">{h.time}</span>
                       </div>
                     ))}
-                    <p className="font-sans-jp text-[oklch(0.65_0.04_42)] text-xs mt-1">定休日：{store.closed}</p>
+                    <p className="font-sans-jp text-[oklch(0.55_0.06_140)] text-xs mt-1">定休日：{store.closed}</p>
                   </div>
                 </div>
 
                 {/* 施術メニュー */}
                 <div className="mb-6">
-                  <p className="font-sans-jp text-[oklch(0.55_0.04_42)] text-xs mb-2 tracking-wider">主な施術メニュー</p>
+                  <p className="font-sans-jp text-[oklch(0.52_0.06_140)] text-xs mb-2 tracking-wider">主な施術メニュー</p>
                   <div className="flex flex-wrap gap-2">
                     {store.features.map((f) => (
                       <span
@@ -2064,11 +2064,11 @@ function StoreSection() {
         </div>
 
         {/* サロン募集バナー — 内容確定まで一時非表示 */}
-        {false && <div className={`mt-16 bg-[oklch(0.22_0.045_42)] rounded-sm p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-700 delay-300 ${
+        {false && <div className={`mt-16 bg-[oklch(0.28_0.08_140)] rounded-sm p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-700 delay-300 ${
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}>
           <div>
-            <p className="font-cormorant text-[oklch(0.72_0.12_70)] text-xs tracking-[0.3em] uppercase mb-2">For Salon Partners</p>
+            <p className="font-cormorant text-[oklch(0.52_0.1_140)] text-xs tracking-[0.3em] uppercase mb-2">For Salon Partners</p>
             <h3 className="font-mincho text-white text-xl md:text-2xl font-bold mb-2">
               THE HERBS SCALP LABの認定サロンになりませんか？
             </h3>
@@ -2078,7 +2078,7 @@ function StoreSection() {
           </div>
           <a
             href="/salon"
-            className="flex-shrink-0 border border-[oklch(0.72_0.12_70)] text-[oklch(0.72_0.12_70)] font-sans-jp font-medium text-sm px-8 py-3.5 rounded-sm hover:bg-[oklch(0.72_0.12_70)] hover:text-[oklch(0.18_0.04_42)] transition-all duration-300 whitespace-nowrap"
+            className="flex-shrink-0 border border-[oklch(0.52_0.1_140)] text-[oklch(0.52_0.1_140)] font-sans-jp font-medium text-sm px-8 py-3.5 rounded-sm hover:bg-[oklch(0.52_0.1_140)] hover:text-[oklch(0.22_0.06_140)] transition-all duration-300 whitespace-nowrap"
           >
             認定サロン募集ページへ →
           </a>
@@ -2091,17 +2091,17 @@ function StoreSection() {
 function CtaSection() {
   const { ref, inView } = useInView();
   return (
-    <section className="py-28 bg-[oklch(0.22_0.045_42)] relative overflow-hidden" id="cta">
+    <section className="py-28 bg-[oklch(0.28_0.08_140)] relative overflow-hidden" id="cta">
       <div className="absolute inset-0 opacity-10">
         <img src={IMAGES.consultation} alt="頭皮ケアコンサルテーションの様子" className="w-full h-full object-cover" aria-hidden="true" />
       </div>
       <div ref={ref} className="relative z-10 max-w-3xl mx-auto px-6 text-center">
         <div className={`transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-6">
+          <span className="font-cormorant text-[oklch(0.52_0.1_140)] text-sm tracking-[0.3em] uppercase block mb-6">
             Start Your Journey
           </span>
           <h2 className="font-mincho text-white text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
-            まずは<span className="text-[oklch(0.88_0.08_75)]">無料</span>で<br />
+            まずは<span className="text-[oklch(0.82_0.08_130)]">無料</span>で<br />
             頭皮の今を知ることから。
           </h2>
           <p className="font-sans-jp text-white/70 text-base mb-10 leading-relaxed">

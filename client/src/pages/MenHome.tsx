@@ -66,7 +66,7 @@ function Nav() {
           {/* Logo: マーク＋スカルプラボ カタカナ表記 */}
           <Link href="/men" className="flex items-center gap-2.5 flex-shrink-0">
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_grayge_p_transparent_47bbd755.png"
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_olive_12a41c11.webp"
               alt="SCALP LABO"
               className="object-contain transition-all cursor-pointer"
               style={{
@@ -1600,7 +1600,7 @@ function Footer() {
           <div>
             <div className="flex items-center mb-4">
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_grayge_p_transparent_47bbd755.png"
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_olive_12a41c11.webp"
                 alt="SCALP LABO"
                 className="w-auto object-contain"
                 style={{ height: "64px", filter: "brightness(0) invert(1)", opacity: 0.85 }}
