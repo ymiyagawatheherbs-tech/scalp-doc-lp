@@ -1307,13 +1307,24 @@ function DigitalSection() {
               </a>
             </div>
           </div>
-          {/* Mockup Image */}
-          <div className="flex justify-center">
-            <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/app-mockup-hero-aPvm7rmSN3wqZSXwseC4wS.png"
-              alt="マイスカルプカルテ モックアップ"
-              className="w-full max-w-lg object-contain"
-            />
+          {/* App Screenshots */}
+          <div className="flex justify-center items-end gap-4">
+            <div className="relative" style={{ width: '48%' }}>
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/app_screen_log_78a5d0f2.png"
+                alt="スカルププログ アプリ画面"
+                className="w-full object-contain rounded-2xl"
+                style={{ boxShadow: '0 8px 40px rgba(0,0,0,0.5)' }}
+              />
+            </div>
+            <div className="relative" style={{ width: '48%' }}>
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/app_screen_advice_1bc0e66a.png"
+                alt="スカルプアドバイス アプリ画面"
+                className="w-full object-contain rounded-2xl"
+                style={{ boxShadow: '0 8px 40px rgba(0,0,0,0.5)', marginBottom: '1.5rem' }}
+              />
+            </div>
           </div>
         </div>
       </div>
