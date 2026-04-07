@@ -70,7 +70,7 @@ function Nav() {
               alt="SCALP LABO"
               className="object-contain transition-all cursor-pointer"
               style={{
-                height: "56px",
+                height: "48px",
                 width: "auto",
                 filter: "brightness(0) invert(1)",
               }}

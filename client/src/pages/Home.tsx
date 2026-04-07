@@ -185,10 +185,10 @@ function Nav() {
               alt="SCALP LABO"
               className="object-contain transition-all"
               style={{
-                height: "56px",
+                height: "48px",
                 width: "auto",
                 filter: scrolled
-                  ? "none"
+                  ? "sepia(1) saturate(0.8) brightness(0.35)"
                   : "brightness(0) invert(1)",
               }}
             />
