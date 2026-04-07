@@ -28,7 +28,7 @@ const STORES = [
   {
     value: "hankyu",
     label: "THE HERBS神戸阪急店",
-    address: "神戸阪急本案6階 モーニングフロー内",
+    address: "神戸阪急本館6階 モーニングフロー内",
     hours: "10:00 〜 20:00",
     checkHours: "頭皮チェック受付時間：12:00 〜 16:00（随時受付も可）",
     courses: ["free", "standard", "consult"],
@@ -216,9 +216,8 @@ export default function Booking() {
           </p>
           <ul style={{ listStyle: "none", padding: 0, margin: 0, display: "flex", flexDirection: "column", gap: "0.5rem" }}>
             {[
-              "ご希望の日時に添えない場合がございます。",
-              "担当者からのご返信をもってご予約確定となります。",
-              "お日にちに余裕を持ったご予約をお願いいたします。",
+              "ご希望日時に添えない場合がございます。",
+              "担当者の返信をもってご予約確定となります。",
             ].map((note, i) => (
               <li key={i} style={{ display: "flex", alignItems: "flex-start", gap: "0.5rem", fontSize: "0.82rem", color: "oklch(0.4 0.04 42)", lineHeight: 1.7 }}>
                 <span style={{ color: "oklch(0.72 0.12 70)", fontWeight: 700, flexShrink: 0, marginTop: "0.1rem" }}>・</span>
