@@ -736,7 +736,7 @@ function HabitValueSection() {
                 ))}
               </div>
               <p className="font-mincho text-[oklch(0.78_0.038_93)] text-lg md:text-xl font-bold">
-                すべてのお困りごとは、頭皮チェックから始まります。
+                すべてのお困りごとの解決は、頭皮チェックから。
               </p>
             </div>
             <p className="font-sans-jp text-white/80 text-sm leading-relaxed max-w-2xl">
