@@ -1269,12 +1269,7 @@ function BotanicalPowerSection() {
                 className="w-full h-full object-cover"
                 style={{ objectPosition: 'center 40%' }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.97_0.010_90)]/40 to-transparent pointer-events-none" />
-              <div className="absolute bottom-4 left-4 right-4">
-                <p className="font-sans-jp text-white text-xs tracking-wider" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>
-                  頭皮状態に合わせた、6種のオリジナルハーブブレンド
-                </p>
-              </div>
+
             </div>
           </div>
         </div>
