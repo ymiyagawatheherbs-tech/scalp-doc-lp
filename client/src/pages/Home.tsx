@@ -1179,48 +1179,49 @@ function BotanicalMistSection() {
 function BotanicalPowerSection() {
   const { ref, inView } = useInView();
 
-  const herbs = [
+  // 6種のハーブブレンド（各ブレンドは4種のハーブで構成）
+  const blends = [
     {
-      name: "ローズマリー",
-      latin: "Rosmarinus officinalis",
-      benefit: "血行促進・毛根活性",
-      desc: "頭皮の血行を促進し、毛根への栄養供給をサポート。抗酸化作用により頭皮の老化を防ぎます。",
-      color: "oklch(0.72 0.038 93)",
+      code: "VERT",
+      kana: "ヴェール",
+      theme: "くせ毛",
+      concerns: ["うねり", "湿度で広がる", "乾燥しやすい硬毛", "毛量多い"],
+      accent: "oklch(0.60 0.080 145)",
     },
     {
-      name: "カモミール",
-      latin: "Matricaria chamomilla",
-      benefit: "鎮静・抗炎症",
-      desc: "頭皮の炎症やかゆみを和らげ、敏感な頭皮を穏やかに整えます。フラボノイドが豊富。",
-      color: "oklch(0.78 0.038 93)",
+      code: "TILLEUL",
+      kana: "ティユール",
+      theme: "皮脂バランス",
+      concerns: ["直毛 / 皮脂過多", "フケ / 細くなった髪", "パーマが当たりにくい"],
+      accent: "oklch(0.68 0.055 105)",
     },
     {
-      name: "セージ",
-      latin: "Salvia officinalis",
-      benefit: "皮脂バランス調整",
-      desc: "過剰な皮脂分泌を抑制し、頭皮環境を正常に保ちます。抗菌作用でフケの原因菌にも効果的。",
-      color: "oklch(0.65 0.060 130)",
+      code: "RUNON",
+      kana: "ルノン",
+      theme: "内部ダメージ",
+      concerns: ["髪の内部ダメージ", "乾燥しやすい柔らかい髪", "細い髪質 / 乾燥期のケア", "薬剤によるダメージ"],
+      accent: "oklch(0.72 0.070 75)",
     },
     {
-      name: "カレンデュラ",
-      latin: "Calendula officinalis",
-      benefit: "修復・保湿",
-      desc: "頭皮の乾燥やダメージを修復。豊富なフラボノイドとカロテノイドが皮膚細胞の再生を促します。",
-      color: "oklch(0.72 0.038 93)",
+      code: "LILAS",
+      kana: "リラ",
+      theme: "ダメージ保護",
+      concerns: ["髪のダメージ保護", "紫外線ケア", "赤くなりやすい肌", "頭皮トラブル"],
+      accent: "oklch(0.62 0.060 295)",
     },
     {
-      name: "ラベンダー",
-      latin: "Lavandula angustifolia",
-      benefit: "ストレス緩和・育毛",
-      desc: "ストレスによる抜け毛を防ぎ、頭皮の緊張を和らげます。育毛効果を示す研究報告もあります。",
-      color: "oklch(0.78 0.038 93)",
+      code: "FEU",
+      kana: "フー",
+      theme: "エイジング",
+      concerns: ["加齢によるうねり", "ボリューム", "皮脂・ニオイ"],
+      accent: "oklch(0.70 0.050 55)",
     },
     {
-      name: "ネトル",
-      latin: "Urtica dioica",
-      benefit: "ミネラル補給・DHT抑制",
-      desc: "鉄分・ケイ素・亜鉛などのミネラルが豊富。抜け毛の原因となるDHTの生成を抑制する作用が研究されています。",
-      color: "oklch(0.65 0.060 130)",
+      code: "GRISE",
+      kana: "グリーゼ",
+      theme: "頭皮改善",
+      concerns: ["弱った頭皮と髪", "細くなった髪", "うねり", "薬剤使用後の頭皮ケア"],
+      accent: "oklch(0.60 0.030 155)",
     },
   ];
 
@@ -1243,41 +1244,56 @@ function BotanicalPowerSection() {
                 健康のために野菜や果物を摂るように、頭皮や皮膚にも植物由来の成分が深く作用します。植物が持つポリフェノール・フラボノイド・精油成分は、頭皮の炎症を抑え、血行を促し、毛根に必要な栄養を届けます。
               </p>
               <p className="font-sans-jp text-[oklch(0.35_0.040_65)] text-sm leading-relaxed">
-                SCALP LABOでは、頭皮チェックの結果をもとに、あなたの頭皮状態に合ったハーブをブレンドしてケアを行います。「乾燥が気になる」「皮脂が多い」「抜け毛が心配」——それぞれの悩みに、最適な植物の組み合わせがあります。
+                SCALP LABOでは、頭皮チェックの結果をもとに、あなたの頭皮状態に合ったハーブをブレンドしてケアを行います。それぞれのブレンドは4種のハーブで構成され、頭皮の悩みに合わせてセレクトされます。
               </p>
             </div>
             <div className="relative overflow-hidden rounded-sm" style={{ height: '320px' }}>
               <img
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/herbs_bowl_094A5982_939efeed.jpg"
-                alt="頭皮状態に合わせてブレンドするハーブ6種"
+                alt="頭皮状態に合わせてブレンドするハーブ"
                 className="w-full h-full object-cover"
                 style={{ objectPosition: 'center 40%' }}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.97_0.010_90)]/40 to-transparent pointer-events-none" />
               <div className="absolute bottom-4 left-4 right-4">
                 <p className="font-sans-jp text-white text-xs tracking-wider" style={{ textShadow: '0 1px 4px rgba(0,0,0,0.6)' }}>
-                  頭皮状態に合わせてブレンドする6種のハーブ
+                  頭皮状態に合わせた、6種のオリジナルハーブブレンド
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* ハーブ6種グリッド */}
+        {/* 6種ブレンドグリッド */}
         <div className={`grid grid-cols-2 md:grid-cols-3 gap-4 transition-all duration-700 delay-200 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          {herbs.map((herb, i) => (
+          {blends.map((blend, i) => (
             <div
               key={i}
-              className="bg-white border border-[oklch(0.90_0.015_90)] p-5 hover:border-[oklch(0.65_0.060_130)] transition-colors duration-300"
-              style={{ transitionDelay: `${i * 80}ms` }}
+              className="bg-white border border-[oklch(0.90_0.015_90)] p-5 hover:shadow-md transition-all duration-300"
+              style={{ transitionDelay: `${i * 80}ms`, borderTopWidth: '3px', borderTopColor: blend.accent }}
             >
-              <div className="flex items-center gap-2 mb-3">
-                <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: herb.color }} />
-                <span className="font-sans-jp text-[oklch(0.35_0.040_65)] text-xs tracking-wider font-bold">{herb.benefit}</span>
+              {/* ブレンド名 */}
+              <div className="mb-3">
+                <div className="flex items-baseline gap-2 mb-1">
+                  <span className="font-cormorant text-[oklch(0.25_0.050_65)] text-xl font-bold tracking-wider">{blend.code}</span>
+                  <span className="font-sans-jp text-[oklch(0.55_0.040_65)] text-xs">{blend.kana}</span>
+                </div>
+                <span
+                  className="font-sans-jp text-xs font-bold tracking-wider px-2 py-0.5 inline-block"
+                  style={{ backgroundColor: `${blend.accent}22`, color: blend.accent }}
+                >
+                  {blend.theme}
+                </span>
               </div>
-              <h3 className="font-mincho text-[oklch(0.25_0.050_65)] text-lg font-bold mb-1">{herb.name}</h3>
-              <p className="font-cormorant text-[oklch(0.60_0.040_65)] text-xs italic mb-3">{herb.latin}</p>
-              <p className="font-sans-jp text-[oklch(0.40_0.035_65)] text-xs leading-relaxed">{herb.desc}</p>
+              {/* 対応する悩み */}
+              <ul className="space-y-1">
+                {blend.concerns.map((c, j) => (
+                  <li key={j} className="flex items-start gap-1.5">
+                    <span className="text-[oklch(0.70_0.040_93)] text-xs mt-0.5 flex-shrink-0">—</span>
+                    <span className="font-sans-jp text-[oklch(0.40_0.035_65)] text-xs leading-relaxed">{c}</span>
+                  </li>
+                ))}
+              </ul>
             </div>
           ))}
         </div>
@@ -1289,12 +1305,12 @@ function BotanicalPowerSection() {
               <span className="font-cormorant text-[oklch(0.72_0.038_93)] text-xs tracking-[0.3em] uppercase block mb-3">Custom Herb Blend</span>
               <h3 className="font-mincho text-white text-2xl font-bold mb-4">頭皮の状態に合わせた、<br />オーダーメイドのハーブケア</h3>
               <p className="font-sans-jp text-white/80 text-sm leading-relaxed">
-                スカルプチェックで頭皮の状態（皮脂量・水分量・毛穴の詰まり・炎症の有無）を確認した後、その結果に基づいてハーブをブレンドします。同じ「抜け毛」の悩みでも、原因が皮脂過多なのか、乾燥なのか、血行不良なのかによって、最適なハーブの組み合わせは異なります。
+                スカルプチェックで頭皮の状態（皮脂量・水分量・毛穴の詰まり・炎症の有無）を確認した後、その結果に基づいて最適なブレンドをセレクトします。同じ「抜け毛」の悩みでも、原因が皮脂過多なのか、乾燥なのか、加齢なのかによって、最適なブレンドは異なります。
               </p>
             </div>
             <div className="text-center">
-              <div className="font-cormorant text-[oklch(0.72_0.038_93)] text-6xl font-light mb-2">6+</div>
-              <p className="font-sans-jp text-white/70 text-xs tracking-wider">種類のハーブを<br />状態に合わせてブレンド</p>
+              <div className="font-cormorant text-[oklch(0.72_0.038_93)] text-6xl font-light mb-2">6</div>
+              <p className="font-sans-jp text-white/70 text-xs tracking-wider">種類のハーブブレンド<br />各4種のハーブで構成</p>
             </div>
           </div>
         </div>
