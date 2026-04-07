@@ -2296,23 +2296,14 @@ function CtaSection() {
             頭皮の今を知ることから。
           </h2>
           <p className="font-sans-jp text-white/70 text-base mb-10 leading-relaxed">
-            5〜10分の無料スカルプチェックで、あなたの頭皮の状態を記録・確認します。<br className="hidden md:block" />
-            予約はLINEまたはウェブから簡単に。
+            5〜10分の無料スカルプチェックで、あなたの頭皮の状態を記録・確認します。
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex justify-center">
             <a
               href="/booking"
-              className="btn-gold-shimmer text-white font-sans-jp font-bold px-10 py-5 rounded-sm text-base" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
+              className="btn-gold-shimmer text-white font-sans-jp font-bold px-12 py-5 rounded-sm text-base" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
             >
               無料スカルプチェックを予約する
-            </a>
-            <a
-              href="https://lin.ee/oWeHStW"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="border border-white/40 text-white font-sans-jp font-medium px-10 py-5 rounded-sm text-base hover:bg-white/10 transition-colors"
-            >
-              LINEで予約する
             </a>
           </div>
           <p className="font-sans-jp text-white/65 text-xs mt-6">
@@ -2444,7 +2435,6 @@ export default function Home() {
       <TestimonialsSection />
       <FaqSection />
       <StoreSection />
-      <ReservationSection />
       <CtaSection />
       <Footer />
     </div>
