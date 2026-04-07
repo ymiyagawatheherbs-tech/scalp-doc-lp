@@ -715,18 +715,33 @@ function HabitValueSection() {
           <span className="font-cormorant text-[oklch(0.72_0.038_93)] text-sm tracking-[0.3em] uppercase block mb-6">
             Why Scalp Check Matters
           </span>
-          <div className="grid lg:grid-cols-2 gap-8 items-end">
-            <div>
-              <h2 className="font-mincho text-white text-3xl md:text-5xl font-bold leading-tight">
-                髮のお悩みは、<br />
-                <span className="text-[oklch(0.78_0.038_93)]">頭皮チェックから。</span>
-              </h2>
-            </div>
-            <div>
-              <p className="font-sans-jp text-white/80 text-sm leading-relaxed">
-                将来の不安を安心に変える「頭皮チェック習慣」。歯医者さんの定期検診と同じように、定期的に頭皮の状態を確認することで、問題が小さなうちに気づき、適切なケアを選ぶことができます。
+          <div className="mb-10">
+            <h2 className="font-mincho text-white text-3xl md:text-5xl font-bold leading-tight mb-8">
+              髮のお悩みは、<br />
+              <span className="text-[oklch(0.78_0.038_93)]">頭皮チェックから。</span>
+            </h2>
+            {/* 主要メッセージ — 年齢とともに現れる悩みの列挙 */}
+            <div className="border-l-2 border-[oklch(0.72_0.038_93)] pl-6 mb-8">
+              <p className="font-mincho text-white text-lg md:text-xl leading-relaxed mb-3">
+                年齢とともに現れる、
+              </p>
+              <div className="flex flex-wrap gap-2 mb-4">
+                {["抜け毛", "うねり", "髪の広がり", "つむじ割れ", "ボリュームダウン", "ヘアダメージ", "頭皮のニオイ", "かゆみ"].map((item, i) => (
+                  <span
+                    key={i}
+                    className="font-sans-jp text-sm px-3 py-1 border border-[oklch(0.72_0.038_93)]/50 text-[oklch(0.85_0.030_90)]"
+                  >
+                    {item}
+                  </span>
+                ))}
+              </div>
+              <p className="font-mincho text-[oklch(0.78_0.038_93)] text-lg md:text-xl font-bold">
+                すべてのお困りごとは、頭皮チェックから始まります。
               </p>
             </div>
+            <p className="font-sans-jp text-white/80 text-sm leading-relaxed max-w-2xl">
+              将来の不安を安心に変える「頭皮チェック習慣」。歯医者さんの定期検診と同じように、定期的に頭皮の状態を確認することで、問題が小さなうちに気づき、適切なケアを選ぶことができます。
+            </p>
           </div>
           {/* コンサルテーション画像 — セクションの雰囲気を高める横長バナー */}
           <div className="mt-10 overflow-hidden rounded-sm relative" style={{ height: '220px' }}>
