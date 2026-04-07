@@ -728,15 +728,15 @@ function HabitValueSection() {
               </p>
             </div>
           </div>
-          {/* ハーブビン画像 — セクションの雰囲気を高める横長バナー */}
-          <div className="mt-10 overflow-hidden rounded-sm" style={{ height: '220px' }}>
+          {/* コンサルテーション画像 — セクションの雰囲気を高める横長バナー */}
+          <div className="mt-10 overflow-hidden rounded-sm relative" style={{ height: '220px' }}>
             <img
-              src={IMAGES.herbBottles}
-              alt="施術に使用するハーブ"
-              className="w-full h-full object-cover object-center"
-              style={{ objectPosition: 'center 40%' }}
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/consultation_cropped_v3_IMG2348_a876fcfa.jpg"
+              alt="頭皮チェックコンサルテーションの様子"
+              className="w-full h-full object-cover"
+              style={{ objectPosition: 'center 30%' }}
             />
-              <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.25_0.050_65)/80] to-transparent pointer-events-none" />
+            <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.25_0.050_65)]/70 to-transparent pointer-events-none" />
           </div>
         </div>
 
