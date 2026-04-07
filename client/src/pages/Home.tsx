@@ -1,5 +1,5 @@
 /*
- * THE HERBS SCALP LAB LP — Home Page
+ * THE HERBS SCALP LABO LP — Home Page
  * Design: モダン・ウェルネス・スタジオ
  * Color: Cream × Deep Brown × Golden Amber
  * Font: Shippori Mincho B1 × Noto Sans JP × Cormorant Garamond
@@ -178,20 +178,26 @@ function Nav() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
-          {/* ロゴ */}
-          <a href="/" className="flex items-center gap-2.5">
-            <div className="w-7 h-7 md:w-8 md:h-8 rounded-full bg-[oklch(0.22_0.045_42)] flex items-center justify-center shrink-0">
-              <span className="text-[oklch(0.72_0.12_70)] text-xs font-cormorant font-semibold">S</span>
-            </div>
-            <div>
-              <div className={`font-mincho text-xs md:text-sm font-bold leading-tight tracking-widest transition-colors ${
-                scrolled ? "text-[oklch(0.22_0.045_42)]" : "text-white"
+          {/* ロゴ：SCALP LABOロゴ + THE HERBS商標 */}
+          <a href="/" className="flex items-center gap-2 md:gap-3">
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo_76d63a41.png"
+              alt="SCALP LABO"
+              className="h-9 md:h-11 w-auto object-contain"
+            />
+            <div className="flex flex-col justify-center gap-0.5">
+              <div className={`font-cormorant text-[8px] md:text-[9px] tracking-[0.2em] uppercase leading-none transition-colors ${
+                scrolled ? "text-[oklch(0.55_0.08_42)]" : "text-white/60"
               }`}>
-                THE HERBS SCALP LAB
+                presented by
               </div>
-              <div className="font-cormorant text-[oklch(0.72_0.12_70)] text-[9px] md:text-[10px] tracking-widest uppercase leading-none">
-                Scalp Labo
-              </div>
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
+                alt="THE HERBS"
+                className={`h-3 md:h-3.5 w-auto transition-all ${
+                  scrolled ? "brightness-0" : "brightness-0 invert opacity-80"
+                }`}
+              />
             </div>
           </a>
 
@@ -304,7 +310,7 @@ function HeroSection() {
       <div className="absolute inset-0">
         <img
           src={IMAGES.hero}
-          alt="THE HERBS SCALP LAB ウェルネススタジオ"
+          alt="THE HERBS SCALP LABO ウェルネススタジオ"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.18_0.04_42/0.75)] via-[oklch(0.18_0.04_42/0.45)] to-transparent" />
@@ -1873,7 +1879,7 @@ function StoreSection() {
   const stores = [
     {
       id: "hankyu",
-      name: "THE HERBS SCALP LAB 神戸阪急店",
+      name: "THE HERBS SCALP LABO 神戸阪急店",
       nameEn: "SCALP LABO THE HERBS Kobe Hankyu",
       badge: "百貨店内サロン",
       address: "兵庫県神戸市中央区小野柄通８丁目１−8",
@@ -1891,7 +1897,7 @@ function StoreSection() {
     },
     {
       id: "nada",
-      name: "THE HERBS SCALP LAB サロン",
+      name: "THE HERBS SCALP LABO サロン",
       nameEn: "SCALP LABO THE HERBS Salon",
       badge: "直営ヘッドスパサロン",
       address: "兵庫県神戸市灘区大内通1-7-17 1F",
@@ -2121,7 +2127,7 @@ function Footer() {
                 <span className="text-[oklch(0.72_0.12_70)] text-xs font-cormorant font-semibold">S</span>
               </div>
               <div>
-                <div className="font-mincho text-white text-sm font-bold tracking-widest">THE HERBS SCALP LAB</div>
+                <div className="font-mincho text-white text-sm font-bold tracking-widest">THE HERBS SCALP LABO</div>
                 <div className="font-cormorant text-[oklch(0.72_0.12_70)] text-[10px] tracking-widest uppercase">Scalp Labo</div>
               </div>
             </div>
@@ -2182,7 +2188,7 @@ function Footer() {
         </div>
         <div className="text-center">
           <p className="font-sans-jp text-white/55 text-xs">
-            © 2025 THE HERBS SCALP LAB. All rights reserved.
+            © 2025 THE HERBS SCALP LABO. All rights reserved.
           </p>
         </div>
       </div>
@@ -2193,7 +2199,7 @@ function Footer() {
 // メインコンポーネント
 export default function Home() {
   useEffect(() => {
-    document.title = "THE HERBS SCALP LAB | 頭皮の定期チェック・スカルプケア専門サロン 神戸";
+    document.title = "THE HERBS SCALP LABO | 頭皮の定期チェック・スカルプケア専門サロン 神戸";
   }, []);
 
   return (

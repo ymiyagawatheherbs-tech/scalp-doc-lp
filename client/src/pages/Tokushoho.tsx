@@ -1,5 +1,5 @@
 /**
- * * THE HERBS SCALP LAB 特定商取引法に基づく表記
+ * * THE HERBS SCALP LABO 特定商取引法に基づく表記
  * Design: モダン・ウェルネス・スタジオ
  */
 
@@ -30,7 +30,7 @@ function LegalLayout({ title, subtitle, children }: { title: string; subtitle: s
 
       <footer className="bg-[oklch(0.22_0.045_42)] py-8 text-center">
         <p className="font-sans-jp text-white/30 text-xs">
-          © 2025 THE HERBS SCALP LAB. All rights reserved.
+          © 2025 THE HERBS SCALP LABO. All rights reserved.
         </p>
       </footer>
     </div>
@@ -38,7 +38,7 @@ function LegalLayout({ title, subtitle, children }: { title: string; subtitle: s
 }
 
 const rows: { label: string; value: React.ReactNode }[] = [
-  { label: "販売事業者名", value: "THE HERBS SCALP LAB（株式会社THE HERBS）" },
+  { label: "販売事業者名", value: "THE HERBS SCALP LABO（株式会社THE HERBS）" },
   { label: "代表者名", value: "代表取締役　山田 太郎（※デモ用表記）" },
   {
     label: "所在地",
@@ -58,7 +58,7 @@ const rows: { label: string; value: React.ReactNode }[] = [
     value: (
       <ul className="list-disc list-inside space-y-1">
         <li>無料スカルプチェック（頭皮撮影・状態確認）</li>
-        <li>THE HERBS SCALP LAB（プレミアムスカルプコース）</li>
+        <li>THE HERBS SCALP LABO（プレミアムスカルプコース）</li>
         <li>パーソナルケアプログラム</li>
         <li>サブスクリプションプラン（月額定額サービス）</li>
       </ul>
@@ -70,7 +70,7 @@ const rows: { label: string; value: React.ReactNode }[] = [
       <>
         各サービスページに記載の価格（税込）<br />
         無料スカルプチェック：無料<br />
-        THE HERBS SCALP LAB：3,000〜5,000円（税込）<br />
+        THE HERBS SCALP LABO：3,000〜5,000円（税込）<br />
         サブスクリプション：月額1,980円〜7,980円（税込）
       </>
     ),

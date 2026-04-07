@@ -1,5 +1,5 @@
 /*
- * * THE HERBS SCALP LAB 専用予約フォームページ
+ * * THE HERBS SCALP LABO 専用予約フォームページ
  * URL: /booking
  * LINEリッチメニューから誘導するための独立した予約フォーム
  * デザイン: LPと統一（Shippori Mincho × Cream × Deep Brown）
@@ -179,10 +179,18 @@ export default function Booking() {
       {/* ヘッダー */}
       <header style={{ background: "oklch(0.22 0.045 42)", padding: "1rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.75rem" }}>
-          <div style={{ width: "32px", height: "32px", borderRadius: "50%", background: "oklch(0.72 0.12 70)", display: "flex", alignItems: "center", justifyContent: "center", fontSize: "14px", fontWeight: 700, color: "white" }}>S</div>
-          <div>
-            <div style={{ fontFamily: "'Shippori Mincho B1', serif", fontSize: "0.95rem", fontWeight: 700, color: "white", letterSpacing: "0.05em" }}>THE HERBS SCALP LAB</div>
-            <div style={{ fontSize: "0.6rem", color: "oklch(0.75 0.06 75)", letterSpacing: "0.15em" }}>SCALP LABO</div>
+          <img
+            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo_76d63a41.png"
+            alt="SCALP LABO"
+            style={{ height: "40px", width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)" }}
+          />
+          <div style={{ display: "flex", flexDirection: "column", gap: "2px" }}>
+            <span style={{ fontSize: "0.55rem", color: "rgba(255,255,255,0.5)", letterSpacing: "0.2em", textTransform: "uppercase" }}>presented by</span>
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
+              alt="THE HERBS"
+              style={{ height: "12px", width: "auto", filter: "brightness(0) invert(1)", opacity: 0.75 }}
+            />
           </div>
         </a>
         <span style={{ fontSize: "0.75rem", color: "oklch(0.75 0.06 75)", letterSpacing: "0.05em" }}>ご予約フォーム</span>

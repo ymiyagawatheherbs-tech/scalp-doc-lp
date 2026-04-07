@@ -68,7 +68,7 @@ export async function sendBookingNotification(data: BookingNotificationData): Pr
   const courseLabel = courseLabels[data.course] ?? data.course;
   const timeLabel = timeLabels[data.preferredTime] ?? data.preferredTime;
 
-  const subject = `【THE HERBS SCALP LAB】新規予約申し込み：${data.name} 様`;
+  const subject = `【THE HERBS SCALP LABO】新規予約申し込み：${data.name} 様`;
 
   const htmlBody = `
 <!DOCTYPE html>
@@ -76,7 +76,7 @@ export async function sendBookingNotification(data: BookingNotificationData): Pr
 <head><meta charset="UTF-8"></head>
 <body style="font-family: 'Helvetica Neue', Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
   <div style="background: #2a1a0a; color: #c9a96e; padding: 20px 24px; border-radius: 4px 4px 0 0;">
-    <h1 style="margin: 0; font-size: 18px; letter-spacing: 0.1em;">THE HERBS SCALP LAB</h1>
+    <h1 style="margin: 0; font-size: 18px; letter-spacing: 0.1em;">THE HERBS SCALP LABO</h1>
     <p style="margin: 4px 0 0; font-size: 12px; opacity: 0.8;">新規予約申し込み通知</p>
   </div>
   <div style="background: #fff; border: 1px solid #e8ddd0; border-top: none; padding: 24px; border-radius: 0 0 4px 4px;">
@@ -127,7 +127,7 @@ export async function sendBookingNotification(data: BookingNotificationData): Pr
     </div>
   </div>
   <p style="font-size: 11px; color: #aaa; text-align: center; margin-top: 16px;">
-    THE HERBS SCALP LAB 予約管理システム
+    THE HERBS SCALP LABO 予約管理システム
   </p>
 </body>
 </html>

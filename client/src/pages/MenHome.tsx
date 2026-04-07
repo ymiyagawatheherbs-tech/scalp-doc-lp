@@ -1,5 +1,5 @@
 /**
- * THE HERBS SCALP LAB for Men — メンズ向けLP
+ * THE HERBS SCALP LABO for Men — メンズ向けLP
  *
  * Design Philosophy: Dark Luxury（ダーク・ラグジュアリー）
  * - Color: Deep Navy #0D1B2A × Charcoal #1C2B3A × Gold #C9A84C
@@ -63,11 +63,22 @@ function Nav() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between">
-          {/* Logo */}
+          {/* Logo: SCALP LABOロゴ + THE HERBS商標 */}
           <Link href="/men">
-            <div className="flex flex-col cursor-pointer">
-              <span className="font-['Cormorant_Garamond'] italic text-[#C9A84C] text-[10px] md:text-xs tracking-[0.3em] uppercase">Scalp Labo</span>
-              <span className="text-white font-['Shippori_Mincho'] text-base md:text-lg leading-tight tracking-wider">for Men</span>
+            <div className="flex items-center gap-2 md:gap-3 cursor-pointer">
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo_76d63a41.png"
+                alt="SCALP LABO"
+                className="h-9 md:h-11 w-auto object-contain brightness-0 invert"
+              />
+              <div className="flex flex-col justify-center gap-0.5">
+                <span className="font-['Cormorant_Garamond'] text-white/40 text-[8px] md:text-[9px] tracking-[0.2em] uppercase leading-none">presented by</span>
+                <img
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
+                  alt="THE HERBS"
+                  className="h-3 md:h-3.5 w-auto brightness-0 invert opacity-70"
+                />
+              </div>
             </div>
           </Link>
 
@@ -212,7 +223,7 @@ function Hero() {
       <div className="absolute inset-0">
         <img
           src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/men-hero-main_cae2a01a.jpg"
-          alt="THE HERBS SCALP LAB for Men"
+          alt="THE HERBS SCALP LABO for Men"
           className="w-full h-full object-cover opacity-40"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0D1B2A] via-[#0D1B2A]/80 to-transparent" />
@@ -246,7 +257,7 @@ function Hero() {
           </h1>
 
           <p className="hidden md:block text-white/70 text-base md:text-lg leading-relaxed mb-10 font-['Noto_Sans_JP'] font-light max-w-xl">
-            THE HERBS SCALP LAB for Men は、マイクロスコープによる詳細な頭皮チェックと
+            THE HERBS SCALP LABO for Men は、マイクロスコープによる詳細な頭皮チェックと
             パーソナルデータの継続記録で、あなたの頭皮状態を科学的にサポートします。
           </p>
           <p className="md:hidden text-white/65 text-sm leading-relaxed mb-6 font-['Noto_Sans_JP'] font-light">
@@ -523,7 +534,7 @@ function Concept() {
             </h2>
             <p className="text-white/70 text-sm leading-relaxed mb-6 font-['Noto_Sans_JP'] font-light">
               虫歯になってから歯医者に行くのではなく、定期的に通って予防するように。
-              THE HERBS SCALP LAB for Men は、頭皮の状態を定期的に記録・確認する習慣を、
+              THE HERBS SCALP LABO for Men は、頭皮の状態を定期的に記録・確認する習慣を、
               男性の新しいセルフケアとして提案します。
             </p>
             <p className="text-white/70 text-sm leading-relaxed mb-8 font-['Noto_Sans_JP'] font-light">
@@ -914,7 +925,7 @@ function Digital() {
           <div>
             <p className="text-xs tracking-[0.3em] text-[#C9A84C] mb-4 font-['Noto_Sans_JP']" style={{ fontFamily: "'Noto Sans JP', sans-serif" }}>SCALP LABO DIGITAL REPORT</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
-              THE HERBS SCALP LAB<br />
+              THE HERBS SCALP LABO<br />
               <span style={{ color: "#C9A84C" }}>デジタルレポート</span>
             </h2>
             <p className="text-sm leading-relaxed mb-8" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.75)", lineHeight: "1.9" }}>
@@ -967,7 +978,7 @@ function Digital() {
           <div className="flex justify-center">
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/app-mockup-hero-aPvm7rmSN3wqZSXwseC4wS.png"
-              alt="THE HERBS SCALP LAB デジタルレポート モックアップ"
+              alt="THE HERBS SCALP LABO デジタルレポート モックアップ"
               className="w-full max-w-lg object-contain"
             />
           </div>
@@ -1076,7 +1087,7 @@ function FAQ() {
   const faqs = [
     {
       q: "医療行為ではないですか？",
-      a: "THE HERBS SCALP LAB for Men は医療行為ではありません。マイクロスコープによる頭皮の撮影・記録・確認を行うサービスです。疾病の診断・治療・予防を目的とするものではありません。頭皮や毛髪に関する医療的なご相談は、皮膚科・AGAクリニック等の医療機関にご相談ください。",
+      a: "THE HERBS SCALP LABO for Men は医療行為ではありません。マイクロスコープによる頭皮の撮影・記録・確認を行うサービスです。疾病の診断・治療・予防を目的とするものではありません。頭皮や毛髪に関する医療的なご相談は、皮膚科・AGAクリニック等の医療機関にご相談ください。",
     },
     {
       q: "薄毛が進んでいますが、利用できますか？",
@@ -1096,7 +1107,7 @@ function FAQ() {
     },
     {
       q: "AGAクリニックとの違いは何ですか？",
-      a: "AGAクリニックは医療機関であり、薬の処方・医療的治療を行う場所です。THE HERBS SCALP LAB for Men は医療行為を行わず、頭皮状態の記録・確認とケアのご提案を行うサービスです。「まず状態を知りたい」「予防的に管理したい」という方に適しています。深刻な症状が見られた場合は医療機関をご紹介します。",
+      a: "AGAクリニックは医療機関であり、薬の処方・医療的治療を行う場所です。THE HERBS SCALP LABO for Men は医療行為を行わず、頭皮状態の記録・確認とケアのご提案を行うサービスです。「まず状態を知りたい」「予防的に管理したい」という方に適しています。深刻な症状が見られた場合は医療機関をご紹介します。",
     },
   ];
 
@@ -1385,7 +1396,7 @@ function StoreSection() {
   const stores = [
     {
       id: "hankyu",
-      name: "THE HERBS SCALP LAB 神戸阪急店",
+      name: "THE HERBS SCALP LABO 神戸阪急店",
       nameEn: "SCALP LABO THE HERBS Kobe Hankyu",
       badge: "百貨店内サロン",
       address: "兵庫県神戸市中央区小野柄通8丁目1番8号",
@@ -1402,7 +1413,7 @@ function StoreSection() {
     },
     {
       id: "nada",
-      name: "THE HERBS SCALP LAB サロン",
+      name: "THE HERBS SCALP LABO サロン",
       nameEn: "SCALP LABO THE HERBS Salon",
       badge: "直営ヘッドスパサロン",
       address: "兵庫県神戸市灘区大内通1-7-17 1F",
@@ -1663,10 +1674,10 @@ function Footer() {
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/50 text-xs font-['Noto_Sans_JP']">
-            © 2025 THE HERBS SCALP LAB for Men. All rights reserved.
+            © 2025 THE HERBS SCALP LABO for Men. All rights reserved.
           </p>
           <Link href="/" className="text-[#C9A84C]/50 hover:text-[#C9A84C] text-xs transition-colors font-['Noto_Sans_JP']">
-            ← THE HERBS SCALP LAB（女性版）はこちら
+            ← THE HERBS SCALP LABO（女性版）はこちら
           </Link>
         </div>
       </div>

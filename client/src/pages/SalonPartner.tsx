@@ -56,28 +56,27 @@ function Nav() {
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
         <Link href="/">
-          <div className="flex items-center gap-2 cursor-pointer">
-            <div className="w-7 h-7 flex items-center justify-center" style={{ backgroundColor: "#2d5a27" }}>
-              <span className="text-white text-xs font-bold" style={{ fontFamily: "'Cormorant Garamond', serif" }}>S</span>
-            </div>
-            <div>
-              <div className="text-sm font-bold leading-tight tracking-widest" style={{ fontFamily: "'Shippori Mincho', serif", color: scrolled ? "#1a1a1a" : "#ffffff" }}>
-                THE HERBS SCALP LAB
-              </div>
-              <div className="text-[9px] tracking-widest uppercase leading-none" style={{ color: "#2d5a27" }}>
-                Salon Partner
-              </div>
+          <div className="flex items-center gap-2 md:gap-3 cursor-pointer">
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo_76d63a41.png"
+              alt="SCALP LABO"
+              className="h-9 md:h-11 w-auto object-contain"
+              style={{ filter: scrolled ? "none" : "brightness(0) invert(1)" }}
+            />
+            <div className="flex flex-col justify-center gap-0.5">
+              <span className="text-[8px] md:text-[9px] tracking-[0.2em] uppercase leading-none" style={{ color: scrolled ? "rgba(0,0,0,0.4)" : "rgba(255,255,255,0.4)" }}>presented by</span>
+              <img
+                src={HERBS_LOGO}
+                alt="THE HERBS"
+                className="h-3 md:h-3.5 w-auto opacity-70"
+                style={{ filter: scrolled ? "none" : "brightness(0) invert(1)" }}
+              />
             </div>
           </div>
         </Link>
 
         <div className="flex items-center gap-3">
-          {!scrolled && (
-            <div className="hidden md:flex items-center gap-1.5">
-              <span className="text-[9px] tracking-[0.2em] uppercase" style={{ color: "rgba(255,255,255,0.5)" }}>presented by</span>
-              <img src={HERBS_LOGO} alt="THE HERBS" className="h-3.5 w-auto brightness-0 invert opacity-70" />
-            </div>
-          )}
+
           <Link href="/">
             <span className="hidden md:inline text-xs cursor-pointer" style={{ color: scrolled ? "#555" : "rgba(255,255,255,0.7)", fontFamily: "'Noto Sans JP', sans-serif" }}>
               ← 一般向けページへ
@@ -257,7 +256,7 @@ function BlueOcean() {
           <div className="grid md:grid-cols-3 gap-6 text-center">
             {[
               { area: "美容サービス", desc: "スタイリング・施術の提供", color: "rgba(255,255,255,0.15)", textColor: "rgba(255,255,255,0.5)", note: "商品・施術が主役" },
-              { area: "THE HERBS SCALP LAB", desc: "頭皮の定期チェック＋ケアの習慣化", color: "#a8d5a2", textColor: "#1a2e1a", note: "習慣化が主役（ブルーオーシャン）", highlight: true },
+              { area: "THE HERBS SCALP LABO", desc: "頭皮の定期チェック＋ケアの習慣化", color: "#a8d5a2", textColor: "#1a2e1a", note: "習慣化が主役（ブルーオーシャン）", highlight: true },
               { area: "医療機関", desc: "診断・治療・処方", color: "rgba(255,255,255,0.15)", textColor: "rgba(255,255,255,0.5)", note: "疾患対応が主役" },
             ].map((pos, i) => (
               <div
@@ -929,7 +928,7 @@ function Footer() {
         <img src={HERBS_LOGO} alt="THE HERBS" className="h-4 w-auto brightness-0 invert opacity-50" />
       </div>
       <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>
-        © 2025 THE HERBS SCALP LAB. All rights reserved.
+        © 2025 THE HERBS SCALP LABO. All rights reserved.
       </p>
       <div className="mt-3 flex justify-center gap-6">
         <a href="/" className="text-xs transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}
@@ -950,14 +949,14 @@ function Footer() {
 // ========== MAIN ==========
 export default function SalonPartner() {
   useEffect(() => {
-    document.title = "サロンパートナー募集 | THE HERBS SCALP LAB";
+    document.title = "サロンパートナー募集 | THE HERBS SCALP LABO";
     const setMeta = (name: string, content: string) => {
       let el = document.querySelector(`meta[name="${name}"]`) as HTMLMetaElement | null;
       if (!el) { el = document.createElement("meta"); el.name = name; document.head.appendChild(el); }
       el.content = content;
     };
     setMeta("description", "頭皮ケアのブルーオーシャン市場へ。予防型ヘルスケア×習慣化事業として、THE HERBS SCALP LAB認定パートナーを募集。収益の仕組みはLINE登録後に無料でお届けします。");
-    setMeta("keywords", "頭皮ケア 副業,エステサロン 新メニュー,美容師 副業,ヘッドスパ 開業,THE HERBS SCALP LAB 認定サロン,ブルーオーシャン 美容");
+    setMeta("keywords", "頭皮ケア 副業,エステサロン 新メニュー,美容師 副業,ヘッドスパ 開業,THE HERBS SCALP LABO 認定サロン,ブルーオーシャン 美容");
   }, []);
 
   return (
