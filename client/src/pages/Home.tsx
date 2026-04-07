@@ -179,20 +179,18 @@ function Nav() {
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
           {/* ロゴ：マーク＋文字横並び */}
-          <a href="/" className="flex items-center gap-2 md:gap-2.5">
+          <a href="/" className="flex items-center gap-2 md:gap-3">
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
               alt="SCALP LABO mark"
-              className={`h-9 md:h-11 w-auto object-contain transition-all ${
-                scrolled ? "" : "brightness-0 invert"
-              }`}
+              className="h-9 md:h-11 w-auto object-contain transition-all"
+              style={{ filter: scrolled ? "brightness(0.4) sepia(1) saturate(0.6)" : "brightness(0) invert(1)" }}
             />
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-greige-transparent_123f5ff1.png"
               alt="SCALP LABO"
-              className={`h-6 md:h-7 w-auto object-contain transition-all ${
-                scrolled ? "" : "brightness-0 invert"
-              }`}
+              className="h-7 md:h-9 w-auto object-contain transition-all"
+              style={{ filter: scrolled ? "brightness(0.4) sepia(1) saturate(0.6)" : "brightness(0) invert(1)" }}
             />
           </a>
 
@@ -2098,12 +2096,14 @@ function Footer() {
               <img
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
                 alt="SCALP LABO mark"
-                className="h-10 w-auto object-contain brightness-0 invert opacity-80"
+                className="h-10 w-auto object-contain"
+                style={{ filter: "brightness(0) invert(1)", opacity: 0.85 }}
               />
               <img
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-greige-transparent_123f5ff1.png"
                 alt="SCALP LABO"
-                className="h-6 w-auto object-contain brightness-0 invert opacity-80"
+                className="h-8 w-auto object-contain"
+                style={{ filter: "brightness(0) invert(1)", opacity: 0.85 }}
               />
             </div>
             {/* THE HERBS ブランドリンク */}

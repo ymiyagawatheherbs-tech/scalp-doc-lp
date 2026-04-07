@@ -65,16 +65,18 @@ function Nav() {
         <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between">
           {/* Logo: マーク＋文字横並び */}
           <Link href="/men">
-            <div className="flex items-center gap-2 md:gap-2.5 cursor-pointer">
+            <div className="flex items-center gap-2 md:gap-3 cursor-pointer">
               <img
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
                 alt="SCALP LABO mark"
-                className="h-9 md:h-11 w-auto object-contain brightness-0 invert"
+                className="h-9 md:h-11 w-auto object-contain transition-all"
+                style={{ filter: "brightness(0) invert(1)" }}
               />
               <img
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-greige-transparent_123f5ff1.png"
                 alt="SCALP LABO"
-                className="h-6 md:h-7 w-auto object-contain brightness-0 invert"
+                className="h-7 md:h-9 w-auto object-contain transition-all"
+                style={{ filter: "brightness(0) invert(1)" }}
               />
             </div>
           </Link>
@@ -1590,13 +1592,15 @@ function Footer() {
               <img
                 src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
                 alt="SCALP LABO mark"
-                className="h-10 w-auto object-contain brightness-0 invert opacity-80"
+                className="h-10 w-auto object-contain"
+                style={{ filter: "brightness(0) invert(1)", opacity: 0.85 }}
               />
               <div className="flex flex-col gap-0.5">
                 <img
                   src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-greige-transparent_123f5ff1.png"
                   alt="SCALP LABO"
-                  className="h-5 w-auto object-contain brightness-0 invert opacity-80"
+                  className="h-7 w-auto object-contain"
+                  style={{ filter: "brightness(0) invert(1)", opacity: 0.85 }}
                 />
                 <span className="text-white/60 font-['Noto_Sans_JP'] text-[10px] tracking-widest">for Men</span>
               </div>

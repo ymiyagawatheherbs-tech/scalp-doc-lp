@@ -60,14 +60,14 @@ function Nav() {
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
               alt="SCALP LABO mark"
-              className="h-9 md:h-11 w-auto object-contain"
-              style={{ filter: scrolled ? "none" : "brightness(0) invert(1)" }}
+              className="h-9 md:h-11 w-auto object-contain transition-all"
+              style={{ filter: scrolled ? "brightness(0.4) sepia(1) saturate(0.6)" : "brightness(0) invert(1)" }}
             />
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-greige-transparent_123f5ff1.png"
               alt="SCALP LABO"
-              className="h-6 md:h-7 w-auto object-contain"
-              style={{ filter: scrolled ? "none" : "brightness(0) invert(1)" }}
+              className="h-7 md:h-9 w-auto object-contain transition-all"
+              style={{ filter: scrolled ? "brightness(0.4) sepia(1) saturate(0.6)" : "brightness(0) invert(1)" }}
             />
           </div>
         </Link>

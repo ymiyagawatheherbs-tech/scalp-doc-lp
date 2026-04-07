@@ -187,7 +187,7 @@ export default function Booking() {
           <img
             src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-greige-transparent_123f5ff1.png"
             alt="SCALP LABO"
-            style={{ height: "24px", width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)" }}
+            style={{ height: "30px", width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)" }}
           />
         </a>
         <span style={{ fontSize: "0.75rem", color: "oklch(0.75 0.06 75)", letterSpacing: "0.05em" }}>ご予約フォーム</span>
