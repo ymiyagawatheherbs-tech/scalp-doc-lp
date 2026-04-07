@@ -1,42 +1,34 @@
 import { describe, it, expect } from "vitest";
-import nodemailer from "nodemailer";
+import { ConfidentialClientApplication } from "@azure/msal-node";
 
-describe("Outlook SMTP connection", () => {
-  it("should verify SMTP credentials", async () => {
-    const smtpUser = process.env.SMTP_USER;
-    const smtpPass = process.env.SMTP_PASS;
+describe("Microsoft Graph API mail authentication", () => {
+  it("should acquire Graph API access token using client credentials", async () => {
+    const clientId = process.env.AZURE_CLIENT_ID;
+    const tenantId = process.env.AZURE_TENANT_ID;
+    const clientSecret = process.env.AZURE_CLIENT_SECRET;
 
-    // 環境変数が設定されていない場合はスキップ
-    if (!smtpUser || !smtpPass) {
-      console.warn("[mailer.test] SMTP credentials not set, skipping SMTP verification test");
+    if (!clientId || !tenantId || !clientSecret) {
+      console.warn("[mailer.test] Azure OAuth credentials not set, skipping test");
       expect(true).toBe(true);
       return;
     }
 
-    const transporter = nodemailer.createTransport({
-      host: "smtp.office365.com",
-      port: 587,
-      secure: false,
+    const msalClient = new ConfidentialClientApplication({
       auth: {
-        user: smtpUser,
-        pass: smtpPass,
-      },
-      tls: {
-        ciphers: "SSLv3",
-        rejectUnauthorized: false,
+        clientId,
+        authority: `https://login.microsoftonline.com/${tenantId}`,
+        clientSecret,
       },
     });
 
-    try {
-      await transporter.verify();
-      console.log("[mailer.test] SMTP connection verified successfully");
-      expect(true).toBe(true);
-    } catch (err) {
-      // SMTP接続失敗はCI環境では許容（ネットワーク制限の可能性）
-      console.warn("[mailer.test] SMTP verification failed (may be network restricted):", err);
-      expect(true).toBe(true);
-    }
-  }, 15000);
+    const result = await msalClient.acquireTokenByClientCredential({
+      scopes: ["https://graph.microsoft.com/.default"],
+    });
+
+    expect(result).not.toBeNull();
+    expect(result?.accessToken).toBeTruthy();
+    console.log("[mailer.test] Graph API token acquired successfully");
+  }, 30000);
 
   it("should build booking notification data correctly", () => {
     const data = {
@@ -46,13 +38,13 @@ describe("Outlook SMTP connection", () => {
       email: "test@example.com",
       course: "free_check",
       preferredDate: "2026-04-10",
-      preferredTime: "10:30",
+      preferredTime: "12:00",
       message: "初めての利用です",
-      submittedAt: "2026/4/6 10:00:00",
+      submittedAt: "2026/4/7 10:00:00",
     };
 
     expect(data.storeName).toBe("THE HERBS神戸阪急店");
     expect(data.course).toBe("free_check");
-    expect(data.preferredTime).toBe("10:30");
+    expect(data.preferredTime).toBe("12:00");
   });
 });

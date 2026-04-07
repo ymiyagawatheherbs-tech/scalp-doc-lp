@@ -15,5 +15,9 @@ export const ENV = {
   // Outlook SMTP
   smtpUser: process.env.SMTP_USER ?? "",
   smtpPass: process.env.SMTP_PASS ?? "",
-  notifyEmail: process.env.NOTIFY_EMAIL ?? "cx@the-herbs.co.jp",
+  notifyEmail: process.env.NOTIFY_EMAIL ?? "cx1@the-herbs.co.jp",
+  // Azure AD OAuth (for SMTP OAuth2)
+  azureClientId: process.env.AZURE_CLIENT_ID ?? "",
+  azureTenantId: process.env.AZURE_TENANT_ID ?? "",
+  azureClientSecret: process.env.AZURE_CLIENT_SECRET ?? "",
 };

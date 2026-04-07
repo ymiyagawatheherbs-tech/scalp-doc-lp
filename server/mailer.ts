@@ -1,24 +1,27 @@
-import nodemailer from "nodemailer";
+import { ConfidentialClientApplication } from "@azure/msal-node";
 import { ENV } from "./_core/env";
 
 /**
- * Outlook SMTP経由でメールを送信するヘルパー
- * SMTP設定: smtp.office365.com:587 (STARTTLS)
+ * Microsoft Graph API アクセストークンを取得する
  */
-function createTransporter() {
-  return nodemailer.createTransport({
-    host: "smtp.office365.com",
-    port: 587,
-    secure: false, // STARTTLS
+async function getGraphAccessToken(): Promise<string> {
+  const msalClient = new ConfidentialClientApplication({
     auth: {
-      user: ENV.smtpUser,
-      pass: ENV.smtpPass,
-    },
-    tls: {
-      ciphers: "SSLv3",
-      rejectUnauthorized: false,
+      clientId: ENV.azureClientId,
+      authority: `https://login.microsoftonline.com/${ENV.azureTenantId}`,
+      clientSecret: ENV.azureClientSecret,
     },
   });
+
+  const result = await msalClient.acquireTokenByClientCredential({
+    scopes: ["https://graph.microsoft.com/.default"],
+  });
+
+  if (!result?.accessToken) {
+    throw new Error("[mailer] Failed to acquire Graph API access token");
+  }
+
+  return result.accessToken;
 }
 
 export interface BookingNotificationData {
@@ -34,15 +37,14 @@ export interface BookingNotificationData {
 }
 
 /**
- * 神戸阪急店の予約申し込みをcx@the-herbs.co.jpへメール通知する
+ * 神戸阪急店の予約申し込みをcx1@the-herbs.co.jpへメール通知する
+ * Microsoft Graph API (Mail.Send) を使用
  */
 export async function sendBookingNotification(data: BookingNotificationData): Promise<boolean> {
-  if (!ENV.smtpUser || !ENV.smtpPass) {
-    console.warn("[mailer] SMTP credentials not configured. Skipping email notification.");
+  if (!ENV.smtpUser || !ENV.azureClientId || !ENV.azureTenantId || !ENV.azureClientSecret) {
+    console.warn("[mailer] Graph API credentials not configured. Skipping email notification.");
     return false;
   }
-
-  const transporter = createTransporter();
 
   const courseLabels: Record<string, string> = {
     free_check: "無料頭皮チェック（初回）",
@@ -67,31 +69,6 @@ export async function sendBookingNotification(data: BookingNotificationData): Pr
   const timeLabel = timeLabels[data.preferredTime] ?? data.preferredTime;
 
   const subject = `【THE HERBS SCALP LAB】新規予約申し込み：${data.name} 様`;
-
-  const textBody = `
-THE HERBS SCALP LAB 予約申し込みがありました。
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-■ 申し込み情報
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-店舗：${data.storeName}
-お名前：${data.name} 様
-電話番号：${data.phone}
-メールアドレス：${data.email}
-ご希望コース：${courseLabel}
-ご希望日：${data.preferredDate}
-ご希望時間：${timeLabel}
-${data.message ? `\nメッセージ：\n${data.message}` : ""}
-
-申し込み日時：${data.submittedAt}
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-※ ご返信をもってご予約確定となります。
-※ ご希望に添えない場合がございます。
-※ 余裕を持ったご予約をお願いいたします。
-
-THE HERBS SCALP LAB 予約管理システム
-`.trim();
 
   const htmlBody = `
 <!DOCTYPE html>
@@ -157,15 +134,45 @@ THE HERBS SCALP LAB 予約管理システム
 `.trim();
 
   try {
-    await transporter.sendMail({
-      from: `"THE HERBS SCALP LAB 予約システム" <${ENV.smtpUser}>`,
-      to: ENV.notifyEmail,
-      subject,
-      text: textBody,
-      html: htmlBody,
+    const accessToken = await getGraphAccessToken();
+
+    const sendMailUrl = `https://graph.microsoft.com/v1.0/users/${ENV.smtpUser}/sendMail`;
+
+    const mailBody = {
+      message: {
+        subject,
+        body: {
+          contentType: "HTML",
+          content: htmlBody,
+        },
+        toRecipients: [
+          {
+            emailAddress: {
+              address: ENV.notifyEmail,
+            },
+          },
+        ],
+      },
+      saveToSentItems: false,
+    };
+
+    const response = await fetch(sendMailUrl, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(mailBody),
     });
-    console.log(`[mailer] Booking notification sent to ${ENV.notifyEmail}`);
-    return true;
+
+    if (response.status === 202) {
+      console.log(`[mailer] Booking notification sent to ${ENV.notifyEmail} via Graph API`);
+      return true;
+    } else {
+      const errorText = await response.text();
+      console.error(`[mailer] Graph API error: ${response.status} ${errorText.substring(0, 200)}`);
+      return false;
+    }
   } catch (err) {
     console.error("[mailer] Failed to send booking notification:", err);
     return false;
