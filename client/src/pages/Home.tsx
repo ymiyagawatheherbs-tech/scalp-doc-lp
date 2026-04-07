@@ -346,7 +346,7 @@ function HeroSection() {
             <span className="block text-2xl md:text-5xl lg:text-6xl font-bold mb-1 md:mb-2">
               歯の定期検診のように、
             </span>
-            <span className="block text-2xl md:text-5xl lg:text-6xl font-bold text-[oklch(0.90_0.020_93)]">
+            <span className="block text-2xl md:text-5xl lg:text-6xl font-bold text-[oklch(0.90_0.020_93)]" style={{color: '#f5e6a3'}}>
               頭皮も定期チェックを。
             </span>
           </h1>
@@ -377,7 +377,7 @@ function HeroSection() {
               {["A", "B", "C", "D"].map((l) => (
                 <div
                   key={l}
-                  className="w-7 h-7 md:w-9 md:h-9 rounded-full bg-[oklch(0.72_0.038_93)] border-2 border-white flex items-center justify-center"
+                  className="w-7 h-7 md:w-9 md:h-9 rounded-full border-2 border-white flex items-center justify-center" style={{backgroundColor: 'oklch(0.72 0.038 93)'}}
                 >
                   <span className="text-white text-[10px] md:text-xs font-semibold">{l}</span>
                 </div>
