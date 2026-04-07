@@ -8,6 +8,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
+import { Menu, X } from "lucide-react";
 
 const IMAGES = {
   interior: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/salon_interior_c8f3f7a4.jpg",
@@ -39,86 +40,146 @@ function useInView(threshold = 0.15) {
 // ========== NAV ==========
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
+  const [menuOpen, setMenuOpen] = useState(false);
+
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", handler);
     return () => window.removeEventListener("scroll", handler);
   }, []);
 
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
+
   return (
-    <nav
-      className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
-      style={{
-        backgroundColor: scrolled ? "rgba(248,246,242,0.97)" : "transparent",
-        backdropFilter: scrolled ? "blur(12px)" : "none",
-        borderBottom: scrolled ? "1px solid #e0e0e0" : "none",
-      }}
-    >
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between relative">
-        <Link href="/" className="flex items-center gap-2.5">
-          <img
-            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_grayge_p_transparent_47bbd755.png"
-            alt="SCALP LABO"
-            className="object-contain transition-all cursor-pointer"
-            style={{
-              height: "48px",
-              width: "auto",
-              filter: scrolled
-                ? "sepia(1) saturate(0.8) brightness(0.35)"
-                : "brightness(0) invert(1)",
-            }}
-          />
-          <div className="flex flex-col leading-none">
-            <span
-              className="font-sans-jp font-bold tracking-widest transition-colors"
-              style={{ fontSize: "0.75rem", letterSpacing: "0.18em", color: scrolled ? "oklch(0.22 0.045 42)" : "rgba(255,255,255,0.95)" }}
-            >
-              スカルプラボ
-            </span>
+    <>
+      <nav
+        className="fixed top-0 left-0 right-0 z-50 transition-all duration-500"
+        style={{
+          backgroundColor: scrolled ? "rgba(248,246,242,0.97)" : "transparent",
+          backdropFilter: scrolled ? "blur(12px)" : "none",
+          borderBottom: scrolled ? "1px solid #e0e0e0" : "none",
+        }}
+      >
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between gap-4">
+          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_grayge_p_transparent_47bbd755.png"
+              alt="SCALP LABO"
+              className="object-contain transition-all cursor-pointer"
+              style={{
+                height: "44px",
+                width: "auto",
+                filter: scrolled
+                  ? "sepia(1) saturate(0.8) brightness(0.35)"
+                  : "brightness(0) invert(1)",
+              }}
+            />
+            <div className="flex flex-col leading-none">
+              <span
+                className="font-sans-jp font-bold tracking-widest transition-colors"
+                style={{ fontSize: "0.75rem", letterSpacing: "0.18em", color: scrolled ? "oklch(0.22 0.045 42)" : "rgba(255,255,255,0.95)" }}
+              >
+                スカルプラボ
+              </span>
+              <span
+                className="font-cormorant transition-colors"
+                style={{ fontSize: "0.6rem", letterSpacing: "0.2em", color: scrolled ? "oklch(0.55 0.08 70)" : "rgba(255,255,255,0.45)" }}
+              >
+                SCALP LABO
+              </span>
+            </div>
+          </Link>
+
+          {/* 中央：presented by THE HERBS（デスクトップのみ） */}
+          <div className="hidden md:flex flex-col items-center">
             <span
               className="font-cormorant transition-colors"
-              style={{ fontSize: "0.6rem", letterSpacing: "0.2em", color: scrolled ? "oklch(0.55 0.08 70)" : "rgba(255,255,255,0.45)" }}
+              style={{ fontSize: "0.58rem", letterSpacing: "0.22em", color: scrolled ? "oklch(0.55 0.06 70)" : "rgba(255,255,255,0.35)", textTransform: "uppercase" }}
             >
-              SCALP LABO
+              presented by
+            </span>
+            <span
+              className="font-cormorant font-semibold transition-colors"
+              style={{ fontSize: "0.85rem", letterSpacing: "0.25em", color: scrolled ? "oklch(0.35 0.06 42)" : "rgba(255,255,255,0.75)", textTransform: "uppercase" }}
+            >
+              THE HERBS
             </span>
           </div>
-        </Link>
 
-        {/* 中央：presented by THE HERBS（デスクトップのみ） */}
-        <div className="hidden md:flex flex-col items-center absolute left-1/2 -translate-x-1/2">
-          <span
-            className="font-cormorant transition-colors"
-            style={{ fontSize: "0.58rem", letterSpacing: "0.22em", color: scrolled ? "oklch(0.55 0.06 70)" : "rgba(255,255,255,0.35)", textTransform: "uppercase" }}
-          >
-            presented by
-          </span>
-          <span
-            className="font-cormorant font-semibold transition-colors"
-            style={{ fontSize: "0.85rem", letterSpacing: "0.25em", color: scrolled ? "oklch(0.35 0.06 42)" : "rgba(255,255,255,0.75)", textTransform: "uppercase" }}
-          >
-            THE HERBS
-          </span>
+          <div className="flex items-center gap-3 flex-shrink-0">
+            <Link href="/">
+              <span className="hidden md:inline text-xs cursor-pointer whitespace-nowrap" style={{ color: scrolled ? "#555" : "rgba(255,255,255,0.7)", fontFamily: "'Noto Sans JP', sans-serif" }}>
+                ← 一般向けページへ
+              </span>
+            </Link>
+            <a
+              href={LINE_SALON.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden sm:block text-xs font-bold px-4 py-2 transition-all whitespace-nowrap"
+              style={{ backgroundColor: "#06C755", color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}
+            >
+              LINEで資料を受け取る
+            </a>
+            {/* モバイルハンバーガー */}
+            <button
+              className="sm:hidden p-1.5"
+              onClick={() => setMenuOpen(!menuOpen)}
+              aria-label="メニュー"
+              style={{ color: scrolled ? "oklch(0.22 0.045 42)" : "white" }}
+            >
+              {menuOpen ? <X size={22} /> : <Menu size={22} />}
+            </button>
+          </div>
         </div>
+      </nav>
 
-        <div className="flex items-center gap-3">
-
-          <Link href="/">
-            <span className="hidden md:inline text-xs cursor-pointer" style={{ color: scrolled ? "#555" : "rgba(255,255,255,0.7)", fontFamily: "'Noto Sans JP', sans-serif" }}>
-              ← 一般向けページへ
-            </span>
-          </Link>
+      {/* モバイルメニュー */}
+      {menuOpen && (
+        <div className="fixed inset-0 z-40 flex flex-col pt-20 px-8" style={{ backgroundColor: "#f8f6f2" }}>
+          <div className="flex flex-col gap-1 mb-8">
+            <p className="text-xs tracking-[0.3em] mb-4" style={{ color: "#2d5a27", fontFamily: "'Noto Sans JP', sans-serif" }}>MENU</p>
+            {[
+              { label: "コンセプト", href: "#concept" },
+              { label: "サービス内容", href: "#service" },
+              { label: "収益モデル", href: "#revenue" },
+              { label: "FAQ", href: "#faq" },
+            ].map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                className="py-4 border-b text-lg font-bold"
+                style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a", borderColor: "#e8e4dc" }}
+              >
+                {item.label}
+              </a>
+            ))}
+          </div>
           <a
             href={LINE_SALON.url}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-xs font-bold px-4 py-2 transition-all"
+            className="flex items-center justify-center gap-2 py-4 font-bold text-base"
             style={{ backgroundColor: "#06C755", color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}
+            onClick={() => setMenuOpen(false)}
           >
-            LINEで資料を受け取る
+            LINEで資料を受け取る（無料）
           </a>
+          <Link
+            href="/"
+            className="mt-3 flex items-center justify-center py-3 text-sm border"
+            style={{ color: "#555", borderColor: "#ccc", fontFamily: "'Noto Sans JP', sans-serif" }}
+            onClick={() => setMenuOpen(false)}
+          >
+            ← 一般向けページへ
+          </Link>
         </div>
-      </div>
-    </nav>
+      )}
+    </>
   );
 }
 
@@ -221,7 +282,7 @@ function BlueOcean() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-px mb-16" style={{ backgroundColor: "rgba(255,255,255,0.08)" }}>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px mb-16" style={{ backgroundColor: "rgba(255,255,255,0.08)" }}>
           {[
             {
               label: "予防型ヘルスケア市場",
@@ -278,7 +339,7 @@ function BlueOcean() {
           <p className="text-sm text-center mb-10" style={{ color: "rgba(255,255,255,0.65)", fontFamily: "'Noto Sans JP', sans-serif" }}>
             「美容」でも「医療」でもない、第三の領域
           </p>
-          <div className="grid md:grid-cols-3 gap-6 text-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 text-center">
             {[
               { area: "美容サービス", desc: "スタイリング・施術の提供", color: "rgba(255,255,255,0.15)", textColor: "rgba(255,255,255,0.5)", note: "商品・施術が主役" },
               { area: "THE HERBS SCALP LABO", desc: "頭皮の定期チェック＋ケアの習慣化", color: "#a8d5a2", textColor: "#1a2e1a", note: "習慣化が主役（ブルーオーシャン）", highlight: true },
@@ -333,7 +394,7 @@ function Concept() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-16">
           {[
             {
               num: "01",
@@ -535,7 +596,7 @@ function LineCtaSection() {
           </div>
 
           {/* 資料に含まれる内容 */}
-          <div className="grid md:grid-cols-2 gap-4 mb-12">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-12">
             {[
               "収益シミュレーション（月間・年間）",
               "導入サロンの実際の声",
@@ -599,7 +660,7 @@ function WhoCanJoin() {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {[
             {
               title: "エステサロン",

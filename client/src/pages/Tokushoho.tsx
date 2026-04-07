@@ -127,7 +127,8 @@ export default function Tokushoho() {
       </p>
 
       <div className="overflow-hidden rounded-sm border border-[oklch(0.88_0.025_75)]">
-        <table className="w-full">
+        {/* デスクトップ表示 */}
+        <table className="w-full hidden sm:table">
           <tbody>
             {rows.map((row, i) => (
               <tr
@@ -146,6 +147,24 @@ export default function Tokushoho() {
             ))}
           </tbody>
         </table>
+        {/* モバイル表示（縦積み） */}
+        <div className="sm:hidden">
+          {rows.map((row, i) => (
+            <div
+              key={i}
+              className={`border-b border-[oklch(0.88_0.025_75)] last:border-0 ${
+                i % 2 === 0 ? "bg-white" : "bg-[oklch(0.977_0.012_85)]"
+              }`}
+            >
+              <div className="font-mincho text-[oklch(0.22_0.045_42)] text-xs font-bold px-4 pt-3 pb-1 bg-[oklch(0.955_0.018_82)] border-b border-[oklch(0.88_0.025_75)]">
+                {row.label}
+              </div>
+              <div className="font-sans-jp text-[oklch(0.38_0.055_42)] text-sm leading-relaxed px-4 py-3">
+                {row.value}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       <div className="mt-12 pt-8 border-t border-[oklch(0.88_0.025_75)]">

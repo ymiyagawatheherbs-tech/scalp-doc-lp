@@ -177,15 +177,15 @@ function Nav() {
             : "bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between gap-4">
           {/* ロゴ：マーク＋スカルプラボ カタカナ表記 */}
-          <a href="/" className="flex items-center gap-2.5">
+          <a href="/" className="flex items-center gap-2.5 flex-shrink-0">
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_grayge_p_transparent_47bbd755.png"
               alt="SCALP LABO"
               className="object-contain transition-all"
               style={{
-                height: "48px",
+                height: "44px",
                 width: "auto",
                 filter: scrolled
                   ? "sepia(1) saturate(0.8) brightness(0.35)"
@@ -217,7 +217,7 @@ function Nav() {
           </a>
 
           {/* 中央：presented by THE HERBS（デスクトップのみ） */}
-          <div className="hidden md:flex flex-col items-center absolute left-1/2 -translate-x-1/2">
+          <div className="hidden md:flex flex-col items-center flex-1 justify-center">
             <span
               className="font-cormorant transition-colors"
               style={{
@@ -243,7 +243,7 @@ function Nav() {
           </div>
 
           {/* デスクトップナビ */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6 flex-shrink-0">
             {navLinks.map((item) => (
               <a
                 key={item.label}
@@ -418,7 +418,7 @@ function ProblemSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
           {[
             {
               icon: "",
@@ -441,7 +441,7 @@ function ProblemSection() {
           ].map((item, i) => (
             <div
               key={i}
-              className={`border border-white/10 rounded-sm p-8 transition-all duration-700 ${
+              className={`border border-white/10 rounded-sm p-5 md:p-8 transition-all duration-700 ${
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${item.delay + 200}ms` }}
@@ -726,11 +726,11 @@ function HabitValueSection() {
         </div>
 
         {/* 4つの価値 */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-0 border border-white/10">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-0 border border-white/10">
           {values.map((v, i) => (
             <div
               key={i}
-              className={`p-8 border-r border-white/10 last:border-r-0 transition-all duration-700 group hover:bg-white/5 ${
+              className={`p-5 md:p-8 border-r border-b border-white/10 last:border-r-0 lg:border-b-0 transition-all duration-700 group hover:bg-white/5 ${
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${i * 120}ms` }}
@@ -899,7 +899,7 @@ function ServiceSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {services.map((svc, i) => (
             <div
               key={i}
@@ -1203,11 +1203,11 @@ function TargetSection() {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
           {targets.map((t, i) => (
             <div
               key={i}
-              className={`bg-white border border-[oklch(0.88_0.025_75)] rounded-sm p-8 hover:shadow-lg transition-all duration-500 ${
+              className={`bg-white border border-[oklch(0.88_0.025_75)] rounded-sm p-5 md:p-8 hover:shadow-lg transition-all duration-500 ${
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${i * 100}ms` }}
@@ -1471,11 +1471,11 @@ function TestimonialsSection() {
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {testimonials.map((t, i) => (
             <div
               key={i}
-              className={`bg-[oklch(0.28_0.05_42)] border border-white/10 rounded-sm p-7 transition-all duration-700 hover:border-[oklch(0.72_0.12_70)/40] hover:shadow-xl ${
+              className={`bg-[oklch(0.28_0.05_42)] border border-white/10 rounded-sm p-5 md:p-7 transition-all duration-700 hover:border-[oklch(0.72_0.12_70)/40] hover:shadow-xl ${
                 inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
               style={{ transitionDelay: `${i * 100}ms` }}
@@ -1951,7 +1951,7 @@ function StoreSection() {
         </div>
 
         {/* 店舗カード */}
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           {stores.map((store, i) => (
             <div
               key={store.id}
@@ -2138,7 +2138,7 @@ function Footer() {
   return (
     <footer className="bg-[oklch(0.15_0.035_42)] py-16">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-3 gap-12 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 mb-12">
           <div>
             <div className="flex items-center mb-4">
               <img

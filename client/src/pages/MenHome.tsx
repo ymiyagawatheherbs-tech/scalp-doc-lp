@@ -62,15 +62,15 @@ function Nav() {
           scrolled ? "py-3 bg-[#0D1B2A]/95 backdrop-blur-md border-b border-[#C9A84C]/20 shadow-lg shadow-black/30" : "py-3 md:py-6 bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between relative">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
           {/* Logo: マーク＋スカルプラボ カタカナ表記 */}
-          <Link href="/men" className="flex items-center gap-2.5">
+          <Link href="/men" className="flex items-center gap-2.5 flex-shrink-0">
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_grayge_p_transparent_47bbd755.png"
               alt="SCALP LABO"
               className="object-contain transition-all cursor-pointer"
               style={{
-                height: "48px",
+                height: "44px",
                 width: "auto",
                 filter: "brightness(0) invert(1)",
               }}
@@ -91,29 +91,13 @@ function Nav() {
             </div>
           </Link>
 
-          {/* 中央：presented by THE HERBS（デスクトップのみ） */}
-          <div className="hidden md:flex flex-col items-center absolute left-1/2 -translate-x-1/2">
-            <span
-              className="font-['Cormorant_Garamond']"
-              style={{ fontSize: "0.58rem", letterSpacing: "0.22em", color: "rgba(255,255,255,0.35)", textTransform: "uppercase" }}
-            >
-              presented by
-            </span>
-            <span
-              className="font-['Cormorant_Garamond'] font-semibold"
-              style={{ fontSize: "0.85rem", letterSpacing: "0.25em", color: "rgba(201,168,76,0.75)", textTransform: "uppercase" }}
-            >
-              THE HERBS
-            </span>
-          </div>
-
-          {/* Desktop nav */}
-          <div className="hidden md:flex items-center gap-8">
+          {/* Desktop nav（中央配置） */}
+          <div className="hidden lg:flex items-center gap-6 flex-1 justify-center">
             {navLinks.map((link) => (
               <button
                 key={link.href}
                 onClick={() => scrollTo(link.href)}
-                className="text-white/70 hover:text-[#C9A84C] text-sm tracking-wider transition-colors duration-200 font-['Noto_Sans_JP']"
+                className="text-white/70 hover:text-[#C9A84C] text-sm tracking-wider transition-colors duration-200 font-['Noto_Sans_JP'] whitespace-nowrap"
               >
                 {link.label}
               </button>
@@ -121,25 +105,25 @@ function Nav() {
           </div>
 
           {/* CTA + Hamburger */}
-          <div className="flex items-center gap-2 md:gap-4">
+          <div className="flex items-center gap-2 flex-shrink-0">
             {/* サロン向けリンク */}
             <Link
               href="/salon"
-              className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#C9A84C]/60 text-[#C9A84C]/80 text-xs tracking-wider hover:border-[#C9A84C] hover:text-[#C9A84C] transition-all duration-300 font-['Noto_Sans_JP']"
+              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[#C9A84C]/60 text-[#C9A84C]/80 text-xs tracking-wider hover:border-[#C9A84C] hover:text-[#C9A84C] transition-all duration-300 font-['Noto_Sans_JP'] whitespace-nowrap"
             >
               サロン向け
             </Link>
             {/* 女性版切り替えリンク */}
             <Link
               href="/"
-              className="hidden md:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/30 text-white/60 text-xs tracking-wider hover:border-white/70 hover:text-white/90 transition-all duration-300 font-['Noto_Sans_JP']"
+              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-white/30 text-white/60 text-xs tracking-wider hover:border-white/70 hover:text-white/90 transition-all duration-300 font-['Noto_Sans_JP'] whitespace-nowrap"
             >
               <span className="text-[10px]">&#9792;</span>
               レディース版
             </Link>
             <button
               onClick={() => scrollTo("#reservation")}
-              className="hidden md:block px-5 py-2 border border-[#C9A84C] text-[#C9A84C] text-sm tracking-wider hover:bg-[#C9A84C] hover:text-[#0D1B2A] transition-all duration-300 font-['Noto_Sans_JP']"
+              className="hidden md:block px-4 py-2 border border-[#C9A84C] text-[#C9A84C] text-xs tracking-wider hover:bg-[#C9A84C] hover:text-[#0D1B2A] transition-all duration-300 font-['Noto_Sans_JP'] whitespace-nowrap"
             >
               無料チェック予約
             </button>
@@ -346,9 +330,9 @@ function Problem() {
           <span className="text-[#C9A84C]">3つの課題</span>があります
         </h2>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {problems.map((p) => (
-            <div key={p.num} className="border border-white/10 p-8 hover:border-[#C9A84C]/40 transition-colors duration-300 group">
+            <div key={p.num} className="border border-white/10 p-6 md:p-8 hover:border-[#C9A84C]/40 transition-colors duration-300 group">
               <div className="font-['Cormorant_Garamond'] text-[#C9A84C]/30 text-6xl font-bold mb-4 group-hover:text-[#C9A84C]/50 transition-colors">
                 {p.num}
               </div>
@@ -902,9 +886,9 @@ function Target() {
         <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-16">
           こんな方に選ばれています
         </h2>
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {targets.map((t) => (
-            <div key={t.title} className="border-l-2 border-[#C9A84C]/40 pl-6 hover:border-[#C9A84C] transition-colors duration-300">
+            <div key={t.title} className="border-l-2 border-[#C9A84C]/40 pl-5 md:pl-6 hover:border-[#C9A84C] transition-colors duration-300">
               <div className="text-3xl mb-4">{t.icon}</div>
               <h3 className="font-['Shippori_Mincho'] text-white text-xl font-bold mb-2">{t.title}</h3>
               <p className="text-[#C9A84C] text-sm italic font-['Cormorant_Garamond'] mb-3">{t.message}</p>
@@ -1056,9 +1040,9 @@ function Testimonials() {
         <p className="text-white/65 text-xs font-['Noto_Sans_JP'] mb-16">
           ※ 個人の感想です。効果・体験には個人差があります。
         </p>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
           {testimonials.map((t, i) => (
-            <div key={i} className="border border-white/10 p-6 hover:border-[#C9A84C]/30 transition-colors duration-300">
+            <div key={i} className="border border-white/10 p-5 md:p-6 hover:border-[#C9A84C]/30 transition-colors duration-300">
               <div className="flex gap-1 mb-4">
                 {[...Array(5)].map((_, j) => (
                   <Star key={j} size={12} className={j < t.stars ? "text-[#C9A84C] fill-[#C9A84C]" : "text-white/20"} />
@@ -1450,7 +1434,7 @@ function StoreSection() {
         </div>
 
         {/* 店舗カード */}
-        <div className="grid md:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {stores.map((store, i) => (
             <div
               key={store.id}
@@ -1611,7 +1595,7 @@ function Footer() {
   return (
     <footer className="bg-[#0D1B2A] border-t border-white/10 pt-16 pb-8">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid md:grid-cols-3 gap-12 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 md:gap-12 mb-12">
           {/* Brand */}
           <div>
             <div className="flex items-center mb-4">
