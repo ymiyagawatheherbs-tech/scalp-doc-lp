@@ -1645,6 +1645,31 @@ function Footer() {
           </div>
         </div>
 
+        {/* 運営会社情報 */}
+        <div className="border-t border-white/10 pt-8 mb-6">
+          <div className="flex flex-wrap gap-x-6 gap-y-1 justify-center mb-2">
+            {[
+              { label: "株式会社THE HERBS", href: null },
+              { label: "代表：宮川由美子", href: null },
+              { label: "兵庫県芦屋市南宮町3-10", href: null },
+              { label: "TEL: 0797-23-0364", href: "tel:0797230364" },
+              { label: "オフィシャルサイト", href: "https://the-herbs.co.jp" },
+              { label: "オンラインショップ", href: "https://herb-esthe.com" },
+              { label: "Instagram", href: "https://www.instagram.com/the_herbs_jp/" },
+            ].map((item) =>
+              item.href ? (
+                <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer"
+                  className="text-white/50 text-[11px] hover:text-white/80 transition-colors underline underline-offset-2 font-['Noto_Sans_JP']">
+                  {item.label}
+                </a>
+              ) : (
+                <span key={item.label} className="text-white/50 text-[11px] font-['Noto_Sans_JP']">{item.label}</span>
+              )
+            )}
+          </div>
+          <p className="text-white/35 text-[10px] text-center font-['Noto_Sans_JP']">設立：昭和61年4月24日｜化粧品製造業・化粧品製造販売業｜直営店：神戸阪急本館６階 / THE HERBSサロン / 植物美容学校</p>
+        </div>
+
         {/* Disclaimer */}
         <div className="border-t border-white/10 pt-8 mb-6">
           <p className="text-white/55 text-xs leading-relaxed font-['Noto_Sans_JP']">

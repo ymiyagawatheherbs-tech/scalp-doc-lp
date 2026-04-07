@@ -1018,6 +1018,29 @@ function Footer() {
           style={{ height: "56px", filter: "brightness(0) invert(1)", opacity: 0.7 }}
         />
       </div>
+      {/* 運営会社情報 */}
+      <div className="flex flex-wrap gap-x-5 gap-y-1 justify-center mb-2 px-4">
+        {[
+          { label: "株式会社THE HERBS", href: null },
+          { label: "代表：宮川由美子", href: null },
+          { label: "兵庫県芦屋市南宮町3-10", href: null },
+          { label: "TEL: 0797-23-0364", href: "tel:0797230364" },
+          { label: "オフィシャルサイト", href: "https://the-herbs.co.jp" },
+          { label: "オンラインショップ", href: "https://herb-esthe.com" },
+          { label: "Instagram", href: "https://www.instagram.com/the_herbs_jp/" },
+        ].map((item) =>
+          item.href ? (
+            <a key={item.label} href={item.href} target="_blank" rel="noopener noreferrer"
+              className="text-[11px] underline underline-offset-2 transition-colors"
+              style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'Noto Sans JP', sans-serif" }}>
+              {item.label}
+            </a>
+          ) : (
+            <span key={item.label} className="text-[11px]" style={{ color: "rgba(255,255,255,0.45)", fontFamily: "'Noto Sans JP', sans-serif" }}>{item.label}</span>
+          )
+        )}
+      </div>
+      <p className="text-[10px] mb-3" style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'Noto Sans JP', sans-serif" }}>設立：昭和61年4月24日｜化粧品製造業・化粧品製造販売業｜直営店：神戸阪急本館６階 / THE HERBSサロン / 植物美容学校</p>
       <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>
         © 2025 SCALP LABO / THE HERBS. All rights reserved.
       </p>
