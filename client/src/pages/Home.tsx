@@ -1319,7 +1319,7 @@ function FaqSection() {
     },
     {
       q: "薄毛以外のお悩みでも受けられますか？",
-      a: "はい、むしろ「まだ大丈夫」な段階からの定期チェックをおすすめしています。頭皮の状態を定期的に把握することが、日頃のケアに役立ちます。",
+      a: "はい、お一人お一人お悩みは異なりますので、何でもご相談ください。むしろ「まだ大丈夫」な段階からの定期チェックをおすすめしています。頭皮の状態を定期的に把握することが、日頃のケアに役立ちます。",
     },
     {
       q: "ボタニカルミスト（ハーブスチーマー）とは何ですか？",
@@ -1376,7 +1376,7 @@ function FaqSection() {
                 className="w-full text-left p-6 flex items-center justify-between bg-white hover:bg-[oklch(0.977_0.012_85)] transition-colors"
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
               >
-              <span className="font-sans-jp text-[oklch(0.22_0.045_42)] text-lg font-bold">
+              <span className="font-sans-jp text-[oklch(0.22_0.045_42)] font-bold" style={{fontSize: '17px'}}>
                 {faq.q}
                 </span>
                 <span
