@@ -54,8 +54,8 @@ function Nav() {
         borderBottom: scrolled ? "1px solid #e0e0e0" : "none",
       }}
     >
-      <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
-        <Link href="/">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between relative">
+        <Link href="/" className="flex items-center gap-2.5">
           <img
             src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_grayge_p_transparent_47bbd755.png"
             alt="SCALP LABO"
@@ -68,7 +68,37 @@ function Nav() {
                 : "brightness(0) invert(1)",
             }}
           />
+          <div className="flex flex-col leading-none">
+            <span
+              className="font-sans-jp font-bold tracking-widest transition-colors"
+              style={{ fontSize: "1.05rem", letterSpacing: "0.18em", color: scrolled ? "oklch(0.22 0.045 42)" : "rgba(255,255,255,0.95)" }}
+            >
+              スカルプラボ
+            </span>
+            <span
+              className="font-cormorant transition-colors"
+              style={{ fontSize: "0.6rem", letterSpacing: "0.2em", color: scrolled ? "oklch(0.55 0.08 70)" : "rgba(255,255,255,0.45)" }}
+            >
+              SCALP LABO
+            </span>
+          </div>
         </Link>
+
+        {/* 中央：presented by THE HERBS（デスクトップのみ） */}
+        <div className="hidden md:flex flex-col items-center absolute left-1/2 -translate-x-1/2">
+          <span
+            className="font-cormorant transition-colors"
+            style={{ fontSize: "0.58rem", letterSpacing: "0.22em", color: scrolled ? "oklch(0.55 0.06 70)" : "rgba(255,255,255,0.35)", textTransform: "uppercase" }}
+          >
+            presented by
+          </span>
+          <span
+            className="font-cormorant font-semibold transition-colors"
+            style={{ fontSize: "0.85rem", letterSpacing: "0.25em", color: scrolled ? "oklch(0.35 0.06 42)" : "rgba(255,255,255,0.75)", textTransform: "uppercase" }}
+          >
+            THE HERBS
+          </span>
+        </div>
 
         <div className="flex items-center gap-3">
 

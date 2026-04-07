@@ -62,9 +62,9 @@ function Nav() {
           scrolled ? "py-3 bg-[#0D1B2A]/95 backdrop-blur-md border-b border-[#C9A84C]/20 shadow-lg shadow-black/30" : "py-3 md:py-6 bg-transparent"
         }`}
       >
-        <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between">
-          {/* Logo: 完全ロゴ（マーク＋SCALP LABO＋Botanical Beauty Science縦並び） */}
-          <Link href="/men">
+        <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between relative">
+          {/* Logo: マーク＋スカルプラボ カタカナ表記 */}
+          <Link href="/men" className="flex items-center gap-2.5">
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_grayge_p_transparent_47bbd755.png"
               alt="SCALP LABO"
@@ -75,7 +75,37 @@ function Nav() {
                 filter: "brightness(0) invert(1)",
               }}
             />
+            <div className="flex flex-col leading-none">
+              <span
+                className="font-['Noto_Sans_JP'] font-bold tracking-widest"
+                style={{ fontSize: "1.05rem", color: "rgba(255,255,255,0.95)", letterSpacing: "0.18em" }}
+              >
+                スカルプラボ
+              </span>
+              <span
+                className="font-['Cormorant_Garamond']"
+                style={{ fontSize: "0.6rem", letterSpacing: "0.2em", color: "rgba(201,168,76,0.7)" }}
+              >
+                SCALP LABO for Men
+              </span>
+            </div>
           </Link>
+
+          {/* 中央：presented by THE HERBS（デスクトップのみ） */}
+          <div className="hidden md:flex flex-col items-center absolute left-1/2 -translate-x-1/2">
+            <span
+              className="font-['Cormorant_Garamond']"
+              style={{ fontSize: "0.58rem", letterSpacing: "0.22em", color: "rgba(255,255,255,0.35)", textTransform: "uppercase" }}
+            >
+              presented by
+            </span>
+            <span
+              className="font-['Cormorant_Garamond'] font-semibold"
+              style={{ fontSize: "0.85rem", letterSpacing: "0.25em", color: "rgba(201,168,76,0.75)", textTransform: "uppercase" }}
+            >
+              THE HERBS
+            </span>
+          </div>
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-8">

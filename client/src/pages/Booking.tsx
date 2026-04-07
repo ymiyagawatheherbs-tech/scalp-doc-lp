@@ -177,14 +177,23 @@ export default function Booking() {
       <link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho+B1:wght@400;600;700&family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet" />
 
       {/* ヘッダー */}
-      <header style={{ background: "oklch(0.22 0.045 42)", padding: "1rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
-        <a href="/" style={{ textDecoration: "none" }}>
+      <header style={{ background: "oklch(0.22 0.045 42)", padding: "0.75rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", position: "relative" }}>
+        <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.625rem" }}>
           <img
             src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_grayge_p_transparent_47bbd755.png"
             alt="SCALP LABO"
             style={{ height: "44px", width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)" }}
           />
+          <div style={{ display: "flex", flexDirection: "column", lineHeight: 1 }}>
+            <span style={{ fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 700, fontSize: "1rem", letterSpacing: "0.18em", color: "rgba(255,255,255,0.95)" }}>スカルプラボ</span>
+            <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "0.58rem", letterSpacing: "0.2em", color: "rgba(255,255,255,0.45)" }}>SCALP LABO</span>
+          </div>
         </a>
+        {/* 中央：presented by THE HERBS */}
+        <div style={{ position: "absolute", left: "50%", transform: "translateX(-50%)", display: "flex", flexDirection: "column", alignItems: "center" }}>
+          <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "0.55rem", letterSpacing: "0.22em", color: "rgba(255,255,255,0.35)", textTransform: "uppercase" }}>presented by</span>
+          <span style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: "0.82rem", letterSpacing: "0.25em", color: "rgba(255,255,255,0.75)", textTransform: "uppercase" }}>THE HERBS</span>
+        </div>
         <span style={{ fontSize: "0.75rem", color: "oklch(0.75 0.06 75)", letterSpacing: "0.05em" }}>ご予約フォーム</span>
       </header>
 
