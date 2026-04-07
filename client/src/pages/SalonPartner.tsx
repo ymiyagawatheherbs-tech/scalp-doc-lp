@@ -80,7 +80,7 @@ function Nav() {
             <div className="flex flex-col leading-none">
               <span
                 className="font-sans-jp font-bold tracking-widest transition-colors"
-                style={{ fontSize: "0.75rem", letterSpacing: "0.18em", color: scrolled ? "oklch(0.35 0.07 145)" : "rgba(255,255,255,0.95)" }}
+                style={{ fontSize: "0.75rem", letterSpacing: "0.18em", color: scrolled ? "oklch(0.35 0.050 130)" : "rgba(255,255,255,0.95)" }}
               >
                 スカルプラボ
               </span>
@@ -103,7 +103,7 @@ function Nav() {
             </span>
             <span
               className="font-cormorant font-semibold transition-colors"
-              style={{ fontSize: "0.85rem", letterSpacing: "0.25em", color: scrolled ? "oklch(0.35 0.07 145)" : "rgba(255,255,255,0.75)", textTransform: "uppercase" }}
+              style={{ fontSize: "0.85rem", letterSpacing: "0.25em", color: scrolled ? "oklch(0.35 0.050 130)" : "rgba(255,255,255,0.75)", textTransform: "uppercase" }}
             >
               THE HERBS
             </span>
@@ -141,7 +141,7 @@ function Nav() {
       {menuOpen && (
         <div className="fixed inset-0 z-40 flex flex-col pt-20 px-8" style={{ backgroundColor: "#f8f6f2" }}>
           <div className="flex flex-col gap-1 mb-8">
-            <p className="text-xs tracking-[0.3em] mb-4" style={{ color: "#3a5e35", fontFamily: "'Noto Sans JP', sans-serif" }}>MENU</p>
+            <p className="text-xs tracking-[0.3em] mb-4" style={{ color: "#5a7a52", fontFamily: "'Noto Sans JP', sans-serif" }}>MENU</p>
             {[
               { label: "コンセプト", href: "#concept" },
               { label: "サービス内容", href: "#service" },
@@ -209,13 +209,13 @@ function Hero() {
           className="max-w-xl transition-all duration-1000"
           style={{ opacity: loaded ? 1 : 0, transform: loaded ? "translateY(0)" : "translateY(30px)" }}
         >
-          <span className="text-xs tracking-[0.4em] uppercase block mb-6 font-medium" style={{ color: "#3a5e35" }}>
+          <span className="text-xs tracking-[0.4em] uppercase block mb-6 font-medium" style={{ color: "#5a7a52" }}>
             Scalp Labo Partner Program
           </span>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
             髪と頭皮の悩みを、<br />
-            <span style={{ color: "#3a5e35" }}>一緒に解決しませんか。</span>
+            <span style={{ color: "#5a7a52" }}>一緒に解決しませんか。</span>
           </h1>
           <p className="text-base leading-relaxed mb-4" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#444", lineHeight: "1.9" }}>
             薄毛・抜け毛・うねり・頭皮トラブル。<br />
@@ -243,9 +243,9 @@ function Hero() {
             <a
               href="#concept"
               className="inline-flex items-center justify-center px-8 py-4 font-bold text-sm tracking-wider transition-all duration-300 border-2"
-              style={{ borderColor: "#3a5e35", color: "#3a5e35", fontFamily: "'Noto Sans JP', sans-serif", backgroundColor: "transparent" }}
-              onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#3a5e35"; e.currentTarget.style.color = "#ffffff"; }}
-              onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#3a5e35"; }}
+              style={{ borderColor: "#5a7a52", color: "#5a7a52", fontFamily: "'Noto Sans JP', sans-serif", backgroundColor: "transparent" }}
+              onMouseEnter={e => { e.currentTarget.style.backgroundColor = "#5a7a52"; e.currentTarget.style.color = "#ffffff"; }}
+              onMouseLeave={e => { e.currentTarget.style.backgroundColor = "transparent"; e.currentTarget.style.color = "#5a7a52"; }}
             >
               コンセプトを見る
             </a>
@@ -264,7 +264,7 @@ function BlueOcean() {
   const { ref, inView } = useInView();
 
   return (
-    <section className="py-24" style={{ backgroundColor: "#1e2e1e" }} id="concept">
+    <section className="py-24" style={{ backgroundColor: "#2a3e2a" }} id="concept">
       <div ref={ref} className="max-w-6xl mx-auto px-6">
         <div
           className="text-center mb-16 transition-all duration-700"
@@ -307,7 +307,7 @@ function BlueOcean() {
               key={i}
               className="p-8 transition-all duration-700"
               style={{
-                backgroundColor: "#253e25",
+                backgroundColor: "#2a3e2a",
                 opacity: inView ? 1 : 0,
                 transform: inView ? "translateY(0)" : "translateY(30px)",
                 transitionDelay: `${i * 150}ms`,
@@ -327,7 +327,7 @@ function BlueOcean() {
         <div
           className="p-8 md:p-12 transition-all duration-700"
           style={{
-            backgroundColor: "#3a5e35",
+            backgroundColor: "#5a7a52",
             opacity: inView ? 1 : 0,
             transform: inView ? "translateY(0)" : "translateY(30px)",
             transitionDelay: "500ms",
@@ -342,7 +342,7 @@ function BlueOcean() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 text-center">
             {[
               { area: "美容サービス", desc: "スタイリング・施術の提供", color: "rgba(255,255,255,0.15)", textColor: "rgba(255,255,255,0.5)", note: "商品・施術が主役" },
-              { area: "THE HERBS SCALP LABO", desc: "頭皮の定期チェック＋ケアの習慣化", color: "#a8d5a2", textColor: "#1e2e1e", note: "習慣化が主役（ブルーオーシャン）", highlight: true },
+              { area: "THE HERBS SCALP LABO", desc: "頭皮の定期チェック＋ケアの習慣化", color: "#a8d5a2", textColor: "#2a3e2a", note: "習慣化が主役（ブルーオーシャン）", highlight: true },
               { area: "医療機関", desc: "診断・治療・処方", color: "rgba(255,255,255,0.15)", textColor: "rgba(255,255,255,0.5)", note: "疾患対応が主役" },
             ].map((pos, i) => (
               <div
@@ -350,16 +350,16 @@ function BlueOcean() {
                 className="p-6"
                 style={{ backgroundColor: pos.color }}
               >
-                <p className="text-xs tracking-widest mb-2" style={{ color: pos.highlight ? "#3a5e35" : "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>
+                <p className="text-xs tracking-widest mb-2" style={{ color: pos.highlight ? "#5a7a52" : "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>
                   {pos.highlight ? "◀ ここに参入 ▶" : "　"}
                 </p>
                 <h4 className="text-lg font-bold mb-2" style={{ fontFamily: "'Shippori Mincho', serif", color: pos.textColor }}>
                   {pos.area}
                 </h4>
-                <p className="text-sm mb-3" style={{ color: pos.highlight ? "#1e2e1e" : "rgba(255,255,255,0.6)", fontFamily: "'Noto Sans JP', sans-serif" }}>
+                <p className="text-sm mb-3" style={{ color: pos.highlight ? "#2a3e2a" : "rgba(255,255,255,0.6)", fontFamily: "'Noto Sans JP', sans-serif" }}>
                   {pos.desc}
                 </p>
-                <p className="text-xs" style={{ color: pos.highlight ? "#3a5e35" : "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif", fontWeight: pos.highlight ? "bold" : "normal" }}>
+                <p className="text-xs" style={{ color: pos.highlight ? "#5a7a52" : "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif", fontWeight: pos.highlight ? "bold" : "normal" }}>
                   {pos.note}
                 </p>
               </div>
@@ -382,7 +382,7 @@ function Concept() {
           className="text-center mb-16 transition-all duration-700"
           style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)" }}
         >
-          <span className="text-xs tracking-[0.4em] uppercase block mb-4 font-medium" style={{ color: "#3a5e35" }}>
+          <span className="text-xs tracking-[0.4em] uppercase block mb-4 font-medium" style={{ color: "#5a7a52" }}>
             Our Concept
           </span>
           <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
@@ -425,14 +425,14 @@ function Concept() {
                 transitionDelay: `${i * 150}ms`,
               }}
             >
-              <span className="text-4xl font-bold block mb-4" style={{ fontFamily: "'Cormorant Garamond', serif", color: "#3a5e35" }}>{item.num}</span>
+              <span className="text-4xl font-bold block mb-4" style={{ fontFamily: "'Cormorant Garamond', serif", color: "#5a7a52" }}>{item.num}</span>
               <h3 className="text-lg font-bold mb-3" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
                 {item.title}
               </h3>
               <p className="text-sm leading-relaxed mb-4" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#666", lineHeight: "1.8" }}>
                 {item.body}
               </p>
-              <p className="text-xs font-bold px-3 py-2 inline-block" style={{ backgroundColor: "#edf5e8", color: "#3a5e35", fontFamily: "'Noto Sans JP', sans-serif" }}>
+              <p className="text-xs font-bold px-3 py-2 inline-block" style={{ backgroundColor: "#eef5ea", color: "#5a7a52", fontFamily: "'Noto Sans JP', sans-serif" }}>
                 {item.accent}
               </p>
             </div>
@@ -443,7 +443,7 @@ function Concept() {
         <div
           className="p-8 md:p-12 transition-all duration-700"
           style={{
-            border: "2px solid #3a5e35",
+            border: "2px solid #5a7a52",
             opacity: inView ? 1 : 0,
             transform: inView ? "translateY(0)" : "translateY(30px)",
             transitionDelay: "500ms",
@@ -463,17 +463,17 @@ function Concept() {
               {
                 title: "THE HERBS SCALP LABの定期チェックモデル",
                 items: ["薄毛になる前に定期的にチェック", "問題が見つかれば施術・ケアへ", "マイクロスコープで経年変化を記録", "習慣化でお客様との長期関係"],
-                color: "#edf5e8",
+                color: "#eef5ea",
                 label: "これから創るモデル",
               },
             ].map((col, i) => (
               <div key={i} className="p-6" style={{ backgroundColor: col.color }}>
-                <span className="text-xs tracking-widest block mb-3" style={{ color: "#3a5e35", fontFamily: "'Noto Sans JP', sans-serif" }}>{col.label}</span>
+                <span className="text-xs tracking-widest block mb-3" style={{ color: "#5a7a52", fontFamily: "'Noto Sans JP', sans-serif" }}>{col.label}</span>
                 <h4 className="font-bold mb-4" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>{col.title}</h4>
                 <ul className="space-y-2">
                   {col.items.map((item, j) => (
                     <li key={j} className="flex items-start gap-2 text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#555" }}>
-                      <span style={{ color: "#3a5e35", flexShrink: 0 }}>✓</span>
+                      <span style={{ color: "#5a7a52", flexShrink: 0 }}>✓</span>
                       {item}
                     </li>
                   ))}
@@ -522,7 +522,7 @@ function WhatWeDo() {
           className="text-center mb-16 transition-all duration-700"
           style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)" }}
         >
-          <span className="text-xs tracking-[0.4em] uppercase block mb-4 font-medium" style={{ color: "#3a5e35" }}>
+          <span className="text-xs tracking-[0.4em] uppercase block mb-4 font-medium" style={{ color: "#5a7a52" }}>
             How We Work Together
           </span>
           <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
@@ -549,14 +549,14 @@ function WhatWeDo() {
                 />
               </div>
               <div className="w-full md:w-1/2">
-                <span className="text-xs tracking-[0.3em] block mb-3" style={{ color: "#3a5e35", fontFamily: "'Cormorant Garamond', serif" }}>{step.step}</span>
+                <span className="text-xs tracking-[0.3em] block mb-3" style={{ color: "#5a7a52", fontFamily: "'Cormorant Garamond', serif" }}>{step.step}</span>
                 <h3 className="text-2xl md:text-3xl font-bold mb-4" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
                   {step.title}
                 </h3>
                 <p className="text-sm leading-relaxed mb-4" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#555", lineHeight: "1.9" }}>
                   {step.body}
                 </p>
-                <p className="text-xs px-4 py-2 inline-block" style={{ backgroundColor: "#edf5e8", color: "#3a5e35", fontFamily: "'Noto Sans JP', sans-serif" }}>
+                <p className="text-xs px-4 py-2 inline-block" style={{ backgroundColor: "#eef5ea", color: "#5a7a52", fontFamily: "'Noto Sans JP', sans-serif" }}>
                   {step.note}
                 </p>
               </div>
@@ -573,7 +573,7 @@ function LineCtaSection() {
   const { ref, inView } = useInView();
 
   return (
-    <section className="py-24" style={{ backgroundColor: "#3a5e35" }}>
+    <section className="py-24" style={{ backgroundColor: "#5a7a52" }}>
       <div ref={ref} className="max-w-4xl mx-auto px-6">
         <div
           className="transition-all duration-700"
@@ -652,7 +652,7 @@ function WhoCanJoin() {
           className="text-center mb-16 transition-all duration-700"
           style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)" }}
         >
-          <span className="text-xs tracking-[0.4em] uppercase block mb-4 font-medium" style={{ color: "#3a5e35" }}>
+          <span className="text-xs tracking-[0.4em] uppercase block mb-4 font-medium" style={{ color: "#5a7a52" }}>
             Who Can Join
           </span>
           <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
@@ -700,7 +700,7 @@ function WhoCanJoin() {
                   <h3 className="font-bold text-lg" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
                     {item.title}
                   </h3>
-                  <span className="text-xs px-2 py-0.5" style={{ backgroundColor: "#edf5e8", color: "#3a5e35", fontFamily: "'Noto Sans JP', sans-serif" }}>
+                  <span className="text-xs px-2 py-0.5" style={{ backgroundColor: "#eef5ea", color: "#5a7a52", fontFamily: "'Noto Sans JP', sans-serif" }}>
                     {item.fit}
                   </span>
                 </div>
@@ -734,7 +734,7 @@ function ProgramSteps() {
           className="text-center mb-16 transition-all duration-700"
           style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)" }}
         >
-          <span className="text-xs tracking-[0.4em] uppercase block mb-4 font-medium" style={{ color: "#3a5e35" }}>
+          <span className="text-xs tracking-[0.4em] uppercase block mb-4 font-medium" style={{ color: "#5a7a52" }}>
             Certification Program
           </span>
           <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
@@ -780,7 +780,7 @@ function ProgramSteps() {
             >
               <div
                 className="flex-shrink-0 w-14 h-14 flex items-center justify-center font-bold text-lg"
-                style={{ backgroundColor: "#3a5e35", color: "#ffffff", fontFamily: "'Cormorant Garamond', serif" }}
+                style={{ backgroundColor: "#5a7a52", color: "#ffffff", fontFamily: "'Cormorant Garamond', serif" }}
               >
                 {step.num}
               </div>
@@ -789,7 +789,7 @@ function ProgramSteps() {
                   <h3 className="font-bold text-lg" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
                     {step.title}
                   </h3>
-                  <span className="text-xs px-2 py-0.5" style={{ backgroundColor: "#edf5e8", color: "#3a5e35", fontFamily: "'Noto Sans JP', sans-serif" }}>
+                  <span className="text-xs px-2 py-0.5" style={{ backgroundColor: "#eef5ea", color: "#5a7a52", fontFamily: "'Noto Sans JP', sans-serif" }}>
                     {step.time}
                   </span>
                 </div>
@@ -840,7 +840,7 @@ function Faq() {
           className="text-center mb-16 transition-all duration-700"
           style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)" }}
         >
-          <span className="text-xs tracking-[0.4em] uppercase block mb-4 font-medium" style={{ color: "#3a5e35" }}>
+          <span className="text-xs tracking-[0.4em] uppercase block mb-4 font-medium" style={{ color: "#5a7a52" }}>
             FAQ
           </span>
           <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
@@ -869,7 +869,7 @@ function Faq() {
                 </span>
                 <span
                   className="flex-shrink-0 w-6 h-6 flex items-center justify-center font-bold transition-transform duration-300 text-lg"
-                  style={{ transform: open === i ? "rotate(45deg)" : "rotate(0deg)", color: "#3a5e35" }}
+                  style={{ transform: open === i ? "rotate(45deg)" : "rotate(0deg)", color: "#5a7a52" }}
                 >
                   +
                 </span>
@@ -892,7 +892,7 @@ function Faq() {
 // ========== APP SECTION ==========
 function AppSection() {
   return (
-    <section className="py-24 border-t border-[#3a5e35]/20" style={{ backgroundColor: "#0a1628" }}>
+    <section className="py-24 border-t border-[#5a7a52]/20" style={{ backgroundColor: "#0a1628" }}>
       <div className="max-w-6xl mx-auto px-6">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Text */}
@@ -915,7 +915,7 @@ function AppSection() {
                 "定期チェックのリマインド機能",
               ].map((item, i) => (
                 <li key={i} className="flex items-center gap-3 text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.85)" }}>
-                  <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#3a5e35", fontSize: "10px", color: "#ffffff", fontWeight: 700 }}>✓</span>
+                  <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "#5a7a52", fontSize: "10px", color: "#ffffff", fontWeight: 700 }}>✓</span>
                   {item}
                 </li>
               ))}
@@ -967,7 +967,7 @@ function Cta() {
   const { ref, inView } = useInView();
 
   return (
-    <section className="py-24 text-center" style={{ backgroundColor: "#3a5e35" }} id="contact">
+    <section className="py-24 text-center" style={{ backgroundColor: "#5a7a52" }} id="contact">
       <div
         ref={ref}
         className="max-w-3xl mx-auto px-6 transition-all duration-700"
