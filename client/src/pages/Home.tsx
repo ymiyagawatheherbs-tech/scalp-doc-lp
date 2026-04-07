@@ -1201,6 +1201,7 @@ function BotanicalPowerSection() {
       kana: "ヴェール",
       theme: "くせ毛",
       concerns: ["うねり", "湿度で広がる", "乾燥しやすい硬毛", "毛量多い"],
+      effect: "ケイ素・ミネラル・フラボノイドを豊富に含む植物のブレンド。頭皮の水分バランスを整え、髪のうるおいをサポートするとされています。",
       accent: "oklch(0.60 0.080 145)",
     },
     {
@@ -1208,6 +1209,7 @@ function BotanicalPowerSection() {
       kana: "ティユール",
       theme: "皮脂バランス",
       concerns: ["直毛 / 皮脂過多", "フケ / 細くなった髪", "パーマが当たりにくい"],
+      effect: "収れん作用・抗菌作用が特性とされる植物のブレンド。過剰な皮脂分泌を穏やかに整え、頭皮環境のバランスをサポートするとされています。",
       accent: "oklch(0.68 0.055 105)",
     },
     {
@@ -1215,6 +1217,7 @@ function BotanicalPowerSection() {
       kana: "ルノン",
       theme: "内部ダメージ",
       concerns: ["髪の内部ダメージ", "乾燥しやすい柔らかい髪", "細い髪質 / 乾燥期のケア", "薬剤によるダメージ"],
+      effect: "抗炎症・皮膚修復作用が特性とされる植物のブレンド。頭皮の炎症を穏やかにおさえ、ダメージを受けた頭皮環境のケアをサポートするとされています。",
       accent: "oklch(0.72 0.070 75)",
     },
     {
@@ -1222,6 +1225,7 @@ function BotanicalPowerSection() {
       kana: "リラ",
       theme: "ダメージ保護",
       concerns: ["髪のダメージ保護", "紫外線ケア", "赤くなりやすい肌", "頭皮トラブル"],
+      effect: "抗酸化・保湿・血行促進作用が特性とされる植物のブレンド。外的刺激から頭皮を守り、うるおいを保つことをサポートするとされています。",
       accent: "oklch(0.62 0.060 295)",
     },
     {
@@ -1229,6 +1233,7 @@ function BotanicalPowerSection() {
       kana: "フー",
       theme: "エイジング",
       concerns: ["加齢によるうねり", "ボリューム", "皮脂・ニオイ"],
+      effect: "抗酸化・血行促進・引き締め作用が特性とされる植物のブレンド。加齢による頭皮の変化にアプローチし、ハリのある頭皮環境をサポートするとされています。",
       accent: "oklch(0.70 0.050 55)",
     },
     {
@@ -1236,6 +1241,7 @@ function BotanicalPowerSection() {
       kana: "グリーゼ",
       theme: "頭皮改善",
       concerns: ["弱った頭皮と髪", "細くなった髪", "うねり", "薬剤使用後の頭皮ケア"],
+      effect: "抗菌・抗炎症・鎮静作用が特性とされる植物のブレンド。頭皮の常在菌バランスを整え、すこやかな頭皮環境をサポートするとされています。",
       accent: "oklch(0.60 0.030 155)",
     },
   ];
@@ -1295,8 +1301,8 @@ function BotanicalPowerSection() {
                   {blend.theme}
                 </span>
               </div>
-              {/* 対応する悩み */}
-              <ul className="space-y-1">
+              {/* 対応する愉み */}
+              <ul className="space-y-1 mb-3">
                 {blend.concerns.map((c, j) => (
                   <li key={j} className="flex items-start gap-1.5">
                     <span className="text-[oklch(0.70_0.040_93)] text-xs mt-0.5 flex-shrink-0">—</span>
@@ -1304,6 +1310,10 @@ function BotanicalPowerSection() {
                   </li>
                 ))}
               </ul>
+              {/* 推測効果 */}
+              <div className="border-t border-[oklch(0.92_0.010_90)] pt-3">
+                <p className="font-sans-jp text-[oklch(0.50_0.030_65)] text-[10px] leading-relaxed italic">{blend.effect}</p>
+              </div>
             </div>
           ))}
         </div>
