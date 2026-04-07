@@ -319,6 +319,14 @@ function HeroSection() {
       {/* コンテンツ */}
       <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-6 pt-24 pb-16 md:py-32">
         <div className="max-w-2xl">
+          <div className="animate-fade-in-up opacity-0-init mb-6 md:mb-8">
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-cutout_146defca.webp"
+              alt="SCALP LABO - BOTANICAL BEAUTY SCIENCE"
+              className="h-14 md:h-20 w-auto object-contain"
+              style={{ filter: 'brightness(0) invert(1)', opacity: 0.92 }}
+            />
+          </div>
           <div className="hidden md:block animate-fade-in-up opacity-0-init">
             <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-6">
               Scalp Wellness Checkup
@@ -2123,13 +2131,11 @@ function Footer() {
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div className="w-8 h-8 rounded-full bg-[oklch(0.22_0.045_42)] border border-[oklch(0.72_0.12_70)/30] flex items-center justify-center">
-                <span className="text-[oklch(0.72_0.12_70)] text-xs font-cormorant font-semibold">S</span>
-              </div>
-              <div>
-                <div className="font-mincho text-white text-sm font-bold tracking-widest">THE HERBS SCALP LABO</div>
-                <div className="font-cormorant text-[oklch(0.72_0.12_70)] text-[10px] tracking-widest uppercase">Scalp Labo</div>
-              </div>
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo_76d63a41.png"
+                alt="SCALP LABO"
+                className="h-10 w-auto object-contain brightness-0 invert"
+              />
             </div>
             {/* THE HERBS ブランドリンク */}
             <div className="flex items-center gap-2 mb-4 pb-4 border-b border-white/10">
@@ -2188,7 +2194,7 @@ function Footer() {
         </div>
         <div className="text-center">
           <p className="font-sans-jp text-white/55 text-xs">
-            © 2025 THE HERBS SCALP LABO. All rights reserved.
+            © 2025 SCALP LABO / THE HERBS. All rights reserved.
           </p>
         </div>
       </div>

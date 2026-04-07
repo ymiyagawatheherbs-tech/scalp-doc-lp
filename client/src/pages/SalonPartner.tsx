@@ -924,11 +924,19 @@ function Cta() {
 function Footer() {
   return (
     <footer className="py-8 text-center" style={{ backgroundColor: "#1a1a1a" }}>
-      <div className="flex justify-center items-center gap-2 mb-3">
-        <img src={HERBS_LOGO} alt="THE HERBS" className="h-4 w-auto brightness-0 invert opacity-50" />
+      <div className="flex flex-col justify-center items-center gap-2 mb-3">
+        <img
+          src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo_76d63a41.png"
+          alt="SCALP LABO"
+          className="h-8 w-auto object-contain brightness-0 invert opacity-70"
+        />
+        <div className="flex items-center gap-1.5">
+          <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "10px", fontFamily: "'Cormorant Garamond', serif", letterSpacing: "0.15em" }}>presented by</span>
+          <img src={HERBS_LOGO} alt="THE HERBS" className="h-3 w-auto brightness-0 invert opacity-40" />
+        </div>
       </div>
       <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>
-        © 2025 THE HERBS SCALP LABO. All rights reserved.
+        © 2025 SCALP LABO / THE HERBS. All rights reserved.
       </p>
       <div className="mt-3 flex justify-center gap-6">
         <a href="/" className="text-xs transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}

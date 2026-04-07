@@ -33,7 +33,7 @@ const STORES = [
     checkHours: "頭皮チェック受付時間：12:00 〜 16:00（随時受付も可）",
     courses: ["free", "standard", "consult"],
     useSquare: false,
-    note: "担当者よりお電話またはLINEにてご返信いたします。",
+    note: "担当者よりメールまたはお電話にてご連絡いたします。",
   },
   {
     value: "salon",
@@ -161,7 +161,7 @@ export default function Booking() {
             ご予約を受け付けました
           </p>
           <p style={{ fontSize: "0.9rem", color: "oklch(0.45 0.04 42)", lineHeight: 1.8, marginBottom: "2rem" }}>
-            ご予約内容を確認後、担当者よりお電話またはLINEにてご連絡いたします。<br />
+            ご予約内容を確認後、担当者よりメールまたはお電話にてご連絡いたします。<br />
             しばらくお待ちください。
           </p>
           <a href="/" style={{ display: "inline-block", padding: "0.75rem 2rem", background: "oklch(0.22 0.045 42)", color: "white", fontSize: "0.875rem", fontWeight: 500, textDecoration: "none", borderRadius: "2px" }}>
@@ -485,7 +485,7 @@ export default function Booking() {
               </button>
 
               <p style={{ fontSize: "0.75rem", color: "oklch(0.6 0.04 75)", textAlign: "center", lineHeight: 1.7 }}>
-                ※ 担当者よりメールにてご連絡いたします。<br />
+                ※ 担当者よりメールまたはお電話にてご連絡いたします。<br />
                 個人情報は予約確認の目的のみに使用し、第三者に提供しません。
               </p>
             </div>
@@ -493,6 +493,28 @@ export default function Booking() {
         )}
 
       </main>
+
+      {/* フッター */}
+      <footer style={{ backgroundColor: "#1a1a1a", padding: "2rem 1.5rem", textAlign: "center" }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "0.5rem", marginBottom: "0.75rem" }}>
+          <img
+            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo_76d63a41.png"
+            alt="SCALP LABO"
+            style={{ height: "2rem", width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.7 }}
+          />
+          <div style={{ display: "flex", alignItems: "center", gap: "0.375rem" }}>
+            <span style={{ color: "rgba(255,255,255,0.3)", fontSize: "10px", fontFamily: "'Cormorant Garamond', serif", letterSpacing: "0.15em" }}>presented by</span>
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
+              alt="THE HERBS"
+              style={{ height: "0.75rem", width: "auto", filter: "brightness(0) invert(1)", opacity: 0.4 }}
+            />
+          </div>
+        </div>
+        <p style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>
+          © 2025 SCALP LABO / THE HERBS. All rights reserved.
+        </p>
+      </footer>
     </div>
   );
 }

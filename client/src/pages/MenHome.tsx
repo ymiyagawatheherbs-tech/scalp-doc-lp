@@ -235,6 +235,16 @@ function Hero() {
 
       <div className="relative max-w-7xl mx-auto px-5 md:px-6 pt-20 md:pt-32 pb-16 md:pb-20">
         <div className="max-w-2xl">
+          {/* SCALP LABO Logo */}
+          <div className="mb-6 md:mb-8">
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-cutout_146defca.webp"
+              alt="SCALP LABO - BOTANICAL BEAUTY SCIENCE"
+              className="h-12 md:h-18 w-auto object-contain"
+              style={{ filter: 'brightness(0) invert(1)', opacity: 0.9 }}
+            />
+          </div>
+
           {/* Eyebrow */}
           <div className="hidden md:flex items-center gap-3 mb-8">
             <div className="h-px w-12 bg-[#C9A84C]" />
@@ -1613,8 +1623,12 @@ function Footer() {
           {/* Brand */}
           <div>
             <div className="mb-4">
-              <span className="font-['Cormorant_Garamond'] italic text-[#C9A84C] text-xs tracking-[0.3em] uppercase block">Scalp Labo</span>
-              <span className="text-white font-['Shippori_Mincho'] text-2xl">for Men</span>
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-labo-logo_76d63a41.png"
+                alt="SCALP LABO"
+                className="h-10 w-auto object-contain brightness-0 invert"
+              />
+              <span className="text-white/60 font-['Noto_Sans_JP'] text-xs tracking-widest">for Men</span>
             </div>
             {/* THE HERBS ブランドリンク */}
             <div className="flex items-center gap-2 mb-4 pb-4 border-b border-white/10">
@@ -1674,7 +1688,7 @@ function Footer() {
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/50 text-xs font-['Noto_Sans_JP']">
-            © 2025 THE HERBS SCALP LABO for Men. All rights reserved.
+            © 2025 SCALP LABO / THE HERBS. All rights reserved.
           </p>
           <Link href="/" className="text-[#C9A84C]/50 hover:text-[#C9A84C] text-xs transition-colors font-['Noto_Sans_JP']">
             ← THE HERBS SCALP LABO（女性版）はこちら
