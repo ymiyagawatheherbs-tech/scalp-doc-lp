@@ -178,57 +178,20 @@ function Nav() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between">
-          {/* ロゴ：アプリアイコン風（濃い茶色角丸背景＋マーク）＋文字 */}
-          <a href="/" className="flex items-center gap-2.5 md:gap-3">
-            {/* アイコン部分：濃い茶色角丸四角にグレージュマーク */}
-            <div
-              className="flex items-center justify-center rounded-xl transition-all"
+          {/* ロゴ：完全ロゴ（マーク＋SCALP LABO＋Botanical Beauty Science縦並び） */}
+          <a href="/" className="flex items-center">
+            <img
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_grayge_p_transparent_47bbd755.png"
+              alt="SCALP LABO"
+              className="object-contain transition-all"
               style={{
-                width: "40px",
-                height: "40px",
-                background: scrolled
-                  ? "oklch(0.22 0.045 42)"
-                  : "rgba(255,255,255,0.15)",
-                backdropFilter: scrolled ? "none" : "blur(4px)",
-                border: scrolled ? "none" : "1px solid rgba(255,255,255,0.2)",
-                flexShrink: 0,
+                height: "56px",
+                width: "auto",
+                filter: scrolled
+                  ? "none"
+                  : "brightness(0) invert(1)",
               }}
-            >
-              <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
-                alt="SCALP LABO mark"
-                style={{
-                  width: "26px",
-                  height: "26px",
-                  objectFit: "contain",
-                  filter: "brightness(10) saturate(0.3)",
-                }}
-              />
-            </div>
-            {/* 文字部分 */}
-            <div className="flex flex-col justify-center gap-0">
-              <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-greige-transparent_123f5ff1.png"
-                alt="SCALP LABO"
-                className="w-auto object-contain transition-all"
-                style={{
-                  height: "16px",
-                  filter: scrolled
-                    ? "brightness(0.35) sepia(1) saturate(0.5)"
-                    : "brightness(0) invert(1)",
-                }}
-              />
-              <span
-                className="font-cormorant tracking-[0.18em] uppercase leading-none"
-                style={{
-                  fontSize: "8px",
-                  color: scrolled ? "rgba(80,55,30,0.6)" : "rgba(255,255,255,0.55)",
-                  marginTop: "3px",
-                }}
-              >
-                Botanical Beauty Science
-              </span>
-            </div>
+            />
           </a>
 
           {/* デスクトップナビ */}
@@ -2129,18 +2092,12 @@ function Footer() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid md:grid-cols-3 gap-12 mb-12">
           <div>
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center mb-4">
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
-                alt="SCALP LABO mark"
-                className="h-10 w-auto object-contain"
-                style={{ filter: "brightness(0) invert(1)", opacity: 0.85 }}
-              />
-              <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-greige-transparent_123f5ff1.png"
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_grayge_p_transparent_47bbd755.png"
                 alt="SCALP LABO"
-                className="h-8 w-auto object-contain"
-                style={{ filter: "brightness(0) invert(1)", opacity: 0.85 }}
+                className="w-auto object-contain"
+                style={{ height: "64px", filter: "brightness(0) invert(1)", opacity: 0.85 }}
               />
             </div>
             {/* THE HERBS ブランドリンク */}

@@ -56,55 +56,18 @@ function Nav() {
     >
       <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between">
         <Link href="/">
-          <div className="flex items-center gap-2.5 md:gap-3 cursor-pointer">
-            {/* アイコン部分 */}
-            <div
-              className="flex items-center justify-center rounded-xl transition-all"
-              style={{
-                width: "40px",
-                height: "40px",
-                background: "oklch(0.22 0.045 42)",
-                flexShrink: 0,
-              }}
-            >
-              <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
-                alt="SCALP LABO mark"
-                style={{
-                  width: "26px",
-                  height: "26px",
-                  objectFit: "contain",
-                  filter: "brightness(10) saturate(0.3)",
-                }}
-              />
-            </div>
-            {/* 文字部分 */}
-            <div className="flex flex-col justify-center gap-0">
-              <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-greige-transparent_123f5ff1.png"
-                alt="SCALP LABO"
-                className="w-auto object-contain transition-all"
-                style={{
-                  height: "16px",
-                  filter: scrolled
-                    ? "brightness(0.35) sepia(1) saturate(0.5)"
-                    : "brightness(0) invert(1)",
-                }}
-              />
-              <span
-                style={{
-                  fontSize: "8px",
-                  color: scrolled ? "rgba(80,55,30,0.6)" : "rgba(255,255,255,0.55)",
-                  letterSpacing: "0.18em",
-                  textTransform: "uppercase",
-                  marginTop: "3px",
-                  fontFamily: "'Cormorant Garamond', serif",
-                }}
-              >
-                Botanical Beauty Science
-              </span>
-            </div>
-          </div>
+          <img
+            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_grayge_p_transparent_47bbd755.png"
+            alt="SCALP LABO"
+            className="object-contain transition-all cursor-pointer"
+            style={{
+              height: "56px",
+              width: "auto",
+              filter: scrolled
+                ? "none"
+                : "brightness(0) invert(1)",
+            }}
+          />
         </Link>
 
         <div className="flex items-center gap-3">
@@ -956,16 +919,12 @@ function Cta() {
 function Footer() {
   return (
     <footer className="py-8 text-center" style={{ backgroundColor: "#1a1a1a" }}>
-      <div className="flex items-center justify-center gap-2 mb-3">
+      <div className="flex items-center justify-center mb-3">
         <img
-          src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
-          alt="SCALP LABO mark"
-          className="h-8 w-auto object-contain brightness-0 invert opacity-70"
-        />
-        <img
-          src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-greige-transparent_123f5ff1.png"
+          src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_grayge_p_transparent_47bbd755.png"
           alt="SCALP LABO"
-          className="h-5 w-auto object-contain brightness-0 invert opacity-70"
+          className="w-auto object-contain"
+          style={{ height: "56px", filter: "brightness(0) invert(1)", opacity: 0.7 }}
         />
       </div>
       <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>
