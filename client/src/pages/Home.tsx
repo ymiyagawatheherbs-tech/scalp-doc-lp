@@ -1308,6 +1308,16 @@ function BotanicalPowerSection() {
           ))}
         </div>
 
+        {/* ハーブジャー画像 */}
+        <div className={`mt-6 overflow-hidden transition-all duration-700 delay-300 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`} style={{ height: '260px' }}>
+          <img
+            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/094A5819_cb840e92.jpg"
+            alt="THE HERBSのハーブジャーコレクション"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: 'center 60%' }}
+          />
+        </div>
+
         {/* ブレンドケアの説明 */}
         <div className={`mt-12 bg-[oklch(0.25_0.050_65)] p-8 md:p-10 transition-all duration-700 delay-400 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <div className="grid md:grid-cols-3 gap-8 items-center">
