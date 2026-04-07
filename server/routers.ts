@@ -209,6 +209,22 @@ export const appRouter = router({
         return { success: true };
       }),
 
+    // パスワード変更（スタッフ本人またはManus管理者）
+    changePassword: staffOrManusProcedure
+      .input(z.object({ email: z.string().email(), newPassword: z.string().min(8) }))
+      .mutation(async ({ input }) => {
+        const db = await getDb();
+        if (!db) throw new Error("DB unavailable");
+        const { eq } = await import("drizzle-orm");
+        const { hashPassword } = await import("./staffAuth");
+        const passwordHash = await hashPassword(input.newPassword);
+        const result = await db
+          .update(staffAccounts)
+          .set({ passwordHash })
+          .where(eq(staffAccounts.email, input.email.toLowerCase().trim()));
+        return { success: true };
+      }),
+
     // スタッフ一覧（管理者のみ）
     list: protectedProcedure.query(async () => {
       const db = await getDb();

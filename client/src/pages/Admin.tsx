@@ -59,6 +59,32 @@ export default function Admin() {
     },
   });
 
+  // パスワード変更フォームの状態
+  const [showPwChange, setShowPwChange] = useState(false);
+  const [pwEmail, setPwEmail] = useState("");
+  const [pwNew, setPwNew] = useState("");
+  const [pwConfirm, setPwConfirm] = useState("");
+
+  const changePassword = trpc.staff.changePassword.useMutation({
+    onSuccess: () => {
+      toast.success("パスワードを変更しました");
+      setShowPwChange(false);
+      setPwEmail("");
+      setPwNew("");
+      setPwConfirm("");
+    },
+    onError: (err) => {
+      toast.error(err.message || "パスワード変更に失敗しました");
+    },
+  });
+
+  const handlePwChange = () => {
+    if (!pwEmail || !pwNew || !pwConfirm) { toast.error("すべての項目を入力してください"); return; }
+    if (pwNew !== pwConfirm) { toast.error("新しいパスワードが一致しません"); return; }
+    if (pwNew.length < 8) { toast.error("パスワードは8文字以上で設定してください"); return; }
+    changePassword.mutate({ email: pwEmail, newPassword: pwNew });
+  };
+
   const staffLogout = trpc.staff.logout.useMutation({
     onSuccess: () => {
       window.location.href = "/staff-login";
@@ -359,6 +385,45 @@ export default function Admin() {
         <p style={{ fontSize: "0.75rem", color: "#bbb", textAlign: "right", marginTop: "1rem" }}>
           表示件数: {filtered.length} / {allReservations.length} 件
         </p>
+
+        {/* パスワード変更セクション */}
+        <div style={{ marginTop: "3rem", borderTop: "1px solid #e8ddd0", paddingTop: "2rem" }}>
+          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1rem" }}>
+            <h2 style={{ fontSize: "1rem", fontWeight: 700, color: "#2a1a0a", margin: 0 }}>スタッフパスワード変更</h2>
+            <button
+              onClick={() => setShowPwChange(!showPwChange)}
+              style={{ padding: "0.4rem 1rem", background: showPwChange ? "#f5f0ea" : "#2a1a0a", color: showPwChange ? "#555" : "#c9a96e", border: "none", borderRadius: "4px", fontSize: "0.82rem", fontWeight: 700, cursor: "pointer", fontFamily: "'Noto Sans JP', sans-serif" }}
+            >
+              {showPwChange ? "閉じる" : "パスワードを変更する"}
+            </button>
+          </div>
+          {showPwChange && (
+            <div style={{ background: "white", border: "1px solid #e8ddd0", borderRadius: "6px", padding: "1.5rem", maxWidth: "480px" }}>
+              <p style={{ fontSize: "0.8rem", color: "#888", marginBottom: "1.25rem", lineHeight: 1.7 }}>
+                変更したいスタッフのメールアドレスと新しいパスワードを入力してください。
+              </p>
+              {[{ label: "スタッフのメールアドレス", type: "email", value: pwEmail, setter: setPwEmail, placeholder: "cx1@the-herbs.co.jp" }, { label: "新しいパスワード", type: "password", value: pwNew, setter: setPwNew, placeholder: "8文字以上" }, { label: "新しいパスワード（確認）", type: "password", value: pwConfirm, setter: setPwConfirm, placeholder: "再入力" }].map(({ label, type, value, setter, placeholder }) => (
+                <div key={label} style={{ marginBottom: "1rem" }}>
+                  <label style={{ display: "block", fontSize: "0.78rem", color: "#555", marginBottom: "0.3rem", fontWeight: 600 }}>{label}</label>
+                  <input
+                    type={type}
+                    value={value}
+                    onChange={(e) => setter(e.target.value)}
+                    placeholder={placeholder}
+                    style={{ width: "100%", padding: "0.55rem 0.75rem", border: "1.5px solid #e0d8d0", borderRadius: "4px", fontSize: "0.85rem", color: "#333", background: "#fdfaf7", outline: "none", fontFamily: "'Noto Sans JP', sans-serif", boxSizing: "border-box" }}
+                  />
+                </div>
+              ))}
+              <button
+                onClick={handlePwChange}
+                disabled={changePassword.isPending}
+                style={{ width: "100%", padding: "0.65rem", background: "#2a1a0a", color: "#c9a96e", border: "none", borderRadius: "4px", fontSize: "0.88rem", fontWeight: 700, cursor: changePassword.isPending ? "not-allowed" : "pointer", fontFamily: "'Noto Sans JP', sans-serif", letterSpacing: "0.05em", opacity: changePassword.isPending ? 0.7 : 1 }}
+              >
+                {changePassword.isPending ? "変更中..." : "パスワードを変更する"}
+              </button>
+            </div>
+          )}
+        </div>
       </main>
     </div>
   );
