@@ -201,29 +201,8 @@ function Nav() {
             </div>
           </a>
 
-          {/* SCALP LABOロゴ — スマホ中央 */}
-          <div className={`md:hidden flex items-center transition-all duration-500 ${
-            scrolled ? "opacity-0 pointer-events-none" : "opacity-100"
-          }`}>
-            <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-transparent_0357bebe.png"
-              alt="SCALP LABO"
-              className="h-6 w-auto object-contain"
-            />
-          </div>
-
           {/* デスクトップナビ */}
           <div className="hidden md:flex items-center gap-8">
-            {/* SCALP LABOロゴ — デスクトップ中央 */}
-            <div className={`flex items-center transition-all duration-500 ${
-              scrolled ? "opacity-0 pointer-events-none" : "opacity-100"
-            }`}>
-              <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-transparent_0357bebe.png"
-                alt="SCALP LABO"
-                className="h-7 w-auto object-contain"
-              />
-            </div>
             {navLinks.map((item) => (
               <a
                 key={item.label}
@@ -317,13 +296,6 @@ function HeroSection() {
       {/* コンテンツ */}
       <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-6 pt-24 pb-16 md:py-32">
         <div className="max-w-2xl">
-          <div className="animate-fade-in-up opacity-0-init mb-6 md:mb-8">
-            <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-transparent_0357bebe.png"
-              alt="SCALP LABO - BOTANICAL BEAUTY SCIENCE"
-              className="h-14 md:h-20 w-auto object-contain"
-            />
-          </div>
           <div className="hidden md:block animate-fade-in-up opacity-0-init">
             <span className="font-cormorant text-[oklch(0.72_0.12_70)] text-sm tracking-[0.3em] uppercase block mb-6">
               Scalp Wellness Checkup

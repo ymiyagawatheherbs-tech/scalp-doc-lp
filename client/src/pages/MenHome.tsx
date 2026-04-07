@@ -82,29 +82,8 @@ function Nav() {
             </div>
           </Link>
 
-          {/* SCALP LABOロゴ — スマホ中央 */}
-          <div className={`md:hidden flex items-center transition-all duration-500 ${
-            scrolled ? "opacity-0 pointer-events-none" : "opacity-100"
-          }`}>
-            <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-transparent_0357bebe.png"
-              alt="SCALP LABO"
-              className="h-6 w-auto object-contain"
-            />
-          </div>
-
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-8">
-            {/* SCALP LABOロゴ — デスクトップ中央 */}
-            <div className={`flex items-center transition-all duration-500 ${
-              scrolled ? "opacity-0 pointer-events-none" : "opacity-100"
-            }`}>
-              <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-transparent_0357bebe.png"
-                alt="SCALP LABO"
-                className="h-7 w-auto object-contain"
-              />
-            </div>
             {navLinks.map((link) => (
               <button
                 key={link.href}
@@ -233,15 +212,6 @@ function Hero() {
 
       <div className="relative max-w-7xl mx-auto px-5 md:px-6 pt-20 md:pt-32 pb-16 md:pb-20">
         <div className="max-w-2xl">
-          {/* SCALP LABO Logo */}
-          <div className="mb-6 md:mb-8">
-            <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-transparent_0357bebe.png"
-              alt="SCALP LABO - BOTANICAL BEAUTY SCIENCE"
-              className="h-12 md:h-18 w-auto object-contain"
-            />
-          </div>
-
           {/* Eyebrow */}
           <div className="hidden md:flex items-center gap-3 mb-8">
             <div className="h-px w-12 bg-[#C9A84C]" />
