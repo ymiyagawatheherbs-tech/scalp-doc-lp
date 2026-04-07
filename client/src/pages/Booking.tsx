@@ -58,6 +58,7 @@ const HANKYU_TIME_SLOTS_OTHER = [
 type FormState = {
   name: string;
   phone: string;
+  email: string;
   desiredDate: string;
   desiredTime: string;
   plan: string;
@@ -102,6 +103,7 @@ export default function Booking() {
   const [form, setForm] = useState<FormState>({
     name: "",
     phone: "",
+    email: "",
     desiredDate: "",
     desiredTime: "",
     plan: "",
@@ -138,6 +140,7 @@ export default function Booking() {
     createReservation.mutate({
       name: form.name.trim(),
       phone: form.phone.trim(),
+      email: form.email.trim() || undefined,
       desiredDate: form.desiredDate,
       desiredTime: form.desiredTime,
       plan: form.plan as "free" | "standard" | "personal" | "consult",
@@ -240,7 +243,7 @@ export default function Booking() {
                 type="button"
                 onClick={() => {
                   setSelectedStore(s.value);
-                  setForm({ name: "", phone: "", desiredDate: "", desiredTime: "", plan: "", message: "" });
+                  setForm({ name: "", phone: "", email: "", desiredDate: "", desiredTime: "", plan: "", message: "" });
                   setErrors({});
                 }}
                 style={{
@@ -375,6 +378,20 @@ export default function Booking() {
                   style={errors.phone ? { ...inputStyle, borderColor: "#ef4444" } : inputStyle}
                 />
                 {errors.phone && <p style={errorStyle}>{errors.phone}</p>}
+              </div>
+
+              {/* メールアドレス */}
+              <div>
+                <label style={labelStyle}>メールアドレス</label>
+                <input
+                  type="email"
+                  placeholder="example@email.com"
+                  value={form.email}
+                  onChange={(e) => setForm({ ...form, email: e.target.value })}
+                  style={errors.email ? { ...inputStyle, borderColor: "#ef4444" } : inputStyle}
+                />
+                {errors.email && <p style={errorStyle}>{errors.email}</p>}
+                <p style={{ fontSize: "0.72rem", color: "oklch(0.55 0.04 75)", marginTop: "0.3rem" }}>確認メールをお送りする際に使用します（任意）</p>
               </div>
 
               {/* ご希望日 */}
