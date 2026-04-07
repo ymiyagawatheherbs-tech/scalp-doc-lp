@@ -1,15 +1,16 @@
 import { COOKIE_NAME } from "@shared/const";
 import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
-import { publicProcedure, protectedProcedure, router } from "./_core/trpc";
+import { publicProcedure, protectedProcedure, staffOrManusProcedure, router } from "./_core/trpc";
 import { notifyOwner } from "./_core/notification";
 import { getDb } from "./db";
-import { reservations, scalpImages } from "../drizzle/schema";
+import { reservations, scalpImages, staffAccounts } from "../drizzle/schema";
+import { authenticateStaff, verifyStaffToken, createStaffAccount, STAFF_JWT_COOKIE } from "./staffAuth";
 import { storagePut } from "./storage";
 import { desc } from "drizzle-orm";
 import { z } from "zod";
 import { nanoid } from "nanoid";
-import { sendBookingNotification, sendCustomerConfirmation } from "./mailer";
+import { sendBookingNotification, sendCustomerConfirmation, sendBookingConfirmed } from "./mailer";
 
 export const appRouter = router({
   system: systemRouter,
@@ -110,8 +111,8 @@ export const appRouter = router({
       return db.select().from(reservations).orderBy(desc(reservations.createdAt)).limit(100);
     }),
 
-    // 管理者向け：ステータス更新（ログイン必須）
-    updateStatus: protectedProcedure
+    // 管理者・スタッフ向け：ステータス更新（スタッフまたはManus認証必須）
+    updateStatus: staffOrManusProcedure
       .input(
         z.object({
           id: z.number(),
@@ -122,6 +123,33 @@ export const appRouter = router({
         const db = await getDb();
         if (!db) throw new Error("DB unavailable");
         const { eq } = await import("drizzle-orm");
+
+        // 確定に変更する場合、お客様にメール通知
+        if (input.status === "confirmed") {
+          const [reservation] = await db
+            .select()
+            .from(reservations)
+            .where(eq(reservations.id, input.id))
+            .limit(1);
+          if (reservation?.email) {
+            const courseMap: Record<string, string> = {
+              free: "free_check",
+              standard: "regular_care",
+              personal: "regular_care",
+              consult: "consultation",
+            };
+            await sendBookingConfirmed({
+              name: reservation.name,
+              email: reservation.email,
+              course: courseMap[reservation.plan] ?? reservation.plan,
+              preferredDate: reservation.desiredDate,
+              preferredTime: reservation.desiredTime,
+              storeName: "THE HERBS神戸阪急店",
+              phone: reservation.phone,
+            }).catch((err) => console.error("[reservation] booking confirmed mail failed:", err));
+          }
+        }
+
         await db
           .update(reservations)
           .set({ status: input.status })
@@ -129,11 +157,66 @@ export const appRouter = router({
         return { success: true };
       }),
 
-    // 管理者向け：全件取得（ログイン必須）
-    adminList: protectedProcedure.query(async () => {
+    // 管理者向け：全件取得（スタッフまたはManus認証必須）
+    adminList: staffOrManusProcedure.query(async () => {
       const db = await getDb();
       if (!db) return [];
       return db.select().from(reservations).orderBy(desc(reservations.createdAt)).limit(500);
+    }),
+  }),
+
+  /**
+   * スタッフ認証ルーター
+   */
+  staff: router({
+    // ログイン
+    login: publicProcedure
+      .input(z.object({ email: z.string().email(), password: z.string().min(1) }))
+      .mutation(async ({ input, ctx }) => {
+        const result = await authenticateStaff(input.email, input.password);
+        if (!result) throw new Error("メールアドレスまたはパスワードが正しくありません");
+        // Cookieにセット
+        (ctx.res as any).setHeader(
+          "Set-Cookie",
+          `${STAFF_JWT_COOKIE}=${result.token}; Path=/; HttpOnly; SameSite=Lax; Max-Age=28800`
+        );
+        return { success: true, staff: result.staff };
+      }),
+
+    // ログアウト
+    logout: publicProcedure.mutation(async ({ ctx }) => {
+      (ctx.res as any).setHeader(
+        "Set-Cookie",
+        `${STAFF_JWT_COOKIE}=; Path=/; HttpOnly; SameSite=Lax; Max-Age=0`
+      );
+      return { success: true };
+    }),
+
+    // 現在のセッション確認
+    me: publicProcedure.query(async ({ ctx }) => {
+      const cookieHeader = (ctx.req as any).headers.cookie ?? "";
+      const match = cookieHeader.match(new RegExp(`${STAFF_JWT_COOKIE}=([^;]+)`));
+      if (!match) return null;
+      return verifyStaffToken(match[1]);
+    }),
+
+    // スタッフアカウント作成（管理者のみ：Manus OAuth認証済みユーザー）
+    createAccount: protectedProcedure
+      .input(z.object({ name: z.string().min(1), email: z.string().email(), password: z.string().min(8) }))
+      .mutation(async ({ input }) => {
+        const ok = await createStaffAccount(input.name, input.email, input.password);
+        if (!ok) throw new Error("アカウント作成に失敗しました（メールアドレスが重複している可能性があります）");
+        return { success: true };
+      }),
+
+    // スタッフ一覧（管理者のみ）
+    list: protectedProcedure.query(async () => {
+      const db = await getDb();
+      if (!db) return [];
+      return db
+        .select({ id: staffAccounts.id, name: staffAccounts.name, email: staffAccounts.email, active: staffAccounts.active, createdAt: staffAccounts.createdAt })
+        .from(staffAccounts)
+        .orderBy(desc(staffAccounts.createdAt));
     }),
   }),
 

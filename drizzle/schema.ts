@@ -81,3 +81,23 @@ export const scalpImages = mysqlTable("scalp_images", {
 
 export type ScalpImage = typeof scalpImages.$inferSelect;
 export type InsertScalpImage = typeof scalpImages.$inferInsert;
+
+/**
+ * スタッフテーブル — メール+パスワード認証で管理画面にログインするスタッフアカウント
+ */
+export const staffAccounts = mysqlTable("staff_accounts", {
+  id: int("id").autoincrement().primaryKey(),
+  /** スタッフ名 */
+  name: varchar("name", { length: 64 }).notNull(),
+  /** ログイン用メールアドレス */
+  email: varchar("email", { length: 320 }).notNull().unique(),
+  /** bcryptハッシュ化されたパスワード */
+  passwordHash: varchar("passwordHash", { length: 256 }).notNull(),
+  /** 有効フラグ */
+  active: int("active").default(1).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type StaffAccount = typeof staffAccounts.$inferSelect;
+export type InsertStaffAccount = typeof staffAccounts.$inferInsert;

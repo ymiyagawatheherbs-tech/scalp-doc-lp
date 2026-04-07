@@ -1,15 +1,15 @@
 /**
  * 管理者向け予約一覧管理画面
- * ログイン必須（Manus OAuth）
+ * スタッフ認証（Cookie JWT）またはManus OAuthでアクセス可能
  */
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
-import { getLoginUrl } from "@/const";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const STATUS_LABELS: Record<string, { label: string; color: string; bg: string }> = {
-  pending:   { label: "受付中",   color: "#92400e", bg: "#fef3c7" },
-  confirmed: { label: "確定",     color: "#065f46", bg: "#d1fae5" },
+  pending:   { label: "受付中",     color: "#92400e", bg: "#fef3c7" },
+  confirmed: { label: "確定",       color: "#065f46", bg: "#d1fae5" },
   cancelled: { label: "キャンセル", color: "#991b1b", bg: "#fee2e2" },
 };
 
@@ -26,20 +26,46 @@ const GENDER_LABELS: Record<string, string> = {
 };
 
 export default function Admin() {
-  const { user, loading, isAuthenticated } = useAuth();
+  // Manus OAuth認証
+  const { isAuthenticated: isManusAuth, loading: manusLoading } = useAuth();
+  // スタッフ認証（Cookie JWT）
+  const { data: staffUser, isLoading: staffLoading } = trpc.staff.me.useQuery(undefined, {
+    refetchOnWindowFocus: false,
+    retry: false,
+  });
+
+  const isAuthenticated = isManusAuth || !!staffUser;
+  const loading = manusLoading || staffLoading;
+
   const [filter, setFilter] = useState<"all" | "pending" | "confirmed" | "cancelled">("all");
   const [search, setSearch] = useState("");
 
-  const { data: reservations, isLoading, refetch } = trpc.reservation.adminList.useQuery(undefined, {
-    enabled: isAuthenticated,
+  const { data: reservations, isLoading: listLoading, refetch } = trpc.reservation.adminList.useQuery(undefined, {
+    enabled: isAuthenticated, // Manus認証またはスタッフ認証済みの場合に取得
     refetchOnWindowFocus: false,
   });
 
+  const allReservations = reservations ?? [];
+  const isLoading = listLoading;
+
+  const utils = trpc.useUtils();
   const updateStatus = trpc.reservation.updateStatus.useMutation({
-    onSuccess: () => refetch(),
+    onSuccess: () => {
+      refetch();
+      utils.reservation.list.invalidate();
+    },
+    onError: (err) => {
+      toast.error(err.message || "ステータス更新に失敗しました");
+    },
   });
 
-  // ログイン前
+  const staffLogout = trpc.staff.logout.useMutation({
+    onSuccess: () => {
+      window.location.href = "/staff-login";
+    },
+  });
+
+  // ローディング中
   if (loading) {
     return (
       <div style={{ minHeight: "100dvh", display: "flex", alignItems: "center", justifyContent: "center", background: "#faf8f5" }}>
@@ -48,18 +74,22 @@ export default function Admin() {
     );
   }
 
+  // 未認証
   if (!isAuthenticated) {
     return (
-      <div style={{ minHeight: "100dvh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", background: "#faf8f5", fontFamily: "'Noto Sans JP', sans-serif", gap: "1.5rem" }}>
+      <div style={{ minHeight: "100dvh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", background: "#faf8f5", fontFamily: "'Noto Sans JP', sans-serif", gap: "1rem", padding: "1.5rem" }}>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet" />
-        <div style={{ textAlign: "center" }}>
-          <p style={{ fontSize: "1.1rem", fontWeight: 700, color: "#2a1a0a", marginBottom: "0.5rem" }}>管理者ログインが必要です</p>
-          <p style={{ fontSize: "0.85rem", color: "#888" }}>この画面はログイン済みの管理者のみ閲覧できます。</p>
-        </div>
+        <img
+          src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
+          alt="SCALP LABO"
+          style={{ height: "2.5rem", width: "auto", objectFit: "contain", marginBottom: "0.5rem" }}
+        />
+        <p style={{ fontSize: "1rem", fontWeight: 700, color: "#2a1a0a" }}>ログインが必要です</p>
+        <p style={{ fontSize: "0.82rem", color: "#888", textAlign: "center" }}>スタッフアカウントでログインしてください。</p>
         <a
-          href={getLoginUrl()}
+          href="/staff-login"
           style={{
-            padding: "0.75rem 2rem",
+            padding: "0.75rem 2.5rem",
             background: "#2a1a0a",
             color: "#c9a96e",
             borderRadius: "4px",
@@ -69,13 +99,13 @@ export default function Admin() {
             letterSpacing: "0.05em",
           }}
         >
-          ログインして管理画面を開く
+          スタッフログイン
         </a>
       </div>
     );
   }
 
-  const filtered = (reservations ?? []).filter((r) => {
+  const filtered = allReservations.filter((r) => {
     if (filter !== "all" && r.status !== filter) return false;
     if (search) {
       const q = search.toLowerCase();
@@ -89,18 +119,20 @@ export default function Admin() {
   });
 
   const counts = {
-    all: reservations?.length ?? 0,
-    pending: reservations?.filter((r) => r.status === "pending").length ?? 0,
-    confirmed: reservations?.filter((r) => r.status === "confirmed").length ?? 0,
-    cancelled: reservations?.filter((r) => r.status === "cancelled").length ?? 0,
+    all: allReservations.length,
+    pending: allReservations.filter((r) => r.status === "pending").length,
+    confirmed: allReservations.filter((r) => r.status === "confirmed").length,
+    cancelled: allReservations.filter((r) => r.status === "cancelled").length,
   };
+
+  const currentUser = staffUser ? staffUser.name : "管理者";
 
   return (
     <div style={{ minHeight: "100dvh", background: "#faf8f5", fontFamily: "'Noto Sans JP', sans-serif" }}>
       <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet" />
 
       {/* ヘッダー */}
-      <header style={{ background: "#2a1a0a", padding: "0.9rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+      <header style={{ background: "#2a1a0a", padding: "0.9rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
           <img
             src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
@@ -110,12 +142,21 @@ export default function Admin() {
           <span style={{ color: "#c9a96e", fontWeight: 700, fontSize: "0.95rem", letterSpacing: "0.08em" }}>予約管理</span>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-          <span style={{ color: "#c9a96e", fontSize: "0.8rem" }}>{user?.name ?? user?.openId}</span>
-          <a href="/" style={{ color: "#888", fontSize: "0.78rem", textDecoration: "none" }}>← サイトへ戻る</a>
+          <span style={{ color: "#c9a96e", fontSize: "0.8rem" }}>{currentUser}</span>
+          {staffUser ? (
+            <button
+              onClick={() => staffLogout.mutate()}
+              style={{ color: "#888", fontSize: "0.78rem", background: "none", border: "none", cursor: "pointer", fontFamily: "'Noto Sans JP', sans-serif" }}
+            >
+              ログアウト
+            </button>
+          ) : (
+            <a href="/" style={{ color: "#888", fontSize: "0.78rem", textDecoration: "none" }}>← サイトへ戻る</a>
+          )}
         </div>
       </header>
 
-      <main style={{ maxWidth: "1100px", margin: "0 auto", padding: "2rem 1.5rem" }}>
+      <main style={{ maxWidth: "1200px", margin: "0 auto", padding: "2rem 1.5rem" }}>
         <h1 style={{ fontSize: "1.4rem", fontWeight: 700, color: "#2a1a0a", marginBottom: "0.4rem" }}>予約一覧</h1>
         <p style={{ fontSize: "0.82rem", color: "#888", marginBottom: "1.75rem" }}>
           ステータスを変更すると即座に保存されます。
@@ -160,7 +201,7 @@ export default function Admin() {
               color: "#333",
               background: "white",
               outline: "none",
-              minWidth: "220px",
+              minWidth: "200px",
               fontFamily: "'Noto Sans JP', sans-serif",
             }}
           />
@@ -316,7 +357,7 @@ export default function Admin() {
         )}
 
         <p style={{ fontSize: "0.75rem", color: "#bbb", textAlign: "right", marginTop: "1rem" }}>
-          表示件数: {filtered.length} / {reservations?.length ?? 0} 件
+          表示件数: {filtered.length} / {allReservations.length} 件
         </p>
       </main>
     </div>
