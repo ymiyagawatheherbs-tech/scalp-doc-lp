@@ -2408,7 +2408,7 @@ function Footer() {
               )
             )}
           </div>
-          <p className="font-sans-jp text-white/35 text-[10px] text-center">設立：昭和61年4月24日｜化粧品製造業・化粧品製造販売業｜直営店：神戸阪急本館６階 / THE HERBSサロン / 植物美容学校</p>
+          <p className="font-sans-jp text-white/35 text-[10px] text-center">設立：昭和61年4月24日｜化粧品製造業・化粧品製造販売業｜直営店：神戸阪急本館６階 / THE HERBS植物美容サロン / 植物美容学校</p>
         </div>
         {/* 免責事項 */}
         <div className="border-t border-white/10 pt-8 mb-6">
