@@ -630,7 +630,7 @@ function ConceptSection() {
             </span>
             <h2 className="font-mincho text-[oklch(0.30_0.055_65)] text-3xl md:text-4xl font-bold leading-tight mb-8">
               「歯科の定期検診」のように、<br />
-              <span className="text-[oklch(0.40_0.065_65)]">頭皮ケアの新習慣</span>を広めたい。
+              <span className="text-[oklch(0.40_0.065_65)]">頭皮チェックの新習慣</span>を広めたい。
             </h2>
             <div className="section-divider mb-8" />
             <div className="space-y-6">
@@ -641,7 +641,7 @@ function ConceptSection() {
               </div>
               <div className="karte-border">
                 <p className="font-sans-jp text-[oklch(0.35_0.060_65)] text-sm leading-relaxed font-semibold">
-                  THE HERBS SCALP LABは、頭皮ケアに同じ変化を目指します。「薄毛が気になってから行く場所」ではなく、「定期的に頭皮の状態を確認する場所」へ。
+                  SCALP LABOは、頭皮ケアに同じ変化を目指します。「薄毛が気になってから行く場所」ではなく、「定期的に頭皮の状態を確認する場所」へ。
                 </p>
               </div>
             </div>
@@ -775,7 +775,7 @@ function HabitValueSection() {
           </p>
           <a
             href="/booking"
-            className="inline-block btn-gold-shimmer font-sans-jp text-[oklch(0.25_0.050_65)] text-sm font-bold px-10 py-4 rounded-sm tracking-wider"
+            className="inline-block btn-gold-shimmer font-sans-jp text-[oklch(0.25_0.050_65)] text-sm font-bold px-10 py-4 rounded-sm tracking-wider" style={{color: '#f7f3f3'}}
           >
             無料スカルプチェックを予約する
           </a>
@@ -1259,7 +1259,7 @@ function DigitalSection() {
             <p className="text-xs tracking-[0.3em] mb-4" style={{ color: "oklch(0.72 0.038 93)", fontFamily: "'Noto Sans JP', sans-serif" }}>MY SCALP KARTE</p>
             <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
               マイスカルプ<br />
-              <span style={{ color: "oklch(0.72 0.038 93)" }}>カルテ</span>
+              <span style={{ color: '#d7be42' }}>カルテアプリ</span>
             </h2>
             <p className="text-sm leading-relaxed mb-8" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.75)", lineHeight: "1.9" }}>
               定期チェックのたびに頭皮の記録が蓄積される、<br />
