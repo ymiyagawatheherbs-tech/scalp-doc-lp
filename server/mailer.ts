@@ -260,10 +260,16 @@ export async function sendCustomerConfirmation(data: CustomerConfirmationData): 
       ※ 担当者より改めてご連絡いたします。しばらくお待ちください。<br>
       ※ ご希望日時に添えない場合がございます。あらかじめご了承ください。
     </div>
+    <div style="margin-top: 20px; padding: 16px 20px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; text-align: center;">
+      <p style="font-size: 13px; color: #166534; font-weight: bold; margin: 0 0 8px;">📱 LINEでもお気軽にご相談ください</p>
+      <a href="https://lin.ee/ptkrxTw" style="display: inline-block; background: #06c755; color: white; text-decoration: none; padding: 10px 24px; border-radius: 24px; font-size: 14px; font-weight: bold; letter-spacing: 0.05em;">LINE公式アカウントを友だち追加</a>
+      <p style="font-size: 11px; color: #888; margin: 8px 0 0;">@theherbs_kobe</p>
+    </div>
     <p style="font-size: 13px; color: #555; margin-top: 20px; line-height: 1.8;">
       ご不明な点は下記までお気軽にお問い合わせください。<br>
       <strong>THE HERBS神戸阪急店</strong>（神戸阪急本館6階 モーニングフロー内）<br>
-      営業時間：10:00〜20:00
+      営業時間：10:00〜20:00<br>
+      <a href="https://scalp-labo.jp" style="color: #c9a96e;">https://scalp-labo.jp</a>
     </p>
   </div>
   <p style="font-size: 11px; color: #aaa; text-align: center; margin-top: 16px;">
@@ -384,10 +390,16 @@ export async function sendBookingConfirmed(data: BookingConfirmedData): Promise<
       ※ ご予約日の変更・キャンセルは、お早めにご連絡ください。<br>
       ※ 当日は施術の10分前までにお越しいただくとスムーズです。
     </div>
+    <div style="margin-top: 20px; padding: 16px 20px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; text-align: center;">
+      <p style="font-size: 13px; color: #166534; font-weight: bold; margin: 0 0 8px;">📱 LINEでもお気軽にご相談ください</p>
+      <a href="https://lin.ee/ptkrxTw" style="display: inline-block; background: #06c755; color: white; text-decoration: none; padding: 10px 24px; border-radius: 24px; font-size: 14px; font-weight: bold; letter-spacing: 0.05em;">LINE公式アカウントを友だち追加</a>
+      <p style="font-size: 11px; color: #888; margin: 8px 0 0;">@theherbs_kobe</p>
+    </div>
     <p style="font-size: 13px; color: #555; margin-top: 20px; line-height: 1.8;">
       ご不明な点は下記までお気軽にお問い合わせください。<br>
       <strong>THE HERBS神戸阪急店</strong>（神戸阪急本館6階 モーニングフロー内）<br>
-      営業時間：10:00〜20:00
+      営業時間：10:00〜20:00<br>
+      <a href="https://scalp-labo.jp" style="color: #c9a96e;">https://scalp-labo.jp</a>
     </p>
   </div>
   <p style="font-size: 11px; color: #aaa; text-align: center; margin-top: 16px;">

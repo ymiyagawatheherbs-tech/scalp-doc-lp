@@ -2148,15 +2148,7 @@ function Footer() {
                 style={{ height: "64px", filter: "brightness(0) invert(1)", opacity: 0.85 }}
               />
             </div>
-            {/* THE HERBS ブランドリンク */}
-            <div className="flex items-center gap-2 mb-4 pb-4 border-b border-white/10">
-              <span className="font-cormorant text-white/30 text-[10px] tracking-[0.15em] uppercase">by</span>
-              <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp"
-                alt="THE HERBS"
-                className="h-3.5 w-auto brightness-0 invert opacity-50"
-              />
-            </div>
+            <div className="mb-4 pb-4 border-b border-white/10"></div>
             <p className="font-sans-jp text-white/65 text-xs leading-relaxed">
               歯科ケアのように定期的に頭皮をケアする新習慣。<br />
               マイクロスコープによる頭皮チェックで、健康な髪をサポート。
