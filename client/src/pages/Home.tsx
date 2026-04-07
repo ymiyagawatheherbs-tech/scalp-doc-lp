@@ -1314,11 +1314,11 @@ function FaqSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const faqs = [
     {
-      q: "痛みはありますか？",
-      a: "まったくありません。マイクロスコープを頭皮に軽く当てて撮影するだけです。施術は一切行いません。",
+      q: "頭皮チェックは痛みはありますか？",
+      a: "まったくありません。マイクロスコープを頭皮に軽く当てて撮影するだけです。",
     },
     {
-      q: "薄毛でなくても受けられますか？",
+      q: "薄毛以外のお悩みでも受けられますか？",
       a: "はい、むしろ「まだ大丈夫」な段階からの定期チェックをおすすめしています。頭皮の状態を定期的に把握することが、日頃のケアに役立ちます。",
     },
     {
@@ -1346,7 +1346,7 @@ function FaqSection() {
       a: "撮影した頭皮画像や診断データはLINEまたは専用アプリで安全に管理されます。ご本人の許可なく第三者に共有されることはありません。",
     },
     {
-      q: "医療行為ではないですか？",
+      q: "医療行為とは異なりますか？",
       a: "THE HERBS SCALP LABは医療行為ではありません。マイクロスコープによる頭皮の撮影・記録・確認を行うサービスです。医療機関への受診が適切と思われる場合は、提携医療機関をご案内することがあります。",
     },
   ];
@@ -1376,7 +1376,7 @@ function FaqSection() {
                 className="w-full text-left p-6 flex items-center justify-between bg-white hover:bg-[oklch(0.977_0.012_85)] transition-colors"
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
               >
-              <span className="font-mincho text-[oklch(0.22_0.045_42)] text-lg font-bold">
+              <span className="font-sans-jp text-[oklch(0.22_0.045_42)] text-lg font-bold">
                 {faq.q}
                 </span>
                 <span
