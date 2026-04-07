@@ -15,3 +15,7 @@
 - [x] LINE Messaging API連携：中止（2026-04-06）
 - [ ] 神戸阪急店フォーム送信時にcx@the-herbs.co.jpへメール通知を送る機能を実装
 - [ ] メール通知先をcx1@the-herbs.co.jpに修正（SMTP_USERとenv.tsのnotifyEmail）
+- [x] LPのサロン名を「スカルプラボ神戸阪急店」→「THE HERBS神戸阪急店」に変更
+- [x] LPのサロン名を「スカルプラボ植物美容サロン」→「THE HERBS植物美容サロン」に変更
+- [x] ファビコンをlogomark_olive.webpに変更
+- [x] 申し込みページ（Booking.tsx）のロゴ横ブランド名のサイズを修正

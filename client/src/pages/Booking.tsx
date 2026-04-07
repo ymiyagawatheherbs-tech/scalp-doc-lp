@@ -37,7 +37,7 @@ const STORES = [
   },
   {
     value: "salon",
-    label: "THE HERBSサロン",
+    label: "THE HERBS植物美容サロン",
     address: "兵庫県神戸市灘区大内通1-7-17 1F",
     courses: ["free", "standard", "consult"],
     useSquare: true,
@@ -181,23 +181,18 @@ export default function Booking() {
 
       {/* ヘッダー */}
       <header style={{ background: "oklch(0.42 0.055 130)", padding: "0.75rem 1rem", display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.75rem" }}>
-        <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.5rem", flexShrink: 0 }}>
+        <a href="/" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.6rem", flexShrink: 0 }}>
           <img
-            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-mark-transparent_70663ccb.png"
-            alt="SCALP LABO"
-            style={{ height: "40px", width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)" }}
+            src="/favicon.webp"
+            alt="THE HERBSロゴマーク"
+            style={{ height: "44px", width: "44px", objectFit: "contain" }}
           />
-          <img
-            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo-text-greige-transparent_123f5ff1.png"
-            alt="SCALP LABO"
-            style={{ height: "28px", width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)" }}
-          />
+          <div style={{ display: "flex", flexDirection: "column", lineHeight: 1.2 }}>
+            <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "0.55rem", letterSpacing: "0.25em", color: "rgba(255,255,255,0.55)", textTransform: "uppercase" }}>botanical beauty</span>
+            <span style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 700, fontSize: "1.15rem", letterSpacing: "0.18em", color: "rgba(255,255,255,0.95)", textTransform: "uppercase" }}>THE HERBS</span>
+          </div>
         </a>
-        {/* 中央：presented by THE HERBS（sm以上のみ） */}
-        <div className="hidden sm:flex" style={{ flexDirection: "column", alignItems: "center" }}>
-          <span style={{ fontFamily: "'Cormorant Garamond', serif", fontSize: "0.52rem", letterSpacing: "0.22em", color: "rgba(255,255,255,0.35)", textTransform: "uppercase" }}>presented by</span>
-          <span style={{ fontFamily: "'Cormorant Garamond', serif", fontWeight: 600, fontSize: "0.78rem", letterSpacing: "0.22em", color: "rgba(255,255,255,0.75)", textTransform: "uppercase" }}>THE HERBS</span>
-        </div>
+
         <span style={{ fontSize: "0.72rem", color: "oklch(0.82 0.045 130)", letterSpacing: "0.05em", flexShrink: 0 }}>ご予約フォーム</span>
       </header>
 
@@ -283,7 +278,7 @@ export default function Booking() {
           </div>
         </div>
 
-        {/* THE HERBSサロン選択時 → Square誘導 */}
+        {/* THE HERBS植物美容サロン選択時 → Square誤導 */}
         {selectedStore === "salon" && (
           <div style={{ background: "white", borderRadius: "8px", boxShadow: "0 2px 16px rgba(0,0,0,0.06)", padding: "2rem 1.5rem", marginBottom: "2rem", textAlign: "center" }}>
             <div style={{ width: "56px", height: "56px", borderRadius: "50%", background: "oklch(0.97 0.025 75)", display: "flex", alignItems: "center", justifyContent: "center", margin: "0 auto 1.25rem" }}>
@@ -295,10 +290,10 @@ export default function Booking() {
               </svg>
             </div>
             <p style={{ fontFamily: "'Shippori Mincho B1', serif", fontSize: "1.1rem", fontWeight: 700, color: "oklch(0.30 0.045 130)", marginBottom: "0.5rem" }}>
-              THE HERBSサロンのご予約
+              THE HERBS植物美容サロンのご予約
             </p>
             <p style={{ fontSize: "0.83rem", color: "oklch(0.42 0.07 140)", lineHeight: 1.8, marginBottom: "1.5rem" }}>
-              THE HERBSサロンはSquare予約システムをご利用いただいています。<br />
+              THE HERBS植物美容サロンはスクエア予約システムをご利用いただいています。<br />
               ご希望の日時・コースをそのままお選びいただけます。
             </p>
             <a

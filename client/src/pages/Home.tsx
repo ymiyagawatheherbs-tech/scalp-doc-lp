@@ -2103,8 +2103,8 @@ function StoreSection() {
   const stores = [
     {
       id: "hankyu",
-      name: "THE HERBS SCALP LABO 神戸阪急店",
-      nameEn: "SCALP LABO THE HERBS Kobe Hankyu",
+      name: "THE HERBS神戸阪急店",
+      nameEn: "THE HERBS Kobe Hankyu",
       badge: "百貨店内サロン",
       address: "兵庫県神戸市中央区小野柄通８丁目１−8",
       address2: "神戸阪急本館6階 モーニングフロー内",
@@ -2121,8 +2121,8 @@ function StoreSection() {
     },
     {
       id: "nada",
-      name: "THE HERBS SCALP LABO サロン",
-      nameEn: "SCALP LABO THE HERBS Salon",
+      name: "THE HERBS植物美容サロン",
+      nameEn: "THE HERBS Botanical Beauty Salon",
       badge: "直営ヘッドスパサロン",
       address: "兵庫県神戸市灘区大内通1-7-17 1F",
       address2: "",
