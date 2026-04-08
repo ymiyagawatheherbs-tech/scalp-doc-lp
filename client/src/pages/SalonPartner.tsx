@@ -1042,7 +1042,7 @@ function Footer() {
       </div>
       <p className="text-[10px] mb-3" style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'Noto Sans JP', sans-serif" }}>設立：昭和61年4月24日｜化粧品製造業・化粧品製造販売業｜直営店：神戸阪急本館６階 / THE HERBS植物美容サロン / 植物美容学校</p>
       <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>
-        © 2025 SCALP LABO / THE HERBS. All rights reserved.
+        © 2026 SCALP LABO / THE HERBS. All rights reserved.
       </p>
       <div className="mt-3 flex justify-center gap-6">
         <a href="/" className="text-xs transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}

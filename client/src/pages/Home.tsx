@@ -885,7 +885,7 @@ function ServiceSection() {
       title: "定期スカルプチェック",
       subtitle: "1ヶ月に1回のボタニカルスカルプケア",
       time: "45分",
-      price: "3,800～5,000円",
+      price: "3,800～5,000円（税別）",
       color: "oklch(0.72 0.038 93)",
       image: IMAGES.botanicalMist,
       items: [
@@ -903,7 +903,7 @@ function ServiceSection() {
       title: "パーソナルスカルプケア",
       subtitle: "チェック結果に基づくケアのご提案",
       time: "50分～",
-      price: "6,000円～",
+      price: "6,000円～（税別）",
       color: "oklch(0.40 0.065 65)",
       image: IMAGES.herbGommage,
       items: [
@@ -2031,7 +2031,7 @@ function ReservationSection() {
               <div className="grid sm:grid-cols-3 gap-3">
                 {[
                   { value: "free", label: "無料スカルプチェック", sub: "5〜10分・無料" },
-                  { value: "standard", label: "THE HERBS SCALP LAB定期ケア", sub: "30～40分・3,000～5,000円" },
+                  { value: "standard", label: "THE HERBS SCALP LAB定期ケア", sub: "30～40分・3,000～5,000円（税別）" },
                   { value: "consult", label: "まずは相談したい", sub: "内容を相談" },
                 ].map((opt) => (
                   <button
@@ -2129,8 +2129,7 @@ function StoreSection() {
       address: "兵庫県神戸市灘区大内通1-7-17 1F",
       address2: "",
       hours: [
-        { day: "水・金", time: "10:00 ～ 18:00" },
-        { day: "土", time: "13:00 ～ 20:00" },
+        { day: "水・金・土", time: "10:00 ～ 20:00" },
       ],
       closed: "火曜・日曜・祝日定休",
       line: "https://lin.ee/oWeHStW",
@@ -2420,7 +2419,7 @@ function Footer() {
         </div>
         <div className="text-center">
           <p className="font-sans-jp text-white/55 text-xs">
-            © 2025 SCALP LABO / THE HERBS. All rights reserved.
+            © 2026 SCALP LABO / THE HERBS. All rights reserved.
           </p>
         </div>
       </div>

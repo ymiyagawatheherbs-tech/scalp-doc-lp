@@ -611,7 +611,7 @@ function Service() {
       title: "THE HERBS SCALP LAB定期ケア",
       subtitle: "継続的な頭皮モニタリングと記録",
       duration: "所要 30〜40分",
-      price: "3,000〜5,000円/回",
+      price: "3,000。5,000円/回（税別）",
       features: [
         "マイクロスコープ詳細チェック",
         "頭皮温度・皮脂量・髪密度計測",
@@ -1638,8 +1638,7 @@ function StoreSection() {
       address: "兵庫県神戸市灘区大内通1-7-17 1F",
       address2: "",
       hours: [
-        { day: "水・金", time: "10:00 ～ 18:00" },
-        { day: "土", time: "13:00 ～ 20:00" },
+        { day: "水・金・土", time: "10:00 ～ 20:00" },
       ],
       closed: "火曜・日曜・祝日定休",
       line: "https://lin.ee/oWeHStW",
@@ -1914,7 +1913,7 @@ function Footer() {
 
         <div className="flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-white/50 text-xs font-['Noto_Sans_JP']">
-            © 2025 SCALP LABO / THE HERBS. All rights reserved.
+            © 2026 SCALP LABO / THE HERBS. All rights reserved.
           </p>
           <Link href="/" className="text-[oklch(0.69 0.060 130)]/50 hover:text-[oklch(0.69 0.060 130)] text-xs transition-colors font-['Noto_Sans_JP']">
             ← THE HERBS SCALP LABO（女性版）はこちら

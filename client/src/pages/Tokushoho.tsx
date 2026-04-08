@@ -30,7 +30,7 @@ function LegalLayout({ title, subtitle, children }: { title: string; subtitle: s
 
       <footer className="bg-[oklch(0.22_0.045_42)] py-8 text-center">
         <p className="font-sans-jp text-white/30 text-xs">
-          © 2025 THE HERBS SCALP LABO. All rights reserved.
+          © 2026 THE HERBS SCALP LABO. All rights reserved.
         </p>
       </footer>
     </div>

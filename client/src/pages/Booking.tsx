@@ -16,7 +16,7 @@ import { trpc } from "@/lib/trpc";
 // 全コース定義
 const ALL_COURSES = [
   { value: "free",     label: "無料スカルプチェック",  sub: "5〜10分・無料",            desc: "マイクロスコープで頭皮の状態を確認。初めての方に最適です。" },
-  { value: "standard", label: "THE HERBS SCALP LAB定期ケア",  sub: "30〜40分・3,000〜5,000円", desc: "定期的な頭皮チェック＋ボタニカルミストケア。継続的なサポートを希望の方に。" },
+  { value: "standard", label: "THE HERBS SCALP LAB定期ケア",  sub: "30〜40分・3,000〜5,000円（税別）", desc: "定期的な頭皮チェック＋ボタニカルミストケア。継続的なサポートを希望の方に。" },
   { value: "consult",  label: "まずは相談したい",       sub: "内容を相談",               desc: "お気軽にご相談ください。" },
 ];
 
@@ -63,6 +63,7 @@ type FormState = {
   desiredTime: string;
   plan: string;
   message: string;
+  agreeCancel: boolean;
 };
 
 type Errors = Partial<Record<keyof FormState | "submit", string>>;
@@ -108,6 +109,7 @@ export default function Booking() {
     desiredTime: "",
     plan: "",
     message: "",
+    agreeCancel: false,
   });
   const [errors, setErrors] = useState<Errors>({});
   const [submitted, setSubmitted] = useState(false);
@@ -117,6 +119,10 @@ export default function Booking() {
     ? ALL_COURSES.filter((c) => store.courses.includes(c.value))
     : [];
   const today = new Date().toISOString().split("T")[0];
+  // 当日予約不可：最小選択日は翌日
+  const tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  const minDate = tomorrow.toISOString().split("T")[0];
 
   const createReservation = trpc.reservation.create.useMutation({
     onSuccess: () => setSubmitted(true),
@@ -130,6 +136,7 @@ export default function Booking() {
     if (!form.desiredDate) e.desiredDate = "ご希望日を選択してください";
     if (!form.desiredTime) e.desiredTime = "ご希望時間を選択してください";
     if (!form.plan) e.plan = "コースを選択してください";
+    if (!form.agreeCancel) e.agreeCancel = "キャンセルポリシーへの同意が必要です";
     setErrors(e);
     return Object.keys(e).length === 0;
   }
@@ -239,7 +246,7 @@ export default function Booking() {
                 type="button"
                 onClick={() => {
                   setSelectedStore(s.value);
-                  setForm({ name: "", phone: "", email: "", desiredDate: "", desiredTime: "", plan: "", message: "" });
+                  setForm({ name: "", phone: "", email: "", desiredDate: "", desiredTime: "", plan: "", message: "", agreeCancel: false });
                   setErrors({});
                 }}
                 style={{
@@ -395,12 +402,15 @@ export default function Booking() {
                 <label style={labelStyle}>ご希望日 <span style={requiredStyle}>*</span></label>
                 <input
                   type="date"
-                  min={today}
+                  min={minDate}
                   value={form.desiredDate}
                   onChange={(e) => setForm({ ...form, desiredDate: e.target.value })}
                   style={errors.desiredDate ? { ...inputStyle, borderColor: "#ef4444" } : inputStyle}
                 />
                 {errors.desiredDate && <p style={errorStyle}>{errors.desiredDate}</p>}
+                <p style={{ fontSize: "0.72rem", color: "oklch(0.55 0.06 42)", marginTop: "0.35rem", lineHeight: 1.6 }}>
+                  ※ 当日予約はお電話にて承ります　<strong>070-2642-7366（直通）</strong>
+                </p>
               </div>
 
               {/* ご希望時間 */}
@@ -470,6 +480,25 @@ export default function Booking() {
                 />
               </div>
 
+              {/* キャンセルポリシー同意チェックボックス */}
+              <div style={{ background: "oklch(0.97 0.015 75)", border: "1.5px solid oklch(0.88 0.025 75)", borderRadius: "6px", padding: "1rem 1.1rem" }}>
+                <label style={{ display: "flex", alignItems: "flex-start", gap: "0.75rem", cursor: "pointer" }}>
+                  <input
+                    type="checkbox"
+                    checked={form.agreeCancel}
+                    onChange={(e) => setForm({ ...form, agreeCancel: e.target.checked })}
+                    style={{ marginTop: "2px", width: "16px", height: "16px", accentColor: "oklch(0.42 0.055 130)", flexShrink: 0 }}
+                  />
+                  <span style={{ fontSize: "0.82rem", color: "oklch(0.35 0.04 42)", lineHeight: 1.7 }}>
+                    <strong>キャンセルポリシーに同意する</strong>（必須）<br />
+                    キャンセルをご希望の際は、電話またはメールにて前日までにご連絡をお願いします。
+                  </span>
+                </label>
+                {(errors as Record<string, string>).agreeCancel && (
+                  <p style={{ ...errorStyle, marginTop: "0.5rem", paddingLeft: "1.75rem" }}>{(errors as Record<string, string>).agreeCancel}</p>
+                )}
+              </div>
+
               {/* エラー表示 */}
               {errors.submit && (
                 <p style={{ fontSize: "0.82rem", color: "#ef4444", textAlign: "center" }}>{errors.submit}</p>
@@ -522,7 +551,7 @@ export default function Booking() {
           />
         </div>
         <p style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>
-          © 2025 SCALP LABO / THE HERBS. All rights reserved.
+          © 2026 SCALP LABO / THE HERBS. All rights reserved.
         </p>
       </footer>
     </div>
