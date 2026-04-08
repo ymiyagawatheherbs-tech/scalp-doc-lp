@@ -67,7 +67,7 @@ function Nav() {
           <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_olive_12a41c11.webp"
-              alt="SCALP LABO"
+              alt="THE HERBS"
               className="object-contain transition-all cursor-pointer"
               style={{
                 height: "44px",
@@ -79,14 +79,14 @@ function Nav() {
             />
             <div className="flex flex-col leading-none">
               <span
-                className="font-sans-jp font-bold tracking-widest transition-colors"
-                style={{ fontSize: "0.75rem", letterSpacing: "0.18em", color: scrolled ? "oklch(0.35 0.050 130)" : "rgba(255,255,255,0.95)" }}
+                className="font-cormorant font-bold tracking-widest transition-colors"
+                style={{ fontSize: "1rem", letterSpacing: "0.18em", color: scrolled ? "oklch(0.35 0.050 130)" : "rgba(255,255,255,0.95)" }}
               >
-                スカルプラボ
+                THE HERBS
               </span>
               <span
-                className="font-cormorant transition-colors"
-                style={{ fontSize: "0.6rem", letterSpacing: "0.2em", color: scrolled ? "oklch(0.48 0.08 140)" : "rgba(255,255,255,0.45)" }}
+                className="font-sans-jp transition-colors"
+                style={{ fontSize: "0.55rem", letterSpacing: "0.15em", color: scrolled ? "oklch(0.48 0.08 140)" : "rgba(255,255,255,0.45)" }}
               >
                 SCALP LABO
               </span>

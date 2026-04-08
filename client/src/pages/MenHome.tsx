@@ -63,11 +63,11 @@ function Nav() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
-          {/* Logo: マーク＋スカルプラボ カタカナ表記 */}
+          {/* Logo: THE HERBSロゴマーク＋テキスト */}
           <Link href="/men" className="flex items-center gap-2.5 flex-shrink-0">
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_olive_12a41c11.webp"
-              alt="SCALP LABO"
+              alt="THE HERBS"
               className="object-contain transition-all cursor-pointer"
               style={{
                 height: "44px",
@@ -77,14 +77,14 @@ function Nav() {
             />
             <div className="flex flex-col leading-none">
               <span
-                className="font-['Noto_Sans_JP'] font-bold tracking-widest"
-                style={{ fontSize: "0.75rem", color: "rgba(255,255,255,0.95)", letterSpacing: "0.18em" }}
+                className="font-['Cormorant_Garamond'] font-bold tracking-widest"
+                style={{ fontSize: "1rem", color: "rgba(255,255,255,0.95)", letterSpacing: "0.18em" }}
               >
-                スカルプラボ
+                THE HERBS
               </span>
               <span
-                className="font-['Cormorant_Garamond']"
-                style={{ fontSize: "0.6rem", letterSpacing: "0.2em", color: "rgba(201,168,76,0.7)" }}
+                className="font-['Noto_Sans_JP']"
+                style={{ fontSize: "0.55rem", letterSpacing: "0.15em", color: "rgba(201,168,76,0.7)" }}
               >
                 SCALP LABO for Men
               </span>
@@ -685,6 +685,238 @@ function Service() {
               </div>
             </div>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ========== BOTANICAL SCIENCE ==========
+function BotanicalScience() {
+  const [visible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => { if (entry.isIntersecting) setVisible(true); },
+      { threshold: 0.1 }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+
+  // 男性に多い悩みに対応する3ブレンドを中心に紹介
+  const menBlends = [
+    {
+      code: "FEU",
+      kana: "フー",
+      theme: "エイジングケア",
+      concerns: ["加齢によるうねり・ボリューム低下", "皮脂の酸化・頭皮のニオイ", "ハリ・コシの低下"],
+      effect: "抗酸化・血行促進・引き締め作用が特性とされる植物のブレンド。加齢による頭皮の変化にアプローチし、ハリのある頭皮環境をサポートするとされています。",
+      accent: "oklch(0.70 0.050 55)",
+      accentHex: "#c9a84c",
+    },
+    {
+      code: "GRISE",
+      kana: "グリーゼ",
+      theme: "頭皮環境改善",
+      concerns: ["弱った頭皮・細くなった髪", "薬剤使用後の頭皮ケア", "うねり・頭皮の炎症"],
+      effect: "抗菌・抗炎症・鎮静作用が特性とされる植物のブレンド。頭皮の常在菌バランスを整え、すこやかな頭皮環境をサポートするとされています。",
+      accent: "oklch(0.60 0.030 155)",
+      accentHex: "#6aad8a",
+    },
+    {
+      code: "TILLEUL",
+      kana: "ティユール",
+      theme: "皮脂バランス",
+      concerns: ["皮脂過多・フケ", "細くなった髪・パーマが当たりにくい", "頭皮のべたつき"],
+      effect: "収れん作用・抗菌作用が特性とされる植物のブレンド。過剰な皮脂分泌を穏やかに整え、頭皮環境のバランスをサポートするとされています。",
+      accent: "oklch(0.68 0.055 105)",
+      accentHex: "#a8c060",
+    },
+  ];
+
+  return (
+    <section
+      className="relative py-24 overflow-hidden"
+      id="botanical-science"
+      style={{ background: "linear-gradient(160deg, oklch(0.12 0.04 140) 0%, oklch(0.18 0.05 145) 100%)" }}
+    >
+      {/* 背景装飾 */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div
+          className="absolute top-0 right-0 w-[600px] h-[600px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(100,160,80,0.06) 0%, transparent 70%)", transform: "translate(30%, -30%)" }}
+        />
+        <div
+          className="absolute bottom-0 left-0 w-[400px] h-[400px] rounded-full"
+          style={{ background: "radial-gradient(circle, rgba(201,168,76,0.04) 0%, transparent 70%)", transform: "translate(-20%, 20%)" }}
+        />
+      </div>
+
+      <div ref={ref} className="max-w-7xl mx-auto px-6 relative">
+        {/* ヘッダー */}
+        <div className={`mb-16 transition-all duration-700 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <span
+            className="font-['Cormorant_Garamond'] block mb-4 tracking-[0.3em] uppercase text-sm"
+            style={{ color: "oklch(0.69 0.060 130)" }}
+          >
+            Botanical Science
+          </span>
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div>
+              <h2
+                className="font-['Shippori_Mincho_B1'] text-3xl md:text-4xl font-bold leading-tight mb-6"
+                style={{ color: "rgba(255,255,255,0.95)" }}
+              >
+                頭皮の悩みに、<br />
+                <span style={{ color: "oklch(0.69 0.060 130)" }}>植物の力で応える。</span>
+              </h2>
+              <div className="h-px w-16 mb-6" style={{ backgroundColor: "oklch(0.69 0.060 130)" }} />
+              <p
+                className="font-['Noto_Sans_JP'] text-sm leading-relaxed mb-4"
+                style={{ color: "rgba(255,255,255,0.70)" }}
+              >
+                男性の頭皮は、皮脂分泌量が女性の約2倍とされています。過剰な皮脂は毛穴を詰まらせ、頭皮環境の乱れを引き起こす原因のひとつとされています。THE HERBSでは、頭皮チェックの結果をもとに、男性の頭皮状態に合ったハーブブレンドをセレクトしてケアを行います。
+              </p>
+              <p
+                className="font-['Noto_Sans_JP'] text-sm leading-relaxed"
+                style={{ color: "rgba(255,255,255,0.55)" }}
+              >
+                各ブレンドは4種のハーブで構成されており、頭皮の状態（皮脂量・水分量・毛穴の詰まり・炎症の有無）に応じて最適なものをご提案します。
+              </p>
+            </div>
+            <div className="relative overflow-hidden" style={{ height: "280px", borderRadius: "2px" }}>
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/herbs_bowl_094A5982_939efeed.jpg"
+                alt="頭皮状態に合わせてブレンドするハーブ"
+                className="w-full h-full object-cover"
+                style={{ objectPosition: "center 40%", filter: "brightness(0.85) saturate(0.9)" }}
+              />
+              <div
+                className="absolute inset-0"
+                style={{ background: "linear-gradient(to right, rgba(18,28,20,0.5) 0%, transparent 60%)" }}
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* 3ブレンドグリッド */}
+        <div className={`grid md:grid-cols-3 gap-6 mb-12 transition-all duration-700 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          {menBlends.map((blend, i) => (
+            <div
+              key={i}
+              className="p-6"
+              style={{
+                background: "oklch(0.18 0.05 140)",
+                borderTop: `3px solid ${blend.accentHex}`,
+                transitionDelay: `${i * 100}ms`,
+              }}
+            >
+              {/* ブレンド名 */}
+              <div className="mb-4">
+                <div className="flex items-baseline gap-2 mb-2">
+                  <span
+                    className="font-['Cormorant_Garamond'] text-2xl font-bold tracking-wider"
+                    style={{ color: blend.accentHex }}
+                  >
+                    {blend.code}
+                  </span>
+                  <span
+                    className="font-['Noto_Sans_JP'] text-xs"
+                    style={{ color: "rgba(255,255,255,0.50)" }}
+                  >
+                    {blend.kana}
+                  </span>
+                </div>
+                <span
+                  className="font-['Noto_Sans_JP'] text-xs font-bold tracking-wider px-2 py-0.5 inline-block"
+                  style={{ backgroundColor: `${blend.accentHex}22`, color: blend.accentHex }}
+                >
+                  {blend.theme}
+                </span>
+              </div>
+              {/* 対応する悩み */}
+              <ul className="space-y-1.5 mb-4">
+                {blend.concerns.map((c, j) => (
+                  <li key={j} className="flex items-start gap-2">
+                    <span className="text-xs mt-0.5 flex-shrink-0" style={{ color: blend.accentHex }}>—</span>
+                    <span
+                      className="font-['Noto_Sans_JP'] text-xs leading-relaxed"
+                      style={{ color: "rgba(255,255,255,0.70)" }}
+                    >
+                      {c}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              {/* 植物科学的特性 */}
+              <div className="pt-3" style={{ borderTop: "1px solid rgba(255,255,255,0.10)" }}>
+                <p
+                  className="font-['Noto_Sans_JP'] text-[10px] leading-relaxed italic"
+                  style={{ color: "rgba(255,255,255,0.45)" }}
+                >
+                  {blend.effect}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* ハーブジャー画像 */}
+        <div
+          className={`overflow-hidden mb-12 transition-all duration-700 delay-300 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+          style={{ height: "220px" }}
+        >
+          <img
+            src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/094A5819_cb840e92.jpg"
+            alt="THE HERBSのハーブジャーコレクション"
+            className="w-full h-full object-cover"
+            style={{ objectPosition: "center 60%", filter: "brightness(0.75) saturate(0.8)" }}
+          />
+        </div>
+
+        {/* カスタムブレンドの説明 */}
+        <div
+          className={`p-8 md:p-10 transition-all duration-700 delay-400 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}
+          style={{ background: "oklch(0.22 0.06 140)", borderLeft: "4px solid oklch(0.69 0.060 130)" }}
+        >
+          <div className="grid md:grid-cols-3 gap-8 items-center">
+            <div className="md:col-span-2">
+              <span
+                className="font-['Cormorant_Garamond'] text-xs tracking-[0.3em] uppercase block mb-3"
+                style={{ color: "oklch(0.69 0.060 130)" }}
+              >
+                Custom Herb Blend
+              </span>
+              <h3
+                className="font-['Shippori_Mincho_B1'] text-2xl font-bold mb-4"
+                style={{ color: "rgba(255,255,255,0.95)" }}
+              >
+                頭皮の状態に合わせた、<br />オーダーメイドのハーブケア
+              </h3>
+              <p
+                className="font-['Noto_Sans_JP'] text-sm leading-relaxed"
+                style={{ color: "rgba(255,255,255,0.70)" }}
+              >
+                頭皮チェックで皮脂量・水分量・毛穴の詰まり・炎症の有無を確認した後、その結果に基づいて最適なブレンドをセレクトします。同じ「抜け毛」の悩みでも、原因が皮脂過多なのか、乾燥なのか、加齢なのかによって、最適なブレンドは異なります。
+              </p>
+            </div>
+            <div className="text-center">
+              <div
+                className="font-['Cormorant_Garamond'] text-6xl font-light mb-2"
+                style={{ color: "oklch(0.69 0.060 130)" }}
+              >
+                6
+              </div>
+              <p
+                className="font-['Noto_Sans_JP'] text-xs tracking-wider"
+                style={{ color: "rgba(255,255,255,0.55)" }}
+              >
+                種類のハーブブレンド<br />各4種のハーブで構成
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -1703,6 +1935,7 @@ export default function MenHome() {
       <Concept />
       <Stats />
       <Service />
+      <BotanicalScience />
       <BotanicalMist />
       <Target />
       <Digital />

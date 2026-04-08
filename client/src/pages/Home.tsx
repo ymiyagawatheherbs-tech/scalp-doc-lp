@@ -178,11 +178,11 @@ function Nav() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between gap-4">
-          {/* ロゴ：マーク＋スカルプラボ カタカナ表記 */}
+          {/* ロゴ：THE HERBSロゴマーク＋テキスト */}
           <a href="/" className="flex items-center gap-2.5 flex-shrink-0">
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_grayge_p_transparent_47bbd755.png"
-              alt="SCALP LABO"
+              alt="THE HERBS"
               className="object-contain transition-all"
               style={{
                 height: "44px",
@@ -194,20 +194,20 @@ function Nav() {
             />
             <div className="flex flex-col leading-none">
               <span
-                className="font-sans-jp font-bold tracking-widest transition-colors"
+                className="font-cormorant font-bold tracking-widest transition-colors"
               style={{
-                fontSize: "0.75rem",
+                fontSize: "1rem",
                 color: scrolled ? "oklch(0.35 0.060 65)" : "rgba(255,255,255,0.95)",
                   letterSpacing: "0.18em",
                 }}
               >
-                スカルプラボ
+                THE HERBS
               </span>
               <span
-                className="font-cormorant transition-colors"
+                className="font-sans-jp transition-colors"
                 style={{
-                  fontSize: "0.6rem",
-                  letterSpacing: "0.2em",
+                  fontSize: "0.55rem",
+                  letterSpacing: "0.15em",
                   color: scrolled ? "oklch(0.55 0.035 93)" : "rgba(255,255,255,0.55)",
                 }}
               >
