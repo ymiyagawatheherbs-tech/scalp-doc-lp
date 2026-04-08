@@ -363,10 +363,13 @@ export async function sendBookingConfirmed(data: BookingConfirmedData): Promise<
   <div style="background: #fff; border: 1px solid #e8ddd0; border-top: none; padding: 24px; border-radius: 0 0 4px 4px;">
     <p style="font-size: 15px; margin-top: 0;">${data.name} 様</p>
     <p style="font-size: 14px; line-height: 1.8; color: #555;">
-      ご予約が確定しました。当日のご来店をスタッフ一同お待ちしております。
+      この度はTHE HERBS SCALP LABOへのご予約ありがとうございます。<br>
+      以下の内容でご予約が確定いたしました。当日のご来店をスタッフ一同心よりお待ちしております。
     </p>
+
+    <!-- 予約内容 -->
     <div style="background: #fdf8f3; border: 1px solid #e8ddd0; border-radius: 4px; padding: 16px 20px; margin: 20px 0;">
-      <p style="font-size: 12px; letter-spacing: 0.1em; color: #c9a96e; font-weight: bold; margin: 0 0 12px;">確定したご予約内容</p>
+      <p style="font-size: 12px; letter-spacing: 0.1em; color: #c9a96e; font-weight: bold; margin: 0 0 12px;">✓ 確定したご予約内容</p>
       <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
         <tr style="border-bottom: 1px solid #f0e8e0;">
           <td style="padding: 8px 6px; color: #888; width: 120px;">店舗</td>
@@ -378,7 +381,7 @@ export async function sendBookingConfirmed(data: BookingConfirmedData): Promise<
         </tr>
         <tr style="border-bottom: 1px solid #f0e8e0;">
           <td style="padding: 8px 6px; color: #888;">日時</td>
-          <td style="padding: 8px 6px; font-weight: bold;">${data.preferredDate}（${data.preferredTime}〜）</td>
+          <td style="padding: 8px 6px; font-weight: bold; font-size: 15px; color: #2a1a0a;">${data.preferredDate}（${data.preferredTime}〜）</td>
         </tr>
         <tr>
           <td style="padding: 8px 6px; color: #888;">お名前</td>
@@ -386,24 +389,44 @@ export async function sendBookingConfirmed(data: BookingConfirmedData): Promise<
         </tr>
       </table>
     </div>
-    <div style="padding: 14px 16px; background: #f9f5f0; border-left: 3px solid #c9a96e; font-size: 13px; color: #666; line-height: 1.8;">
-      ※ ご予約日の変更・キャンセルは、お早めにご連絡ください。<br>
-      ※ 当日は施術の10分前までにお越しいただくとスムーズです。
+
+    <!-- 来店前のご案内 -->
+    <div style="background: #fffbf5; border: 1px solid #e8ddd0; border-radius: 4px; padding: 16px 20px; margin: 16px 0;">
+      <p style="font-size: 12px; letter-spacing: 0.1em; color: #8b5e3c; font-weight: bold; margin: 0 0 10px;">📌 来店前のご案内</p>
+      <ul style="font-size: 13px; color: #555; line-height: 2; margin: 0; padding-left: 18px;">
+        <li>ゴージュやスクラブなど頭皮に刷き込むケアをされている場合は、当日はお控えください。</li>
+        <li>ヘアカラー・パーマ・縮毛矯正をご予定の方は、施術前日は洗髪をお控えいただくと頭皮のバリア機能が高まります。</li>
+        <li>特に持ち物はございません。リラックスしてお越しください。</li>
+        <li>店舗の場合は、施術の10分前までにお越しいただくとスムーズです。</li>
+      </ul>
     </div>
-    <div style="margin-top: 20px; padding: 16px 20px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; text-align: center;">
-      <p style="font-size: 13px; color: #166534; font-weight: bold; margin: 0 0 8px;">📱 LINEでもお気軽にご相談ください</p>
-      <a href="https://lin.ee/ptkrxTw" style="display: inline-block; background: #06c755; color: white; text-decoration: none; padding: 10px 24px; border-radius: 24px; font-size: 14px; font-weight: bold; letter-spacing: 0.05em;">LINE公式アカウントを友だち追加</a>
-      <p style="font-size: 11px; color: #888; margin: 8px 0 0;">@theherbs_kobe</p>
+
+    <!-- キャンセルポリシー -->
+    <div style="padding: 14px 16px; background: #fef9f0; border-left: 3px solid #f59e0b; font-size: 13px; color: #666; line-height: 1.9; margin: 16px 0;">
+      <p style="font-weight: bold; color: #92400e; margin: 0 0 6px;">⚠️ キャンセルポリシー</p>
+      キャンセルをご希望の際は、電話またはメールにて前日までにご連絡をお願いいたします。<br>
+      当日のご予約はお電話にて承ります。
     </div>
-    <p style="font-size: 13px; color: #555; margin-top: 20px; line-height: 1.8;">
-      ご不明な点は下記までお気軽にお問い合わせください。<br>
-      <strong>THE HERBS神戸阪急店</strong>（神戸阪急本館6階 モーニングフロー内）<br>
-      営業時間：10:00〜20:00<br>
+
+    <!-- アクセス・問合せ -->
+    <div style="margin-top: 16px; padding: 16px 20px; background: #f9f5f0; border-radius: 4px; font-size: 13px; color: #555; line-height: 1.9;">
+      <p style="font-weight: bold; color: #2a1a0a; margin: 0 0 8px;">📍 店舗アクセス・お問合せ</p>
+      <strong>THE HERBS神戸阪急店</strong>（神戸阪急本館６階 モーニングフロー内）<br>
+      営業時間：水・金・土 10:00〜20:00<br>
+      電話：<a href="tel:070-2642-7366" style="color: #c9a96e; font-weight: bold;">070-2642-7366</a>（直通）<br>
+      メール：<a href="mailto:cx@the-herbs.co.jp" style="color: #c9a96e;">cx@the-herbs.co.jp</a><br>
       <a href="https://scalp-labo.jp" style="color: #c9a96e;">https://scalp-labo.jp</a>
-    </p>
+    </div>
+
+    <!-- LINE -->
+    <div style="margin-top: 16px; padding: 16px 20px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; text-align: center;">
+      <p style="font-size: 13px; color: #166534; font-weight: bold; margin: 0 0 8px;">📱 LINEでもお気軽にご相談ください</p>
+      <a href="https://lin.ee/WPbdXE5" style="display: inline-block; background: #06c755; color: white; text-decoration: none; padding: 10px 24px; border-radius: 24px; font-size: 14px; font-weight: bold; letter-spacing: 0.05em;">LINE公式アカウントを友だち追加</a>
+    </div>
   </div>
   <p style="font-size: 11px; color: #aaa; text-align: center; margin-top: 16px;">
-    THE HERBS SCALP LABO | presented by THE HERBS
+    THE HERBS SCALP LABO | presented by THE HERBS<br>
+    &copy; 2026 SCALP LABO / THE HERBS. All rights reserved.
   </p>
 </body>
 </html>
