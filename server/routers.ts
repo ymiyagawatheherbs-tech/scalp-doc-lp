@@ -11,6 +11,7 @@ import { desc } from "drizzle-orm";
 import { z } from "zod";
 import { nanoid } from "nanoid";
 import { sendBookingNotification, sendCustomerConfirmation, sendBookingConfirmed } from "./mailer";
+import { notifyReservationViaLine } from "./lineNotify";
 
 export const appRouter = router({
   system: systemRouter,
@@ -66,6 +67,18 @@ export const appRouter = router({
           title: `【新規予約】${input.name}様 — ${planLabel[input.plan] ?? input.plan}`,
           content: `日時: ${input.desiredDate} ${input.desiredTime}\n電話: ${input.phone}\nメール: ${input.email || "未記入"}\nメッセージ: ${input.message || "なし"}`,
         }).catch(() => {});
+
+        // LINE公式アカウントへ管理者向けプッシュ通知（フォロワーへの配信は行わない）
+        await notifyReservationViaLine({
+          store: "kobe",
+          name: input.name,
+          phone: input.phone,
+          email: input.email,
+          desiredDate: input.desiredDate,
+          desiredTime: input.desiredTime,
+          plan: input.plan,
+          message: input.message,
+        }).catch((err) => console.error("[reservation] LINE push notification failed:", err));
 
         // Outlook SMTP経由でcx@the-herbs.co.jpへメール通知
         const courseMap: Record<string, string> = {

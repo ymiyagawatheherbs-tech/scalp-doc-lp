@@ -611,7 +611,7 @@ function Service() {
       title: "THE HERBS SCALP LAB定期ケア",
       subtitle: "継続的な頭皮モニタリングと記録",
       duration: "所要 30〜40分",
-      price: "3,000。5,000円/回（税別）",
+      price: "3,000。5,000円/回",
       features: [
         "マイクロスコープ詳細チェック",
         "頭皮温度・皮脂量・髪密度計測",
@@ -673,7 +673,10 @@ function Service() {
                 <p className="text-white/80 text-sm mb-1 font-['Noto_Sans_JP']">{s.subtitle}</p>
                 <div className="flex gap-4 mb-6 mt-4">
                   <span className="text-[oklch(0.69 0.060 130)] text-xs border border-[oklch(0.69 0.060 130)]/40 px-3 py-1 font-['Noto_Sans_JP']">{s.duration}</span>
-                  <span className="text-[oklch(0.69 0.060 130)] text-xs border border-[oklch(0.69 0.060 130)]/40 px-3 py-1 font-['Noto_Sans_JP']">{s.price}</span>
+                  <span className="text-[oklch(0.69 0.060 130)] text-xs border border-[oklch(0.69 0.060 130)]/40 px-3 py-1 font-['Noto_Sans_JP']">
+                    {s.price}
+                    {s.price !== "無料" && s.price !== "相談" && <span style={{ fontSize: "0.55rem", opacity: 0.7 }}>（税別）</span>}
+                  </span>
                 </div>
                 <ul className="space-y-3">
                   {s.features.map((f) => (

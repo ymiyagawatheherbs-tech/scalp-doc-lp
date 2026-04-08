@@ -885,7 +885,7 @@ function ServiceSection() {
       title: "定期スカルプチェック",
       subtitle: "1ヶ月に1回のボタニカルスカルプケア",
       time: "45分",
-      price: "3,800～5,000円（税別）",
+      price: "3,800～5,000円",
       color: "oklch(0.72 0.038 93)",
       image: IMAGES.botanicalMist,
       items: [
@@ -903,7 +903,7 @@ function ServiceSection() {
       title: "パーソナルスカルプケア",
       subtitle: "チェック結果に基づくケアのご提案",
       time: "50分～",
-      price: "6,000円～（税別）",
+      price: "6,000円～",
       color: "oklch(0.40 0.065 65)",
       image: IMAGES.herbGommage,
       items: [
@@ -993,6 +993,9 @@ function ServiceSection() {
                     style={{ color: svc.featured ? "#FFFFFF" : svc.color }}
                   >
                     {svc.price}
+                    {svc.price !== "無料" && (
+                      <span className="font-sans-jp ml-1" style={{ fontSize: "0.6rem", fontWeight: 400, opacity: 0.7 }}>（税別）</span>
+                    )}
                   </span>
                   <span
                     className={`font-sans-jp text-xs ${
@@ -2031,7 +2034,7 @@ function ReservationSection() {
               <div className="grid sm:grid-cols-3 gap-3">
                 {[
                   { value: "free", label: "無料スカルプチェック", sub: "5〜10分・無料" },
-                  { value: "standard", label: "THE HERBS SCALP LAB定期ケア", sub: "30～40分・3,000～5,000円（税別）" },
+                  { value: "standard", label: "THE HERBS SCALP LAB定期ケア", sub: "30～40分・3,000～5,000円" },
                   { value: "consult", label: "まずは相談したい", sub: "内容を相談" },
                 ].map((opt) => (
                   <button
@@ -2047,7 +2050,10 @@ function ReservationSection() {
                     <p className={`font-mincho text-xs font-bold mb-1 ${
                       form.plan === opt.value ? "text-[oklch(0.85_0.030_93)]" : "text-white"
                     }`}>{opt.label}</p>
-                    <p className="font-sans-jp text-white/40 text-[10px]">{opt.sub}</p>
+                    <p className="font-sans-jp text-white/40 text-[10px]">
+                      {opt.sub}
+                      {opt.value === "standard" && <span style={{ fontSize: "0.55rem", opacity: 0.7 }}>（税別）</span>}
+                    </p>
                   </button>
                 ))}
               </div>
