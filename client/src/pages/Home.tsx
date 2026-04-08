@@ -197,7 +197,7 @@ function Nav() {
                 className="font-bold tracking-widest transition-colors"
               style={{
                 fontFamily: "'Noto Sans JP', sans-serif",
-                fontSize: "1rem",
+                fontSize: "0.95rem",
                 fontWeight: 700,
                 color: scrolled ? "oklch(0.35 0.060 65)" : "rgba(255,255,255,0.95)",
                   letterSpacing: "0.12em",
