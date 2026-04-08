@@ -196,10 +196,11 @@ function Nav() {
               <span
                 className="font-bold tracking-widest transition-colors"
               style={{
-                fontFamily: "'Shippori Mincho B1', serif",
+                fontFamily: "'Noto Sans JP', sans-serif",
                 fontSize: "1rem",
+                fontWeight: 700,
                 color: scrolled ? "oklch(0.35 0.060 65)" : "rgba(255,255,255,0.95)",
-                  letterSpacing: "0.18em",
+                  letterSpacing: "0.12em",
                 }}
               >
                 スカルプラボ

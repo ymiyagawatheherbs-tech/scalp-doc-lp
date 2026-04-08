@@ -80,7 +80,7 @@ function Nav() {
             <div className="flex flex-col leading-none">
               <span
                 className="font-bold tracking-widest transition-colors"
-                style={{ fontFamily: "'Shippori Mincho B1', serif", fontSize: "1rem", letterSpacing: "0.18em", color: scrolled ? "oklch(0.35 0.050 130)" : "rgba(255,255,255,0.95)" }}
+                style={{ fontFamily: "'Noto Sans JP', sans-serif", fontSize: "1rem", fontWeight: 700, letterSpacing: "0.12em", color: scrolled ? "oklch(0.35 0.050 130)" : "rgba(255,255,255,0.95)" }}
               >
                 スカルプラボ
               </span>
