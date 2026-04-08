@@ -1863,6 +1863,19 @@ function ReservationSection() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const createReservation = trpc.reservation.create.useMutation();
+
+  // 当日予約不可：翌日以降のみ選択可（日本時間基準）
+  const getMinDate = () => {
+    const now = new Date();
+    // 日本時間（UTC+9）で翌日を計算
+    const jstOffset = 9 * 60;
+    const jstNow = new Date(now.getTime() + (jstOffset + now.getTimezoneOffset()) * 60000);
+    const tomorrow = new Date(jstNow);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow.toISOString().split("T")[0];
+  };
+  const minDate = getMinDate();
+
   const timeSlots = [
     "10:00", "10:30", "11:00", "11:30",
     "13:00", "13:30", "14:00", "14:30",
@@ -2001,7 +2014,7 @@ function ReservationSection() {
                 </label>
                 <input
                   type="date"
-                  min={new Date().toISOString().split("T")[0]}
+                  min={minDate}
                   value={form.date}
                   onChange={(e) => { setForm({ ...form, date: e.target.value }); setErrors({ ...errors, date: "" }); }}
                   className={inputClass("date") + " [color-scheme:dark]"}

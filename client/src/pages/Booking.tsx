@@ -118,11 +118,17 @@ export default function Booking() {
   const availableCourses = store
     ? ALL_COURSES.filter((c) => store.courses.includes(c.value))
     : [];
+  // 当日予約不可：翌日以降のみ選択可（日本時間基準）
   const today = new Date().toISOString().split("T")[0];
-  // 当日予約不可：最小選択日は翌日
-  const tomorrow = new Date();
-  tomorrow.setDate(tomorrow.getDate() + 1);
-  const minDate = tomorrow.toISOString().split("T")[0];
+  const getMinDate = () => {
+    const now = new Date();
+    const jstOffset = 9 * 60;
+    const jstNow = new Date(now.getTime() + (jstOffset + now.getTimezoneOffset()) * 60000);
+    const tomorrow = new Date(jstNow);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+    return tomorrow.toISOString().split("T")[0];
+  };
+  const minDate = getMinDate();
 
   const createReservation = trpc.reservation.create.useMutation({
     onSuccess: () => setSubmitted(true),

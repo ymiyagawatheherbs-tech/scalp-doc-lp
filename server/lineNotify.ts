@@ -120,7 +120,7 @@ export async function notifyReservationViaLine(params: ReservationNotifyParams):
     params.message ? `💬 メッセージ：${params.message}` : null,
     `━━━━━━━━━━━━━━`,
     `受信時刻：${now}`,
-    `このメッセージに返信してご予約を確定してください。`,
+    `メールまたはお電話にて予約確定の連絡をしてください。`,
   ]
     .filter(Boolean)
     .join("\n");
