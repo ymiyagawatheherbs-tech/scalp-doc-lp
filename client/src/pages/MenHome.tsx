@@ -78,8 +78,8 @@ function Nav() {
             />
             <div className="flex flex-col leading-none">
               <span
-                className="font-['Cormorant_Garamond'] font-bold tracking-widest"
-                style={{ fontSize: "1rem", color: "rgba(255,255,255,0.95)", letterSpacing: "0.18em" }}
+                className="font-bold tracking-widest"
+                style={{ fontFamily: "'Shippori Mincho B1', serif", fontSize: "1rem", color: "rgba(255,255,255,0.95)", letterSpacing: "0.18em" }}
               >
                 スカルプラボ
               </span>

@@ -194,8 +194,9 @@ function Nav() {
             />
             <div className="flex flex-col leading-none">
               <span
-                className="font-cormorant font-bold tracking-widest transition-colors"
+                className="font-bold tracking-widest transition-colors"
               style={{
+                fontFamily: "'Shippori Mincho B1', serif",
                 fontSize: "1rem",
                 color: scrolled ? "oklch(0.35 0.060 65)" : "rgba(255,255,255,0.95)",
                   letterSpacing: "0.18em",
