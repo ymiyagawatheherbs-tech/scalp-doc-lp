@@ -39,6 +39,7 @@ function Nav() {
 
   const navLinks = [
     { label: "サービス", href: "#service" },
+    { label: "植物の力", href: "#botanical-science" },
     { label: "お客様の声", href: "#testimonials" },
     { label: "よくある質問", href: "#faq" },
     { label: "ご予約", href: "#reservation" },
