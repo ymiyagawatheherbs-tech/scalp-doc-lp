@@ -81,7 +81,7 @@ function Nav() {
                 className="font-['Cormorant_Garamond'] font-bold tracking-widest"
                 style={{ fontSize: "1rem", color: "rgba(255,255,255,0.95)", letterSpacing: "0.18em" }}
               >
-                THE HERBS
+                スカルプラボ
               </span>
               <span
                 className="font-['Noto_Sans_JP']"

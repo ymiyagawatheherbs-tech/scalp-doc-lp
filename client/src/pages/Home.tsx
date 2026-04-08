@@ -201,7 +201,7 @@ function Nav() {
                   letterSpacing: "0.18em",
                 }}
               >
-                THE HERBS
+                スカルプラボ
               </span>
               <span
                 className="font-sans-jp transition-colors"

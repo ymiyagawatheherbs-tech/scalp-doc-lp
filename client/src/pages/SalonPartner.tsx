@@ -82,7 +82,7 @@ function Nav() {
                 className="font-cormorant font-bold tracking-widest transition-colors"
                 style={{ fontSize: "1rem", letterSpacing: "0.18em", color: scrolled ? "oklch(0.35 0.050 130)" : "rgba(255,255,255,0.95)" }}
               >
-                THE HERBS
+                スカルプラボ
               </span>
               <span
                 className="font-sans-jp transition-colors"
