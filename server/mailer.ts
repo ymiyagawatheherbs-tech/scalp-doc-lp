@@ -397,7 +397,7 @@ export async function sendBookingConfirmed(data: BookingConfirmedData): Promise<
         <li>前日夜の洗髪が理想です。頭皮のバリア機能が高まり、チェック精度が向上します。</li>
         <li>整髪料はできるだけお控えください（頭皮の状態を正確に確認するため）。</li>
         <li>特に持ち物はございません。リラックスしてお越しください。</li>
-        <li>施術の10分前までにお越しいただくとスムーズです。</li>
+
       </ul>
     </div>
 
