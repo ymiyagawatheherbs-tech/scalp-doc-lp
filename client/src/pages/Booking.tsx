@@ -16,7 +16,7 @@ import { trpc } from "@/lib/trpc";
 // 全コース定義
 const ALL_COURSES = [
   { value: "free",     label: "無料スカルプチェック",  sub: "5〜10分・無料",            desc: "マイクロスコープで頭皮の状態を確認。初めての方に最適です。" },
-  { value: "standard", label: "THE HERBS SCALP LAB定期ケア",  sub: "30〜40分・3,850円〜5,500円（税込）", desc: "定期的な頭皮チェック＋ボタニカルミストケア。継続的なサポートを希望の方に。" },
+  { value: "standard", label: "定期チェック＆スカルプケア",  sub: "45分・3,850円〜5,500円（税込）", desc: "定期的な頭皮チェック＋ボタニカルミストケア。継続的なサポートを希望の方に。" },
   { value: "consult",  label: "まずは相談したい",       sub: "内容を相談",               desc: "お気軽にご相談ください。" },
 ];
 
