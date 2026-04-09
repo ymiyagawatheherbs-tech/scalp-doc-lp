@@ -11,7 +11,7 @@ import { desc } from "drizzle-orm";
 import { z } from "zod";
 import { nanoid } from "nanoid";
 import { sendBookingNotification, sendCustomerConfirmation, sendBookingConfirmed } from "./mailer";
-import { notifyReservationViaLine } from "./lineNotify";
+import { notifyReservationViaLine, notifyConfirmedViaLine, notifyCancelledViaLine } from "./lineNotify";
 
 export const appRouter = router({
   system: systemRouter,
@@ -170,8 +170,38 @@ export const appRouter = router({
               phone: reservation.phone,
             }).catch((err) => console.error("[reservation] booking confirmed mail failed:", err));
           }
+          // 確定時：スタッフのLINEへ通知
+          if (reservation) {
+            await notifyConfirmedViaLine({
+              store: "kobe",
+              name: reservation.name,
+              phone: reservation.phone,
+              email: reservation.email ?? undefined,
+              desiredDate: reservation.desiredDate,
+              desiredTime: reservation.desiredTime,
+              plan: reservation.plan,
+            }).catch((err) => console.error("[reservation] LINE confirmed notify failed:", err));
+          }
         }
-
+        // キャンセル時：スタッフのLINEへ通知
+        if (input.status === "cancelled") {
+          const [reservation] = await db
+            .select()
+            .from(reservations)
+            .where(eq(reservations.id, input.id))
+            .limit(1);
+          if (reservation) {
+            await notifyCancelledViaLine({
+              store: "kobe",
+              name: reservation.name,
+              phone: reservation.phone,
+              email: reservation.email ?? undefined,
+              desiredDate: reservation.desiredDate,
+              desiredTime: reservation.desiredTime,
+              plan: reservation.plan,
+            }).catch((err) => console.error("[reservation] LINE cancelled notify failed:", err));
+          }
+        }
         await db
           .update(reservations)
           .set({ status: input.status })

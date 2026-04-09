@@ -127,3 +127,108 @@ export async function notifyReservationViaLine(params: ReservationNotifyParams):
 
   return sendLinePushMessage(accessToken, adminUserId, message);
 }
+
+// ========== 予約確定通知 ==========
+
+interface StatusChangeNotifyParams {
+  store: "kobe" | "salon";
+  name: string;
+  phone: string;
+  email?: string;
+  desiredDate: string;
+  desiredTime: string;
+  plan: string;
+}
+
+/**
+ * 予約確定をスタッフのLINEへ通知する
+ * 管理画面でステータスを「確定」に変更した際に呼び出す
+ */
+export async function notifyConfirmedViaLine(params: StatusChangeNotifyParams): Promise<boolean> {
+  const planLabel = PLAN_LABELS[params.plan] ?? params.plan;
+  const storeName =
+    params.store === "kobe"
+      ? "THE HERBS SCALP LAB 神戸阪急店"
+      : "THE HERBS SCALP LAB サロン";
+
+  const accessToken =
+    params.store === "kobe"
+      ? ENV.lineKobeChannelAccessToken
+      : ENV.lineSalonChannelAccessToken;
+
+  const adminUserId =
+    params.store === "kobe"
+      ? process.env.LINE_KOBE_ADMIN_USER_ID
+      : process.env.LINE_SALON_ADMIN_USER_ID;
+
+  if (!accessToken || !adminUserId) {
+    console.warn(`[LINE Notify] Credentials not set for store: ${params.store}`);
+    return false;
+  }
+
+  const now = new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" });
+
+  const message = [
+    `✅ 【予約確定】`,
+    `━━━━━━━━━━━━━━`,
+    `🏪 店舗：${storeName}`,
+    `👤 お名前：${params.name} 様`,
+    `📞 電話番号：${params.phone}`,
+    params.email ? `📧 メール：${params.email}` : null,
+    `📅 確定日時：${params.desiredDate} ${params.desiredTime}`,
+    `💆 コース：${planLabel}`,
+    `━━━━━━━━━━━━━━`,
+    `確定処理日時：${now}`,
+    `予約確定メールをお客様へ送信しました。`,
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  return sendLinePushMessage(accessToken, adminUserId, message);
+}
+
+/**
+ * 予約キャンセルをスタッフのLINEへ通知する
+ * 管理画面でステータスを「キャンセル」に変更した際に呼び出す
+ */
+export async function notifyCancelledViaLine(params: StatusChangeNotifyParams): Promise<boolean> {
+  const planLabel = PLAN_LABELS[params.plan] ?? params.plan;
+  const storeName =
+    params.store === "kobe"
+      ? "THE HERBS SCALP LAB 神戸阪急店"
+      : "THE HERBS SCALP LAB サロン";
+
+  const accessToken =
+    params.store === "kobe"
+      ? ENV.lineKobeChannelAccessToken
+      : ENV.lineSalonChannelAccessToken;
+
+  const adminUserId =
+    params.store === "kobe"
+      ? process.env.LINE_KOBE_ADMIN_USER_ID
+      : process.env.LINE_SALON_ADMIN_USER_ID;
+
+  if (!accessToken || !adminUserId) {
+    console.warn(`[LINE Notify] Credentials not set for store: ${params.store}`);
+    return false;
+  }
+
+  const now = new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" });
+
+  const message = [
+    `❌ 【予約キャンセル】`,
+    `━━━━━━━━━━━━━━`,
+    `🏪 店舗：${storeName}`,
+    `👤 お名前：${params.name} 様`,
+    `📞 電話番号：${params.phone}`,
+    params.email ? `📧 メール：${params.email}` : null,
+    `📅 予定日時：${params.desiredDate} ${params.desiredTime}`,
+    `💆 コース：${planLabel}`,
+    `━━━━━━━━━━━━━━`,
+    `キャンセル処理日時：${now}`,
+  ]
+    .filter(Boolean)
+    .join("\n");
+
+  return sendLinePushMessage(accessToken, adminUserId, message);
+}
