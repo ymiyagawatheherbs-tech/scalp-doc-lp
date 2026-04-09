@@ -197,18 +197,18 @@ function Nav() {
                 className="font-bold tracking-widest transition-colors"
               style={{
                 fontFamily: "'Noto Sans JP', sans-serif",
-                fontSize: "0.95rem",
+                fontSize: "0.75rem",
                 fontWeight: 700,
                 color: scrolled ? "oklch(0.35 0.060 65)" : "rgba(255,255,255,0.95)",
-                  letterSpacing: "0.12em",
+                  letterSpacing: "0.10em",
                 }}
               >
-                スカルプラボ
+                THE HERBS
               </span>
               <span
                 className="font-sans-jp transition-colors"
                 style={{
-                  fontSize: "0.55rem",
+                  fontSize: "0.52rem",
                   letterSpacing: "0.15em",
                   color: scrolled ? "oklch(0.55 0.035 93)" : "rgba(255,255,255,0.55)",
                 }}
@@ -358,6 +358,9 @@ function HeroSection() {
             <span className="block text-3xl md:text-5xl lg:text-6xl font-bold" style={{color: '#f0d98a', textShadow: '0 0 40px rgba(240,217,138,0.4), 0 2px 20px rgba(0,0,0,0.5)'}}>
               頭皮も定期チェックを。
             </span>
+            <span className="block text-lg md:text-2xl font-medium mt-3" style={{color: 'rgba(255,255,255,0.85)', textShadow: '0 1px 8px rgba(0,0,0,0.5)', fontFamily: "'Noto Sans JP', sans-serif", letterSpacing: '0.04em'}}>
+              植物の力で、10年後も豊かな髪を育む新習慣。
+            </span>
           </h1>
           <p className="hidden md:block font-sans-jp text-white/90 text-base md:text-lg leading-relaxed mb-10 animate-fade-in-up opacity-0-init delay-200" style={{textShadow: '0 1px 8px rgba(0,0,0,0.6)'}}>
             マイクロスコープによる頭皮チェックで、あなたの頭皮の今を記録・確認。<br />
@@ -368,8 +371,11 @@ function HeroSection() {
             <strong style={{color: '#f0d98a'}}>意識的にケアする</strong>新習慣。
           </p>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 animate-fade-in-up opacity-0-init delay-300">
-            <a
-              href="/booking"
+            <button
+              onClick={() => {
+                const modal = document.getElementById('line-booking-modal');
+                if (modal) modal.style.display = 'flex';
+              }}
               className="font-sans-jp font-bold px-7 md:px-10 py-4 md:py-5 text-center text-sm md:text-base tracking-wider transition-all duration-300 hover:-translate-y-1"
               style={{
                 background: 'linear-gradient(135deg, #b8956a 0%, #d4aa7d 40%, #c49a6c 70%, #8b6845 100%)',
@@ -377,17 +383,12 @@ function HeroSection() {
                 boxShadow: '0 4px 24px rgba(180,140,90,0.55), 0 1px 0 rgba(255,255,255,0.15) inset',
                 textShadow: '0 1px 3px rgba(0,0,0,0.4)',
                 letterSpacing: '0.08em',
+                border: 'none',
+                cursor: 'pointer',
               }}
             >
-              ✦ &nbsp;無料スカルプチェックを予約する
-            </a>
-            <a
-              href="#サービス"
-              className="hidden sm:flex items-center gap-2 border border-white/70 text-white font-sans-jp font-medium px-8 py-4 text-center text-base hover:bg-white/15 hover:border-white transition-all duration-300"
-              style={{letterSpacing: '0.05em'}}
-            >
-              サービスを見る →
-            </a>
+              ❆ &nbsp;まずは無料で頭皮の今を知る（LINE予約）
+            </button>
           </div>
           <div className="mt-8 md:mt-12 flex items-center gap-4 md:gap-6 animate-fade-in-up opacity-0-init delay-400">
             <div className="flex -space-x-2">
@@ -413,6 +414,31 @@ function HeroSection() {
         <div className="w-px h-12 bg-gradient-to-b from-white/50 to-transparent" />
       </div>
     </section>
+  );
+}
+
+// 権威性帯（FV直下）
+function AuthorityBand() {
+  return (
+    <div
+      className="w-full py-4 px-6"
+      style={{ background: 'linear-gradient(90deg, oklch(0.28 0.050 65) 0%, oklch(0.35 0.060 65) 100%)' }}
+    >
+      <div className="max-w-7xl mx-auto flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-8 text-center sm:text-left">
+        <div className="flex items-center gap-3">
+          <span className="font-cormorant text-[oklch(0.78_0.038_93)] text-xs tracking-[0.3em] uppercase">Since 1986</span>
+          <span className="hidden sm:block w-px h-4 bg-white/20" />
+        </div>
+        <p className="font-sans-jp text-white/90 text-xs md:text-sm leading-relaxed">
+          <span className="text-[oklch(0.85_0.030_93)] font-bold">化粧品製造会社 THE HERBS</span>が開発した独自の植物美容メソッド。
+          メーカー直営の研究・実践機関として、頭皮ケアの新常識を広めます。
+        </p>
+        <div className="hidden sm:flex items-center gap-3">
+          <span className="w-px h-4 bg-white/20" />
+          <span className="font-cormorant text-[oklch(0.78_0.038_93)] text-xs tracking-[0.2em] uppercase">Botanical Beauty Method</span>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -672,6 +698,140 @@ function ConceptSection() {
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// なぜTHE HERBSの植物美容なのか教育コンテンツセクション
+function WhyBotanicalSection() {
+  const { ref, inView } = useInView();
+  return (
+    <section
+      className="py-28 relative overflow-hidden"
+      style={{ background: 'linear-gradient(160deg, #f7f3ed 0%, #ede8df 100%)' }}
+      id="why-botanical"
+    >
+      <div ref={ref} className="max-w-7xl mx-auto px-6">
+        {/* ヘッダー */}
+        <div className={`text-center mb-16 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <span className="font-cormorant text-[oklch(0.48_0.060_65)] text-sm tracking-[0.3em] uppercase block mb-4">
+            Why THE HERBS Botanical Method
+          </span>
+          <h2 className="font-mincho text-[oklch(0.28_0.050_65)] text-3xl md:text-4xl font-bold mb-4 leading-tight">
+            なぜTHE HERBSの植物美容でなければならないのか
+          </h2>
+          <p className="font-sans-jp text-[oklch(0.45_0.055_65)] text-sm max-w-2xl mx-auto leading-relaxed">
+            一般的なヘッドスパやシャンプーと何が違うのか。その理由を正直にお伝えします。
+          </p>
+        </div>
+
+        {/* 問題提起→解決策 */}
+        <div className="grid lg:grid-cols-2 gap-10 mb-16">
+          {/* 左：問題 */}
+          <div
+            className={`rounded-sm p-8 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            style={{ background: 'oklch(0.25 0.050 65)', transitionDelay: '100ms' }}
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'oklch(0.60 0.20 20)' }}>
+                <span className="text-white text-sm font-bold">!</span>
+              </div>
+              <h3 className="font-mincho text-white text-lg font-bold">ケミカルケアの限界</h3>
+            </div>
+            <div className="space-y-4">
+              <p className="font-sans-jp text-white/85 text-sm leading-relaxed">
+                一時的な爽快感を得るだけのヘッドスパや、強い洗浄力で皮脂を奪いすぎるシャンプーが、逆に頭皮を弱らせている事実。
+              </p>
+              <p className="font-sans-jp text-white/85 text-sm leading-relaxed">
+                アルカリカラー・パーマの残留薬剤、合成界面活性剤の蔓積は、毛孔を塩塩とさせ、毛根への栄養供給を妨げます。
+              </p>
+              <div className="border-l-2 border-[oklch(0.72_0.038_93)] pl-4 mt-4">
+                <p className="font-sans-jp text-[oklch(0.85_0.030_93)] text-sm font-semibold leading-relaxed">
+                  「対処療法」ではなく、頭皮が本来持つ『育む力』を復活させることが重要。
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* 右：解決策 */}
+          <div
+            className={`rounded-sm p-8 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+            style={{ background: 'linear-gradient(135deg, #1e2d1a 0%, #2a3d22 100%)', transitionDelay: '200ms' }}
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0" style={{ background: 'oklch(0.52 0.10 140)' }}>
+                <span className="text-white text-sm font-bold">✓</span>
+              </div>
+              <h3 className="font-mincho text-white text-lg font-bold">THE HERBS植物美容のアプローチ</h3>
+            </div>
+            <div className="space-y-4">
+              <p className="font-sans-jp text-white/85 text-sm leading-relaxed">
+                ポリフェノール・フラボノイド・精油成分を含むハーブの力で、頭皮が本来持つ『育む力』を復活させます。
+              </p>
+              <p className="font-sans-jp text-white/85 text-sm leading-relaxed">
+                足すトリートメントではなく、余分な皮脂・薬剤残留物を『取り去る』リセットケア。素の頭皮本来の力を引き出します。
+              </p>
+              <div className="border-l-2 border-[oklch(0.62_0.14_160)] pl-4 mt-4">
+                <p className="font-sans-jp text-[oklch(0.78_0.038_93)] text-sm font-semibold leading-relaxed">
+                  化粧品製造会社として終え間なく研究した、ケミカルフリーな植物美容メソッド。
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* ハーブ成分の機能性 */}
+        <div className={`transition-all duration-700 delay-300 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+          <h3 className="font-mincho text-[oklch(0.28_0.050_65)] text-xl font-bold mb-8 text-center">
+            植物成分が頭皮に幅をかせる理由
+          </h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              {
+                compound: 'ポリフェノール',
+                role: '抗酸化・抗炎症',
+                detail: '頭皮の酸化ストレスを軽減し、毛根環境を整える作用。',
+                color: 'oklch(0.48 0.060 65)',
+              },
+              {
+                compound: 'フラボノイド',
+                role: '血行促進・毛孔洄浄',
+                detail: '頭皮への血流を促進し、毛根への栄養供給をサポート。',
+                color: 'oklch(0.52 0.10 140)',
+              },
+              {
+                compound: '精油成分',
+                role: '毛孔清浄・整肌',
+                detail: '毛孔に蔓積した皮脂・薬剤を浄浄し、頭皮の吸収力を高める。',
+                color: 'oklch(0.60 0.14 200)',
+              },
+              {
+                compound: '有機酸',
+                role: '保湿・バリア機能',
+                detail: '頭皮の水分バランスを整え、乾燥・皮脂過多の両方に対応。',
+                color: 'oklch(0.55 0.12 60)',
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="p-6 border border-[oklch(0.85_0.020_93)] bg-white rounded-sm"
+              >
+                <div
+                  className="inline-block font-cormorant text-xs tracking-wider uppercase px-3 py-1 mb-4 rounded-sm"
+                  style={{ backgroundColor: `${item.color}15`, color: item.color, border: `1px solid ${item.color}40` }}
+                >
+                  {item.compound}
+                </div>
+                <h4 className="font-mincho text-[oklch(0.28_0.050_65)] text-base font-bold mb-2">{item.role}</h4>
+                <p className="font-sans-jp text-[oklch(0.50_0.055_65)] text-xs leading-relaxed">{item.detail}</p>
+              </div>
+            ))}
+          </div>
+          <p className="font-sans-jp text-[oklch(0.60_0.055_65)] text-[11px] text-center mt-6">
+            ※本サービスは化粧品の使用感の向上を目的としたものです。効果・効能には個人差があります。
+          </p>
         </div>
       </div>
     </section>
@@ -2286,8 +2446,8 @@ function StoreSection() {
           ))}
         </div>
 
-        {/* サロン募集バナー — 内容確定まで一時非表示 */}
-        {false && <div className={`mt-16 bg-[oklch(0.30_0.055_65)] rounded-sm p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-700 delay-300 ${
+        {/* サロン募集バナー */}
+        <div className={`mt-16 bg-[oklch(0.30_0.055_65)] rounded-sm p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-700 delay-300 ${
           inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}>
           <div>
@@ -2305,7 +2465,7 @@ function StoreSection() {
           >
             認定サロン募集ページへ →
           </a>
-        </div>}
+        </div>
       </div>
     </section>
   );
@@ -2435,11 +2595,130 @@ function Footer() {
         </div>
         <div className="text-center">
           <p className="font-sans-jp text-white/55 text-xs">
-            © 2026 SCALP LABO / THE HERBS. All rights reserved.
+            © 2026 THE HERBS SCALP LABO. All rights reserved.
           </p>
         </div>
       </div>
     </footer>
+  );
+}
+
+// LINE予約モーダル
+function LineBookingModal() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const checkModal = () => {
+      const modal = document.getElementById('line-booking-modal');
+      if (modal) {
+        const observer = new MutationObserver(() => {
+          setVisible(modal.style.display === 'flex');
+        });
+        observer.observe(modal, { attributes: true, attributeFilter: ['style'] });
+        return () => observer.disconnect();
+      }
+    };
+    checkModal();
+  }, []);
+
+  const close = () => {
+    const modal = document.getElementById('line-booking-modal');
+    if (modal) modal.style.display = 'none';
+    setVisible(false);
+  };
+
+  return (
+    <div
+      id="line-booking-modal"
+      style={{ display: 'none', position: 'fixed', inset: 0, zIndex: 9999, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(4px)' }}
+      onClick={(e) => { if (e.target === e.currentTarget) close(); }}
+    >
+      <div
+        className="relative mx-4 w-full max-w-md rounded-sm shadow-2xl"
+        style={{ background: 'oklch(0.978 0.008 90)', padding: '2.5rem' }}
+      >
+        <button
+          onClick={close}
+          className="absolute top-4 right-4 text-[oklch(0.55_0.055_65)] hover:text-[oklch(0.28_0.050_65)] transition-colors"
+          style={{ fontSize: '1.5rem', lineHeight: 1, background: 'none', border: 'none', cursor: 'pointer' }}
+        >
+          ×
+        </button>
+        <div className="text-center mb-6">
+          <span className="font-cormorant text-[oklch(0.48_0.060_65)] text-xs tracking-[0.3em] uppercase block mb-2">LINE予約</span>
+          <h3 className="font-mincho text-[oklch(0.28_0.050_65)] text-xl font-bold mb-2">店舗をお選びください</h3>
+          <p className="font-sans-jp text-[oklch(0.55_0.055_65)] text-xs leading-relaxed">
+            LINEでお友だち追加後、トーク画面からご予約いただけます。
+          </p>
+        </div>
+        <div className="space-y-4">
+          <a
+            href="https://lin.ee/RhtIZDl"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 p-5 rounded-sm border-2 border-[oklch(0.72_0.038_93)] hover:bg-[oklch(0.72_0.038_93)/10] transition-all duration-300"
+          >
+            <div className="flex-1">
+              <p className="font-mincho text-[oklch(0.28_0.050_65)] text-base font-bold mb-0.5">THE HERBS神戸邘急店</p>
+              <p className="font-sans-jp text-[oklch(0.55_0.055_65)] text-xs">神戸邘急本桸6階 ・ 営業時間3 10:00～20:00</p>
+            </div>
+            <span className="font-sans-jp text-[oklch(0.48_0.060_65)] text-xs font-bold whitespace-nowrap">LINEで予約 →</span>
+          </a>
+          <a
+            href="https://lin.ee/oWeHStW"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-4 p-5 rounded-sm border-2 border-[oklch(0.62_0.14_160)] hover:bg-[oklch(0.62_0.14_160)/10] transition-all duration-300"
+          >
+            <div className="flex-1">
+              <p className="font-mincho text-[oklch(0.28_0.050_65)] text-base font-bold mb-0.5">THE HERBS植物美容サロン</p>
+              <p className="font-sans-jp text-[oklch(0.55_0.055_65)] text-xs">神戸市灌区 ・ 営業時間3 10:00～20:00</p>
+            </div>
+            <span className="font-sans-jp text-[oklch(0.35_0.10_160)] text-xs font-bold whitespace-nowrap">LINEで予約 →</span>
+          </a>
+        </div>
+        <p className="font-sans-jp text-[oklch(0.65_0.055_65)] text-[11px] text-center mt-5 leading-relaxed">
+          ※ フォームからの予約は《<a href="/booking" className="underline">予約ページ</a>》からもお申し込みいただけます。
+        </p>
+      </div>
+    </div>
+  );
+}
+
+// フローティング予約ボタン
+function FloatingBookingButton() {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const handler = () => setScrolled(window.scrollY > 300);
+    window.addEventListener('scroll', handler, { passive: true });
+    return () => window.removeEventListener('scroll', handler);
+  }, []);
+
+  const openModal = () => {
+    const modal = document.getElementById('line-booking-modal');
+    if (modal) modal.style.display = 'flex';
+  };
+
+  return (
+    <div
+      className={`fixed bottom-6 right-4 z-50 md:hidden transition-all duration-500 ${scrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}
+    >
+      <button
+        onClick={openModal}
+        className="font-sans-jp font-bold text-white text-xs px-5 py-3.5 shadow-2xl flex items-center gap-2"
+        style={{
+          background: 'linear-gradient(135deg, #b8956a 0%, #d4aa7d 50%, #8b6845 100%)',
+          borderRadius: '2px',
+          boxShadow: '0 4px 20px rgba(180,140,90,0.6)',
+          textShadow: '0 1px 2px rgba(0,0,0,0.4)',
+          border: 'none',
+          cursor: 'pointer',
+        }}
+      >
+        <span style={{ fontSize: '1rem' }}>✉</span>
+        LINE予約（無料）
+      </button>
+    </div>
   );
 }
 
@@ -2453,9 +2732,11 @@ export default function Home() {
     <div className="min-h-screen">
       <Nav />
       <HeroSection />
+      <AuthorityBand />
       <ProblemSection />
       <ScalpGallerySection />
       <ConceptSection />
+      <WhyBotanicalSection />
       <HabitValueSection />
       <StatsSection />
       <ServiceSection />
@@ -2469,6 +2750,8 @@ export default function Home() {
       <StoreSection />
       <CtaSection />
       <Footer />
+      <LineBookingModal />
+      <FloatingBookingButton />
     </div>
   );
 }

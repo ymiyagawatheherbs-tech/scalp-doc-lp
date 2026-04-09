@@ -87,13 +87,13 @@ function Nav() {
             <div className="flex flex-col leading-none">
               <span
                 className="font-bold tracking-widest transition-colors"
-                style={{ fontFamily: "'Noto Sans JP', sans-serif", fontSize: "0.95rem", fontWeight: 700, letterSpacing: "0.12em", color: scrolled ? "oklch(0.35 0.050 130)" : "rgba(255,255,255,0.95)" }}
+                style={{ fontFamily: "'Noto Sans JP', sans-serif", fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.10em", color: scrolled ? "oklch(0.35 0.050 130)" : "rgba(255,255,255,0.95)" }}
               >
-                スカルプラボ
+                THE HERBS
               </span>
               <span
                 className="font-sans-jp transition-colors"
-                style={{ fontSize: "0.55rem", letterSpacing: "0.15em", color: scrolled ? "oklch(0.48 0.08 140)" : "rgba(255,255,255,0.45)" }}
+                style={{ fontSize: "0.52rem", letterSpacing: "0.15em", color: scrolled ? "oklch(0.48 0.08 140)" : "rgba(255,255,255,0.45)" }}
               >
                 SCALP LABO
               </span>
@@ -217,21 +217,31 @@ function Hero() {
           style={{ opacity: loaded ? 1 : 0, transform: loaded ? "translateY(0)" : "translateY(30px)" }}
         >
           <span className="text-xs tracking-[0.4em] uppercase block mb-6 font-medium" style={{ color: "#5a7a52" }}>
-            Scalp Labo Partner Program
+            THE HERBS SCALP LABO パートナープログラム
           </span>
 
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
-            髪と頭皮の悩みを、<br />
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
+            頭皮ケアの悩みを、<br />
             <span style={{ color: "#5a7a52" }}>一緒に解決しませんか。</span>
           </h1>
+          <p className="text-lg font-medium mb-4 leading-snug" style={{ fontFamily: "'Shippori Mincho', serif", color: "#2a3e2a" }}>
+            植物の力で、頭皮ケアの新常識を広める事業。
+          </p>
           <p className="text-base leading-relaxed mb-4" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#444", lineHeight: "1.9" }}>
             薄毛・抜け毛・うねり・頭皮トラブル。<br />
             悩みを抱えながらも、どこに相談すればいいかわからない方が大勢います。<br />
-            THE HERBS SCALP LABは、そうした方々の「受け皿」となる技術を提供し、一緒にサポートしていきたいサロンを募集しています。
+            THE HERBS SCALP LABOは、そうした方々の「受け皿」となる技術を提供し、一緒にサポートしていきたいサロンを募集しています。
           </p>
-          <p className="text-sm leading-relaxed mb-10" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#888" }}>
+          <p className="text-sm leading-relaxed mb-8" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#888" }}>
             エステサロン・美容師・ヘッドスパ店など、業種を問わず参加できます。
           </p>
+          {/* 権威性帯 */}
+          <div className="mb-8 p-4 border-l-4" style={{ borderColor: '#5a7a52', backgroundColor: 'rgba(90,122,82,0.06)' }}>
+            <p className="text-xs leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: '#2a3e2a' }}>
+              <span className="font-bold">化粧品製造会社 THE HERBS（創業1986年）</span>が開発した独自の植物美容メソッド。
+              メーカー直営の技術・証拠・商品をそのまま提供。
+            </p>
+          </div>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
               href={LINE_SALON.url}
@@ -1387,7 +1397,7 @@ function Footer() {
       <div className="flex items-center justify-center mb-3">
         <img
           src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_olive_12a41c11.webp"
-          alt="SCALP LABO"
+          alt="THE HERBS SCALP LABO"
           className="w-auto object-contain"
           style={{ height: "56px", filter: "brightness(0) invert(1)", opacity: 0.7 }}
         />
@@ -1416,7 +1426,7 @@ function Footer() {
       </div>
       <p className="text-[10px] mb-3" style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'Noto Sans JP', sans-serif" }}>設立：昭和61年4月24日｜化粧品製造業・化粧品製造販売業｜直営店：神戸阪急本館６階 / THE HERBS植物美容サロン / 植物美容学校</p>
       <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>
-        © 2026 SCALP LABO / THE HERBS. All rights reserved.
+        © 2026 THE HERBS SCALP LABO. All rights reserved.
       </p>
       <div className="mt-3 flex justify-center gap-6">
         <a href="/" className="text-xs transition-colors" style={{ color: "rgba(255,255,255,0.4)" }}
