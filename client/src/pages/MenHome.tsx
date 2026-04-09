@@ -211,10 +211,10 @@ function Hero() {
         <img
           src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/men-hero-main_cae2a01a.jpg"
           alt="THE HERBS SCALP LABO for Men"
-          className="w-full h-full object-cover opacity-40"
+          className="w-full h-full object-cover opacity-50"
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.14 0.04 140)] via-[oklch(0.14 0.04 140)]/80 to-transparent" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.14 0.04 140)] via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-[oklch(0.10 0.04 140)] via-[oklch(0.12 0.04 140)]/90 to-[oklch(0.14 0.04 140)]/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[oklch(0.10 0.04 140)] via-[oklch(0.12 0.04 140)]/40 to-transparent" />
       </div>
 
       {/* Gold line decoration */}
@@ -231,23 +231,23 @@ function Hero() {
           </div>
 
           {/* Main headline */}
-          <h1 className="font-['Shippori_Mincho'] text-white leading-tight mb-4 md:mb-6">
+          <h1 className="font-['Shippori_Mincho'] text-white leading-tight mb-4 md:mb-6" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.8)' }}>
             <span className="block text-2xl md:text-6xl font-bold mb-1 md:mb-2">
               頭皮の状態を、
             </span>
             <span className="block text-2xl md:text-6xl font-bold mb-1 md:mb-2">
               データで把握する。
             </span>
-            <span className="block text-base md:text-2xl text-[oklch(0.69 0.060 130)] font-normal mt-2 md:mt-4 tracking-wider">
+            <span className="block text-base md:text-2xl text-[oklch(0.85 0.12 90)] font-normal mt-2 md:mt-4 tracking-wider" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.9)' }}>
               抜け毛を未然に防ぎ、不安のない髪へ
             </span>
           </h1>
 
-          <p className="hidden md:block text-white/70 text-base md:text-lg leading-relaxed mb-10 font-['Noto_Sans_JP'] font-light max-w-xl">
+          <p className="hidden md:block text-white/95 text-base md:text-lg leading-relaxed mb-10 font-['Noto_Sans_JP'] font-light max-w-xl" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.7)' }}>
             THE HERBS SCALP LABO for Men は、マイクロスコープによる詳細な頭皮チェックと
             パーソナルデータの継続記録で、あなたの頭皮状態を科学的にサポートします。
           </p>
-          <p className="md:hidden text-white/65 text-sm leading-relaxed mb-6 font-['Noto_Sans_JP'] font-light">
+          <p className="md:hidden text-white/95 text-sm leading-relaxed mb-6 font-['Noto_Sans_JP'] font-light" style={{ textShadow: '0 1px 6px rgba(0,0,0,0.7)' }}>
             マイクロスコープで頭皮状態を記録・科学的にサポート。
           </p>
 
@@ -493,19 +493,38 @@ function ScalpGallery() {
 // ========== CONCEPT ==========
 function Concept() {
   return (
-    <section className="bg-[oklch(0.20 0.06 140)] py-24">
-      <div className="max-w-7xl mx-auto px-6">
+    <section className="relative py-24 overflow-hidden" style={{ background: 'linear-gradient(135deg, oklch(0.16 0.06 140) 0%, oklch(0.22 0.08 140) 50%, oklch(0.16 0.06 140) 100%)' }}>
+      {/* Decorative background accent */}
+      <div className="absolute top-0 right-0 w-96 h-96 rounded-full opacity-10" style={{ background: 'radial-gradient(circle, oklch(0.69 0.060 130), transparent)', transform: 'translate(30%, -30%)' }} />
+      <div className="absolute bottom-0 left-0 w-64 h-64 rounded-full opacity-8" style={{ background: 'radial-gradient(circle, oklch(0.69 0.060 130), transparent)', transform: 'translate(-30%, 30%)' }} />
+      <div className="max-w-7xl mx-auto px-6 relative">
+        {/* Section header */}
+        <div className="text-center mb-16">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <div className="h-px w-16 bg-[oklch(0.69 0.060 130)]" />
+            <span className="text-[oklch(0.69 0.060 130)] text-xs tracking-[0.5em] uppercase font-['Cormorant_Garamond'] italic">Our Positioning</span>
+            <div className="h-px w-16 bg-[oklch(0.69 0.060 130)]" />
+          </div>
+          <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-5xl font-bold leading-tight mb-4">
+            私たちが目指す<br />
+            <span style={{ color: 'oklch(0.85 0.12 90)', textShadow: '0 0 40px oklch(0.69 0.060 130 / 0.5)' }}>ポジション</span>
+          </h2>
+          <p className="text-white/65 text-sm font-['Noto_Sans_JP'] max-w-xl mx-auto leading-relaxed">
+            頭皮ケアの「定期検診」という新しい市場を、男性向けに開拓します。
+          </p>
+        </div>
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Visual */}
           <div className="relative">
+            <div className="absolute inset-0 border border-[oklch(0.69 0.060 130)]/30 -m-3" />
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/men-microscope-check_bfd1313a.png"
               alt="マイクロスコープによる頭皮チェック"
-              className="w-full object-cover"
+              className="w-full object-cover relative"
               style={{ aspectRatio: "4/3" }}
             />
-            <div className="absolute -bottom-4 -right-4 w-24 h-24 border border-[oklch(0.69 0.060 130)]/40" />
-            <div className="absolute -top-4 -left-4 w-24 h-24 border border-[oklch(0.69 0.060 130)]/20" />
+            <div className="absolute -bottom-4 -right-4 w-24 h-24 border border-[oklch(0.69 0.060 130)]/60" />
+            <div className="absolute -top-4 -left-4 w-24 h-24 border border-[oklch(0.69 0.060 130)]/30" />
           </div>
 
           {/* Text */}
@@ -516,10 +535,10 @@ function Concept() {
             </div>
             <h2 className="font-['Shippori_Mincho'] text-white text-3xl md:text-4xl font-bold mb-6 leading-tight">
               歯科検診のように、<br />
-              <span className="text-[oklch(0.69 0.060 130)]">頭皮も定期的に</span><br />
+              <span className="text-[oklch(0.85 0.12 90)]">頭皮も定期的に</span><br />
               チェックする時代へ。
             </h2>
-            <p className="text-white/70 text-sm leading-relaxed mb-6 font-['Noto_Sans_JP'] font-light">
+            <p className="text-white/80 text-sm leading-relaxed mb-6 font-['Noto_Sans_JP'] font-light">
               虫歯になってから歯医者に行くのではなく、定期的に通って予防するように。
               THE HERBS SCALP LABO for Men は、頭皮の状態を定期的に記録・確認する習慣を、
               男性の新しいセルフケアとして提案します。
@@ -1196,13 +1215,28 @@ function Digital() {
               </a>
             </div>
           </div>
-          {/* Mockup Image */}
-          <div className="flex justify-center">
-            <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/app-mockup-hero-aPvm7rmSN3wqZSXwseC4wS.png"
-              alt="THE HERBS SCALP LABO デジタルレポート モックアップ"
-              className="w-full max-w-lg object-contain"
-            />
+          {/* App Screenshots — staggered layout (same as ladies' site) */}
+          <div className="flex justify-center items-start gap-5" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
+            {/* Left: top-aligned */}
+            <div style={{ width: '47%', marginTop: '0' }}>
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/app_screen_log_78a5d0f2.png"
+                alt="スカルププログ アプリ画面"
+                className="w-full object-contain rounded-2xl"
+                style={{ boxShadow: '0 12px 48px rgba(0,0,0,0.55)' }}
+              />
+              <p className="text-center text-xs mt-3" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: "'Noto Sans JP', sans-serif", letterSpacing: '0.05em' }}>スカルププログ</p>
+            </div>
+            {/* Right: staggered 60px down */}
+            <div style={{ width: '47%', marginTop: '60px' }}>
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/app_screen_advice_1bc0e66a.png"
+                alt="スカルプアドバイス アプリ画面"
+                className="w-full object-contain rounded-2xl"
+                style={{ boxShadow: '0 12px 48px rgba(0,0,0,0.55)' }}
+              />
+              <p className="text-center text-xs mt-3" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: "'Noto Sans JP', sans-serif", letterSpacing: '0.05em' }}>スカルプアドバイス</p>
+            </div>
           </div>
         </div>
       </div>
@@ -1835,7 +1869,7 @@ function Footer() {
           <div>
             <div className="flex items-center mb-4">
               <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_olive_12a41c11.webp"
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_grayge_p_transparent_47bbd755.png"
                 alt="SCALP LABO"
                 className="w-auto object-contain"
                 style={{ height: "64px", filter: "brightness(0) invert(1)", opacity: 0.85 }}
