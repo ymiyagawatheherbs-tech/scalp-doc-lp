@@ -16,7 +16,7 @@ import { trpc } from "@/lib/trpc";
 // 全コース定義
 const ALL_COURSES = [
   { value: "free",     label: "無料スカルプチェック",  sub: "5〜10分・無料",            desc: "マイクロスコープで頭皮の状態を確認。初めての方に最適です。" },
-  { value: "standard", label: "THE HERBS SCALP LAB定期ケア",  sub: "30〜40分・3,000〜5,000円", desc: "定期的な頭皮チェック＋ボタニカルミストケア。継続的なサポートを希望の方に。" },
+  { value: "standard", label: "THE HERBS SCALP LAB定期ケア",  sub: "30〜40分・3,850円〜5,500円（税込）", desc: "定期的な頭皮チェック＋ボタニカルミストケア。継続的なサポートを希望の方に。" },
   { value: "consult",  label: "まずは相談したい",       sub: "内容を相談",               desc: "お気軽にご相談ください。" },
 ];
 
@@ -468,7 +468,7 @@ export default function Booking() {
                         <span style={{ fontWeight: 700, fontSize: "0.88rem", color: "oklch(0.30 0.045 130)" }}>{course.label}</span>
                         <span style={{ fontSize: "0.72rem", color: "oklch(0.69 0.060 130)", fontWeight: 600 }}>
                           {course.sub}
-                          {course.value === "standard" && <span style={{ fontSize: "0.55rem", opacity: 0.7, marginLeft: "2px" }}>（税別）</span>}
+
                         </span>
                       </div>
                       <p style={{ fontSize: "0.75rem", color: "oklch(0.5 0.04 42)", lineHeight: 1.6, margin: 0 }}>{course.desc}</p>

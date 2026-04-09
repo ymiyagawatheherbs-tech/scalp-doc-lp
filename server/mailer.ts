@@ -394,10 +394,10 @@ export async function sendBookingConfirmed(data: BookingConfirmedData): Promise<
     <div style="background: #fffbf5; border: 1px solid #e8ddd0; border-radius: 4px; padding: 16px 20px; margin: 16px 0;">
       <p style="font-size: 12px; letter-spacing: 0.1em; color: #8b5e3c; font-weight: bold; margin: 0 0 10px;">📌 来店前のご案内</p>
       <ul style="font-size: 13px; color: #555; line-height: 2; margin: 0; padding-left: 18px;">
-        <li>ゴージュやスクラブなど頭皮に刷き込むケアをされている場合は、当日はお控えください。</li>
-        <li>ヘアカラー・パーマ・縮毛矯正をご予定の方は、施術前日は洗髪をお控えいただくと頭皮のバリア機能が高まります。</li>
+        <li>前日夜の洗髪が理想です。頭皮のバリア機能が高まり、チェック精度が向上します。</li>
+        <li>整髪料はできるだけお控えください（頭皮の状態を正確に確認するため）。</li>
         <li>特に持ち物はございません。リラックスしてお越しください。</li>
-        <li>店舗の場合は、施術の10分前までにお越しいただくとスムーズです。</li>
+        <li>施術の10分前までにお越しいただくとスムーズです。</li>
       </ul>
     </div>
 
@@ -421,7 +421,7 @@ export async function sendBookingConfirmed(data: BookingConfirmedData): Promise<
     <!-- LINE -->
     <div style="margin-top: 16px; padding: 16px 20px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; text-align: center;">
       <p style="font-size: 13px; color: #166534; font-weight: bold; margin: 0 0 8px;">📱 LINEでもお気軽にご相談ください</p>
-      <a href="https://lin.ee/WPbdXE5" style="display: inline-block; background: #06c755; color: white; text-decoration: none; padding: 10px 24px; border-radius: 24px; font-size: 14px; font-weight: bold; letter-spacing: 0.05em;">LINE公式アカウントを友だち追加</a>
+      <a href="https://lin.ee/X9xSGH5" style="display: inline-block; background: #06c755; color: white; text-decoration: none; padding: 10px 24px; border-radius: 24px; font-size: 14px; font-weight: bold; letter-spacing: 0.05em;">ライン公式アカウントを友だち追加</a>
     </div>
   </div>
   <p style="font-size: 11px; color: #aaa; text-align: center; margin-top: 16px;">
