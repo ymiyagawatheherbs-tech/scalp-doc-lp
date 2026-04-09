@@ -19,7 +19,7 @@ const IMAGES = {
   workshop02: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/workshop_02_2687668f.webp",
   workshop03: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/workshop_03_a2848978.jpg",
   workshop04: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/workshop_04_1185c7ae.png",
-  workshop05: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/workshop_05_dd37cc59.png",
+  workshop05: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/workshop05_cropped_12ef1f9c.png",
 };
 
 const LINE_SALON = {
@@ -984,13 +984,28 @@ function AppSection() {
               </a>
             </div>
           </div>
-          {/* Mockup Image */}
-          <div className="flex justify-center">
-            <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/app-mockup-hero-aPvm7rmSN3wqZSXwseC4wS.png"
-              alt="THE HERBS SCALP LABアプリ モックアップ"
-              className="w-full max-w-lg object-contain"
-            />
+          {/* App Screenshots — staggered layout (same as ladies site) */}
+          <div className="flex justify-center items-start gap-5" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
+            {/* 左：上揃え */}
+            <div style={{ width: '47%', marginTop: '0' }}>
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/app_screen_log_78a5d0f2.png"
+                alt="スカルププログ アプリ画面"
+                className="w-full object-contain rounded-2xl"
+                style={{ boxShadow: '0 12px 48px rgba(0,0,0,0.55)' }}
+              />
+              <p className="text-center text-xs mt-3" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: "'Noto Sans JP', sans-serif", letterSpacing: '0.05em' }}>スカルププログ</p>
+            </div>
+            {/* 右：60px下にスタガー */}
+            <div style={{ width: '47%', marginTop: '60px' }}>
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/app_screen_advice_1bc0e66a.png"
+                alt="スカルプアドバイス アプリ画面"
+                className="w-full object-contain rounded-2xl"
+                style={{ boxShadow: '0 12px 48px rgba(0,0,0,0.55)' }}
+              />
+              <p className="text-center text-xs mt-3" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: "'Noto Sans JP', sans-serif", letterSpacing: '0.05em' }}>スカルプアドバイス</p>
+            </div>
           </div>
         </div>
       </div>
