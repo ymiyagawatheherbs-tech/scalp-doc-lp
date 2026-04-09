@@ -1641,7 +1641,7 @@ function StoreSection() {
       address: "兵庫県神戸市灘区大内通1-7-17 1F",
       address2: "",
       hours: [
-        { day: "水・金・土", time: "10:00 ～ 20:00" },
+        { day: "営業時間", time: "10:00 ～ 20:00" },
       ],
       closed: "火曜・日曜・祝日定休",
       line: "https://lin.ee/oWeHStW",

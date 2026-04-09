@@ -52,7 +52,7 @@ const rows: { label: string; value: React.ReactNode }[] = [
   },
   { label: "電話番号", value: "03-0000-0000（※デモ用番号）" },
   { label: "メールアドレス", value: "info@scalp-labo.jp（※デモ用アドレス）" },
-  { label: "営業時間", value: "10:00〜19:00（月曜定休）" },
+  { label: "営業時間", value: "10:00〜20:00" },
   {
     label: "サービス内容",
     value: (

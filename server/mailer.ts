@@ -268,7 +268,7 @@ export async function sendCustomerConfirmation(data: CustomerConfirmationData): 
     </div>
     <p style="font-size: 12px; color: #555; margin-top: 16px; line-height: 1.8;">
       <strong>THE HERBS 神戸阪急店</strong>（神戸阪急本館６階 モーニングフロー内）<br>
-      営業時間：水・金・土 10:00〜20:00<br>
+      営業時間：10:00〜20:00<br>
       ℡ <a href="tel:070-2642-7366" style="color: #c9a96e;">070-2642-7366</a>（直通）
     </p>
   </div>
@@ -413,7 +413,7 @@ export async function sendBookingConfirmed(data: BookingConfirmedData): Promise<
     <!-- アクセス・問合せ -->
     <div style="margin-top: 14px; padding: 14px 16px; background: #f9f5f0; border-radius: 4px; font-size: 12px; color: #555; line-height: 1.9;">
       <strong>THE HERBS 神戸阪急店</strong>（神戸阪急本館６階 モーニングフロー内）<br>
-      営業時間：水・金・土 10:00〜20:00<br>
+      営業時間：10:00〜20:00<br>
       ℡ <a href="tel:070-2642-7366" style="color: #c9a96e; font-weight: bold;">070-2642-7366</a>（直通）
     </div>
 
