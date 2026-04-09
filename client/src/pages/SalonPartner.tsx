@@ -14,6 +14,12 @@ const IMAGES = {
   interior: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/salon_interior_c8f3f7a4.jpg",
   steamer: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/salon_steamer_treatment_ae0eacff.jpg",
   scalpCheck: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/salon_scalp_check_ae329437.jpg",
+  // 講習会画像
+  workshop01: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/workshop_01_681429e8.png",
+  workshop02: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/workshop_02_2687668f.webp",
+  workshop03: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/workshop_03_a2848978.jpg",
+  workshop04: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/workshop_04_1185c7ae.png",
+  workshop05: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/workshop_05_dd37cc59.png",
 };
 
 const LINE_SALON = {
@@ -439,6 +445,22 @@ function Concept() {
           ))}
         </div>
 
+        {/* 講習会イメージ */}
+        <div
+          className="mb-12 overflow-hidden transition-all duration-700"
+          style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)", transitionDelay: "400ms" }}
+        >
+          <img
+            src={IMAGES.workshop05}
+            alt="THE HERBS 技術講習会の様子"
+            className="w-full object-cover"
+            style={{ height: "360px", objectPosition: "center 40%" }}
+          />
+          <p className="text-xs text-center mt-3" style={{ color: "#888", fontFamily: "'Noto Sans JP', sans-serif" }}>
+            実際の技術講習会の様子 — 少人数制で丁寧に指導します
+          </p>
+        </div>
+
         {/* 歯科との比較 */}
         <div
           className="p-8 md:p-12 transition-all duration-700"
@@ -493,21 +515,21 @@ function WhatWeDo() {
 
   const steps = [
     {
-      img: IMAGES.scalpCheck,
+      img: IMAGES.workshop02,
       step: "STEP 01",
       title: "頭皮チェックで「見える化」する",
       body: "マイクロスコープで頭皮の状態を記録・分析。お客様が自分の頭皮を初めて「見る」体験が、ケアへの動機づけになります。データは時系列で蓄積され、変化を実感できます。",
       note: "所要時間：約5〜10分 / 初回無料で提供可能",
     },
     {
-      img: IMAGES.steamer,
+      img: IMAGES.workshop03,
       step: "STEP 02",
       title: "ボタニカルミストで頭皮を整える",
       body: "THE HERBSが開発したハーブスチーマーで、植物成分そのものを蒸気で頭皮に届けます。カラー・パーマ後の薬剤除去にも対応。チェックで見つかった課題に合わせたケアを提供します。",
       note: "既存メニューへの追加・単品提供どちらも可能",
     },
     {
-      img: IMAGES.interior,
+      img: IMAGES.workshop01,
       step: "STEP 03",
       title: "定期来店の仕組みをつくる",
       body: "「歯の定期検診」のように、頭皮チェックを定期的に受ける習慣を育てます。定期来店が定着することで、安定した売上と顧客との深い信頼関係が生まれます。",
@@ -742,60 +764,74 @@ function ProgramSteps() {
           </h2>
         </div>
 
-        <div className="space-y-6">
+        <div className="space-y-8">
           {[
             {
               num: "01",
               title: "LINEで資料を受け取る",
               body: "まずはサロン向けLINEに登録。収益モデル・導入事例・認定プログラムの詳細資料を無料でお届けします。勧誘・営業は一切ありません。",
               time: "すぐに受け取れます",
+              img: null,
             },
             {
               num: "02",
               title: "オンライン説明会への参加",
               body: "THE HERBS SCALP LABのコンセプト・認定プログラムの内容・収益モデルについて詳しくご説明します。質問も自由にどうぞ。",
-              time: "約60分",
+              time: "絀60分",
+              img: null,
             },
             {
               num: "03",
               title: "技術講習会への参加",
-              body: "頭皮チェックの手順・ボタニカルミストの使い方・お客様へのカウンセリング方法を実習形式で学びます。THE HERBSの専門スタッフが直接指導します。",
+              body: "頭皮チェックの手順・ボタニカルミストの使い方・お客様へのカウンセリング方法を実習形式で学びます。THE HERBSの専門スタッフが直接指導。小人数制のアットホーム形式で丁寧に学べます。",
               time: "1日〜2日",
+              img: IMAGES.workshop04,
             },
             {
               num: "04",
               title: "認定サロンとして登録",
               body: "認定後はTHE HERBS SCALP LABの公式サロンリストに掲載されます。THE HERBS製品の卸販売権・販促ツールの提供・継続サポートを受けられます。",
               time: "認定後すぐ",
+              img: null,
             },
           ].map((step, i) => (
             <div
               key={i}
-              className="flex gap-6 items-start transition-all duration-700"
+              className="transition-all duration-700"
               style={{
                 opacity: inView ? 1 : 0,
                 transform: inView ? "translateX(0)" : "translateX(-30px)",
                 transitionDelay: `${i * 150}ms`,
               }}
             >
-              <div
-                className="flex-shrink-0 w-14 h-14 flex items-center justify-center font-bold text-lg"
-                style={{ backgroundColor: "#5a7a52", color: "#ffffff", fontFamily: "'Cormorant Garamond', serif" }}
-              >
-                {step.num}
-              </div>
-              <div className="flex-1 pb-6" style={{ borderBottom: i < 3 ? "1px solid #e0e0e0" : "none" }}>
-                <div className="flex items-center gap-3 mb-2">
-                  <h3 className="font-bold text-lg" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
-                    {step.title}
-                  </h3>
-                  <span className="text-xs px-2 py-0.5" style={{ backgroundColor: "#eef5ea", color: "#5a7a52", fontFamily: "'Noto Sans JP', sans-serif" }}>
-                    {step.time}
-                  </span>
+              <div className="flex gap-6 items-start">
+                <div
+                  className="flex-shrink-0 w-14 h-14 flex items-center justify-center font-bold text-lg"
+                  style={{ backgroundColor: "#5a7a52", color: "#ffffff", fontFamily: "'Cormorant Garamond', serif" }}
+                >
+                  {step.num}
                 </div>
-                <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#555", lineHeight: "1.8" }}>
-                  {step.body}
-                </p>
+                <div className="flex-1 pb-6" style={{ borderBottom: i < 3 ? "1px solid #e0e0e0" : "none" }}>
+                  <div className="flex items-center gap-3 mb-2">
+                    <h3 className="font-bold text-lg" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
+                      {step.title}
+                    </h3>
+                    <span className="text-xs px-2 py-0.5" style={{ backgroundColor: "#eef5ea", color: "#5a7a52", fontFamily: "'Noto Sans JP', sans-serif" }}>
+                      {step.time}
+                    </span>
+                  </div>
+                  <p className="text-sm leading-relaxed mb-4" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#555", lineHeight: "1.8" }}>
+                    {step.body}
+                  </p>
+                  {step.img && (
+                    <img
+                      src={step.img}
+                      alt={step.title}
+                      className="w-full max-w-2xl object-cover"
+                      style={{ height: "280px", objectPosition: "center 30%" }}
+                    />
+                  )}
+                </div>
               </div>
             </div>
           ))}
