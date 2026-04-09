@@ -1163,6 +1163,179 @@ function HomeCareAppSection() {
     </section>
   );
 }
+// ========== 6つの特徴 ==========
+function SixFeatures() {
+  const { ref, inView } = useInView();
+  const features = [
+    {
+      number: "01",
+      title: "ブルーオーシャン市場",
+      subtitle: "Blue Ocean",
+      desc: "頭皮の定期チェックを専門に提供するサロンは、まだほとんど存在しません。競合のいない新市場で、先行者優位を確立できます。",
+      accent: "#4a7c59",
+    },
+    {
+      number: "02",
+      title: "定期チェック習慣化",
+      subtitle: "Repeat Business",
+      desc: "歯の定期検診と同じように、頭皮チェックを3ヶ月ごとの習慣に。一度定着すれば、安定したリピート収益が生まれます。",
+      accent: "#4a7c59",
+    },
+    {
+      number: "03",
+      title: "予防型ヘルスケア",
+      subtitle: "Preventive Healthcare",
+      desc: "薄毛になってから悩むのではなく、なる前に守る。医療でも治療でもない、新しい予防ケアの領域を一緒に切り開きます。",
+      accent: "#4a7c59",
+    },
+    {
+      number: "04",
+      title: "美容サービスとの融合",
+      subtitle: "Beauty Service",
+      desc: "エステ・美容室・ヘッドスパなど、既存の美容サービスに頭皮チェックを加えるだけ。大きな設備投資なしに新メニューとして導入できます。",
+      accent: "#4a7c59",
+    },
+    {
+      number: "05",
+      title: "オーガニックハーブケア",
+      subtitle: "Organic Herb Care",
+      desc: "植物由来の成分ではなく、植物そのもの。THE HERBSが独自開発したハーブスチーマーによる本物のボタニカルケアを提供します。",
+      accent: "#4a7c59",
+    },
+    {
+      number: "06",
+      title: "ケミカルフリー",
+      subtitle: "Chemical Free",
+      desc: "合成界面活性剤・シリコン・パラベン不使用。頭皮に優しい処方で、敏感肌のお客様にも安心して提供できるラインナップです。",
+      accent: "#4a7c59",
+    },
+  ];
+  return (
+    <section className="py-24" style={{ backgroundColor: "#f8f5f0" }}>
+      <div
+        ref={ref}
+        className="max-w-6xl mx-auto px-6 transition-all duration-700"
+        style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)" }}
+      >
+        {/* ヘッダー */}
+        <div className="text-center mb-16">
+          <span className="text-xs tracking-[0.3em] mb-4 block font-medium" style={{ color: "#4a7c59", fontFamily: "'Noto Sans JP', sans-serif" }}>6 FEATURES</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 leading-tight" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
+            髪のプロは美容師、<br />
+            <span style={{ color: "#4a7c59" }}>頭皮のプロ</span>を目指しませんか
+          </h2>
+          <p className="text-sm leading-relaxed max-w-xl mx-auto" style={{ color: "#555", fontFamily: "'Noto Sans JP', sans-serif", lineHeight: "1.9" }}>
+            THE HERBS SCALP LABが提案する新しい事業展開。6つの特徴が、あなたのサロンを差別化します。
+          </p>
+        </div>
+        {/* 6つのカード */}
+        <div className="grid md:grid-cols-3 gap-6">
+          {features.map((f) => (
+            <div
+              key={f.number}
+              className="p-8"
+              style={{ backgroundColor: "#ffffff", borderTop: `3px solid ${f.accent}` }}
+            >
+              <div className="flex items-baseline gap-3 mb-3">
+                <span className="text-4xl font-bold" style={{ color: "rgba(74,124,89,0.15)", fontFamily: "'Cormorant Garamond', serif", lineHeight: 1 }}>{f.number}</span>
+                <span className="text-xs tracking-widest font-medium" style={{ color: f.accent, fontFamily: "'Noto Sans JP', sans-serif" }}>{f.subtitle}</span>
+              </div>
+              <h3 className="text-lg font-bold mb-3" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>{f.title}</h3>
+              <p className="text-xs leading-relaxed" style={{ color: "#666", fontFamily: "'Noto Sans JP', sans-serif", lineHeight: "1.9" }}>{f.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ========== 新規募集告知バナー ==========
+function RecruitmentBanner() {
+  const { ref, inView } = useInView();
+  // カウントダウン
+  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  useEffect(() => {
+    const target = new Date("2026-06-12T00:00:00+09:00").getTime();
+    const tick = () => {
+      const now = Date.now();
+      const diff = target - now;
+      if (diff <= 0) { setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 }); return; }
+      setTimeLeft({
+        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
+        hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+        minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
+        seconds: Math.floor((diff % (1000 * 60)) / 1000),
+      });
+    };
+    tick();
+    const id = setInterval(tick, 1000);
+    return () => clearInterval(id);
+  }, []);
+  return (
+    <section
+      ref={ref}
+      className="py-20 transition-all duration-700"
+      style={{
+        background: "linear-gradient(135deg, #0d2818 0%, #1a4a2e 50%, #0d2818 100%)",
+        opacity: inView ? 1 : 0,
+        transform: inView ? "translateY(0)" : "translateY(30px)",
+      }}
+    >
+      <div className="max-w-4xl mx-auto px-6 text-center">
+        <span className="text-xs tracking-[0.3em] mb-4 block font-medium" style={{ color: "#a8d5a2", fontFamily: "'Noto Sans JP', sans-serif" }}>NEW PARTNER RECRUITMENT</span>
+        <h2 className="text-3xl md:text-4xl font-bold mb-3 leading-tight" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
+          新規パートナー募集スタート
+        </h2>
+        <p className="text-5xl md:text-6xl font-bold mb-8" style={{ fontFamily: "'Cormorant Garamond', serif", color: "#c9a84c", letterSpacing: "0.05em" }}>
+          2026.06.12
+        </p>
+        {/* カウントダウン */}
+        <div className="flex justify-center gap-6 mb-10">
+          {[
+            { value: timeLeft.days, label: "DAYS" },
+            { value: timeLeft.hours, label: "HOURS" },
+            { value: timeLeft.minutes, label: "MIN" },
+            { value: timeLeft.seconds, label: "SEC" },
+          ].map((item) => (
+            <div key={item.label} className="text-center">
+              <div
+                className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-2"
+                style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(201,168,76,0.3)" }}
+              >
+                <span className="text-2xl md:text-3xl font-bold" style={{ color: "#ffffff", fontFamily: "'Cormorant Garamond', serif" }}>
+                  {String(item.value).padStart(2, "0")}
+                </span>
+              </div>
+              <span className="text-xs tracking-widest" style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'Noto Sans JP', sans-serif" }}>{item.label}</span>
+            </div>
+          ))}
+        </div>
+        <p className="text-sm mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,0.75)", fontFamily: "'Noto Sans JP', sans-serif", lineHeight: "1.9" }}>
+          先行登録いただいた方には、認定プログラムの詳細資料・収益シミュレーション・<br className="hidden md:block" />
+          初回導入特典を優先的にご案内いたします。
+        </p>
+        <a
+          href={LINE_SALON.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-3 px-10 py-4 font-bold text-sm"
+          style={{
+            backgroundColor: "#06C755",
+            color: "#ffffff",
+            fontFamily: "'Noto Sans JP', sans-serif",
+            letterSpacing: "0.05em",
+          }}
+        >
+          <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+          LINEで先行登録する（無料）
+        </a>
+        <p className="text-xs mt-4" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>※ 登録後、詳細資料を順次お送りします</p>
+      </div>
+    </section>
+  );
+}
+
 // ========== CTA ==========
 function Cta() {
   const { ref, inView } = useInView();
@@ -1286,8 +1459,9 @@ export default function SalonPartner() {
       <ProgramSteps />
       <Faq />
       <CertifiedSalonSection />
+       <SixFeatures />
+      <RecruitmentBanner />
       <HomeCareAppSection />
-
       <Cta />
       <Footer />
     </div>
