@@ -863,7 +863,7 @@ function ServiceSection() {
   const { ref, inView } = useInView();
   const services = [
     {
-    layer: "Layer 1",
+    layer: "Step 1",
       badge: "無料",
       title: "スカルプチェック",
       subtitle: "まずは気軽に、頭皮の今を知る",
@@ -880,12 +880,12 @@ function ServiceSection() {
       desc: "歯科の定期チェックと同じ感覚で。気軽に頭皮の状態が確認できます。",
     },
     {
-    layer: "Layer 2",
+    layer: "Step 2",
       badge: "定期チェック＆ケア",
-      title: "定期スカルプチェック",
-      subtitle: "1ヶ月に1回のボタニカルスカルプケア",
+      title: "定期チェック&スカルプケア",
+      subtitle: "1ヶ月に1回のボタニカルミストケア",
       time: "45分",
-      price: "3,800～5,000円",
+      price: "3,850～5,500円（税込）",
       color: "oklch(0.72 0.038 93)",
       image: IMAGES.botanicalMist,
       items: [
@@ -898,12 +898,12 @@ function ServiceSection() {
       featured: true,
     },
     {
-      layer: "Layer 3",
+      layer: "Step 3",
       badge: "ケアプログラム",
       title: "パーソナルスカルプケア",
       subtitle: "チェック結果に基づくケアのご提案",
       time: "50分～",
-      price: "6,000円～",
+      price: "6,600円～（税込）",
       color: "oklch(0.40 0.065 65)",
       image: IMAGES.herbGommage,
       items: [
@@ -967,7 +967,7 @@ function ServiceSection() {
                     className="font-sans-jp text-xs px-3 py-1 rounded-full font-medium"
                     style={{
                       backgroundColor: `${svc.color}20`,
-                      color: svc.featured ? "oklch(0.85_0.030_93)" : svc.color,
+                      color: svc.featured ? '#fbf9f9' : svc.color,
                     }}
                   >
                     {svc.badge}
@@ -993,9 +993,6 @@ function ServiceSection() {
                     style={{ color: svc.featured ? "#FFFFFF" : svc.color }}
                   >
                     {svc.price}
-                    {svc.price !== "無料" && (
-                      <span className="font-sans-jp ml-1" style={{ fontSize: "0.6rem", fontWeight: 400, opacity: 0.7 }}>（税別）</span>
-                    )}
                   </span>
                   <span
                     className={`font-sans-jp text-xs ${
