@@ -202,8 +202,12 @@ export async function sendCustomerConfirmation(data: CustomerConfirmationData): 
   }
 
   const courseLabels: Record<string, string> = {
-    free_check: "無料頭皮チェック（初回）",
-    regular_care: "定期頭皮ケア",
+    free: "スカルプチェック（5〜10分）",
+    standard: "定期チェック&スカルプケア（45分）",
+    consult: "まずは相談したい",
+    // 旧形式小字のフォールバック
+    free_check: "スカルプチェック（5〜10分）",
+    regular_care: "定期チェック&スカルプケア（45分）",
     consultation: "まずは相談したい",
   };
   const courseLabel = courseLabels[data.course] ?? data.course;
@@ -212,32 +216,31 @@ export async function sendCustomerConfirmation(data: CustomerConfirmationData): 
   const htmlBody = `
 <!DOCTYPE html>
 <html lang="ja">
-<head><meta charset="UTF-8"></head>
-<body style="font-family: 'Helvetica Neue', Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-  <div style="background: #2a1a0a; color: #c9a96e; padding: 20px 24px; border-radius: 4px 4px 0 0;">
-    <h1 style="margin: 0; font-size: 18px; letter-spacing: 0.1em;">THE HERBS SCALP LABO</h1>
-    <p style="margin: 4px 0 0; font-size: 12px; opacity: 0.8;">ご予約受付確認</p>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<body style="font-family: 'Helvetica Neue', Arial, sans-serif; color: #333; max-width: 600px; width: 100%; margin: 0 auto; padding: 12px; box-sizing: border-box;">
+  <div style="background: #2a1a0a; color: #c9a96e; padding: 18px 20px; border-radius: 4px 4px 0 0;">
+    <p style="margin: 0; font-size: 11px; letter-spacing: 0.15em; opacity: 0.7;">THE HERBS</p>
+    <h1 style="margin: 2px 0 0; font-size: 17px; letter-spacing: 0.1em;">SCALP LABO</h1>
+    <p style="margin: 4px 0 0; font-size: 11px; opacity: 0.7;">ご予約受付確認</p>
   </div>
-  <div style="background: #fff; border: 1px solid #e8ddd0; border-top: none; padding: 24px; border-radius: 0 0 4px 4px;">
+  <div style="background: #fff; border: 1px solid #e8ddd0; border-top: none; padding: 20px 16px; border-radius: 0 0 4px 4px;">
     <p style="font-size: 15px; margin-top: 0;">${data.name} 様</p>
-    <p style="font-size: 14px; line-height: 1.8; color: #555;">
-      この度はTHE HERBS SCALP LABOへのご予約申し込みをいただき、誠にありがとうございます。<br>
-      以下の内容でご予約を受け付けました。<br>
-      担当者より改めてご連絡いたしますので、しばらくお待ちください。
+    <p style="font-size: 13px; line-height: 1.8; color: #555;">
+      ご予約ありがとうございます。以下の内容で受け付けました。<br>担当者より改めてご連絡いたします。
     </p>
-    <div style="background: #fdf8f3; border: 1px solid #e8ddd0; border-radius: 4px; padding: 16px 20px; margin: 20px 0;">
-      <p style="font-size: 12px; letter-spacing: 0.1em; color: #c9a96e; font-weight: bold; margin: 0 0 12px;">ご予約内容</p>
-      <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+    <div style="background: #fdf8f3; border: 1px solid #e8ddd0; border-radius: 4px; padding: 14px 16px; margin: 16px 0;">
+      <p style="font-size: 11px; letter-spacing: 0.1em; color: #c9a96e; font-weight: bold; margin: 0 0 10px;">ご予約内容</p>
+      <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
         <tr style="border-bottom: 1px solid #f0e8e0;">
-          <td style="padding: 8px 6px; color: #888; width: 120px;">店舗</td>
+          <td style="padding: 8px 6px; color: #888; width: 35%;">店舗</td>
           <td style="padding: 8px 6px; font-weight: bold;">${data.storeName}</td>
         </tr>
         <tr style="border-bottom: 1px solid #f0e8e0;">
-          <td style="padding: 8px 6px; color: #888;">ご希望コース</td>
+          <td style="padding: 8px 6px; color: #888;">コース</td>
           <td style="padding: 8px 6px; font-weight: bold; color: #8b5e3c;">${courseLabel}</td>
         </tr>
         <tr style="border-bottom: 1px solid #f0e8e0;">
-          <td style="padding: 8px 6px; color: #888;">ご希望日時</td>
+          <td style="padding: 8px 6px; color: #888;">希望日時</td>
           <td style="padding: 8px 6px;">${data.preferredDate}（${data.preferredTime}〜）</td>
         </tr>
         <tr style="border-bottom: 1px solid #f0e8e0;">
@@ -245,7 +248,7 @@ export async function sendCustomerConfirmation(data: CustomerConfirmationData): 
           <td style="padding: 8px 6px;">${data.name} 様</td>
         </tr>
         <tr style="border-bottom: 1px solid #f0e8e0;">
-          <td style="padding: 8px 6px; color: #888;">電話番号</td>
+          <td style="padding: 8px 6px; color: #888;">電話</td>
           <td style="padding: 8px 6px;">${data.phone}</td>
         </tr>
         ${data.message ? `
@@ -255,24 +258,21 @@ export async function sendCustomerConfirmation(data: CustomerConfirmationData): 
         </tr>` : ""}
       </table>
     </div>
-    <div style="padding: 14px 16px; background: #f9f5f0; border-left: 3px solid #c9a96e; font-size: 13px; color: #666; line-height: 1.8;">
-      ※ このメールは自動送信です。ご返信いただいても対応できない場合があります。<br>
-      ※ 担当者より改めてご連絡いたします。しばらくお待ちください。<br>
+    <div style="padding: 12px 14px; background: #f9f5f0; border-left: 3px solid #c9a96e; font-size: 12px; color: #666; line-height: 1.8;">
+      ※ 担当者より改めてご連絡いたします。<br>
       ※ ご希望日時に添えない場合がございます。あらかじめご了承ください。
     </div>
-    <div style="margin-top: 20px; padding: 16px 20px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; text-align: center;">
-      <p style="font-size: 13px; color: #166534; font-weight: bold; margin: 0 0 8px;">📱 LINEでもお気軽にご相談ください</p>
-      <a href="https://lin.ee/ptkrxTw" style="display: inline-block; background: #06c755; color: white; text-decoration: none; padding: 10px 24px; border-radius: 24px; font-size: 14px; font-weight: bold; letter-spacing: 0.05em;">LINE公式アカウントを友だち追加</a>
-      <p style="font-size: 11px; color: #888; margin: 8px 0 0;">@theherbs_kobe</p>
+    <div style="margin-top: 14px; padding: 14px 16px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; text-align: center;">
+      <p style="font-size: 13px; color: #166534; font-weight: bold; margin: 0 0 8px;">📱 LINEでご相談</p>
+      <a href="https://lin.ee/X9xSGH5" style="display: inline-block; background: #06c755; color: white; text-decoration: none; padding: 10px 20px; border-radius: 24px; font-size: 13px; font-weight: bold;">LINEお友だち追加</a>
     </div>
-    <p style="font-size: 13px; color: #555; margin-top: 20px; line-height: 1.8;">
-      ご不明な点は下記までお気軽にお問い合わせください。<br>
-      <strong>THE HERBS神戸阪急店</strong>（神戸阪急本館6階 モーニングフロー内）<br>
-      営業時間：10:00〜20:00<br>
-      <a href="https://scalp-labo.jp" style="color: #c9a96e;">https://scalp-labo.jp</a>
+    <p style="font-size: 12px; color: #555; margin-top: 16px; line-height: 1.8;">
+      <strong>THE HERBS 神戸阪急店</strong>（神戸阪急本館６階 モーニングフロー内）<br>
+      営業時間：水・金・土 10:00〜20:00<br>
+      ℡ <a href="tel:070-2642-7366" style="color: #c9a96e;">070-2642-7366</a>（直通）
     </p>
   </div>
-  <p style="font-size: 11px; color: #aaa; text-align: center; margin-top: 16px;">
+  <p style="font-size: 11px; color: #aaa; text-align: center; margin-top: 12px;">
     THE HERBS SCALP LABO | presented by THE HERBS
   </p>
 </body>
@@ -344,8 +344,11 @@ export async function sendBookingConfirmed(data: BookingConfirmedData): Promise<
   }
 
   const courseLabels: Record<string, string> = {
-    free_check: "無料頭皮チェック（初回）",
-    regular_care: "定期頭皮ケア",
+    free: "スカルプチェック（5〜10分）",
+    standard: "定期チェック&スカルプケア（45分）",
+    consult: "まずは相談したい",
+    free_check: "スカルプチェック（5〜10分）",
+    regular_care: "定期チェック&スカルプケア（45分）",
     consultation: "まずは相談したい",
   };
   const courseLabel = courseLabels[data.course] ?? data.course;
@@ -354,25 +357,25 @@ export async function sendBookingConfirmed(data: BookingConfirmedData): Promise<
   const htmlBody = `
 <!DOCTYPE html>
 <html lang="ja">
-<head><meta charset="UTF-8"></head>
-<body style="font-family: 'Helvetica Neue', Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
-  <div style="background: #2a1a0a; color: #c9a96e; padding: 20px 24px; border-radius: 4px 4px 0 0;">
-    <h1 style="margin: 0; font-size: 18px; letter-spacing: 0.1em;">THE HERBS SCALP LABO</h1>
-    <p style="margin: 4px 0 0; font-size: 12px; opacity: 0.8;">ご予約確定のお知らせ</p>
+<head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"></head>
+<body style="font-family: 'Helvetica Neue', Arial, sans-serif; color: #333; max-width: 600px; width: 100%; margin: 0 auto; padding: 12px; box-sizing: border-box;">
+  <div style="background: #2a1a0a; color: #c9a96e; padding: 18px 20px; border-radius: 4px 4px 0 0;">
+    <p style="margin: 0; font-size: 11px; letter-spacing: 0.15em; opacity: 0.7;">THE HERBS</p>
+    <h1 style="margin: 2px 0 0; font-size: 17px; letter-spacing: 0.1em;">SCALP LABO</h1>
+    <p style="margin: 4px 0 0; font-size: 11px; opacity: 0.7;">ご予約確定のお知らせ</p>
   </div>
-  <div style="background: #fff; border: 1px solid #e8ddd0; border-top: none; padding: 24px; border-radius: 0 0 4px 4px;">
+  <div style="background: #fff; border: 1px solid #e8ddd0; border-top: none; padding: 20px 16px; border-radius: 0 0 4px 4px;">
     <p style="font-size: 15px; margin-top: 0;">${data.name} 様</p>
-    <p style="font-size: 14px; line-height: 1.8; color: #555;">
-      この度はTHE HERBS SCALP LABOへのご予約ありがとうございます。<br>
-      以下の内容でご予約が確定いたしました。当日のご来店をスタッフ一同心よりお待ちしております。
+    <p style="font-size: 13px; line-height: 1.8; color: #555;">
+      ご予約ありがとうございます。以下の内容でご予約が確定いたしました。当日のご来店をスタッフ一同心よりお待ちしております。
     </p>
 
     <!-- 予約内容 -->
-    <div style="background: #fdf8f3; border: 1px solid #e8ddd0; border-radius: 4px; padding: 16px 20px; margin: 20px 0;">
-      <p style="font-size: 12px; letter-spacing: 0.1em; color: #c9a96e; font-weight: bold; margin: 0 0 12px;">✓ 確定したご予約内容</p>
-      <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+    <div style="background: #fdf8f3; border: 1px solid #e8ddd0; border-radius: 4px; padding: 14px 16px; margin: 16px 0;">
+      <p style="font-size: 11px; letter-spacing: 0.1em; color: #c9a96e; font-weight: bold; margin: 0 0 10px;">✓ 確定したご予約内容</p>
+      <table style="width: 100%; border-collapse: collapse; font-size: 13px;">
         <tr style="border-bottom: 1px solid #f0e8e0;">
-          <td style="padding: 8px 6px; color: #888; width: 120px;">店舗</td>
+          <td style="padding: 8px 6px; color: #888; width: 35%;">店舗</td>
           <td style="padding: 8px 6px; font-weight: bold;">${data.storeName}</td>
         </tr>
         <tr style="border-bottom: 1px solid #f0e8e0;">
@@ -381,7 +384,7 @@ export async function sendBookingConfirmed(data: BookingConfirmedData): Promise<
         </tr>
         <tr style="border-bottom: 1px solid #f0e8e0;">
           <td style="padding: 8px 6px; color: #888;">日時</td>
-          <td style="padding: 8px 6px; font-weight: bold; font-size: 15px; color: #2a1a0a;">${data.preferredDate}（${data.preferredTime}〜）</td>
+          <td style="padding: 8px 6px; font-weight: bold; font-size: 14px; color: #2a1a0a;">${data.preferredDate}（${data.preferredTime}〜）</td>
         </tr>
         <tr>
           <td style="padding: 8px 6px; color: #888;">お名前</td>
@@ -391,13 +394,12 @@ export async function sendBookingConfirmed(data: BookingConfirmedData): Promise<
     </div>
 
     <!-- 来店前のご案内 -->
-    <div style="background: #fffbf5; border: 1px solid #e8ddd0; border-radius: 4px; padding: 16px 20px; margin: 16px 0;">
-      <p style="font-size: 12px; letter-spacing: 0.1em; color: #8b5e3c; font-weight: bold; margin: 0 0 10px;">📌 来店前のご案内</p>
-      <ul style="font-size: 13px; color: #555; line-height: 2; margin: 0; padding-left: 18px;">
-        <li>前日夜の洗髪が理想です。頭皮のバリア機能が高まり、チェック精度が向上します。</li>
-        <li>整髪料はできるだけお控えください（頭皮の状態を正確に確認するため）。</li>
-        <li>特に持ち物はございません。リラックスしてお越しください。</li>
-
+    <div style="background: #fffbf5; border: 1px solid #e8ddd0; border-radius: 4px; padding: 14px 16px; margin: 14px 0;">
+      <p style="font-size: 11px; letter-spacing: 0.1em; color: #8b5e3c; font-weight: bold; margin: 0 0 8px;">📌 来店前のご案内</p>
+      <ul style="font-size: 13px; color: #555; line-height: 1.9; margin: 0; padding-left: 16px;">
+        <li>前日夜の洗髪が理想です。</li>
+        <li>整髪料はできるだけお控えください。</li>
+        <li>特に持ち物はございません。</li>
       </ul>
     </div>
 
@@ -409,19 +411,16 @@ export async function sendBookingConfirmed(data: BookingConfirmedData): Promise<
     </div>
 
     <!-- アクセス・問合せ -->
-    <div style="margin-top: 16px; padding: 16px 20px; background: #f9f5f0; border-radius: 4px; font-size: 13px; color: #555; line-height: 1.9;">
-      <p style="font-weight: bold; color: #2a1a0a; margin: 0 0 8px;">📍 店舗アクセス・お問合せ</p>
-      <strong>THE HERBS神戸阪急店</strong>（神戸阪急本館６階 モーニングフロー内）<br>
+    <div style="margin-top: 14px; padding: 14px 16px; background: #f9f5f0; border-radius: 4px; font-size: 12px; color: #555; line-height: 1.9;">
+      <strong>THE HERBS 神戸阪急店</strong>（神戸阪急本館６階 モーニングフロー内）<br>
       営業時間：水・金・土 10:00〜20:00<br>
-      電話：<a href="tel:070-2642-7366" style="color: #c9a96e; font-weight: bold;">070-2642-7366</a>（直通）<br>
-      メール：<a href="mailto:cx@the-herbs.co.jp" style="color: #c9a96e;">cx@the-herbs.co.jp</a><br>
-      <a href="https://scalp-labo.jp" style="color: #c9a96e;">https://scalp-labo.jp</a>
+      ℡ <a href="tel:070-2642-7366" style="color: #c9a96e; font-weight: bold;">070-2642-7366</a>（直通）
     </div>
 
     <!-- LINE -->
-    <div style="margin-top: 16px; padding: 16px 20px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; text-align: center;">
-      <p style="font-size: 13px; color: #166534; font-weight: bold; margin: 0 0 8px;">📱 LINEでもお気軽にご相談ください</p>
-      <a href="https://lin.ee/X9xSGH5" style="display: inline-block; background: #06c755; color: white; text-decoration: none; padding: 10px 24px; border-radius: 24px; font-size: 14px; font-weight: bold; letter-spacing: 0.05em;">ライン公式アカウントを友だち追加</a>
+    <div style="margin-top: 12px; padding: 14px 16px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 6px; text-align: center;">
+      <p style="font-size: 13px; color: #166534; font-weight: bold; margin: 0 0 8px;">📱 LINEでご相談</p>
+      <a href="https://lin.ee/X9xSGH5" style="display: inline-block; background: #06c755; color: white; text-decoration: none; padding: 10px 20px; border-radius: 24px; font-size: 13px; font-weight: bold;">LINEお友だち追加</a>
     </div>
   </div>
   <p style="font-size: 11px; color: #aaa; text-align: center; margin-top: 16px;">
