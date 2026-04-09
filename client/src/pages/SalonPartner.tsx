@@ -8,7 +8,8 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Link } from "wouter";
-import { Menu, X } from "lucide-react";
+import { Menu, X, MapPin, Phone, Globe, Instagram } from "lucide-react";
+import { trpc } from "@/lib/trpc";
 
 const IMAGES = {
   interior: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/salon_interior_c8f3f7a4.jpg",
@@ -925,6 +926,244 @@ function Faq() {
   );
 }
 
+// ========== 認定サロン検索 ==========
+function CertifiedSalonSection() {
+  const { ref, inView } = useInView();
+  const [selectedPref, setSelectedPref] = useState<string>("");
+  const prefectures = [
+    "北海道", "青森", "岩手", "宮城", "秋田", "山形", "福島",
+    "茨城", "栃木", "群馬", "埼玉", "千葉", "東京", "神奈川",
+    "新潟", "富山", "石川", "福井", "山梨", "長野", "岐阜",
+    "静岡", "愛知", "三重", "滋賀", "京都", "大阪", "兵庫", "奈良", "和歌山",
+    "鳥取", "島根", "岡山", "広島", "山口",
+    "徳島", "香川", "愛媛", "高知",
+    "福岡", "佐賀", "長崎", "熊本", "大分", "宮崎", "鹿児島", "沖縄",
+  ];
+  const { data: salons = [], isLoading } = trpc.salon.list.useQuery(
+    { prefecture: selectedPref || undefined },
+    { staleTime: 60_000 }
+  );
+
+  const serviceLabels: Record<string, string> = {
+    scalp_check: "頭皮チェック",
+    scalp_care: "頭皮ケア",
+    hair_growth: "育毛ケア",
+    herb_steam: "ハーブスチーマー",
+    home_care: "ホームケア指導",
+  };
+
+  return (
+    <section className="py-24" style={{ backgroundColor: "#f8f6f0" }} id="salon-list">
+      <div
+        ref={ref}
+        className="max-w-6xl mx-auto px-6 transition-all duration-700"
+        style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)" }}
+      >
+        <div className="text-center mb-12">
+          <span className="text-xs tracking-[0.4em] uppercase block mb-4 font-medium" style={{ color: "#5a7a52" }}>Certified Salon</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
+            お近くの認定サロンを探す
+          </h2>
+          <p className="text-sm leading-relaxed max-w-xl mx-auto" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#555", lineHeight: "1.9" }}>
+            THE HERBS SCALP LAB認定サロンでは、訓練を受けたスペシャリストが頭皮チェックを担当します。<br />
+            都道府県で絞り込んで、お近くのサロンを見つけてください。
+          </p>
+        </div>
+
+        {/* 都道府県フィルター */}
+        <div className="flex flex-wrap gap-2 justify-center mb-10">
+          <button
+            onClick={() => setSelectedPref("")}
+            className="px-4 py-2 text-sm font-medium transition-all duration-200"
+            style={{
+              backgroundColor: selectedPref === "" ? "#5a7a52" : "#ffffff",
+              color: selectedPref === "" ? "#ffffff" : "#5a7a52",
+              border: "1px solid #5a7a52",
+              fontFamily: "'Noto Sans JP', sans-serif",
+            }}
+          >
+            全国
+          </button>
+          {prefectures.map(pref => (
+            <button
+              key={pref}
+              onClick={() => setSelectedPref(pref)}
+              className="px-4 py-2 text-sm font-medium transition-all duration-200"
+              style={{
+                backgroundColor: selectedPref === pref ? "#5a7a52" : "#ffffff",
+                color: selectedPref === pref ? "#ffffff" : "#5a7a52",
+                border: "1px solid #5a7a52",
+                fontFamily: "'Noto Sans JP', sans-serif",
+              }}
+            >
+              {pref}
+            </button>
+          ))}
+        </div>
+
+        {/* サロン一覧 */}
+        {isLoading ? (
+          <div className="text-center py-16" style={{ color: "#888", fontFamily: "'Noto Sans JP', sans-serif" }}>読み込み中...</div>
+        ) : salons.length === 0 ? (
+          <div className="text-center py-16 border-2 border-dashed" style={{ borderColor: "#5a7a52" }}>
+            <p className="text-base mb-2" style={{ color: "#5a7a52", fontFamily: "'Shippori Mincho', serif", fontSize: "1.1rem" }}>
+              {selectedPref ? `${selectedPref}の認定サロンは現在募集中です` : "認定サロンは現在募集中です"}
+            </p>
+            <p className="text-sm" style={{ color: "#888", fontFamily: "'Noto Sans JP', sans-serif" }}>パートナーサロンとして参加を希望の方は、下記のLINEよりお問い合わせください。</p>
+          </div>
+        ) : (
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {salons.map(salon => (
+              <div
+                key={salon.id}
+                className="bg-white overflow-hidden"
+                style={{ boxShadow: "0 2px 16px rgba(0,0,0,0.07)" }}
+              >
+                {salon.imageUrl ? (
+                  <img src={salon.imageUrl} alt={salon.name} className="w-full object-cover" style={{ height: "180px" }} />
+                ) : (
+                  <div className="w-full flex items-center justify-center" style={{ height: "180px", backgroundColor: "#e8f0e5" }}>
+                    <span style={{ color: "#5a7a52", fontSize: "2.5rem" }}>🌿</span>
+                  </div>
+                )}
+                <div className="p-5">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="text-xs px-2 py-0.5 font-medium" style={{ backgroundColor: "#5a7a52", color: "#fff", fontFamily: "'Noto Sans JP', sans-serif", letterSpacing: "0.05em" }}>CERTIFIED</span>
+                    <span className="text-xs" style={{ color: "#888", fontFamily: "'Noto Sans JP', sans-serif" }}>{salon.prefecture} {salon.city}</span>
+                  </div>
+                  <h3 className="text-base font-bold mb-2" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>{salon.name}</h3>
+                  {salon.description && (
+                    <p className="text-xs leading-relaxed mb-3" style={{ color: "#666", fontFamily: "'Noto Sans JP', sans-serif", lineHeight: "1.8" }}>
+                      {salon.description.length > 60 ? salon.description.slice(0, 60) + "..." : salon.description}
+                    </p>
+                  )}
+                  {salon.services && (
+                    <div className="flex flex-wrap gap-1 mb-3">
+                      {salon.services.split(",").map(s => s.trim()).filter(Boolean).map(s => (
+                        <span key={s} className="text-xs px-2 py-0.5" style={{ backgroundColor: "#e8f0e5", color: "#5a7a52", fontFamily: "'Noto Sans JP', sans-serif" }}>
+                          {serviceLabels[s] ?? s}
+                        </span>
+                      ))}
+                    </div>
+                  )}
+                  <div className="flex flex-wrap gap-3 mt-3">
+                    {salon.phone && (
+                      <a href={`tel:${salon.phone}`} className="flex items-center gap-1 text-xs" style={{ color: "#5a7a52", fontFamily: "'Noto Sans JP', sans-serif" }}>
+                        <Phone size={12} />{salon.phone}
+                      </a>
+                    )}
+                    {salon.websiteUrl && (
+                      <a href={salon.websiteUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-xs" style={{ color: "#5a7a52", fontFamily: "'Noto Sans JP', sans-serif" }}>
+                        <Globe size={12} />公式サイト
+                      </a>
+                    )}
+                    {salon.snsUrl && (
+                      <a href={salon.snsUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1 text-xs" style={{ color: "#5a7a52", fontFamily: "'Noto Sans JP', sans-serif" }}>
+                        <Instagram size={12} />SNS
+                      </a>
+                    )}
+                  </div>
+                  {salon.address && (
+                    <p className="flex items-start gap-1 text-xs mt-2" style={{ color: "#888", fontFamily: "'Noto Sans JP', sans-serif" }}>
+                      <MapPin size={12} className="mt-0.5 flex-shrink-0" />{salon.address}
+                    </p>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div className="mt-12 text-center">
+          <p className="text-sm mb-4" style={{ color: "#666", fontFamily: "'Noto Sans JP', sans-serif" }}>
+            お近くに認定サロンがない場合は、認定パートナーとして参加をご検討ください。
+          </p>
+          <a
+            href="#contact"
+            className="inline-flex items-center gap-2 px-8 py-3 text-sm font-medium transition-all duration-300"
+            style={{ backgroundColor: "#5a7a52", color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}
+          >
+            パートナーになる
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ========== ホームケアアプリ連携 ==========
+function HomeCareAppSection() {
+  const { ref, inView } = useInView();
+  return (
+    <section className="py-24" style={{ backgroundColor: "#0d1f0d" }} id="homecare">
+      <div
+        ref={ref}
+        className="max-w-6xl mx-auto px-6 transition-all duration-700"
+        style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)" }}
+      >
+        <div className="grid md:grid-cols-2 gap-16 items-center">
+          <div>
+            <span className="text-xs tracking-[0.3em] mb-4 block font-medium" style={{ color: "#a8d5a2", fontFamily: "'Noto Sans JP', sans-serif" }}>HOME CARE SUPPORT</span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
+              サロンだけでなく、<br />
+              <span style={{ color: "#a8d5a2" }}>毎日のホームケアも</span><br />
+              サポートできる。
+            </h2>
+            <p className="text-sm leading-relaxed mb-8" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.75)", lineHeight: "1.9" }}>
+              頭皮ケアは、サロンでの施術だけでは完結しません。<br />
+              毎日のシャンプー・ブラッシング・食事など、生活習慣全体が頭皮の状態に影響します。<br />
+              スカルプラボアプリを活用することで、サロンとお客様が一緒にホームケアを継続できます。
+            </p>
+            <ul className="space-y-4 mb-10">
+              {[
+                { icon: "📊", title: "頭皮チェックデータの共有", desc: "サロンで撮影した頭皮画像をアプリで共有。お客様が自宅で状態を確認できます。" },
+                { icon: "🌿", title: "パーソナライズドホームケア提案", desc: "頭皮の状態に合わせたシャンプー・トリートメントをアプリから提案できます。" },
+                { icon: "🔔", title: "定期チェックのリマインド", desc: "次回の頭皮チェック時期を自動通知。定期来店を無理なく継続させます。" },
+                { icon: "📝", title: "生活習慣ログの記録", desc: "食事・睡眠・ストレスなど、頭皮に影響する生活習慣を記録。チェック時の小話に活用できます。" },
+              ].map((item, i) => (
+                <li key={i} className="flex items-start gap-4">
+                  <span className="text-2xl flex-shrink-0 mt-0.5">{item.icon}</span>
+                  <div>
+                    <p className="text-sm font-bold mb-1" style={{ color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}>{item.title}</p>
+                    <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.65)", fontFamily: "'Noto Sans JP', sans-serif", lineHeight: "1.8" }}>{item.desc}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+            <div className="p-5" style={{ backgroundColor: "rgba(90,122,82,0.2)", borderLeft: "3px solid #5a7a52" }}>
+              <p className="text-sm font-bold mb-1" style={{ color: "#a8d5a2", fontFamily: "'Noto Sans JP', sans-serif" }}>💡 サロンとお客様の絆が深まる</p>
+              <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.75)", fontFamily: "'Noto Sans JP', sans-serif", lineHeight: "1.8" }}>
+                ホームケアのサポートができるサロンは、単なる施術提供者ではなく、「頭皮ケアのパートナー」として信頼されます。継続率・定期来店率の向上に直結します。
+              </p>
+            </div>
+          </div>
+          {/* アプリスクリーンショット */}
+          <div className="flex justify-center items-start gap-5" style={{ paddingTop: '2rem', paddingBottom: '2rem' }}>
+            <div style={{ width: '47%', marginTop: '0' }}>
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/app_screen_log_78a5d0f2.png"
+                alt="頭皮チェック記録 アプリ画面"
+                className="w-full object-contain rounded-2xl"
+                style={{ boxShadow: '0 12px 48px rgba(0,0,0,0.55)' }}
+              />
+              <p className="text-center text-xs mt-3" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: "'Noto Sans JP', sans-serif", letterSpacing: '0.05em' }}>頭皮チェック記録</p>
+            </div>
+            <div style={{ width: '47%', marginTop: '60px' }}>
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/app_screen_advice_1bc0e66a.png"
+                alt="ホームケアアドバイス アプリ画面"
+                className="w-full object-contain rounded-2xl"
+                style={{ boxShadow: '0 12px 48px rgba(0,0,0,0.55)' }}
+              />
+              <p className="text-center text-xs mt-3" style={{ color: 'rgba(255,255,255,0.5)', fontFamily: "'Noto Sans JP', sans-serif", letterSpacing: '0.05em' }}>ホームケアアドバイス</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ========== APP SECTION ==========
 function AppSection() {
   return (
@@ -1135,6 +1374,8 @@ export default function SalonPartner() {
       <WhoCanJoin />
       <ProgramSteps />
       <Faq />
+      <CertifiedSalonSection />
+      <HomeCareAppSection />
       <AppSection />
       <Cta />
       <Footer />

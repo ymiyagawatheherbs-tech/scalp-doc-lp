@@ -3,7 +3,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, protectedProcedure, staffOrManusProcedure, router } from "./_core/trpc";
 import { notifyOwner } from "./_core/notification";
-import { getDb } from "./db";
+import { getDb, getCertifiedSalons, getAllCertifiedSalonsAdmin, createCertifiedSalon, updateCertifiedSalon, deleteCertifiedSalon } from "./db";
 import { reservations, scalpImages, staffAccounts } from "../drizzle/schema";
 import { authenticateStaff, verifyStaffToken, createStaffAccount, STAFF_JWT_COOKIE } from "./staffAuth";
 import { storagePut } from "./storage";
@@ -341,6 +341,88 @@ export const appRouter = router({
       if (!db) return [];
       return db.select().from(scalpImages).orderBy(desc(scalpImages.createdAt)).limit(50);
     }),
+  }),
+
+  /**
+   * 認定サロンルーター
+   */
+  salon: router({
+    /** 公開中の認定サロン一覧（都道府県フィルター対応） */
+    list: publicProcedure
+      .input(z.object({ prefecture: z.string().optional() }))
+      .query(async ({ input }) => {
+        return getCertifiedSalons(input.prefecture);
+      }),
+
+    /** 管理者用：全サロン一覧（非公開含む） */
+    listAdmin: staffOrManusProcedure.query(async () => {
+      return getAllCertifiedSalonsAdmin();
+    }),
+
+    /** 管理者用：サロン登録 */
+    create: staffOrManusProcedure
+      .input(z.object({
+        name: z.string().min(1),
+        prefecture: z.string().min(1),
+        city: z.string().min(1),
+        address: z.string().optional(),
+        phone: z.string().optional(),
+        websiteUrl: z.string().optional(),
+        snsUrl: z.string().optional(),
+        description: z.string().optional(),
+        imageUrl: z.string().optional(),
+        services: z.string().optional(),
+        sortOrder: z.number().optional(),
+        published: z.number().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        await createCertifiedSalon({
+          name: input.name,
+          prefecture: input.prefecture,
+          city: input.city,
+          address: input.address ?? null,
+          phone: input.phone ?? null,
+          websiteUrl: input.websiteUrl ?? null,
+          snsUrl: input.snsUrl ?? null,
+          description: input.description ?? null,
+          imageUrl: input.imageUrl ?? null,
+          services: input.services ?? null,
+          sortOrder: input.sortOrder ?? 0,
+          published: input.published ?? 1,
+        });
+        return { success: true };
+      }),
+
+    /** 管理者用：サロン更新 */
+    update: staffOrManusProcedure
+      .input(z.object({
+        id: z.number(),
+        name: z.string().optional(),
+        prefecture: z.string().optional(),
+        city: z.string().optional(),
+        address: z.string().optional(),
+        phone: z.string().optional(),
+        websiteUrl: z.string().optional(),
+        snsUrl: z.string().optional(),
+        description: z.string().optional(),
+        imageUrl: z.string().optional(),
+        services: z.string().optional(),
+        sortOrder: z.number().optional(),
+        published: z.number().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { id, ...data } = input;
+        await updateCertifiedSalon(id, data);
+        return { success: true };
+      }),
+
+    /** 管理者用：サロン削除 */
+    delete: staffOrManusProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await deleteCertifiedSalon(input.id);
+        return { success: true };
+      }),
   }),
 });
 

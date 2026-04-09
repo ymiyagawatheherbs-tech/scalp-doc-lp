@@ -1,6 +1,6 @@
-import { eq } from "drizzle-orm";
+import { asc, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { InsertUser, users } from "../drizzle/schema";
+import { certifiedSalons, InsertCertifiedSalon, InsertUser, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -90,3 +90,43 @@ export async function getUserByOpenId(openId: string) {
 }
 
 // TODO: add feature queries here as your schema grows.
+
+// ===== 認定サロン =====
+
+export async function getCertifiedSalons(prefecture?: string) {
+  const db = await getDb();
+  if (!db) return [];
+  const query = db.select().from(certifiedSalons)
+    .where(eq(certifiedSalons.published, 1))
+    .orderBy(asc(certifiedSalons.sortOrder), asc(certifiedSalons.createdAt));
+  const results = await query;
+  if (prefecture) {
+    return results.filter(s => s.prefecture === prefecture);
+  }
+  return results;
+}
+
+export async function getAllCertifiedSalonsAdmin() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(certifiedSalons)
+    .orderBy(asc(certifiedSalons.sortOrder), asc(certifiedSalons.createdAt));
+}
+
+export async function createCertifiedSalon(data: InsertCertifiedSalon) {
+  const db = await getDb();
+  if (!db) throw new Error('DB not available');
+  await db.insert(certifiedSalons).values(data);
+}
+
+export async function updateCertifiedSalon(id: number, data: Partial<InsertCertifiedSalon>) {
+  const db = await getDb();
+  if (!db) throw new Error('DB not available');
+  await db.update(certifiedSalons).set(data).where(eq(certifiedSalons.id, id));
+}
+
+export async function deleteCertifiedSalon(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error('DB not available');
+  await db.delete(certifiedSalons).where(eq(certifiedSalons.id, id));
+}

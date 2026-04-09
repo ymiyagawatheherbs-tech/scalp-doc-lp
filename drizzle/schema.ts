@@ -101,3 +101,39 @@ export const staffAccounts = mysqlTable("staff_accounts", {
 
 export type StaffAccount = typeof staffAccounts.$inferSelect;
 export type InsertStaffAccount = typeof staffAccounts.$inferInsert;
+
+/**
+ * 認定サロンテーブル — THE HERBS SCALP LAB認定パートナーサロンの一覧を管理する
+ */
+export const certifiedSalons = mysqlTable("certified_salons", {
+  id: int("id").autoincrement().primaryKey(),
+  /** サロン名 */
+  name: varchar("name", { length: 128 }).notNull(),
+  /** 都道府県 */
+  prefecture: varchar("prefecture", { length: 16 }).notNull(),
+  /** 市区町村・エリア */
+  city: varchar("city", { length: 64 }).notNull(),
+  /** 住所（番地まで） */
+  address: text("address"),
+  /** 電話番号 */
+  phone: varchar("phone", { length: 32 }),
+  /** 公式サイトURL */
+  websiteUrl: text("websiteUrl"),
+  /** InstagramなどSNSのURL */
+  snsUrl: text("snsUrl"),
+  /** サロンの紹介文 */
+  description: text("description"),
+  /** サロン画像URL（S3） */
+  imageUrl: text("imageUrl"),
+  /** 対応メニュー（カンマ区切り）: scalp_check, scalp_care, hair_growth, etc. */
+  services: text("services"),
+  /** 表示順（小さいほど上位） */
+  sortOrder: int("sortOrder").default(0).notNull(),
+  /** 公開フラグ: 1=公開, 0=非公開 */
+  published: int("published").default(1).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type CertifiedSalon = typeof certifiedSalons.$inferSelect;
+export type InsertCertifiedSalon = typeof certifiedSalons.$inferInsert;
