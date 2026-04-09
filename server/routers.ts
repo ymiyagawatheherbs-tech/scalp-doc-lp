@@ -35,13 +35,13 @@ export const appRouter = router({
           phone: z.string().min(1),
           email: z.string().optional(),
           desiredDate: z.string().min(1).refine((val) => {
-            // 当日予約不可：日本時間基準で翌日以降のみ許可
-            const now = new Date();
-            const jstOffset = 9 * 60;
-            const jstNow = new Date(now.getTime() + (jstOffset + now.getTimezoneOffset()) * 60000);
-            const tomorrow = new Date(jstNow);
+            // 当日予約不可：翌日以降のみ許可（ローカル日付基準）
+            const tomorrow = new Date();
             tomorrow.setDate(tomorrow.getDate() + 1);
-            const minDate = tomorrow.toISOString().split("T")[0];
+            const y = tomorrow.getFullYear();
+            const m = String(tomorrow.getMonth() + 1).padStart(2, "0");
+            const d = String(tomorrow.getDate()).padStart(2, "0");
+            const minDate = `${y}-${m}-${d}`;
             return val >= minDate;
           }, { message: "当日予約はお電話にて承ります。070-2642-7366までお問い合わせください。" }),
           desiredTime: z.string().min(1),
