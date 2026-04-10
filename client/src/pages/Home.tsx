@@ -2293,6 +2293,7 @@ function StoreSection() {
       closed: "1月1日～2日",
       line: "https://lin.ee/RhtIZDl",
       lineId: "@theherbs_kobe",
+      bookingUrl: "/booking",
       features: ["頭皮チェック", "ハーブスチーマー（ボタニカルミスト）", "頭皮データの記録・管理"],
       mapUrl: "https://maps.google.com/?q=兵庫県神戸市中央区小野柄通8丁目1番8号+神戸阪急本館6階",
       mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.0!2d135.19476!3d34.69344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e6f7b8e5a3a3%3A0x5b1e2c3d4e5f6a7b!2z56aP5oi45YWD5pys5pys6aSo6Ziz5bGxIOOBiOOBj-OBhOOBhOOBhA!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp",
@@ -2311,6 +2312,7 @@ function StoreSection() {
       closed: "火曜・日曜・祝日定休",
       line: "https://lin.ee/oWeHStW",
       lineId: "@theherbs39",
+      bookingUrl: "https://book.squareup.com/appointments/jsufqo133zf3ec/location/LEWSC49JS30BF/services",
       features: ["育毛メニュー", "ディープクレンジング", "うねりケア", "ヘアカラー後の頭皮ケア", "和漢カラー"],
       mapUrl: "https://maps.app.goo.gl/a96J7E9gnPBXi9tA6",
       mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3279.8!2d135.2257085!3d34.7128842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60008dba49ad1097%3A0x351be9b6133f830b!2sMODE+VERDE+%E3%82%B5%E3%83%AD%E3%83%B3!5e0!3m2!1sja!2sjp!4v1700000000001!5m2!1sja!2sjp",
@@ -2440,7 +2442,9 @@ function StoreSection() {
                     LINEで相談・登録（無料）
                   </a>
                   <a
-                    href="/booking"
+                    href={(store as any).bookingUrl || '/booking'}
+                    target={(store as any).bookingUrl?.startsWith('http') ? '_blank' : '_self'}
+                    rel={(store as any).bookingUrl?.startsWith('http') ? 'noopener noreferrer' : undefined}
                     className="flex-1 flex items-center justify-center gap-2 font-sans-jp text-xs font-semibold py-3 rounded-sm text-center transition-all border"
                     style={{ borderColor: 'oklch(0.72 0.038 93)', color: 'oklch(0.35 0.050 65)', backgroundColor: 'transparent' }}
                     onMouseEnter={e => { e.currentTarget.style.backgroundColor = 'oklch(0.72 0.038 93)'; e.currentTarget.style.color = '#fff'; }}
@@ -2461,7 +2465,7 @@ function StoreSection() {
           <div>
             <p className="font-cormorant text-[oklch(0.72_0.038_93)] text-xs tracking-[0.3em] uppercase mb-2">For Salon Partners</p>
             <h3 className="font-mincho text-white text-xl md:text-2xl font-bold mb-2">
-              THE HERBS SCALP LABの認定サロンになりませんか？
+              THE HERBS SCALP LABOの認定サロンになりませんか？
             </h3>
             <p className="font-sans-jp text-white/75 text-sm leading-relaxed">
               エステサロン・美容師の方向けに、頭皮チェックの技術講習と認定制度をご用意しています。
