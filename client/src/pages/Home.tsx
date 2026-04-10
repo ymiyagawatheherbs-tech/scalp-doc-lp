@@ -259,20 +259,25 @@ function Nav() {
             ))}
             {/* サロン向け・メンズ版：準備中のため非表示 */}
             <a
-              href="/booking"
-              className="btn-gold-shimmer text-white font-sans-jp text-sm font-bold px-5 py-2.5 rounded-sm" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
+              href="https://lin.ee/ulWWzab"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-gold-shimmer text-white font-sans-jp text-sm font-bold px-5 py-2.5 rounded-sm flex items-center gap-1.5" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)', textDecoration: 'none'}}
             >
-              無料チェックを予約
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style={{flexShrink: 0}}><path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.58 5.8 4.04 7.54L5.5 22l4.14-2.16C10.39 20.27 11.18 20.4 12 20.4c5.52 0 10-4.02 10-9S17.52 2 12 2z"/></svg>
+              LINEで無料相談
             </a>
           </div>
 
           {/* スマホ右側：CTAボタン＋ハンバーガー */}
           <div className="md:hidden flex items-center gap-2">
             <a
-              href="/booking"
-              className="btn-gold-shimmer text-white font-sans-jp text-xs font-bold px-3 py-1.5 rounded-sm" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)'}}
+              href="https://lin.ee/ulWWzab"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-gold-shimmer text-white font-sans-jp text-xs font-bold px-3 py-1.5 rounded-sm flex items-center gap-1" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)', textDecoration: 'none'}}
             >
-              今すぐ予約
+              LINE登録
             </a>
             <button
               className="flex flex-col gap-1.5 p-2"

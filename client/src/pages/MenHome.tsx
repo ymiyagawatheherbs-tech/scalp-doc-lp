@@ -122,19 +122,26 @@ function Nav() {
               <span className="text-[10px]">&#9792;</span>
               レディース版
             </Link>
-            <button
-              onClick={() => scrollTo("#reservation")}
-              className="hidden md:block px-4 py-2 border border-[oklch(0.69 0.060 130)] text-[oklch(0.69 0.060 130)] text-xs tracking-wider hover:bg-[oklch(0.69 0.060 130)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300 font-['Noto_Sans_JP'] whitespace-nowrap"
+            <a
+              href="https://lin.ee/ulWWzab"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hidden md:flex items-center gap-1.5 px-4 py-2 border border-[oklch(0.69 0.060 130)] text-[oklch(0.69 0.060 130)] text-xs tracking-wider hover:bg-[oklch(0.69 0.060 130)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300 font-['Noto_Sans_JP'] whitespace-nowrap"
+              style={{textDecoration: 'none'}}
             >
-              無料チェック予約
-            </button>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style={{flexShrink: 0}}><path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.58 5.8 4.04 7.54L5.5 22l4.14-2.16C10.39 20.27 11.18 20.4 12 20.4c5.52 0 10-4.02 10-9S17.52 2 12 2z"/></svg>
+              LINEで無料相談
+            </a>
             {/* スマホ用CTAボタン */}
-            <button
-              onClick={() => scrollTo("#reservation")}
+            <a
+              href="https://lin.ee/ulWWzab"
+              target="_blank"
+              rel="noopener noreferrer"
               className="md:hidden px-3 py-1.5 border border-[oklch(0.69 0.060 130)] text-[oklch(0.69 0.060 130)] text-xs tracking-wider hover:bg-[oklch(0.69 0.060 130)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300 font-['Noto_Sans_JP']"
+              style={{textDecoration: 'none'}}
             >
-              今すぐ予約
-            </button>
+              LINE登録
+            </a>
             <button
               className="md:hidden text-white p-1"
               onClick={() => setMenuOpen(!menuOpen)}
@@ -173,12 +180,17 @@ function Nav() {
             <span>&#9792;</span>
             レディース版はこちら
           </Link>
-          <button
-            onClick={() => scrollTo("#reservation")}
-            className="mt-3 py-4 border border-[oklch(0.69 0.060 130)] text-[oklch(0.69 0.060 130)] text-lg tracking-wider hover:bg-[oklch(0.69 0.060 130)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300"
+          <a
+            href="https://lin.ee/ulWWzab"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-3 py-4 flex items-center justify-center gap-2 border border-[oklch(0.69 0.060 130)] text-[oklch(0.69 0.060 130)] text-lg tracking-wider hover:bg-[oklch(0.69 0.060 130)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300"
+            style={{textDecoration: 'none'}}
+            onClick={() => setMenuOpen(false)}
           >
-            無料チェックを予約する
-          </button>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{flexShrink: 0}}><path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.58 5.8 4.04 7.54L5.5 22l4.14-2.16C10.39 20.27 11.18 20.4 12 20.4c5.52 0 10-4.02 10-9S17.52 2 12 2z"/></svg>
+            LINEで無料相談（登録無料）
+          </a>
         </div>
       )}
     </>

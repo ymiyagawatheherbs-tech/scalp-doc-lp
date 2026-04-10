@@ -48,3 +48,8 @@
 - [ ] Home.tsx・MenHome.tsx：植物美容サロンカードのLINEボタンは一般向けメイン（https://lin.ee/ulWWzab）のまま確認
 - [ ] SalonPartner.tsx：LINEボタンをサロンアカウント（https://lin.ee/UF8T8TX）に変更
 - [ ] Notionシナリオ設計書の基本方針・アカウント定義を正しく修正
+
+## ナビCTA統一・ステップ配信文案充実（2026-04-10）
+- [x] Home.tsx：ナビ右上「無料チェックを予約」→「LINEで無料相談」（lin.ee/ulWWzab）に変更
+- [x] MenHome.tsx：ナビ右上CTAを同様にLINE登録ボタンに変更
+- [x] Notionステップ配信シナリオ（Day0〜Day21）のメッセージ文案を充実させる（Square URL反映・現在設定欄修正）
