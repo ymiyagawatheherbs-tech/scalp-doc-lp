@@ -71,50 +71,27 @@ function Nav() {
         }}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between gap-4">
-          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
+          {/* Logo: THE HERBS正式ロゴ画像 */}
+          <Link href="/" className="flex items-center gap-3 flex-shrink-0">
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_olive_12a41c11.webp"
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs-logo-transparent_4f7d58d9.png"
               alt="THE HERBS"
               className="object-contain transition-all cursor-pointer"
               style={{
-                height: "44px",
+                height: "26px",
                 width: "auto",
                 filter: scrolled
                   ? "none"
                   : "brightness(0) invert(1)",
               }}
             />
-            <div className="flex flex-col leading-none">
-              <span
-                className="font-bold tracking-widest transition-colors"
-                style={{ fontFamily: "'Noto Sans JP', sans-serif", fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.10em", color: scrolled ? "oklch(0.35 0.050 130)" : "rgba(255,255,255,0.95)" }}
-              >
-                THE HERBS
-              </span>
-              <span
-                className="font-sans-jp transition-colors"
-                style={{ fontSize: "0.52rem", letterSpacing: "0.15em", color: scrolled ? "oklch(0.48 0.08 140)" : "rgba(255,255,255,0.45)" }}
-              >
-                SCALP LABO
-              </span>
-            </div>
+            <span
+              className="transition-colors"
+              style={{ fontSize: "0.52rem", letterSpacing: "0.20em", color: scrolled ? "oklch(0.48 0.08 140)" : "rgba(255,255,255,0.55)", textTransform: "uppercase" }}
+            >
+              SCALP LABO
+            </span>
           </Link>
-
-          {/* 中央：presented by THE HERBS（デスクトップのみ） */}
-          <div className="hidden md:flex flex-col items-center">
-            <span
-              className="font-cormorant transition-colors"
-              style={{ fontSize: "0.58rem", letterSpacing: "0.22em", color: scrolled ? "oklch(0.48 0.06 140)" : "rgba(255,255,255,0.35)", textTransform: "uppercase" }}
-            >
-              presented by
-            </span>
-            <span
-              className="font-cormorant font-semibold transition-colors"
-              style={{ fontSize: "0.85rem", letterSpacing: "0.25em", color: scrolled ? "oklch(0.35 0.050 130)" : "rgba(255,255,255,0.75)", textTransform: "uppercase" }}
-            >
-              THE HERBS
-            </span>
-          </div>
 
           <div className="flex items-center gap-3 flex-shrink-0">
             <Link href="/">

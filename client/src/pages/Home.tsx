@@ -178,71 +178,35 @@ function Nav() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between gap-4">
-          {/* ロゴ：THE HERBSロゴマーク＋テキスト */}
-          <a href="/" className="flex items-center gap-2.5 flex-shrink-0">
+          {/* ロゴ：THE HERBS正式ロゴ画像 */}
+          <a href="/" className="flex items-center gap-3 flex-shrink-0">
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_grayge_p_transparent_47bbd755.png"
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs-logo-transparent_4f7d58d9.png"
               alt="THE HERBS"
               className="object-contain transition-all"
               style={{
-                height: "44px",
+                height: "28px",
                 width: "auto",
                 filter: scrolled
                   ? "none"
                   : "brightness(0) invert(1)",
               }}
             />
-            <div className="flex flex-col leading-none">
-              <span
-                className="font-bold tracking-widest transition-colors"
+            <span
+              className="font-sans-jp transition-colors"
               style={{
-                fontFamily: "'Noto Sans JP', sans-serif",
-                fontSize: "0.75rem",
-                fontWeight: 700,
-                color: scrolled ? "oklch(0.35 0.060 65)" : "rgba(255,255,255,0.95)",
-                  letterSpacing: "0.10em",
-                }}
-              >
-                THE HERBS
-              </span>
-              <span
-                className="font-sans-jp transition-colors"
-                style={{
-                  fontSize: "0.52rem",
-                  letterSpacing: "0.15em",
-                  color: scrolled ? "oklch(0.55 0.035 93)" : "rgba(255,255,255,0.55)",
-                }}
-              >
-                SCALP LABO
-              </span>
-            </div>
+                fontSize: "0.52rem",
+                letterSpacing: "0.20em",
+                color: scrolled ? "oklch(0.55 0.035 93)" : "rgba(255,255,255,0.60)",
+                textTransform: "uppercase",
+              }}
+            >
+              SCALP LABO
+            </span>
           </a>
 
-          {/* 中央：presented by THE HERBS（デスクトップのみ） */}
-          <div className="hidden md:flex flex-col items-center flex-1 justify-center">
-            <span
-              className="font-cormorant transition-colors"
-              style={{
-                fontSize: "0.58rem",
-                letterSpacing: "0.22em",
-                color: scrolled ? "oklch(0.55 0.035 93)" : "rgba(255,255,255,0.45)",
-                textTransform: "uppercase",
-              }}
-            >
-              presented by
-            </span>
-            <span
-              className="font-cormorant font-semibold transition-colors"
-                style={{
-                fontSize: "0.85rem",
-                letterSpacing: "0.25em",
-                color: scrolled ? "oklch(0.35 0.060 65)" : "rgba(255,255,255,0.75)",
-                textTransform: "uppercase",
-              }}
-            >
-              THE HERBS
-            </span>
-          </div>
+          {/* 中央スペーサー */}
+          <div className="hidden md:flex flex-1" />
 
           {/* デスクトップナビ */}
           <div className="hidden md:flex items-center gap-6 flex-shrink-0">

@@ -57,3 +57,9 @@
 ## FAQセクションにLINE登録Q&A追加（2026-04-10）
 - [x] Home.tsx：FAQセクションにLINE登録関連Q&Aを３件追加（何が届く？・勧誘は？・費用は？）
 - [x] MenHome.tsx：同様にLINE登録関連Q&Aを３件追加
+
+## ヘッダーロゴ差替・中央テキスト削除（2026-04-10）
+- [x] THE HERBSロゴ（白背景）を透遊PNGに変換してCDNアップロード
+- [x] Home.tsx：ヘッダー中央「PRESENTED BY THE HERBS」削除、左上ロゴを正式ロゴ画像に差替
+- [x] MenHome.tsx：同様の修正
+- [x] SalonPartner.tsx：同様の修正
