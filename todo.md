@@ -53,3 +53,7 @@
 - [x] Home.tsx：ナビ右上「無料チェックを予約」→「LINEで無料相談」（lin.ee/ulWWzab）に変更
 - [x] MenHome.tsx：ナビ右上CTAを同様にLINE登録ボタンに変更
 - [x] Notionステップ配信シナリオ（Day0〜Day21）のメッセージ文案を充実させる（Square URL反映・現在設定欄修正）
+
+## FAQセクションにLINE登録Q&A追加（2026-04-10）
+- [x] Home.tsx：FAQセクションにLINE登録関連Q&Aを３件追加（何が届く？・勧誘は？・費用は？）
+- [x] MenHome.tsx：同様にLINE登録関連Q&Aを３件追加
