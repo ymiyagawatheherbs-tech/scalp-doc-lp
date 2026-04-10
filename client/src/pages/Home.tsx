@@ -316,7 +316,7 @@ function HeroSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-6 pt-24 pb-16 md:py-32">
         <div className="max-w-2xl">
           <div className="animate-fade-in-up opacity-0-init">
-            <span className="font-cormorant text-sm tracking-[0.4em] uppercase block mb-5 md:mb-6" style={{color: '#d4c5a0', letterSpacing: '0.35em'}}>
+            <span className="font-cormorant text-xs tracking-[0.4em] uppercase block mb-4 md:mb-5" style={{color: '#d4c5a0', letterSpacing: '0.35em'}}>
               ✦ &nbsp;Scalp Wellness Checkup&nbsp; ✦
             </span>
           </div>
