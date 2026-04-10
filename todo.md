@@ -61,3 +61,7 @@
 ## ナビロゴ ブランドヒエラルキー修正（2026-04-10）
 - [x] 親ブランド「THE HERBS」ロゴを大きく上位に、子ブランド「SCALP LABO」を小さく下位に配置
 - [x] Home.tsx・MenHome.tsx・SalonPartner.tsx 3ページに適用
+
+## ロゴ拡大・サロンバナー非表示・既存顧客案内（2026-04-10）- [x] THE HERBSロゴを（28pxに拡大・左揃え修正（Home.tsx・MenHome.tsx・SalonPartner.tsx）
+- [x] サロン向けバナー・リンクを非表示（Home.tsx・MenHome.tsx）
+- [x] FAQに既存顧客向け予約案内Q&Aを追記（LINEまたはお電話で）

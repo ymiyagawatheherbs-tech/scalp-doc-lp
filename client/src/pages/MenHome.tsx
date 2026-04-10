@@ -64,22 +64,22 @@ function Nav() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
-          {/* Logo: THE HERBS（親ブランド・大）→ SCALP LABO for Men（子ブランド・小）縦積み */}
-          <Link href="/men" className="flex flex-col items-start leading-none gap-1 flex-shrink-0">
-            {/* 親ブランド：THE HERBSロゴ画像（大きく・目立つ） */}
+          {/* Logo: THE HERBS（親ブランド・大）→ SCALP LABO for Men（子ブランド・小）縦積み・左揃え */}
+          <Link href="/men" className="flex flex-col items-start leading-none gap-[3px] flex-shrink-0">
+            {/* 親ブランド：THE HERBSロゴ画像（28px・目立つ） */}
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs-logo-white_7a2a3209.webp"
               alt="THE HERBS"
-              className="object-contain cursor-pointer"
+              className="object-contain cursor-pointer block"
               style={{
-                height: "22px",
+                height: "28px",
                 width: "auto",
               }}
             />
-            {/* 子ブランド：SCALP LABO for Men（小さく下位に） */}
+            {/* 子ブランド：SCALP LABO for Men（小さく下位に・左揃え） */}
             <span
               className="font-['Noto_Sans_JP'] tracking-widest block"
-              style={{ fontSize: "0.5rem", letterSpacing: "0.25em", color: "rgba(201,168,76,0.7)" }}
+              style={{ fontSize: "0.5rem", letterSpacing: "0.22em", paddingLeft: "1px", color: "rgba(201,168,76,0.7)" }}
             >
               SCALP LABO for Men
             </span>
@@ -100,13 +100,7 @@ function Nav() {
 
           {/* CTA + Hamburger */}
           <div className="flex items-center gap-2 flex-shrink-0">
-            {/* サロン向けリンク */}
-            <Link
-              href="/salon"
-              className="hidden lg:flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-[oklch(0.69 0.060 130)]/60 text-[oklch(0.69 0.060 130)]/80 text-xs tracking-wider hover:border-[oklch(0.69 0.060 130)] hover:text-[oklch(0.69 0.060 130)] transition-all duration-300 font-['Noto_Sans_JP'] whitespace-nowrap"
-            >
-              サロン向け
-            </Link>
+            {/* サロン向けリンク：一般向けサロンに注力のため一時非表示 */}
             {/* 女性版切り替えリンク */}
             <Link
               href="/"
@@ -158,16 +152,10 @@ function Nav() {
               {link.label}
             </button>
           ))}
-          <Link
-            href="/salon"
-            className="mt-6 flex items-center justify-center gap-2 py-3 border border-[oklch(0.69 0.060 130)]/50 text-[oklch(0.69 0.060 130)] text-base tracking-wider hover:border-[oklch(0.69 0.060 130)] hover:bg-[oklch(0.69 0.060 130)]/10 transition-all duration-300 font-['Noto_Sans_JP']"
-            onClick={() => setMenuOpen(false)}
-          >
-            サロン・美容師の方へ
-          </Link>
+          {/* 女性版切り替えリンク */}
           <Link
             href="/"
-            className="mt-3 flex items-center justify-center gap-2 py-3 border border-white/30 text-white/60 text-base tracking-wider hover:border-white/60 hover:text-white/80 transition-all duration-300 font-['Noto_Sans_JP']"
+            className="mt-6 flex items-center justify-center gap-2 py-3 border border-white/30 text-white/60 text-base tracking-wider hover:border-white/60 hover:text-white/80 transition-all duration-300 font-['Noto_Sans_JP']"
             onClick={() => setMenuOpen(false)}
           >
             <span>&#9792;</span>
@@ -1387,6 +1375,10 @@ function FAQ() {
       q: "LINE登録は無料ですか？費用はかかりますか？",
       a: "LINE登録は完全無料です。登録後のステップ配信（自動メッセージ）も費用はかかりません。実際のサロン施術については、各メニューの料金が発生します。初回の無料スカルプチェックは、予約後にサロンにてご体験いただけます。",
     },
+    {
+      q: "すでに通っている方の次回予約はどうすればいいですか？",
+      a: "ご利用中のお客様は、LINEまたはお電話にて直接ご予約ください。サロンスタッフがご希望の日程を調整いたします。ご不明な点はお気軽にお問い合わせください。",
+    },
   ];
 
   return (
@@ -1835,25 +1827,7 @@ function StoreSection() {
           ))}
         </div>
 
-        {/* サロン募集バナー */}
-        <div className={`mt-12 border border-[oklch(0.69 0.060 130)]/30 p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-700 delay-300 ${
-          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}>
-          <div>
-            <p className="font-['Cormorant_Garamond'] italic text-[oklch(0.69 0.060 130)] text-xs tracking-[0.3em] uppercase mb-2">For Salon Partners</p>
-            <h3 className="font-['Shippori_Mincho'] text-white text-xl md:text-2xl font-bold mb-2">
-              THE HERBS SCALP LABOの認定サロンになりませんか？
-            </h3>
-            <p className="text-white/75 text-sm font-['Noto_Sans_JP'] font-light leading-relaxed">
-              エステサロン・美容師の方向けに、頭皮チェックの技術講習と認定制度をご用意しています。
-            </p>
-          </div>
-          <Link href="/salon">
-            <span className="flex-shrink-0 border border-[oklch(0.69 0.060 130)] text-[oklch(0.69 0.060 130)] font-['Noto_Sans_JP'] font-medium text-sm px-8 py-3.5 hover:bg-[oklch(0.69 0.060 130)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300 whitespace-nowrap cursor-pointer">
-              認定サロン募集ページへ →
-            </span>
-          </Link>
-        </div>
+        {/* サロン募集バナー：一般向けサロンに注力のため一時非表示 */}
       </div>
     </section>
   );

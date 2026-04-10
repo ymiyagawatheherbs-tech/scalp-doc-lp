@@ -178,25 +178,26 @@ function Nav() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 md:py-4 flex items-center justify-between gap-4">
-          {/* ロゴ：THE HERBS（親ブランド・大）→ SCALP LABO（子ブランド・小）縦積み */}
-          <a href="/" className="flex flex-col items-start leading-none gap-1 flex-shrink-0">
-            {/* 親ブランド：THE HERBSロゴ画像（大きく・目立つ） */}
+          {/* ロゴ：THE HERBS（親ブランド・大）→ SCALP LABO（子ブランド・小）縦積み・左揃え */}
+          <a href="/" className="flex flex-col items-start leading-none gap-[3px] flex-shrink-0">
+            {/* 親ブランド：THE HERBSロゴ画像（28px・目立つ） */}
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs-logo-white_7a2a3209.webp"
               alt="THE HERBS"
-              className="object-contain transition-all"
+              className="object-contain transition-all block"
               style={{
-                height: "22px",
+                height: "28px",
                 width: "auto",
                 filter: scrolled ? "brightness(0)" : "none",
               }}
             />
-            {/* 子ブランド：SCALP LABO（小さく下位に） */}
+            {/* 子ブランド：SCALP LABO（小さく下位に・左揃え） */}
             <span
               className="font-sans-jp tracking-widest transition-colors block"
               style={{
                 fontSize: "0.5rem",
-                letterSpacing: "0.25em",
+                letterSpacing: "0.22em",
+                paddingLeft: "1px",
                 color: scrolled ? "oklch(0.55 0.035 93)" : "rgba(255,255,255,0.65)",
               }}
             >
@@ -1697,6 +1698,10 @@ function FaqSection() {
       q: "LINE登録は無料ですか？費用はかかりますか？",
       a: "LINE登録は完全無料です。登録後のステップ配信（自動メッセージ）も費用はかかりません。実際のサロン施術（頭皮チェック・ケアメニュー）については、各メニューの料金が発生します。初回の無料スカルプチェックは、予約後にサロンにてご体験いただけます。",
     },
+    {
+      q: "すでに通っている方の次回予約はどうすればいいですか？",
+      a: "ご利用中のお客様は、LINEまたはお電話にて直接ご予約ください。サロンスタッフがご希望の日程を調整いたします。ご不明な点はお気軽にお問い合わせください。",
+    },
   ];
 
   return (
@@ -2437,26 +2442,7 @@ function StoreSection() {
           ))}
         </div>
 
-        {/* サロン募集バナー */}
-        <div className={`mt-16 bg-[oklch(0.30_0.055_65)] rounded-sm p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-700 delay-300 ${
-          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}>
-          <div>
-            <p className="font-cormorant text-[oklch(0.72_0.038_93)] text-xs tracking-[0.3em] uppercase mb-2">For Salon Partners</p>
-            <h3 className="font-mincho text-white text-xl md:text-2xl font-bold mb-2">
-              THE HERBS SCALP LABOの認定サロンになりませんか？
-            </h3>
-            <p className="font-sans-jp text-white/75 text-sm leading-relaxed">
-              エステサロン・美容師の方向けに、頭皮チェックの技術講習と認定制度をご用意しています。
-            </p>
-          </div>
-          <a
-            href="/salon"
-            className="flex-shrink-0 border border-[oklch(0.72_0.038_93)] text-[oklch(0.72_0.038_93)] font-sans-jp font-medium text-sm px-8 py-3.5 rounded-sm hover:bg-[oklch(0.72_0.038_93)] hover:text-[oklch(0.25_0.050_65)] transition-all duration-300 whitespace-nowrap"
-          >
-            認定サロン募集ページへ →
-          </a>
-        </div>
+        {/* サロン募集バナー：一般向けサロンに注力のため一時非表示 */}
       </div>
     </section>
   );
@@ -2526,7 +2512,6 @@ function Footer() {
                 { label: "無料スカルプチェック", href: "/booking" },
                 { label: "THE HERBS SCALP LAB定期ケア", href: "#サービス" },
                 { label: "店舗・アクセス", href: "#店舗情報" },
-                { label: "認定サロン募集", href: "/salon" },
               ].map((item) => (
                 <li key={item.label}>
                   <a href={item.href} className="font-sans-jp text-white/60 text-xs hover:text-white/90 transition-colors">

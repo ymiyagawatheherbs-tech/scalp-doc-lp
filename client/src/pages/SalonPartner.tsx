@@ -71,23 +71,23 @@ function Nav() {
         }}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between gap-4">
-          {/* Logo: THE HERBS（親ブランド・大）→ SCALP LABO（子ブランド・小）縦積み */}
-          <Link href="/" className="flex flex-col items-start leading-none gap-1 flex-shrink-0">
-            {/* 親ブランド：THE HERBSロゴ画像（大きく・目立つ） */}
+          {/* Logo: THE HERBS（親ブランド・大）→ SCALP LABO（子ブランド・小）縦積み・左揃え */}
+          <Link href="/" className="flex flex-col items-start leading-none gap-[3px] flex-shrink-0">
+            {/* 親ブランド：THE HERBSロゴ画像（28px・目立つ） */}
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs-logo-white_7a2a3209.webp"
               alt="THE HERBS"
-              className="object-contain transition-all cursor-pointer"
+              className="object-contain transition-all cursor-pointer block"
               style={{
-                height: "22px",
+                height: "28px",
                 width: "auto",
                 filter: scrolled ? "brightness(0)" : "none",
               }}
             />
-            {/* 子ブランド：SCALP LABO（小さく下位に） */}
+            {/* 子ブランド：SCALP LABO（小さく下位に・左揃え） */}
             <span
               className="font-sans-jp tracking-widest transition-colors block"
-              style={{ fontSize: "0.5rem", letterSpacing: "0.25em", color: scrolled ? "oklch(0.48 0.08 140)" : "rgba(255,255,255,0.6)" }}
+              style={{ fontSize: "0.5rem", letterSpacing: "0.22em", paddingLeft: "1px", color: scrolled ? "oklch(0.48 0.08 140)" : "rgba(255,255,255,0.6)" }}
             >
               SCALP LABO
             </span>
