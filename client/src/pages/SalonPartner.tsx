@@ -81,14 +81,14 @@ function Nav() {
               style={{
                 height: "28px",
                 width: "auto",
-                marginLeft: "-4px",
+                marginLeft: "-17px",
                 filter: scrolled ? "brightness(0)" : "none",
               }}
             />
             {/* 子ブランド：SCALP LABO（小さく下位に・左揃え） */}
             <span
               className="font-sans-jp tracking-widest transition-colors block"
-              style={{ fontSize: "0.5rem", letterSpacing: "0.22em", paddingLeft: "1px", color: scrolled ? "oklch(0.48 0.08 140)" : "rgba(255,255,255,0.6)" }}
+              style={{ fontSize: "0.5rem", letterSpacing: "0.22em", paddingLeft: "0px", color: scrolled ? "oklch(0.48 0.08 140)" : "rgba(255,255,255,0.6)" }}
             >
               SCALP LABO
             </span>

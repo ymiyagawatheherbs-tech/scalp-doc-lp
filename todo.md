@@ -68,3 +68,7 @@
 
 ## ロゴ左端揃え修正（2026-04-10）
 - [x] THE HERBSロゴ画像の内部左余白を打ち消し、SCALP LABOと左端を完全に揃える（Home.tsx・MenHome.tsx・SalonPartner.tsx）
+
+## ロゴずれ解消・ヒーローフォント調整（2026-04-10）
+- [x] THE HERBSロゴとSCALP LABOの左端ずれを根本的に解消（ロゴ画像左余白を計算しmarginLeft: -17pxで補正、）3ページ）
+- [x] ヒーローセクションのフォントサイズを読みやすく縮小（Home.tsx・MenHome.tsx）

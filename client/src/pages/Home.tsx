@@ -188,7 +188,7 @@ function Nav() {
               style={{
                 height: "28px",
                 width: "auto",
-                marginLeft: "-4px",
+                marginLeft: "-17px",
                 filter: scrolled ? "brightness(0)" : "none",
               }}
             />
@@ -198,7 +198,7 @@ function Nav() {
               style={{
                 fontSize: "0.5rem",
                 letterSpacing: "0.22em",
-                paddingLeft: "1px",
+                paddingLeft: "0px",
                 color: scrolled ? "oklch(0.55 0.035 93)" : "rgba(255,255,255,0.65)",
               }}
             >
@@ -321,14 +321,14 @@ function HeroSection() {
             </span>
           </div>
           <h1 className="relative font-mincho leading-tight mb-4 md:mb-6 animate-fade-in-up opacity-0-init delay-100" style={{textShadow: '0 2px 20px rgba(0,0,0,0.5)'}}>
-            <span className="block text-3xl md:text-5xl lg:text-6xl font-bold mb-1 md:mb-2 text-white">
-              歯の定期検診のように、
+            <span className="block text-2xl md:text-4xl lg:text-5xl font-bold mb-1 md:mb-2 text-white">
+               歯の定期検診のように、
             </span>
-            <span className="block text-3xl md:text-5xl lg:text-6xl font-bold" style={{color: '#f0d98a', textShadow: '0 0 40px rgba(240,217,138,0.4), 0 2px 20px rgba(0,0,0,0.5)'}}>
-              頭皮も定期チェックを。
+            <span className="block text-2xl md:text-4xl lg:text-5xl font-bold" style={{color: '#f0d98a', textShadow: '0 0 40px rgba(240,217,138,0.4), 0 2px 20px rgba(0,0,0,0.5)'}}>
+               頭皮も定期チェックを。
             </span>
-            <span className="block text-lg md:text-2xl font-medium mt-3" style={{color: 'rgba(255,255,255,0.85)', textShadow: '0 1px 8px rgba(0,0,0,0.5)', fontFamily: "'Noto Sans JP', sans-serif", letterSpacing: '0.04em'}}>
-              植物の力で、10年後も豊かな髪を育む新習慣。
+            <span className="block text-base md:text-xl font-medium mt-3" style={{color: 'rgba(255,255,255,0.85)', textShadow: '0 1px 8px rgba(0,0,0,0.5)', fontFamily: "'Noto Sans JP', sans-serif", letterSpacing: '0.04em'}}>
+               植物の力で、10年後も豊かな髪を育む新習慣。
             </span>
           </h1>
           <p className="hidden md:block font-sans-jp text-white/90 text-base md:text-lg leading-relaxed mb-10 animate-fade-in-up opacity-0-init delay-200" style={{textShadow: '0 1px 8px rgba(0,0,0,0.6)'}}>

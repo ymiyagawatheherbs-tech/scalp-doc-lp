@@ -74,13 +74,13 @@ function Nav() {
               style={{
                 height: "28px",
                 width: "auto",
-                marginLeft: "-4px",
+                marginLeft: "-17px",
               }}
             />
             {/* 子ブランド：SCALP LABO for Men（小さく下位に・左揃え） */}
             <span
               className="font-['Noto_Sans_JP'] tracking-widest block"
-              style={{ fontSize: "0.5rem", letterSpacing: "0.22em", paddingLeft: "1px", color: "rgba(201,168,76,0.7)" }}
+              style={{ fontSize: "0.5rem", letterSpacing: "0.22em", paddingLeft: "0px", color: "rgba(201,168,76,0.7)" }}
             >
               SCALP LABO for Men
             </span>
@@ -226,11 +226,11 @@ function Hero() {
 
           {/* Main headline */}
           <h1 className="font-['Shippori_Mincho'] text-white leading-tight mb-4 md:mb-6" style={{ textShadow: '0 2px 12px rgba(0,0,0,0.8)' }}>
-            <span className="block text-2xl md:text-6xl font-bold mb-1 md:mb-2">
-              頭皮の状態を、
+            <span className="block text-xl md:text-4xl lg:text-5xl font-bold mb-1 md:mb-2">
+               頭皮の状態を、
             </span>
-            <span className="block text-2xl md:text-6xl font-bold mb-1 md:mb-2">
-              データで把握する。
+            <span className="block text-xl md:text-4xl lg:text-5xl font-bold mb-1 md:mb-2">
+               データで把握する。
             </span>
             <span className="block text-base md:text-2xl text-[oklch(0.85 0.12 90)] font-normal mt-2 md:mt-4 tracking-wider" style={{ textShadow: '0 2px 8px rgba(0,0,0,0.9)' }}>
               抜け毛を未然に防ぎ、不安のない髪へ
