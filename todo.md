@@ -63,3 +63,8 @@
 - [x] Home.tsx：ヘッダー中央「PRESENTED BY THE HERBS」削除、左上ロゴを正式ロゴ画像に差替
 - [x] MenHome.tsx：同様の修正
 - [x] SalonPartner.tsx：同様の修正
+
+## ナビロゴ構成修正（2026-04-10）
+- [ ] Home.tsx：スカルプラボロゴマーク＋SCALP LABOテキスト＋THE HERBSロゴ画像の3点セットに修正
+- [ ] MenHome.tsx：同様の修正
+- [ ] SalonPartner.tsx：同様の修正

@@ -71,26 +71,42 @@ function Nav() {
         }}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 py-3 flex items-center justify-between gap-4">
-          {/* Logo: THE HERBS正式ロゴ画像 */}
-          <Link href="/" className="flex items-center gap-3 flex-shrink-0">
+          {/* Logo: スカルプラボロゴマーク＋SCALP LABOテキスト＋THE HERBS正式ロゴ画像 */}
+          <Link href="/" className="flex items-center gap-2.5 flex-shrink-0">
+            {/* スカルプラボロゴマーク */}
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs-logo-transparent_4f7d58d9.png"
-              alt="THE HERBS"
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_grayge_p_transparent_47bbd755.png"
+              alt="SCALP LABO"
               className="object-contain transition-all cursor-pointer"
               style={{
-                height: "26px",
+                height: "40px",
                 width: "auto",
                 filter: scrolled
                   ? "none"
                   : "brightness(0) invert(1)",
               }}
             />
-            <span
-              className="transition-colors"
-              style={{ fontSize: "0.52rem", letterSpacing: "0.20em", color: scrolled ? "oklch(0.48 0.08 140)" : "rgba(255,255,255,0.55)", textTransform: "uppercase" }}
-            >
-              SCALP LABO
-            </span>
+            <div className="flex flex-col leading-none gap-0.5">
+              <span
+                className="transition-colors"
+                style={{ fontSize: "0.52rem", letterSpacing: "0.20em", color: scrolled ? "oklch(0.48 0.08 140)" : "rgba(255,255,255,0.55)", textTransform: "uppercase" }}
+              >
+                SCALP LABO
+              </span>
+              {/* THE HERBSロゴ画像 */}
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs-logo-transparent_4f7d58d9.png"
+                alt="THE HERBS"
+                className="object-contain transition-all"
+                style={{
+                  height: "10px",
+                  width: "auto",
+                  filter: scrolled
+                    ? "none"
+                    : "brightness(0) invert(1)",
+                }}
+              />
+            </div>
           </Link>
 
           <div className="flex items-center gap-3 flex-shrink-0">
