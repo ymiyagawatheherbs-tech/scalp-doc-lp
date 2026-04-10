@@ -33,3 +33,10 @@
 
 ### SalonPartner.tsx（サロン向けLP）
 - [ ] ブランド表記を「THE HERBS SCALP LABO」に統一
+
+## LINE登録→ステップ配信→予約分岐フロー実装（2026-04-10）
+
+- [ ] FV CTAをTHE HERBSメインLINEアカウント登録ボタンに変更（Home.tsx）
+- [ ] FV CTAをTHE HERBSメインLINEアカウント登録ボタンに変更（MenHome.tsx）
+- [ ] LINE予約モーダルを廃止・フローティングボタンもLINE登録に変更
+- [ ] ステップ配信シナリオをNotionに保存

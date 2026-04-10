@@ -371,24 +371,25 @@ function HeroSection() {
             <strong style={{color: '#f0d98a'}}>意識的にケアする</strong>新習慣。
           </p>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 animate-fade-in-up opacity-0-init delay-300">
-            <button
-              onClick={() => {
-                const modal = document.getElementById('line-booking-modal');
-                if (modal) modal.style.display = 'flex';
-              }}
-              className="font-sans-jp font-bold px-7 md:px-10 py-4 md:py-5 text-center text-sm md:text-base tracking-wider transition-all duration-300 hover:-translate-y-1"
+            <a
+              href="https://lin.ee/WPbdXE5"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-sans-jp font-bold px-7 md:px-10 py-4 md:py-5 text-center text-sm md:text-base tracking-wider transition-all duration-300 hover:-translate-y-1 inline-flex items-center justify-center gap-2"
               style={{
                 background: 'linear-gradient(135deg, #b8956a 0%, #d4aa7d 40%, #c49a6c 70%, #8b6845 100%)',
                 color: '#fff',
                 boxShadow: '0 4px 24px rgba(180,140,90,0.55), 0 1px 0 rgba(255,255,255,0.15) inset',
                 textShadow: '0 1px 3px rgba(0,0,0,0.4)',
                 letterSpacing: '0.08em',
-                border: 'none',
-                cursor: 'pointer',
+                textDecoration: 'none',
               }}
             >
-              ❆ &nbsp;まずは無料で頭皮の今を知る（LINE予約）
-            </button>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style={{flexShrink: 0}}>
+                <path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.58 5.8 4.04 7.54L5.5 22l4.14-2.16C10.39 20.27 11.18 20.4 12 20.4c5.52 0 10-4.02 10-9S17.52 2 12 2z"/>
+              </svg>
+              LINEで頭皮の悩みを相談する（無料）
+            </a>
           </div>
           <div className="mt-8 md:mt-12 flex items-center gap-4 md:gap-6 animate-fade-in-up opacity-0-init delay-400">
             <div className="flex -space-x-2">
@@ -2427,19 +2428,26 @@ function StoreSection() {
                 {/* CTAボタン */}
                 <div className="flex gap-3">
                   <a
-                    href={store.line}
+                    href="https://lin.ee/WPbdXE5"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 font-sans-jp text-white text-xs font-semibold py-3 rounded-sm text-center transition-opacity hover:opacity-90"
                     style={{ backgroundColor: "#06C755" }}
                   >
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="white">
-                      <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+                      <path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.58 5.8 4.04 7.54L5.5 22l4.14-2.16C10.39 20.27 11.18 20.4 12 20.4c5.52 0 10-4.02 10-9S17.52 2 12 2z"/>
                     </svg>
-                    LINEで予約・問合せ
-                    <span className="text-white/70 text-[10px] font-normal ml-1">{store.lineId}</span>
+                    LINEで相談・登録（無料）
                   </a>
-
+                  <a
+                    href="/booking"
+                    className="flex-1 flex items-center justify-center gap-2 font-sans-jp text-xs font-semibold py-3 rounded-sm text-center transition-all border"
+                    style={{ borderColor: 'oklch(0.72 0.038 93)', color: 'oklch(0.35 0.050 65)', backgroundColor: 'transparent' }}
+                    onMouseEnter={e => { e.currentTarget.style.backgroundColor = 'oklch(0.72 0.038 93)'; e.currentTarget.style.color = '#fff'; }}
+                    onMouseLeave={e => { e.currentTarget.style.backgroundColor = 'transparent'; e.currentTarget.style.color = 'oklch(0.35 0.050 65)'; }}
+                  >
+                    予約ページへ
+                  </a>
                 </div>
               </div>
             </div>
@@ -2603,89 +2611,13 @@ function Footer() {
   );
 }
 
-// LINE予約モーダル
+// LINE登録誘導モーダル（店舗選択廃止）
 function LineBookingModal() {
-  const [visible, setVisible] = useState(false);
-
-  useEffect(() => {
-    const checkModal = () => {
-      const modal = document.getElementById('line-booking-modal');
-      if (modal) {
-        const observer = new MutationObserver(() => {
-          setVisible(modal.style.display === 'flex');
-        });
-        observer.observe(modal, { attributes: true, attributeFilter: ['style'] });
-        return () => observer.disconnect();
-      }
-    };
-    checkModal();
-  }, []);
-
-  const close = () => {
-    const modal = document.getElementById('line-booking-modal');
-    if (modal) modal.style.display = 'none';
-    setVisible(false);
-  };
-
-  return (
-    <div
-      id="line-booking-modal"
-      style={{ display: 'none', position: 'fixed', inset: 0, zIndex: 9999, alignItems: 'center', justifyContent: 'center', backgroundColor: 'rgba(0,0,0,0.7)', backdropFilter: 'blur(4px)' }}
-      onClick={(e) => { if (e.target === e.currentTarget) close(); }}
-    >
-      <div
-        className="relative mx-4 w-full max-w-md rounded-sm shadow-2xl"
-        style={{ background: 'oklch(0.978 0.008 90)', padding: '2.5rem' }}
-      >
-        <button
-          onClick={close}
-          className="absolute top-4 right-4 text-[oklch(0.55_0.055_65)] hover:text-[oklch(0.28_0.050_65)] transition-colors"
-          style={{ fontSize: '1.5rem', lineHeight: 1, background: 'none', border: 'none', cursor: 'pointer' }}
-        >
-          ×
-        </button>
-        <div className="text-center mb-6">
-          <span className="font-cormorant text-[oklch(0.48_0.060_65)] text-xs tracking-[0.3em] uppercase block mb-2">LINE予約</span>
-          <h3 className="font-mincho text-[oklch(0.28_0.050_65)] text-xl font-bold mb-2">店舗をお選びください</h3>
-          <p className="font-sans-jp text-[oklch(0.55_0.055_65)] text-xs leading-relaxed">
-            LINEでお友だち追加後、トーク画面からご予約いただけます。
-          </p>
-        </div>
-        <div className="space-y-4">
-          <a
-            href="https://lin.ee/RhtIZDl"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-4 p-5 rounded-sm border-2 border-[oklch(0.72_0.038_93)] hover:bg-[oklch(0.72_0.038_93)/10] transition-all duration-300"
-          >
-            <div className="flex-1">
-              <p className="font-mincho text-[oklch(0.28_0.050_65)] text-base font-bold mb-0.5">THE HERBS神戸邘急店</p>
-              <p className="font-sans-jp text-[oklch(0.55_0.055_65)] text-xs">神戸邘急本桸6階 ・ 営業時間3 10:00～20:00</p>
-            </div>
-            <span className="font-sans-jp text-[oklch(0.48_0.060_65)] text-xs font-bold whitespace-nowrap">LINEで予約 →</span>
-          </a>
-          <a
-            href="https://lin.ee/oWeHStW"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center gap-4 p-5 rounded-sm border-2 border-[oklch(0.62_0.14_160)] hover:bg-[oklch(0.62_0.14_160)/10] transition-all duration-300"
-          >
-            <div className="flex-1">
-              <p className="font-mincho text-[oklch(0.28_0.050_65)] text-base font-bold mb-0.5">THE HERBS植物美容サロン</p>
-              <p className="font-sans-jp text-[oklch(0.55_0.055_65)] text-xs">神戸市灌区 ・ 営業時間3 10:00～20:00</p>
-            </div>
-            <span className="font-sans-jp text-[oklch(0.35_0.10_160)] text-xs font-bold whitespace-nowrap">LINEで予約 →</span>
-          </a>
-        </div>
-        <p className="font-sans-jp text-[oklch(0.65_0.055_65)] text-[11px] text-center mt-5 leading-relaxed">
-          ※ フォームからの予約は《<a href="/booking" className="underline">予約ページ</a>》からもお申し込みいただけます。
-        </p>
-      </div>
-    </div>
-  );
+  // モーダルは废止：FVボタンはLINE直接リンクに変更済み
+  return null;
 }
 
-// フローティング予約ボタン
+// フローティングLINE登録ボタン
 function FloatingBookingButton() {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -2694,30 +2626,28 @@ function FloatingBookingButton() {
     return () => window.removeEventListener('scroll', handler);
   }, []);
 
-  const openModal = () => {
-    const modal = document.getElementById('line-booking-modal');
-    if (modal) modal.style.display = 'flex';
-  };
-
   return (
     <div
       className={`fixed bottom-6 right-4 z-50 md:hidden transition-all duration-500 ${scrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}
     >
-      <button
-        onClick={openModal}
+      <a
+        href="https://lin.ee/WPbdXE5"
+        target="_blank"
+        rel="noopener noreferrer"
         className="font-sans-jp font-bold text-white text-xs px-5 py-3.5 shadow-2xl flex items-center gap-2"
         style={{
           background: 'linear-gradient(135deg, #b8956a 0%, #d4aa7d 50%, #8b6845 100%)',
           borderRadius: '2px',
           boxShadow: '0 4px 20px rgba(180,140,90,0.6)',
           textShadow: '0 1px 2px rgba(0,0,0,0.4)',
-          border: 'none',
-          cursor: 'pointer',
+          textDecoration: 'none',
         }}
       >
-        <span style={{ fontSize: '1rem' }}>✉</span>
-        LINE予約（無料）
-      </button>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style={{flexShrink: 0}}>
+          <path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.58 5.8 4.04 7.54L5.5 22l4.14-2.16C10.39 20.27 11.18 20.4 12 20.4c5.52 0 10-4.02 10-9S17.52 2 12 2z"/>
+        </svg>
+        LINEで相談する（無料）
+      </a>
     </div>
   );
 }
