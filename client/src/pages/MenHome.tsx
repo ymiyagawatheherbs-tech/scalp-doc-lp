@@ -250,7 +250,7 @@ function Hero() {
               href="https://lin.ee/ulWWzab"
               target="_blank"
               rel="noopener noreferrer"
-              className="px-6 md:px-8 py-3.5 md:py-4 bg-[oklch(0.69 0.060 130)] text-white font-bold tracking-widest text-sm hover:bg-[oklch(0.72 0.1 130)] transition-all duration-300 flex items-center justify-center gap-2 font-['Noto_Sans_JP']"
+              className="px-4 md:px-6 py-2 md:py-2.5 bg-[oklch(0.69 0.060 130)] text-white font-bold tracking-widest text-xs md:text-sm hover:bg-[oklch(0.72 0.1 130)] transition-all duration-300 flex items-center justify-center gap-2 font-['Noto_Sans_JP']"
               style={{textShadow: '0 1px 3px rgba(0,0,0,0.5)', textDecoration: 'none'}}
             >
               <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{flexShrink: 0}}>

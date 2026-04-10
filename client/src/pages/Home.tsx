@@ -344,7 +344,7 @@ function HeroSection() {
               href="https://lin.ee/WPbdXE5"
               target="_blank"
               rel="noopener noreferrer"
-              className="font-sans-jp font-bold px-7 md:px-10 py-4 md:py-5 text-center text-sm md:text-base tracking-wider transition-all duration-300 hover:-translate-y-1 inline-flex items-center justify-center gap-2"
+              className="font-sans-jp font-bold px-5 md:px-7 py-2.5 md:py-3 text-center text-xs md:text-sm tracking-wider transition-all duration-300 hover:-translate-y-1 inline-flex items-center justify-center gap-2"
               style={{
                 background: 'linear-gradient(135deg, #b8956a 0%, #d4aa7d 40%, #c49a6c 70%, #8b6845 100%)',
                 color: '#fff',
@@ -354,7 +354,7 @@ function HeroSection() {
                 textDecoration: 'none',
               }}
             >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" style={{flexShrink: 0}}>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style={{flexShrink: 0}}>
                 <path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.58 5.8 4.04 7.54L5.5 22l4.14-2.16C10.39 20.27 11.18 20.4 12 20.4c5.52 0 10-4.02 10-9S17.52 2 12 2z"/>
               </svg>
               LINEで頭皮の悩みを相談する（無料）
