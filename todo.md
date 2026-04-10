@@ -57,3 +57,7 @@
 ## FAQセクションにLINE登録Q&A追加（2026-04-10）
 - [x] Home.tsx：FAQセクションにLINE登録関連Q&Aを３件追加（何が届く？・勧誘は？・費用は？）
 - [x] MenHome.tsx：同様にLINE登録関連Q&Aを３件追加
+
+## ナビロゴ ブランドヒエラルキー修正（2026-04-10）
+- [x] 親ブランド「THE HERBS」ロゴを大きく上位に、子ブランド「SCALP LABO」を小さく下位に配置
+- [x] Home.tsx・MenHome.tsx・SalonPartner.tsx 3ページに適用
