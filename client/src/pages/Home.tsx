@@ -188,6 +188,7 @@ function Nav() {
               style={{
                 height: "28px",
                 width: "auto",
+                marginLeft: "-4px",
                 filter: scrolled ? "brightness(0)" : "none",
               }}
             />

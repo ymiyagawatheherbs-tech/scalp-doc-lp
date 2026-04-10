@@ -65,3 +65,6 @@
 ## ロゴ拡大・サロンバナー非表示・既存顧客案内（2026-04-10）- [x] THE HERBSロゴを（28pxに拡大・左揃え修正（Home.tsx・MenHome.tsx・SalonPartner.tsx）
 - [x] サロン向けバナー・リンクを非表示（Home.tsx・MenHome.tsx）
 - [x] FAQに既存顧客向け予約案内Q&Aを追記（LINEまたはお電話で）
+
+## ロゴ左端揃え修正（2026-04-10）
+- [x] THE HERBSロゴ画像の内部左余白を打ち消し、SCALP LABOと左端を完全に揃える（Home.tsx・MenHome.tsx・SalonPartner.tsx）

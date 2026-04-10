@@ -74,6 +74,7 @@ function Nav() {
               style={{
                 height: "28px",
                 width: "auto",
+                marginLeft: "-4px",
               }}
             />
             {/* 子ブランド：SCALP LABO for Men（小さく下位に・左揃え） */}
