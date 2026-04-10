@@ -193,18 +193,18 @@ function Nav() {
               }}
             />
             <div className="flex flex-col leading-none">
-              <span
-                className="font-bold tracking-widest transition-colors"
-              style={{
-                fontFamily: "'Noto Sans JP', sans-serif",
-                fontSize: "0.75rem",
-                fontWeight: 700,
-                color: scrolled ? "oklch(0.35 0.060 65)" : "rgba(255,255,255,0.95)",
-                  letterSpacing: "0.10em",
+              {/* THE HERBS正式ロゴ画像（白ヌキ） */}
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs-logo-white_7a2a3209.webp"
+                alt="THE HERBS"
+                className="object-contain transition-all"
+                style={{
+                  height: "13px",
+                  width: "auto",
+                  marginBottom: "3px",
+                  filter: scrolled ? "brightness(0)" : "none",
                 }}
-              >
-                THE HERBS
-              </span>
+              />
               <span
                 className="font-sans-jp transition-colors"
                 style={{
@@ -218,31 +218,7 @@ function Nav() {
             </div>
           </a>
 
-          {/* 中央：presented by THE HERBS（デスクトップのみ） */}
-          <div className="hidden md:flex flex-col items-center flex-1 justify-center">
-            <span
-              className="font-cormorant transition-colors"
-              style={{
-                fontSize: "0.58rem",
-                letterSpacing: "0.22em",
-                color: scrolled ? "oklch(0.55 0.035 93)" : "rgba(255,255,255,0.45)",
-                textTransform: "uppercase",
-              }}
-            >
-              presented by
-            </span>
-            <span
-              className="font-cormorant font-semibold transition-colors"
-                style={{
-                fontSize: "0.85rem",
-                letterSpacing: "0.25em",
-                color: scrolled ? "oklch(0.35 0.060 65)" : "rgba(255,255,255,0.75)",
-                textTransform: "uppercase",
-              }}
-            >
-              THE HERBS
-            </span>
-          </div>
+
 
           {/* デスクトップナビ */}
           <div className="hidden md:flex items-center gap-6 flex-shrink-0">

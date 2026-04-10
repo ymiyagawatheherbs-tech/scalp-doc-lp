@@ -77,12 +77,17 @@ function Nav() {
               }}
             />
             <div className="flex flex-col leading-none">
-              <span
-                className="font-bold tracking-widest"
-                style={{ fontFamily: "'Noto Sans JP', sans-serif", fontSize: "0.95rem", fontWeight: 700, color: "rgba(255,255,255,0.95)", letterSpacing: "0.12em" }}
-              >
-                スカルプラボ
-              </span>
+              {/* THE HERBS正式ロゴ画像（白ヌキ） */}
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs-logo-white_7a2a3209.webp"
+                alt="THE HERBS"
+                className="object-contain"
+                style={{
+                  height: "13px",
+                  width: "auto",
+                  marginBottom: "3px",
+                }}
+              />
               <span
                 className="font-['Noto_Sans_JP']"
                 style={{ fontSize: "0.55rem", letterSpacing: "0.15em", color: "rgba(201,168,76,0.7)" }}
