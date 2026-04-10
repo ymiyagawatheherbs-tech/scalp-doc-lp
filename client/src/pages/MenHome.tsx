@@ -64,39 +64,25 @@ function Nav() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
-          {/* Logo: THE HERBS（親ブランド・大）＋SCALP LABO（子ブランド・小） */}
-          <Link href="/men" className="flex items-center gap-2 flex-shrink-0">
-            {/* スカルプラボ ロゴマーク（円形アイコン） */}
+          {/* Logo: THE HERBS（親ブランド・大）→ SCALP LABO for Men（子ブランド・小）縦積み */}
+          <Link href="/men" className="flex flex-col items-start leading-none gap-1 flex-shrink-0">
+            {/* 親ブランド：THE HERBSロゴ画像（大きく・目立つ） */}
             <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_olive_12a41c11.webp"
-              alt="SCALP LABO"
-              className="object-contain transition-all cursor-pointer flex-shrink-0"
+              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs-logo-white_7a2a3209.webp"
+              alt="THE HERBS"
+              className="object-contain cursor-pointer"
               style={{
-                height: "36px",
+                height: "22px",
                 width: "auto",
-                filter: "brightness(0) invert(1)",
               }}
             />
-            {/* 縦積み：THE HERBS（大）→ SCALP LABO for Men（小） */}
-            <div className="flex flex-col leading-none gap-0.5">
-              {/* 親ブランド：THE HERBSロゴ画像（大きく表示） */}
-              <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs-logo-white_7a2a3209.webp"
-                alt="THE HERBS"
-                className="object-contain"
-                style={{
-                  height: "18px",
-                  width: "auto",
-                }}
-              />
-              {/* 子ブランド：SCALP LABO for Men（小さく下位に） */}
-              <span
-                className="font-['Noto_Sans_JP'] tracking-widest"
-                style={{ fontSize: "0.48rem", letterSpacing: "0.2em", color: "rgba(201,168,76,0.65)" }}
-              >
-                SCALP LABO for Men
-              </span>
-            </div>
+            {/* 子ブランド：SCALP LABO for Men（小さく下位に） */}
+            <span
+              className="font-['Noto_Sans_JP'] tracking-widest block"
+              style={{ fontSize: "0.5rem", letterSpacing: "0.25em", color: "rgba(201,168,76,0.7)" }}
+            >
+              SCALP LABO for Men
+            </span>
           </Link>
 
           {/* Desktop nav（中央配置） */}
