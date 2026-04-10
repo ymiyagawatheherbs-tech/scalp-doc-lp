@@ -24,8 +24,8 @@ const IMAGES = {
 };
 
 const LINE_SALON = {
-  url: "https://lin.ee/oVzqlI7",
-  account: "@723lsjqi",
+  url: "https://lin.ee/UF8T8TX",
+  account: "@theherbs_salon",
 };
 
 const HERBS_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp";

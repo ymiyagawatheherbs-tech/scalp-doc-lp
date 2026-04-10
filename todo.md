@@ -40,3 +40,11 @@
 - [ ] FV CTAをTHE HERBSメインLINEアカウント登録ボタンに変更（MenHome.tsx）
 - [ ] LINE予約モーダルを廃止・フローティングボタンもLINE登録に変更
 - [ ] ステップ配信シナリオをNotionに保存
+
+## LINEアカウント構造修正（2026-04-10）
+
+- [ ] Home.tsx・MenHome.tsx：FVボタン・フローティングボタンを一般向けメイン（https://lin.ee/ulWWzab）に変更
+- [ ] Home.tsx・MenHome.tsx：神戸阪急店カードのLINEボタンを阪急顧客向け（https://lin.ee/P8Jppiu）に変更
+- [ ] Home.tsx・MenHome.tsx：植物美容サロンカードのLINEボタンは一般向けメイン（https://lin.ee/ulWWzab）のまま確認
+- [ ] SalonPartner.tsx：LINEボタンをサロンアカウント（https://lin.ee/UF8T8TX）に変更
+- [ ] Notionシナリオ設計書の基本方針・アカウント定義を正しく修正

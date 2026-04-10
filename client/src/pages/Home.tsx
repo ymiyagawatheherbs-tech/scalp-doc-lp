@@ -2291,7 +2291,7 @@ function StoreSection() {
         { day: "営業時間", time: "10:00 ～ 20:00" },
       ],
       closed: "1月1日～2日",
-      line: "https://lin.ee/RhtIZDl",
+      line: "https://lin.ee/P8Jppiu",
       lineId: "@theherbs_kobe",
       bookingUrl: "/booking",
       features: ["頭皮チェック", "ハーブスチーマー（ボタニカルミスト）", "頭皮データの記録・管理"],
@@ -2310,7 +2310,7 @@ function StoreSection() {
         { day: "営業時間", time: "10:00 ～ 20:00" },
       ],
       closed: "火曜・日曜・祝日定休",
-      line: "https://lin.ee/oWeHStW",
+      line: "https://lin.ee/ulWWzab",
       lineId: "@theherbs39",
       bookingUrl: "https://book.squareup.com/appointments/jsufqo133zf3ec/location/LEWSC49JS30BF/services",
       features: ["育毛メニュー", "ディープクレンジング", "うねりケア", "ヘアカラー後の頭皮ケア", "和漢カラー"],
@@ -2430,7 +2430,7 @@ function StoreSection() {
                 {/* CTAボタン */}
                 <div className="flex gap-3">
                   <a
-                    href="https://lin.ee/WPbdXE5"
+                    href={store.line}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex-1 flex items-center justify-center gap-2 font-sans-jp text-white text-xs font-semibold py-3 rounded-sm text-center transition-opacity hover:opacity-90"
@@ -2635,7 +2635,7 @@ function FloatingBookingButton() {
       className={`fixed bottom-6 right-4 z-50 md:hidden transition-all duration-500 ${scrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}
     >
       <a
-        href="https://lin.ee/WPbdXE5"
+        href="https://lin.ee/ulWWzab"
         target="_blank"
         rel="noopener noreferrer"
         className="font-sans-jp font-bold text-white text-xs px-5 py-3.5 shadow-2xl flex items-center gap-2"
