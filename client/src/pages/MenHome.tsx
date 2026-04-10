@@ -64,12 +64,11 @@ function Nav() {
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 md:px-6 flex items-center justify-between gap-4">
-          {/* Logo: スカルプラボロゴマーク＋THE HERBS正式ロゴ画像（横並び） */}
-          <Link href="/men" className="flex items-center gap-3 flex-shrink-0">
-            {/* スカルプラボロゴマーク */}
+          {/* Logo: THE HERBSロゴマーク＋テキスト */}
+          <Link href="/men" className="flex items-center gap-2.5 flex-shrink-0">
             <img
               src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_olive_12a41c11.webp"
-              alt="SCALP LABO"
+              alt="THE HERBS"
               className="object-contain transition-all cursor-pointer"
               style={{
                 height: "44px",
@@ -77,17 +76,20 @@ function Nav() {
                 filter: "brightness(0) invert(1)",
               }}
             />
-            {/* THE HERBS正式ロゴ画像 */}
-            <img
-              src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs-logo-transparent_4f7d58d9.png"
-              alt="THE HERBS"
-              className="object-contain transition-all"
-              style={{
-                height: "14px",
-                width: "auto",
-                filter: "brightness(0) invert(1)",
-              }}
-            />
+            <div className="flex flex-col leading-none">
+              <span
+                className="font-bold tracking-widest"
+                style={{ fontFamily: "'Noto Sans JP', sans-serif", fontSize: "0.95rem", fontWeight: 700, color: "rgba(255,255,255,0.95)", letterSpacing: "0.12em" }}
+              >
+                スカルプラボ
+              </span>
+              <span
+                className="font-['Noto_Sans_JP']"
+                style={{ fontSize: "0.55rem", letterSpacing: "0.15em", color: "rgba(201,168,76,0.7)" }}
+              >
+                SCALP LABO for Men
+              </span>
+            </div>
           </Link>
 
           {/* Desktop nav（中央配置） */}

@@ -85,20 +85,12 @@ function Nav() {
               }}
             />
             <div className="flex flex-col leading-none">
-              {/* THE HERBS正式ロゴ画像 */}
-              <img
-                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs-logo-transparent_4f7d58d9.png"
-                alt="THE HERBS"
-                className="object-contain transition-all"
-                style={{
-                  height: "12px",
-                  width: "auto",
-                  marginBottom: "3px",
-                  filter: scrolled
-                    ? "none"
-                    : "brightness(0) invert(1)",
-                }}
-              />
+              <span
+                className="font-bold tracking-widest transition-colors"
+                style={{ fontFamily: "'Noto Sans JP', sans-serif", fontSize: "0.75rem", fontWeight: 700, letterSpacing: "0.10em", color: scrolled ? "oklch(0.35 0.050 130)" : "rgba(255,255,255,0.95)" }}
+              >
+                THE HERBS
+              </span>
               <span
                 className="font-sans-jp transition-colors"
                 style={{ fontSize: "0.52rem", letterSpacing: "0.15em", color: scrolled ? "oklch(0.48 0.08 140)" : "rgba(255,255,255,0.45)" }}
