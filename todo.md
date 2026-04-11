@@ -76,3 +76,7 @@
 ## FV LINEリンクをLステップに変更（2026-04-10）
 - [x] Home.tsxのFV LINEリンクをhttps://line.me/ti/p/%40492wjowbに変更
 - [x] MenHome.tsxのFV LINEリンクをhttps://line.me/ti/p/%40492wjowbに変更
+
+## ファビコン・ページタイトル変更（2026-04-11）
+- [x] 新ロゴマーク画像（logomark_olive.webp）をCDNにアップロードしてファビコンに設定
+- [x] ページタイトルを「THE HERBS スカルプラボ　頭皮チェック・スカルプケアを始めよう」に変更
