@@ -341,7 +341,7 @@ function HeroSection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 animate-fade-in-up opacity-0-init delay-300">
             <a
-              href="https://lin.ee/WPbdXE5"
+              href="https://line.me/ti/p/%40492wjowb"
               target="_blank"
               rel="noopener noreferrer"
               className="font-sans-jp font-bold px-5 md:px-7 py-2.5 md:py-3 text-center text-xs md:text-sm tracking-wider transition-all duration-300 hover:-translate-y-1 inline-flex items-center justify-center gap-2"

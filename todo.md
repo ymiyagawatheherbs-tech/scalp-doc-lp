@@ -72,3 +72,7 @@
 ## ロゴずれ解消・ヒーローフォント調整（2026-04-10）
 - [x] THE HERBSロゴとSCALP LABOの左端ずれを根本的に解消（ロゴ画像左余白を計算しmarginLeft: -17pxで補正、）3ページ）
 - [x] ヒーローセクションのフォントサイズを読みやすく縮小（Home.tsx・MenHome.tsx）
+
+## FV LINEリンクをLステップに変更（2026-04-10）
+- [x] Home.tsxのFV LINEリンクをhttps://line.me/ti/p/%40492wjowbに変更
+- [x] MenHome.tsxのFV LINEリンクをhttps://line.me/ti/p/%40492wjowbに変更

@@ -247,7 +247,7 @@ function Hero() {
 
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
             <a
-              href="https://lin.ee/ulWWzab"
+              href="https://line.me/ti/p/%40492wjowb"
               target="_blank"
               rel="noopener noreferrer"
               className="px-4 md:px-6 py-2 md:py-2.5 bg-[oklch(0.69 0.060 130)] text-white font-bold tracking-widest text-xs md:text-sm hover:bg-[oklch(0.72 0.1 130)] transition-all duration-300 flex items-center justify-center gap-2 font-['Noto_Sans_JP']"
