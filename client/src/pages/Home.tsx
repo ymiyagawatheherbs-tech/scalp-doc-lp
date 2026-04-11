@@ -223,7 +223,7 @@ function Nav() {
             ))}
             {/* サロン向け・メンズ版：準備中のため非表示 */}
             <a
-              href="https://lin.ee/ulWWzab"
+              href="https://line.me/ti/p/%40492wjowb"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-gold-shimmer text-white font-sans-jp text-sm font-bold px-5 py-2.5 rounded-sm flex items-center gap-1.5" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)', textDecoration: 'none'}}
@@ -236,7 +236,7 @@ function Nav() {
           {/* スマホ右側：CTAボタン＋ハンバーガー */}
           <div className="md:hidden flex items-center gap-2">
             <a
-              href="https://lin.ee/ulWWzab"
+              href="https://line.me/ti/p/%40492wjowb"
               target="_blank"
               rel="noopener noreferrer"
               className="btn-gold-shimmer text-white font-sans-jp text-xs font-bold px-3 py-1.5 rounded-sm flex items-center gap-1" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)', textDecoration: 'none'}}
@@ -2276,7 +2276,7 @@ function StoreSection() {
         { day: "営業時間", time: "10:00 ～ 20:00" },
       ],
       closed: "1月1日～2日",
-      line: "https://lin.ee/P8Jppiu",
+      line: "https://line.me/ti/p/%40492wjowb",
       lineId: "@theherbs_kobe",
       bookingUrl: "/booking",
       features: ["頭皮チェック", "ハーブスチーマー（ボタニカルミスト）", "頭皮データの記録・管理"],
@@ -2295,7 +2295,7 @@ function StoreSection() {
         { day: "営業時間", time: "10:00 ～ 20:00" },
       ],
       closed: "火曜・日曜・祝日定休",
-      line: "https://lin.ee/ulWWzab",
+      line: "https://line.me/ti/p/%40492wjowb",
       lineId: "@theherbs39",
       bookingUrl: "https://book.squareup.com/appointments/jsufqo133zf3ec/location/LEWSC49JS30BF/services",
       features: ["育毛メニュー", "ディープクレンジング", "うねりケア", "ヘアカラー後の頭皮ケア", "和漢カラー"],
@@ -2600,7 +2600,7 @@ function FloatingBookingButton() {
       className={`fixed bottom-6 right-4 z-50 md:hidden transition-all duration-500 ${scrolled ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4 pointer-events-none'}`}
     >
       <a
-        href="https://lin.ee/ulWWzab"
+        href="https://line.me/ti/p/%40492wjowb"
         target="_blank"
         rel="noopener noreferrer"
         className="font-sans-jp font-bold text-white text-xs px-5 py-3.5 shadow-2xl flex items-center gap-2"

@@ -111,7 +111,7 @@ function Nav() {
               レディース版
             </Link>
             <a
-              href="https://lin.ee/ulWWzab"
+              href="https://line.me/ti/p/%40492wjowb"
               target="_blank"
               rel="noopener noreferrer"
               className="hidden md:flex items-center gap-1.5 px-4 py-2 border border-[oklch(0.69 0.060 130)] text-[oklch(0.69 0.060 130)] text-xs tracking-wider hover:bg-[oklch(0.69 0.060 130)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300 font-['Noto_Sans_JP'] whitespace-nowrap"
@@ -122,7 +122,7 @@ function Nav() {
             </a>
             {/* スマホ用CTAボタン */}
             <a
-              href="https://lin.ee/ulWWzab"
+              href="https://line.me/ti/p/%40492wjowb"
               target="_blank"
               rel="noopener noreferrer"
               className="md:hidden px-3 py-1.5 border border-[oklch(0.69 0.060 130)] text-[oklch(0.69 0.060 130)] text-xs tracking-wider hover:bg-[oklch(0.69 0.060 130)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300 font-['Noto_Sans_JP']"
@@ -163,7 +163,7 @@ function Nav() {
             レディース版はこちら
           </Link>
           <a
-            href="https://lin.ee/ulWWzab"
+            href="https://line.me/ti/p/%40492wjowb"
             target="_blank"
             rel="noopener noreferrer"
             className="mt-3 py-4 flex items-center justify-center gap-2 border border-[oklch(0.69 0.060 130)] text-[oklch(0.69 0.060 130)] text-lg tracking-wider hover:bg-[oklch(0.69 0.060 130)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300"
@@ -1676,7 +1676,7 @@ function StoreSection() {
         { day: "営業時間", time: "10:00 ～ 20:00" },
       ],
       closed: "1月1日～2日",
-      line: "https://lin.ee/P8Jppiu",
+      line: "https://line.me/ti/p/%40492wjowb",
       lineId: "@theherbs_kobe",
       bookingUrl: "/booking",
       features: ["頭皮チェック", "ハーブスチーマー（ボタニカルミスト）", "頭皮データの記録・管理"],
@@ -1694,7 +1694,7 @@ function StoreSection() {
         { day: "営業時間", time: "10:00 ～ 20:00" },
       ],
       closed: "火曜・日曜・祝日定休",
-      line: "https://lin.ee/ulWWzab",
+      line: "https://line.me/ti/p/%40492wjowb",
       lineId: "@theherbs39",
       bookingUrl: "https://book.squareup.com/appointments/jsufqo133zf3ec/location/LEWSC49JS30BF/services",
       features: ["育毛メニュー", "ディープクレンジング", "ヘアカラー後頭皮ケア", "和漢カラー"],

@@ -80,3 +80,7 @@
 ## ファビコン・ページタイトル変更（2026-04-11）
 - [x] 新ロゴマーク画像（logomark_olive.webp）をCDNにアップロードしてファビコンに設定
 - [x] ページタイトルを「THE HERBS スカルプラボ　頭皮チェック・スカルプケアを始めよう」に変更
+
+## LINEリンク全箇所をLステップに統一（2026-04-11）
+- [x] Home.tsxの全LINEリンク（ナビ・フッター・CTA・店舗データ）をhttps://line.me/ti/p/%40492wjowbに変更（6箇所）
+- [x] MenHome.tsxの全LINEリンク（ナビ・フッター・CTA・店舗データ）をhttps://line.me/ti/p/%40492wjowbに変更（6箇所）
