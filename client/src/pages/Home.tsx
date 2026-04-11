@@ -693,7 +693,7 @@ function WhyBotanicalSection() {
             なぜTHE HERBSの植物美容でなければならないのか
           </h2>
           <p className="font-sans-jp text-[oklch(0.45_0.055_65)] text-sm max-w-2xl mx-auto leading-relaxed">
-            一般的なヘッドスパやシャンプーと何が違うのか。その理由を正直にお伝えします。
+            一般的なヘッドスパやシャンプーと何が違うのか。その理由をお伝えします。
           </p>
         </div>
 
@@ -712,10 +712,10 @@ function WhyBotanicalSection() {
             </div>
             <div className="space-y-4">
               <p className="font-sans-jp text-white/85 text-sm leading-relaxed">
-                一時的な爽快感を得るだけのヘッドスパや、強い洗浄力で皮脂を奪いすぎるシャンプーが、逆に頭皮を弱らせている事実。
+                頭皮を洗浄するだけの洗浄剤、ダメージ保護に大量に塗布するヘアトリートメント、髪に色をつけるためのヘアカラーなどが、頭皮や髪に負荷をかけている現実があります。皮膚や髪を元気にするために必要な成分は、化学合成では作ることができません。
               </p>
               <p className="font-sans-jp text-white/85 text-sm leading-relaxed">
-                アルカリカラー・パーマの残留薬剤、合成界面活性剤の蔓積は、毛孔を塩塩とさせ、毛根への栄養供給を妨げます。
+                アルカリカラー・パーマの残留薬剤、合成界面活性剤の蓄積は、毛穴の機能を低下させ、毛根への栄養供給を妨げることにもなります。
               </p>
               <div className="border-l-2 border-[oklch(0.72_0.038_93)] pl-4 mt-4">
                 <p className="font-sans-jp text-[oklch(0.85_0.030_93)] text-sm font-semibold leading-relaxed">
@@ -738,14 +738,14 @@ function WhyBotanicalSection() {
             </div>
             <div className="space-y-4">
               <p className="font-sans-jp text-white/85 text-sm leading-relaxed">
-                ポリフェノール・フラボノイド・精油成分を含むハーブの力で、頭皮が本来持つ『育む力』を復活させます。
+                ポリフェノール・フラボノイド・ビタミン・ミネラル・アミノ酸、そして精油成分などを含むハーブの力で、頭皮が本来持つ『育む力』を復活させます。
               </p>
               <p className="font-sans-jp text-white/85 text-sm leading-relaxed">
-                足すトリートメントではなく、余分な皮脂・薬剤残留物を『取り去る』リセットケア。素の頭皮本来の力を引き出します。
+                実は足すトリートメントではなく、余分な皮脂・薬剤残留物を『取り去る』リセットケアから始まります。頭皮本来の環境に戻してあげることで、健康な毛髪を取り戻します。
               </p>
               <div className="border-l-2 border-[oklch(0.62_0.14_160)] pl-4 mt-4">
                 <p className="font-sans-jp text-[oklch(0.78_0.038_93)] text-sm font-semibold leading-relaxed">
-                  化粧品製造会社として終え間なく研究した、ケミカルフリーな植物美容メソッド。
+                  サロン運営と店舗で得た経験を化粧品の研究開発に生かし、サロンケアとホームケアで皆様の健やかな髪をサポートします。
                 </p>
               </div>
             </div>
@@ -755,7 +755,7 @@ function WhyBotanicalSection() {
         {/* ハーブ成分の機能性 */}
         <div className={`transition-all duration-700 delay-300 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
           <h3 className="font-mincho text-[oklch(0.28_0.050_65)] text-xl font-bold mb-8 text-center">
-            植物成分が頭皮に幅をかせる理由
+            植物成分に期待される皮膚への働き
           </h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
@@ -773,8 +773,8 @@ function WhyBotanicalSection() {
               },
               {
                 compound: '精油成分',
-                role: '毛孔清浄・整肌',
-                detail: '毛孔に蔓積した皮脂・薬剤を浄浄し、頭皮の吸収力を高める。',
+                role: '毛穴清浄・整肌',
+                detail: '毛穴に蓄積した皮脂・薬剤を浄化し、頭皮の吸収力を高める。',
                 color: 'oklch(0.60 0.14 200)',
               },
               {
