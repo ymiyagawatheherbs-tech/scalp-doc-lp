@@ -84,3 +84,7 @@
 ## LINEリンク全箇所をLステップに統一（2026-04-11）
 - [x] Home.tsxの全LINEリンク（ナビ・フッター・CTA・店舗データ）をhttps://line.me/ti/p/%40492wjowbに変更（6箇所）
 - [x] MenHome.tsxの全LINEリンク（ナビ・フッター・CTA・店舗データ）をhttps://line.me/ti/p/%40492wjowbに変更（6箇所）
+
+## OGPタイトル統一（2026-04-11）
+- [x] og:titleを「THE HERBS スカルプラボ　頭皮チェック・スカルプケアを始めよう」に変更
+- [x] twitter:titleを同タイトルに変更
