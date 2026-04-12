@@ -110,16 +110,7 @@ function Nav() {
               <span className="text-[10px]">&#9792;</span>
               レディース版
             </Link>
-            <a
-              href="https://line.me/ti/p/%40492wjowb"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hidden md:flex items-center gap-1.5 px-4 py-2 border border-[oklch(0.69 0.060 130)] text-[oklch(0.69 0.060 130)] text-xs tracking-wider hover:bg-[oklch(0.69 0.060 130)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300 font-['Noto_Sans_JP'] whitespace-nowrap"
-              style={{textDecoration: 'none'}}
-            >
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor" style={{flexShrink: 0}}><path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.58 5.8 4.04 7.54L5.5 22l4.14-2.16C10.39 20.27 11.18 20.4 12 20.4c5.52 0 10-4.02 10-9S17.52 2 12 2z"/></svg>
-              LINEで無料相談
-            </a>
+            {/* ナビ右上LINEボタン：右下固定ボタンと重複するため削除 */}
             {/* スマホ用CTAボタン */}
             <a
               href="https://line.me/ti/p/%40492wjowb"
@@ -1968,6 +1959,32 @@ function Footer() {
   );
 }
 
+// 右下固定LINEボタン（スマホのみ）
+function FloatingLineButton() {
+  return (
+    <div className="fixed bottom-6 right-4 z-50 md:hidden">
+      <a
+        href="https://line.me/ti/p/%40492wjowb"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="font-['Noto_Sans_JP'] font-bold text-white text-xs px-5 py-3.5 shadow-2xl flex items-center gap-2"
+        style={{
+          background: 'linear-gradient(135deg, #2d5a27 0%, #4a8a3f 50%, #1e3d1a 100%)',
+          borderRadius: '2px',
+          boxShadow: '0 4px 20px rgba(45,90,39,0.6)',
+          textShadow: '0 1px 2px rgba(0,0,0,0.4)',
+          textDecoration: 'none',
+        }}
+      >
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style={{flexShrink: 0}}>
+          <path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.58 5.8 4.04 7.54L5.5 22l4.14-2.16C10.39 20.27 11.18 20.4 12 20.4c5.52 0 10-4.02 10-9S17.52 2 12 2z"/>
+        </svg>
+        LINEで相談する（無料）
+      </a>
+    </div>
+  );
+}
+
 // ========== MAIN ==========
 export default function MenHome() {
   return (
@@ -1989,6 +2006,7 @@ export default function MenHome() {
       <Reservation />
       <CTA />
       <Footer />
+      <FloatingLineButton />
     </div>
   );
 }

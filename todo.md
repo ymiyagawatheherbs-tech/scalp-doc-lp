@@ -88,3 +88,9 @@
 ## OGPタイトル統一（2026-04-11）
 - [x] og:titleを「THE HERBS スカルプラボ　頭皮チェック・スカルプケアを始めよう」に変更
 - [x] twitter:titleを同タイトルに変更
+
+## ナビLINEボタン削除・右下LINEリンク修正（2026-04-12）
+- [x] Home.tsxのナビ右上「LINEで無料相談」ボタンを削除
+- [x] Home.tsxの右下固定LINEボタンを常時表示に変更（スクロール不要）
+- [x] MenHome.tsxのナビ右上「LINEで無料相談」ボタンを削除
+- [x] MenHome.tsxに右下固定LINEボタンを新規追加（グリーンデザイン）
