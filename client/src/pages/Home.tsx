@@ -2606,7 +2606,7 @@ function FloatingBookingButton() {
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" style={{flexShrink: 0}}>
           <path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.58 5.8 4.04 7.54L5.5 22l4.14-2.16C10.39 20.27 11.18 20.4 12 20.4c5.52 0 10-4.02 10-9S17.52 2 12 2z"/>
         </svg>
-        LINEで相談する（無料）
+        LINEで相談する
       </a>
     </div>
   );
