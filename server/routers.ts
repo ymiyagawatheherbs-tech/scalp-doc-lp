@@ -98,7 +98,7 @@ export const appRouter = router({
         };
         const submittedAt = new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" });
         await sendBookingNotification({
-          storeName: "THE HERBS神戸阥急店",
+          storeName: "THE HERBS神戸阪急店",
           name: input.name,
           phone: input.phone,
           email: input.email || "未記入",
@@ -118,7 +118,7 @@ export const appRouter = router({
             course: courseMap[input.plan] ?? input.plan,
             preferredDate: input.desiredDate,
             preferredTime: input.desiredTime,
-            storeName: "THE HERBS神戸阥急店",
+            storeName: "THE HERBS神戸阪急店",
             message: input.message,
             submittedAt,
           }).catch((err) => console.error("[reservation] customer confirmation failed:", err));
