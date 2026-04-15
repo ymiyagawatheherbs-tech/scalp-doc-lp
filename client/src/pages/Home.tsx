@@ -1693,22 +1693,22 @@ function HomeCareSection() {
               </div>
             </a>
             <a
-              href="https://herb-esthe.com/view/item/000000000592"
+              href="https://herb-esthe.com/view/item/000000000786"
               target="_blank"
               rel="noopener noreferrer"
               className="flex flex-col items-center gap-3 group flex-1 max-w-[200px] mx-auto"
             >
               <div className="w-full aspect-square overflow-hidden bg-white border border-[oklch(0.90_0.015_90)]">
                 <img
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/product_minamo_e07d4808.jpg"
-                  alt="Delaplante みなも（ハーブ化粧水）"
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/product_hair_oil_riche_9b294f8c.jpeg"
+                  alt="fillis ヘアオイル リーシュ"
                   className="w-full h-full object-contain p-3"
                 />
               </div>
               <div className="text-center">
-                <p className="font-sans-jp text-[oklch(0.45_0.025_65)] text-xs tracking-wider mb-0.5">Delaplante</p>
-                <p className="font-mincho text-[oklch(0.30_0.055_65)] text-sm font-bold">みなも（ハーブ化粧水）</p>
-                <p className="font-sans-jp text-[oklch(0.55_0.025_65)] text-xs mt-1">¥5,720（税込）</p>
+                <p className="font-sans-jp text-[oklch(0.45_0.025_65)] text-xs tracking-wider mb-0.5">fillis</p>
+                <p className="font-mincho text-[oklch(0.30_0.055_65)] text-sm font-bold">ヘアオイル リーシュ</p>
+                <p className="font-sans-jp text-[oklch(0.55_0.025_65)] text-xs mt-1">¥4,180（税込）</p>
               </div>
             </a>
           </div>
