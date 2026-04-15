@@ -1637,6 +1637,64 @@ function DigitalSection() {
   );
 }
 
+// ホームケアのご紹介セクション
+function HomeCareSection() {
+  const { ref, inView } = useInView();
+  return (
+    <section className="py-20 bg-[oklch(0.97_0.012_100)]">
+      <div
+        ref={ref}
+        className={`max-w-3xl mx-auto px-6 transition-all duration-700 ${
+          inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
+        }`}
+      >
+        <div
+          className="border border-[oklch(0.75_0.06_100)] rounded-sm px-10 py-12 text-center"
+          style={{ background: 'oklch(0.99 0.008 90)' }}
+        >
+          <span
+            className="font-cormorant text-[oklch(0.72_0.038_93)] text-sm tracking-[0.3em] uppercase block mb-5"
+          >
+            Home Care
+          </span>
+          <h2
+            className="font-mincho text-[oklch(0.30_0.055_65)] text-2xl md:text-3xl font-bold mb-6 leading-relaxed"
+          >
+            🌿 サロンケアを、自宅でも続けるために
+          </h2>
+          <p
+            className="font-sans-jp text-[oklch(0.40_0.030_65)] text-sm md:text-base leading-loose mb-8 max-w-lg mx-auto"
+          >
+            当サロンで使用している植物由来の頭皮ケアアイテムを<br />
+            公式通販サイトでお求めいただけます。<br />
+            <span className="text-xs text-[oklch(0.55_0.025_65)] mt-2 block">サロンと同じケアを、毎日のホームルーティンに。</span>
+          </p>
+          <a
+            href="https://herb-esthe.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-8 py-3.5 font-sans-jp text-sm tracking-wider transition-all duration-300"
+            style={{
+              background: 'oklch(0.30 0.055 65)',
+              color: 'oklch(0.97 0.012 100)',
+              textDecoration: 'none',
+            }}
+            onMouseEnter={e => {
+              (e.currentTarget as HTMLAnchorElement).style.background = 'oklch(0.40 0.055 65)';
+            }}
+            onMouseLeave={e => {
+              (e.currentTarget as HTMLAnchorElement).style.background = 'oklch(0.30 0.055 65)';
+            }}
+          >
+            公式オンラインショップを見る
+            <span className="text-base">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // FAQセクション
 function FaqSection() {
   const { ref, inView } = useInView();
@@ -2636,6 +2694,7 @@ export default function Home() {
       <DigitalSection />
       <BeforeAfterSection />
       <TestimonialsSection />
+      <HomeCareSection />
       <FaqSection />
       <StoreSection />
       <CtaSection />

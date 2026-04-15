@@ -1327,6 +1327,70 @@ function Testimonials() {
   );
 }
 
+// ========== HOME CARE ==========
+function HomeCare() {
+  return (
+    <section className="py-20" style={{ background: 'oklch(0.10 0.025 240)' }}>
+      <div className="max-w-3xl mx-auto px-6">
+        <div
+          className="border text-center px-10 py-12"
+          style={{
+            borderColor: 'oklch(0.65 0.08 50)',
+            background: 'oklch(0.13 0.030 240)',
+          }}
+        >
+          <span
+            className="block mb-5 text-sm tracking-[0.3em] uppercase"
+            style={{ color: 'oklch(0.65 0.08 50)', fontFamily: "'Cormorant Garamond', serif" }}
+          >
+            Home Care
+          </span>
+          <h2
+            className="text-2xl md:text-3xl font-bold mb-6 leading-relaxed"
+            style={{ color: 'oklch(0.93 0.015 240)', fontFamily: "'Noto Serif JP', serif" }}
+          >
+            🌿 サロンケアを、自宅でも続けるために
+          </h2>
+          <p
+            className="text-sm md:text-base leading-loose mb-8 max-w-lg mx-auto"
+            style={{ color: 'oklch(0.70 0.015 240)', fontFamily: "'Noto Sans JP', sans-serif" }}
+          >
+            当サロンで使用している植物由来の頭皮ケアアイテムを<br />
+            公式通販サイトでお求めいただけます。<br />
+            <span
+              className="text-xs mt-2 block"
+              style={{ color: 'oklch(0.55 0.015 240)' }}
+            >
+              サロンと同じケアを、毎日のホームルーティンに。
+            </span>
+          </p>
+          <a
+            href="https://herb-esthe.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 px-8 py-3.5 text-sm tracking-wider transition-all duration-300"
+            style={{
+              background: 'oklch(0.65 0.08 50)',
+              color: 'oklch(0.10 0.025 240)',
+              textDecoration: 'none',
+              fontFamily: "'Noto Sans JP', sans-serif",
+            }}
+            onMouseEnter={e => {
+              (e.currentTarget as HTMLAnchorElement).style.background = 'oklch(0.72 0.08 50)';
+            }}
+            onMouseLeave={e => {
+              (e.currentTarget as HTMLAnchorElement).style.background = 'oklch(0.65 0.08 50)';
+            }}
+          >
+            公式オンラインショップを見る
+            <span className="text-base">→</span>
+          </a>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 // ========== FAQ ==========
 function FAQ() {
   const [open, setOpen] = useState<number | null>(null);
@@ -2001,6 +2065,7 @@ export default function MenHome() {
       <Target />
       <Digital />
       <Testimonials />
+      <HomeCare />
       <FAQ />
       <StoreSection />
       <Reservation />
