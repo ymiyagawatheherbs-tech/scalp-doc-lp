@@ -1671,55 +1671,19 @@ function HomeCareSection() {
               <span className="text-xs text-[oklch(0.55_0.025_65)] mt-2 block">サロンと同じケアを、毎日のホームルーティンに。</span>
             </p>
           </div>
-          {/* 商品画像 — 共通ベースラインで横並び、容量差を視覚的に表現 */}
-          <div className="flex flex-row gap-8 justify-center items-end mb-10">
-            {/* シャンプーラヴェ250: 250mL 大きめ表示 */}
+          {/* 商品集合写真 */}
+          <div className="flex justify-center mb-10">
             <a
-              href="https://herb-esthe.com/view/item/000000000567"
+              href="https://herb-esthe.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center gap-3 group"
+              className="block w-full max-w-lg"
             >
-              <div
-                className="overflow-hidden bg-white border border-[oklch(0.90_0.015_90)]"
-                style={{ width: '160px', height: '200px' }}
-              >
-                <img
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/product_shampoo_laver_e5150867.jpg"
-                  alt="fillis シャンプー ラヴェ250"
-                  className="w-full h-full object-contain p-2"
-                />
-              </div>
-              <div className="text-center">
-                <p className="font-sans-jp text-[oklch(0.45_0.025_65)] text-xs tracking-wider mb-0.5">fillis</p>
-                <p className="font-mincho text-[oklch(0.30_0.055_65)] text-sm font-bold">シャンプー ラヴェ250</p>
-                <p className="font-sans-jp text-[oklch(0.55_0.025_65)] text-xs mt-0.5">250mL</p>
-                <p className="font-sans-jp text-[oklch(0.55_0.025_65)] text-xs">¥5,720（税込）</p>
-              </div>
-            </a>
-            {/* ヘアオイルリーシュ: 30mL 小さめ表示 */}
-            <a
-              href="https://herb-esthe.com/view/item/000000000786"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col items-center gap-3 group"
-            >
-              <div
-                className="overflow-hidden bg-white border border-[oklch(0.90_0.015_90)]"
-                style={{ width: '100px', height: '120px' }}
-              >
-                <img
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/product_hair_oil_riche_9b294f8c.jpeg"
-                  alt="fillis ヘアオイル リーシュ"
-                  className="w-full h-full object-contain p-2"
-                />
-              </div>
-              <div className="text-center">
-                <p className="font-sans-jp text-[oklch(0.45_0.025_65)] text-xs tracking-wider mb-0.5">fillis</p>
-                <p className="font-mincho text-[oklch(0.30_0.055_65)] text-sm font-bold">ヘアオイル リーシュ</p>
-                <p className="font-sans-jp text-[oklch(0.55_0.025_65)] text-xs mt-0.5">30mL</p>
-                <p className="font-sans-jp text-[oklch(0.55_0.025_65)] text-xs">¥4,180（税込）</p>
-              </div>
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/fillis_lineup_BF9I3824_476a04c8.jpg"
+                alt="fillis ヘアケアラインナップ"
+                className="w-full h-auto object-contain"
+              />
             </a>
           </div>
           <div className="text-center">

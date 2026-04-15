@@ -1366,95 +1366,19 @@ function HomeCare() {
               </span>
             </p>
           </div>
-          {/* 商品画像 — 共通ベースラインで横並び、容量差を視覚的に表現 */}
-          <div className="flex flex-row gap-8 justify-center items-end mb-10">
-            {/* シャンプーラヴェ250: 250mL 大きめ表示 */}
+          {/* 商品集合写真 */}
+          <div className="flex justify-center mb-10">
             <a
-              href="https://herb-esthe.com/view/item/000000000567"
+              href="https://herb-esthe.com"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center gap-3"
+              className="block w-full max-w-lg"
             >
-              <div
-                className="overflow-hidden border"
-                style={{ width: '160px', height: '200px', background: 'oklch(0.18 0.020 240)', borderColor: 'oklch(0.30 0.025 240)' }}
-              >
-                <img
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/product_shampoo_laver_e5150867.jpg"
-                  alt="fillis シャンプー ラヴェ250"
-                  className="w-full h-full object-contain p-2"
-                />
-              </div>
-              <div className="text-center">
-                <p
-                  className="text-xs tracking-wider mb-0.5"
-                  style={{ color: 'oklch(0.65 0.08 50)', fontFamily: "'Noto Sans JP', sans-serif" }}
-                >
-                  fillis
-                </p>
-                <p
-                  className="text-sm font-bold"
-                  style={{ color: 'oklch(0.93 0.015 240)', fontFamily: "'Noto Serif JP', serif" }}
-                >
-                  シャンプー ラヴェ250
-                </p>
-                <p
-                  className="text-xs mt-0.5"
-                  style={{ color: 'oklch(0.60 0.015 240)', fontFamily: "'Noto Sans JP', sans-serif" }}
-                >
-                  250mL
-                </p>
-                <p
-                  className="text-xs"
-                  style={{ color: 'oklch(0.60 0.015 240)', fontFamily: "'Noto Sans JP', sans-serif" }}
-                >
-                  ¥5,720（税込）
-                </p>
-              </div>
-            </a>
-            {/* ヘアオイルリーシュ: 30mL 小さめ表示 */}
-            <a
-              href="https://herb-esthe.com/view/item/000000000786"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex flex-col items-center gap-3"
-            >
-              <div
-                className="overflow-hidden border"
-                style={{ width: '100px', height: '120px', background: 'oklch(0.18 0.020 240)', borderColor: 'oklch(0.30 0.025 240)' }}
-              >
-                <img
-                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/product_hair_oil_riche_9b294f8c.jpeg"
-                  alt="fillis ヘアオイル リーシュ"
-                  className="w-full h-full object-contain p-2"
-                />
-              </div>
-              <div className="text-center">
-                <p
-                  className="text-xs tracking-wider mb-0.5"
-                  style={{ color: 'oklch(0.65 0.08 50)', fontFamily: "'Noto Sans JP', sans-serif" }}
-                >
-                  fillis
-                </p>
-                <p
-                  className="text-sm font-bold"
-                  style={{ color: 'oklch(0.93 0.015 240)', fontFamily: "'Noto Serif JP', serif" }}
-                >
-                  ヘアオイル リーシュ
-                </p>
-                <p
-                  className="text-xs mt-0.5"
-                  style={{ color: 'oklch(0.60 0.015 240)', fontFamily: "'Noto Sans JP', sans-serif" }}
-                >
-                  30mL
-                </p>
-                <p
-                  className="text-xs"
-                  style={{ color: 'oklch(0.60 0.015 240)', fontFamily: "'Noto Sans JP', sans-serif" }}
-                >
-                  ¥4,180（税込）
-                </p>
-              </div>
+              <img
+                src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/fillis_lineup_BF9I3824_476a04c8.jpg"
+                alt="fillis ヘアケアラインナップ"
+                className="w-full h-auto object-contain"
+              />
             </a>
           </div>
           <div className="text-center">
