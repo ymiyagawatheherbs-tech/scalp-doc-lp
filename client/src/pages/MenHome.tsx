@@ -1366,22 +1366,23 @@ function HomeCare() {
               </span>
             </p>
           </div>
-          {/* 商品画像 */}
-          <div className="flex flex-col sm:flex-row gap-6 justify-center items-start mb-10">
+          {/* 商品画像 — 共通ベースラインで横並び、容量差を視覚的に表現 */}
+          <div className="flex flex-row gap-8 justify-center items-end mb-10">
+            {/* シャンプーラヴェ250: 250mL 大きめ表示 */}
             <a
               href="https://herb-esthe.com/view/item/000000000567"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center gap-3 flex-1 max-w-[200px] mx-auto"
+              className="flex flex-col items-center gap-3"
             >
               <div
-                className="w-full aspect-square overflow-hidden border"
-                style={{ background: 'oklch(0.18 0.020 240)', borderColor: 'oklch(0.30 0.025 240)' }}
+                className="overflow-hidden border"
+                style={{ width: '160px', height: '200px', background: 'oklch(0.18 0.020 240)', borderColor: 'oklch(0.30 0.025 240)' }}
               >
                 <img
                   src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/product_shampoo_laver_e5150867.jpg"
                   alt="fillis シャンプー ラヴェ250"
-                  className="w-full h-full object-contain p-3"
+                  className="w-full h-full object-contain p-2"
                 />
               </div>
               <div className="text-center">
@@ -1398,27 +1399,34 @@ function HomeCare() {
                   シャンプー ラヴェ250
                 </p>
                 <p
-                  className="text-xs mt-1"
+                  className="text-xs mt-0.5"
+                  style={{ color: 'oklch(0.60 0.015 240)', fontFamily: "'Noto Sans JP', sans-serif" }}
+                >
+                  250mL
+                </p>
+                <p
+                  className="text-xs"
                   style={{ color: 'oklch(0.60 0.015 240)', fontFamily: "'Noto Sans JP', sans-serif" }}
                 >
                   ¥5,720（税込）
                 </p>
               </div>
             </a>
+            {/* ヘアオイルリーシュ: 30mL 小さめ表示 */}
             <a
               href="https://herb-esthe.com/view/item/000000000786"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex flex-col items-center gap-3 flex-1 max-w-[200px] mx-auto"
+              className="flex flex-col items-center gap-3"
             >
               <div
-                className="w-full aspect-square overflow-hidden border"
-                style={{ background: 'oklch(0.18 0.020 240)', borderColor: 'oklch(0.30 0.025 240)' }}
+                className="overflow-hidden border"
+                style={{ width: '100px', height: '120px', background: 'oklch(0.18 0.020 240)', borderColor: 'oklch(0.30 0.025 240)' }}
               >
                 <img
                   src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/product_hair_oil_riche_9b294f8c.jpeg"
                   alt="fillis ヘアオイル リーシュ"
-                  className="w-full h-full object-contain p-3"
+                  className="w-full h-full object-contain p-2"
                 />
               </div>
               <div className="text-center">
@@ -1435,7 +1443,13 @@ function HomeCare() {
                   ヘアオイル リーシュ
                 </p>
                 <p
-                  className="text-xs mt-1"
+                  className="text-xs mt-0.5"
+                  style={{ color: 'oklch(0.60 0.015 240)', fontFamily: "'Noto Sans JP', sans-serif" }}
+                >
+                  30mL
+                </p>
+                <p
+                  className="text-xs"
                   style={{ color: 'oklch(0.60 0.015 240)', fontFamily: "'Noto Sans JP', sans-serif" }}
                 >
                   ¥4,180（税込）
