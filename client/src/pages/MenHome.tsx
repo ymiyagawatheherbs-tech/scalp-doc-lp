@@ -1985,7 +1985,7 @@ function Footer() {
               { label: "兵庫県芦屋市南宮町3-10", href: null },
               { label: "TEL: 0797-23-0364", href: "tel:0797230364" },
               { label: "オフィシャルサイト", href: "https://the-herbs.co.jp" },
-              { label: "オンラインショップ", href: "https://herb-esthe.com" },
+              { label: "公式オンラインショップ（ボタニカルコスメ・頭皮ケア用品）", href: "https://herb-esthe.com" },
               { label: "Instagram", href: "https://www.instagram.com/the_herbs_jp/" },
             ].map((item) =>
               item.href ? (
