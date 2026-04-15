@@ -1333,58 +1333,139 @@ function HomeCare() {
     <section className="py-20" style={{ background: 'oklch(0.10 0.025 240)' }}>
       <div className="max-w-3xl mx-auto px-6">
         <div
-          className="border text-center px-10 py-12"
+          className="border px-10 py-12"
           style={{
             borderColor: 'oklch(0.65 0.08 50)',
             background: 'oklch(0.13 0.030 240)',
           }}
         >
-          <span
-            className="block mb-5 text-sm tracking-[0.3em] uppercase"
-            style={{ color: 'oklch(0.65 0.08 50)', fontFamily: "'Cormorant Garamond', serif" }}
-          >
-            Home Care
-          </span>
-          <h2
-            className="text-2xl md:text-3xl font-bold mb-6 leading-relaxed"
-            style={{ color: 'oklch(0.93 0.015 240)', fontFamily: "'Noto Serif JP', serif" }}
-          >
-            🌿 サロンケアを、自宅でも続けるために
-          </h2>
-          <p
-            className="text-sm md:text-base leading-loose mb-8 max-w-lg mx-auto"
-            style={{ color: 'oklch(0.70 0.015 240)', fontFamily: "'Noto Sans JP', sans-serif" }}
-          >
-            当サロンで使用している植物由来の頭皮ケアアイテムを<br />
-            公式通販サイトでお求めいただけます。<br />
+          <div className="text-center mb-8">
             <span
-              className="text-xs mt-2 block"
-              style={{ color: 'oklch(0.55 0.015 240)' }}
+              className="block mb-5 text-sm tracking-[0.3em] uppercase"
+              style={{ color: 'oklch(0.65 0.08 50)', fontFamily: "'Cormorant Garamond', serif" }}
             >
-              サロンと同じケアを、毎日のホームルーティンに。
+              Home Care
             </span>
-          </p>
-          <a
-            href="https://herb-esthe.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-3.5 text-sm tracking-wider transition-all duration-300"
-            style={{
-              background: 'oklch(0.65 0.08 50)',
-              color: 'oklch(0.10 0.025 240)',
-              textDecoration: 'none',
-              fontFamily: "'Noto Sans JP', sans-serif",
-            }}
-            onMouseEnter={e => {
-              (e.currentTarget as HTMLAnchorElement).style.background = 'oklch(0.72 0.08 50)';
-            }}
-            onMouseLeave={e => {
-              (e.currentTarget as HTMLAnchorElement).style.background = 'oklch(0.65 0.08 50)';
-            }}
-          >
-            公式オンラインショップを見る
-            <span className="text-base">→</span>
-          </a>
+            <h2
+              className="text-2xl md:text-3xl font-bold mb-6 leading-relaxed"
+              style={{ color: 'oklch(0.93 0.015 240)', fontFamily: "'Noto Serif JP', serif" }}
+            >
+              サロンケアを、自宅でも続けるために
+            </h2>
+            <p
+              className="text-sm md:text-base leading-loose mb-8 max-w-lg mx-auto"
+              style={{ color: 'oklch(0.70 0.015 240)', fontFamily: "'Noto Sans JP', sans-serif" }}
+            >
+              当サロンで使用している植物由来の頭皮ケアアイテムを<br />
+              公式通販サイトでお求めいただけます。<br />
+              <span
+                className="text-xs mt-2 block"
+                style={{ color: 'oklch(0.55 0.015 240)' }}
+              >
+                サロンと同じケアを、毎日のホームルーティンに。
+              </span>
+            </p>
+          </div>
+          {/* 商品画像 */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-start mb-10">
+            <a
+              href="https://herb-esthe.com/view/item/000000000567"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-3 flex-1 max-w-[200px] mx-auto"
+            >
+              <div
+                className="w-full aspect-square overflow-hidden border"
+                style={{ background: 'oklch(0.18 0.020 240)', borderColor: 'oklch(0.30 0.025 240)' }}
+              >
+                <img
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/product_shampoo_laver_e5150867.jpg"
+                  alt="fillis シャンプー ラヴェ250"
+                  className="w-full h-full object-contain p-3"
+                />
+              </div>
+              <div className="text-center">
+                <p
+                  className="text-xs tracking-wider mb-0.5"
+                  style={{ color: 'oklch(0.65 0.08 50)', fontFamily: "'Noto Sans JP', sans-serif" }}
+                >
+                  fillis
+                </p>
+                <p
+                  className="text-sm font-bold"
+                  style={{ color: 'oklch(0.93 0.015 240)', fontFamily: "'Noto Serif JP', serif" }}
+                >
+                  シャンプー ラヴェ250
+                </p>
+                <p
+                  className="text-xs mt-1"
+                  style={{ color: 'oklch(0.60 0.015 240)', fontFamily: "'Noto Sans JP', sans-serif" }}
+                >
+                  ¥5,720（税込）
+                </p>
+              </div>
+            </a>
+            <a
+              href="https://herb-esthe.com/view/item/000000000592"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-3 flex-1 max-w-[200px] mx-auto"
+            >
+              <div
+                className="w-full aspect-square overflow-hidden border"
+                style={{ background: 'oklch(0.18 0.020 240)', borderColor: 'oklch(0.30 0.025 240)' }}
+              >
+                <img
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/product_minamo_e07d4808.jpg"
+                  alt="Delaplante みなも（ハーブ化粧水）"
+                  className="w-full h-full object-contain p-3"
+                />
+              </div>
+              <div className="text-center">
+                <p
+                  className="text-xs tracking-wider mb-0.5"
+                  style={{ color: 'oklch(0.65 0.08 50)', fontFamily: "'Noto Sans JP', sans-serif" }}
+                >
+                  Delaplante
+                </p>
+                <p
+                  className="text-sm font-bold"
+                  style={{ color: 'oklch(0.93 0.015 240)', fontFamily: "'Noto Serif JP', serif" }}
+                >
+                  みなも（ハーブ化粧水）
+                </p>
+                <p
+                  className="text-xs mt-1"
+                  style={{ color: 'oklch(0.60 0.015 240)', fontFamily: "'Noto Sans JP', sans-serif" }}
+                >
+                  ¥5,720（税込）
+                </p>
+              </div>
+            </a>
+          </div>
+          <div className="text-center">
+            <a
+              href="https://herb-esthe.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-8 py-3.5 text-sm tracking-wider transition-all duration-300"
+              style={{
+                background: 'oklch(0.65 0.08 50)',
+                color: 'oklch(0.10 0.025 240)',
+                textDecoration: 'none',
+                fontFamily: "'Noto Sans JP', sans-serif",
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLAnchorElement).style.background = 'oklch(0.72 0.08 50)';
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLAnchorElement).style.background = 'oklch(0.65 0.08 50)';
+              }}
+            >
+              公式オンラインショップを見る
+              <span className="text-base">→</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>

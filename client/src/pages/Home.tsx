@@ -1649,46 +1649,91 @@ function HomeCareSection() {
         }`}
       >
         <div
-          className="border border-[oklch(0.75_0.06_100)] rounded-sm px-10 py-12 text-center"
+          className="border border-[oklch(0.75_0.06_100)] rounded-sm px-10 py-12"
           style={{ background: 'oklch(0.99 0.008 90)' }}
         >
-          <span
-            className="font-cormorant text-[oklch(0.72_0.038_93)] text-sm tracking-[0.3em] uppercase block mb-5"
-          >
-            Home Care
-          </span>
-          <h2
-            className="font-mincho text-[oklch(0.30_0.055_65)] text-2xl md:text-3xl font-bold mb-6 leading-relaxed"
-          >
-            🌿 サロンケアを、自宅でも続けるために
-          </h2>
-          <p
-            className="font-sans-jp text-[oklch(0.40_0.030_65)] text-sm md:text-base leading-loose mb-8 max-w-lg mx-auto"
-          >
-            当サロンで使用している植物由来の頭皮ケアアイテムを<br />
-            公式通販サイトでお求めいただけます。<br />
-            <span className="text-xs text-[oklch(0.55_0.025_65)] mt-2 block">サロンと同じケアを、毎日のホームルーティンに。</span>
-          </p>
-          <a
-            href="https://herb-esthe.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-8 py-3.5 font-sans-jp text-sm tracking-wider transition-all duration-300"
-            style={{
-              background: 'oklch(0.30 0.055 65)',
-              color: 'oklch(0.97 0.012 100)',
-              textDecoration: 'none',
-            }}
-            onMouseEnter={e => {
-              (e.currentTarget as HTMLAnchorElement).style.background = 'oklch(0.40 0.055 65)';
-            }}
-            onMouseLeave={e => {
-              (e.currentTarget as HTMLAnchorElement).style.background = 'oklch(0.30 0.055 65)';
-            }}
-          >
-            公式オンラインショップを見る
-            <span className="text-base">→</span>
-          </a>
+          <div className="text-center mb-8">
+            <span
+              className="font-cormorant text-[oklch(0.72_0.038_93)] text-sm tracking-[0.3em] uppercase block mb-5"
+            >
+              Home Care
+            </span>
+            <h2
+              className="font-mincho text-[oklch(0.30_0.055_65)] text-2xl md:text-3xl font-bold mb-6 leading-relaxed"
+            >
+              サロンケアを、自宅でも続けるために
+            </h2>
+            <p
+              className="font-sans-jp text-[oklch(0.40_0.030_65)] text-sm md:text-base leading-loose mb-8 max-w-lg mx-auto"
+            >
+              当サロンで使用している植物由来の頭皮ケアアイテムを<br />
+              公式通販サイトでお求めいただけます。<br />
+              <span className="text-xs text-[oklch(0.55_0.025_65)] mt-2 block">サロンと同じケアを、毎日のホームルーティンに。</span>
+            </p>
+          </div>
+          {/* 商品画像 */}
+          <div className="flex flex-col sm:flex-row gap-6 justify-center items-start mb-10">
+            <a
+              href="https://herb-esthe.com/view/item/000000000567"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-3 group flex-1 max-w-[200px] mx-auto"
+            >
+              <div className="w-full aspect-square overflow-hidden bg-white border border-[oklch(0.90_0.015_90)]">
+                <img
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/product_shampoo_laver_e5150867.jpg"
+                  alt="fillis シャンプー ラヴェ250"
+                  className="w-full h-full object-contain p-3"
+                />
+              </div>
+              <div className="text-center">
+                <p className="font-sans-jp text-[oklch(0.45_0.025_65)] text-xs tracking-wider mb-0.5">fillis</p>
+                <p className="font-mincho text-[oklch(0.30_0.055_65)] text-sm font-bold">シャンプー ラヴェ250</p>
+                <p className="font-sans-jp text-[oklch(0.55_0.025_65)] text-xs mt-1">¥5,720（税込）</p>
+              </div>
+            </a>
+            <a
+              href="https://herb-esthe.com/view/item/000000000592"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex flex-col items-center gap-3 group flex-1 max-w-[200px] mx-auto"
+            >
+              <div className="w-full aspect-square overflow-hidden bg-white border border-[oklch(0.90_0.015_90)]">
+                <img
+                  src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/product_minamo_e07d4808.jpg"
+                  alt="Delaplante みなも（ハーブ化粧水）"
+                  className="w-full h-full object-contain p-3"
+                />
+              </div>
+              <div className="text-center">
+                <p className="font-sans-jp text-[oklch(0.45_0.025_65)] text-xs tracking-wider mb-0.5">Delaplante</p>
+                <p className="font-mincho text-[oklch(0.30_0.055_65)] text-sm font-bold">みなも（ハーブ化粧水）</p>
+                <p className="font-sans-jp text-[oklch(0.55_0.025_65)] text-xs mt-1">¥5,720（税込）</p>
+              </div>
+            </a>
+          </div>
+          <div className="text-center">
+            <a
+              href="https://herb-esthe.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-3 px-8 py-3.5 font-sans-jp text-sm tracking-wider transition-all duration-300"
+              style={{
+                background: 'oklch(0.30 0.055 65)',
+                color: 'oklch(0.97 0.012 100)',
+                textDecoration: 'none',
+              }}
+              onMouseEnter={e => {
+                (e.currentTarget as HTMLAnchorElement).style.background = 'oklch(0.40 0.055 65)';
+              }}
+              onMouseLeave={e => {
+                (e.currentTarget as HTMLAnchorElement).style.background = 'oklch(0.30 0.055 65)';
+              }}
+            >
+              公式オンラインショップを見る
+              <span className="text-base">→</span>
+            </a>
+          </div>
         </div>
       </div>
     </section>
