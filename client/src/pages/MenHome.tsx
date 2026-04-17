@@ -110,16 +110,21 @@ function Nav() {
               <span className="text-[10px]">&#9792;</span>
               レディース版
             </Link>
-            {/* ナビ右上LINEボタン：右下固定ボタンと重複するため削除 */}
+            {/* デスクトップ用予約ボタン */}
+            <a
+              href="/men/booking"
+              className="hidden md:flex items-center px-4 py-1.5 border border-[oklch(0.69 0.060 130)] text-[oklch(0.69 0.060 130)] text-xs tracking-wider hover:bg-[oklch(0.69 0.060 130)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300 font-['Noto_Sans_JP'] whitespace-nowrap"
+              style={{textDecoration: 'none'}}
+            >
+              予約する
+            </a>
             {/* スマホ用CTAボタン */}
             <a
-              href="https://line.me/ti/p/%40492wjowb"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/men/booking"
               className="md:hidden px-3 py-1.5 border border-[oklch(0.69 0.060 130)] text-[oklch(0.69 0.060 130)] text-xs tracking-wider hover:bg-[oklch(0.69 0.060 130)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300 font-['Noto_Sans_JP']"
               style={{textDecoration: 'none'}}
             >
-              LINE登録
+              予約する
             </a>
             <button
               className="md:hidden text-white p-1"
@@ -154,15 +159,12 @@ function Nav() {
             レディース版はこちら
           </Link>
           <a
-            href="https://line.me/ti/p/%40492wjowb"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/men/booking"
             className="mt-3 py-4 flex items-center justify-center gap-2 border border-[oklch(0.69 0.060 130)] text-[oklch(0.69 0.060 130)] text-lg tracking-wider hover:bg-[oklch(0.69 0.060 130)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300"
             style={{textDecoration: 'none'}}
             onClick={() => setMenuOpen(false)}
           >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" style={{flexShrink: 0}}><path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.58 5.8 4.04 7.54L5.5 22l4.14-2.16C10.39 20.27 11.18 20.4 12 20.4c5.52 0 10-4.02 10-9S17.52 2 12 2z"/></svg>
-            LINEで無料相談（登録無料）
+            予約する
           </a>
         </div>
       )}

@@ -221,7 +221,13 @@ function Nav() {
                 {item.label}
               </a>
             ))}
-            {/* ナビ右上LINEボタン：右下固定ボタンと重複するため削除 */}
+            <a
+              href="/booking"
+              className="btn-gold-shimmer text-white font-sans-jp text-sm font-bold px-4 py-2 rounded-sm flex items-center gap-1 flex-shrink-0"
+              style={{ textShadow: '0 1px 2px rgba(0,0,0,0.4)', textDecoration: 'none' }}
+            >
+              予約する
+            </a>
           </div>
 
           {/* スマホ右側：CTAボタン＋ハンバーガー */}
@@ -232,7 +238,7 @@ function Nav() {
               rel="noopener noreferrer"
               className="btn-gold-shimmer text-white font-sans-jp text-xs font-bold px-3 py-1.5 rounded-sm flex items-center gap-1" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)', textDecoration: 'none'}}
             >
-              LINE登録
+              予約する
             </a>
             <button
               className="flex flex-col gap-1.5 p-2"
