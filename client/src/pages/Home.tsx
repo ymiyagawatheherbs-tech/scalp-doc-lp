@@ -209,7 +209,7 @@ function Nav() {
 
 
           {/* デスクトップナビ */}
-          <div className="hidden md:flex items-center gap-6 flex-shrink-0">
+          <div className="hidden md:flex items-center gap-3 lg:gap-6 flex-shrink-0">
             {navLinks.map((item) => (
               <a
                 key={item.label}
@@ -233,9 +233,7 @@ function Nav() {
           {/* スマホ右側：CTAボタン＋ハンバーガー */}
           <div className="md:hidden flex items-center gap-2">
             <a
-              href="https://line.me/ti/p/%40492wjowb"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/booking"
               className="btn-gold-shimmer text-white font-sans-jp text-xs font-bold px-3 py-1.5 rounded-sm flex items-center gap-1" style={{textShadow: '0 1px 2px rgba(0,0,0,0.4)', textDecoration: 'none'}}
             >
               予約する

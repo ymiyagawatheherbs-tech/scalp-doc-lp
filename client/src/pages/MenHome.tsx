@@ -110,24 +110,17 @@ function Nav() {
               <span className="text-[10px]">&#9792;</span>
               レディース版
             </Link>
-            {/* デスクトップ用予約ボタン */}
+            {/* 予約ボタン：全画面サイズで表示（スマホ・iPad・デスクトップ共通） */}
             <a
               href="/men/booking"
-              className="hidden md:flex items-center px-4 py-1.5 border border-[oklch(0.69 0.060 130)] text-[oklch(0.69 0.060 130)] text-xs tracking-wider hover:bg-[oklch(0.69 0.060 130)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300 font-['Noto_Sans_JP'] whitespace-nowrap"
+              className="flex items-center px-3 py-1.5 border border-[oklch(0.69 0.060 130)] text-[oklch(0.69 0.060 130)] text-xs tracking-wider hover:bg-[oklch(0.69 0.060 130)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300 font-['Noto_Sans_JP'] whitespace-nowrap"
               style={{textDecoration: 'none'}}
             >
               予約する
             </a>
-            {/* スマホ用CTAボタン */}
-            <a
-              href="/men/booking"
-              className="md:hidden px-3 py-1.5 border border-[oklch(0.69 0.060 130)] text-[oklch(0.69 0.060 130)] text-xs tracking-wider hover:bg-[oklch(0.69 0.060 130)] hover:text-[oklch(0.14 0.04 140)] transition-all duration-300 font-['Noto_Sans_JP']"
-              style={{textDecoration: 'none'}}
-            >
-              予約する
-            </a>
+            {/* ハンバーガー：lg未満で表示（スマホ・iPad） */}
             <button
-              className="md:hidden text-white p-1"
+              className="lg:hidden text-white p-1"
               onClick={() => setMenuOpen(!menuOpen)}
               aria-label="メニュー"
             >
