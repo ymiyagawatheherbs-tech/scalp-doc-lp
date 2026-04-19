@@ -336,7 +336,7 @@ function HeroSection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 animate-fade-in-up opacity-0-init delay-300">
             <a
-              href="https://line.me/ti/p/%40492wjowb"
+              href="https://lin.ee/wN9kf8T"
               target="_blank"
               rel="noopener noreferrer"
               className="font-sans-jp font-bold px-5 md:px-7 py-2.5 md:py-3 text-center text-xs md:text-sm tracking-wider transition-all duration-300 hover:-translate-y-1 inline-flex items-center justify-center gap-2"
@@ -2348,7 +2348,7 @@ function StoreSection() {
         { day: "営業時間", time: "10:00 ～ 20:00" },
       ],
       closed: "1月1日～2日",
-      line: "https://line.me/ti/p/%40492wjowb",
+      line: "https://lin.ee/wN9kf8T",
       lineId: "@theherbs_kobe",
       bookingUrl: "/booking",
       features: ["頭皮チェック", "ハーブスチーマー（ボタニカルミスト）", "頭皮データの記録・管理"],
@@ -2367,7 +2367,7 @@ function StoreSection() {
         { day: "営業時間", time: "10:00 ～ 20:00" },
       ],
       closed: "火曜・日曜・祝日定休",
-      line: "https://line.me/ti/p/%40492wjowb",
+      line: "https://lin.ee/wN9kf8T",
       lineId: "@theherbs39",
       bookingUrl: "https://book.squareup.com/appointments/jsufqo133zf3ec/location/LEWSC49JS30BF/services",
       features: ["育毛メニュー", "ディープクレンジング", "うねりケア", "ヘアカラー後の頭皮ケア", "和漢カラー"],
@@ -2672,7 +2672,7 @@ function FloatingBookingButton() {
       className="fixed bottom-6 right-4 z-50 md:hidden"
     >
       <a
-        href="https://line.me/ti/p/%40492wjowb"
+        href="https://lin.ee/wN9kf8T"
         target="_blank"
         rel="noopener noreferrer"
         className="font-sans-jp font-bold text-white text-xs px-5 py-3.5 shadow-2xl flex items-center gap-2"

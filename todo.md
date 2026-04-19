@@ -130,3 +130,6 @@
 
 ## iPadヘッダー予約ボタン修正（2026-04-17）
 - [x] Home.tsx・MenHome.tsxのヘッダー予約ボタンをiPad（768px～1024px）でも表示・タップできるよう修正
+
+## LINE URL変更（2026-04-19）
+- [x] Home.tsx（レディース版）のLINE URLを https://lin.ee/wN9kf8T に変更（4箇所）
