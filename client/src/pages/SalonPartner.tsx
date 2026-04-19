@@ -201,7 +201,7 @@ function Hero() {
           </span>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
-            頭皮ケアの悩みを、<br />
+            頭皮と髪のお悩み、<br />
             <span style={{ color: "#5a7a52" }}>一緒に解決しませんか。</span>
           </h1>
           <p className="text-lg font-medium mb-4 leading-snug" style={{ fontFamily: "'Shippori Mincho', serif", color: "#2a3e2a" }}>
@@ -209,11 +209,11 @@ function Hero() {
           </p>
           <p className="text-base leading-relaxed mb-4" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#444", lineHeight: "1.9" }}>
             薄毛・抜け毛・うねり・頭皮トラブル。<br />
-            悩みを抱えながらも、どこに相談すればいいかわからない方が大勢います。<br />
-            THE HERBS SCALP LABOは、そうした方々の「受け皿」となる技術を提供し、一緒にサポートしていきたいサロンを募集しています。
+            悩みを抱えながらも、どこに相談すればいいかわからない方が大勢いらっしゃいます。<br />
+            THE HERBS SCALP LABOは、そうした方々の「受け皿」となる知識と技術を形にし、新たな事業を始めたいという方を募集しています。
           </p>
           <p className="text-sm leading-relaxed mb-8" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#888" }}>
-            エステサロン・美容師・ヘッドスパ店など、業種を問わず参加できます。
+            エステサロン・美容師・ヘッドスパ店、また店舗がなくこれから起業をお考えの方など、業種を問わず参加できます。
           </p>
           {/* 権威性帯 */}
           <div className="mb-8 p-4 border-l-4" style={{ borderColor: '#5a7a52', backgroundColor: 'rgba(90,122,82,0.06)' }}>
@@ -275,7 +275,7 @@ function BlueOcean() {
           </h2>
           <p className="text-base max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.75)", lineHeight: "1.9" }}>
             美容室は飽和状態。エステも競争が激化しています。<br />
-            しかし「頭皮の定期チェック」や「定期ケア」など、専門的に提供するサロンは、まだほとんど存在しません。
+            しかし「頭皮チェック」や「頭皮の定期ケア」など、専門的に提供するサロンは、まだほとんど存在しません。
           </p>
         </div>
 
@@ -345,7 +345,7 @@ function BlueOcean() {
               <div
                 key={i}
                 className="p-6"
-                style={{ backgroundColor: pos.color }}
+                style={{ backgroundColor: '#dff4dd' }}
               >
                 <p className="text-xs tracking-widest mb-2" style={{ color: pos.highlight ? "#5a7a52" : "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>
                   {pos.highlight ? "◀ ここに参入 ▶" : "　"}
@@ -387,7 +387,7 @@ function Concept() {
           </h2>
           <p className="text-base max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#555", lineHeight: "1.9" }}>
             歯科の定期検診が当たり前になったように、<br />
-            頭皮の定期チェックを「当たり前の習慣」にすることが、THE HERBS SCALP LABのミッションです。
+            頭皮の定期チェックを「当たり前の習慣」にすることが、THE HERBS SCALP LABOのミッションです。
           </p>
         </div>
 
@@ -448,7 +448,7 @@ function Concept() {
             style={{ height: "360px", objectPosition: "center 40%" }}
           />
           <p className="text-xs text-center mt-3" style={{ color: "#888", fontFamily: "'Noto Sans JP', sans-serif" }}>
-            実際の技術講習会の様子 — 少人数制で丁寧に指導します
+            お客様とのカウンセリングの様子 - まずは頭皮にまつわる情報を伺うことから始まります
           </p>
         </div>
 
@@ -509,20 +509,20 @@ function WhatWeDo() {
       img: IMAGES.workshop02,
       step: "STEP 01",
       title: "頭皮チェックで「見える化」する",
-      body: "マイクロスコープで頭皮の状態を記録・分析。お客様が自分の頭皮を初めて「見る」体験が、ケアへの動機づけになります。データは時系列で蓄積され、変化を実感できます。",
+      body: "マイクロスコープで頭皮の状態を記録・分析。お客様が自分の頭皮を初めて「見る」体験が、ケアへの動機づけになります。データは時系列で蓄積され、視覚的に変化を確認できます。",
       note: "所要時間：約5〜10分 / 初回無料で提供可能",
     },
     {
       img: IMAGES.workshop03,
       step: "STEP 02",
       title: "ボタニカルミストで頭皮を整える",
-      body: "THE HERBSが開発したハーブスチーマーで、植物成分そのものを蒸気で頭皮に届けます。カラー・パーマ後の薬剤除去にも対応。チェックで見つかった課題に合わせたケアを提供します。",
+      body: "THE HERBSが開発したハーブスチーマーで、植物成分そのものを蕲気抽出し、頭皮に届けます。カラー・パーマ後の薬剤除去にも対応。チェックで見つかった課題に合わせたケアが提供できます。",
       note: "既存メニューへの追加・単品提供どちらも可能",
     },
     {
       img: IMAGES.workshop01,
       step: "STEP 03",
-      title: "定期来店の仕組みをつくる",
+      title: "リピート実績から定期来店へ",
       body: "「歯の定期検診」のように、頭皮チェックを定期的に受ける習慣を育てます。定期来店が定着することで、安定した売上と顧客との深い信頼関係が生まれます。",
       note: "3ヶ月・6ヶ月のフォローアップ設計をサポート",
     },
@@ -539,7 +539,7 @@ function WhatWeDo() {
             How We Work Together
           </span>
           <h2 className="text-3xl md:text-4xl font-bold" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
-            一緒にできること
+            スカルプラボでできること
           </h2>
         </div>
 
@@ -604,7 +604,7 @@ function LineCtaSection() {
               認定プログラムの詳細・初期費用の目安を掲載しています。
             </p>
             <p className="text-sm mb-10" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.6)" }}>
-              ※資料は無料でお届けします。勧誘・営業は一切ありません。
+              ※資料は無料でお届けします。こちらからの営業はありません。
             </p>
           </div>
 
@@ -676,22 +676,22 @@ function WhoCanJoin() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
           {[
             {
-              title: "エステサロン",
-              icon: "✨",
+              title: "エステサロン・ヘッドスパ店",
+              icon: "",
               tags: ["フェイシャル", "ボディケア", "リラクゼーション"],
               body: "お客様の「全身美容」をサポートしているサロンに。頭皮ケアは顔・体と同じ「皮膚ケア」です。既存のお客様に新しい価値を提供できます。",
               fit: "特に相性が良い",
             },
             {
               title: "美容師・ヘアサロン",
-              icon: "✂️",
+              icon: "",
               tags: ["カラー", "パーマ", "ヘッドスパ"],
               body: "スタイリングの合間に頭皮チェックを追加するだけ。カラー・パーマ後の頭皮ケアは、既存メニューとの親和性が高く、お客様の満足度向上にもつながります。",
               fit: "既存メニューと相性抜群",
             },
             {
               title: "副業・起業を考える方",
-              icon: "🌱",
+              icon: "",
               tags: ["美容師免許あり", "エステ経験あり", "自宅サロン"],
               body: "大きな初期投資なしに始められる頭皮ケアメニューとして。THE HERBS SCALP LABの認定を取得することで、専門性を持ったサロン経営が図れます。",
               fit: "低コストで始められる",
@@ -708,7 +708,7 @@ function WhoCanJoin() {
               }}
             >
               <div className="flex items-center gap-3 mb-4">
-                <span className="text-3xl">{item.icon}</span>
+                {item.icon && <span className="text-3xl">{item.icon}</span>}
                 <div>
                   <h3 className="font-bold text-lg" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
                     {item.title}
