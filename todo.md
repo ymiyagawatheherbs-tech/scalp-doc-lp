@@ -134,3 +134,4 @@
 ## LINE URL変更（2026-04-19）
 - [x] Home.tsx（レディース版）のLINE URLを https://lin.ee/wN9kf8T に変更（4箇所）
 - [x] MenHome.tsx（メンズ版）のLINE URLを https://lin.ee/9PDAzxc に変更（4箇所）
+- [x] SalonPartner.tsx（サロン向け）のLINE URLを https://lin.ee/6GDbcebK に変更（1箇所）

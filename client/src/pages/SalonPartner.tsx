@@ -24,7 +24,7 @@ const IMAGES = {
 };
 
 const LINE_SALON = {
-  url: "https://lin.ee/UF8T8TX",
+  url: "https://lin.ee/6GDbcebK",
   account: "@theherbs_salon",
 };
 
