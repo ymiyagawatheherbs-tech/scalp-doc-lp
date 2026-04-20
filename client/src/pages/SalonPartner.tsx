@@ -21,6 +21,12 @@ const IMAGES = {
   workshop03: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/workshop_03_a2848978.jpg",
   workshop04: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/workshop_04_1185c7ae.png",
   workshop05: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/concept_salon_img2348_fd51c932.webp",
+  // PPTXから抽出した画像
+  scalpCheckTablet: "/manus-storage/scalp_check_tablet_b9a101f1.jpeg",
+  consultation: "/manus-storage/consultation_f310b41c.png",
+  microscopeCheck: "/manus-storage/microscope_check_39b5d723.jpeg",
+  herbSteamer: "/manus-storage/herb_steamer_51aadc8f.jpeg",
+  salonInterior: "/manus-storage/salon_interior_e0c90a79.jpeg",
 };
 
 const LINE_SALON = {
@@ -647,6 +653,323 @@ function LineCtaSection() {
             <p className="mt-4 text-sm" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Noto Sans JP', sans-serif" }}>
               {LINE_SALON.account} ／ 登録後すぐに資料をお送りします
             </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ========== 収益シミュレーション ==========
+function RevenueSimulation() {
+  const { ref, inView } = useInView();
+
+  return (
+    <section className="py-24" style={{ backgroundColor: "#1a2e1a" }}>
+      <div ref={ref} className="max-w-6xl mx-auto px-6">
+        <div
+          className="text-center mb-16 transition-all duration-700"
+          style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)" }}
+        >
+          <span className="text-xs tracking-[0.4em] uppercase block mb-4 font-medium" style={{ color: "#a8d5a2" }}>
+            Revenue Simulation
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
+            収益シミュレーション
+          </h2>
+          <p className="text-sm max-w-2xl mx-auto" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.65)", lineHeight: "1.9" }}>
+            頭皮チェックを月20件提供した場合の試算例です。既存メニューへの追加として導入した場合の参考値としてご覧ください。
+          </p>
+        </div>
+
+        {/* シミュレーション表 */}
+        <div
+          className="mb-12 transition-all duration-700"
+          style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)", transitionDelay: "150ms" }}
+        >
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+            {[
+              {
+                label: "頭皮チェック単体",
+                price: "¥3,000〜5,000",
+                unit: "/ 回",
+                note: "所要時間：約10分",
+                color: "rgba(255,255,255,0.06)",
+              },
+              {
+                label: "チェック＋ボタニカルミスト",
+                price: "¥8,000〜12,000",
+                unit: "/ 回",
+                note: "所要時間：約30〜40分",
+                color: "rgba(168,213,162,0.12)",
+                highlight: true,
+              },
+              {
+                label: "定期ケアコース（3ヶ月）",
+                price: "¥30,000〜",
+                unit: "/ コース",
+                note: "月1回×3回のパッケージ",
+                color: "rgba(255,255,255,0.06)",
+              },
+            ].map((item, i) => (
+              <div
+                key={i}
+                className="p-6 text-center"
+                style={{
+                  backgroundColor: item.color,
+                  border: item.highlight ? "1px solid rgba(168,213,162,0.4)" : "1px solid rgba(255,255,255,0.08)",
+                }}
+              >
+                <p className="text-xs mb-3" style={{ color: item.highlight ? "#a8d5a2" : "rgba(255,255,255,0.5)", fontFamily: "'Noto Sans JP', sans-serif", letterSpacing: "0.1em" }}>
+                  {item.label}
+                </p>
+                <p className="text-3xl font-bold mb-1" style={{ fontFamily: "'Cormorant Garamond', serif", color: item.highlight ? "#a8d5a2" : "#ffffff" }}>
+                  {item.price}
+                </p>
+                <p className="text-xs mb-3" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>{item.unit}</p>
+                <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'Noto Sans JP', sans-serif" }}>{item.note}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* 月間・年間試算 */}
+          <div className="p-8" style={{ backgroundColor: "rgba(90,122,82,0.2)", border: "1px solid rgba(90,122,82,0.4)" }}>
+            <h3 className="text-lg font-bold mb-6 text-center" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
+              月20件提供した場合の試算（チェック＋ミストコース想定）
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { label: "月間売上（目安）", value: "¥160,000〜", sub: "20件 × ¥8,000" },
+                { label: "年間売上（目安）", value: "¥1,920,000〜", sub: "月間×12ヶ月" },
+                { label: "リピート率（目標）", value: "70%以上", sub: "定期来店の習慣化" },
+                { label: "既存メニューとの相乗効果", value: "客単価UP", sub: "追加メニューとして" },
+              ].map((item, i) => (
+                <div key={i} className="text-center">
+                  <p className="text-xs mb-2" style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'Noto Sans JP', sans-serif" }}>{item.label}</p>
+                  <p className="text-xl font-bold mb-1" style={{ fontFamily: "'Cormorant Garamond', serif", color: "#c9a84c" }}>{item.value}</p>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>{item.sub}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <p className="text-center text-xs" style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'Noto Sans JP', sans-serif" }}>
+          ※上記はあくまでも参考試算です。実際の収益は提供内容・地域・客数等により異なります。詳細はLINEにてご相談ください。
+        </p>
+      </div>
+    </section>
+  );
+}
+
+// ========== 美容師向け特別訴求 ==========
+function HairdresserSection() {
+  const { ref, inView } = useInView();
+
+  return (
+    <section className="py-24" style={{ backgroundColor: "#f8f6f2" }}>
+      <div ref={ref} className="max-w-6xl mx-auto px-6">
+        <div
+          className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center transition-all duration-700"
+          style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)" }}
+        >
+          {/* テキスト */}
+          <div>
+            <span className="text-xs tracking-[0.4em] uppercase block mb-4 font-medium" style={{ color: "#5a7a52" }}>
+              For Hairdressers
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-tight" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
+              美容師は<br />
+              <span style={{ color: "#5a7a52" }}>スタイリングに集中</span>できる。<br />
+              頭皮ケアは、私たちと。
+            </h2>
+            <p className="text-sm leading-relaxed mb-6" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#555", lineHeight: "1.9" }}>
+              美容師の本業はスタイリング。カット・カラー・パーマの技術に集中したい。<br />
+              でも、お客様から「最近抜け毛が気になって…」と相談されることも多いはず。
+            </p>
+            <p className="text-sm leading-relaxed mb-8" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#555", lineHeight: "1.9" }}>
+              THE HERBS SCALP LABOの頭皮チェックは、<strong>施術の合間に5〜10分で完了</strong>。<br />
+              問題が見つかった場合は、認定を受けた専門スタッフが対応します。<br />
+              美容師はスタイリングに専念しながら、頭皮ケアの専門性も提供できます。
+            </p>
+            <div className="space-y-3">
+              {[
+                "カラー・パーマ後の頭皮ケアとして自然に提案できる",
+                "スタイリング中に頭皮の気になる点を記録するだけ",
+                "問題が見つかれば施術（虫歯治療に相当）も美容師がOK",
+                "お客様の頭皮データを蓄積して信頼関係を深める",
+              ].map((item, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <span className="flex-shrink-0 w-5 h-5 flex items-center justify-center text-xs font-bold mt-0.5" style={{ backgroundColor: "#5a7a52", color: "#ffffff", borderRadius: "50%" }}>✓</span>
+                  <p className="text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#444" }}>{item}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+          {/* 画像 */}
+          <div className="relative">
+            <img
+              src={IMAGES.scalpCheckTablet}
+              alt="美容師による頭皮チェック"
+              className="w-full object-cover"
+              style={{ height: "480px", objectPosition: "center" }}
+            />
+            <div
+              className="absolute bottom-0 left-0 right-0 p-5"
+              style={{ background: "linear-gradient(to top, rgba(26,46,26,0.9) 0%, transparent 100%)" }}
+            >
+              <p className="text-white text-sm font-bold" style={{ fontFamily: "'Shippori Mincho', serif" }}>施術の合間に5〜10分</p>
+              <p className="text-xs" style={{ color: "rgba(255,255,255,0.7)", fontFamily: "'Noto Sans JP', sans-serif" }}>マイクロスコープで頭皮を記録・確認</p>
+            </div>
+          </div>
+        </div>
+
+        {/* 歯医者モデルの説明 */}
+        <div
+          className="mt-16 p-8 md:p-12 transition-all duration-700"
+          style={{
+            backgroundColor: "#2a3e2a",
+            opacity: inView ? 1 : 0,
+            transform: inView ? "translateY(0)" : "translateY(30px)",
+            transitionDelay: "300ms",
+          }}
+        >
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div>
+              <span className="text-xs tracking-widest block mb-3" style={{ color: "#a8d5a2", fontFamily: "'Noto Sans JP', sans-serif" }}>歯科モデルとの対比</span>
+              <h3 className="text-2xl font-bold mb-4" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
+                定期検診で問題が見つかれば、<br />治療は美容師でもOK
+              </h3>
+              <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.75)", lineHeight: "1.9" }}>
+                歯科では「定期検診（予防）」と「虫歯治療（施術）」を同じ歯科医師が担います。<br />
+                頭皮ケアも同様に、定期チェックで問題が見つかれば、認定を受けた美容師が施術を担当できます。
+              </p>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              {[
+                { role: "歯科衛生士", task: "定期検診・クリーニング", arrow: "→", equiv: "頭皮チェック担当" },
+                { role: "歯科医師", task: "虫歯治療・処置", arrow: "→", equiv: "頭皮ケア施術担当" },
+              ].map((item, i) => (
+                <div key={i} className="p-4" style={{ backgroundColor: "rgba(255,255,255,0.06)" }}>
+                  <p className="text-xs mb-1" style={{ color: "#a8d5a2", fontFamily: "'Noto Sans JP', sans-serif" }}>{item.role}</p>
+                  <p className="text-sm font-bold mb-2" style={{ color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}>{item.task}</p>
+                  <p className="text-xs" style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'Noto Sans JP', sans-serif" }}>{item.arrow} {item.equiv}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+// ========== 導入コスト ==========
+function StartupCost() {
+  const { ref, inView } = useInView();
+
+  return (
+    <section className="py-24" style={{ backgroundColor: "#ffffff" }}>
+      <div ref={ref} className="max-w-5xl mx-auto px-6">
+        <div
+          className="text-center mb-16 transition-all duration-700"
+          style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)" }}
+        >
+          <span className="text-xs tracking-[0.4em] uppercase block mb-4 font-medium" style={{ color: "#5a7a52" }}>
+            Startup Cost
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>
+            導入コスト・初期費用の目安
+          </h2>
+          <p className="text-sm max-w-xl mx-auto" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#666", lineHeight: "1.9" }}>
+            大きな設備投資なしに始められます。必要な機器はマイクロスコープのみ。
+          </p>
+        </div>
+
+        <div
+          className="transition-all duration-700"
+          style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)", transitionDelay: "150ms" }}
+        >
+          {/* 必要なもの */}
+          <div className="mb-10">
+            <h3 className="text-lg font-bold mb-6" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>必要なもの</h3>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {[
+                {
+                  item: "マイクロスコープ（頭皮チェック機器）",
+                  cost: "¥30,000〜80,000",
+                  note: "市販品でも対応可。THE HERBSの推奨機種あり",
+                  required: true,
+                },
+                {
+                  item: "THE HERBS製品（初回仕入れ）",
+                  cost: "¥30,000〜",
+                  note: "頭皮ケア用シャンプー・トリートメント等。卸価格で仕入れ可",
+                  required: true,
+                },
+                {
+                  item: "ボタニカルミスト機器",
+                  cost: "要相談",
+                  note: "導入サポートプランあり。まずはチェックのみでもスタート可",
+                  required: false,
+                },
+              ].map((item, i) => (
+                <div
+                  key={i}
+                  className="p-6"
+                  style={{
+                    backgroundColor: item.required ? "#f8f6f2" : "#ffffff",
+                    border: item.required ? "none" : "1px dashed #ccc",
+                  }}
+                >
+                  <div className="flex items-center gap-2 mb-3">
+                    <span
+                      className="text-xs px-2 py-0.5 font-bold"
+                      style={{
+                        backgroundColor: item.required ? "#5a7a52" : "#e0e0e0",
+                        color: item.required ? "#ffffff" : "#888",
+                        fontFamily: "'Noto Sans JP', sans-serif",
+                      }}
+                    >
+                      {item.required ? "必須" : "任意"}
+                    </span>
+                  </div>
+                  <p className="text-sm font-bold mb-2" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#1a1a1a" }}>{item.item}</p>
+                  <p className="text-2xl font-bold mb-2" style={{ fontFamily: "'Cormorant Garamond', serif", color: "#5a7a52" }}>{item.cost}</p>
+                  <p className="text-xs leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#888", lineHeight: "1.7" }}>{item.note}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* 合計目安 */}
+          <div className="p-8 mb-8" style={{ backgroundColor: "#eef5ea", border: "2px solid #5a7a52" }}>
+            <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+              <div>
+                <p className="text-xs mb-2" style={{ color: "#5a7a52", fontFamily: "'Noto Sans JP', sans-serif", letterSpacing: "0.1em" }}>初期費用の目安（最低限）</p>
+                <p className="text-4xl font-bold" style={{ fontFamily: "'Cormorant Garamond', serif", color: "#1a1a1a" }}>¥60,000〜</p>
+                <p className="text-xs mt-1" style={{ color: "#888", fontFamily: "'Noto Sans JP', sans-serif" }}>マイクロスコープ＋初回仕入れの合計目安</p>
+              </div>
+              <div className="text-center md:text-right">
+                <p className="text-sm font-bold mb-2" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#1a1a1a" }}>月5件で初期費用を回収できる計算</p>
+                <p className="text-xs" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#666" }}>（チェック＋ミスト ¥8,000 × 5件 = ¥40,000 / 月）</p>
+                <p className="text-xs mt-1" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#888" }}>※参考試算です。実際の収益は条件により異なります</p>
+              </div>
+            </div>
+          </div>
+
+          {/* 認定プログラム費用 */}
+          <div className="p-6" style={{ backgroundColor: "#f8f6f2" }}>
+            <div className="flex items-start gap-4">
+              <span className="text-2xl flex-shrink-0">📋</span>
+              <div>
+                <p className="font-bold mb-2" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>認定プログラム受講費用</p>
+                <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#555", lineHeight: "1.8" }}>
+                  技術講習会（1〜2日）の受講費用が別途必要です。詳細はLINEでのご相談時にお伝えします。
+                  初回導入特典として、先行登録者には受講費用の優待を予定しています。
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1445,6 +1768,9 @@ export default function SalonPartner() {
       <Concept />
       <WhatWeDo />
       <LineCtaSection />
+      <RevenueSimulation />
+      <HairdresserSection />
+      <StartupCost />
       <WhoCanJoin />
       <ProgramSteps />
       <Faq />
