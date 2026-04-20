@@ -9,6 +9,7 @@ import MenHome from "./pages/MenHome";
 import Privacy from "./pages/Privacy";
 import Tokushoho from "./pages/Tokushoho";
 import SalonPartner from "./pages/SalonPartner";
+import PartnerDoc from "./pages/PartnerDoc";
 import Booking from "./pages/Booking";
 import Admin from "./pages/Admin";
 import StaffLogin from "./pages/StaffLogin";
@@ -22,6 +23,7 @@ function Router() {
       <Route path={"/privacy"} component={Privacy} />
       <Route path={"/tokushoho"} component={Tokushoho} />
       <Route path={"/salon"} component={SalonPartner} />
+      <Route path={"/partner-doc"} component={PartnerDoc} />
       <Route path={"/booking"} component={Booking} />
       <Route path={"/admin"} component={Admin} />
       <Route path={"/staff-login"} component={StaffLogin} />
