@@ -3,15 +3,13 @@
  * URL: /partner-doc
  * 対象: LINE登録後のパートナー候補者
  * 設計: スマホ最適化・縦スクロール型
- * デザイン: ダークグリーン × ゴールド × クリーム（PPTXと統一）
+ * デザイン: 焦茶 × ゴールド × クリーム
  */
-
-import { useState } from "react";
 
 // ── 画像URL（PPTXから抽出した実際の写真）──────────────────
 const IMG = {
-  // image2: マイクロスコープでチェック中（タブレット持ちスタッフ）→ ヒーロー
-  scalpCheckTablet: "/manus-storage/scalp_check_tablet_147c16f8.jpeg",
+  // 094A5755: マイクロスコープでチェック中（タブレット持ちスタッフ）→ ヒーロー
+  hero: "/manus-storage/hero_main_094A5755_436d825f.jpg",
   // image5: マイクロスコープを頭皮に当てているアップ → 頭皮チェックセクション
   microscopeCheck: "/manus-storage/microscope_check_c8034773.jpeg",
   // image6: ハーブスチーマー施術（蒸気）→ スチーマーセクション
@@ -30,19 +28,19 @@ const IMG = {
   scalpMicro: "/manus-storage/pptx_image11_28a4825d.jpeg",
 };
 
-// ── カラー定数 ────────────────────────────────────────────
+// ── カラー定数（焦茶ベース）──────────────────────────────
 const C = {
-  darkGreen: "#1a3c2e",
-  midGreen: "#2d5a42",
-  lightGreen: "#4a7c5e",
-  gold: "#c9a227",
-  goldLight: "#e8c84a",
-  cream: "#f5f0e8",
-  creamDark: "#ede5d5",
-  orange: "#e07b39",
+  darkBrown: "#2c1a0e",   // 焦茶（メインダーク）
+  midBrown: "#4a2c16",    // 中間茶
+  lightBrown: "#6b3f1f",  // 明るい茶
+  gold: "#c9a227",        // ゴールド
+  goldLight: "#e8c84a",   // ライトゴールド
+  cream: "#f5f0e8",       // クリーム
+  creamDark: "#ede5d5",   // ダーククリーム
   white: "#ffffff",
   textDark: "#1a1a1a",
-  textMid: "#444444",
+  textMid: "#4a3728",     // 茶系テキスト
+  accent: "#8b5e3c",      // アクセント茶
 };
 
 // ── LINE URL ──────────────────────────────────────────────
@@ -75,7 +73,7 @@ function Divider({ light = false }: { light?: boolean }) {
       style={{
         width: "40px",
         height: "2px",
-        background: light ? C.gold : C.midGreen,
+        background: light ? C.gold : C.midBrown,
         margin: "12px 0 20px",
       }}
     />
@@ -84,8 +82,8 @@ function Divider({ light = false }: { light?: boolean }) {
 
 // ── CTAボタン（説明会 / 体験会）────────────────────────────
 function CTAButtons({ variant = "dark" }: { variant?: "dark" | "light" }) {
-  const bg = variant === "dark" ? C.darkGreen : C.cream;
-  const textColor = variant === "dark" ? C.cream : C.darkGreen;
+  const bg = variant === "dark" ? C.darkBrown : C.cream;
+  const textColor = variant === "dark" ? C.cream : C.darkBrown;
 
   return (
     <div
@@ -99,63 +97,69 @@ function CTAButtons({ variant = "dark" }: { variant?: "dark" | "light" }) {
     >
       <p
         style={{
-          textAlign: "center",
           fontSize: "13px",
-          color: variant === "dark" ? C.creamDark : C.textMid,
-          marginBottom: "4px",
-          letterSpacing: "0.05em",
+          color: variant === "dark" ? "rgba(245,240,232,0.75)" : C.textMid,
+          lineHeight: 1.7,
+          textAlign: "center",
         }}
       >
-        まずは気軽に参加してみてください
+        収益の仕組み・卸価格・初期費用・サポート内容は
+        <br />
+        <strong style={{ color: variant === "dark" ? C.goldLight : C.darkBrown }}>
+          オンライン説明会でくわしくご説明します。
+        </strong>
       </p>
+
       <a
         href={SEMINAR_URL}
         target="_blank"
         rel="noopener noreferrer"
         style={{
           display: "block",
-          background: C.orange,
-          color: C.white,
+          background: C.gold,
+          color: C.darkBrown,
           textAlign: "center",
-          padding: "18px 24px",
+          padding: "18px 20px",
           borderRadius: "4px",
           fontWeight: 700,
           fontSize: "16px",
           textDecoration: "none",
           letterSpacing: "0.05em",
-          boxShadow: "0 4px 12px rgba(224,123,57,0.35)",
         }}
       >
-        📅 説明会に参加する（無料）
+        オンライン説明会に参加する（無料）
       </a>
+
       <a
         href={TRIAL_URL}
         target="_blank"
         rel="noopener noreferrer"
         style={{
           display: "block",
-          background: C.midGreen,
-          color: C.white,
+          background: "transparent",
+          color: variant === "dark" ? C.goldLight : C.darkBrown,
           textAlign: "center",
-          padding: "18px 24px",
+          padding: "16px 20px",
           borderRadius: "4px",
           fontWeight: 700,
-          fontSize: "16px",
+          fontSize: "15px",
           textDecoration: "none",
+          border: `2px solid ${C.gold}`,
           letterSpacing: "0.05em",
-          border: `1px solid ${C.lightGreen}`,
         }}
       >
-        🌿 体験会に参加する（無料）
+        神戸で体験会に参加する（無料）
       </a>
+
       <p
         style={{
-          textAlign: "center",
           fontSize: "11px",
-          color: variant === "dark" ? "rgba(245,240,232,0.6)" : C.textMid,
+          color: variant === "dark" ? "rgba(245,240,232,0.45)" : C.accent,
+          textAlign: "center",
+          lineHeight: 1.6,
         }}
       >
-        LINEで日程をご案内します。営業は一切ありません。
+        営業は一切ありません。疑問・不安はその場で解消できます。
       </p>
     </div>
   );
@@ -164,145 +168,89 @@ function CTAButtons({ variant = "dark" }: { variant?: "dark" | "light" }) {
 // ── 01. ヒーロー ──────────────────────────────────────────
 function Hero() {
   return (
-    <section style={{ background: C.darkGreen, color: C.cream }}>
-      {/* ヘッダー */}
+    <section style={{ position: "relative", background: C.darkBrown }}>
+      <img
+        src={IMG.hero}
+        alt="頭皮チェックの様子"
+        style={{
+          width: "100%",
+          height: "300px",
+          objectFit: "cover",
+          display: "block",
+          opacity: 0.85,
+        }}
+      />
       <div
         style={{
-          padding: "16px 20px",
-          borderBottom: `1px solid rgba(201,162,39,0.3)`,
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
+          position: "absolute",
+          bottom: 0,
+          left: 0,
+          right: 0,
+          background: "linear-gradient(transparent, rgba(44,26,14,0.92))",
+          padding: "40px 20px 28px",
         }}
       >
-        <div>
-          <p style={{ fontSize: "11px", letterSpacing: "0.15em", color: C.gold, fontWeight: 600 }}>
-            THE HERBS
-          </p>
-          <p style={{ fontSize: "9px", letterSpacing: "0.1em", color: "rgba(245,240,232,0.6)" }}>
-            SCALP LABO
-          </p>
-        </div>
-        <a
-          href={LINE_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={{
-            background: C.orange,
-            color: C.white,
-            padding: "8px 16px",
-            borderRadius: "4px",
-            fontSize: "12px",
-            fontWeight: 700,
-            textDecoration: "none",
-          }}
-        >
-          LINEで相談する
-        </a>
-      </div>
-
-      {/* メインビジュアル */}
-      <div style={{ position: "relative" }}>
-        <img
-          src={IMG.salonInterior}
-          alt="スカルプラボ サロン"
-          style={{
-            width: "100%",
-            height: "260px",
-            objectFit: "cover",
-            objectPosition: "center",
-            display: "block",
-            filter: "brightness(0.45)",
-          }}
-        />
-        <div
-          style={{
-            position: "absolute",
-            inset: 0,
-            display: "flex",
-            flexDirection: "column",
-            justifyContent: "center",
-            padding: "0 24px",
-          }}
-        >
-          <p
-            style={{
-              fontSize: "10px",
-              letterSpacing: "0.2em",
-              color: C.gold,
-              fontWeight: 600,
-              marginBottom: "10px",
-            }}
-          >
-            PARTNER PROGRAM
-          </p>
-          <h1
-            style={{
-              fontSize: "26px",
-              fontWeight: 700,
-              color: C.white,
-              lineHeight: 1.35,
-              marginBottom: "12px",
-            }}
-          >
-            頭皮ケアの専門家を
-            <br />
-            <span style={{ color: C.gold }}>目指しませんか。</span>
-          </h1>
-          <p
-            style={{
-              fontSize: "13px",
-              color: "rgba(245,240,232,0.85)",
-              lineHeight: 1.7,
-            }}
-          >
-            植物の力で、頭皮ケアの新常識を広める。
-            <br />
-            THE HERBS SCALP LABOのパートナープログラム。
-          </p>
-        </div>
-      </div>
-
-      {/* 資料説明 */}
-      <div style={{ padding: "24px 20px" }}>
         <p
           style={{
-            fontSize: "13px",
-            color: "rgba(245,240,232,0.75)",
-            lineHeight: 1.8,
-            borderLeft: `3px solid ${C.gold}`,
-            paddingLeft: "14px",
+            fontSize: "10px",
+            letterSpacing: "0.25em",
+            color: C.gold,
+            marginBottom: "8px",
+            fontWeight: 600,
           }}
         >
-          この資料は、LINE登録いただいた方へお届けする
-          パートナープログラムの詳細資料です。
-          収益の仕組み・初期費用・サポート内容を
-          わかりやすくまとめました。
+          SCALP LABO PARTNER PROGRAM
+        </p>
+        <h1
+          style={{
+            fontSize: "22px",
+            fontWeight: 700,
+            color: C.white,
+            lineHeight: 1.45,
+            marginBottom: "10px",
+          }}
+        >
+          頭皮ケアの専門家として、
+          <br />
+          <span style={{ color: C.goldLight }}>新しい収益の柱を。</span>
+        </h1>
+        <p
+          style={{
+            fontSize: "12px",
+            color: "rgba(245,240,232,0.8)",
+            lineHeight: 1.7,
+          }}
+        >
+          歯科の定期検診と同じモデルで、
+          頭皮ケアを「習慣」として提供する。
+          競合がほぼいない市場で、
+          あなたの専門性を活かす仕組みがあります。
         </p>
       </div>
     </section>
   );
 }
 
-// ── 02. 目次 ─────────────────────────────────────────────
+// ── 02. この資料でわかること ──────────────────────────────
 function TableOfContents() {
   const items = [
-    { no: "01", title: "市場分析", sub: "なぜ今、頭皮ケアなのか" },
-    { no: "02", title: "ポジション", sub: "美容でも医療でもない第三の領域" },
-    { no: "03", title: "ビジネスモデル", sub: "習慣をつくる事業" },
-    { no: "04", title: "一緒にできること", sub: "3つのSTEP" },
-    { no: "05", title: "収益シミュレーション", sub: "月間・年間の試算" },
-    { no: "06", title: "初期費用・サポート", sub: "始めるために必要なもの" },
+    { no: "01", title: "なぜ今、頭皮ケアなのか", sub: "市場の空白地帯とブルーオーシャン" },
+    { no: "02", title: "スカルプラボのポジション", sub: "美容でも医療でもない第三の領域" },
+    { no: "03", title: "ビジネスモデルの仕組み", sub: "習慣をつくる事業とは" },
+    { no: "04", title: "一緒にできること", sub: "3つのSTEPと使用製品" },
+    { no: "05", title: "導入後に描ける未来", sub: "美容師・個人事業主が変わること" },
+    { no: "06", title: "こんな方と一緒に", sub: "パートナーとして歓迎する方" },
+    { no: "07", title: "次のステップ", sub: "説明会・体験会への参加方法" },
   ];
 
   return (
-    <section style={{ background: C.cream, padding: "32px 20px" }}>
+    <section style={{ background: C.cream, padding: "36px 20px" }}>
       <SectionLabel text="CONTENTS" />
       <h2
         style={{
           fontSize: "20px",
           fontWeight: 700,
-          color: C.darkGreen,
+          color: C.darkBrown,
           marginBottom: "4px",
         }}
       >
@@ -333,7 +281,7 @@ function TableOfContents() {
               {item.no}
             </span>
             <div>
-              <p style={{ fontSize: "15px", fontWeight: 700, color: C.darkGreen }}>
+              <p style={{ fontSize: "15px", fontWeight: 700, color: C.darkBrown }}>
                 {item.title}
               </p>
               <p style={{ fontSize: "12px", color: C.textMid, marginTop: "2px" }}>
@@ -371,7 +319,7 @@ function MarketAnalysis() {
   ];
 
   return (
-    <section style={{ background: C.darkGreen, padding: "36px 20px", color: C.cream }}>
+    <section style={{ background: C.darkBrown, padding: "36px 20px", color: C.cream }}>
       <SectionLabel text="MARKET ANALYSIS" light />
       <h2
         style={{
@@ -415,10 +363,9 @@ function MarketAnalysis() {
         ))}
       </div>
 
-      {/* KEY INSIGHT */}
       <div
         style={{
-          background: C.midGreen,
+          background: C.midBrown,
           borderRadius: "6px",
           padding: "16px",
           textAlign: "center",
@@ -446,7 +393,7 @@ function Positioning() {
         style={{
           fontSize: "20px",
           fontWeight: 700,
-          color: C.darkGreen,
+          color: C.darkBrown,
           lineHeight: 1.4,
           marginBottom: "4px",
         }}
@@ -457,7 +404,6 @@ function Positioning() {
       </h2>
       <Divider />
 
-      {/* 3ポジション比較 */}
       <div style={{ display: "flex", gap: "8px", marginBottom: "20px" }}>
         {[
           { label: "美容室", desc: "スタイリング\nカラー・パーマ", dim: true },
@@ -472,7 +418,7 @@ function Positioning() {
             key={i}
             style={{
               flex: 1,
-              background: p.highlight ? C.darkGreen : "rgba(26,60,46,0.08)",
+              background: p.highlight ? C.darkBrown : "rgba(44,26,14,0.08)",
               borderRadius: "6px",
               padding: "14px 10px",
               textAlign: "center",
@@ -481,7 +427,7 @@ function Positioning() {
           >
             {p.highlight && (
               <p style={{ fontSize: "9px", color: C.gold, marginBottom: "4px", letterSpacing: "0.1em" }}>
-                ◀ ここに参入 ▶
+                ここに参入
               </p>
             )}
             <p
@@ -512,7 +458,7 @@ function Positioning() {
 
       <div
         style={{
-          background: C.darkGreen,
+          background: C.darkBrown,
           borderRadius: "6px",
           padding: "16px",
           color: C.cream,
@@ -555,7 +501,7 @@ function BusinessModel() {
   ];
 
   return (
-    <section style={{ background: C.midGreen, padding: "36px 20px", color: C.cream }}>
+    <section style={{ background: C.midBrown, padding: "36px 20px", color: C.cream }}>
       <SectionLabel text="BUSINESS MODEL" light />
       <h2
         style={{
@@ -602,7 +548,7 @@ function BusinessModel() {
                 color: C.goldLight,
               }}
             >
-              ✓ {p.tag}
+              {p.tag}
             </div>
           </div>
         ))}
@@ -630,7 +576,7 @@ function HowWeWork() {
     },
     {
       step: "STEP 03",
-      title: "リピート実績から定期来店へ",
+      title: "定期来店で習慣化する",
       body: "「歯の定期検診」のように、頭皮チェックを定期的に受ける習慣を育てます。定期来店が定着することで、安定した売上とお客様との深い信頼関係が生まれます。",
       note: "3ヶ月・6ヶ月のフォローアップ設計をサポート",
       img: IMG.consultation,
@@ -644,7 +590,7 @@ function HowWeWork() {
         style={{
           fontSize: "20px",
           fontWeight: 700,
-          color: C.darkGreen,
+          color: C.darkBrown,
           lineHeight: 1.4,
           marginBottom: "4px",
         }}
@@ -684,7 +630,7 @@ function HowWeWork() {
               style={{
                 fontSize: "17px",
                 fontWeight: 700,
-                color: C.darkGreen,
+                color: C.darkBrown,
                 marginBottom: "8px",
               }}
             >
@@ -702,7 +648,7 @@ function HowWeWork() {
             </p>
             <div
               style={{
-                background: C.darkGreen,
+                background: C.darkBrown,
                 color: C.gold,
                 padding: "8px 12px",
                 borderRadius: "4px",
@@ -710,7 +656,7 @@ function HowWeWork() {
                 fontWeight: 600,
               }}
             >
-              ✓ {s.note}
+              {s.note}
             </div>
           </div>
         ))}
@@ -739,13 +685,13 @@ function Products() {
     },
     {
       name: "育毛・頭皮ケアライン",
-      desc: "薄毛・うねり・頭皮トラブルに対応した専門ラインナップ。卸価格で仕入れ可能。",
-      tag: "認定サロン限定の卸価格",
+      desc: "薄毛・うねり・頭皮トラブルに対応した専門ラインナップ。認定サロン向けに提供。",
+      tag: "認定サロン限定ライン",
     },
   ];
 
   return (
-    <section style={{ background: C.darkGreen, padding: "36px 20px", color: C.cream }}>
+    <section style={{ background: C.darkBrown, padding: "36px 20px", color: C.cream }}>
       <SectionLabel text="THE HERBS PRODUCTS" light />
       <h2
         style={{
@@ -806,528 +752,195 @@ function Products() {
           </div>
         ))}
       </div>
+
+      <img
+        src={IMG.dryHerbs}
+        alt="THE HERBSのドライハーブ素材"
+        style={{
+          width: "100%",
+          height: "160px",
+          objectFit: "cover",
+          borderRadius: "6px",
+          marginTop: "20px",
+          opacity: 0.9,
+        }}
+      />
     </section>
   );
 }
 
-// ── 08. 収益モデル4フェーズ ───────────────────────────────
-function RevenueFlow() {
-  const phases = [
+// ── 08. 導入後に描ける未来 ────────────────────────────────
+function FutureVision() {
+  const visions = [
     {
-      phase: "Phase 1",
-      title: "頭皮チェックで出会う",
-      body: "初回無料の頭皮チェックで新規顧客を獲得。マイクロスコープで「見える化」することで、お客様の関心と信頼を得ます。",
-      revenue: "初回チェック ¥0〜3,000",
+      persona: "美容師として働いている方",
+      before: "スタイリング・カラー・パーマに追われ、頭皮ケアまで手が回らない。お客様の頭皮トラブルに気づいても対処できない。",
+      after: [
+        "頭皮チェックは5〜10分。既存の施術の前後に組み込める",
+        "「頭皮の専門家」として他の美容師との差別化ができる",
+        "問題が見つかったお客様への施術も担当できる（歯医者の虫歯治療モデル）",
+        "定期来店の仕組みで、安定した顧客基盤が生まれる",
+      ],
+      img: IMG.microscopeCheck,
     },
     {
-      phase: "Phase 2",
-      title: "ケアで解決する",
-      body: "チェックで見つかった課題に合わせたボタニカルミスト施術を提供。問題が見つかれば施術（歯医者でいう虫歯治療）も対応可能。",
-      revenue: "施術 ¥5,000〜15,000",
+      persona: "個人事業主・自宅サロンの方",
+      before: "施術メニューが固定化し、客単価が伸び悩んでいる。新しいメニューを増やしたいが、大きな設備投資はできない。",
+      after: [
+        "マイクロスコープ1台から始められる。大きな設備投資は不要",
+        "頭皮チェックをきっかけに、ホームケア商品の継続販売へ",
+        "THE HERBSのブランド・技術・サポートを活用できる",
+        "定期チェックの習慣化で、リピート率が自然に上がる",
+      ],
+      img: IMG.consultation,
     },
     {
-      phase: "Phase 3",
-      title: "定期来店で習慣化",
-      body: "3ヶ月・6ヶ月コースで定期来店を設計。毎回のチェックデータを蓄積し、変化を「見える化」することでリピートが自然に続きます。",
-      revenue: "定期コース ¥30,000〜/3ヶ月",
-    },
-    {
-      phase: "Phase 4",
-      title: "ホームケアで継続収益",
-      body: "サロンでの施術に加え、ホームケア商品（シャンプー・育毛剤等）を継続販売。お客様の日常に入り込む安定収益を実現します。",
-      revenue: "商品販売 ¥3,000〜8,000/月",
+      persona: "副業・起業を考えている方",
+      before: "美容・ヘルスケア分野で起業したいが、何から始めればいいかわからない。リスクを抑えたスタートをしたい。",
+      after: [
+        "既存の認定プログラムで技術・知識を体系的に習得できる",
+        "「頭皮ケアの専門家」という明確なポジションで起業できる",
+        "THE HERBSの認定サロンとして、ブランド力を借りられる",
+        "チョコザップ等の施設への出張チェックという展開も視野に",
+      ],
+      img: IMG.salonInterior,
     },
   ];
 
   return (
     <section style={{ background: C.cream, padding: "36px 20px" }}>
-      <SectionLabel text="REVENUE FLOW" />
+      <SectionLabel text="YOUR FUTURE" />
       <h2
         style={{
           fontSize: "20px",
           fontWeight: 700,
-          color: C.darkGreen,
+          color: C.darkBrown,
           lineHeight: 1.4,
           marginBottom: "4px",
         }}
       >
-        収益モデルの4フェーズ
+        導入後に
+        <br />
+        <span style={{ color: C.gold }}>描ける未来</span>
       </h2>
-      <p style={{ fontSize: "13px", color: C.textMid, marginBottom: "4px" }}>
-        「寄り添う」ことで生まれる安定収益
+      <p style={{ fontSize: "13px", color: C.textMid, lineHeight: 1.7, marginBottom: "4px" }}>
+        スカルプラボを導入した方が、実際にどう変わるか。
       </p>
       <Divider />
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "0" }}>
-        {phases.map((p, i) => (
-          <div
-            key={i}
-            style={{
-              display: "flex",
-              gap: "0",
-              position: "relative",
-            }}
-          >
-            {/* 左の縦ライン */}
-            <div
+      <div style={{ display: "flex", flexDirection: "column", gap: "32px" }}>
+        {visions.map((v, i) => (
+          <div key={i}>
+            <img
+              src={v.img}
+              alt={v.persona}
               style={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "center",
-                width: "40px",
-                flexShrink: 0,
+                width: "100%",
+                height: "160px",
+                objectFit: "cover",
+                borderRadius: "6px",
+                marginBottom: "16px",
+              }}
+            />
+            <p
+              style={{
+                fontSize: "10px",
+                letterSpacing: "0.15em",
+                color: C.gold,
+                fontWeight: 600,
+                marginBottom: "6px",
               }}
             >
-              <div
-                style={{
-                  width: "28px",
-                  height: "28px",
-                  borderRadius: "50%",
-                  background: C.darkGreen,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  color: C.gold,
-                  fontSize: "11px",
-                  fontWeight: 700,
-                  flexShrink: 0,
-                  marginTop: "2px",
-                }}
-              >
-                {i + 1}
-              </div>
-              {i < phases.length - 1 && (
-                <div
-                  style={{
-                    width: "2px",
-                    flex: 1,
-                    background: `linear-gradient(${C.darkGreen}, ${C.lightGreen})`,
-                    minHeight: "20px",
-                  }}
-                />
-              )}
-            </div>
-
-            {/* コンテンツ */}
-            <div style={{ flex: 1, paddingLeft: "12px", paddingBottom: "24px" }}>
-              <p
-                style={{
-                  fontSize: "10px",
-                  color: C.gold,
-                  fontWeight: 600,
-                  letterSpacing: "0.1em",
-                  marginBottom: "2px",
-                }}
-              >
-                {p.phase}
-              </p>
-              <h3
-                style={{
-                  fontSize: "15px",
-                  fontWeight: 700,
-                  color: C.darkGreen,
-                  marginBottom: "6px",
-                }}
-              >
-                {p.title}
-              </h3>
-              <p
-                style={{
-                  fontSize: "12px",
-                  color: C.textMid,
-                  lineHeight: 1.7,
-                  marginBottom: "8px",
-                }}
-              >
-                {p.body}
-              </p>
-              <div
-                style={{
-                  display: "inline-block",
-                  background: C.darkGreen,
-                  color: C.gold,
-                  padding: "4px 10px",
-                  borderRadius: "3px",
-                  fontSize: "11px",
-                  fontWeight: 600,
-                }}
-              >
-                {p.revenue}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
-// ── 09. 収益シミュレーション ──────────────────────────────
-function RevenueSimulation() {
-  const [activeTab, setActiveTab] = useState<"check" | "full">("full");
-
-  const scenarios = {
-    check: {
-      label: "頭皮チェック単体",
-      price: "¥3,000〜5,000 / 回",
-      time: "約10分",
-      monthly20: "¥60,000〜100,000",
-      annual: "¥720,000〜1,200,000",
-    },
-    full: {
-      label: "チェック＋ボタニカルミスト",
-      price: "¥8,000〜12,000 / 回",
-      time: "約30〜40分",
-      monthly20: "¥160,000〜240,000",
-      annual: "¥1,920,000〜2,880,000",
-    },
-  };
-
-  const active = scenarios[activeTab];
-
-  return (
-    <section style={{ background: C.darkGreen, padding: "36px 20px", color: C.cream }}>
-      <SectionLabel text="REVENUE SIMULATION" light />
-      <h2
-        style={{
-          fontSize: "20px",
-          fontWeight: 700,
-          color: C.white,
-          lineHeight: 1.4,
-          marginBottom: "4px",
-        }}
-      >
-        収益シミュレーション
-      </h2>
-      <p style={{ fontSize: "12px", color: "rgba(245,240,232,0.65)", marginBottom: "4px" }}>
-        月20件提供した場合の試算例
-      </p>
-      <Divider light />
-
-      {/* タブ切り替え */}
-      <div
-        style={{
-          display: "flex",
-          gap: "8px",
-          marginBottom: "20px",
-        }}
-      >
-        {(["check", "full"] as const).map((tab) => (
-          <button
-            key={tab}
-            onClick={() => setActiveTab(tab)}
-            style={{
-              flex: 1,
-              padding: "10px 8px",
-              borderRadius: "4px",
-              border: "none",
-              cursor: "pointer",
-              fontSize: "12px",
-              fontWeight: 600,
-              background: activeTab === tab ? C.gold : "rgba(255,255,255,0.1)",
-              color: activeTab === tab ? C.darkGreen : "rgba(245,240,232,0.7)",
-              transition: "all 0.2s",
-            }}
-          >
-            {scenarios[tab].label}
-          </button>
-        ))}
-      </div>
-
-      {/* 単価情報 */}
-      <div
-        style={{
-          background: "rgba(255,255,255,0.07)",
-          borderRadius: "6px",
-          padding: "16px",
-          marginBottom: "16px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <div>
-          <p style={{ fontSize: "11px", color: "rgba(245,240,232,0.6)", marginBottom: "4px" }}>
-            メニュー単価
-          </p>
-          <p style={{ fontSize: "20px", fontWeight: 700, color: C.gold }}>
-            {active.price}
-          </p>
-        </div>
-        <div style={{ textAlign: "right" }}>
-          <p style={{ fontSize: "11px", color: "rgba(245,240,232,0.6)", marginBottom: "4px" }}>
-            所要時間
-          </p>
-          <p style={{ fontSize: "16px", fontWeight: 600, color: C.white }}>
-            {active.time}
-          </p>
-        </div>
-      </div>
-
-      {/* 試算結果 */}
-      <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "20px" }}>
-        <div
-          style={{
-            background: C.midGreen,
-            borderRadius: "6px",
-            padding: "16px",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <p style={{ fontSize: "12px", color: "rgba(245,240,232,0.75)" }}>
-            月間売上（目安）
-            <br />
-            <span style={{ fontSize: "10px" }}>20件 × 単価</span>
-          </p>
-          <p style={{ fontSize: "22px", fontWeight: 700, color: C.gold }}>
-            {active.monthly20}
-          </p>
-        </div>
-        <div
-          style={{
-            background: C.midGreen,
-            borderRadius: "6px",
-            padding: "16px",
-            display: "flex",
-            justifyContent: "space-between",
-            alignItems: "center",
-          }}
-        >
-          <p style={{ fontSize: "12px", color: "rgba(245,240,232,0.75)" }}>
-            年間売上（目安）
-            <br />
-            <span style={{ fontSize: "10px" }}>月間×12ヶ月</span>
-          </p>
-          <p style={{ fontSize: "22px", fontWeight: 700, color: C.goldLight }}>
-            {active.annual}
-          </p>
-        </div>
-      </div>
-
-      {/* 既存メニューとの相乗効果 */}
-      <div
-        style={{
-          background: "rgba(201,162,39,0.12)",
-          border: `1px solid rgba(201,162,39,0.3)`,
-          borderRadius: "6px",
-          padding: "14px",
-          marginBottom: "16px",
-        }}
-      >
-        <p style={{ fontSize: "11px", color: C.gold, fontWeight: 600, marginBottom: "6px" }}>
-          ＋ 既存メニューとの相乗効果
-        </p>
-        <p style={{ fontSize: "12px", color: "rgba(245,240,232,0.8)", lineHeight: 1.7 }}>
-          頭皮チェックをきっかけに、カラー・トリートメント・
-          ホームケア商品の購入につながるケースが多数。
-          客単価アップ＋リピート率向上が期待できます。
-        </p>
-      </div>
-
-      <p
-        style={{
-          fontSize: "10px",
-          color: "rgba(245,240,232,0.45)",
-          lineHeight: 1.6,
-          textAlign: "center",
-        }}
-      >
-        ※上記はあくまでも参考試算です。実際の収益は提供内容・地域・客数等により異なります。
-        詳細はLINEにてご相談ください。
-      </p>
-    </section>
-  );
-}
-
-// ── 10. 初期費用と認定プログラム ──────────────────────────
-function Investment() {
-  const items = [
-    {
-      required: true,
-      name: "マイクロスコープ（頭皮チェック機器）",
-      price: "¥30,000〜80,000",
-      note: "市販品でも対応可。THE HERBSの推奨機種あり",
-    },
-    {
-      required: true,
-      name: "THE HERBS製品（初回仕入れ）",
-      price: "¥30,000〜",
-      note: "頭皮ケア用シャンプー・トリートメント等。卸価格で仕入れ可",
-    },
-    {
-      required: false,
-      name: "ボタニカルミスト機器",
-      price: "要相談",
-      note: "導入サポートプランあり。まずはチェックのみでもスタート可",
-    },
-  ];
-
-  return (
-    <section style={{ background: C.cream, padding: "36px 20px" }}>
-      <SectionLabel text="INVESTMENT & PROGRAM" />
-      <h2
-        style={{
-          fontSize: "20px",
-          fontWeight: 700,
-          color: C.darkGreen,
-          lineHeight: 1.4,
-          marginBottom: "4px",
-        }}
-      >
-        初期費用と
-        <br />
-        認定プログラム
-      </h2>
-      <Divider />
-
-      <p
-        style={{
-          fontSize: "13px",
-          color: C.textMid,
-          lineHeight: 1.8,
-          marginBottom: "20px",
-        }}
-      >
-        大きな設備投資なしに始められます。
-        必要な機器はマイクロスコープのみ。
-      </p>
-
-      <h3
-        style={{
-          fontSize: "14px",
-          fontWeight: 700,
-          color: C.darkGreen,
-          marginBottom: "12px",
-        }}
-      >
-        必要なもの
-      </h3>
-
-      <div style={{ display: "flex", flexDirection: "column", gap: "10px", marginBottom: "20px" }}>
-        {items.map((item, i) => (
-          <div
-            key={i}
-            style={{
-              background: C.white,
-              borderRadius: "6px",
-              padding: "14px 16px",
-              border: `1px solid ${C.creamDark}`,
-            }}
-          >
-            <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "6px" }}>
-              <div style={{ flex: 1 }}>
-                <span
-                  style={{
-                    fontSize: "9px",
-                    background: item.required ? C.darkGreen : "rgba(26,60,46,0.15)",
-                    color: item.required ? C.gold : C.textMid,
-                    padding: "2px 6px",
-                    borderRadius: "3px",
-                    marginRight: "6px",
-                    fontWeight: 600,
-                  }}
-                >
-                  {item.required ? "必須" : "任意"}
-                </span>
-                <span style={{ fontSize: "13px", fontWeight: 600, color: C.darkGreen }}>
-                  {item.name}
-                </span>
-              </div>
-            </div>
-            <p style={{ fontSize: "18px", fontWeight: 700, color: C.darkGreen, marginBottom: "4px" }}>
-              {item.price}
+              {v.persona}
             </p>
-            <p style={{ fontSize: "11px", color: C.textMid }}>{item.note}</p>
+
+            {/* Before */}
+            <div
+              style={{
+                background: "rgba(44,26,14,0.06)",
+                borderRadius: "6px",
+                padding: "14px 16px",
+                marginBottom: "10px",
+                borderLeft: `3px solid ${C.accent}`,
+              }}
+            >
+              <p style={{ fontSize: "10px", color: C.accent, fontWeight: 600, marginBottom: "6px", letterSpacing: "0.1em" }}>
+                BEFORE
+              </p>
+              <p style={{ fontSize: "12px", color: C.textMid, lineHeight: 1.7 }}>
+                {v.before}
+              </p>
+            </div>
+
+            {/* After */}
+            <div
+              style={{
+                background: C.darkBrown,
+                borderRadius: "6px",
+                padding: "14px 16px",
+                borderLeft: `3px solid ${C.gold}`,
+              }}
+            >
+              <p style={{ fontSize: "10px", color: C.gold, fontWeight: 600, marginBottom: "10px", letterSpacing: "0.1em" }}>
+                AFTER
+              </p>
+              <ul style={{ margin: 0, padding: 0, listStyle: "none", display: "flex", flexDirection: "column", gap: "8px" }}>
+                {v.after.map((item, j) => (
+                  <li
+                    key={j}
+                    style={{
+                      fontSize: "12px",
+                      color: "rgba(245,240,232,0.85)",
+                      lineHeight: 1.7,
+                      paddingLeft: "16px",
+                      position: "relative",
+                    }}
+                  >
+                    <span
+                      style={{
+                        position: "absolute",
+                        left: 0,
+                        color: C.gold,
+                        fontWeight: 700,
+                      }}
+                    >
+                      +
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
         ))}
-      </div>
-
-      {/* 初期費用目安 */}
-      <div
-        style={{
-          background: C.darkGreen,
-          borderRadius: "6px",
-          padding: "16px",
-          marginBottom: "20px",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-        }}
-      >
-        <div>
-          <p style={{ fontSize: "11px", color: "rgba(245,240,232,0.6)", marginBottom: "4px" }}>
-            初期費用の目安（最低限）
-          </p>
-          <p style={{ fontSize: "24px", fontWeight: 700, color: C.gold }}>¥60,000〜</p>
-          <p style={{ fontSize: "10px", color: "rgba(245,240,232,0.5)" }}>
-            マイクロスコープ＋初回仕入れの合計目安
-          </p>
-        </div>
-        <div style={{ textAlign: "right" }}>
-          <p style={{ fontSize: "11px", color: "rgba(245,240,232,0.6)", marginBottom: "4px" }}>
-            月5件で初期費用を回収
-          </p>
-          <p style={{ fontSize: "13px", color: C.goldLight, fontWeight: 600 }}>
-            ¥8,000 × 5件
-            <br />= ¥40,000 / 月
-          </p>
-        </div>
-      </div>
-
-      {/* 認定プログラム */}
-      <div
-        style={{
-          background: "rgba(26,60,46,0.08)",
-          borderRadius: "6px",
-          padding: "16px",
-          borderLeft: `3px solid ${C.gold}`,
-        }}
-      >
-        <p style={{ fontSize: "12px", fontWeight: 700, color: C.darkGreen, marginBottom: "8px" }}>
-          📋 認定プログラム受講費用
-        </p>
-        <p style={{ fontSize: "12px", color: C.textMid, lineHeight: 1.7 }}>
-          技術講習会（1〜2日）の受講費用が別途必要です。
-          詳細はLINEでのご相談時にお伝えします。
-          <br />
-          <strong style={{ color: C.darkGreen }}>
-            先行登録者には受講費用の優待を予定しています。
-          </strong>
-        </p>
       </div>
     </section>
   );
 }
 
-// ── 11. パートナーサポート ────────────────────────────────
+// ── 09. パートナーサポート ────────────────────────────────
 function PartnerSupport() {
   const supports = [
     {
-      icon: "🎓",
       title: "技術・知識サポート",
       items: ["頭皮チェック技術の習得（1〜2日）", "マイクロスコープの使い方", "お客様への説明トーク"],
     },
     {
-      icon: "📊",
       title: "データ・ツールサポート",
       items: ["頭皮チェックデータの記録・管理", "経過観察レポートのテンプレート", "お客様向け説明資料"],
     },
     {
-      icon: "🛍️",
       title: "商品・仕入れサポート",
-      items: ["THE HERBS製品の卸価格提供", "新商品情報の優先案内", "在庫管理のサポート"],
+      items: ["THE HERBS製品の認定サロン向け提供", "新商品情報の優先案内", "在庫管理のサポート"],
     },
     {
-      icon: "📣",
       title: "集客・マーケティング支援",
       items: ["認定サロンとしてのロゴ使用権", "THE HERBSウェブサイトへの掲載", "SNS・集客コンテンツの提供"],
     },
   ];
 
   return (
-    <section style={{ background: C.midGreen, padding: "36px 20px", color: C.cream }}>
+    <section style={{ background: C.midBrown, padding: "36px 20px", color: C.cream }}>
       <SectionLabel text="PARTNER SUPPORT" light />
       <h2
         style={{
@@ -1354,10 +967,9 @@ function PartnerSupport() {
               padding: "16px",
             }}
           >
-            <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "10px" }}>
-              <span style={{ fontSize: "22px" }}>{s.icon}</span>
-              <p style={{ fontSize: "14px", fontWeight: 700, color: C.white }}>{s.title}</p>
-            </div>
+            <p style={{ fontSize: "14px", fontWeight: 700, color: C.white, marginBottom: "10px" }}>
+              {s.title}
+            </p>
             <ul style={{ margin: 0, padding: 0, listStyle: "none" }}>
               {s.items.map((item, j) => (
                 <li
@@ -1378,7 +990,7 @@ function PartnerSupport() {
                       color: C.gold,
                     }}
                   >
-                    ✓
+                    +
                   </span>
                   {item}
                 </li>
@@ -1391,26 +1003,22 @@ function PartnerSupport() {
   );
 }
 
-// ── 12. こんな方と一緒に ──────────────────────────────────
+// ── 10. こんな方と一緒に ──────────────────────────────────
 function WhoWeWelcome() {
   const profiles = [
     {
-      icon: "💆‍♀️",
       title: "エステサロン・ヘッドスパ店",
       body: "すでに頭皮・頭部のケアを提供している方。頭皮チェックを加えることで専門性が高まり、客単価・リピート率の向上が見込めます。",
     },
     {
-      icon: "✂️",
       title: "美容師（副業・起業を考えている方）",
       body: "スタイリングに集中したい美容師にとって、頭皮ケアは時間的に難しい。でも、頭皮チェックだけなら5〜10分。副業・独立の第一歩として最適です。",
     },
     {
-      icon: "🏠",
       title: "自宅サロン・個人事業主",
       body: "大きな設備投資なしに始められます。マイクロスコープ1台から。既存のお客様に新しい価値を提供できます。",
     },
     {
-      icon: "🌱",
       title: "これから起業を考えている方",
       body: "美容・ヘルスケア分野での起業を考えている方。THE HERBSのブランド・技術・サポートを活用して、リスクを抑えたスタートが可能です。",
     },
@@ -1423,7 +1031,7 @@ function WhoWeWelcome() {
         style={{
           fontSize: "20px",
           fontWeight: 700,
-          color: C.darkGreen,
+          color: C.darkBrown,
           lineHeight: 1.4,
           marginBottom: "4px",
         }}
@@ -1441,20 +1049,15 @@ function WhoWeWelcome() {
             style={{
               background: C.white,
               borderRadius: "6px",
-              padding: "16px",
+              padding: "18px 16px",
               border: `1px solid ${C.creamDark}`,
-              display: "flex",
-              gap: "12px",
-              alignItems: "flex-start",
+              borderLeft: `3px solid ${C.gold}`,
             }}
           >
-            <span style={{ fontSize: "28px", flexShrink: 0 }}>{p.icon}</span>
-            <div>
-              <p style={{ fontSize: "14px", fontWeight: 700, color: C.darkGreen, marginBottom: "6px" }}>
-                {p.title}
-              </p>
-              <p style={{ fontSize: "12px", color: C.textMid, lineHeight: 1.7 }}>{p.body}</p>
-            </div>
+            <p style={{ fontSize: "14px", fontWeight: 700, color: C.darkBrown, marginBottom: "8px" }}>
+              {p.title}
+            </p>
+            <p style={{ fontSize: "12px", color: C.textMid, lineHeight: 1.7 }}>{p.body}</p>
           </div>
         ))}
       </div>
@@ -1462,10 +1065,10 @@ function WhoWeWelcome() {
   );
 }
 
-// ── 13. 最終CTA ───────────────────────────────────────────
+// ── 11. 最終CTA ───────────────────────────────────────────
 function FinalCTA() {
   return (
-    <section style={{ background: C.darkGreen, color: C.cream }}>
+    <section style={{ background: C.darkBrown, color: C.cream }}>
       <div style={{ padding: "36px 20px 24px" }}>
         <SectionLabel text="NEXT ACTION" light />
         <h2
@@ -1487,8 +1090,9 @@ function FinalCTA() {
             marginBottom: "24px",
           }}
         >
-          まずは説明会・体験会にご参加ください。
-          営業は一切ありません。疑問・不安はすべてその場で解消できます。
+          収益の仕組み・卸価格・初期費用・認定プログラムの詳細は、
+          オンライン説明会でくわしくご説明します。
+          まずはお気軽にご参加ください。
         </p>
 
         {/* 説明会・体験会の違い */}
@@ -1499,18 +1103,18 @@ function FinalCTA() {
               background: "rgba(255,255,255,0.07)",
               borderRadius: "6px",
               padding: "14px 12px",
-              borderTop: `3px solid ${C.orange}`,
+              borderTop: `3px solid ${C.goldLight}`,
             }}
           >
             <p style={{ fontSize: "12px", fontWeight: 700, color: C.white, marginBottom: "6px" }}>
-              📅 説明会
+              オンライン説明会
             </p>
             <p style={{ fontSize: "11px", color: "rgba(245,240,232,0.7)", lineHeight: 1.6 }}>
-              オンライン（Zoom）
+              Zoom（無料）
               <br />
               約60分
               <br />
-              プログラム詳細・Q&A
+              プログラム詳細・Q&amp;A
             </p>
           </div>
           <div
@@ -1523,7 +1127,7 @@ function FinalCTA() {
             }}
           >
             <p style={{ fontSize: "12px", fontWeight: 700, color: C.white, marginBottom: "6px" }}>
-              🌿 体験会
+              神戸 体験会
             </p>
             <p style={{ fontSize: "11px", color: "rgba(245,240,232,0.7)", lineHeight: 1.6 }}>
               神戸（対面）
@@ -1563,7 +1167,7 @@ function FinalCTA() {
         </p>
         <div style={{ marginTop: "16px", display: "flex", gap: "12px" }}>
           <a
-            href="https://lin.ee/6GDbcebK"
+            href={LINE_URL}
             target="_blank"
             rel="noopener noreferrer"
             style={{
@@ -1605,7 +1209,7 @@ function FloatingCTA() {
         bottom: 0,
         left: 0,
         right: 0,
-        background: C.darkGreen,
+        background: C.darkBrown,
         borderTop: `2px solid ${C.gold}`,
         padding: "10px 16px",
         display: "flex",
@@ -1621,8 +1225,8 @@ function FloatingCTA() {
         style={{
           flex: 1,
           display: "block",
-          background: C.orange,
-          color: C.white,
+          background: C.gold,
+          color: C.darkBrown,
           textAlign: "center",
           padding: "12px 8px",
           borderRadius: "4px",
@@ -1631,7 +1235,7 @@ function FloatingCTA() {
           textDecoration: "none",
         }}
       >
-        📅 説明会
+        説明会に参加する
       </a>
       <a
         href={TRIAL_URL}
@@ -1640,18 +1244,18 @@ function FloatingCTA() {
         style={{
           flex: 1,
           display: "block",
-          background: C.midGreen,
-          color: C.white,
+          background: "transparent",
+          color: C.goldLight,
           textAlign: "center",
           padding: "12px 8px",
           borderRadius: "4px",
           fontWeight: 700,
           fontSize: "13px",
           textDecoration: "none",
-          border: `1px solid ${C.lightGreen}`,
+          border: `1px solid ${C.gold}`,
         }}
       >
-        🌿 体験会
+        体験会に参加する
       </a>
     </div>
   );
@@ -1675,9 +1279,7 @@ export default function PartnerDoc() {
       <BusinessModel />
       <HowWeWork />
       <Products />
-      <RevenueFlow />
-      <RevenueSimulation />
-      <Investment />
+      <FutureVision />
       <PartnerSupport />
       <WhoWeWelcome />
       <FinalCTA />
