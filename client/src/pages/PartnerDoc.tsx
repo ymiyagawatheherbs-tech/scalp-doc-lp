@@ -8,16 +8,26 @@
 
 import { useState } from "react";
 
-// ── 画像URL ──────────────────────────────────────────────
+// ── 画像URL（PPTXから抽出した実際の写真）──────────────────
 const IMG = {
-  microscopeCheck: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-microscope-iVWgVizXNK9WSGwKAftiPS.webp",
-  herbSteamer: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/hero-main-7WiQYuuxpMEgAPgcyJcPik.webp",
-  consultation: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/consultation-oBRbvf7238DM5fVXz4vLdS.webp",
-  salonInterior: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/salon_interior_c8f3f7a4.jpg",
-  scalpCheckTablet: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp_check_dfbc71b8.jpg",
-  // 既存CDN画像
-  workshop02: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/workshop02_c3e1c7d2.jpg",
-  workshop03: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/workshop03_d4f2e8a1.jpg",
+  // image2: マイクロスコープでチェック中（タブレット持ちスタッフ）→ ヒーロー
+  scalpCheckTablet: "/manus-storage/scalp_check_tablet_147c16f8.jpeg",
+  // image5: マイクロスコープを頭皮に当てているアップ → 頭皮チェックセクション
+  microscopeCheck: "/manus-storage/microscope_check_c8034773.jpeg",
+  // image6: ハーブスチーマー施術（蒸気）→ スチーマーセクション
+  herbSteamer: "/manus-storage/herb_steamer_72edf538.jpeg",
+  // image7: THE HERBSサロン内装 → サロン紹介
+  salonInterior: "/manus-storage/salon_interior_921d28d8.jpeg",
+  // image4: カウンセリングシーン → ビジネスモデルセクション
+  consultation: "/manus-storage/consultation_241b3ba2.png",
+  // image8: スカルプゴマージュ施術（男性・ハーブペースト）→ 製品セクション
+  scalpGommage: "/manus-storage/pptx_image8_7b00edbd.jpeg",
+  // image9: ハーブスチーマー機器とハーブ瓶 → 製品セクション
+  steamerMachine: "/manus-storage/pptx_image9_2661a496.jpeg",
+  // image10: ドライハーブ6種類 → ハーブ素材セクション
+  dryHerbs: "/manus-storage/pptx_image10_101cab8b.jpeg",
+  // image11: 頭皮・毛根の顕微鏡写真 → 頭皮データセクション
+  scalpMicro: "/manus-storage/pptx_image11_28a4825d.jpeg",
 };
 
 // ── カラー定数 ────────────────────────────────────────────
