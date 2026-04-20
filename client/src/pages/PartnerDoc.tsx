@@ -667,27 +667,12 @@ function HowWeWork() {
 
 // ── 07. 使用製品 ──────────────────────────────────────────
 function Products() {
-  const products = [
-    {
-      name: "スカルプゴマージュ",
-      desc: "頭皮専用のスクラブ。毛穴の詰まりを除去し、健康な頭皮環境を整えます。",
-      tag: "定期チェックのスタート商品",
-    },
-    {
-      name: "ボタニカルシャンプー",
-      desc: "ハーブ成分を高配合。頭皮への刺激を最小限に抑えながら、植物の力でケアします。",
-      tag: "ホームケアとして継続販売",
-    },
-    {
-      name: "ハーブスチーマー（ボタニカルミスト）",
-      desc: "植物成分を蒸気で直接頭皮に届ける機器。THE HERBSが独自開発。",
-      tag: "サロン施術の核となる機器",
-    },
-    {
-      name: "育毛・頭皮ケアライン",
-      desc: "薄毛・うねり・頭皮トラブルに対応した専門ラインナップ。認定サロン向けに提供。",
-      tag: "認定サロン限定ライン",
-    },
+  const items = [
+    { name: "SHAMPOO LUMIÈRE", desc: "頭皮環境を整えるハーブシャンプー（さらさら仕上げ）" },
+    { name: "SHAMPOO LAVER", desc: "皮脂バランスを整えるハーブシャンプー（しっとり仕上げ）" },
+    { name: "SCALP ESSENCE LE SÉBUM", desc: "頭皮用スカルプエッセンス。毛穴ケア・皮脂コントロール" },
+    { name: "HAIR ESSENCE THÉRAPIE", desc: "毛先・髪全体を整えるヘアエッセンス" },
+    { name: "HAIR OIL RICHE", desc: "ツヤと保湿を与えるヘアオイル" },
   ];
 
   return (
@@ -702,69 +687,107 @@ function Products() {
           marginBottom: "4px",
         }}
       >
-        ハーブそのものを使った
+        施術後のホームケアが
         <br />
-        <span style={{ color: C.gold }}>ケミカルフリーライン</span>
+        <span style={{ color: C.gold }}>物販売上につながる</span>
       </h2>
       <Divider light />
+
+      {/* 商品画像 */}
+      <img
+        src="/manus-storage/product_fillis_BF9I3827_9fb31a78.jpg"
+        alt="fillis ヘアケアライン 5品目"
+        style={{
+          width: "100%",
+          borderRadius: "8px",
+          marginBottom: "20px",
+          objectFit: "cover",
+        }}
+      />
+
+      {/* 顧客満足度バナー */}
+      <div
+        style={{
+          background: "rgba(201,162,39,0.15)",
+          border: `1px solid ${C.gold}`,
+          borderRadius: "8px",
+          padding: "16px",
+          marginBottom: "20px",
+          textAlign: "center",
+        }}
+      >
+        <p style={{ fontSize: "11px", color: C.gold, letterSpacing: "0.1em", marginBottom: "4px" }}>CUSTOMER SATISFACTION</p>
+        <p style={{ fontSize: "32px", fontWeight: 800, color: C.gold, lineHeight: 1 }}>86.3<span style={{ fontSize: "18px" }}>%</span></p>
+        <p style={{ fontSize: "12px", color: "rgba(245,240,232,0.8)", marginTop: "4px" }}>顧客満足度 — 高いリピート率が期待できます</p>
+      </div>
 
       <p
         style={{
           fontSize: "13px",
           color: "rgba(245,240,232,0.75)",
           lineHeight: 1.8,
-          marginBottom: "20px",
+          marginBottom: "16px",
         }}
       >
-        化粧品製造業として1986年から製品を開発。
-        植物の力を最大限に活かした独自処方で、
-        エビデンスに基づくケアを提供します。
+        頭皮チェック後のホームケアとして、fillis ヘアケアライン5品目を提案できます。
+        施術で信頼を得たお客様が、そのまま商品を継続購入する流れが自然に生まれます。
       </p>
 
-      <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
-        {products.map((p, i) => (
+      <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+        {items.map((item, i) => (
           <div
             key={i}
             style={{
-              background: "rgba(255,255,255,0.07)",
+              display: "flex",
+              alignItems: "flex-start",
+              gap: "10px",
+              padding: "12px",
+              background: "rgba(255,255,255,0.06)",
               borderRadius: "6px",
-              padding: "16px",
               borderLeft: `3px solid ${C.gold}`,
             }}
           >
-            <p style={{ fontSize: "14px", fontWeight: 700, color: C.white, marginBottom: "6px" }}>
-              {p.name}
-            </p>
-            <p style={{ fontSize: "12px", color: "rgba(245,240,232,0.75)", lineHeight: 1.6, marginBottom: "8px" }}>
-              {p.desc}
-            </p>
             <span
               style={{
+                minWidth: "20px",
+                height: "20px",
+                background: C.gold,
+                color: C.darkBrown,
+                borderRadius: "50%",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
                 fontSize: "10px",
-                color: C.gold,
-                background: "rgba(201,162,39,0.15)",
-                padding: "3px 8px",
-                borderRadius: "3px",
+                fontWeight: 800,
+                flexShrink: 0,
+                marginTop: "1px",
               }}
             >
-              {p.tag}
+              {i + 1}
             </span>
+            <div>
+              <p style={{ fontSize: "13px", fontWeight: 700, color: C.white, marginBottom: "2px" }}>{item.name}</p>
+              <p style={{ fontSize: "11px", color: "rgba(245,240,232,0.7)", lineHeight: 1.5 }}>{item.desc}</p>
+            </div>
           </div>
         ))}
       </div>
 
-      <img
-        src={IMG.dryHerbs}
-        alt="THE HERBSのドライハーブ素材"
+      <div
         style={{
-          width: "100%",
-          height: "160px",
-          objectFit: "cover",
-          borderRadius: "6px",
           marginTop: "20px",
-          opacity: 0.9,
+          padding: "14px",
+          background: "rgba(255,255,255,0.05)",
+          borderRadius: "6px",
+          borderTop: `2px solid ${C.gold}`,
         }}
-      />
+      >
+        <p style={{ fontSize: "12px", color: "rgba(245,240,232,0.8)", lineHeight: 1.7 }}>
+          施術（サービス売上）＋ ホームケア商品（物販売上）の
+          <span style={{ color: C.gold, fontWeight: 700 }}>二軸の収益構造</span>で、
+          安定した売上基盤を構築できます。
+        </p>
+      </div>
     </section>
   );
 }
