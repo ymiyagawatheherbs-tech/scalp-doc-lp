@@ -807,7 +807,7 @@ function FutureVision() {
       img: IMG.microscopeCheck,
     },
     {
-      persona: "個人事業主・自宅サロンの方",
+      persona: "エステ・ヘッドスパ・自宅サロンの方",
       before: "施術メニューが固定化し、客単価が伸び悩んでいる。新しいメニューを増やしたいが、大きな設備投資はできない。",
       after: [
         "マイクロスコープ1台から始められる。大きな設備投資は不要",
@@ -867,7 +867,7 @@ function FutureVision() {
             />
             <p
               style={{
-                fontSize: "10px",
+                fontSize: "15px",
                 letterSpacing: "0.15em",
                 color: C.gold,
                 fontWeight: 600,
