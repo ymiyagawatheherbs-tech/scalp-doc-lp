@@ -344,25 +344,25 @@ function BlueOcean() {
           </p>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 text-center">
             {[
-              { area: "美容サービス", desc: "スタイリング・施術の提供", color: "rgba(255,255,255,0.15)", textColor: "rgba(255,255,255,0.5)", note: "商品・施術が主役" },
+              { area: "美容サービス", desc: "スタイリング・施術の提供", color: "rgba(255,255,255,0.15)", textColor: "#222020", note: "商品・施術が主役" },
               { area: "THE HERBS SCALP LABO", desc: "頭皮の定期チェック＋ケアの習慣化", color: "#a8d5a2", textColor: "#2a3e2a", note: "習慣化が主役（ブルーオーシャン）", highlight: true },
-              { area: "医療機関", desc: "診断・治療・処方", color: "rgba(255,255,255,0.15)", textColor: "rgba(255,255,255,0.5)", note: "疾患対応が主役" },
+              { area: "医療機関", desc: "診断・治療・処方", color: "rgba(255,255,255,0.15)", textColor: "#222020", note: "疾患対応が主役" },
             ].map((pos, i) => (
               <div
                 key={i}
                 className="p-6"
                 style={{ backgroundColor: '#dff4dd' }}
               >
-                <p className="text-xs tracking-widest mb-2" style={{ color: pos.highlight ? "#5a7a52" : "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>
+                <p className="text-xs tracking-widest mb-2" style={{ color: pos.highlight ? "#5a7a52" : "#555", fontFamily: "'Noto Sans JP', sans-serif" }}>
                   {pos.highlight ? "◀ ここに参入 ▶" : "　"}
                 </p>
                 <h4 className="text-lg font-bold mb-2" style={{ fontFamily: "'Shippori Mincho', serif", color: pos.textColor }}>
                   {pos.area}
                 </h4>
-                <p className="text-sm mb-3" style={{ color: pos.highlight ? "#2a3e2a" : "rgba(255,255,255,0.6)", fontFamily: "'Noto Sans JP', sans-serif" }}>
+                <p className="text-sm mb-3" style={{ color: pos.highlight ? "#2a3e2a" : "#444", fontFamily: "'Noto Sans JP', sans-serif" }}>
                   {pos.desc}
                 </p>
-                <p className="text-xs" style={{ color: pos.highlight ? "#5a7a52" : "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif", fontWeight: pos.highlight ? "bold" : "normal" }}>
+                <p className="text-xs" style={{ color: pos.highlight ? "#5a7a52" : "#666", fontFamily: "'Noto Sans JP', sans-serif", fontWeight: pos.highlight ? "bold" : "normal" }}>
                   {pos.note}
                 </p>
               </div>
@@ -610,19 +610,19 @@ function LineCtaSection() {
               認定プログラムの詳細・初期費用の目安を掲載しています。
             </p>
             <p className="text-sm mb-10" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.6)" }}>
-              ※資料は無料でお届けします。こちらからの営業はありません。
+              ※資料は無料でお届けします。オンライン説明会でお会いしましょう！
             </p>
           </div>
 
           {/* 資料に含まれる内容 */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-12">
             {[
-              "収益シミュレーション（月間・年間）",
+              "新しいビジネスでできること",
               "導入サロンの実際の声",
               "初期費用・ランニングコストの目安",
               "認定プログラムの詳細スケジュール",
               "ブルーオーシャン市場の詳細データ",
-              "THE HERBS製品の卸価格",
+              "サポート体制について",
             ].map((item, i) => (
               <div
                 key={i}
