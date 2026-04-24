@@ -19,6 +19,7 @@ import AdminTestimonials from "./pages/AdminTestimonials";
 import AdminBlog from "./pages/AdminBlog";
 import AdminMenus from "./pages/AdminMenus";
 import AdminSalons from "./pages/AdminSalons";
+import OwnerAdmin from "./pages/OwnerAdmin";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -39,6 +40,7 @@ function Router() {
       <Route path={"/admin/blog"} component={AdminBlog} />
       <Route path={"/admin/menus"} component={AdminMenus} />
       <Route path={"/admin/salons"} component={AdminSalons} />
+      <Route path={"/owner-admin"} component={OwnerAdmin} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />
