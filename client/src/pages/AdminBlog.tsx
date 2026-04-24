@@ -3,9 +3,55 @@
  */
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { Link } from "wouter";
+
+const BLOG_CATEGORIES = [
+  { value: "", label: "カテゴリを選択" },
+  { value: "頭皮ケア", label: "頭皮ケア" },
+  { value: "スキンケア", label: "スキンケア" },
+  { value: "製品紹介", label: "製品紹介" },
+  { value: "ライフスタイル", label: "ライフスタイル" },
+];
+
+/** デバイスから画像を選択してS3にアップロードするボタン */
+function ImageUploadButton({ label, currentUrl, folder, onUploaded }: { label: string; currentUrl: string; folder: string; onUploaded: (url: string) => void }) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+  const uploadMutation = trpc.storage.uploadContentImage.useMutation({
+    onError: (e: { message?: string }) => { toast.error(e.message || "アップロードに失敗しました"); setUploading(false); },
+  });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > 10 * 1024 * 1024) { toast.error("ファイルサイズは10MB以下にしてください"); return; }
+    setUploading(true);
+    const reader = new FileReader();
+    reader.onload = async (ev) => {
+      const dataUrl = ev.target?.result as string;
+      try {
+        const result = await uploadMutation.mutateAsync({ dataUrl, originalName: file.name, folder });
+        onUploaded(result.url);
+        toast.success("アップロードしました");
+      } finally {
+        setUploading(false);
+        if (inputRef.current) inputRef.current.value = "";
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+  return (
+    <div>
+      <input ref={inputRef} type="file" accept="image/*" style={{ display: "none" }} onChange={handleChange} />
+      {currentUrl && <img src={currentUrl} alt={label} style={{ width: "100%", maxHeight: "120px", objectFit: "cover", borderRadius: "8px", border: "1px solid #e8ddd0", marginBottom: "8px" }} />}
+      <button type="button" onClick={() => inputRef.current?.click()} disabled={uploading}
+        style={{ background: uploading ? "#d4c5b0" : "#f3ede4", color: "#2C1810", border: "1px dashed #c9a96e", padding: "10px 16px", borderRadius: "6px", fontSize: "13px", cursor: uploading ? "not-allowed" : "pointer", fontFamily: "Noto Sans JP, sans-serif", width: "100%", textAlign: "center" }}>
+        {uploading ? "アップロード中..." : currentUrl ? `📷 ${label}を変更` : `📷 ${label}を選択`}
+      </button>
+    </div>
+  );
+}
 
 type FormState = {
   title: string;
@@ -99,15 +145,22 @@ export default function AdminBlog() {
                   <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
                     <div>
                       <label style={lbl}>カテゴリ</label>
-                      <input style={inp} value={form.category} onChange={e => setForm(f => ({ ...f, category: e.target.value }))} placeholder="頭皮ケア" />
+                      <select style={inp} value={form.category} onChange={e => setForm(f => ({ ...f, category: e.target.value }))}>
+                        {BLOG_CATEGORIES.map(c => <option key={c.value} value={c.value}>{c.label}</option>)}
+                      </select>
                     </div>
                     <div>
                       <label style={lbl}>投稿者名</label>
                       <input style={inp} value={form.authorName} onChange={e => setForm(f => ({ ...f, authorName: e.target.value }))} placeholder="スタッフ名" />
                     </div>
                     <div>
-                      <label style={lbl}>サムネイル画像URL</label>
-                      <input style={inp} value={form.thumbnailUrl} onChange={e => setForm(f => ({ ...f, thumbnailUrl: e.target.value }))} placeholder="https://..." />
+                      <label style={lbl}>サムネイル画像</label>
+                      <ImageUploadButton
+                        label="サムネイル"
+                        currentUrl={form.thumbnailUrl}
+                        folder="blog"
+                        onUploaded={(url) => setForm(f => ({ ...f, thumbnailUrl: url }))}
+                      />
                     </div>
                     <div>
                       <label style={lbl}>タグ（カンマ区切り）</label>

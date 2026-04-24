@@ -341,6 +341,34 @@ export const appRouter = router({
       if (!db) return [];
       return db.select().from(scalpImages).orderBy(desc(scalpImages.createdAt)).limit(50);
     }),
+
+    // コンテンツ管理用汎用画像アップロード（スタッフまたはManus認証必須）
+    uploadContentImage: staffOrManusProcedure
+      .input(
+        z.object({
+          dataUrl: z.string(),
+          originalName: z.string().optional(),
+          folder: z.string().optional(),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const matches = input.dataUrl.match(/^data:([^;]+);base64,(.+)$/);
+        if (!matches) throw new Error("Invalid image data");
+        const mimeType = matches[1];
+        const buffer = Buffer.from(matches[2], "base64");
+        const extMap: Record<string, string> = {
+          "image/jpeg": "jpg",
+          "image/png": "png",
+          "image/webp": "webp",
+          "image/gif": "gif",
+          "image/heic": "heic",
+        };
+        const ext = extMap[mimeType] ?? "jpg";
+        const folderName = input.folder ?? "content";
+        const fileKey = `${folderName}/${nanoid(12)}.${ext}`;
+        const { url } = await storagePut(fileKey, buffer, mimeType);
+        return { success: true, url, fileKey };
+      }),
   }),
 
   /**

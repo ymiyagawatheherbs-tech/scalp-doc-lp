@@ -1,10 +1,10 @@
 /**
  * ビフォーアフター管理ページ
- * スタッフが施術前後の写真を追加・編集・削除できる管理画面
+ * スタッフが施術前後の写真をデバイスからアップロードして管理できる画面
  */
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { Link } from "wouter";
 
@@ -61,9 +61,85 @@ function AdminGuard({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
+/** デバイスから画像を選択してS3にアップロードするボタン */
+function ImageUploadButton({
+  label,
+  currentUrl,
+  folder,
+  onUploaded,
+}: {
+  label: string;
+  currentUrl: string;
+  folder: string;
+  onUploaded: (url: string) => void;
+}) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+  const uploadMutation = trpc.storage.uploadContentImage.useMutation({
+    onError: (e: { message?: string }) => {
+      toast.error(e.message || "アップロードに失敗しました");
+      setUploading(false);
+    },
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > 10 * 1024 * 1024) {
+      toast.error("ファイルサイズは10MB以下にしてください");
+      return;
+    }
+    setUploading(true);
+    const reader = new FileReader();
+    reader.onload = async (ev) => {
+      const dataUrl = ev.target?.result as string;
+      try {
+        const result = await uploadMutation.mutateAsync({ dataUrl, originalName: file.name, folder });
+        onUploaded(result.url);
+        toast.success("アップロードしました");
+      } finally {
+        setUploading(false);
+        if (inputRef.current) inputRef.current.value = "";
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+
+  return (
+    <div>
+      <input ref={inputRef} type="file" accept="image/*" style={{ display: "none" }} onChange={handleChange} />
+      <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+        {currentUrl && (
+          <img src={currentUrl} alt={label} style={{ width: "100%", maxHeight: "160px", objectFit: "cover", borderRadius: "8px", border: "1px solid #e8ddd0" }} />
+        )}
+        <button
+          type="button"
+          onClick={() => inputRef.current?.click()}
+          disabled={uploading}
+          style={{
+            background: uploading ? "#d4c5b0" : "#f3ede4",
+            color: "#2C1810",
+            border: "1px dashed #c9a96e",
+            padding: "10px 16px",
+            borderRadius: "6px",
+            fontSize: "13px",
+            cursor: uploading ? "not-allowed" : "pointer",
+            fontFamily: "Noto Sans JP, sans-serif",
+            textAlign: "center",
+          }}
+        >
+          {uploading ? "アップロード中..." : currentUrl ? `📷 ${label}を変更` : `📷 ${label}を選択`}
+        </button>
+        {currentUrl && (
+          <p style={{ fontSize: "11px", color: "#9b7a5a", margin: 0, wordBreak: "break-all" }}>{currentUrl.split("/").pop()}</p>
+        )}
+      </div>
+    </div>
+  );
+}
+
 export default function AdminBeforeAfter() {
   const { data: items = [], isLoading, refetch } = trpc.beforeAfter.listAdmin.useQuery(undefined, { refetchOnWindowFocus: false });
-  const utils = trpc.useUtils();
 
   const [showForm, setShowForm] = useState(false);
   const [editId, setEditId] = useState<number | null>(null);
@@ -71,15 +147,15 @@ export default function AdminBeforeAfter() {
 
   const createMutation = trpc.beforeAfter.create.useMutation({
     onSuccess: () => { toast.success("追加しました"); refetch(); resetForm(); },
-    onError: (e) => toast.error(e.message || "追加に失敗しました"),
+    onError: (e: { message?: string }) => toast.error(e.message || "追加に失敗しました"),
   });
   const updateMutation = trpc.beforeAfter.update.useMutation({
     onSuccess: () => { toast.success("更新しました"); refetch(); resetForm(); },
-    onError: (e) => toast.error(e.message || "更新に失敗しました"),
+    onError: (e: { message?: string }) => toast.error(e.message || "更新に失敗しました"),
   });
   const deleteMutation = trpc.beforeAfter.delete.useMutation({
     onSuccess: () => { toast.success("削除しました"); refetch(); },
-    onError: (e) => toast.error(e.message || "削除に失敗しました"),
+    onError: (e: { message?: string }) => toast.error(e.message || "削除に失敗しました"),
   });
 
   function resetForm() {
@@ -106,7 +182,7 @@ export default function AdminBeforeAfter() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!form.title || !form.beforeImageUrl || !form.afterImageUrl) {
-      toast.error("タイトル・ビフォー画像URL・アフター画像URLは必須です");
+      toast.error("タイトル・ビフォー画像・アフター画像は必須です");
       return;
     }
     if (editId !== null) {
@@ -158,21 +234,36 @@ export default function AdminBeforeAfter() {
                     <label style={labelStyle}>タイトル *</label>
                     <input style={inputStyle} value={form.title} onChange={e => setForm(f => ({ ...f, title: e.target.value }))} placeholder="例：うねり・広がりケア" />
                   </div>
+
+                  {/* ビフォー画像：デバイスからアップロード */}
                   <div>
-                    <label style={labelStyle}>ビフォー画像URL *</label>
-                    <input style={inputStyle} value={form.beforeImageUrl} onChange={e => setForm(f => ({ ...f, beforeImageUrl: e.target.value }))} placeholder="https://..." />
+                    <label style={labelStyle}>ビフォー画像 *</label>
+                    <ImageUploadButton
+                      label="ビフォー画像"
+                      currentUrl={form.beforeImageUrl}
+                      folder="before-after"
+                      onUploaded={(url) => setForm(f => ({ ...f, beforeImageUrl: url }))}
+                    />
                   </div>
+
+                  {/* アフター画像：デバイスからアップロード */}
                   <div>
-                    <label style={labelStyle}>アフター画像URL *</label>
-                    <input style={inputStyle} value={form.afterImageUrl} onChange={e => setForm(f => ({ ...f, afterImageUrl: e.target.value }))} placeholder="https://..." />
+                    <label style={labelStyle}>アフター画像 *</label>
+                    <ImageUploadButton
+                      label="アフター画像"
+                      currentUrl={form.afterImageUrl}
+                      folder="before-after"
+                      onUploaded={(url) => setForm(f => ({ ...f, afterImageUrl: url }))}
+                    />
                   </div>
+
                   <div>
                     <label style={labelStyle}>施術期間</label>
                     <input style={inputStyle} value={form.period} onChange={e => setForm(f => ({ ...f, period: e.target.value }))} placeholder="例：7ヶ月後" />
                   </div>
                   <div>
                     <label style={labelStyle}>対象</label>
-                    <select style={inputStyle} value={form.gender} onChange={e => setForm(f => ({ ...f, gender: e.target.value as any }))}>
+                    <select style={inputStyle} value={form.gender} onChange={e => setForm(f => ({ ...f, gender: e.target.value as "women" | "men" | "both" }))}>
                       {GENDER_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
                     </select>
                   </div>

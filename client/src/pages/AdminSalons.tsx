@@ -3,9 +3,53 @@
  */
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { toast } from "sonner";
 import { Link } from "wouter";
+
+const SALON_SERVICES = [
+  "頭皮チェック",
+  "定期ケア（ボタニカルミスト）",
+  "パーソナルケア",
+];
+
+/** デバイスから画像を選択してS3にアップロードするボタン */
+function ImageUploadButton({ label, currentUrl, folder, onUploaded }: { label: string; currentUrl: string; folder: string; onUploaded: (url: string) => void }) {
+  const inputRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+  const uploadMutation = trpc.storage.uploadContentImage.useMutation({
+    onError: (e: { message?: string }) => { toast.error(e.message || "アップロードに失敗しました"); setUploading(false); },
+  });
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > 10 * 1024 * 1024) { toast.error("ファイルサイズは10MB以下にしてください"); return; }
+    setUploading(true);
+    const reader = new FileReader();
+    reader.onload = async (ev) => {
+      const dataUrl = ev.target?.result as string;
+      try {
+        const result = await uploadMutation.mutateAsync({ dataUrl, originalName: file.name, folder });
+        onUploaded(result.url);
+        toast.success("アップロードしました");
+      } finally {
+        setUploading(false);
+        if (inputRef.current) inputRef.current.value = "";
+      }
+    };
+    reader.readAsDataURL(file);
+  };
+  return (
+    <div>
+      <input ref={inputRef} type="file" accept="image/*" style={{ display: "none" }} onChange={handleChange} />
+      {currentUrl && <img src={currentUrl} alt={label} style={{ width: "100%", maxHeight: "120px", objectFit: "cover", borderRadius: "8px", border: "1px solid #e8ddd0", marginBottom: "8px" }} />}
+      <button type="button" onClick={() => inputRef.current?.click()} disabled={uploading}
+        style={{ background: uploading ? "#d4c5b0" : "#f3ede4", color: "#2C1810", border: "1px dashed #c9a96e", padding: "10px 16px", borderRadius: "6px", fontSize: "13px", cursor: uploading ? "not-allowed" : "pointer", fontFamily: "Noto Sans JP, sans-serif", width: "100%", textAlign: "center" }}>
+        {uploading ? "アップロード中..." : currentUrl ? `📷 ${label}を変更` : `📷 ${label}を選択`}
+      </button>
+    </div>
+  );
+}
 
 type FormState = {
   name: string;
@@ -110,13 +154,32 @@ export default function AdminSalons() {
                     <label style={lbl}>Instagram・SNS URL</label>
                     <input style={inp} value={form.snsUrl} onChange={e => setForm(f => ({ ...f, snsUrl: e.target.value }))} placeholder="https://instagram.com/..." />
                   </div>
-                  <div>
-                    <label style={lbl}>サロン画像URL</label>
-                    <input style={inp} value={form.imageUrl} onChange={e => setForm(f => ({ ...f, imageUrl: e.target.value }))} placeholder="https://..." />
+                  <div style={{ gridColumn: "1 / -1" }}>
+                    <label style={lbl}>サロン画像</label>
+                    <ImageUploadButton
+                      label="サロン画像"
+                      currentUrl={form.imageUrl}
+                      folder="salons"
+                      onUploaded={(url) => setForm(f => ({ ...f, imageUrl: url }))}
+                    />
                   </div>
                   <div style={{ gridColumn: "1 / -1" }}>
-                    <label style={lbl}>対応メニュー（カンマ区切り）</label>
-                    <input style={inp} value={form.services} onChange={e => setForm(f => ({ ...f, services: e.target.value }))} placeholder="頭皮チェック,スカルプケア,育毛ケア" />
+                    <label style={lbl}>対応メニュー（複数選択可）</label>
+                    <div style={{ display: "flex", flexWrap: "wrap", gap: "12px", padding: "12px", background: "#faf7f3", borderRadius: "6px", border: "1px solid #d4c5b0" }}>
+                      {SALON_SERVICES.map(svc => {
+                        const selected = form.services.split(",").map(s => s.trim()).filter(Boolean).includes(svc);
+                        return (
+                          <label key={svc} style={{ display: "flex", alignItems: "center", gap: "6px", cursor: "pointer", fontSize: "14px", color: "#2C1810", fontFamily: "Noto Sans JP, sans-serif" }}>
+                            <input type="checkbox" checked={selected} onChange={() => {
+                              const current = form.services.split(",").map(s => s.trim()).filter(Boolean);
+                              const next = selected ? current.filter(s => s !== svc) : [...current, svc];
+                              setForm(f => ({ ...f, services: next.join(",") }));
+                            }} style={{ width: "16px", height: "16px", accentColor: "#c9a96e" }} />
+                            {svc}
+                          </label>
+                        );
+                      })}
+                    </div>
                   </div>
                   <div style={{ gridColumn: "1 / -1" }}>
                     <label style={lbl}>サロン紹介文</label>
