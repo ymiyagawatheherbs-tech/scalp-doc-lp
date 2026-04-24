@@ -21,6 +21,8 @@ import AdminMenus from "./pages/AdminMenus";
 import AdminSalons from "./pages/AdminSalons";
 import OwnerAdmin from "./pages/OwnerAdmin";
 import Salons from "./pages/Salons";
+import Blog from "./pages/Blog";
+import BlogPost from "./pages/BlogPost";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -43,6 +45,8 @@ function Router() {
       <Route path={"/admin/salons"} component={AdminSalons} />
       <Route path={"/owner-admin"} component={OwnerAdmin} />
       <Route path={"/salons"} component={Salons} />
+      <Route path={"/blog/:slug"} component={BlogPost} />
+      <Route path={"/blog"} component={Blog} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

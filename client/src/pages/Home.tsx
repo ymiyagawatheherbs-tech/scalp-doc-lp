@@ -1829,58 +1829,79 @@ function FaqSection() {
 }
 
 // お客様の声セクション
+const DEFAULT_TESTIMONIALS = [
+  {
+    name: "T.M さん",
+    age: "32歳・女性",
+    segment: "ヘアカラー愛用者",
+    rating: 5,
+    text: "カラーを繰り返していて頭皮が気になっていました。スカルプチェックで自分の頭皮の状態を画像で見て、ケアの意識が変わりました。スタッフの方が丁寧に説明してくれて安心できました。",
+    highlight: "画像で見て、ケアの意識が変わりました",
+    imageUrl: null as string | null,
+  },
+  {
+    name: "K.S さん",
+    age: "28歳・男性",
+    segment: "予防ケア目的",
+    rating: 5,
+    text: "父が薄毛なので将来が不安で利用しました。まだ問題ないと確認できて安心しましたし、今後のホームケアの参考になりました。定期的に通って記録を続けようと思います。",
+    highlight: "今後のホームケアの参考になりました",
+    imageUrl: null as string | null,
+  },
+  {
+    name: "A.N さん",
+    age: "41歳・女性",
+    segment: "エイジングケア層",
+    rating: 5,
+    text: "産後から髪のハリがなくなった気がしていて相談しました。頭皮の状態をデータで記録してもらえるので、次回との比較ができるのがとても良いです。スタッフの方も知識が豊富で信頼できます。",
+    highlight: "データで記録してもらえるので比較ができる",
+    imageUrl: null as string | null,
+  },
+  {
+    name: "H.Y さん",
+    age: "45歳・男性",
+    segment: "薄毛が気になり始めた層",
+    rating: 4,
+    text: "薄毛が気になり始めて、まず状態を把握したくて来店しました。医療機関ではないので気軽に相談できる点が良かったです。ケア製品の提案も押しつけがましくなく好印象でした。",
+    highlight: "気軽に相談できる点が良かった",
+    imageUrl: null as string | null,
+  },
+  {
+    name: "Y.O さん",
+    age: "25歳・女性",
+    segment: "美容意識層",
+    rating: 5,
+    text: "美容院でたまたまスカルプチェックを勧められて受けました。自分の頭皮がこんな状態だったとは知らなくて驚きました。早めに知ることができて安心です。",
+    highlight: "自分の頭皮がこんな状態だったとは",
+    imageUrl: null as string | null,
+  },
+  {
+    name: "R.T さん",
+    age: "38歳・男性",
+    segment: "継続利用者",
+    rating: 5,
+    text: "1年以上継続しています。季節ごとに頭皮の状態が変わることがデータでわかるので面白いです。ホームケアのアドバイスも毎回参考になっています。",
+    highlight: "季節ごとの変化がデータでわかる",
+    imageUrl: null as string | null,
+  },
+];
+
 function TestimonialsSection() {
   const { ref, inView } = useInView();
-  const testimonials = [
-    {
-      name: "T.M さん",
-      age: "32歳・女性",
-      segment: "ヘアカラー愛用者",
-      rating: 5,
-      text: "カラーを繰り返していて頭皮が気になっていました。スカルプチェックで自分の頭皮の状態を画像で見て、ケアの意識が変わりました。スタッフの方が丁寧に説明してくれて安心できました。",
-      highlight: "画像で見て、ケアの意識が変わりました",
-    },
-    {
-      name: "K.S さん",
-      age: "28歳・男性",
-      segment: "予防ケア目的",
-      rating: 5,
-      text: "父が薄毛なので将来が不安で利用しました。まだ問題ないと確認できて安心しましたし、今後のホームケアの参考になりました。定期的に通って記録を続けようと思います。",
-      highlight: "今後のホームケアの参考になりました",
-    },
-    {
-      name: "A.N さん",
-      age: "41歳・女性",
-      segment: "エイジングケア層",
-      rating: 5,
-      text: "産後から髪のハリがなくなった気がしていて相談しました。頭皮の状態をデータで記録してもらえるので、次回との比較ができるのがとても良いです。スタッフの方も知識が豊富で信頼できます。",
-      highlight: "データで記録してもらえるので比較ができる",
-    },
-    {
-      name: "H.Y さん",
-      age: "45歳・男性",
-      segment: "薄毛が気になり始めた層",
-      rating: 4,
-      text: "薄毛が気になり始めて、まず状態を把握したくて来店しました。医療機関ではないので気軽に相談できる点が良かったです。ケア製品の提案も押しつけがましくなく好印象でした。",
-      highlight: "気軽に相談できる点が良かった",
-    },
-    {
-      name: "Y.O さん",
-      age: "25歳・女性",
-      segment: "美容意識層",
-      rating: 5,
-      text: "美容院でたまたまスカルプチェックを勧められて受けました。自分の頭皮がこんな状態だったとは知らなくて驚きました。早めに知ることができて安心です。",
-      highlight: "自分の頭皮がこんな状態だったとは",
-    },
-    {
-      name: "R.T さん",
-      age: "38歳・男性",
-      segment: "継続利用者",
-      rating: 5,
-      text: "1年以上継続しています。季節ごとに頭皮の状態が変わることがデータでわかるので面白いです。ホームケアのアドバイスも毎回参考になっています。",
-      highlight: "季節ごとの変化がデータでわかる",
-    },
-  ];
+  const { data: dbItems } = trpc.testimonial.list.useQuery({}, { refetchOnWindowFocus: false });
+
+  // DBにデータがあればDB優先、なければデフォルトデータを使用
+  const testimonials = dbItems && dbItems.length > 0
+    ? dbItems.map(item => ({
+        name: item.customerName,
+        age: item.customerAge ?? "",
+        segment: item.concern ?? "",
+        rating: item.rating ?? 5,
+        text: item.content,
+        highlight: item.content.slice(0, 30),
+        imageUrl: item.imageUrl,
+      }))
+    : DEFAULT_TESTIMONIALS;
 
   return (
     <section className="py-28 bg-[oklch(0.30_0.055_65)]" id="お客様の声">
@@ -1951,6 +1972,20 @@ function TestimonialsSection() {
 function BeforeAfterSection() {
   const { ref, inView } = useInView();
   const [active, setActive] = useState(0);
+  const { data: dbItems } = trpc.beforeAfter.list.useQuery({}, { refetchOnWindowFocus: false });
+
+  // DBにデータがあればDB優先、なければデフォルトデータを使用
+  const items = dbItems && dbItems.length > 0
+    ? dbItems.map(item => ({
+        id: item.id,
+        src: item.afterImageUrl,
+        label: item.title,
+        period: item.period ?? "",
+        gender: item.gender === 'women' ? '女性' : item.gender === 'men' ? '男性' : ''
+      }))
+    : BA_IMAGES;
+
+  const safeActive = Math.min(active, items.length - 1);
 
   return (
     <section className="py-28 bg-[oklch(0.978_0.008_90)]" id="ビフォーアフター">
@@ -1974,8 +2009,8 @@ function BeforeAfterSection() {
           <div className="relative max-w-lg mx-auto mb-8">
             <div className="relative overflow-hidden rounded-sm shadow-2xl bg-[oklch(0.30_0.055_65)]">
               <img
-                src={BA_IMAGES[active].src}
-                alt={`${BA_IMAGES[active].label} ビフォーアフター`}
+                src={items[safeActive].src}
+                alt={`${items[safeActive].label} ビフォーアフター`}
                 className="w-full object-cover transition-opacity duration-500"
                 style={{ aspectRatio: "3/4", objectFit: "cover" }}
               />
@@ -1984,10 +2019,10 @@ function BeforeAfterSection() {
                 <div className="flex items-end justify-between">
                   <div>
                     <span className="font-cormorant text-[oklch(0.72_0.038_93)] text-xs tracking-widest uppercase block mb-1">
-                      {BA_IMAGES[active].gender} · {BA_IMAGES[active].period}
+                      {items[safeActive].gender} · {items[safeActive].period}
                     </span>
                     <p className="font-mincho text-white text-lg font-bold">
-                      {BA_IMAGES[active].label}
+                      {items[safeActive].label}
                     </p>
                   </div>
                   <div className="flex gap-2">
@@ -2000,14 +2035,14 @@ function BeforeAfterSection() {
             </div>
             {/* ナビゲーション矢印 */}
             <button
-              onClick={() => setActive((prev) => (prev - 1 + BA_IMAGES.length) % BA_IMAGES.length)}
+              onClick={() => setActive((prev) => (prev - 1 + items.length) % items.length)}
               className="absolute left-[-20px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center text-[oklch(0.30_0.055_65)] hover:bg-[oklch(0.72_0.038_93)] hover:text-white transition-all"
               aria-label="前の画像"
             >
               ‹
             </button>
             <button
-              onClick={() => setActive((prev) => (prev + 1) % BA_IMAGES.length)}
+              onClick={() => setActive((prev) => (prev + 1) % items.length)}
               className="absolute right-[-20px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center text-[oklch(0.30_0.055_65)] hover:bg-[oklch(0.72_0.038_93)] hover:text-white transition-all"
               aria-label="次の画像"
             >
@@ -2017,12 +2052,12 @@ function BeforeAfterSection() {
 
           {/* サムネイルグリッド */}
           <div className="grid grid-cols-4 md:grid-cols-7 gap-2 max-w-2xl mx-auto">
-            {BA_IMAGES.map((img, i) => (
+            {items.map((img, i) => (
               <button
                 key={img.id}
                 onClick={() => setActive(i)}
                 className={`relative overflow-hidden rounded-sm transition-all duration-300 ${
-                  active === i
+                  safeActive === i
                     ? "ring-2 ring-[oklch(0.72_0.038_93)] ring-offset-2 opacity-100 scale-105"
                     : "opacity-60 hover:opacity-90"
                 }`}
@@ -2040,12 +2075,12 @@ function BeforeAfterSection() {
 
           {/* ドットインジケーター */}
           <div className="flex justify-center gap-2 mt-6">
-            {BA_IMAGES.map((_, i) => (
+            {items.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setActive(i)}
                 className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                  active === i ? "bg-[oklch(0.72_0.038_93)] w-6" : "bg-[oklch(0.72_0.038_93)/30]"
+                  safeActive === i ? "bg-[oklch(0.72_0.038_93)] w-6" : "bg-[oklch(0.72_0.038_93)/30]"
                 }`}
                 aria-label={`画像${i + 1}`}
               />
