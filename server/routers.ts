@@ -3,7 +3,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, protectedProcedure, staffOrManusProcedure, router } from "./_core/trpc";
 import { notifyOwner } from "./_core/notification";
-import { getDb, getCertifiedSalons, getAllCertifiedSalonsAdmin, createCertifiedSalon, updateCertifiedSalon, deleteCertifiedSalon } from "./db";
+import { getDb, getCertifiedSalons, getAllCertifiedSalonsAdmin, createCertifiedSalon, updateCertifiedSalon, deleteCertifiedSalon, getBeforeAfters, getAllBeforeAftersAdmin, createBeforeAfter, updateBeforeAfter, deleteBeforeAfter, getTestimonials, getAllTestimonialsAdmin, createTestimonial, updateTestimonial, deleteTestimonial, getBlogPosts, getBlogPostBySlug, getAllBlogPostsAdmin, createBlogPost, updateBlogPost, deleteBlogPost, getServiceMenus, getAllServiceMenusAdmin, createServiceMenu, updateServiceMenu, deleteServiceMenu } from "./db";
 import { reservations, scalpImages, staffAccounts } from "../drizzle/schema";
 import { authenticateStaff, verifyStaffToken, createStaffAccount, STAFF_JWT_COOKIE } from "./staffAuth";
 import { storagePut } from "./storage";
@@ -341,6 +341,269 @@ export const appRouter = router({
       if (!db) return [];
       return db.select().from(scalpImages).orderBy(desc(scalpImages.createdAt)).limit(50);
     }),
+  }),
+
+  /**
+   * ビフォーアフタールーター
+   */
+  beforeAfter: router({
+    list: publicProcedure
+      .input(z.object({ gender: z.string().optional() }))
+      .query(async ({ input }) => getBeforeAfters(input.gender)),
+
+    listAdmin: staffOrManusProcedure.query(() => getAllBeforeAftersAdmin()),
+
+    create: staffOrManusProcedure
+      .input(z.object({
+        title: z.string().min(1),
+        beforeImageUrl: z.string().min(1),
+        afterImageUrl: z.string().min(1),
+        period: z.string().optional(),
+        gender: z.enum(['women', 'men', 'both']).default('both'),
+        description: z.string().optional(),
+        sortOrder: z.number().optional(),
+        published: z.number().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        await createBeforeAfter({
+          title: input.title,
+          beforeImageUrl: input.beforeImageUrl,
+          afterImageUrl: input.afterImageUrl,
+          period: input.period ?? null,
+          gender: input.gender,
+          description: input.description ?? null,
+          sortOrder: input.sortOrder ?? 0,
+          published: input.published ?? 1,
+        });
+        return { success: true };
+      }),
+
+    update: staffOrManusProcedure
+      .input(z.object({
+        id: z.number(),
+        title: z.string().optional(),
+        beforeImageUrl: z.string().optional(),
+        afterImageUrl: z.string().optional(),
+        period: z.string().optional(),
+        gender: z.enum(['women', 'men', 'both']).optional(),
+        description: z.string().optional(),
+        sortOrder: z.number().optional(),
+        published: z.number().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { id, ...data } = input;
+        await updateBeforeAfter(id, data);
+        return { success: true };
+      }),
+
+    delete: staffOrManusProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await deleteBeforeAfter(input.id);
+        return { success: true };
+      }),
+  }),
+
+  /**
+   * お客様の声ルーター
+   */
+  testimonial: router({
+    list: publicProcedure
+      .input(z.object({ gender: z.string().optional() }))
+      .query(async ({ input }) => getTestimonials(input.gender)),
+
+    listAdmin: staffOrManusProcedure.query(() => getAllTestimonialsAdmin()),
+
+    create: staffOrManusProcedure
+      .input(z.object({
+        customerName: z.string().min(1),
+        customerAge: z.string().optional(),
+        concern: z.string().optional(),
+        rating: z.number().min(1).max(5).default(5),
+        content: z.string().min(1),
+        imageUrl: z.string().optional(),
+        gender: z.enum(['women', 'men', 'both']).default('both'),
+        sortOrder: z.number().optional(),
+        published: z.number().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        await createTestimonial({
+          customerName: input.customerName,
+          customerAge: input.customerAge ?? null,
+          concern: input.concern ?? null,
+          rating: input.rating,
+          content: input.content,
+          imageUrl: input.imageUrl ?? null,
+          gender: input.gender,
+          sortOrder: input.sortOrder ?? 0,
+          published: input.published ?? 1,
+        });
+        return { success: true };
+      }),
+
+    update: staffOrManusProcedure
+      .input(z.object({
+        id: z.number(),
+        customerName: z.string().optional(),
+        customerAge: z.string().optional(),
+        concern: z.string().optional(),
+        rating: z.number().min(1).max(5).optional(),
+        content: z.string().optional(),
+        imageUrl: z.string().optional(),
+        gender: z.enum(['women', 'men', 'both']).optional(),
+        sortOrder: z.number().optional(),
+        published: z.number().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { id, ...data } = input;
+        await updateTestimonial(id, data);
+        return { success: true };
+      }),
+
+    delete: staffOrManusProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await deleteTestimonial(input.id);
+        return { success: true };
+      }),
+  }),
+
+  /**
+   * ブログルーター
+   */
+  blog: router({
+    list: publicProcedure
+      .input(z.object({ category: z.string().optional() }))
+      .query(async ({ input }) => getBlogPosts(input.category)),
+
+    bySlug: publicProcedure
+      .input(z.object({ slug: z.string() }))
+      .query(async ({ input }) => getBlogPostBySlug(input.slug)),
+
+    listAdmin: staffOrManusProcedure.query(() => getAllBlogPostsAdmin()),
+
+    create: staffOrManusProcedure
+      .input(z.object({
+        title: z.string().min(1),
+        slug: z.string().min(1),
+        thumbnailUrl: z.string().optional(),
+        excerpt: z.string().optional(),
+        content: z.string().min(1),
+        category: z.string().optional(),
+        tags: z.string().optional(),
+        authorName: z.string().optional(),
+        status: z.enum(['draft', 'published']).default('draft'),
+        publishedAt: z.date().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        await createBlogPost({
+          title: input.title,
+          slug: input.slug,
+          thumbnailUrl: input.thumbnailUrl ?? null,
+          excerpt: input.excerpt ?? null,
+          content: input.content,
+          category: input.category ?? null,
+          tags: input.tags ?? null,
+          authorName: input.authorName ?? null,
+          status: input.status,
+          publishedAt: input.status === 'published' ? (input.publishedAt ?? new Date()) : null,
+        });
+        return { success: true };
+      }),
+
+    update: staffOrManusProcedure
+      .input(z.object({
+        id: z.number(),
+        title: z.string().optional(),
+        slug: z.string().optional(),
+        thumbnailUrl: z.string().optional(),
+        excerpt: z.string().optional(),
+        content: z.string().optional(),
+        category: z.string().optional(),
+        tags: z.string().optional(),
+        authorName: z.string().optional(),
+        status: z.enum(['draft', 'published']).optional(),
+        publishedAt: z.date().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { id, ...data } = input;
+        if (data.status === 'published' && !data.publishedAt) {
+          (data as any).publishedAt = new Date();
+        }
+        await updateBlogPost(id, data);
+        return { success: true };
+      }),
+
+    delete: staffOrManusProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await deleteBlogPost(input.id);
+        return { success: true };
+      }),
+  }),
+
+  /**
+   * メニュー・料金ルーター
+   */
+  menu: router({
+    list: publicProcedure
+      .input(z.object({ category: z.string().optional(), gender: z.string().optional() }))
+      .query(async ({ input }) => getServiceMenus(input.category, input.gender)),
+
+    listAdmin: staffOrManusProcedure.query(() => getAllServiceMenusAdmin()),
+
+    create: staffOrManusProcedure
+      .input(z.object({
+        name: z.string().min(1),
+        category: z.string().min(1),
+        durationMin: z.number().optional(),
+        price: z.number(),
+        priceLabel: z.string().optional(),
+        description: z.string().optional(),
+        gender: z.enum(['women', 'men', 'both']).default('both'),
+        sortOrder: z.number().optional(),
+        published: z.number().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        await createServiceMenu({
+          name: input.name,
+          category: input.category,
+          durationMin: input.durationMin ?? null,
+          price: input.price,
+          priceLabel: input.priceLabel ?? null,
+          description: input.description ?? null,
+          gender: input.gender,
+          sortOrder: input.sortOrder ?? 0,
+          published: input.published ?? 1,
+        });
+        return { success: true };
+      }),
+
+    update: staffOrManusProcedure
+      .input(z.object({
+        id: z.number(),
+        name: z.string().optional(),
+        category: z.string().optional(),
+        durationMin: z.number().optional(),
+        price: z.number().optional(),
+        priceLabel: z.string().optional(),
+        description: z.string().optional(),
+        gender: z.enum(['women', 'men', 'both']).optional(),
+        sortOrder: z.number().optional(),
+        published: z.number().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        const { id, ...data } = input;
+        await updateServiceMenu(id, data);
+        return { success: true };
+      }),
+
+    delete: staffOrManusProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await deleteServiceMenu(input.id);
+        return { success: true };
+      }),
   }),
 
   /**

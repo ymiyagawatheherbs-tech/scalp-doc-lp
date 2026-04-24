@@ -130,3 +130,168 @@ export async function deleteCertifiedSalon(id: number) {
   if (!db) throw new Error('DB not available');
   await db.delete(certifiedSalons).where(eq(certifiedSalons.id, id));
 }
+
+// ===== ビフォーアフター =====
+
+import { beforeAfters, testimonials, blogPosts, serviceMenus, InsertBeforeAfter, InsertTestimonial, InsertBlogPost, InsertServiceMenu } from "../drizzle/schema";
+
+export async function getBeforeAfters(gender?: string) {
+  const db = await getDb();
+  if (!db) return [];
+  const results = await db.select().from(beforeAfters)
+    .where(eq(beforeAfters.published, 1))
+    .orderBy(asc(beforeAfters.sortOrder), asc(beforeAfters.createdAt));
+  if (gender && gender !== 'both') {
+    return results.filter(b => b.gender === gender || b.gender === 'both');
+  }
+  return results;
+}
+
+export async function getAllBeforeAftersAdmin() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(beforeAfters).orderBy(asc(beforeAfters.sortOrder), asc(beforeAfters.createdAt));
+}
+
+export async function createBeforeAfter(data: InsertBeforeAfter) {
+  const db = await getDb();
+  if (!db) throw new Error('DB not available');
+  await db.insert(beforeAfters).values(data);
+}
+
+export async function updateBeforeAfter(id: number, data: Partial<InsertBeforeAfter>) {
+  const db = await getDb();
+  if (!db) throw new Error('DB not available');
+  await db.update(beforeAfters).set(data).where(eq(beforeAfters.id, id));
+}
+
+export async function deleteBeforeAfter(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error('DB not available');
+  await db.delete(beforeAfters).where(eq(beforeAfters.id, id));
+}
+
+// ===== お客様の声 =====
+
+export async function getTestimonials(gender?: string) {
+  const db = await getDb();
+  if (!db) return [];
+  const results = await db.select().from(testimonials)
+    .where(eq(testimonials.published, 1))
+    .orderBy(asc(testimonials.sortOrder), asc(testimonials.createdAt));
+  if (gender && gender !== 'both') {
+    return results.filter(t => t.gender === gender || t.gender === 'both');
+  }
+  return results;
+}
+
+export async function getAllTestimonialsAdmin() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(testimonials).orderBy(asc(testimonials.sortOrder), asc(testimonials.createdAt));
+}
+
+export async function createTestimonial(data: InsertTestimonial) {
+  const db = await getDb();
+  if (!db) throw new Error('DB not available');
+  await db.insert(testimonials).values(data);
+}
+
+export async function updateTestimonial(id: number, data: Partial<InsertTestimonial>) {
+  const db = await getDb();
+  if (!db) throw new Error('DB not available');
+  await db.update(testimonials).set(data).where(eq(testimonials.id, id));
+}
+
+export async function deleteTestimonial(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error('DB not available');
+  await db.delete(testimonials).where(eq(testimonials.id, id));
+}
+
+// ===== ブログ =====
+
+export async function getBlogPosts(category?: string) {
+  const db = await getDb();
+  if (!db) return [];
+  const { desc } = await import("drizzle-orm");
+  const results = await db.select().from(blogPosts)
+    .where(eq(blogPosts.status, 'published'))
+    .orderBy(desc(blogPosts.publishedAt));
+  if (category) {
+    return results.filter(p => p.category === category);
+  }
+  return results;
+}
+
+export async function getBlogPostBySlug(slug: string) {
+  const db = await getDb();
+  if (!db) return undefined;
+  const result = await db.select().from(blogPosts)
+    .where(eq(blogPosts.slug, slug)).limit(1);
+  return result.length > 0 ? result[0] : undefined;
+}
+
+export async function getAllBlogPostsAdmin() {
+  const db = await getDb();
+  if (!db) return [];
+  const { desc } = await import("drizzle-orm");
+  return db.select().from(blogPosts).orderBy(desc(blogPosts.createdAt));
+}
+
+export async function createBlogPost(data: InsertBlogPost) {
+  const db = await getDb();
+  if (!db) throw new Error('DB not available');
+  await db.insert(blogPosts).values(data);
+}
+
+export async function updateBlogPost(id: number, data: Partial<InsertBlogPost>) {
+  const db = await getDb();
+  if (!db) throw new Error('DB not available');
+  await db.update(blogPosts).set(data).where(eq(blogPosts.id, id));
+}
+
+export async function deleteBlogPost(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error('DB not available');
+  await db.delete(blogPosts).where(eq(blogPosts.id, id));
+}
+
+// ===== メニュー・料金 =====
+
+export async function getServiceMenus(category?: string, gender?: string) {
+  const db = await getDb();
+  if (!db) return [];
+  const results = await db.select().from(serviceMenus)
+    .where(eq(serviceMenus.published, 1))
+    .orderBy(asc(serviceMenus.sortOrder), asc(serviceMenus.createdAt));
+  return results.filter(m => {
+    if (category && m.category !== category) return false;
+    if (gender && gender !== 'both' && m.gender !== gender && m.gender !== 'both') return false;
+    return true;
+  });
+}
+
+export async function getAllServiceMenusAdmin() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(serviceMenus).orderBy(asc(serviceMenus.sortOrder), asc(serviceMenus.createdAt));
+}
+
+export async function createServiceMenu(data: InsertServiceMenu) {
+  const db = await getDb();
+  if (!db) throw new Error('DB not available');
+  await db.insert(serviceMenus).values(data);
+}
+
+export async function updateServiceMenu(id: number, data: Partial<InsertServiceMenu>) {
+  const db = await getDb();
+  if (!db) throw new Error('DB not available');
+  await db.update(serviceMenus).set(data).where(eq(serviceMenus.id, id));
+}
+
+export async function deleteServiceMenu(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error('DB not available');
+  await db.delete(serviceMenus).where(eq(serviceMenus.id, id));
+}

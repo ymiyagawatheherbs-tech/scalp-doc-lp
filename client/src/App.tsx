@@ -13,6 +13,12 @@ import PartnerDoc from "./pages/PartnerDoc";
 import Booking from "./pages/Booking";
 import Admin from "./pages/Admin";
 import StaffLogin from "./pages/StaffLogin";
+import AdminContent from "./pages/AdminContent";
+import AdminBeforeAfter from "./pages/AdminBeforeAfter";
+import AdminTestimonials from "./pages/AdminTestimonials";
+import AdminBlog from "./pages/AdminBlog";
+import AdminMenus from "./pages/AdminMenus";
+import AdminSalons from "./pages/AdminSalons";
 
 function Router() {
   // make sure to consider if you need authentication for certain routes
@@ -27,6 +33,12 @@ function Router() {
       <Route path={"/booking"} component={Booking} />
       <Route path={"/admin"} component={Admin} />
       <Route path={"/staff-login"} component={StaffLogin} />
+      <Route path={"/admin/content"} component={AdminContent} />
+      <Route path={"/admin/before-after"} component={AdminBeforeAfter} />
+      <Route path={"/admin/testimonials"} component={AdminTestimonials} />
+      <Route path={"/admin/blog"} component={AdminBlog} />
+      <Route path={"/admin/menus"} component={AdminMenus} />
+      <Route path={"/admin/salons"} component={AdminSalons} />
       <Route path={"/404"} component={NotFound} />
       {/* Final fallback route */}
       <Route component={NotFound} />

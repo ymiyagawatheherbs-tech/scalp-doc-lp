@@ -1,4 +1,4 @@
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar } from "drizzle-orm/mysql-core";
+import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, boolean } from "drizzle-orm/mysql-core";
 
 /**
  * Core user table backing auth flow.
@@ -137,3 +137,123 @@ export const certifiedSalons = mysqlTable("certified_salons", {
 
 export type CertifiedSalon = typeof certifiedSalons.$inferSelect;
 export type InsertCertifiedSalon = typeof certifiedSalons.$inferInsert;
+
+/**
+ * ビフォーアフターテーブル — 施術前後の写真と説明を管理する
+ */
+export const beforeAfters = mysqlTable("before_afters", {
+  id: int("id").autoincrement().primaryKey(),
+  /** タイトル（例：うねり・広がりケア） */
+  title: varchar("title", { length: 128 }).notNull(),
+  /** ビフォー画像URL（S3） */
+  beforeImageUrl: text("beforeImageUrl").notNull(),
+  /** アフター画像URL（S3） */
+  afterImageUrl: text("afterImageUrl").notNull(),
+  /** 施術期間（例：7ヶ月後） */
+  period: varchar("period", { length: 64 }),
+  /** 対象性別: women / men / both */
+  gender: mysqlEnum("gender", ["women", "men", "both"]).default("both").notNull(),
+  /** 施術内容の説明 */
+  description: text("description"),
+  /** 表示順（小さいほど上位） */
+  sortOrder: int("sortOrder").default(0).notNull(),
+  /** 公開フラグ: 1=公開, 0=非公開 */
+  published: int("published").default(1).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BeforeAfter = typeof beforeAfters.$inferSelect;
+export type InsertBeforeAfter = typeof beforeAfters.$inferInsert;
+
+/**
+ * お客様の声テーブル — レビュー・お客様の声を管理する
+ */
+export const testimonials = mysqlTable("testimonials", {
+  id: int("id").autoincrement().primaryKey(),
+  /** お客様のお名前（例：A様、田中様） */
+  customerName: varchar("customerName", { length: 64 }).notNull(),
+  /** 年代（例：40代女性） */
+  customerAge: varchar("customerAge", { length: 32 }),
+  /** お悩みタグ（例：うねり・薄毛） */
+  concern: varchar("concern", { length: 128 }),
+  /** 評価（1〜5） */
+  rating: int("rating").default(5).notNull(),
+  /** お客様の声テキスト */
+  content: text("content").notNull(),
+  /** お客様の写真URL（任意・S3） */
+  imageUrl: text("imageUrl"),
+  /** 対象性別: women / men / both */
+  gender: mysqlEnum("gender", ["women", "men", "both"]).default("both").notNull(),
+  /** 表示順（小さいほど上位） */
+  sortOrder: int("sortOrder").default(0).notNull(),
+  /** 公開フラグ: 1=公開, 0=非公開 */
+  published: int("published").default(1).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type Testimonial = typeof testimonials.$inferSelect;
+export type InsertTestimonial = typeof testimonials.$inferInsert;
+
+/**
+ * ブログ記事テーブル — スタッフが投稿するブログ・コラムを管理する
+ */
+export const blogPosts = mysqlTable("blog_posts", {
+  id: int("id").autoincrement().primaryKey(),
+  /** 記事タイトル */
+  title: varchar("title", { length: 256 }).notNull(),
+  /** URLスラッグ（英数字・ハイフン） */
+  slug: varchar("slug", { length: 256 }).notNull().unique(),
+  /** サムネイル画像URL（S3） */
+  thumbnailUrl: text("thumbnailUrl"),
+  /** 記事の概要（一覧表示用） */
+  excerpt: text("excerpt"),
+  /** 記事本文（Markdown形式） */
+  content: text("content").notNull(),
+  /** カテゴリ（例：頭皮ケア, 植物美容, スタッフコラム） */
+  category: varchar("category", { length: 64 }),
+  /** タグ（カンマ区切り） */
+  tags: text("tags"),
+  /** 投稿者名 */
+  authorName: varchar("authorName", { length: 64 }),
+  /** ステータス: draft=下書き, published=公開 */
+  status: mysqlEnum("status", ["draft", "published"]).default("draft").notNull(),
+  /** 公開日時 */
+  publishedAt: timestamp("publishedAt"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type BlogPost = typeof blogPosts.$inferSelect;
+export type InsertBlogPost = typeof blogPosts.$inferInsert;
+
+/**
+ * メニュー・料金テーブル — サービスメニューと料金を管理する
+ */
+export const serviceMenus = mysqlTable("service_menus", {
+  id: int("id").autoincrement().primaryKey(),
+  /** メニュー名 */
+  name: varchar("name", { length: 128 }).notNull(),
+  /** カテゴリ（例：スカルプケア, 育毛, ヘッドスパ） */
+  category: varchar("category", { length: 64 }).notNull(),
+  /** 所要時間（分） */
+  durationMin: int("durationMin"),
+  /** 料金（円） */
+  price: int("price").notNull(),
+  /** 料金表示テキスト（例：「税込」「〜より」） */
+  priceLabel: varchar("priceLabel", { length: 64 }),
+  /** メニューの説明 */
+  description: text("description"),
+  /** 対象性別: women / men / both */
+  gender: mysqlEnum("gender", ["women", "men", "both"]).default("both").notNull(),
+  /** 表示順（小さいほど上位） */
+  sortOrder: int("sortOrder").default(0).notNull(),
+  /** 公開フラグ: 1=公開, 0=非公開 */
+  published: int("published").default(1).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type ServiceMenu = typeof serviceMenus.$inferSelect;
+export type InsertServiceMenu = typeof serviceMenus.$inferInsert;
