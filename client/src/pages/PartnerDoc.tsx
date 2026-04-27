@@ -45,8 +45,8 @@ const C = {
 
 // ── LINE URL ──────────────────────────────────────────────
 const LINE_URL = "https://lin.ee/6GDbcebK";
-const SEMINAR_URL = "https://www.the-herbs.co.jp/event-details/scalp-labo-online"; // 説明会申込
-const TRIAL_URL = "https://www.the-herbs.co.jp/event-details/taiken"; // 体験会申込
+const SEMINAR_URL = "https://liff.line.me/2009830640-luW0lUXi?liff_id=2009830640-luW0lUXi&is=bcljDz4G8D&option_key=oKCS046HyJ"; // 説明会申込
+const TRIAL_URL = "https://liff.line.me/2009830640-luW0lUXi?liff_id=2009830640-luW0lUXi&is=bcljDz4G8D&option_key=TFpZH45DAg"; // 体験会申込
 
 // ── 共通コンポーネント ────────────────────────────────────
 
