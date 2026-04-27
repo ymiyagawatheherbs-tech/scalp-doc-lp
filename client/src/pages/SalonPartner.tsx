@@ -1428,13 +1428,13 @@ function HomeCareAppSection() {
             </p>
             <ul className="space-y-4 mb-10">
               {[
-                { icon: "📊", title: "頭皮チェックデータの共有", desc: "サロンで撮影した頭皮画像をアプリで共有。お客様が自宅で状態を確認できます。" },
-                { icon: "🌿", title: "パーソナライズドホームケア提案", desc: "頭皮の状態に合わせたシャンプー・トリートメントをアプリから提案できます。" },
-                { icon: "🔔", title: "定期チェックのリマインド", desc: "次回の頭皮チェック時期を自動通知。定期来店を無理なく継続させます。" },
-                { icon: "📝", title: "生活習慣ログの記録", desc: "食事・睡眠・ストレスなど、頭皮に影響する生活習慣を記録。チェック時の小話に活用できます。" },
+                { icon: "", title: "頭皮チェックデータの共有", desc: "サロンで撮影した頭皮画像をアプリで共有。お客様が自宅で状態を確認できます。" },
+                { icon: "", title: "パーソナライズドホームケア提案", desc: "頭皮の状態に合わせたシャンプー・トリートメントをアプリから提案できます。" },
+                { icon: "", title: "定期チェックのリマインド", desc: "次回の頭皮チェック時期を自動通知。定期来店を無理なく継続させます。" },
+                { icon: "", title: "生活習慣ログの記録", desc: "食事・睡眠・ストレスなど、頭皮に影響する生活習慣を記録。チェック時の小話に活用できます。" },
               ].map((item, i) => (
                 <li key={i} className="flex items-start gap-4">
-                  <span className="text-2xl flex-shrink-0 mt-0.5">{item.icon}</span>
+                  {item.icon && <span className="text-2xl flex-shrink-0 mt-0.5">{item.icon}</span>}
                   <div>
                     <p className="text-sm font-bold mb-1" style={{ color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}>{item.title}</p>
                     <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.65)", fontFamily: "'Noto Sans JP', sans-serif", lineHeight: "1.8" }}>{item.desc}</p>
@@ -1443,7 +1443,7 @@ function HomeCareAppSection() {
               ))}
             </ul>
             <div className="p-5" style={{ backgroundColor: "rgba(90,122,82,0.2)", borderLeft: "3px solid #5a7a52" }}>
-              <p className="text-sm font-bold mb-1" style={{ color: "#a8d5a2", fontFamily: "'Noto Sans JP', sans-serif" }}>💡 サロンとお客様の絆が深まる</p>
+              <p className="text-sm font-bold mb-1" style={{ color: "#a8d5a2", fontFamily: "'Noto Sans JP', sans-serif" }}>サロンとお客様の絆が深まる</p>
               <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.75)", fontFamily: "'Noto Sans JP', sans-serif", lineHeight: "1.8" }}>
                 ホームケアのサポートができるサロンは、単なる施術提供者ではなく、「頭皮ケアのパートナー」として信頼されます。継続率・定期来店率の向上に直結します。
               </p>
@@ -1565,25 +1565,7 @@ function SixFeatures() {
 // ========== 新規募集告知バナー ==========
 function RecruitmentBanner() {
   const { ref, inView } = useInView();
-  // カウントダウン
-  const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-  useEffect(() => {
-    const target = new Date("2026-06-12T00:00:00+09:00").getTime();
-    const tick = () => {
-      const now = Date.now();
-      const diff = target - now;
-      if (diff <= 0) { setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 }); return; }
-      setTimeLeft({
-        days: Math.floor(diff / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-        minutes: Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)),
-        seconds: Math.floor((diff % (1000 * 60)) / 1000),
-      });
-    };
-    tick();
-    const id = setInterval(tick, 1000);
-    return () => clearInterval(id);
-  }, []);
+
   return (
     <section
       ref={ref}
@@ -1602,27 +1584,7 @@ function RecruitmentBanner() {
         <p className="text-5xl md:text-6xl font-bold mb-8" style={{ fontFamily: "'Cormorant Garamond', serif", color: "#c9a84c", letterSpacing: "0.05em" }}>
           2026.06.12
         </p>
-        {/* カウントダウン */}
-        <div className="flex justify-center gap-6 mb-10">
-          {[
-            { value: timeLeft.days, label: "DAYS" },
-            { value: timeLeft.hours, label: "HOURS" },
-            { value: timeLeft.minutes, label: "MIN" },
-            { value: timeLeft.seconds, label: "SEC" },
-          ].map((item) => (
-            <div key={item.label} className="text-center">
-              <div
-                className="w-16 h-16 md:w-20 md:h-20 flex items-center justify-center mb-2"
-                style={{ backgroundColor: "rgba(255,255,255,0.08)", border: "1px solid rgba(201,168,76,0.3)" }}
-              >
-                <span className="text-2xl md:text-3xl font-bold" style={{ color: "#ffffff", fontFamily: "'Cormorant Garamond', serif" }}>
-                  {String(item.value).padStart(2, "0")}
-                </span>
-              </div>
-              <span className="text-xs tracking-widest" style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'Noto Sans JP', sans-serif" }}>{item.label}</span>
-            </div>
-          ))}
-        </div>
+
         <p className="text-sm mb-8 leading-relaxed" style={{ color: "rgba(255,255,255,0.75)", fontFamily: "'Noto Sans JP', sans-serif", lineHeight: "1.9" }}>
           先行登録いただいた方には、認定プログラムの詳細資料・収益シミュレーション・<br className="hidden md:block" />
           初回導入特典を優先的にご案内いたします。
@@ -1701,7 +1663,7 @@ function Footer() {
           src="https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/logo_olive_12a41c11.webp"
           alt="THE HERBS SCALP LABO"
           className="w-auto object-contain"
-          style={{ height: "56px", filter: "brightness(0) invert(1)", opacity: 0.7 }}
+          style={{ height: "56px", objectFit: "contain" }}
         />
       </div>
       {/* 運営会社情報 */}
