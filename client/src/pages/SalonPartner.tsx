@@ -138,7 +138,6 @@ function Nav() {
             {[
               { label: "コンセプト", href: "#concept" },
               { label: "サービス内容", href: "#service" },
-              { label: "収益モデル", href: "#revenue" },
               { label: "FAQ", href: "#faq" },
             ].map((item) => (
               <a
@@ -1768,9 +1767,7 @@ export default function SalonPartner() {
       <Concept />
       <WhatWeDo />
       <LineCtaSection />
-      <RevenueSimulation />
       <HairdresserSection />
-      <StartupCost />
       <WhoCanJoin />
       <ProgramSteps />
       <Faq />
