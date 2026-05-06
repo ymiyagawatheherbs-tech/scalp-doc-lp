@@ -280,7 +280,7 @@ function BlueOcean() {
           </h2>
           <p className="text-base max-w-2xl mx-auto leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.75)", lineHeight: "1.9" }}>
             美容室は飽和状態。エステも競争が激化しています。<br />
-            しかし「頭皮チェック」や「頭皮の定期ケア」など、専門的に提供するサロンは、まだほとんど存在しません。
+            しかし「頭皮チェック」や「頭皮の定期ケア」など、専門的に提供するサロンはこれからの分野です。
           </p>
         </div>
 
@@ -344,24 +344,24 @@ function BlueOcean() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 text-center">
             {[
               { area: "美容サービス", desc: "スタイリング・施術の提供", color: "rgba(255,255,255,0.15)", textColor: "#222020", note: "商品・施術が主役" },
-              { area: "THE HERBS SCALP LABO", desc: "頭皮の定期チェック＋ケアの習慣化", color: "#a8d5a2", textColor: "#2a3e2a", note: "習慣化が主役（ブルーオーシャン）", highlight: true },
+              { area: "SCALP LABO", desc: "頭皮の定期チェック＋ケアの習慣化", color: "#c2432e", textColor: "#ffffff", note: "習慣化が主役\n（ブルーオーシャン）", highlight: true },
               { area: "医療機関", desc: "診断・治療・処方", color: "rgba(255,255,255,0.15)", textColor: "#222020", note: "疾患対応が主役" },
             ].map((pos, i) => (
               <div
                 key={i}
                 className="p-6"
-                style={{ backgroundColor: '#dff4dd' }}
+                style={{ backgroundColor: pos.highlight ? pos.color : 'rgba(255,255,255,0.15)' }}
               >
-                <p className="text-xs tracking-widest mb-2" style={{ color: pos.highlight ? "#5a7a52" : "#555", fontFamily: "'Noto Sans JP', sans-serif" }}>
+                <p className="text-xs tracking-widest mb-2" style={{ color: pos.highlight ? "#ffffff" : "rgba(255,255,255,0.5)", fontFamily: "'Noto Sans JP', sans-serif" }}>
                   {pos.highlight ? "◀ ここに参入 ▶" : "　"}
                 </p>
                 <h4 className="text-lg font-bold mb-2" style={{ fontFamily: "'Shippori Mincho', serif", color: pos.textColor }}>
                   {pos.area}
                 </h4>
-                <p className="text-sm mb-3" style={{ color: pos.highlight ? "#2a3e2a" : "#444", fontFamily: "'Noto Sans JP', sans-serif" }}>
+                <p className="text-sm mb-3" style={{ color: pos.highlight ? "#ffffff" : "rgba(255,255,255,0.7)", fontFamily: "'Noto Sans JP', sans-serif" }}>
                   {pos.desc}
                 </p>
-                <p className="text-xs" style={{ color: pos.highlight ? "#5a7a52" : "#666", fontFamily: "'Noto Sans JP', sans-serif", fontWeight: pos.highlight ? "bold" : "normal" }}>
+                <p className="text-xs" style={{ color: pos.highlight ? "#ffffff" : "rgba(255,255,255,0.5)", fontFamily: "'Noto Sans JP', sans-serif", fontWeight: pos.highlight ? "bold" : "normal", whiteSpace: "pre-line" }}>
                   {pos.note}
                 </p>
               </div>
