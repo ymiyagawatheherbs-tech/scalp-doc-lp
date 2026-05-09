@@ -109,13 +109,11 @@ function Nav() {
               </span>
             </Link>
             <a
-              href={LINE_SALON.url}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contact"
               className="hidden sm:block text-xs font-bold px-4 py-2 transition-all whitespace-nowrap"
-              style={{ backgroundColor: "#06C755", color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}
+              style={{ backgroundColor: "#c9a84c", color: "#1a1a1a", fontFamily: "'Noto Sans JP', sans-serif" }}
             >
-              LINEで資料を受け取る
+              資料を受け取る（無料）
             </a>
             {/* モバイルハンバーガー */}
             <button
@@ -152,14 +150,12 @@ function Nav() {
             ))}
           </div>
           <a
-            href={LINE_SALON.url}
-            target="_blank"
-            rel="noopener noreferrer"
+            href="#contact"
             className="flex items-center justify-center gap-2 py-4 font-bold text-base"
-            style={{ backgroundColor: "#06C755", color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}
+            style={{ backgroundColor: "#c9a84c", color: "#1a1a1a", fontFamily: "'Noto Sans JP', sans-serif" }}
             onClick={() => setMenuOpen(false)}
           >
-            LINEで資料を受け取る（無料）
+            資料を受け取る（無料）
           </a>
           <Link
             href="/"
@@ -229,18 +225,13 @@ function Hero() {
           </div>
           <div className="flex flex-col sm:flex-row gap-4">
             <a
-              href={LINE_SALON.url}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="#contact"
               className="inline-flex items-center justify-center gap-2 px-8 py-4 font-bold text-sm tracking-wider transition-all duration-300"
-              style={{ backgroundColor: "#06C755", color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}
-              onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#05a847")}
-              onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#06C755")}
+              style={{ backgroundColor: "#c9a84c", color: "#1a1a1a", fontFamily: "'Noto Sans JP', sans-serif" }}
+              onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#b8963e")}
+              onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#c9a84c")}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.58 5.8 4.04 7.54L5.5 22l4.14-2.16C10.39 20.27 11.18 20.4 12 20.4c5.52 0 10-4.02 10-9S17.52 2 12 2z"/>
-              </svg>
-              LINEで資料を受け取る（無料）
+              資料を受け取る（無料）
             </a>
             <a
               href="#concept"
@@ -253,7 +244,7 @@ function Hero() {
             </a>
           </div>
           <p className="mt-4 text-xs" style={{ color: "#aaa", fontFamily: "'Noto Sans JP', sans-serif" }}>
-            {LINE_SALON.account} ／ 登録後すぐに資料をお送りします
+            フォーム送信後すぐに資料ページへご案内します
           </p>
         </div>
       </div>
@@ -1718,21 +1709,18 @@ function RecruitmentBanner() {
           初回導入特典を優先的にご案内いたします。
         </p>
         <a
-          href={LINE_SALON.url}
-          target="_blank"
-          rel="noopener noreferrer"
+          href="#contact"
           className="inline-flex items-center gap-3 px-10 py-4 font-bold text-sm"
           style={{
-            backgroundColor: "#06C755",
-            color: "#ffffff",
+            backgroundColor: "#c9a84c",
+            color: "#1a1a1a",
             fontFamily: "'Noto Sans JP', sans-serif",
             letterSpacing: "0.05em",
           }}
         >
-          <svg viewBox="0 0 24 24" className="w-5 h-5" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-          LINEで先行登録する（無料）
+          資料を受け取る（無料）
         </a>
-        <p className="text-xs mt-4" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>※ 登録後、詳細資料を順次お送りします</p>
+        <p className="text-xs mt-4" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>※ フォーム送信後すぐに資料ページへご案内します</p>
       </div>
     </section>
   );
