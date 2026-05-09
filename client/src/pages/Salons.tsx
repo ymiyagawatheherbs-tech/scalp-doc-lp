@@ -160,7 +160,7 @@ export default function Salons() {
       <div style={{ background: "#2C1810", padding: "16px 24px" }}>
         <div style={{ maxWidth: "1200px", margin: "0 auto", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
           <div>
-            <Link href="/"><a style={{ color: "#c9a96e", fontSize: "12px", textDecoration: "none" }}>← スカルプラボ TOP</a></Link>
+            <Link href="/" style={{ color: "#c9a96e", fontSize: "12px", textDecoration: "none" }}>← スカルプラボ TOP</Link>
             <h1 style={{ color: "#F5F0E8", fontSize: "20px", fontWeight: "700", margin: "4px 0 0", letterSpacing: "0.05em" }}>
               パートナーサロン一覧
             </h1>

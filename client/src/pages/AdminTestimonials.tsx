@@ -71,7 +71,7 @@ function AdminGuard({ children }: { children: React.ReactNode }) {
   const isAuthenticated = isManusAuth || !!staffUser;
   const loading = manusLoading || staffLoading;
   if (loading) return <div style={{ minHeight: "100vh", background: "#F5F0E8", display: "flex", alignItems: "center", justifyContent: "center" }}><p style={{ color: "#2C1810" }}>読み込み中...</p></div>;
-  if (!isAuthenticated) return <div style={{ minHeight: "100vh", background: "#F5F0E8", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: "16px" }}><p style={{ color: "#2C1810" }}>ログインが必要です</p><Link href="/staff-login"><a style={{ background: "#2C1810", color: "#F5F0E8", padding: "10px 24px", borderRadius: "6px", textDecoration: "none" }}>ログイン</a></Link></div>;
+  if (!isAuthenticated) return <div style={{ minHeight: "100vh", background: "#F5F0E8", display: "flex", alignItems: "center", justifyContent: "center", flexDirection: "column", gap: "16px" }}><p style={{ color: "#2C1810" }}>ログインが必要です</p><Link href="/staff-login" style={{ background: "#2C1810", color: "#F5F0E8", padding: "10px 24px", borderRadius: "6px", textDecoration: "none" }}>ログイン</Link></div>;
   return <>{children}</>;
 }
 
@@ -104,7 +104,7 @@ export default function AdminTestimonials() {
     <AdminGuard>
       <div style={{ minHeight: "100vh", background: "#F5F0E8", fontFamily: "Noto Sans JP, sans-serif" }}>
         <div style={{ background: "#2C1810", padding: "16px 24px", display: "flex", alignItems: "center", gap: "12px" }}>
-          <Link href="/admin/content"><a style={{ color: "#c9a96e", fontSize: "12px", textDecoration: "none" }}>← 管理メニュー</a></Link>
+          <Link href="/admin/content" style={{ color: "#c9a96e", fontSize: "12px", textDecoration: "none" }}>← 管理メニュー</Link>
           <span style={{ color: "#c9a96e", opacity: 0.4 }}>|</span>
           <h1 style={{ color: "#F5F0E8", fontSize: "16px", fontWeight: "600", margin: 0 }}>お客様の声管理</h1>
         </div>
