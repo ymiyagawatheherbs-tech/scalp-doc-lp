@@ -3,7 +3,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, protectedProcedure, staffOrManusProcedure, router } from "./_core/trpc";
 import { notifyOwner } from "./_core/notification";
-import { getDb, getCertifiedSalons, getAllCertifiedSalonsAdmin, createCertifiedSalon, updateCertifiedSalon, deleteCertifiedSalon, getBeforeAfters, getAllBeforeAftersAdmin, createBeforeAfter, updateBeforeAfter, deleteBeforeAfter, getTestimonials, getAllTestimonialsAdmin, createTestimonial, updateTestimonial, deleteTestimonial, getBlogPosts, getBlogPostBySlug, getAllBlogPostsAdmin, createBlogPost, updateBlogPost, deleteBlogPost, getServiceMenus, getAllServiceMenusAdmin, createServiceMenu, updateServiceMenu, deleteServiceMenu, createSalonLead, getAllSalonLeads, issueSalonLeadToken, verifySalonLeadToken } from "./db";
+import { getDb, getCertifiedSalons, getAllCertifiedSalonsAdmin, createCertifiedSalon, updateCertifiedSalon, deleteCertifiedSalon, getBeforeAfters, getAllBeforeAftersAdmin, createBeforeAfter, updateBeforeAfter, deleteBeforeAfter, getTestimonials, getAllTestimonialsAdmin, createTestimonial, updateTestimonial, deleteTestimonial, getBlogPosts, getBlogPostBySlug, getAllBlogPostsAdmin, createBlogPost, updateBlogPost, deleteBlogPost, getServiceMenus, getAllServiceMenusAdmin, createServiceMenu, updateServiceMenu, deleteServiceMenu, createSalonLead, getAllSalonLeads, issueSalonLeadToken, verifySalonLeadToken, reissueSalonLeadToken, updateSalonLeadStatus } from "./db";
 import { reservations, scalpImages, staffAccounts } from "../drizzle/schema";
 import { authenticateStaff, verifyStaffToken, createStaffAccount, STAFF_JWT_COOKIE } from "./staffAuth";
 import { storagePut } from "./storage";
@@ -770,6 +770,27 @@ export const appRouter = router({
     list: staffOrManusProcedure.query(async () => {
       return getAllSalonLeads();
     }),
+
+    /** 管理者用：トークン再発行 */
+    reissueToken: staffOrManusProcedure
+      .input(z.object({ leadId: z.number() }))
+      .mutation(async ({ input }) => {
+        const token = nanoid(32);
+        await reissueSalonLeadToken(input.leadId, token);
+        const expiresAt = Date.now() + 72 * 60 * 60 * 1000;
+        return { token, expiresAt };
+      }),
+
+    /** 管理者用：ステータス更新 */
+    updateStatus: staffOrManusProcedure
+      .input(z.object({
+        leadId: z.number(),
+        status: z.enum(['new', 'contacted', 'converted', 'archived']),
+      }))
+      .mutation(async ({ input }) => {
+        await updateSalonLeadStatus(input.leadId, input.status);
+        return { success: true };
+      }),
   }),
 });
 

@@ -326,8 +326,30 @@ export async function verifySalonLeadToken(token: string) {
   return lead;
 }
 
+/** 新しいトークンを再発行してリードに保存する（72時間有効） */
+export async function reissueSalonLeadToken(leadId: number, token: string): Promise<void> {
+  const db = await getDb();
+  if (!db) throw new Error('DB not available');
+  const expiresAt = Date.now() + 72 * 60 * 60 * 1000;
+  await db.update(salonLeads)
+    .set({ accessToken: token, tokenExpiresAt: expiresAt })
+    .where(eq(salonLeads.id, leadId));
+}
+
+/** リードのステータスを更新する */
+export async function updateSalonLeadStatus(
+  leadId: number,
+  status: 'new' | 'contacted' | 'converted' | 'archived'
+): Promise<void> {
+  const db = await getDb();
+  if (!db) throw new Error('DB not available');
+  await db.update(salonLeads)
+    .set({ status })
+    .where(eq(salonLeads.id, leadId));
+}
+
 export async function getAllSalonLeads() {
   const db = await getDb();
   if (!db) return [];
-  return db.select().from(salonLeads).orderBy(salonLeads.createdAt);
+  return db.select().from(salonLeads).orderBy(desc(salonLeads.createdAt));
 }

@@ -10,6 +10,20 @@ import { trpc } from "@/lib/trpc";
 import { getLoginUrl } from "@/const";
 import { toast } from "sonner";
 
+const OCCUPATION_LABELS: Record<string, string> = {
+  beautician: "美容師",
+  esthetic: "エステ・ヘッドスパ",
+  home_salon: "自宅サロン",
+  other: "その他",
+};
+
+const STATUS_LABELS: Record<string, { label: string; color: string; bg: string }> = {
+  new:       { label: "新規",       color: "#1e40af", bg: "#dbeafe" },
+  contacted: { label: "連絡済",     color: "#92400e", bg: "#fef3c7" },
+  converted: { label: "成約",       color: "#065f46", bg: "#d1fae5" },
+  archived:  { label: "アーカイブ", color: "#6b7280", bg: "#f3f4f6" },
+};
+
 export default function OwnerAdmin() {
   const { isAuthenticated, loading } = useAuth();
 
@@ -127,6 +141,9 @@ export default function OwnerAdmin() {
           </div>
         </section>
 
+        {/* リード一覧 */}
+        <LeadSection isAuthenticated={isAuthenticated} />
+
         {/* スタッフアカウント管理 */}
         <section>
           <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1rem", paddingBottom: "0.5rem", borderBottom: "2px solid #e8ddd0", flexWrap: "wrap", gap: "0.5rem" }}>
@@ -209,5 +226,161 @@ export default function OwnerAdmin() {
         </section>
       </main>
     </div>
+  );
+}
+
+// ========== リード一覧セクション ==========
+function LeadSection({ isAuthenticated }: { isAuthenticated: boolean }) {
+  const utils = trpc.useUtils();
+  const { data: leads, isLoading } = trpc.salonLead.list.useQuery(undefined, {
+    enabled: isAuthenticated,
+    refetchOnWindowFocus: false,
+  });
+
+  const reissueToken = trpc.salonLead.reissueToken.useMutation({
+    onSuccess: (data, variables) => {
+      const url = `${window.location.origin}/partner-doc?token=${data.token}`;
+      navigator.clipboard.writeText(url).then(() => {
+        toast.success("リンクをクリップボードにコピーしました！72時間有効");
+      }).catch(() => {
+        toast.success(`新リンク: ${url}`);
+      });
+      utils.salonLead.list.invalidate();
+    },
+    onError: (err) => toast.error(err.message || "再発行に失敗しました"),
+  });
+
+  const updateStatus = trpc.salonLead.updateStatus.useMutation({
+    onSuccess: () => {
+      utils.salonLead.list.invalidate();
+    },
+    onError: (err) => toast.error(err.message || "ステータス更新に失敗しました"),
+  });
+
+  const inputStyle: React.CSSProperties = {
+    padding: "0.3rem 0.5rem",
+    border: "1.5px solid #e0d8d0",
+    borderRadius: "4px",
+    fontSize: "0.78rem",
+    color: "#333",
+    background: "#fdfaf7",
+    fontFamily: "'Noto Sans JP', sans-serif",
+    cursor: "pointer",
+  };
+
+  return (
+    <section style={{ marginBottom: "3rem" }}>
+      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: "1rem", paddingBottom: "0.5rem", borderBottom: "2px solid #e8ddd0", flexWrap: "wrap", gap: "0.5rem" }}>
+        <h2 style={{ fontSize: "0.95rem", fontWeight: 700, color: "#2a1a0a", margin: 0 }}>
+          資料請求リード一覧
+        </h2>
+        {leads && (
+          <span style={{ fontSize: "0.78rem", color: "#888", background: "#f5f0ea", padding: "0.2rem 0.6rem", borderRadius: "12px" }}>
+            {leads.length}件
+          </span>
+        )}
+      </div>
+
+      {isLoading ? (
+        <p style={{ fontSize: "0.82rem", color: "#aaa", padding: "1.5rem", textAlign: "center" }}>読み込み中...</p>
+      ) : !leads || leads.length === 0 ? (
+        <p style={{ fontSize: "0.82rem", color: "#aaa", textAlign: "center", padding: "2rem", background: "white", borderRadius: "6px", border: "1px solid #e8ddd0" }}>
+          まだ資料請求がありません。
+        </p>
+      ) : (
+        <div style={{ overflowX: "auto" }}>
+          <table style={{ width: "100%", borderCollapse: "collapse", fontSize: "0.8rem", background: "white", borderRadius: "6px", overflow: "hidden", boxShadow: "0 2px 8px rgba(0,0,0,0.04)" }}>
+            <thead>
+              <tr style={{ background: "#f5f0ea", borderBottom: "2px solid #e8ddd0" }}>
+                {["氏名", "職業", "連絡先", "トークン状態", "ステータス", "登録日", "操作"].map((h) => (
+                  <th key={h} style={{ padding: "0.6rem 0.8rem", textAlign: "left", fontWeight: 700, color: "#5a3e28", fontSize: "0.75rem", letterSpacing: "0.04em", whiteSpace: "nowrap" }}>{h}</th>
+                ))}
+              </tr>
+            </thead>
+            <tbody>
+              {leads.map((lead, i) => {
+                const now = Date.now();
+                const tokenValid = lead.accessToken && lead.tokenExpiresAt && now < lead.tokenExpiresAt;
+                const tokenExpired = lead.accessToken && lead.tokenExpiresAt && now >= lead.tokenExpiresAt;
+                const hoursLeft = lead.tokenExpiresAt ? Math.max(0, Math.floor((lead.tokenExpiresAt - now) / 3600000)) : 0;
+                const st = STATUS_LABELS[lead.status] ?? STATUS_LABELS.new;
+
+                return (
+                  <tr key={lead.id} style={{ borderBottom: "1px solid #f0e8e0", background: i % 2 === 0 ? "white" : "#fdfaf7" }}>
+                    {/* 氏名 */}
+                    <td style={{ padding: "0.6rem 0.8rem", fontWeight: 600, color: "#2a1a0a", whiteSpace: "nowrap" }}>{lead.name}</td>
+
+                    {/* 職業 */}
+                    <td style={{ padding: "0.6rem 0.8rem", color: "#555", whiteSpace: "nowrap" }}>
+                      {OCCUPATION_LABELS[lead.occupation] ?? lead.occupation}
+                    </td>
+
+                    {/* 連絡先 */}
+                    <td style={{ padding: "0.6rem 0.8rem", color: "#555", maxWidth: "180px", wordBreak: "break-all" }}>
+                      <span style={{ fontSize: "0.72rem", color: "#888", marginRight: "0.3rem" }}>
+                        {lead.contactType === "phone" ? "✆" : "✉"}
+                      </span>
+                      {lead.contact}
+                    </td>
+
+                    {/* トークン状態 */}
+                    <td style={{ padding: "0.6rem 0.8rem", whiteSpace: "nowrap" }}>
+                      {tokenValid ? (
+                        <span style={{ display: "inline-block", padding: "0.2rem 0.5rem", borderRadius: "10px", background: "#d1fae5", color: "#065f46", fontSize: "0.7rem", fontWeight: 700 }}>
+                          有効（残{hoursLeft}h）
+                        </span>
+                      ) : tokenExpired ? (
+                        <span style={{ display: "inline-block", padding: "0.2rem 0.5rem", borderRadius: "10px", background: "#fee2e2", color: "#991b1b", fontSize: "0.7rem", fontWeight: 700 }}>
+                          期限切れ
+                        </span>
+                      ) : (
+                        <span style={{ display: "inline-block", padding: "0.2rem 0.5rem", borderRadius: "10px", background: "#f3f4f6", color: "#6b7280", fontSize: "0.7rem" }}>
+                          未発行
+                        </span>
+                      )}
+                    </td>
+
+                    {/* ステータス */}
+                    <td style={{ padding: "0.6rem 0.8rem" }}>
+                      <select
+                        value={lead.status}
+                        onChange={(e) => updateStatus.mutate({ leadId: lead.id, status: e.target.value as any })}
+                        style={inputStyle}
+                      >
+                        {Object.entries(STATUS_LABELS).map(([val, { label }]) => (
+                          <option key={val} value={val}>{label}</option>
+                        ))}
+                      </select>
+                    </td>
+
+                    {/* 登録日 */}
+                    <td style={{ padding: "0.6rem 0.8rem", color: "#888", fontSize: "0.75rem", whiteSpace: "nowrap" }}>
+                      {new Date(lead.createdAt).toLocaleDateString("ja-JP", { timeZone: "Asia/Tokyo", month: "2-digit", day: "2-digit" })}
+                      <br />
+                      <span style={{ fontSize: "0.7rem" }}>{new Date(lead.createdAt).toLocaleTimeString("ja-JP", { timeZone: "Asia/Tokyo", hour: "2-digit", minute: "2-digit" })}</span>
+                    </td>
+
+                    {/* 操作 */}
+                    <td style={{ padding: "0.6rem 0.8rem", whiteSpace: "nowrap" }}>
+                      <button
+                        onClick={() => reissueToken.mutate({ leadId: lead.id })}
+                        disabled={reissueToken.isPending}
+                        title="トークンを再発行してリンクをコピー"
+                        style={{ padding: "0.3rem 0.7rem", background: "#2a1a0a", color: "#c9a96e", border: "none", borderRadius: "4px", fontSize: "0.75rem", fontWeight: 700, cursor: reissueToken.isPending ? "not-allowed" : "pointer", fontFamily: "'Noto Sans JP', sans-serif", opacity: reissueToken.isPending ? 0.6 : 1 }}
+                      >
+                        リンク再発行
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+          <p style={{ fontSize: "0.72rem", color: "#aaa", marginTop: "0.5rem" }}>
+            ※ 「リンク再発行」をクリックすると新しいリンク（72時間有効）をクリップボードにコピーします。メール・電話・メッセージで相手に送付してください。
+          </p>
+        </div>
+      )}
+    </section>
   );
 }

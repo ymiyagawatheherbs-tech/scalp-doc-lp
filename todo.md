@@ -142,3 +142,9 @@
 - [x] mv1@the-herbs.co.jp へのメール通知（sendSalonLeadNotification）
 - [x] SalonPartner.tsx の全LINEボタンをLeadFormコンポーネントに置き換え
 - [x] フォーム送信後に /partner-doc へリダイレクト
+
+## リード管理機能（2026-05-09）
+- [x] tRPCにsalonLead.reissueToken（トークン再発行）プロシージャを追加
+- [x] tRPCにsalonLead.updateStatus（ステータス更新）プロシージャを追加
+- [x] db.tsにreissueSalonLeadTokenヘルパーを追加
+- [x] /owner-adminにリード一覧ページを実装（トークン状態・再発行ボタン・ステータス管理）
