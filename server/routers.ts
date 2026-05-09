@@ -225,8 +225,25 @@ export const appRouter = router({
     login: publicProcedure
       .input(z.object({ email: z.string().email(), password: z.string().min(1) }))
       .mutation(async ({ input, ctx }) => {
-        const result = await authenticateStaff(input.email, input.password);
+        // IPアドレス取得（プロキシ経由の場合はx-forwarded-forを使用）
+        const req = ctx.req as any;
+        const ip = (req.headers["x-forwarded-for"] as string)?.split(",")[0]?.trim()
+          ?? req.socket?.remoteAddress
+          ?? "unknown";
+
+        const result = await authenticateStaff(input.email, input.password, ip);
         if (!result) throw new Error("メールアドレスまたはパスワードが正しくありません");
+
+        // ロックエラーの場合
+        if ("error" in result) {
+          const unlockTime = new Date(result.lockedUntil).toLocaleTimeString("ja-JP", {
+            hour: "2-digit",
+            minute: "2-digit",
+            timeZone: "Asia/Tokyo",
+          });
+          throw new Error(`ログイン試行回数が上限に達しました。${unlockTime}までアカウントがロックされています。`);
+        }
+
         // Cookieにセット
         (ctx.res as any).setHeader(
           "Set-Cookie",

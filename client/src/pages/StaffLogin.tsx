@@ -9,13 +9,16 @@ export default function StaffLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [isLocked, setIsLocked] = useState(false);
 
   const login = trpc.staff.login.useMutation({
     onSuccess: () => {
       window.location.href = "/admin";
     },
     onError: (err) => {
-      setError(err.message || "ログインに失敗しました");
+      const msg = err.message || "ログインに失敗しました";
+      setIsLocked(msg.includes("ロック"));
+      setError(msg);
     },
   });
 
@@ -136,13 +139,16 @@ export default function StaffLogin() {
           <p
             style={{
               fontSize: "0.82rem",
-              color: "#dc2626",
-              background: "#fee2e2",
+              color: isLocked ? "#92400e" : "#dc2626",
+              background: isLocked ? "#fef3c7" : "#fee2e2",
+              border: isLocked ? "1px solid #f59e0b" : "none",
               padding: "0.6rem 0.9rem",
               borderRadius: "4px",
               marginBottom: "1rem",
+              lineHeight: 1.6,
             }}
           >
+            {isLocked && <span style={{ fontWeight: 700, display: "block", marginBottom: "0.2rem" }}>⚠️ アカウントロック</span>}
             {error}
           </p>
         )}

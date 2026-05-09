@@ -285,3 +285,26 @@ export const salonLeads = mysqlTable("salon_leads", {
 
 export type SalonLead = typeof salonLeads.$inferSelect;
 export type InsertSalonLead = typeof salonLeads.$inferInsert;
+
+/**
+ * ログイン試行記録テーブル — ブルートフォース攻撃対策のためのログイン失敗記録
+ * IPアドレスまたはメールアドレス単位で試行回数を管理する
+ */
+export const loginAttempts = mysqlTable("login_attempts", {
+  id: int("id").autoincrement().primaryKey(),
+  /** 試行元IPアドレス */
+  ipAddress: varchar("ipAddress", { length: 64 }).notNull(),
+  /** 試行されたメールアドレス */
+  email: varchar("email", { length: 320 }).notNull(),
+  /** 失敗回数 */
+  failCount: int("failCount").default(0).notNull(),
+  /** ロック解除時刻（Unixミリ秒）。nullの場合はロックなし */
+  lockedUntil: bigint("lockedUntil", { mode: "number" }),
+  /** 最終試行時刻 */
+  lastAttemptAt: timestamp("lastAttemptAt").defaultNow().notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type LoginAttempt = typeof loginAttempts.$inferSelect;
+export type InsertLoginAttempt = typeof loginAttempts.$inferInsert;
