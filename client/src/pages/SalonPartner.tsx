@@ -7,7 +7,7 @@
  */
 
 import { useEffect, useRef, useState } from "react";
-import { Link } from "wouter";
+import { Link, useLocation } from "wouter";
 import { Menu, X, MapPin, Phone, Globe, Instagram } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 
@@ -586,35 +586,98 @@ function WhatWeDo() {
   );
 }
 
-// ========== LINE CTA（収益詳細はLINE登録後） ==========
-function LineCtaSection() {
+// ========== 資料請求フォーム ==========
+function LeadForm() {
   const { ref, inView } = useInView();
+  const [, setLocation] = useLocation();
+  const [name, setName] = useState("");
+  const [contact, setContact] = useState("");
+  const [contactType, setContactType] = useState<"phone" | "email">("phone");
+  const [occupation, setOccupation] = useState<"beautician" | "esthetic" | "home_salon" | "other">("beautician");
+  const [errors, setErrors] = useState<{ name?: string; contact?: string }>({});
+
+  const createLead = trpc.salonLead.create.useMutation({
+    onSuccess: () => {
+      setLocation("/partner-doc");
+    },
+  });
+
+  function validate() {
+    const e: { name?: string; contact?: string } = {};
+    if (!name.trim()) e.name = "お名前を入力してください";
+    if (!contact.trim()) e.contact = "連絡先を入力してください";
+    return e;
+  }
+
+  function handleSubmit(ev: React.FormEvent) {
+    ev.preventDefault();
+    const e = validate();
+    if (Object.keys(e).length > 0) { setErrors(e); return; }
+    setErrors({});
+    createLead.mutate({ name: name.trim(), contact: contact.trim(), contactType, occupation });
+  }
+
+  const inputStyle: React.CSSProperties = {
+    width: "100%",
+    padding: "12px 14px",
+    background: "rgba(255,255,255,0.08)",
+    border: "1px solid rgba(255,255,255,0.2)",
+    color: "#ffffff",
+    fontFamily: "'Noto Sans JP', sans-serif",
+    fontSize: "14px",
+    outline: "none",
+    boxSizing: "border-box" as const,
+  };
+  const labelStyle: React.CSSProperties = {
+    display: "block",
+    fontSize: "12px",
+    letterSpacing: "0.1em",
+    color: "#a8d5a2",
+    marginBottom: "6px",
+    fontFamily: "'Noto Sans JP', sans-serif",
+  };
+  const errorStyle: React.CSSProperties = {
+    color: "#ffb3b3",
+    fontSize: "12px",
+    marginTop: "4px",
+    fontFamily: "'Noto Sans JP', sans-serif",
+  };
+  const radioGroupStyle: React.CSSProperties = {
+    display: "flex",
+    gap: "16px",
+    flexWrap: "wrap" as const,
+  };
+  const radioLabelStyle: React.CSSProperties = {
+    display: "flex",
+    alignItems: "center",
+    gap: "6px",
+    fontSize: "13px",
+    color: "rgba(255,255,255,0.85)",
+    fontFamily: "'Noto Sans JP', sans-serif",
+    cursor: "pointer",
+  };
 
   return (
-    <section className="py-24" style={{ backgroundColor: "#5a7a52" }}>
-      <div ref={ref} className="max-w-4xl mx-auto px-6">
+    <section className="py-24" style={{ backgroundColor: "#5a7a52" }} id="contact">
+      <div ref={ref} className="max-w-2xl mx-auto px-6">
         <div
           className="transition-all duration-700"
           style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)" }}
         >
-          <div className="text-center mb-12">
+          <div className="text-center mb-10">
             <span className="text-xs tracking-[0.4em] uppercase block mb-6 font-medium" style={{ color: "#a8d5a2" }}>
               Partner Document
             </span>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
-              収益の仕組みは、<br />LINE登録後にお届けします
+            <h2 className="text-3xl md:text-4xl font-bold mb-4" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
+              資料を無料で受け取る
             </h2>
-            <p className="text-base leading-relaxed mb-4" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.8)", lineHeight: "1.9" }}>
-              パートナー向け資料には、具体的な収益モデル・導入事例・<br className="hidden md:block" />
-              認定プログラムの詳細・初期費用の目安を掲載しています。
-            </p>
-            <p className="text-sm mb-10" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.6)" }}>
-              ※資料は無料でお届けします。オンライン説明会でお会いしましょう！
+            <p className="text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.7)", lineHeight: "1.9" }}>
+              フォームを送信すると、パートナー向け資料ページへ自動的にご案内します。
             </p>
           </div>
 
           {/* 資料に含まれる内容 */}
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mb-12">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-10">
             {[
               "新しいビジネスでできること",
               "導入サロンの実際の声",
@@ -623,36 +686,101 @@ function LineCtaSection() {
               "ブルーオーシャン市場の詳細データ",
               "サポート体制について",
             ].map((item, i) => (
-              <div
-                key={i}
-                className="flex items-center gap-3 px-5 py-4"
-                style={{ backgroundColor: "rgba(255,255,255,0.1)" }}
-              >
-                <span style={{ color: "#a8d5a2", flexShrink: 0, fontSize: "18px" }}>✓</span>
+              <div key={i} className="flex items-center gap-3 px-4 py-3" style={{ backgroundColor: "rgba(255,255,255,0.08)" }}>
+                <span style={{ color: "#a8d5a2", flexShrink: 0 }}>✓</span>
                 <span className="text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.85)" }}>{item}</span>
               </div>
             ))}
           </div>
 
-          <div className="text-center">
-            <a
-              href={LINE_SALON.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center gap-3 px-12 py-5 font-bold text-base tracking-wider transition-all duration-300"
-              style={{ backgroundColor: "#06C755", color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}
-              onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#05a847")}
-              onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#06C755")}
+          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
+            {/* お名前 */}
+            <div>
+              <label style={labelStyle}>お名前 <span style={{ color: "#ffb3b3" }}>*</span></label>
+              <input
+                type="text"
+                value={name}
+                onChange={e => setName(e.target.value)}
+                placeholder="例：山田 花子"
+                style={inputStyle}
+              />
+              {errors.name && <p style={errorStyle}>{errors.name}</p>}
+            </div>
+
+            {/* ご職業 */}
+            <div>
+              <label style={labelStyle}>ご職業 <span style={{ color: "#ffb3b3" }}>*</span></label>
+              <div style={radioGroupStyle}>
+                {([
+                  { value: "beautician", label: "美容師" },
+                  { value: "esthetic", label: "エステ・ヘッドスパ" },
+                  { value: "home_salon", label: "自宅サロン" },
+                  { value: "other", label: "その他" },
+                ] as const).map(opt => (
+                  <label key={opt.value} style={radioLabelStyle}>
+                    <input
+                      type="radio"
+                      name="occupation"
+                      value={opt.value}
+                      checked={occupation === opt.value}
+                      onChange={() => setOccupation(opt.value)}
+                      style={{ accentColor: "#a8d5a2" }}
+                    />
+                    {opt.label}
+                  </label>
+                ))}
+              </div>
+            </div>
+
+            {/* 希望連絡方法 */}
+            <div>
+              <label style={labelStyle}>ご希望の連絡方法 <span style={{ color: "#ffb3b3" }}>*</span></label>
+              <div style={{ ...radioGroupStyle, marginBottom: "10px" }}>
+                <label style={radioLabelStyle}>
+                  <input type="radio" name="contactType" value="phone" checked={contactType === "phone"} onChange={() => setContactType("phone")} style={{ accentColor: "#a8d5a2" }} />
+                  電話
+                </label>
+                <label style={radioLabelStyle}>
+                  <input type="radio" name="contactType" value="email" checked={contactType === "email"} onChange={() => setContactType("email")} style={{ accentColor: "#a8d5a2" }} />
+                  メール
+                </label>
+              </div>
+              <input
+                type={contactType === "email" ? "email" : "tel"}
+                value={contact}
+                onChange={e => setContact(e.target.value)}
+                placeholder={contactType === "phone" ? "例：090-1234-5678" : "例：info@example.com"}
+                style={inputStyle}
+              />
+              {errors.contact && <p style={errorStyle}>{errors.contact}</p>}
+            </div>
+
+            {/* 送信ボタン */}
+            <button
+              type="submit"
+              disabled={createLead.isPending}
+              className="w-full py-5 font-bold text-base tracking-wider transition-all duration-300"
+              style={{
+                backgroundColor: createLead.isPending ? "rgba(255,255,255,0.3)" : "#c9a84c",
+                color: createLead.isPending ? "rgba(255,255,255,0.5)" : "#1a1a1a",
+                fontFamily: "'Noto Sans JP', sans-serif",
+                cursor: createLead.isPending ? "not-allowed" : "pointer",
+                border: "none",
+              }}
             >
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.58 5.8 4.04 7.54L5.5 22l4.14-2.16C10.39 20.27 11.18 20.4 12 20.4c5.52 0 10-4.02 10-9S17.52 2 12 2z"/>
-              </svg>
-              LINEで資料を受け取る（無料）
-            </a>
-            <p className="mt-4 text-sm" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Noto Sans JP', sans-serif" }}>
-              {LINE_SALON.account} ／ 登録後すぐに資料をお送りします
+              {createLead.isPending ? "送信中..." : "資料ページへ進む"}
+            </button>
+
+            {createLead.isError && (
+              <p style={{ ...errorStyle, textAlign: "center" }}>
+                送信に失敗しました。しばらくしてから再度お試しください。
+              </p>
+            )}
+
+            <p className="text-center text-xs" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>
+              ※ 勧誘・営業は一切ありません。資料の閲覧のみも歓迎です。
             </p>
-          </div>
+          </form>
         </div>
       </div>
     </section>
@@ -1610,50 +1738,6 @@ function RecruitmentBanner() {
   );
 }
 
-// ========== CTA ==========
-function Cta() {
-  const { ref, inView } = useInView();
-
-  return (
-    <section className="py-24 text-center" style={{ backgroundColor: "#5a7a52" }} id="contact">
-      <div
-        ref={ref}
-        className="max-w-3xl mx-auto px-6 transition-all duration-700"
-        style={{ opacity: inView ? 1 : 0, transform: inView ? "translateY(0)" : "translateY(30px)" }}
-      >
-        <span className="text-xs tracking-[0.4em] uppercase block mb-6 font-medium" style={{ color: "#a8d5a2" }}>
-          Let's Start Together
-        </span>
-        <h2 className="text-3xl md:text-4xl font-bold mb-6" style={{ fontFamily: "'Shippori Mincho', serif", color: "#ffffff" }}>
-          まずは、お話を聞かせてください。
-        </h2>
-        <p className="text-base leading-relaxed mb-10" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.8)", lineHeight: "1.9" }}>
-          「うちのサロンでできるかな？」「どんな機器が必要？」<br />
-          どんな小さな疑問でも、LINEで気軽にご相談ください。<br />
-          一緒に、頭皮と髪の悩みを抱える方の力になりましょう。
-        </p>
-        <a
-          href={LINE_SALON.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-3 px-10 py-5 font-bold text-base tracking-wider transition-all duration-300"
-          style={{ backgroundColor: "#06C755", color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif" }}
-          onMouseEnter={e => (e.currentTarget.style.backgroundColor = "#05a847")}
-          onMouseLeave={e => (e.currentTarget.style.backgroundColor = "#06C755")}
-        >
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.58 5.8 4.04 7.54L5.5 22l4.14-2.16C10.39 20.27 11.18 20.4 12 20.4c5.52 0 10-4.02 10-9S17.52 2 12 2z"/>
-          </svg>
-          LINEで資料を受け取る（無料）
-        </a>
-        <p className="mt-4 text-sm" style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Noto Sans JP', sans-serif" }}>
-          {LINE_SALON.account} ／ 登録後すぐに資料をお送りします
-        </p>
-      </div>
-    </section>
-  );
-}
-
 // ========== FOOTER ==========
 function Footer() {
   return (
@@ -1728,7 +1812,7 @@ export default function SalonPartner() {
       <BlueOcean />
       <Concept />
       <WhatWeDo />
-      <LineCtaSection />
+      <LeadForm />
       <HairdresserSection />
       <WhoCanJoin />
       <ProgramSteps />
@@ -1737,7 +1821,7 @@ export default function SalonPartner() {
        <SixFeatures />
       <RecruitmentBanner />
       <HomeCareAppSection />
-      <Cta />
+      <LeadForm />
       <Footer />
     </div>
   );

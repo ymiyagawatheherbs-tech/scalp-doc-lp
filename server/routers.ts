@@ -3,14 +3,14 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, protectedProcedure, staffOrManusProcedure, router } from "./_core/trpc";
 import { notifyOwner } from "./_core/notification";
-import { getDb, getCertifiedSalons, getAllCertifiedSalonsAdmin, createCertifiedSalon, updateCertifiedSalon, deleteCertifiedSalon, getBeforeAfters, getAllBeforeAftersAdmin, createBeforeAfter, updateBeforeAfter, deleteBeforeAfter, getTestimonials, getAllTestimonialsAdmin, createTestimonial, updateTestimonial, deleteTestimonial, getBlogPosts, getBlogPostBySlug, getAllBlogPostsAdmin, createBlogPost, updateBlogPost, deleteBlogPost, getServiceMenus, getAllServiceMenusAdmin, createServiceMenu, updateServiceMenu, deleteServiceMenu } from "./db";
+import { getDb, getCertifiedSalons, getAllCertifiedSalonsAdmin, createCertifiedSalon, updateCertifiedSalon, deleteCertifiedSalon, getBeforeAfters, getAllBeforeAftersAdmin, createBeforeAfter, updateBeforeAfter, deleteBeforeAfter, getTestimonials, getAllTestimonialsAdmin, createTestimonial, updateTestimonial, deleteTestimonial, getBlogPosts, getBlogPostBySlug, getAllBlogPostsAdmin, createBlogPost, updateBlogPost, deleteBlogPost, getServiceMenus, getAllServiceMenusAdmin, createServiceMenu, updateServiceMenu, deleteServiceMenu, createSalonLead, getAllSalonLeads } from "./db";
 import { reservations, scalpImages, staffAccounts } from "../drizzle/schema";
 import { authenticateStaff, verifyStaffToken, createStaffAccount, STAFF_JWT_COOKIE } from "./staffAuth";
 import { storagePut } from "./storage";
 import { desc } from "drizzle-orm";
 import { z } from "zod";
 import { nanoid } from "nanoid";
-import { sendBookingNotification, sendCustomerConfirmation, sendBookingConfirmed } from "./mailer";
+import { sendBookingNotification, sendCustomerConfirmation, sendBookingConfirmed, sendSalonLeadNotification } from "./mailer";
 import { notifyReservationViaLine, notifyConfirmedViaLine, notifyCancelledViaLine } from "./lineNotify";
 
 export const appRouter = router({
@@ -714,6 +714,48 @@ export const appRouter = router({
         await deleteCertifiedSalon(input.id);
         return { success: true };
       }),
+  }),
+
+  /**
+   * サロンパートナー資料請求リードルーター
+   */
+  salonLead: router({
+    /** 公開：資料請求フォーム送信 → DB保存 + メール通知 */
+    create: publicProcedure
+      .input(
+        z.object({
+          name: z.string().min(1, "お名前を入力してください"),
+          contact: z.string().min(1, "連絡先を入力してください"),
+          contactType: z.enum(["phone", "email"]),
+          occupation: z.enum(["beautician", "esthetic", "home_salon", "other"]),
+        })
+      )
+      .mutation(async ({ input }) => {
+        // DB保存
+        await createSalonLead({
+          name: input.name,
+          contact: input.contact,
+          contactType: input.contactType,
+          occupation: input.occupation,
+        });
+
+        // メール通知（非同期・失敗してもエラーにしない）
+        const now = new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" });
+        sendSalonLeadNotification({
+          name: input.name,
+          contact: input.contact,
+          contactType: input.contactType,
+          occupation: input.occupation,
+          submittedAt: now,
+        }).catch(err => console.error("[salonLead] mail error:", err));
+
+        return { success: true };
+      }),
+
+    /** 管理者用：リード一覧 */
+    list: staffOrManusProcedure.query(async () => {
+      return getAllSalonLeads();
+    }),
   }),
 });
 

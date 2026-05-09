@@ -135,3 +135,10 @@
 - [x] Home.tsx（レディース版）のLINE URLを https://lin.ee/wN9kf8T に変更（4箇所）
 - [x] MenHome.tsx（メンズ版）のLINE URLを https://lin.ee/9PDAzxc に変更（4箇所）
 - [x] SalonPartner.tsx（サロン向け）のLINE URLを https://lin.ee/6GDbcebK に変更（1箇所）
+
+## /salonページ フォーム化（2026-05-09）
+- [x] salonLeadsテーブル追加・DBマイグレーション
+- [x] tRPC salonLead.create ルーター実装（DB保存 + メール通知）
+- [x] mv1@the-herbs.co.jp へのメール通知（sendSalonLeadNotification）
+- [x] SalonPartner.tsx の全LINEボタンをLeadFormコンポーネントに置き換え
+- [x] フォーム送信後に /partner-doc へリダイレクト

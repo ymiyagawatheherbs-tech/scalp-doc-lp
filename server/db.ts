@@ -1,6 +1,6 @@
 import { asc, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
-import { certifiedSalons, InsertCertifiedSalon, InsertUser, users } from "../drizzle/schema";
+import { certifiedSalons, InsertCertifiedSalon, InsertUser, InsertSalonLead, salonLeads, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
 
 let _db: ReturnType<typeof drizzle> | null = null;
@@ -294,4 +294,19 @@ export async function deleteServiceMenu(id: number) {
   const db = await getDb();
   if (!db) throw new Error('DB not available');
   await db.delete(serviceMenus).where(eq(serviceMenus.id, id));
+}
+
+// ========== salonLeads ==========
+
+export async function createSalonLead(data: InsertSalonLead) {
+  const db = await getDb();
+  if (!db) throw new Error('DB not available');
+  const [result] = await db.insert(salonLeads).values(data);
+  return result;
+}
+
+export async function getAllSalonLeads() {
+  const db = await getDb();
+  if (!db) return [];
+  return db.select().from(salonLeads).orderBy(salonLeads.createdAt);
 }

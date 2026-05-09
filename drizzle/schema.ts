@@ -257,3 +257,27 @@ export const serviceMenus = mysqlTable("service_menus", {
 
 export type ServiceMenu = typeof serviceMenus.$inferSelect;
 export type InsertServiceMenu = typeof serviceMenus.$inferInsert;
+
+/**
+ * サロンパートナー資料請求リードテーブル — /salonページのフォームから送信された問い合わせ情報を管理する
+ */
+export const salonLeads = mysqlTable("salon_leads", {
+  id: int("id").autoincrement().primaryKey(),
+  /** お名前 */
+  name: varchar("name", { length: 128 }).notNull(),
+  /** 電話番号またはメールアドレス */
+  contact: varchar("contact", { length: 320 }).notNull(),
+  /** 連絡方法の種別: phone / email */
+  contactType: mysqlEnum("contactType", ["phone", "email"]).notNull(),
+  /** ご職業: beautician / esthetic / home_salon / other */
+  occupation: mysqlEnum("occupation", ["beautician", "esthetic", "home_salon", "other"]).notNull(),
+  /** ステータス: new / contacted / converted / archived */
+  status: mysqlEnum("status", ["new", "contacted", "converted", "archived"]).default("new").notNull(),
+  /** 備考・メモ */
+  note: text("note"),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
+});
+
+export type SalonLead = typeof salonLeads.$inferSelect;
+export type InsertSalonLead = typeof salonLeads.$inferInsert;

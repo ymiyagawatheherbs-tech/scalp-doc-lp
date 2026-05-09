@@ -465,3 +465,113 @@ export async function sendBookingConfirmed(data: BookingConfirmedData): Promise<
     return false;
   }
 }
+
+export interface SalonLeadNotificationData {
+  name: string;
+  contact: string;
+  contactType: "phone" | "email";
+  occupation: "beautician" | "esthetic" | "home_salon" | "other";
+  submittedAt: string;
+}
+
+const OCCUPATION_LABELS: Record<string, string> = {
+  beautician: "美容師",
+  esthetic: "エステ・ヘッドスパ",
+  home_salon: "自宅サロン",
+  other: "その他",
+};
+
+/**
+ * /salonページの資料請求フォーム送信をmv1@the-herbs.co.jpへメール通知する
+ */
+export async function sendSalonLeadNotification(data: SalonLeadNotificationData): Promise<boolean> {
+  if (!ENV.smtpUser || !ENV.azureClientId || !ENV.azureTenantId || !ENV.azureClientSecret) {
+    console.warn("[mailer] Graph API credentials not configured. Skipping salon lead notification.");
+    return false;
+  }
+
+  const occupationLabel = OCCUPATION_LABELS[data.occupation] ?? data.occupation;
+  const contactLabel = data.contactType === "phone" ? "電話番号" : "メールアドレス";
+  const subject = `【SCALP LABO】パートナー資料請求：${data.name} 様`;
+
+  const htmlBody = `
+<!DOCTYPE html>
+<html lang="ja">
+<head><meta charset="UTF-8"></head>
+<body style="font-family: 'Helvetica Neue', Arial, sans-serif; color: #333; max-width: 600px; margin: 0 auto; padding: 20px;">
+  <div style="background: #2a3e2a; color: #a8d5a2; padding: 20px 24px; border-radius: 4px 4px 0 0;">
+    <h1 style="margin: 0; font-size: 18px; letter-spacing: 0.1em;">THE HERBS SCALP LABO</h1>
+    <p style="margin: 4px 0 0; font-size: 12px; opacity: 0.8;">パートナー資料請求 通知</p>
+  </div>
+  <div style="background: #fff; border: 1px solid #d0e8d0; border-top: none; padding: 24px; border-radius: 0 0 4px 4px;">
+    <p style="font-size: 15px; margin-top: 0;"><strong>${data.name} 様</strong>より資料請求がありました。</p>
+    <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
+      <tr style="border-bottom: 1px solid #e8f0e8;">
+        <td style="padding: 10px 8px; color: #888; width: 140px;">お名前</td>
+        <td style="padding: 10px 8px;">${data.name} 様</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #e8f0e8;">
+        <td style="padding: 10px 8px; color: #888;">${contactLabel}</td>
+        <td style="padding: 10px 8px; font-weight: bold;">${data.contact}</td>
+      </tr>
+      <tr style="border-bottom: 1px solid #e8f0e8;">
+        <td style="padding: 10px 8px; color: #888;">ご職業</td>
+        <td style="padding: 10px 8px;">${occupationLabel}</td>
+      </tr>
+      <tr>
+        <td style="padding: 10px 8px; color: #888;">送信日時</td>
+        <td style="padding: 10px 8px; font-size: 12px; color: #999;">${data.submittedAt}</td>
+      </tr>
+    </table>
+    <div style="margin-top: 20px; padding: 14px 16px; background: #f0f8f0; border-left: 3px solid #5a7a52; font-size: 13px; color: #555; line-height: 1.7;">
+      ※ 送信後、申込者は自動的にパートナー資料ページへ遷移しています。<br>
+      ※ 上記の連絡先へ優先的にご連絡ください。
+    </div>
+  </div>
+  <p style="font-size: 11px; color: #aaa; text-align: center; margin-top: 16px;">
+    ＋＋＋＋＋＋＋＋＋＋＋＋＋<br>
+    株式会社THE HERBS スカルプラボ事業部<br>
+    兵庫県神戸市灘区大内通1-7-17 1F<br>
+    LINE：https://line.me/ti/p/%40492wjowb<br>
+    お問い合わせはお気軽に！<br>
+    ＋＋＋＋＋＋＋＋＋＋＋＋＋
+  </p>
+</body>
+</html>
+`.trim();
+
+  try {
+    const accessToken = await getGraphAccessToken();
+    const sendMailUrl = `https://graph.microsoft.com/v1.0/users/${ENV.smtpUser}/sendMail`;
+
+    const mailBody = {
+      message: {
+        subject,
+        body: { contentType: "HTML", content: htmlBody },
+        toRecipients: [{ emailAddress: { address: "mv1@the-herbs.co.jp" } }],
+      },
+      saveToSentItems: false,
+    };
+
+    const response = await fetch(sendMailUrl, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${accessToken}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(mailBody),
+    });
+
+    if (response.status === 202) {
+      console.log("[mailer] Salon lead notification sent to mv1@the-herbs.co.jp");
+      return true;
+    } else {
+      const errorText = await response.text();
+      console.error(`[mailer] Graph API error (salon lead): ${response.status} ${errorText.substring(0, 200)}`);
+      return false;
+    }
+  } catch (err) {
+    console.error("[mailer] Failed to send salon lead notification:", err);
+    return false;
+  }
+}
