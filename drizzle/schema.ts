@@ -1,4 +1,4 @@
-import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, boolean } from "drizzle-orm/mysql-core";
+import { int, mysqlEnum, mysqlTable, text, timestamp, varchar, bigint } from "drizzle-orm/mysql-core";
 
 /**
  * Core user table backing auth flow.
@@ -275,6 +275,10 @@ export const salonLeads = mysqlTable("salon_leads", {
   status: mysqlEnum("status", ["new", "contacted", "converted", "archived"]).default("new").notNull(),
   /** 備考・メモ */
   note: text("note"),
+  /** 資料ページアクセス用ワンタイムトークン（nanoid 32文字） */
+  accessToken: varchar("accessToken", { length: 64 }).unique(),
+  /** トークン有効期限（Unixミリ秒） */
+  tokenExpiresAt: bigint("tokenExpiresAt", { mode: "number" }),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });

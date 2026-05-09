@@ -43,6 +43,13 @@
       "when": 1778334606695,
       "tag": "0005_violet_elektra",
       "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "5",
+      "when": 1778337773358,
+      "tag": "0006_regular_bushwacker",
+      "breakpoints": true
     }
   ]
 }

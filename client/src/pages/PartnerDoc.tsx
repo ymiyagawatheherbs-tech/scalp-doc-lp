@@ -6,6 +6,10 @@
  * デザイン: 焦茶 × ゴールド × クリーム
  */
 
+import { useEffect, useState } from "react";
+import { useSearch } from "wouter";
+import { trpc } from "@/lib/trpc";
+
 // ── 画像URL（PPTXから抽出した実際の写真）──────────────────
 const IMG = {
   // 094A5755: マイクロスコープでチェック中（タブレット持ちスタッフ）→ ヒーロー
@@ -1286,6 +1290,108 @@ function FloatingCTA() {
 
 // ── メインコンポーネント ───────────────────────────────────
 export default function PartnerDoc() {
+  const search = useSearch();
+  const params = new URLSearchParams(search);
+  const token = params.get("token") ?? "";
+
+  const { data, isLoading } = trpc.salonLead.verifyToken.useQuery(
+    { token },
+    { enabled: token.length > 0, retry: false }
+  );
+
+  // トークンなし or 検証中はゲート表示
+  if (!token || isLoading) {
+    return (
+      <div
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: C.darkBrown,
+          padding: "32px 24px",
+          fontFamily: "'Noto Sans JP', sans-serif",
+          textAlign: "center",
+        }}
+      >
+        {isLoading ? (
+          <>
+            <div style={{ width: 40, height: 40, border: `3px solid ${C.gold}`, borderTopColor: "transparent", borderRadius: "50%", animation: "spin 0.8s linear infinite", marginBottom: 20 }} />
+            <style>{"@keyframes spin { to { transform: rotate(360deg); } }"}</style>
+            <p style={{ color: C.cream, fontSize: 14 }}>確認中...</p>
+          </>
+        ) : (
+          <>
+            <p style={{ fontSize: 40, marginBottom: 16 }}>🔒</p>
+            <h1 style={{ color: C.gold, fontSize: 22, fontWeight: 700, marginBottom: 12 }}>アクセスできません</h1>
+            <p style={{ color: C.cream, fontSize: 14, lineHeight: 1.8, marginBottom: 24 }}>
+              このページは、資料請求フォームを通じた方のみ閲覧できます。<br />
+              リンクの有効期限が切れている場合は、再度フォームよりお申し込みください。
+            </p>
+            <a
+              href="/salon#contact"
+              style={{
+                display: "inline-block",
+                backgroundColor: C.gold,
+                color: C.darkBrown,
+                fontWeight: 700,
+                padding: "14px 32px",
+                fontSize: 14,
+                textDecoration: "none",
+                letterSpacing: "0.05em",
+              }}
+            >
+              資料請求フォームへ
+            </a>
+          </>
+        )}
+      </div>
+    );
+  }
+
+  // トークン無効・期限切れ
+  if (!data?.ok) {
+    return (
+      <div
+        style={{
+          minHeight: "100vh",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: C.darkBrown,
+          padding: "32px 24px",
+          fontFamily: "'Noto Sans JP', sans-serif",
+          textAlign: "center",
+        }}
+      >
+        <p style={{ fontSize: 40, marginBottom: 16 }}>⏰</p>
+        <h1 style={{ color: C.gold, fontSize: 22, fontWeight: 700, marginBottom: 12 }}>リンクの有効期限が切れました</h1>
+        <p style={{ color: C.cream, fontSize: 14, lineHeight: 1.8, marginBottom: 24 }}>
+          資料リンクは発行から72時間有効です。<br />
+          期限切れの場合は、再度フォームよりお申し込みください。
+        </p>
+        <a
+          href="/salon#contact"
+          style={{
+            display: "inline-block",
+            backgroundColor: C.gold,
+            color: C.darkBrown,
+            fontWeight: 700,
+            padding: "14px 32px",
+            fontSize: 14,
+            textDecoration: "none",
+            letterSpacing: "0.05em",
+          }}
+        >
+          再度フォームより申し込む
+        </a>
+      </div>
+    );
+  }
+
+  // トークン有効→資料ページ表示
   return (
     <div
       style={{

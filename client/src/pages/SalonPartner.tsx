@@ -588,8 +588,9 @@ function LeadForm() {
   const [errors, setErrors] = useState<{ name?: string; contact?: string }>({});
 
   const createLead = trpc.salonLead.create.useMutation({
-    onSuccess: () => {
-      setLocation("/partner-doc");
+    onSuccess: (data) => {
+      // トークン付きURLへリダイレクト
+      setLocation(`/partner-doc?token=${data.token}`);
     },
   });
 

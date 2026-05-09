@@ -1,4 +1,4 @@
-import { asc, eq } from "drizzle-orm";
+import { asc, desc, eq } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/mysql2";
 import { certifiedSalons, InsertCertifiedSalon, InsertUser, InsertSalonLead, salonLeads, users } from "../drizzle/schema";
 import { ENV } from './_core/env';
@@ -303,6 +303,27 @@ export async function createSalonLead(data: InsertSalonLead) {
   if (!db) throw new Error('DB not available');
   const [result] = await db.insert(salonLeads).values(data);
   return result;
+}
+
+/** トークンを発行してリードに保存する（72時間有効） */
+export async function issueSalonLeadToken(leadId: number, token: string): Promise<void> {
+  const db = await getDb();
+  if (!db) throw new Error('DB not available');
+  const expiresAt = Date.now() + 72 * 60 * 60 * 1000; // 72時間後
+  await db.update(salonLeads)
+    .set({ accessToken: token, tokenExpiresAt: expiresAt })
+    .where(eq(salonLeads.id, leadId));
+}
+
+/** トークンを検証して有効なリードを返す。無効・期限切れの場合はnull */
+export async function verifySalonLeadToken(token: string) {
+  const db = await getDb();
+  if (!db) return null;
+  const rows = await db.select().from(salonLeads).where(eq(salonLeads.accessToken, token));
+  if (rows.length === 0) return null;
+  const lead = rows[0];
+  if (!lead.tokenExpiresAt || Date.now() > lead.tokenExpiresAt) return null;
+  return lead;
 }
 
 export async function getAllSalonLeads() {

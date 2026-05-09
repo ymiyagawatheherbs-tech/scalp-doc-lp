@@ -3,7 +3,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, protectedProcedure, staffOrManusProcedure, router } from "./_core/trpc";
 import { notifyOwner } from "./_core/notification";
-import { getDb, getCertifiedSalons, getAllCertifiedSalonsAdmin, createCertifiedSalon, updateCertifiedSalon, deleteCertifiedSalon, getBeforeAfters, getAllBeforeAftersAdmin, createBeforeAfter, updateBeforeAfter, deleteBeforeAfter, getTestimonials, getAllTestimonialsAdmin, createTestimonial, updateTestimonial, deleteTestimonial, getBlogPosts, getBlogPostBySlug, getAllBlogPostsAdmin, createBlogPost, updateBlogPost, deleteBlogPost, getServiceMenus, getAllServiceMenusAdmin, createServiceMenu, updateServiceMenu, deleteServiceMenu, createSalonLead, getAllSalonLeads } from "./db";
+import { getDb, getCertifiedSalons, getAllCertifiedSalonsAdmin, createCertifiedSalon, updateCertifiedSalon, deleteCertifiedSalon, getBeforeAfters, getAllBeforeAftersAdmin, createBeforeAfter, updateBeforeAfter, deleteBeforeAfter, getTestimonials, getAllTestimonialsAdmin, createTestimonial, updateTestimonial, deleteTestimonial, getBlogPosts, getBlogPostBySlug, getAllBlogPostsAdmin, createBlogPost, updateBlogPost, deleteBlogPost, getServiceMenus, getAllServiceMenusAdmin, createServiceMenu, updateServiceMenu, deleteServiceMenu, createSalonLead, getAllSalonLeads, issueSalonLeadToken, verifySalonLeadToken } from "./db";
 import { reservations, scalpImages, staffAccounts } from "../drizzle/schema";
 import { authenticateStaff, verifyStaffToken, createStaffAccount, STAFF_JWT_COOKIE } from "./staffAuth";
 import { storagePut } from "./storage";
@@ -732,12 +732,17 @@ export const appRouter = router({
       )
       .mutation(async ({ input }) => {
         // DB保存
-        await createSalonLead({
+        const result = await createSalonLead({
           name: input.name,
           contact: input.contact,
           contactType: input.contactType,
           occupation: input.occupation,
         });
+
+        // 有効期限付きトークン発行（72時間）
+        const token = nanoid(32);
+        const leadId = (result as { insertId: number }).insertId;
+        await issueSalonLeadToken(leadId, token);
 
         // メール通知（非同期・失敗してもエラーにしない）
         const now = new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" });
@@ -749,7 +754,16 @@ export const appRouter = router({
           submittedAt: now,
         }).catch(err => console.error("[salonLead] mail error:", err));
 
-        return { success: true };
+        return { success: true, token };
+      }),
+
+    /** 公開：トークン検証 → 有効なら ok: true を返す */
+    verifyToken: publicProcedure
+      .input(z.object({ token: z.string() }))
+      .query(async ({ input }) => {
+        const lead = await verifySalonLeadToken(input.token);
+        if (!lead) return { ok: false };
+        return { ok: true };
       }),
 
     /** 管理者用：リード一覧 */
