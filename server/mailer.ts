@@ -482,7 +482,7 @@ const OCCUPATION_LABELS: Record<string, string> = {
 };
 
 /**
- * /salonページの資料請求フォーム送信をmv1@the-herbs.co.jpへメール通知する
+ * /salonページの資料請求フォーム送信をmv@the-herbs.co.jpへメール通知する
  */
 export async function sendSalonLeadNotification(data: SalonLeadNotificationData): Promise<boolean> {
   if (!ENV.smtpUser || !ENV.azureClientId || !ENV.azureTenantId || !ENV.azureClientSecret) {
@@ -548,7 +548,7 @@ export async function sendSalonLeadNotification(data: SalonLeadNotificationData)
       message: {
         subject,
         body: { contentType: "HTML", content: htmlBody },
-        toRecipients: [{ emailAddress: { address: "mv1@the-herbs.co.jp" } }],
+        toRecipients: [{ emailAddress: { address: "mv@the-herbs.co.jp" } }],
       },
       saveToSentItems: false,
     };
@@ -563,7 +563,7 @@ export async function sendSalonLeadNotification(data: SalonLeadNotificationData)
     });
 
     if (response.status === 202) {
-      console.log("[mailer] Salon lead notification sent to mv1@the-herbs.co.jp");
+      console.log("[mailer] Salon lead notification sent to mv@the-herbs.co.jp");
       return true;
     } else {
       const errorText = await response.text();
