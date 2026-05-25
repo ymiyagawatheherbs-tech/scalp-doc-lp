@@ -1,13 +1,13 @@
 /**
  * SalonPartner.tsx
  * Design: Clean Professional — ホワイト×ディープグリーン×ゴールド
- * Philosophy: 「ブルーオーシャン×予防型ヘルスケア×習慣化事業」の訴求 → LINE登録への誘導
- * 収益の詳細はLINE登録後に配布する資料に掲載
+ * Philosophy: 「ブルーオーシャン×予防型ヘルスケア×習慣化事業」の訴求 → Googleフォームからの資料請求
+ * 収益の詳細はフォーム送信後に配布する資料に掲載
  * Layout: 縦スクロール型ストーリーテリング構造
  */
 
 import { useEffect, useRef, useState } from "react";
-import { Link, useLocation } from "wouter";
+import { Link } from "wouter";
 import { Menu, X, MapPin, Phone, Globe, Instagram } from "lucide-react";
 import { trpc } from "@/lib/trpc";
 
@@ -29,10 +29,7 @@ const IMAGES = {
   salonInterior: "/manus-storage/salon_interior_e0c90a79.jpeg",
 };
 
-const LINE_SALON = {
-  url: "https://lin.ee/6GDbcebK",
-  account: "@theherbs_salon",
-};
+const GOOGLE_FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSdti0E_BtIzLULMfeU-e0z6p9SvOEWGdBBpD8ZfuMTeIINqIw/viewform";
 
 const HERBS_LOGO = "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/theherbs_logo_395db853.webp";
 
@@ -580,74 +577,6 @@ function WhatWeDo() {
 // ========== 資料請求フォーム ==========
 function LeadForm() {
   const { ref, inView } = useInView();
-  const [, setLocation] = useLocation();
-  const [name, setName] = useState("");
-  const [contact, setContact] = useState("");
-  const [contactType, setContactType] = useState<"phone" | "email">("phone");
-  const [occupation, setOccupation] = useState<"beautician" | "esthetic" | "home_salon" | "other">("beautician");
-  const [errors, setErrors] = useState<{ name?: string; contact?: string }>({});
-
-  const createLead = trpc.salonLead.create.useMutation({
-    onSuccess: (data) => {
-      // トークン付きURLへリダイレクト
-      setLocation(`/partner-doc?token=${data.token}`);
-    },
-  });
-
-  function validate() {
-    const e: { name?: string; contact?: string } = {};
-    if (!name.trim()) e.name = "お名前を入力してください";
-    if (!contact.trim()) e.contact = "連絡先を入力してください";
-    return e;
-  }
-
-  function handleSubmit(ev: React.FormEvent) {
-    ev.preventDefault();
-    const e = validate();
-    if (Object.keys(e).length > 0) { setErrors(e); return; }
-    setErrors({});
-    createLead.mutate({ name: name.trim(), contact: contact.trim(), contactType, occupation });
-  }
-
-  const inputStyle: React.CSSProperties = {
-    width: "100%",
-    padding: "12px 14px",
-    background: "rgba(255,255,255,0.08)",
-    border: "1px solid rgba(255,255,255,0.2)",
-    color: "#ffffff",
-    fontFamily: "'Noto Sans JP', sans-serif",
-    fontSize: "14px",
-    outline: "none",
-    boxSizing: "border-box" as const,
-  };
-  const labelStyle: React.CSSProperties = {
-    display: "block",
-    fontSize: "12px",
-    letterSpacing: "0.1em",
-    color: "#a8d5a2",
-    marginBottom: "6px",
-    fontFamily: "'Noto Sans JP', sans-serif",
-  };
-  const errorStyle: React.CSSProperties = {
-    color: "#ffb3b3",
-    fontSize: "12px",
-    marginTop: "4px",
-    fontFamily: "'Noto Sans JP', sans-serif",
-  };
-  const radioGroupStyle: React.CSSProperties = {
-    display: "flex",
-    gap: "16px",
-    flexWrap: "wrap" as const,
-  };
-  const radioLabelStyle: React.CSSProperties = {
-    display: "flex",
-    alignItems: "center",
-    gap: "6px",
-    fontSize: "13px",
-    color: "rgba(255,255,255,0.85)",
-    fontFamily: "'Noto Sans JP', sans-serif",
-    cursor: "pointer",
-  };
 
   return (
     <section className="py-24" style={{ backgroundColor: "#5a7a52" }} id="contact">
@@ -664,7 +593,7 @@ function LeadForm() {
               資料を無料で受け取る
             </h2>
             <p className="text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.7)", lineHeight: "1.9" }}>
-              フォームを送信すると、パートナー向け資料ページへ自動的にご案内します。
+              下記のGoogleフォームからお申し込みいただくと、パートナー向け資料を無料でお届けします。
             </p>
           </div>
 
@@ -685,94 +614,26 @@ function LeadForm() {
             ))}
           </div>
 
-          <form onSubmit={handleSubmit} style={{ display: "flex", flexDirection: "column", gap: "20px" }}>
-            {/* お名前 */}
-            <div>
-              <label style={labelStyle}>お名前 <span style={{ color: "#ffb3b3" }}>*</span></label>
-              <input
-                type="text"
-                value={name}
-                onChange={e => setName(e.target.value)}
-                placeholder="例：山田 花子"
-                style={inputStyle}
-              />
-              {errors.name && <p style={errorStyle}>{errors.name}</p>}
-            </div>
-
-            {/* ご職業 */}
-            <div>
-              <label style={labelStyle}>ご職業 <span style={{ color: "#ffb3b3" }}>*</span></label>
-              <div style={radioGroupStyle}>
-                {([
-                  { value: "beautician", label: "美容師" },
-                  { value: "esthetic", label: "エステ・ヘッドスパ" },
-                  { value: "home_salon", label: "自宅サロン" },
-                  { value: "other", label: "その他" },
-                ] as const).map(opt => (
-                  <label key={opt.value} style={radioLabelStyle}>
-                    <input
-                      type="radio"
-                      name="occupation"
-                      value={opt.value}
-                      checked={occupation === opt.value}
-                      onChange={() => setOccupation(opt.value)}
-                      style={{ accentColor: "#a8d5a2" }}
-                    />
-                    {opt.label}
-                  </label>
-                ))}
-              </div>
-            </div>
-
-            {/* 希望連絡方法 */}
-            <div>
-              <label style={labelStyle}>ご希望の連絡方法 <span style={{ color: "#ffb3b3" }}>*</span></label>
-              <div style={{ ...radioGroupStyle, marginBottom: "10px" }}>
-                <label style={radioLabelStyle}>
-                  <input type="radio" name="contactType" value="phone" checked={contactType === "phone"} onChange={() => setContactType("phone")} style={{ accentColor: "#a8d5a2" }} />
-                  電話
-                </label>
-                <label style={radioLabelStyle}>
-                  <input type="radio" name="contactType" value="email" checked={contactType === "email"} onChange={() => setContactType("email")} style={{ accentColor: "#a8d5a2" }} />
-                  メール
-                </label>
-              </div>
-              <input
-                type={contactType === "email" ? "email" : "tel"}
-                value={contact}
-                onChange={e => setContact(e.target.value)}
-                placeholder={contactType === "phone" ? "例：090-1234-5678" : "例：info@example.com"}
-                style={inputStyle}
-              />
-              {errors.contact && <p style={errorStyle}>{errors.contact}</p>}
-            </div>
-
-            {/* 送信ボタン */}
-            <button
-              type="submit"
-              disabled={createLead.isPending}
-              className="w-full py-5 font-bold text-base tracking-wider transition-all duration-300"
+          <div style={{ textAlign: "center" }}>
+            <a
+              href={GOOGLE_FORM_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-block w-full py-5 font-bold text-base tracking-wider transition-all duration-300"
               style={{
-                backgroundColor: createLead.isPending ? "rgba(255,255,255,0.3)" : "#c9a84c",
-                color: createLead.isPending ? "rgba(255,255,255,0.5)" : "#1a1a1a",
+                backgroundColor: "#c9a84c",
+                color: "#1a1a1a",
                 fontFamily: "'Noto Sans JP', sans-serif",
-                cursor: createLead.isPending ? "not-allowed" : "pointer",
-                border: "none",
+                textDecoration: "none",
+                display: "block",
               }}
             >
-              {createLead.isPending ? "送信中..." : "資料ページへ進む"}
-            </button>
-
-            {createLead.isError && (
-              <p style={{ ...errorStyle, textAlign: "center" }}>
-                送信に失敗しました。しばらくしてから再度お試しください。
-              </p>
-            )}
-
-            <p className="text-center text-xs" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>
+              無料資料を受け取る（Googleフォーム）
+            </a>
+            <p className="text-center text-xs mt-4" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>
               ※ 勧誘・営業は一切ありません。資料の閲覧のみも歓迎です。
             </p>
-          </form>
+          </div>
         </div>
       </div>
     </section>
@@ -874,7 +735,7 @@ function RevenueSimulation() {
         </div>
 
         <p className="text-center text-xs" style={{ color: "rgba(255,255,255,0.3)", fontFamily: "'Noto Sans JP', sans-serif" }}>
-          ※上記はあくまでも参考試算です。実際の収益は提供内容・地域・客数等により異なります。詳細はLINEにてご相談ください。
+          ※上記はあくまでも参考試算です。実際の収益は提供内容・地域・客数等により異なります。詳細は資料請求フォームよりお問い合わせください。
         </p>
       </div>
     </section>
@@ -1084,7 +945,7 @@ function StartupCost() {
               <div>
                 <p className="font-bold mb-2" style={{ fontFamily: "'Shippori Mincho', serif", color: "#1a1a1a" }}>認定プログラム受講費用</p>
                 <p className="text-sm leading-relaxed" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#555", lineHeight: "1.8" }}>
-                  技術講習会（1〜2日）の受講費用が別途必要です。詳細はLINEでのご相談時にお伝えします。
+                  技術講習会（1〜2日）の受講費用が別途必要です。詳細は説明会・オンライン相談時にお伝えします。
                   初回導入特典として、先行登録者には受講費用の優待を予定しています。
                 </p>
               </div>
@@ -1201,8 +1062,8 @@ function ProgramSteps() {
           {[
             {
               num: "01",
-              title: "LINEで資料を受け取る",
-              body: "まずはサロン向けLINEに登録。収益モデル・導入事例・認定プログラムの詳細資料を無料でお届けします。勧誘・営業は一切ありません。",
+              title: "Googleフォームで資料を受け取る",
+              body: "資料請求フォームにお名前・連絡先を入力するだけ。収益モデル・導入事例・認定プログラムの詳細資料を無料でお届けします。勧誘・営業は一切ありません。",
               time: "すぐに受け取れます",
               img: null,
             },
@@ -1286,7 +1147,7 @@ function Faq() {
     },
     {
       q: "初期費用はどのくらいかかりますか？",
-      a: "機器（マイクロスコープ）のご用意が必要です。詳細はLINEでのご相談の際にお伝えします。ボタニカルミスト機器については、導入サポートプランもご用意しています。",
+      a: "機器（マイクロスコープ）のご用意が必要です。詳細は説明会・資料請求フォームよりお問い合わせください。ボタニカルミスト機器については、導入サポートプランもご用意しています。",
     },
     {
       q: "自宅サロンでも参加できますか？",
@@ -1441,7 +1302,7 @@ function CertifiedSalonSection() {
             <p className="text-base mb-2" style={{ color: "#5a7a52", fontFamily: "'Shippori Mincho', serif", fontSize: "1.1rem" }}>
               {selectedPref ? `${selectedPref}の認定サロンは現在募集中です` : "認定サロンは現在募集中です"}
             </p>
-            <p className="text-sm" style={{ color: "#888", fontFamily: "'Noto Sans JP', sans-serif" }}>パートナーサロンとして参加を希望の方は、下記のLINEよりお問い合わせください。</p>
+            <p className="text-sm" style={{ color: "#888", fontFamily: "'Noto Sans JP', sans-serif" }}>パートナーサロンとして参加を希望の方は、上記の資料請求フォームよりお申し込みください。</p>
           </div>
         ) : (
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1790,7 +1651,7 @@ export default function SalonPartner() {
       if (!el) { el = document.createElement("meta"); el.name = name; document.head.appendChild(el); }
       el.content = content;
     };
-    setMeta("description", "頭皮ケアのブルーオーシャン市場へ。予防型ヘルスケア×習慣化事業として、THE HERBS SCALP LAB認定パートナーを募集。収益の仕組みはLINE登録後に無料でお届けします。");
+    setMeta("description", "頭皮ケアのブルーオーシャン市場へ。予防型ヘルスケア×習慣化事業として、THE HERBS SCALP LAB認定パートナーを募集。資料請求フォームから無料でお届けします。");
     setMeta("keywords", "頭皮ケア 副業,エステサロン 新メニュー,美容師 副業,ヘッドスパ 開業,THE HERBS SCALP LABO 認定サロン,ブルーオーシャン 美容");
   }, []);
 

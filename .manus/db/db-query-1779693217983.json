@@ -1,0 +1,18 @@
+{
+  "query": "SELECT id, name, status, accessToken, tokenExpiresAt, createdAt FROM salon_leads ORDER BY createdAt DESC LIMIT 10;",
+  "command": "mysql --batch --raw --column-names --default-character-set=utf8mb4 --host gateway02.us-east-1.prod.aws.tidbcloud.com --port 4000 --user 48tvmpeyh8PBgeu.ce9d7b371614 --database VaHDAviEx4gwhk9t9bxo5K --execute SELECT id, name, status, accessToken, tokenExpiresAt, createdAt FROM salon_leads ORDER BY createdAt DESC LIMIT 10;",
+  "rows": [
+    {
+      "id": "1",
+      "name": "宮川由美子",
+      "status": "new",
+      "accessToken": "NULL",
+      "tokenExpiresAt": "NULL",
+      "createdAt": "2026-05-09 14:34:36"
+    }
+  ],
+  "messages": [],
+  "stdout": "id\tname\tstatus\taccessToken\ttokenExpiresAt\tcreatedAt\n1\t宮川由美子\tnew\tNULL\tNULL\t2026-05-09 14:34:36\n",
+  "stderr": "",
+  "execution_time_ms": 1794
+}
