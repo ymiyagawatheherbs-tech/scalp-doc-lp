@@ -114,7 +114,7 @@ export default function OwnerAdmin() {
           <p style={{ fontSize: "0.65rem", letterSpacing: "0.2em", color: "#c9a96e", margin: 0, textTransform: "uppercase" }}>THE HERBS / SCALP LABO</p>
           <h1 style={{ fontSize: "1rem", fontWeight: 700, color: "white", margin: "0.15rem 0 0", fontFamily: "'Shippori Mincho B1', serif" }}>オーナー管理画面</h1>
         </div>
-        <a href="/" style={{ fontSize: "0.75rem", color: "#c9a96e", textDecoration: "none", opacity: 0.8 }}>← サイトに戻る</a>
+        <a href="https://scalp-labo-5tzs3tko.manus.space/reservations" style={{ fontSize: "0.75rem", color: "#c9a96e", textDecoration: "none", opacity: 0.8 }}>← サイトに戻る</a>
       </header>
 
       <main style={{ maxWidth: "800px", margin: "0 auto", padding: "2.5rem 1.5rem" }}>
