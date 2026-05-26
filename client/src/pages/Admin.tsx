@@ -195,7 +195,7 @@ export default function Admin() {
               ログアウト
             </button>
           ) : (
-            <a href="/" style={{ color: "#888", fontSize: "0.78rem", textDecoration: "none" }}>← サイトへ戻る</a>
+            <a href="https://scalp-labo-5tzs3tko.manus.space/reservations" style={{ color: "#888", fontSize: "0.78rem", textDecoration: "none" }}>← サイトへ戻る</a>
           )}
         </div>
       </header>

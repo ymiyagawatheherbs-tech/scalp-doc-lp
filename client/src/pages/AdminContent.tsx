@@ -89,9 +89,7 @@ export default function AdminContent() {
       {/* ヘッダー */}
       <div style={{ background: "#2C1810", padding: "16px 24px", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
-          <Link href="/">
-            <a style={{ color: "#c9a96e", fontSize: "12px", textDecoration: "none" }}>← サイトへ戻る</a>
-          </Link>
+          <a href="https://scalp-labo-5tzs3tko.manus.space/reservations" style={{ color: "#c9a96e", fontSize: "12px", textDecoration: "none" }}>← サイトへ戻る</a>
           <span style={{ color: "#c9a96e", opacity: 0.4 }}>|</span>
           <h1 style={{ color: "#F5F0E8", fontSize: "16px", fontWeight: "600", margin: 0 }}>
             コンテンツ管理
