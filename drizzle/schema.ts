@@ -265,12 +265,12 @@ export const salonLeads = mysqlTable("salon_leads", {
   id: int("id").autoincrement().primaryKey(),
   /** お名前 */
   name: varchar("name", { length: 128 }).notNull(),
-  /** 電話番号またはメールアドレス */
-  contact: varchar("contact", { length: 320 }).notNull(),
-  /** 連絡方法の種別: phone / email */
-  contactType: mysqlEnum("contactType", ["phone", "email"]).notNull(),
-  /** ご職業: beautician / esthetic / home_salon / other */
-  occupation: mysqlEnum("occupation", ["beautician", "esthetic", "home_salon", "other"]).notNull(),
+  /** メールアドレス */
+  email: varchar("email", { length: 320 }).notNull(),
+  /** 業種・活動内容: hair_salon / head_spa / esthetic / nail_lash / seitai / individual / corporate / not_yet / side_job / other */
+  occupation: varchar("occupation", { length: 64 }).notNull(),
+  /** 業種「その他」の場合の自由記述 */
+  occupationOther: varchar("occupationOther", { length: 256 }),
   /** ステータス: new / contacted / converted / archived */
   status: mysqlEnum("status", ["new", "contacted", "converted", "archived"]).default("new").notNull(),
   /** 備考・メモ */

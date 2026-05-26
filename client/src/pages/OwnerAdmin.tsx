@@ -11,9 +11,15 @@ import { getLoginUrl } from "@/const";
 import { toast } from "sonner";
 
 const OCCUPATION_LABELS: Record<string, string> = {
-  beautician: "美容師",
-  esthetic: "エステ・ヘッドスパ",
-  home_salon: "自宅サロン",
+  hair_salon: "美容室・ヘアサロン",
+  head_spa: "ヘッドスパ専門店",
+  esthetic: "エステ・フェイシャルサロン",
+  nail_lash: "ネイル・まつ毛・リラクゼーション",
+  seitai: "整体・针炙・治療院",
+  individual: "個人事業（その他）",
+  corporate: "法人・複数店舗",
+  not_yet: "まだ開業していない・検討中",
+  side_job: "副業を考えている",
   other: "その他",
 };
 
@@ -317,10 +323,8 @@ function LeadSection({ isAuthenticated }: { isAuthenticated: boolean }) {
 
                     {/* 連絡先 */}
                     <td style={{ padding: "0.6rem 0.8rem", color: "#555", maxWidth: "180px", wordBreak: "break-all" }}>
-                      <span style={{ fontSize: "0.72rem", color: "#888", marginRight: "0.3rem" }}>
-                        {lead.contactType === "phone" ? "✆" : "✉"}
-                      </span>
-                      {lead.contact}
+                      <span style={{ fontSize: "0.72rem", color: "#888", marginRight: "0.3rem" }}>✉</span>
+                      {lead.email}
                     </td>
 
                     {/* トークン状態 */}

@@ -575,8 +575,73 @@ function WhatWeDo() {
 }
 
 // ========== 資料請求フォーム ==========
+const OCCUPATION_OPTIONS = [
+  { value: "hair_salon",  label: "美容室・ヘアサロン" },
+  { value: "head_spa",   label: "ヘッドスパ専門店" },
+  { value: "esthetic",   label: "エステ・フェイシャルサロン" },
+  { value: "nail_lash",  label: "ネイル・まつ毛・リラクゼーション" },
+  { value: "seitai",     label: "整体・针炙・治療院" },
+  { value: "individual", label: "個人事業（その他）" },
+  { value: "corporate",  label: "法人・複数店舗" },
+  { value: "not_yet",    label: "まだ開業していない・検討中" },
+  { value: "side_job",   label: "副業を考えている" },
+  { value: "other",      label: "その他" },
+];
+
 function LeadForm() {
   const { ref, inView } = useInView();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [occupation, setOccupation] = useState("");
+  const [occupationOther, setOccupationOther] = useState("");
+  const [errors, setErrors] = useState<Record<string, string>>({});
+  const [submitted, setSubmitted] = useState(false);
+  const createLead = trpc.salonLead.create.useMutation({
+    onSuccess: (data) => {
+      setSubmitted(true);
+      setTimeout(() => {
+        window.location.href = `/partner-doc?token=${data.token}`;
+      }, 1200);
+    },
+  });
+
+  const validate = () => {
+    const e: Record<string, string> = {};
+    if (!name.trim()) e.name = "お名前を入力してください";
+    if (!email.trim()) e.email = "メールアドレスを入力してください";
+    else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) e.email = "正しいメールアドレスを入力してください";
+    if (!occupation) e.occupation = "業種・活動内容を選択してください";
+    return e;
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const errs = validate();
+    if (Object.keys(errs).length > 0) { setErrors(errs); return; }
+    setErrors({});
+    createLead.mutate({ name, email, occupation, occupationOther: occupation === "other" ? occupationOther : undefined });
+  };
+
+  const inputStyle: React.CSSProperties = {
+    width: "100%",
+    padding: "0.85rem 1rem",
+    backgroundColor: "rgba(255,255,255,0.1)",
+    border: "1px solid rgba(255,255,255,0.25)",
+    borderRadius: "4px",
+    color: "#ffffff",
+    fontFamily: "'Noto Sans JP', sans-serif",
+    fontSize: "0.9rem",
+    outline: "none",
+    boxSizing: "border-box",
+  };
+  const labelStyle: React.CSSProperties = {
+    display: "block",
+    fontSize: "0.8rem",
+    color: "rgba(255,255,255,0.7)",
+    marginBottom: "0.4rem",
+    fontFamily: "'Noto Sans JP', sans-serif",
+  };
+  const errStyle: React.CSSProperties = { color: "#fca5a5", fontSize: "0.75rem", marginTop: "0.3rem", fontFamily: "'Noto Sans JP', sans-serif" };
 
   return (
     <section className="py-24" style={{ backgroundColor: "#5a7a52" }} id="contact">
@@ -593,47 +658,137 @@ function LeadForm() {
               資料を無料で受け取る
             </h2>
             <p className="text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.7)", lineHeight: "1.9" }}>
-              下記のGoogleフォームからお申し込みいただくと、パートナー向け資料を無料でお届けします。
+              下記を入力して送信すると、パートナー向け資料を無料でご覧いただけます。
             </p>
           </div>
 
-          {/* 資料に含まれる内容 */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-10">
-            {[
-              "新しいビジネスでできること",
-              "導入サロンの実際の声",
-              "初期費用・ランニングコストの目安",
-              "認定プログラムの詳細スケジュール",
-              "ブルーオーシャン市場の詳細データ",
-              "サポート体制について",
-            ].map((item, i) => (
-              <div key={i} className="flex items-center gap-3 px-4 py-3" style={{ backgroundColor: "rgba(255,255,255,0.08)" }}>
-                <span style={{ color: "#a8d5a2", flexShrink: 0 }}>✓</span>
-                <span className="text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.85)" }}>{item}</span>
+          {submitted ? (
+            <div className="text-center py-12">
+              <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>✓</div>
+              <p style={{ color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif", fontSize: "1.1rem", fontWeight: 700 }}>ご登録ありがとうございます</p>
+              <p style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Noto Sans JP', sans-serif", fontSize: "0.85rem", marginTop: "0.5rem" }}>資料ページへ移動します…</p>
+            </div>
+          ) : (
+            <form onSubmit={handleSubmit} noValidate>
+              {/* 資料に含まれる内容 */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-10">
+                {[
+                  "新しいビジネスでできること",
+                  "導入サロンの実際の声",
+                  "初期費用・ランニングコストの目安",
+                  "認定プログラムの詳細スケジュール",
+                  "ブルーオーシャン市場の詳細データ",
+                  "サポート体制について",
+                ].map((item, i) => (
+                  <div key={i} className="flex items-center gap-3 px-4 py-3" style={{ backgroundColor: "rgba(255,255,255,0.08)" }}>
+                    <span style={{ color: "#a8d5a2", flexShrink: 0 }}>✓</span>
+                    <span className="text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.85)" }}>{item}</span>
+                  </div>
+                ))}
               </div>
-            ))}
-          </div>
 
-          <div style={{ textAlign: "center" }}>
-            <a
-              href={GOOGLE_FORM_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block w-full py-5 font-bold text-base tracking-wider transition-all duration-300"
-              style={{
-                backgroundColor: "#c9a84c",
-                color: "#1a1a1a",
-                fontFamily: "'Noto Sans JP', sans-serif",
-                textDecoration: "none",
-                display: "block",
-              }}
-            >
-              無料資料を受け取る（Googleフォーム）
-            </a>
-            <p className="text-center text-xs mt-4" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>
-              ※ 勧誘・営業は一切ありません。資料の閲覧のみも歓迎です。
-            </p>
-          </div>
+              {/* お名前 */}
+              <div style={{ marginBottom: "1.2rem" }}>
+                <label style={labelStyle}>お名前 <span style={{ color: "#fca5a5" }}>*</span></label>
+                <input
+                  type="text"
+                  value={name}
+                  onChange={e => setName(e.target.value)}
+                  placeholder="山田 花子"
+                  style={inputStyle}
+                />
+                {errors.name && <p style={errStyle}>{errors.name}</p>}
+              </div>
+
+              {/* メールアドレス */}
+              <div style={{ marginBottom: "1.2rem" }}>
+                <label style={labelStyle}>メールアドレス <span style={{ color: "#fca5a5" }}>*</span></label>
+                <input
+                  type="email"
+                  value={email}
+                  onChange={e => setEmail(e.target.value)}
+                  placeholder="example@salon.jp"
+                  style={inputStyle}
+                />
+                {errors.email && <p style={errStyle}>{errors.email}</p>}
+              </div>
+
+              {/* 業種・活動内容 */}
+              <div style={{ marginBottom: occupation === "other" ? "0.6rem" : "1.8rem" }}>
+                <label style={labelStyle}>業種・活動内容 <span style={{ color: "#fca5a5" }}>*</span></label>
+                <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.5rem" }}>
+                  {OCCUPATION_OPTIONS.map(opt => (
+                    <label
+                      key={opt.value}
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        padding: "0.65rem 0.8rem",
+                        backgroundColor: occupation === opt.value ? "rgba(169,213,162,0.25)" : "rgba(255,255,255,0.07)",
+                        border: occupation === opt.value ? "1px solid #a8d5a2" : "1px solid rgba(255,255,255,0.15)",
+                        borderRadius: "4px",
+                        cursor: "pointer",
+                        fontFamily: "'Noto Sans JP', sans-serif",
+                        fontSize: "0.8rem",
+                        color: "rgba(255,255,255,0.85)",
+                      }}
+                    >
+                      <input
+                        type="radio"
+                        name="occupation"
+                        value={opt.value}
+                        checked={occupation === opt.value}
+                        onChange={() => setOccupation(opt.value)}
+                        style={{ accentColor: "#a8d5a2" }}
+                      />
+                      {opt.label}
+                    </label>
+                  ))}
+                </div>
+                {errors.occupation && <p style={errStyle}>{errors.occupation}</p>}
+              </div>
+
+              {/* その他自由記述 */}
+              {occupation === "other" && (
+                <div style={{ marginBottom: "1.8rem" }}>
+                  <label style={labelStyle}>その他（具体的にお教えください）</label>
+                  <input
+                    type="text"
+                    value={occupationOther}
+                    onChange={e => setOccupationOther(e.target.value)}
+                    placeholder="例：フリーランスアドバイザー、起業準備中など"
+                    style={inputStyle}
+                  />
+                </div>
+              )}
+
+              <button
+                type="submit"
+                disabled={createLead.isPending}
+                className="w-full py-5 font-bold text-base tracking-wider transition-all duration-300"
+                style={{
+                  backgroundColor: createLead.isPending ? "#a08030" : "#c9a84c",
+                  color: "#1a1a1a",
+                  fontFamily: "'Noto Sans JP', sans-serif",
+                  border: "none",
+                  cursor: createLead.isPending ? "not-allowed" : "pointer",
+                }}
+              >
+                {createLead.isPending ? "送信中…" : "無料資料を受け取る"}
+              </button>
+
+              {createLead.isError && (
+                <p style={{ ...errStyle, textAlign: "center", marginTop: "0.8rem" }}>
+                  送信に失敗しました。時間をおいて再度お試しください。
+                </p>
+              )}
+
+              <p className="text-center text-xs mt-4" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>
+                ※ 勧誘・営業は一切ありません。資料の閲覧のみも歓迎です。
+              </p>
+            </form>
+          )}
         </div>
       </div>
     </section>

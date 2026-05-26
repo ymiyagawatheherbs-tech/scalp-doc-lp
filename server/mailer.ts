@@ -468,16 +468,22 @@ export async function sendBookingConfirmed(data: BookingConfirmedData): Promise<
 
 export interface SalonLeadNotificationData {
   name: string;
-  contact: string;
-  contactType: "phone" | "email";
-  occupation: "beautician" | "esthetic" | "home_salon" | "other";
+  email: string;
+  occupation: string;
+  occupationOther?: string;
   submittedAt: string;
 }
 
 const OCCUPATION_LABELS: Record<string, string> = {
-  beautician: "美容師",
-  esthetic: "エステ・ヘッドスパ",
-  home_salon: "自宅サロン",
+  hair_salon: "美容室・ヘアサロン",
+  head_spa: "ヘッドスパ専門店",
+  esthetic: "エステ・フェイシャルサロン",
+  nail_lash: "ネイル・まつ毛・リラクゼーション",
+  seitai: "整体・针炙・治療院",
+  individual: "個人事業（その他）",
+  corporate: "法人・複数店舗",
+  not_yet: "まだ開業していない・検討中",
+  side_job: "副業を考えている",
   other: "その他",
 };
 
@@ -491,7 +497,9 @@ export async function sendSalonLeadNotification(data: SalonLeadNotificationData)
   }
 
   const occupationLabel = OCCUPATION_LABELS[data.occupation] ?? data.occupation;
-  const contactLabel = data.contactType === "phone" ? "電話番号" : "メールアドレス";
+  const occupationDisplay = data.occupation === 'other' && data.occupationOther
+    ? `その他（${data.occupationOther}）`
+    : occupationLabel;
   const subject = `【SCALP LABO】パートナー資料請求：${data.name} 様`;
 
   const htmlBody = `
@@ -511,12 +519,12 @@ export async function sendSalonLeadNotification(data: SalonLeadNotificationData)
         <td style="padding: 10px 8px;">${data.name} 様</td>
       </tr>
       <tr style="border-bottom: 1px solid #e8f0e8;">
-        <td style="padding: 10px 8px; color: #888;">${contactLabel}</td>
-        <td style="padding: 10px 8px; font-weight: bold;">${data.contact}</td>
+        <td style="padding: 10px 8px; color: #888;">メールアドレス</td>
+        <td style="padding: 10px 8px; font-weight: bold;">${data.email}</td>
       </tr>
       <tr style="border-bottom: 1px solid #e8f0e8;">
-        <td style="padding: 10px 8px; color: #888;">ご職業</td>
-        <td style="padding: 10px 8px;">${occupationLabel}</td>
+        <td style="padding: 10px 8px; color: #888;">業種・活動内容</td>
+        <td style="padding: 10px 8px;">${occupationDisplay}</td>
       </tr>
       <tr>
         <td style="padding: 10px 8px; color: #888;">送信日時</td>

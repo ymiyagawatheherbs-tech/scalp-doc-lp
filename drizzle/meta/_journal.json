@@ -57,6 +57,13 @@
       "when": 1778340387914,
       "tag": "0007_volatile_talkback",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "5",
+      "when": 1779836465456,
+      "tag": "0008_classy_jetstream",
+      "breakpoints": true
     }
   ]
 }

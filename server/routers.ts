@@ -742,18 +742,18 @@ export const appRouter = router({
       .input(
         z.object({
           name: z.string().min(1, "お名前を入力してください"),
-          contact: z.string().min(1, "連絡先を入力してください"),
-          contactType: z.enum(["phone", "email"]),
-          occupation: z.enum(["beautician", "esthetic", "home_salon", "other"]),
+          email: z.string().email("正しいメールアドレスを入力してください"),
+          occupation: z.string().min(1, "業種を選択してください"),
+          occupationOther: z.string().optional(),
         })
       )
       .mutation(async ({ input }) => {
         // DB保存
         const result = await createSalonLead({
           name: input.name,
-          contact: input.contact,
-          contactType: input.contactType,
+          email: input.email,
           occupation: input.occupation,
+          occupationOther: input.occupationOther,
         });
 
         // 有効期限付きトークン発行（72時間）
@@ -765,9 +765,9 @@ export const appRouter = router({
         const now = new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" });
         sendSalonLeadNotification({
           name: input.name,
-          contact: input.contact,
-          contactType: input.contactType,
+          email: input.email,
           occupation: input.occupation,
+          occupationOther: input.occupationOther,
           submittedAt: now,
         }).catch(err => console.error("[salonLead] mail error:", err));
 
