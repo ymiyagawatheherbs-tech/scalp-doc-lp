@@ -247,9 +247,10 @@ export default function AdminCalendar() {
                     {dayReservations.slice(0, 3).map((r: Reservation) => (
                       <div
                         key={r.id}
-                        className={`text-[10px] px-1 py-0.5 rounded truncate ${STATUS_COLORS[r.status]?.bg ?? "bg-gray-100"} ${STATUS_COLORS[r.status]?.text ?? "text-gray-700"}`}
+                        className={`text-[10px] px-1 py-0.5 rounded ${STATUS_COLORS[r.status]?.bg ?? "bg-gray-100"} ${STATUS_COLORS[r.status]?.text ?? "text-gray-700"}`}
                       >
-                        {r.desiredTime} {r.name}
+                        <div className="font-bold truncate">{r.desiredTime} {r.name}</div>
+                        <div className="truncate opacity-80" style={{ fontSize: "9px" }}>{PLAN_LABELS[r.plan] ?? r.plan}</div>
                       </div>
                     ))}
                     {dayReservations.length > 3 && (
