@@ -1,0 +1,1 @@
+ALTER TABLE `reservations` ADD `source` enum('web','phone','walkin') DEFAULT 'web' NOT NULL;

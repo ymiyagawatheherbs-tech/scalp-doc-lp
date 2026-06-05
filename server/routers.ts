@@ -215,6 +215,69 @@ export const appRouter = router({
       if (!db) return [];
       return db.select().from(reservations).orderBy(desc(reservations.createdAt)).limit(500);
     }),
+
+    // 管理者向け：月別取得（カレンダー用）
+    adminListByMonth: staffOrManusProcedure
+      .input(z.object({ year: z.number(), month: z.number() }))
+      .query(async ({ input }) => {
+        const db = await getDb();
+        if (!db) return [];
+        const { and, gte, lte } = await import("drizzle-orm");
+        const y = input.year;
+        const m = String(input.month).padStart(2, "0");
+        const start = `${y}-${m}-01`;
+        const lastDay = new Date(y, input.month, 0).getDate();
+        const end = `${y}-${m}-${String(lastDay).padStart(2, "0")}`;
+        return db
+          .select()
+          .from(reservations)
+          .where(and(gte(reservations.desiredDate, start), lte(reservations.desiredDate, end)))
+          .orderBy(reservations.desiredDate, reservations.desiredTime);
+      }),
+
+    // スタッフ向け：手動予約登録（電話・来店予約）
+    adminCreate: staffOrManusProcedure
+      .input(
+        z.object({
+          name: z.string().min(1),
+          phone: z.string().min(1),
+          email: z.string().optional(),
+          desiredDate: z.string().min(1),
+          desiredTime: z.string().min(1),
+          plan: z.enum(["free", "standard", "personal", "consult"]),
+          message: z.string().optional(),
+          gender: z.enum(["women", "men"]).default("women"),
+          source: z.enum(["web", "phone", "walkin"]).default("phone"),
+        })
+      )
+      .mutation(async ({ input }) => {
+        const db = await getDb();
+        if (!db) throw new Error("DB unavailable");
+        await db.insert(reservations).values({
+          name: input.name,
+          phone: input.phone,
+          email: input.email || null,
+          desiredDate: input.desiredDate,
+          desiredTime: input.desiredTime,
+          plan: input.plan,
+          message: input.message || null,
+          gender: input.gender,
+          source: input.source,
+          status: "confirmed",
+        });
+        return { success: true };
+      }),
+
+    // 管理者向け：予約削除
+    adminDelete: staffOrManusProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        const db = await getDb();
+        if (!db) throw new Error("DB unavailable");
+        const { eq } = await import("drizzle-orm");
+        await db.delete(reservations).where(eq(reservations.id, input.id));
+        return { success: true };
+      }),
   }),
 
   /**

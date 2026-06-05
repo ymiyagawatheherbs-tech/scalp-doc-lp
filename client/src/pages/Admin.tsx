@@ -7,6 +7,7 @@ import { trpc } from "@/lib/trpc";
 import { useState } from "react";
 import { toast } from "sonner";
 import { getLoginUrl } from "@/const";
+import { Link } from "wouter";
 
 const STATUS_LABELS: Record<string, { label: string; color: string; bg: string }> = {
   pending:   { label: "受付中",     color: "#92400e", bg: "#fef3c7" },
@@ -184,6 +185,7 @@ export default function Admin() {
             style={{ height: "1.75rem", width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }}
           />
           <span style={{ color: "#c9a96e", fontWeight: 700, fontSize: "0.95rem", letterSpacing: "0.08em" }}>予約管理</span>
+          <Link href="/admin/calendar" style={{ color: "#c9a96e", fontSize: "0.78rem", background: "rgba(201,169,110,0.15)", border: "1px solid rgba(201,169,110,0.4)", borderRadius: "6px", padding: "0.25rem 0.75rem", textDecoration: "none", marginLeft: "0.5rem" }}>📅 カレンダー</Link>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
           <span style={{ color: "#c9a96e", fontSize: "0.8rem" }}>{currentUser}</span>

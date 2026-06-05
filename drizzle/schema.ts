@@ -46,6 +46,8 @@ export const reservations = mysqlTable("reservations", {
   message: text("message"),
   /** 性別区分（LP種別）: women / men */
   gender: mysqlEnum("gender", ["women", "men"]).default("women").notNull(),
+  /** 予約経路: web / phone / walkin */
+  source: mysqlEnum("source", ["web", "phone", "walkin"]).default("web").notNull(),
   /** ステータス: pending / confirmed / cancelled */
   status: mysqlEnum("status", ["pending", "confirmed", "cancelled"]).default("pending").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
