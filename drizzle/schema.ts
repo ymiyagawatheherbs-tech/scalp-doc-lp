@@ -48,6 +48,8 @@ export const reservations = mysqlTable("reservations", {
   gender: mysqlEnum("gender", ["women", "men"]).default("women").notNull(),
   /** 予約経路: web / phone / walkin */
   source: mysqlEnum("source", ["web", "phone", "walkin"]).default("web").notNull(),
+  /** 対象店舗: hankyu=神戸阪急店, salon=植物美容サロン */
+  salonId: mysqlEnum("salonId", ["hankyu", "salon"]).default("hankyu").notNull(),
   /** ステータス: pending / confirmed / cancelled */
   status: mysqlEnum("status", ["pending", "confirmed", "cancelled"]).default("pending").notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),

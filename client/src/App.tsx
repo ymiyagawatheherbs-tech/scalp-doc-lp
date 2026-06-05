@@ -20,6 +20,9 @@ import AdminBlog from "./pages/AdminBlog";
 import AdminMenus from "./pages/AdminMenus";
 import AdminSalons from "./pages/AdminSalons";
 import AdminCalendar from "./pages/AdminCalendar";
+import SalonAdmin from "./pages/SalonAdmin";
+import SalonAdminCalendar from "./pages/SalonAdminCalendar";
+import SalonAdminMenus from "./pages/SalonAdminMenus";
 import OwnerAdmin from "./pages/OwnerAdmin";
 import Salons from "./pages/Salons";
 import Blog from "./pages/Blog";
@@ -45,6 +48,9 @@ function Router() {
       <Route path={"/admin/menus"} component={AdminMenus} />
       <Route path={"/admin/salons"} component={AdminSalons} />
       <Route path={"/admin/calendar"} component={AdminCalendar} />
+      <Route path={"/salon-admin"} component={SalonAdmin} />
+      <Route path={"/salon-admin/calendar"} component={SalonAdminCalendar} />
+      <Route path={"/salon-admin/menus"} component={SalonAdminMenus} />
       <Route path={"/owner-admin"} component={OwnerAdmin} />
       <Route path={"/salons"} component={Salons} />
       <Route path={"/blog/:slug"} component={BlogPost} />

@@ -1,0 +1,1 @@
+ALTER TABLE `reservations` ADD `salonId` enum('hankyu','salon') DEFAULT 'hankyu' NOT NULL;

@@ -48,11 +48,16 @@ export const appRouter = router({
           plan: z.string().min(1),
           message: z.string().optional(),
           gender: z.enum(["women", "men"]).default("women"),
+          salonId: z.enum(["hankyu", "salon"]).default("hankyu"),
         })
       )
       .mutation(async ({ input }) => {
         const db = await getDb();
         if (!db) throw new Error("DB unavailable");
+
+        const storeName = input.salonId === "salon"
+          ? "THE HERBS植物美容サロン"
+          : "THE HERBS神戸阪急店";
 
         await db.insert(reservations).values({
           name: input.name,
@@ -63,23 +68,18 @@ export const appRouter = router({
           plan: input.plan,
           message: input.message || null,
           gender: input.gender,
+          salonId: input.salonId,
           status: "pending",
         });
 
-        const planLabel: Record<string, string> = {
-          free: "無料スカルプチェック",
-          standard: "スカルプラボ定期ケア",
-          personal: "パーソナルスカルプケア",
-          consult: "相談希望",
-        };
         await notifyOwner({
-          title: `【新規予約】${input.name}様 — ${planLabel[input.plan] ?? input.plan}`,
+          title: `【新規予約】${input.name}様 — ${storeName} / ${input.plan}`,
           content: `日時: ${input.desiredDate} ${input.desiredTime}\n電話: ${input.phone}\nメール: ${input.email || "未記入"}\nメッセージ: ${input.message || "なし"}`,
         }).catch(() => {});
 
-        // LINE公式アカウントへ管理者向けプッシュ通知（フォロワーへの配信は行わない）
+        // LINE公式アカウントへ管理者向けプッシュ通知（店舗別に送信先を切り替え）
         await notifyReservationViaLine({
-          store: "kobe",
+          store: input.salonId === "salon" ? "salon" : "kobe",
           name: input.name,
           phone: input.phone,
           email: input.email,
@@ -89,36 +89,30 @@ export const appRouter = router({
           message: input.message,
         }).catch((err) => console.error("[reservation] LINE push notification failed:", err));
 
-        // Outlook SMTP経由でcx@the-herbs.co.jpへメール通知
-        const courseMap: Record<string, string> = {
-          free: "free_check",
-          standard: "regular_care",
-          personal: "regular_care",
-          consult: "consultation",
-        };
+        // Outlook SMTP経由でメール通知
         const submittedAt = new Date().toLocaleString("ja-JP", { timeZone: "Asia/Tokyo" });
         await sendBookingNotification({
-          storeName: "THE HERBS神戸阪急店",
+          storeName,
           name: input.name,
           phone: input.phone,
           email: input.email || "未記入",
-          course: courseMap[input.plan] ?? input.plan,
+          course: input.plan,
           preferredDate: input.desiredDate,
           preferredTime: input.desiredTime,
           message: input.message,
           submittedAt,
         }).catch((err) => console.error("[reservation] email notification failed:", err));
 
-        // メールアドレスを入力した場合のみ、お客様向け確認メールを送信
+        // お客様向け確認メール
         if (input.email) {
           await sendCustomerConfirmation({
             name: input.name,
             phone: input.phone,
             email: input.email,
-            course: courseMap[input.plan] ?? input.plan,
+            course: input.plan,
             preferredDate: input.desiredDate,
             preferredTime: input.desiredTime,
-            storeName: "THE HERBS神戸阪急店",
+            storeName,
             message: input.message,
             submittedAt,
           }).catch((err) => console.error("[reservation] customer confirmation failed:", err));
@@ -210,28 +204,39 @@ export const appRouter = router({
       }),
 
     // 管理者向け：全件取得（スタッフまたはManus認証必須）
-    adminList: staffOrManusProcedure.query(async () => {
-      const db = await getDb();
-      if (!db) return [];
-      return db.select().from(reservations).orderBy(desc(reservations.createdAt)).limit(500);
-    }),
-
-    // 管理者向け：月別取得（カレンダー用）
-    adminListByMonth: staffOrManusProcedure
-      .input(z.object({ year: z.number(), month: z.number() }))
+    adminList: staffOrManusProcedure
+      .input(z.object({ salonId: z.enum(["hankyu", "salon"]).optional() }).optional())
       .query(async ({ input }) => {
         const db = await getDb();
         if (!db) return [];
-        const { and, gte, lte } = await import("drizzle-orm");
+        const { eq } = await import("drizzle-orm");
+        const query = db.select().from(reservations);
+        if (input?.salonId) {
+          return query.where(eq(reservations.salonId, input.salonId)).orderBy(desc(reservations.createdAt)).limit(500);
+        }
+        return query.orderBy(desc(reservations.createdAt)).limit(500);
+      }),
+
+    // 管理者向け：月別取得（カレンダー用）
+    adminListByMonth: staffOrManusProcedure
+      .input(z.object({ year: z.number(), month: z.number(), salonId: z.enum(["hankyu", "salon"]).optional() }))
+      .query(async ({ input }) => {
+        const db = await getDb();
+        if (!db) return [];
+        const { and, gte, lte, eq } = await import("drizzle-orm");
         const y = input.year;
         const m = String(input.month).padStart(2, "0");
         const start = `${y}-${m}-01`;
         const lastDay = new Date(y, input.month, 0).getDate();
         const end = `${y}-${m}-${String(lastDay).padStart(2, "0")}`;
+        const dateFilter = and(gte(reservations.desiredDate, start), lte(reservations.desiredDate, end));
+        const whereClause = input.salonId
+          ? and(dateFilter, eq(reservations.salonId, input.salonId))
+          : dateFilter;
         return db
           .select()
           .from(reservations)
-          .where(and(gte(reservations.desiredDate, start), lte(reservations.desiredDate, end)))
+          .where(whereClause)
           .orderBy(reservations.desiredDate, reservations.desiredTime);
       }),
 
@@ -248,6 +253,7 @@ export const appRouter = router({
           message: z.string().optional(),
           gender: z.enum(["women", "men"]).default("women"),
           source: z.enum(["web", "phone", "walkin"]).default("phone"),
+          salonId: z.enum(["hankyu", "salon"]).default("hankyu"),
         })
       )
       .mutation(async ({ input }) => {
@@ -263,6 +269,7 @@ export const appRouter = router({
           message: input.message || null,
           gender: input.gender,
           source: input.source,
+          salonId: input.salonId,
           status: "confirmed",
         });
         return { success: true };
