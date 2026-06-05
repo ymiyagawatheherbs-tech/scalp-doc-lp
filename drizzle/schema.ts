@@ -322,3 +322,24 @@ export const loginAttempts = mysqlTable("login_attempts", {
 
 export type LoginAttempt = typeof loginAttempts.$inferSelect;
 export type InsertLoginAttempt = typeof loginAttempts.$inferInsert;
+
+/**
+ * 予約ブロックテーブル — 特定日・時間帯を予約不可にするブロック設定を管理する
+ * 管理者が休業日・満員日・特定時間帯をブロックし、予約フォームで選択不可にする
+ */
+export const reservationBlocks = mysqlTable("reservation_blocks", {
+  id: int("id").autoincrement().primaryKey(),
+  /** 対象店舗: hankyu=神戸阪急店, salon=植物美容サロン, both=両店舗 */
+  salonId: mysqlEnum("salonId", ["hankyu", "salon", "both"]).notNull(),
+  /** ブロック対象日（YYYY-MM-DD） */
+  blockDate: varchar("blockDate", { length: 16 }).notNull(),
+  /** ブロック対象時間（HH:MM）。nullの場合は終日ブロック */
+  blockTime: varchar("blockTime", { length: 8 }),
+  /** ブロック理由（スタッフ向けメモ） */
+  reason: varchar("reason", { length: 256 }),
+  /** 登録スタッフ名（記録用） */
+  createdBy: varchar("createdBy", { length: 64 }),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+export type ReservationBlock = typeof reservationBlocks.$inferSelect;
+export type InsertReservationBlock = typeof reservationBlocks.$inferInsert;

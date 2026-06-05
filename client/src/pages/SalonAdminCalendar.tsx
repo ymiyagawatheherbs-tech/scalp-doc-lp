@@ -71,6 +71,9 @@ export default function SalonAdminCalendar() {
  const [selectedDate, setSelectedDate] = useState<string | null>(null);
  const [showForm, setShowForm] = useState(false);
  const [selectedReservation, setSelectedReservation] = useState<Reservation | null>(null);
+ const [showBlockForm, setShowBlockForm] = useState(false);
+ const [blockTime, setBlockTime] = useState<string>("");
+ const [blockReason, setBlockReason] = useState<string>("");
 
  const [form, setForm] = useState({
  name: "",
@@ -126,6 +129,34 @@ export default function SalonAdminCalendar() {
  onError: (err) => toast.error(err.message || "削除失敗"),
  });
 
+ // ブロック管理
+ const { data: blocksForMonth, refetch: refetchBlocks } = trpc.block.list.useQuery(
+ { salonId: "salon" },
+ { enabled: isAuthenticated, refetchOnWindowFocus: false }
+ );
+ const blocksByDate = useMemo(() => {
+ const map: Record<string, any[]> = {};
+ (blocksForMonth ?? []).forEach((b: any) => {
+ if (!map[b.blockDate]) map[b.blockDate] = [];
+ map[b.blockDate].push(b);
+ });
+ return map;
+ }, [blocksForMonth]);
+ const createBlock = trpc.block.create.useMutation({
+ onSuccess: () => {
+ toast.success("ブロックしました");
+ setShowBlockForm(false);
+ setBlockTime("");
+ setBlockReason("");
+ refetchBlocks();
+ },
+ onError: (err) => toast.error(err.message || "ブロック失敗"),
+ });
+ const deleteBlock = trpc.block.delete.useMutation({
+ onSuccess: () => { toast.success("ブロックを解除しました"); refetchBlocks(); },
+ onError: (err) => toast.error(err.message || "解除失敗"),
+ });
+
  const calendarDays = useMemo(() => {
  const firstDay = new Date(currentYear, currentMonth - 1, 1).getDay();
  const daysInMonth = new Date(currentYear, currentMonth, 0).getDate();
@@ -160,6 +191,7 @@ export default function SalonAdminCalendar() {
  setSelectedDate(dateStr);
  setSelectedReservation(null);
  setShowForm(false);
+ setShowBlockForm(false);
  };
 
  const handleNewReservation = () => {
@@ -226,6 +258,8 @@ export default function SalonAdminCalendar() {
  if (!day) return <div key={`empty-${idx}`} style={{ minHeight: 72, background: C.bgLight, borderRight: `1px solid ${C.muted}`, borderBottom: `1px solid ${C.muted}` }} />;
  const dateStr = `${currentYear}-${String(currentMonth).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
  const dayReservations = reservationsByDate[dateStr] ?? [];
+ const dayBlocks = blocksByDate[dateStr] ?? [];
+ const isAllDayBlocked = dayBlocks.some((b: any) => !b.blockTime);
  const isToday = dateStr === todayStr;
  const isSelected = dateStr === selectedDate;
  const dow = new Date(currentYear, currentMonth - 1, day).getDay();
@@ -237,7 +271,7 @@ export default function SalonAdminCalendar() {
  minHeight: 72,
  padding: "0.25rem",
  cursor: "pointer",
- background: isSelected ? "#e8f5e5" : "white",
+ background: isAllDayBlocked ? "#fce8e8" : isSelected ? "#e8f5e5" : "white",
  outline: isSelected ? `2px solid ${C.accent}` : "none",
  outlineOffset: "-2px",
  borderRight: `1px solid ${C.muted}`,
@@ -272,6 +306,12 @@ export default function SalonAdminCalendar() {
  {dayReservations.length > 3 && (
  <div style={{ fontSize: "10px", color: C.textLight, paddingLeft: 4 }}>+{dayReservations.length - 3}件</div>
  )}
+ {isAllDayBlocked && (
+ <div style={{ fontSize: "9px", background: "#fca5a5", color: "#7f1d1d", borderRadius: 3, padding: "1px 4px", marginTop: 2, fontWeight: 700 }}>予約不可</div>
+ )}
+ {!isAllDayBlocked && dayBlocks.length > 0 && (
+ <div style={{ fontSize: "9px", background: "#fed7aa", color: "#7c2d12", borderRadius: 3, padding: "1px 4px", marginTop: 2 }}>一部ブロック</div>
+ )}
  </div>
  </div>
  );
@@ -301,6 +341,13 @@ export default function SalonAdminCalendar() {
  {selectedDate.replace(/-/g, "/")} の予約
  <span style={{ marginLeft: "0.5rem", fontSize: "0.85rem", color: C.textLight }}>（{selectedReservations.length}件）</span>
  </h3>
+ <div style={{ display: "flex", gap: "0.5rem" }}>
+ <button
+ onClick={() => { setShowBlockForm(b => !b); setShowForm(false); }}
+ style={{ padding: "0.4rem 0.9rem", background: "#fee2e2", color: "#b91c1c", border: "1px solid #fca5a5", borderRadius: "8px", fontSize: "0.85rem", cursor: "pointer", fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 600 }}
+ >
+ ブロック設定
+ </button>
  <button
  onClick={handleNewReservation}
  style={{ display: "flex", alignItems: "center", gap: 4, padding: "0.4rem 0.9rem", background: C.accent, color: "white", border: "none", borderRadius: "8px", fontSize: "0.85rem", cursor: "pointer", fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 600 }}
@@ -308,6 +355,52 @@ export default function SalonAdminCalendar() {
  予約を追加
  </button>
  </div>
+ </div>
+
+ {/* ブロック設定パネル */}
+ {showBlockForm && (
+ <div style={{ marginBottom: "1rem", padding: "1rem", background: "#fef2f2", borderRadius: "8px", border: "1px solid #fca5a5" }}>
+ <h4 style={{ fontWeight: 700, color: "#b91c1c", marginBottom: "0.75rem", fontSize: "0.9rem" }}>予約ブロック設定</h4>
+ {(blocksByDate[selectedDate!] ?? []).length > 0 && (
+ <div style={{ marginBottom: "0.75rem" }}>
+ <p style={{ fontSize: "0.75rem", color: "#b91c1c", fontWeight: 700, marginBottom: "0.25rem" }}>設定済ブロック</p>
+ <div style={{ display: "flex", flexDirection: "column", gap: 4 }}>
+ {(blocksByDate[selectedDate!] ?? []).map((b: any) => (
+ <div key={b.id} style={{ display: "flex", alignItems: "center", justifyContent: "space-between", background: "white", borderRadius: 6, padding: "0.3rem 0.6rem", border: "1px solid #fca5a5" }}>
+ <span style={{ fontSize: "0.8rem", color: "#b91c1c" }}>
+ {b.blockTime ? b.blockTime : "終日"}{b.reason && ` — ${b.reason}`}
+ </span>
+ <button onClick={() => deleteBlock.mutate({ id: b.id })} style={{ fontSize: "0.75rem", color: "#b91c1c", background: "none", border: "none", cursor: "pointer", padding: "0 0.25rem" }}>解除</button>
+ </div>
+ ))}
+ </div>
+ </div>
+ )}
+ <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem", fontSize: "0.85rem" }}>
+ <div>
+ <label style={{ display: "block", fontSize: "0.75rem", color: "#b91c1c", marginBottom: "0.25rem", fontWeight: 600 }}>時間帯（空白=終日ブロック）</label>
+ <select value={blockTime} onChange={e => setBlockTime(e.target.value)} style={{ width: "100%", border: "1px solid #fca5a5", borderRadius: 6, padding: "0.4rem 0.6rem", fontSize: "0.85rem", fontFamily: "'Noto Sans JP', sans-serif" }}>
+ <option value="">終日ブロック</option>
+ {TIMES.map(t => <option key={t} value={t}>{t}</option>)}
+ </select>
+ </div>
+ <div>
+ <label style={{ display: "block", fontSize: "0.75rem", color: "#b91c1c", marginBottom: "0.25rem", fontWeight: 600 }}>メモ（任b意）</label>
+ <input type="text" placeholder="休業日・満席など" value={blockReason} onChange={e => setBlockReason(e.target.value)} style={{ width: "100%", border: "1px solid #fca5a5", borderRadius: 6, padding: "0.4rem 0.6rem", fontSize: "0.85rem", fontFamily: "'Noto Sans JP', sans-serif", boxSizing: "border-box" }} />
+ </div>
+ </div>
+ <div style={{ display: "flex", gap: "0.5rem", marginTop: "0.75rem" }}>
+ <button
+ onClick={() => createBlock.mutate({ salonId: "salon", blockDate: selectedDate!, blockTime: blockTime || null, reason: blockReason || null })}
+ disabled={createBlock.isPending}
+ style={{ padding: "0.4rem 1rem", background: "#dc2626", color: "white", border: "none", borderRadius: 8, fontSize: "0.85rem", cursor: "pointer", fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 600, opacity: createBlock.isPending ? 0.6 : 1 }}
+ >
+ {createBlock.isPending ? "登録中..." : "ブロック登録"}
+ </button>
+ <button onClick={() => setShowBlockForm(false)} style={{ padding: "0.4rem 1rem", background: C.muted, color: C.text, border: "none", borderRadius: 8, fontSize: "0.85rem", cursor: "pointer", fontFamily: "'Noto Sans JP', sans-serif" }}>閉じる</button>
+ </div>
+ </div>
+ )}
 
  {/* 手動予約フォーム */}
  {showForm && (

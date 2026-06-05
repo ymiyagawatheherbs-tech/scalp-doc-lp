@@ -77,6 +77,9 @@ export default function AdminCalendar() {
  const [selectedDate, setSelectedDate] = useState<string | null>(null);
  const [showForm, setShowForm] = useState(false);
  const [selectedReservation, setSelectedReservation] = useState<Reservation | null>(null);
+ const [showBlockForm, setShowBlockForm] = useState(false);
+ const [blockTime, setBlockTime] = useState<string>("");
+ const [blockReason, setBlockReason] = useState<string>("");
 
  // 手動予約フォームの状態
  const [form, setForm] = useState({
@@ -133,6 +136,34 @@ export default function AdminCalendar() {
  onError: (err) => toast.error(err.message || "削除失敗"),
  });
 
+ // ブロック管理
+ const { data: blocksForMonth, refetch: refetchBlocks } = trpc.block.list.useQuery(
+ { salonId: "hankyu" },
+ { enabled: isAuthenticated, refetchOnWindowFocus: false }
+ );
+ const blocksByDate = useMemo(() => {
+ const map: Record<string, typeof blocksForMonth> = {};
+ (blocksForMonth ?? []).forEach((b: any) => {
+ if (!map[b.blockDate]) map[b.blockDate] = [];
+ (map[b.blockDate] as any[]).push(b);
+ });
+ return map;
+ }, [blocksForMonth]);
+ const createBlock = trpc.block.create.useMutation({
+ onSuccess: () => {
+ toast.success("ブロックしました");
+ setShowBlockForm(false);
+ setBlockTime("");
+ setBlockReason("");
+ refetchBlocks();
+ },
+ onError: (err) => toast.error(err.message || "ブロック失敗"),
+ });
+ const deleteBlock = trpc.block.delete.useMutation({
+ onSuccess: () => { toast.success("ブロックを解除しました"); refetchBlocks(); },
+ onError: (err) => toast.error(err.message || "解除失敗"),
+ });
+
  // カレンダー構築
  const calendarDays = useMemo(() => {
  const firstDay = new Date(currentYear, currentMonth - 1, 1).getDay();
@@ -169,6 +200,7 @@ export default function AdminCalendar() {
  setSelectedDate(dateStr);
  setSelectedReservation(null);
  setShowForm(false);
+ setShowBlockForm(false);
  };
 
  const handleNewReservation = () => {
@@ -240,6 +272,8 @@ export default function AdminCalendar() {
  if (!day) return <div key={`empty-${idx}`} className="min-h-[72px] bg-stone-50" />;
  const dateStr = `${currentYear}-${String(currentMonth).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
  const dayReservations = reservationsByDate[dateStr] ?? [];
+ const dayBlocks = (blocksByDate[dateStr] ?? []) as any[];
+ const isAllDayBlocked = dayBlocks.some((b: any) => !b.blockTime);
  const isToday = dateStr === todayStr;
  const isSelected = dateStr === selectedDate;
  const dow = (new Date(currentYear, currentMonth - 1, day).getDay());
@@ -248,6 +282,7 @@ export default function AdminCalendar() {
  key={day}
  onClick={() => handleDayClick(day)}
  className={`min-h-[72px] p-1 cursor-pointer transition-colors ${
+ isAllDayBlocked ? "bg-red-50" :
  isSelected ? "bg-amber-50 ring-2 ring-amber-400 ring-inset" : "hover:bg-stone-50"
  }`}
  >
@@ -270,6 +305,12 @@ export default function AdminCalendar() {
  ))}
  {dayReservations.length > 3 && (
  <div className="text-[10px] text-stone-400 pl-1">+{dayReservations.length - 3}件</div>
+ )}
+ {isAllDayBlocked && (
+ <div className="text-[9px] bg-red-100 text-red-600 rounded px-1 mt-0.5 font-semibold">予約不可</div>
+ )}
+ {!isAllDayBlocked && dayBlocks.length > 0 && (
+ <div className="text-[9px] bg-orange-100 text-orange-600 rounded px-1 mt-0.5">一部ブロック</div>
  )}
  </div>
  </div>
@@ -300,6 +341,13 @@ export default function AdminCalendar() {
  {selectedDate.replace(/-/g, "/")} の予約
  <span className="ml-2 text-sm text-stone-500">（{selectedReservations.length}件）</span>
  </h3>
+ <div className="flex gap-2">
+ <button
+ onClick={() => { setShowBlockForm(b => !b); setShowForm(false); }}
+ className="flex items-center gap-1 px-3 py-1.5 bg-red-100 text-red-700 text-sm rounded-lg hover:bg-red-200 border border-red-200"
+ >
+ ブロック設定
+ </button>
  <button
  onClick={handleNewReservation}
  className="flex items-center gap-1 px-3 py-1.5 bg-amber-700 text-white text-sm rounded-lg hover:bg-amber-800"
@@ -307,6 +355,79 @@ export default function AdminCalendar() {
  ＋ 予約を追加
  </button>
  </div>
+ </div>
+
+ {/* ブロック設定パネル */}
+ {showBlockForm && (
+ <div className="mb-4 p-4 bg-red-50 rounded-lg border border-red-200">
+ <h4 className="font-semibold text-red-800 mb-3 text-sm">予約ブロック設定</h4>
+ {/* 現在のブロック一覧 */}
+ {selectedDate && (blocksByDate[selectedDate] ?? []).length > 0 && (
+ <div className="mb-3">
+ <p className="text-xs text-red-700 font-semibold mb-1">設定済ブロック</p>
+ <div className="space-y-1">
+ {((blocksByDate[selectedDate] ?? []) as any[]).map((b: any) => (
+ <div key={b.id} className="flex items-center justify-between bg-white rounded px-2 py-1 border border-red-100">
+ <span className="text-xs text-red-700">
+ {b.blockTime ? b.blockTime : "終日"}
+ {b.reason && ` — ${b.reason}`}
+ </span>
+ <button
+ onClick={() => deleteBlock.mutate({ id: b.id })}
+ className="text-xs text-red-500 hover:text-red-700 ml-2"
+ >
+ 解除
+ </button>
+ </div>
+ ))}
+ </div>
+ </div>
+ )}
+ {/* 新規ブロック追加 */}
+ <div className="grid grid-cols-2 gap-3 text-sm">
+ <div>
+ <label className="block text-xs text-red-700 mb-1">時間帯（空白の場合は終日ブロック）</label>
+ <select
+ value={blockTime}
+ onChange={e => setBlockTime(e.target.value)}
+ className="w-full border border-red-200 rounded px-2 py-1.5 text-sm"
+ >
+ <option value="">終日ブロック</option>
+ {TIMES.map(t => <option key={t} value={t}>{t}</option>)}
+ </select>
+ </div>
+ <div>
+ <label className="block text-xs text-red-700 mb-1">メモ（任b意）</label>
+ <input
+ type="text" placeholder="休業日・満席など"
+ value={blockReason}
+ onChange={e => setBlockReason(e.target.value)}
+ className="w-full border border-red-200 rounded px-2 py-1.5 text-sm"
+ />
+ </div>
+ </div>
+ <div className="flex gap-2 mt-3">
+ <button
+ onClick={() => createBlock.mutate({
+ salonId: "hankyu",
+ blockDate: selectedDate!,
+ blockTime: blockTime || null,
+ reason: blockReason || null,
+ })}
+ disabled={createBlock.isPending}
+ className="px-4 py-2 bg-red-600 text-white text-sm rounded-lg hover:bg-red-700 disabled:opacity-50"
+ >
+ {createBlock.isPending ? "登録中..." : "ブロック登録"}
+ </button>
+ <button
+ onClick={() => setShowBlockForm(false)}
+ className="px-4 py-2 bg-stone-200 text-stone-700 text-sm rounded-lg hover:bg-stone-300"
+ >
+ 閉じる
+ </button>
+ </div>
+ </div>
+ )}
 
  {/* 手動予約フォーム */}
  {showForm && (

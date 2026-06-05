@@ -3,7 +3,7 @@ import { getSessionCookieOptions } from "./_core/cookies";
 import { systemRouter } from "./_core/systemRouter";
 import { publicProcedure, protectedProcedure, staffOrManusProcedure, router } from "./_core/trpc";
 import { notifyOwner } from "./_core/notification";
-import { getDb, getCertifiedSalons, getAllCertifiedSalonsAdmin, createCertifiedSalon, updateCertifiedSalon, deleteCertifiedSalon, getBeforeAfters, getAllBeforeAftersAdmin, createBeforeAfter, updateBeforeAfter, deleteBeforeAfter, getTestimonials, getAllTestimonialsAdmin, createTestimonial, updateTestimonial, deleteTestimonial, getBlogPosts, getBlogPostBySlug, getAllBlogPostsAdmin, createBlogPost, updateBlogPost, deleteBlogPost, getServiceMenus, getAllServiceMenusAdmin, createServiceMenu, updateServiceMenu, deleteServiceMenu, createSalonLead, getAllSalonLeads, issueSalonLeadToken, verifySalonLeadToken, reissueSalonLeadToken, updateSalonLeadStatus } from "./db";
+import { getDb, getCertifiedSalons, getAllCertifiedSalonsAdmin, createCertifiedSalon, updateCertifiedSalon, deleteCertifiedSalon, getBeforeAfters, getAllBeforeAftersAdmin, createBeforeAfter, updateBeforeAfter, deleteBeforeAfter, getTestimonials, getAllTestimonialsAdmin, createTestimonial, updateTestimonial, deleteTestimonial, getBlogPosts, getBlogPostBySlug, getAllBlogPostsAdmin, createBlogPost, updateBlogPost, deleteBlogPost, getServiceMenus, getAllServiceMenusAdmin, createServiceMenu, updateServiceMenu, deleteServiceMenu, createSalonLead, getAllSalonLeads, issueSalonLeadToken, verifySalonLeadToken, reissueSalonLeadToken, updateSalonLeadStatus, getReservationBlocks, createReservationBlock, deleteReservationBlock, isSlotBlocked } from "./db";
 import { reservations, scalpImages, staffAccounts } from "../drizzle/schema";
 import { authenticateStaff, verifyStaffToken, createStaffAccount, STAFF_JWT_COOKIE } from "./staffAuth";
 import { storagePut } from "./storage";
@@ -894,6 +894,51 @@ export const appRouter = router({
         return { success: true };
       }),
   }),
-});
 
+  /**
+   * 予約ブロックルーター
+   */
+  block: router({
+    /** 公開用：指定店舗・日付のブロック一覧を取得する */
+    list: publicProcedure
+      .input(z.object({
+        salonId: z.string().optional(),
+        blockDate: z.string().optional(),
+      }))
+      .query(async ({ input }) => {
+        return getReservationBlocks(input.salonId, input.blockDate);
+      }),
+    /** 公開用：指定日・時間がブロックされているか確認する */
+    isBlocked: publicProcedure
+      .input(z.object({
+        salonId: z.string(),
+        date: z.string(),
+        time: z.string(),
+      }))
+      .query(async ({ input }) => {
+        const blocked = await isSlotBlocked(input.salonId, input.date, input.time);
+        return { blocked };
+      }),
+    /** 管理者用：ブロックを作成する */
+    create: staffOrManusProcedure
+      .input(z.object({
+        salonId: z.enum(["hankyu", "salon", "both"]),
+        blockDate: z.string(),
+        blockTime: z.string().nullable().optional(),
+        reason: z.string().nullable().optional(),
+        createdBy: z.string().nullable().optional(),
+      }))
+      .mutation(async ({ input }) => {
+        await createReservationBlock(input);
+        return { success: true };
+      }),
+    /** 管理者用：ブロックを削除する */
+    delete: staffOrManusProcedure
+      .input(z.object({ id: z.number() }))
+      .mutation(async ({ input }) => {
+        await deleteReservationBlock(input.id);
+        return { success: true };
+      }),
+  }),
+});
 export type AppRouter = typeof appRouter;

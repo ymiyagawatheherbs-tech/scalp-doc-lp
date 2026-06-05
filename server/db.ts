@@ -355,3 +355,52 @@ export async function getAllSalonLeads() {
   if (!db) return [];
   return db.select().from(salonLeads).orderBy(desc(salonLeads.createdAt));
 }
+
+// ─── 予約ブロック管理 ───────────────────────────────────────────────────────
+
+/** 指定店舗・日付のブロック一覧を取得する */
+export async function getReservationBlocks(salonId?: string, blockDate?: string) {
+  const db = await getDb();
+  if (!db) return [];
+  const { reservationBlocks } = await import("../drizzle/schema");
+  const results = await db.select().from(reservationBlocks).orderBy(desc(reservationBlocks.createdAt));
+  return results.filter(b => {
+    if (salonId && b.salonId !== salonId && b.salonId !== "both") return false;
+    if (blockDate && b.blockDate !== blockDate) return false;
+    return true;
+  });
+}
+
+/** 予約ブロックを作成する */
+export async function createReservationBlock(data: {
+  salonId: "hankyu" | "salon" | "both";
+  blockDate: string;
+  blockTime?: string | null;
+  reason?: string | null;
+  createdBy?: string | null;
+}) {
+  const db = await getDb();
+  if (!db) throw new Error("DB not available");
+  const { reservationBlocks } = await import("../drizzle/schema");
+  await db.insert(reservationBlocks).values({
+    salonId: data.salonId,
+    blockDate: data.blockDate,
+    blockTime: data.blockTime ?? null,
+    reason: data.reason ?? null,
+    createdBy: data.createdBy ?? null,
+  });
+}
+
+/** 予約ブロックを削除する */
+export async function deleteReservationBlock(id: number) {
+  const db = await getDb();
+  if (!db) throw new Error("DB not available");
+  const { reservationBlocks } = await import("../drizzle/schema");
+  await db.delete(reservationBlocks).where(eq(reservationBlocks.id, id));
+}
+
+/** 指定日・時間がブロックされているか確認する */
+export async function isSlotBlocked(salonId: string, date: string, time: string): Promise<boolean> {
+  const blocks = await getReservationBlocks(salonId, date);
+  return blocks.some(b => b.blockTime === null || b.blockTime === time);
+}
