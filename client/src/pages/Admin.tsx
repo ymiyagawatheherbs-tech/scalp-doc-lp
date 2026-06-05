@@ -184,8 +184,10 @@ export default function Admin() {
             alt="SCALP LABO"
             style={{ height: "1.75rem", width: "auto", objectFit: "contain", filter: "brightness(0) invert(1)", opacity: 0.85 }}
           />
-          <span style={{ color: "#c9a96e", fontWeight: 700, fontSize: "0.95rem", letterSpacing: "0.08em" }}>予約管理</span>
-          <Link href="/admin/calendar" style={{ color: "#c9a96e", fontSize: "0.78rem", background: "rgba(201,169,110,0.15)", border: "1px solid rgba(201,169,110,0.4)", borderRadius: "6px", padding: "0.25rem 0.75rem", textDecoration: "none", marginLeft: "0.5rem" }}>📅 カレンダー</Link>
+          <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginLeft: "0.5rem" }}>
+            <span style={{ color: "#c9a96e", background: "rgba(201,169,110,0.25)", border: "1px solid rgba(201,169,110,0.6)", borderRadius: "6px", padding: "0.25rem 0.75rem", fontSize: "0.78rem", fontWeight: 600 }}>☰ 一覧</span>
+            <Link href="/admin/calendar" style={{ color: "#c9a96e", fontSize: "0.78rem", background: "rgba(201,169,110,0.1)", border: "1px solid rgba(201,169,110,0.3)", borderRadius: "6px", padding: "0.25rem 0.75rem", textDecoration: "none" }}>📅 カレンダー</Link>
+          </div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
           <span style={{ color: "#c9a96e", fontSize: "0.8rem" }}>{currentUser}</span>

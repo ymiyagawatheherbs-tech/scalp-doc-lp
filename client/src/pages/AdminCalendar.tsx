@@ -183,10 +183,18 @@ export default function AdminCalendar() {
     <div className="min-h-screen bg-stone-50">
       {/* ヘッダー */}
       <header className="bg-white border-b border-stone-200 px-4 py-3 flex items-center justify-between sticky top-0 z-10">
-        <div className="flex items-center gap-3">
-          <Link href="/admin" className="text-stone-500 hover:text-stone-700 text-sm">← 予約一覧</Link>
-          <span className="text-stone-300">|</span>
-          <h1 className="text-base font-semibold text-stone-800">予約カレンダー</h1>
+        <div className="flex items-center gap-2">
+          <Link
+            href="/admin"
+            className="text-amber-800 text-sm px-3 py-1.5 rounded-lg border border-amber-300 hover:bg-amber-50 font-medium"
+          >
+            ☰ 一覧
+          </Link>
+          <span
+            className="text-amber-800 text-sm px-3 py-1.5 rounded-lg border border-amber-600 bg-amber-100 font-semibold"
+          >
+            📅 カレンダー
+          </span>
         </div>
         <Link href="/" className="text-xs text-stone-400 hover:text-stone-600">サイトへ戻る</Link>
       </header>
