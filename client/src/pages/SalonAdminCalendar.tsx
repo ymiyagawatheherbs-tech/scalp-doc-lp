@@ -192,12 +192,11 @@ export default function SalonAdminCalendar() {
       {/* ヘッダー */}
       <header style={{ background: C.header, padding: "0.9rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-          <span style={{ color: "#fff", fontSize: "1.1rem" }}>🌿</span>
           <span style={{ color: "#fff", fontWeight: 700, fontSize: "0.95rem", letterSpacing: "0.06em" }}>植物美容サロン</span>
           <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginLeft: "0.5rem" }}>
-            <Link href="/salon-admin" style={{ color: "#fff", fontSize: "0.78rem", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: "6px", padding: "0.25rem 0.75rem", textDecoration: "none" }}>☰ 一覧</Link>
-            <span style={{ color: "#fff", background: "rgba(255,255,255,0.25)", border: "1px solid rgba(255,255,255,0.6)", borderRadius: "6px", padding: "0.25rem 0.75rem", fontSize: "0.78rem", fontWeight: 600 }}>📅 カレンダー</span>
-            <Link href="/salon-admin/menus" style={{ color: "#fff", fontSize: "0.78rem", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: "6px", padding: "0.25rem 0.75rem", textDecoration: "none" }}>🌱 メニュー管理</Link>
+            <Link href="/salon-admin" style={{ color: "#fff", fontSize: "0.78rem", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: "6px", padding: "0.25rem 0.75rem", textDecoration: "none" }}>一覧</Link>
+            <span style={{ color: "#fff", background: "rgba(255,255,255,0.25)", border: "1px solid rgba(255,255,255,0.6)", borderRadius: "6px", padding: "0.25rem 0.75rem", fontSize: "0.78rem", fontWeight: 600 }}>カレンダー</span>
+            <Link href="/salon-admin/menus" style={{ color: "#fff", fontSize: "0.78rem", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: "6px", padding: "0.25rem 0.75rem", textDecoration: "none" }}>メニュー管理</Link>
           </div>
         </div>
         <Link href="/" style={{ color: "rgba(255,255,255,0.6)", fontSize: "0.78rem", textDecoration: "none" }}>サイトへ戻る</Link>
@@ -306,7 +305,7 @@ export default function SalonAdminCalendar() {
                 onClick={handleNewReservation}
                 style={{ display: "flex", alignItems: "center", gap: 4, padding: "0.4rem 0.9rem", background: C.accent, color: "white", border: "none", borderRadius: "8px", fontSize: "0.85rem", cursor: "pointer", fontFamily: "'Noto Sans JP', sans-serif", fontWeight: 600 }}
               >
-                ＋ 予約を追加
+                予約を追加
               </button>
             </div>
 

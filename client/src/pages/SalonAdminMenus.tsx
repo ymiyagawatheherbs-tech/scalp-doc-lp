@@ -165,11 +165,10 @@ export default function SalonAdminMenus() {
 
         {/* ヘッダー */}
         <div style={{ background: C.header, padding: "16px 24px", display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap" }}>
-          <span style={{ color: "#fff", fontSize: "1.1rem" }}>🌿</span>
           <span style={{ color: "#fff", fontWeight: 700, fontSize: "0.95rem", letterSpacing: "0.06em", marginRight: "0.5rem" }}>植物美容サロン</span>
-          <Link href="/salon-admin" style={{ color: "#fff", fontSize: "0.78rem", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: "6px", padding: "0.25rem 0.75rem", textDecoration: "none" }}>☰ 一覧</Link>
-          <Link href="/salon-admin/calendar" style={{ color: "#fff", fontSize: "0.78rem", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: "6px", padding: "0.25rem 0.75rem", textDecoration: "none" }}>📅 カレンダー</Link>
-          <span style={{ color: "#fff", background: "rgba(255,255,255,0.25)", border: "1px solid rgba(255,255,255,0.6)", borderRadius: "6px", padding: "0.25rem 0.75rem", fontSize: "0.78rem", fontWeight: 600 }}>🌱 メニュー管理</span>
+          <Link href="/salon-admin" style={{ color: "#fff", fontSize: "0.78rem", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: "6px", padding: "0.25rem 0.75rem", textDecoration: "none" }}>一覧</Link>
+          <Link href="/salon-admin/calendar" style={{ color: "#fff", fontSize: "0.78rem", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: "6px", padding: "0.25rem 0.75rem", textDecoration: "none" }}>カレンダー</Link>
+          <span style={{ color: "#fff", background: "rgba(255,255,255,0.25)", border: "1px solid rgba(255,255,255,0.6)", borderRadius: "6px", padding: "0.25rem 0.75rem", fontSize: "0.78rem", fontWeight: 600 }}>メニュー管理</span>
         </div>
 
         <div style={{ maxWidth: "960px", margin: "0 auto", padding: "32px 24px" }}>
@@ -292,7 +291,7 @@ export default function SalonAdminMenus() {
             <p style={{ color: C.textLight }}>読み込み中...</p>
           ) : items.length === 0 ? (
             <div style={{ background: "#fff", border: `1px solid ${C.muted}`, borderRadius: "12px", padding: "48px", textAlign: "center" }}>
-              <div style={{ fontSize: 40, marginBottom: 12 }}>🌱</div>
+
               <p style={{ color: C.textLight, fontSize: "14px" }}>まだ登録されていません。「新規追加」から追加してください。</p>
             </div>
           ) : (

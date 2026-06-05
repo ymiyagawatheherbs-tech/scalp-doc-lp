@@ -74,7 +74,7 @@ export default function SalonAdmin() {
     return (
       <div style={{ minHeight: "100dvh", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", background: C.bg, fontFamily: "'Noto Sans JP', sans-serif", gap: "1rem", padding: "1.5rem" }}>
         <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700&display=swap" rel="stylesheet" />
-        <div style={{ width: 56, height: 56, borderRadius: "50%", background: C.accent, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28 }}>🌿</div>
+        <div style={{ width: 56, height: 56, borderRadius: "50%", background: C.accent, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 28 }} />
         <p style={{ fontSize: "1rem", fontWeight: 700, color: C.text }}>植物美容サロン 管理画面</p>
         <p style={{ fontSize: "0.82rem", color: C.textLight, textAlign: "center" }}>スタッフアカウントでログインしてください。</p>
         <a href="/staff-login" style={{ padding: "0.75rem 2.5rem", background: C.header, color: "#fff", borderRadius: "6px", textDecoration: "none", fontSize: "0.9rem", fontWeight: 700, letterSpacing: "0.05em" }}>
@@ -112,12 +112,12 @@ export default function SalonAdmin() {
       {/* ヘッダー */}
       <header style={{ background: C.header, padding: "0.9rem 1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between", flexWrap: "wrap", gap: "0.5rem" }}>
         <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-          <span style={{ color: "#fff", fontSize: "1.1rem" }}>🌿</span>
+
           <span style={{ color: "#fff", fontWeight: 700, fontSize: "0.95rem", letterSpacing: "0.06em" }}>植物美容サロン</span>
           <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginLeft: "0.5rem" }}>
-            <span style={{ color: "#fff", background: "rgba(255,255,255,0.25)", border: "1px solid rgba(255,255,255,0.6)", borderRadius: "6px", padding: "0.25rem 0.75rem", fontSize: "0.78rem", fontWeight: 600 }}>☰ 一覧</span>
-            <Link href="/salon-admin/calendar" style={{ color: "#fff", fontSize: "0.78rem", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: "6px", padding: "0.25rem 0.75rem", textDecoration: "none" }}>📅 カレンダー</Link>
-            <Link href="/salon-admin/menus" style={{ color: "#fff", fontSize: "0.78rem", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: "6px", padding: "0.25rem 0.75rem", textDecoration: "none" }}>🌱 メニュー管理</Link>
+            <span style={{ color: "#fff", background: "rgba(255,255,255,0.25)", border: "1px solid rgba(255,255,255,0.6)", borderRadius: "6px", padding: "0.25rem 0.75rem", fontSize: "0.78rem", fontWeight: 600 }}>一覧</span>
+            <Link href="/salon-admin/calendar" style={{ color: "#fff", fontSize: "0.78rem", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: "6px", padding: "0.25rem 0.75rem", textDecoration: "none" }}>カレンダー</Link>
+            <Link href="/salon-admin/menus" style={{ color: "#fff", fontSize: "0.78rem", background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.3)", borderRadius: "6px", padding: "0.25rem 0.75rem", textDecoration: "none" }}>メニュー管理</Link>
           </div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
