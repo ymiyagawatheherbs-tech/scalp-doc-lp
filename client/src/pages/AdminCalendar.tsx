@@ -33,7 +33,8 @@ const SOURCE_COLORS: Record<string, string> = {
   walkin: "bg-orange-100 text-orange-700",
 };
 
-const PLAN_LABELS: Record<string, string> = {
+// フォールバック用の固定メニューラベル
+const FALLBACK_PLAN_LABELS: Record<string, string> = {
   free: "無料チェック",
   standard: "定期ケア",
   personal: "パーソナル",
@@ -89,6 +90,20 @@ export default function AdminCalendar() {
     gender: "women" as "women" | "men",
     source: "phone" as "web" | "phone" | "walkin",
   });
+
+  // DBからメニューを取得してラベルマップを動的生成
+  const { data: dbMenus } = trpc.menu.list.useQuery(
+    {},
+    { enabled: isAuthenticated, staleTime: 60_000 }
+  );
+  const planLabels: Record<string, string> = useMemo(() => {
+    if (dbMenus && dbMenus.length > 0) {
+      const map: Record<string, string> = {};
+      dbMenus.forEach((m: any) => { map[String(m.id)] = m.name; });
+      return map;
+    }
+    return FALLBACK_PLAN_LABELS;
+  }, [dbMenus]);
 
   const { data: reservations, refetch } = trpc.reservation.adminListByMonth.useQuery(
     { year: currentYear, month: currentMonth },
@@ -250,7 +265,7 @@ export default function AdminCalendar() {
                         className={`text-[10px] px-1 py-0.5 rounded ${STATUS_COLORS[r.status]?.bg ?? "bg-gray-100"} ${STATUS_COLORS[r.status]?.text ?? "text-gray-700"}`}
                       >
                         <div className="font-bold truncate">{r.desiredTime} {r.name}</div>
-                        <div className="truncate opacity-80" style={{ fontSize: "9px" }}>{PLAN_LABELS[r.plan] ?? r.plan}</div>
+                        <div className="truncate opacity-80" style={{ fontSize: "9px" }}>{planLabels[r.plan] ?? r.plan}</div>
                       </div>
                     ))}
                     {dayReservations.length > 3 && (
@@ -351,10 +366,18 @@ export default function AdminCalendar() {
                       onChange={e => setForm(f => ({ ...f, plan: e.target.value as typeof form.plan }))}
                       className="w-full border border-stone-300 rounded px-2 py-1.5 text-sm"
                     >
-                      <option value="free">無料スカルプチェック</option>
-                      <option value="standard">定期ケア</option>
-                      <option value="personal">パーソナルケア</option>
-                      <option value="consult">相談希望</option>
+                      {dbMenus && dbMenus.length > 0 ? (
+                        dbMenus.map((m: any) => (
+                          <option key={m.id} value={String(m.id)}>{m.name}</option>
+                        ))
+                      ) : (
+                        <>
+                          <option value="free">無料スカルプチェック</option>
+                          <option value="standard">定期ケア</option>
+                          <option value="personal">パーソナルケア</option>
+                          <option value="consult">相談希望</option>
+                        </>
+                      )}
                     </select>
                   </div>
                   <div>
@@ -447,7 +470,7 @@ export default function AdminCalendar() {
                       </span>
                     </div>
                     <div className="text-xs text-stone-500 mt-1">
-                      {PLAN_LABELS[r.plan] ?? r.plan} ・ {r.phone}
+                      {planLabels[r.plan] ?? r.plan} ・ {r.phone}
                       {r.email && ` ・ ${r.email}`}
                     </div>
 

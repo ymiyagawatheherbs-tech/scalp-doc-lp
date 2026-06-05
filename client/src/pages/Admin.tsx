@@ -187,6 +187,7 @@ export default function Admin() {
           <div style={{ display: "flex", alignItems: "center", gap: "0.4rem", marginLeft: "0.5rem" }}>
             <span style={{ color: "#c9a96e", background: "rgba(201,169,110,0.25)", border: "1px solid rgba(201,169,110,0.6)", borderRadius: "6px", padding: "0.25rem 0.75rem", fontSize: "0.78rem", fontWeight: 600 }}>☰ 一覧</span>
             <Link href="/admin/calendar" style={{ color: "#c9a96e", fontSize: "0.78rem", background: "rgba(201,169,110,0.1)", border: "1px solid rgba(201,169,110,0.3)", borderRadius: "6px", padding: "0.25rem 0.75rem", textDecoration: "none" }}>📅 カレンダー</Link>
+            <Link href="/admin/menus" style={{ color: "#c9a96e", fontSize: "0.78rem", background: "rgba(201,169,110,0.1)", border: "1px solid rgba(201,169,110,0.3)", borderRadius: "6px", padding: "0.25rem 0.75rem", textDecoration: "none" }}>🌿 メニュー管理</Link>
           </div>
         </div>
         <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>

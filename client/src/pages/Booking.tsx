@@ -10,15 +10,8 @@
  *   2b. THE HERBSサロン → Square予約システムへ直接誘導
  */
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { trpc } from "@/lib/trpc";
-
-// 全コース定義
-const ALL_COURSES = [
-  { value: "free",     label: "無料スカルプチェック",  sub: "5〜10分・無料",            desc: "マイクロスコープで頭皮の状態を確認。初めての方に最適です。" },
-  { value: "standard", label: "定期チェック＆スカルプケア",  sub: "45分・3,850円〜5,500円（税込）", desc: "定期的な頭皮チェック＋ボタニカルミストケア。継続的なサポートを希望の方に。" },
-  { value: "consult",  label: "まずは相談したい",       sub: "内容を相談",               desc: "お気軽にご相談ください。" },
-];
 
 // Square予約URL（THE HERBSサロン）
 const SQUARE_BOOKING_URL = "https://book.squareup.com/appointments/jsufqo133zf3ec/location/LEWSC49JS30BF/services";
@@ -115,9 +108,34 @@ export default function Booking() {
   const [submitted, setSubmitted] = useState(false);
 
   const store = STORES.find((s) => s.value === selectedStore);
-  const availableCourses = store
-    ? ALL_COURSES.filter((c) => store.courses.includes(c.value))
-    : [];
+
+  // DBからメニューを取得（公開済みのみ）
+  const { data: dbMenus } = trpc.menu.list.useQuery(
+    { gender: selectedStore === "hankyu" ? "women" : undefined },
+    { enabled: !!selectedStore, staleTime: 60_000 }
+  );
+
+  // DBメニューをコース選択肢に変換
+  const availableCourses = useMemo(() => {
+    if (!store) return [];
+    if (dbMenus && dbMenus.length > 0) {
+      return dbMenus.map((m: any) => ({
+        value: String(m.id),
+        label: m.name,
+        sub: m.durationMin ? `${m.durationMin}分・${m.price.toLocaleString()}円（${m.priceLabel ?? "税込"}）` : `${m.price === 0 ? "無料" : m.price.toLocaleString() + "円（" + (m.priceLabel ?? "税込") + "）"}`,
+        desc: m.description ?? "",
+        imageUrl: m.imageUrl ?? null,
+        treatmentContent: m.treatmentContent ?? null,
+        targetCustomer: m.targetCustomer ?? null,
+      }));
+    }
+    // DBにメニューがない場合はフォールバック
+    return [
+      { value: "free", label: "無料スカルプチェック", sub: "5～10分・無料", desc: "マイクロスコープで頭皮の状態を確認。初めての方に最適です。", imageUrl: null, treatmentContent: null, targetCustomer: null },
+      { value: "standard", label: "定期チェック＆スカルプケア", sub: "45分・3,850円～5,500円（税込）", desc: "定期的な頭皮チェック＋ボタニカルミストケア。継続的なサポートを希望の方に。", imageUrl: null, treatmentContent: null, targetCustomer: null },
+      { value: "consult", label: "まずは相談したい", sub: "内容を相談", desc: "お気軽にご相談ください。", imageUrl: null, treatmentContent: null, targetCustomer: null },
+    ];
+  }, [store, dbMenus]);
   // 当日予約不可：翌日以降のみ選択可（日本時間基準）
   const getMinDate = () => {
     const tomorrow = new Date();
@@ -464,14 +482,29 @@ export default function Booking() {
                         transition: "all 0.15s",
                       }}
                     >
-                      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.2rem" }}>
-                        <span style={{ fontWeight: 700, fontSize: "0.88rem", color: "oklch(0.30 0.045 130)" }}>{course.label}</span>
-                        <span style={{ fontSize: "0.72rem", color: "oklch(0.69 0.060 130)", fontWeight: 600 }}>
-                          {course.sub}
-
-                        </span>
+                      <div style={{ display: "flex", gap: "0.75rem", alignItems: "flex-start" }}>
+                        {course.imageUrl && (
+                          <img src={course.imageUrl} alt={course.label}
+                            style={{ width: "72px", height: "72px", objectFit: "cover", borderRadius: "4px", flexShrink: 0 }} />
+                        )}
+                        <div style={{ flex: 1 }}>
+                          <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.2rem" }}>
+                            <span style={{ fontWeight: 700, fontSize: "0.88rem", color: "oklch(0.30 0.045 130)" }}>{course.label}</span>
+                            <span style={{ fontSize: "0.72rem", color: "oklch(0.69 0.060 130)", fontWeight: 600 }}>{course.sub}</span>
+                          </div>
+                          {course.desc && <p style={{ fontSize: "0.75rem", color: "oklch(0.5 0.04 42)", lineHeight: 1.6, margin: 0 }}>{course.desc}</p>}
+                          {course.treatmentContent && (
+                            <p style={{ fontSize: "0.72rem", color: "oklch(0.42 0.07 140)", lineHeight: 1.5, margin: "0.3rem 0 0", borderTop: "1px solid oklch(0.92 0.015 75)", paddingTop: "0.3rem" }}>
+                              🌿 {course.treatmentContent}
+                            </p>
+                          )}
+                          {course.targetCustomer && (
+                            <p style={{ fontSize: "0.7rem", color: "oklch(0.55 0.05 130)", lineHeight: 1.5, margin: "0.25rem 0 0" }}>
+                              ✓ {course.targetCustomer}
+                            </p>
+                          )}
+                        </div>
                       </div>
-                      <p style={{ fontSize: "0.75rem", color: "oklch(0.5 0.04 42)", lineHeight: 1.6, margin: 0 }}>{course.desc}</p>
                     </button>
                   ))}
                 </div>

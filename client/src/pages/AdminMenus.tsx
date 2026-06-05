@@ -3,7 +3,7 @@
  */
 import { useAuth } from "@/_core/hooks/useAuth";
 import { trpc } from "@/lib/trpc";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { toast } from "sonner";
 import { Link } from "wouter";
 
@@ -16,16 +16,20 @@ const GENDER_LABELS: Record<string, string> = { both: "共通", women: "レデ�
 
 type FormState = {
   name: string;
+  nameKana: string;
   category: string;
   durationMin: number | "";
   price: number | "";
   priceLabel: string;
   description: string;
+  treatmentContent: string;
+  targetCustomer: string;
+  imageUrl: string;
   gender: "women" | "men" | "both";
   sortOrder: number;
   published: number;
 };
-const EMPTY: FormState = { name: "", category: "", durationMin: "", price: "", priceLabel: "税込", description: "", gender: "both", sortOrder: 0, published: 1 };
+const EMPTY: FormState = { name: "", nameKana: "", category: "", durationMin: "", price: "", priceLabel: "税込", description: "", treatmentContent: "", targetCustomer: "", imageUrl: "", gender: "both", sortOrder: 0, published: 1 };
 
 function AdminGuard({ children }: { children: React.ReactNode }) {
   const { isAuthenticated: isManusAuth, loading: manusLoading } = useAuth();
@@ -46,16 +50,33 @@ export default function AdminMenus() {
   const createMutation = trpc.menu.create.useMutation({ onSuccess: () => { toast.success("追加しました"); refetch(); reset(); }, onError: e => toast.error(e.message) });
   const updateMutation = trpc.menu.update.useMutation({ onSuccess: () => { toast.success("更新しました"); refetch(); reset(); }, onError: e => toast.error(e.message) });
   const deleteMutation = trpc.menu.delete.useMutation({ onSuccess: () => { toast.success("削除しました"); refetch(); }, onError: e => toast.error(e.message) });
+  const uploadImageMutation = trpc.storage.uploadContentImage.useMutation({
+    onSuccess: (data: { url: string }) => { setForm(f => ({ ...f, imageUrl: data.url })); setUploading(false); },
+    onError: () => { toast.error("画像のアップロードに失敗しました"); setUploading(false); },
+  });
 
   function reset() { setForm(EMPTY); setEditId(null); setShowForm(false); }
+  const fileRef = useRef<HTMLInputElement>(null);
+  const [uploading, setUploading] = useState(false);
+
+  async function handleImageUpload(file: File) {
+    setUploading(true);
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      const dataUrl = e.target?.result as string;
+      uploadImageMutation.mutate({ dataUrl, originalName: file.name, folder: "service-menus" });
+    };
+    reader.readAsDataURL(file);
+  }
+
   function startEdit(item: typeof items[0]) {
-    setForm({ name: item.name, category: item.category, durationMin: item.durationMin ?? "", price: item.price, priceLabel: item.priceLabel ?? "税込", description: item.description ?? "", gender: item.gender, sortOrder: item.sortOrder, published: item.published });
+    setForm({ name: item.name, nameKana: (item as any).nameKana ?? "", category: item.category, durationMin: item.durationMin ?? "", price: item.price, priceLabel: item.priceLabel ?? "税込", description: item.description ?? "", treatmentContent: (item as any).treatmentContent ?? "", targetCustomer: (item as any).targetCustomer ?? "", imageUrl: (item as any).imageUrl ?? "", gender: item.gender, sortOrder: item.sortOrder, published: item.published });
     setEditId(item.id); setShowForm(true);
   }
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!form.name || !form.category || form.price === "") { toast.error("メニュー名・カテゴリ・料金は必須です"); return; }
-    const payload = { ...form, price: Number(form.price), durationMin: form.durationMin !== "" ? Number(form.durationMin) : undefined };
+    const payload = { ...form, price: Number(form.price), durationMin: form.durationMin !== "" ? Number(form.durationMin) : undefined, nameKana: form.nameKana || undefined, treatmentContent: form.treatmentContent || undefined, targetCustomer: form.targetCustomer || undefined, imageUrl: form.imageUrl || undefined };
     if (editId !== null) updateMutation.mutate({ id: editId, ...payload });
     else createMutation.mutate(payload as any);
   }
@@ -74,10 +95,10 @@ export default function AdminMenus() {
   return (
     <AdminGuard>
       <div style={{ minHeight: "100vh", background: "#F5F0E8", fontFamily: "Noto Sans JP, sans-serif" }}>
-        <div style={{ background: "#2C1810", padding: "16px 24px", display: "flex", alignItems: "center", gap: "12px" }}>
-          <Link href="/admin/content" style={{ color: "#c9a96e", fontSize: "12px", textDecoration: "none" }}>← 管理メニュー</Link>
-          <span style={{ color: "#c9a96e", opacity: 0.4 }}>|</span>
-          <h1 style={{ color: "#F5F0E8", fontSize: "16px", fontWeight: "600", margin: 0 }}>メニュー・料金管理</h1>
+        <div style={{ background: "#2C1810", padding: "16px 24px", display: "flex", alignItems: "center", gap: "12px", flexWrap: "wrap" }}>
+          <Link href="/admin" style={{ color: "#c9a96e", fontSize: "0.78rem", background: "rgba(201,169,110,0.1)", border: "1px solid rgba(201,169,110,0.3)", borderRadius: "6px", padding: "0.25rem 0.75rem", textDecoration: "none" }}>☰ 一覧</Link>
+          <Link href="/admin/calendar" style={{ color: "#c9a96e", fontSize: "0.78rem", background: "rgba(201,169,110,0.1)", border: "1px solid rgba(201,169,110,0.3)", borderRadius: "6px", padding: "0.25rem 0.75rem", textDecoration: "none" }}>📅 カレンダー</Link>
+          <span style={{ color: "#c9a96e", background: "rgba(201,169,110,0.25)", border: "1px solid rgba(201,169,110,0.6)", borderRadius: "6px", padding: "0.25rem 0.75rem", fontSize: "0.78rem", fontWeight: 600 }}>🌿 メニュー管理</span>
         </div>
         <div style={{ maxWidth: "960px", margin: "0 auto", padding: "32px 24px" }}>
           <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "24px" }}>
@@ -90,9 +111,38 @@ export default function AdminMenus() {
               <h3 style={{ color: "#2C1810", fontSize: "16px", fontWeight: "700", marginBottom: "20px" }}>{editId !== null ? "編集" : "新規追加"}</h3>
               <form onSubmit={handleSubmit}>
                 <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "16px" }}>
+                  {/* 画像アップロード */}
+                  <div style={{ gridColumn: "1 / -1" }}>
+                    <label style={lbl}>サービス画像</label>
+                    <div style={{ display: "flex", alignItems: "flex-start", gap: "12px" }}>
+                      {form.imageUrl ? (
+                        <img src={form.imageUrl} alt="preview" style={{ width: "96px", height: "96px", objectFit: "cover", borderRadius: "8px", border: "1px solid #e8ddd0" }} />
+                      ) : (
+                        <div style={{ width: "96px", height: "96px", background: "#f3ede4", borderRadius: "8px", border: "1px dashed #d4c5b0", display: "flex", alignItems: "center", justifyContent: "center", color: "#b0a090", fontSize: "12px" }}>画像なし</div>
+                      )}
+                      <div>
+                        <button type="button" onClick={() => fileRef.current?.click()} disabled={uploading}
+                          style={{ background: "#f3ede4", color: "#2C1810", border: "1px solid #d4c5b0", padding: "6px 14px", borderRadius: "6px", fontSize: "13px", cursor: "pointer" }}>
+                          {uploading ? "アップロード中..." : "画像を選択"}
+                        </button>
+                        {form.imageUrl && (
+                          <button type="button" onClick={() => setForm(f => ({ ...f, imageUrl: "" }))}
+                            style={{ marginLeft: "8px", background: "transparent", color: "#991b1b", border: "none", fontSize: "12px", cursor: "pointer" }}>削除</button>
+                        )}
+                        <input ref={fileRef} type="file" accept="image/*" style={{ display: "none" }}
+                          onChange={e => { const f = e.target.files?.[0]; if (f) handleImageUpload(f); }} />
+                        <p style={{ color: "#9ca3af", fontSize: "11px", marginTop: "4px" }}>JPG・PNG・WEBP（推奨：600×400px）</p>
+                      </div>
+                    </div>
+                  </div>
+
                   <div style={{ gridColumn: "1 / -1" }}>
                     <label style={lbl}>メニュー名 *</label>
                     <input style={inp} value={form.name} onChange={e => setForm(f => ({ ...f, name: e.target.value }))} placeholder="例：スカルプラボ定期ケア" />
+                  </div>
+                  <div>
+                    <label style={lbl}>フリガナ</label>
+                    <input style={inp} value={form.nameKana} onChange={e => setForm(f => ({ ...f, nameKana: e.target.value }))} placeholder="例：スカルプラボテイキケア" />
                   </div>
                   <div>
                     <label style={lbl}>カテゴリ *</label>
@@ -117,8 +167,16 @@ export default function AdminMenus() {
                     </select>
                   </div>
                   <div style={{ gridColumn: "1 / -1" }}>
-                    <label style={lbl}>説明文</label>
+                    <label style={lbl}>説明文（予約フォームに表示）</label>
                     <textarea style={{ ...inp, minHeight: "80px", resize: "vertical" }} value={form.description} onChange={e => setForm(f => ({ ...f, description: e.target.value }))} placeholder="メニューの詳細説明" />
+                  </div>
+                  <div style={{ gridColumn: "1 / -1" }}>
+                    <label style={lbl}>施術内容（詳細）</label>
+                    <textarea style={{ ...inp, minHeight: "80px", resize: "vertical" }} value={form.treatmentContent} onChange={e => setForm(f => ({ ...f, treatmentContent: e.target.value }))} placeholder="例：マイクロスコープによる頭皮チェック、ハーブスチーマーによるケア" />
+                  </div>
+                  <div style={{ gridColumn: "1 / -1" }}>
+                    <label style={lbl}>こんな方におすすめ（対象者）</label>
+                    <textarea style={{ ...inp, minHeight: "60px", resize: "vertical" }} value={form.targetCustomer} onChange={e => setForm(f => ({ ...f, targetCustomer: e.target.value }))} placeholder="例：頭皮のべたつきやフケが気になる方、薄毛が心配な方" />
                   </div>
                   <div>
                     <label style={lbl}>表示順</label>

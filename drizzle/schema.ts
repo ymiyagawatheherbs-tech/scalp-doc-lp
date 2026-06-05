@@ -247,6 +247,14 @@ export const serviceMenus = mysqlTable("service_menus", {
   priceLabel: varchar("priceLabel", { length: 64 }),
   /** メニューの説明 */
   description: text("description"),
+  /** 施術内容（詳細） */
+  treatmentContent: text("treatmentContent"),
+  /** 対象者（例：頭皮のべたつきが気になる方） */
+  targetCustomer: text("targetCustomer"),
+  /** フリガナ */
+  nameKana: varchar("nameKana", { length: 128 }),
+  /** サービス画像URL（S3） */
+  imageUrl: text("imageUrl"),
   /** 対象性別: women / men / both */
   gender: mysqlEnum("gender", ["women", "men", "both"]).default("both").notNull(),
   /** 表示順（小さいほど上位） */
