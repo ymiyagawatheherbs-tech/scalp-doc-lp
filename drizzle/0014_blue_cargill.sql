@@ -1,0 +1,1 @@
+ALTER TABLE `service_menus` ADD `showInList` int DEFAULT 1 NOT NULL;

@@ -132,7 +132,7 @@ export default function Booking() {
 
  // 選択店舗のメニューをDBから取得
  const { data: dbMenus, isLoading: menusLoading } = trpc.menu.list.useQuery(
- { salonId: selectedStore || undefined },
+ { salonId: selectedStore || undefined, showInListOnly: true },
  {
  enabled: !!selectedStore,
  staleTime: 60_000,
@@ -371,236 +371,246 @@ export default function Booking() {
 
  {/* ---- STEP 2: メニュー選択 ---- */}
  {step === "menu" && (
- <div>
- {/* 選択中店舗表示 */}
- {storeInfo && (
- <div style={{ background: C.bgSelected, border: `1.5px solid ${C.sage}`, borderRadius: "8px", padding: "0.75rem 1rem", marginBottom: "1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
- <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
- <span style={{ fontSize: "1.2rem" }}>{storeInfo.icon}</span>
- <div>
- <p style={{ fontSize: "0.7rem", color: C.sage, margin: "0 0 0.2rem", fontWeight: 600 }}>選択中の店舗</p>
- <p style={{ fontSize: "0.88rem", fontWeight: 700, color: C.green, margin: 0 }}>{storeInfo.label}</p>
- </div>
- </div>
- <button type="button" onClick={() => { setStep("store"); setSelectedStore(""); }}
- style={{ fontSize: "0.72rem", color: C.sage, background: "none", border: `1px solid ${C.sage}`, borderRadius: "4px", cursor: "pointer", padding: "0.25rem 0.6rem", flexShrink: 0 }}>
- 変更
- </button>
- </div>
+   <div>
+     {/* 選択中店舗表示 */}
+     {storeInfo && (
+       <div style={{ background: C.bgSelected, border: `1.5px solid ${C.sage}`, borderRadius: "8px", padding: "0.75rem 1rem", marginBottom: "1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+         <div style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
+           <span style={{ fontSize: "1.2rem" }}>{storeInfo.icon}</span>
+           <div>
+             <p style={{ fontSize: "0.7rem", color: C.sage, margin: "0 0 0.2rem", fontWeight: 600 }}>選択中の店舗</p>
+             <p style={{ fontSize: "0.88rem", fontWeight: 700, color: C.green, margin: 0 }}>{storeInfo.label}</p>
+           </div>
+         </div>
+         <button type="button" onClick={() => { setStep("store"); setSelectedStore(""); }}
+           style={{ fontSize: "0.72rem", color: C.sage, background: "none", border: `1px solid ${C.sage}`, borderRadius: "4px", cursor: "pointer", padding: "0.25rem 0.6rem", flexShrink: 0 }}>
+           変更
+         </button>
+       </div>
+     )}
+     <p style={{ fontSize: "0.72rem", letterSpacing: "0.15em", color: C.sage, fontWeight: 600, marginBottom: "1rem" }}>
+       STEP 2 — ご希望のメニューをお選びください
+     </p>
+
+     {menusLoading && (
+       <div style={{ textAlign: "center", padding: "2rem", color: C.textSub, fontSize: "0.85rem" }}>読み込み中...</div>
+     )}
+
+     {!menusLoading && menus.length === 0 && (
+       <div style={{ textAlign: "center", padding: "2rem", color: C.textSub, fontSize: "0.85rem", background: C.bgCard, borderRadius: "10px", border: `1px solid ${C.border}` }}>
+         現在この店舗のメニューは準備中です。<br />
+         お電話にてお問い合わせください。<br />
+         <strong style={{ color: C.green }}>{storeInfo?.phone}</strong>
+       </div>
+     )}
+
+     {/* カテゴリー別グループ表示 */}
+     {(() => {
+       const CAT_ORDER = ["スカルプラボ", "ベーシックケア", "プレミアムパーソナルケア", "セルフケア"];
+       const grouped = menus.reduce<Record<string, typeof menus>>((acc, m) => {
+         const cat = m.category || "その他";
+         if (!acc[cat]) acc[cat] = [];
+         acc[cat].push(m);
+         return acc;
+       }, {});
+       const sortedCats = [
+         ...CAT_ORDER.filter(c => grouped[c]),
+         ...Object.keys(grouped).filter(c => !CAT_ORDER.includes(c)),
+       ];
+       return sortedCats.map(cat => (
+         <div key={cat} style={{ marginBottom: "1.5rem" }}>
+           {/* カテゴリー見出し */}
+           <div style={{
+             display: "flex",
+             alignItems: "center",
+             gap: "0.5rem",
+             marginBottom: "0.75rem",
+             paddingBottom: "0.4rem",
+             borderBottom: `2px solid ${C.sage}`,
+           }}>
+             <span style={{
+               fontSize: "0.75rem",
+               fontWeight: 700,
+               letterSpacing: "0.12em",
+               color: C.green,
+               fontFamily: "'Noto Sans JP', sans-serif",
+             }}>{cat}</span>
+           </div>
+           {/* カテゴリー内メニュー一覧 */}
+           <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
+             {grouped[cat].map(menu => {
+               const isSelected = selectedMenuId === menu.id;
+               const isExpanded = expandedMenuId === menu.id;
+               const durationText = menu.durationMin ? `${menu.durationMin}分` : null;
+               return (
+                 <div key={menu.id} style={{
+                   background: isSelected ? C.bgSelected : C.bgCard,
+                   borderRadius: "10px",
+                   border: isSelected
+                     ? `2px solid ${C.sage}`
+                     : `1px solid ${C.border}`,
+                   overflow: "hidden",
+                   boxShadow: isSelected ? `0 2px 12px rgba(169,192,166,0.25)` : "none",
+                   transition: "all 0.2s",
+                   position: "relative",
+                 }}>
+                   {/* 選択済みバッジ */}
+                   {isSelected && (
+                     <div style={{
+                       position: "absolute",
+                       top: "0.6rem",
+                       right: "0.6rem",
+                       background: C.sage,
+                       color: "white",
+                       borderRadius: "50%",
+                       width: "1.5rem",
+                       height: "1.5rem",
+                       display: "flex",
+                       alignItems: "center",
+                       justifyContent: "center",
+                       fontSize: "0.8rem",
+                       fontWeight: 700,
+                       zIndex: 1,
+                     }}>
+                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                         <polyline points="20 6 9 17 4 12" />
+                       </svg>
+                     </div>
+                   )}
+                   {/* メニューヘッダー（クリックで展開） */}
+                   <button
+                     type="button"
+                     onClick={() => setExpandedMenuId(isExpanded ? null : menu.id)}
+                     style={{
+                       width: "100%",
+                       background: "none",
+                       border: "none",
+                       cursor: "pointer",
+                       padding: "0.9rem 1.25rem",
+                       display: "flex",
+                       alignItems: "center",
+                       gap: "0.75rem",
+                       textAlign: "left",
+                     }}
+                   >
+                     {/* サムネイル */}
+                     {(menu as any).imageUrl && (
+                       <img
+                         src={(menu as any).imageUrl}
+                         alt={menu.name}
+                         style={{ width: "56px", height: "56px", objectFit: "cover", borderRadius: "6px", flexShrink: 0 }}
+                       />
+                     )}
+                     <div style={{ flex: 1, minWidth: 0 }}>
+                       <p style={{ fontSize: "0.95rem", fontWeight: 700, color: isSelected ? C.greenDark : C.green, margin: "0 0 0.2rem", lineHeight: 1.4 }}>
+                         {menu.name}
+                       </p>
+                       <p style={{ fontSize: "0.78rem", color: C.textSub, margin: 0, display: "flex", gap: "0.75rem" }}>
+                         {durationText && <span>{durationText}</span>}
+                         {menu.price > 0
+                           ? <span>¥{menu.price.toLocaleString()}（{menu.priceLabel ?? "税込"}）</span>
+                           : <span>税込</span>
+                         }
+                       </p>
+                     </div>
+                     <span style={{
+                       color: C.sage,
+                       flexShrink: 0,
+                       transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
+                       transition: "transform 0.2s",
+                       display: "inline-block",
+                     }}>▼</span>
+                   </button>
+
+                   {/* 詳細（展開時） */}
+                   {isExpanded && (
+                     <div style={{ padding: "0 1.25rem 1.25rem", borderTop: `1px solid ${C.border}` }}>
+                       {/* 画像（大） */}
+                       {(menu as any).imageUrl && (
+                         <img
+                           src={(menu as any).imageUrl}
+                           alt={menu.name}
+                           style={{ width: "100%", maxHeight: "200px", objectFit: "cover", borderRadius: "8px", marginBottom: "1rem", marginTop: "1rem" }}
+                         />
+                       )}
+                       <div style={{ marginTop: (menu as any).imageUrl ? 0 : "1rem" }}>
+                         {menu.description && (
+                           <p style={{ fontSize: "0.85rem", color: C.text, lineHeight: 1.8, margin: "0 0 0.75rem" }}>{menu.description}</p>
+                         )}
+                       </div>
+                       {(menu as any).treatmentContent && (
+                         <div style={{ marginTop: "1rem" }}>
+                           <p style={{ fontSize: "0.7rem", fontWeight: 700, color: C.sage, margin: "0 0 0.3rem", letterSpacing: "0.08em" }}>施術内容</p>
+                           <p style={{ fontSize: "0.8rem", color: C.text, lineHeight: 1.7, margin: 0, whiteSpace: "pre-wrap" }}>
+                             {(menu as any).treatmentContent}
+                           </p>
+                         </div>
+                       )}
+                       {(menu as any).targetCustomer && (
+                         <div style={{ marginTop: "0.75rem", background: "#EAF2EA", borderRadius: "6px", padding: "0.6rem 0.8rem" }}>
+                           <p style={{ fontSize: "0.7rem", fontWeight: 700, color: C.sage, margin: "0 0 0.2rem", letterSpacing: "0.08em" }}>こんな方におすすめ</p>
+                           <p style={{ fontSize: "0.8rem", color: C.green, lineHeight: 1.7, margin: 0, whiteSpace: "pre-wrap" }}>
+                             {(menu as any).targetCustomer}
+                           </p>
+                         </div>
+                       )}
+
+                       {/* このメニューで予約するボタン */}
+                       <button
+                         type="button"
+                         onClick={() => {
+                           setSelectedMenuId(menu.id);
+                           setSelectedMenuName(menu.name);
+                           setStep("form");
+                           window.scrollTo({ top: 0, behavior: "smooth" });
+                         }}
+                         style={{
+                           marginTop: "1.25rem",
+                           width: "100%",
+                           padding: "0.9rem",
+                           background: isSelected ? C.sage : C.green,
+                           color: "white",
+                           border: "none",
+                           borderRadius: "6px",
+                           fontSize: "0.9rem",
+                           fontWeight: 700,
+                           letterSpacing: "0.05em",
+                           cursor: "pointer",
+                           fontFamily: "'Noto Sans JP', sans-serif",
+                           display: "flex",
+                           alignItems: "center",
+                           justifyContent: "center",
+                           gap: "0.5rem",
+                         }}
+                       >
+                         {isSelected ? (
+                           <>
+                             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                               <polyline points="20 6 9 17 4 12" />
+                             </svg>
+                             このメニューで予約する
+                           </>
+                         ) : (
+                           "このメニューで予約する"
+                         )}
+                       </button>
+                     </div>
+                   )}
+                 </div>
+               );
+             })}
+           </div>
+         </div>
+       ));
+     })()}
+
+     <button type="button" onClick={() => { setStep("store"); setSelectedStore(""); }} style={{ marginTop: "1.5rem", fontSize: "0.8rem", color: C.sage, background: "none", border: "none", cursor: "pointer", textDecoration: "underline" }}>
+       ← 店舗選択に戻る
+     </button>
+   </div>
  )}
 
- <p style={{ fontSize: "0.72rem", letterSpacing: "0.15em", color: C.sage, fontWeight: 600, marginBottom: "1rem" }}>
- STEP 2 — ご希望のメニューをお選びください
- </p>
-
- {menusLoading && (
- <div style={{ textAlign: "center", padding: "3rem", color: C.textMuted, fontSize: "0.85rem" }}>
- メニューを読み込んでいます...
- </div>
- )}
-
- {!menusLoading && menus.length === 0 && (
- <div style={{ textAlign: "center", padding: "2rem", color: C.textSub, fontSize: "0.85rem", background: C.bgCard, borderRadius: "10px", border: `1px solid ${C.border}` }}>
- 現在この店舗のメニューは準備中です。<br />
- お電話にてお問い合わせください。<br />
- <strong style={{ color: C.green }}>{storeInfo?.phone}</strong>
- </div>
- )}
-
- <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem" }}>
- {menus.map((menu) => {
- const isExpanded = expandedMenuId === menu.id;
- const isSelected = selectedMenuId === menu.id;
- const priceText = menu.price === 0
- ? (menu.priceLabel === "無料" ? "無料" : menu.priceLabel)
- : `¥${menu.price.toLocaleString()}（${menu.priceLabel}）`;
- const durationText = menu.durationMin ? `${menu.durationMin}分` : null;
-
- return (
- <div key={menu.id} style={{
- background: isSelected ? C.bgSelected : C.bgCard,
- borderRadius: "10px",
- border: isSelected
- ? `2.5px solid ${C.sage}`
- : `1.5px solid ${C.border}`,
- boxShadow: isSelected
- ? `0 4px 16px rgba(169,192,166,0.25)`
- : "0 2px 8px rgba(0,0,0,0.04)",
- overflow: "hidden",
- transition: "all 0.2s ease",
- }}>
- {/* 選択済みバナー */}
- {isSelected && (
- <div style={{
- background: C.sage,
- color: "white",
- fontSize: "0.7rem",
- fontWeight: 700,
- letterSpacing: "0.08em",
- padding: "0.3rem 1.25rem",
- display: "flex",
- alignItems: "center",
- gap: "0.4rem",
- }}>
- <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
- <polyline points="20 6 9 17 4 12" />
- </svg>
- 選択中のメニュー
- </div>
- )}
-
- {/* メニュー行（常時表示） */}
- <button
- type="button"
- onClick={() => setExpandedMenuId(isExpanded ? null : menu.id)}
- style={{
- width: "100%",
- padding: "1rem 1.25rem",
- background: "transparent",
- border: "none",
- cursor: "pointer",
- textAlign: "left",
- display: "flex",
- alignItems: "center",
- gap: "0.75rem",
- }}
- >
- {/* サムネイル */}
- {menu.imageUrl ? (
- <img src={menu.imageUrl} alt={menu.name}
- style={{ width: "60px", height: "60px", objectFit: "cover", borderRadius: "6px", flexShrink: 0, border: isSelected ? `2px solid ${C.sage}` : "none" }} />
- ) : (
- <div style={{ width: "60px", height: "60px", borderRadius: "6px", background: C.bgSub, flexShrink: 0, display: "flex", alignItems: "center", justifyContent: "center", border: isSelected ? `2px solid ${C.sage}` : `1px solid ${C.border}` }}>
- <span style={{ fontSize: "1.6rem" }}></span>
- </div>
- )}
-
- {/* 名前・料金・時間 */}
- <div style={{ flex: 1, minWidth: 0 }}>
- {menu.category && (
- <span style={{ fontSize: "0.62rem", color: C.sage, fontWeight: 600, letterSpacing: "0.05em", background: "#EAF2EA", padding: "0.1rem 0.5rem", borderRadius: "3px", display: "inline-block", marginBottom: "0.25rem" }}>
- {menu.category}
- </span>
- )}
- <p style={{ fontWeight: 700, fontSize: "0.95rem", color: isSelected ? C.greenDark : C.text, margin: 0, lineHeight: 1.3 }}>
- {menu.name}
- </p>
- <div style={{ display: "flex", gap: "0.75rem", marginTop: "0.3rem", flexWrap: "wrap" }}>
- {durationText && (
- <span style={{ fontSize: "0.75rem", color: C.textMuted }}>
- ⏱ {durationText}
- </span>
- )}
- <span style={{ fontSize: "0.75rem", color: C.green, fontWeight: 700 }}>
- {priceText}
- </span>
- </div>
- </div>
-
- {/* 展開アイコン */}
- <span style={{
- fontSize: "0.75rem",
- color: C.sage,
- flexShrink: 0,
- transform: isExpanded ? "rotate(180deg)" : "rotate(0deg)",
- transition: "transform 0.2s",
- display: "inline-block",
- }}>▼</span>
- </button>
-
- {/* 詳細（展開時） */}
- {isExpanded && (
- <div style={{ padding: "0 1.25rem 1.25rem", borderTop: `1px solid ${C.border}` }}>
- {/* 画像（大） */}
- {menu.imageUrl && (
- <img src={menu.imageUrl} alt={menu.name}
- style={{ width: "100%", maxHeight: "200px", objectFit: "cover", borderRadius: "8px", marginTop: "1rem", marginBottom: "1rem" }} />
- )}
-
- {/* 説明 */}
- {menu.description && (
- <div style={{ marginTop: menu.imageUrl ? 0 : "1rem" }}>
- <p style={{ fontSize: "0.72rem", fontWeight: 600, color: C.sage, letterSpacing: "0.08em", marginBottom: "0.4rem" }}>メニュー説明</p>
- <p style={{ fontSize: "0.83rem", color: C.textSub, lineHeight: 1.85, margin: 0, whiteSpace: "pre-wrap" }}>
- {menu.description}
- </p>
- </div>
- )}
-
- {/* 施術内容 */}
- {menu.treatmentContent && (
- <div style={{ marginTop: "1rem" }}>
- <p style={{ fontSize: "0.72rem", fontWeight: 600, color: C.sage, letterSpacing: "0.08em", marginBottom: "0.4rem" }}>施術内容</p>
- <p style={{ fontSize: "0.83rem", color: C.textSub, lineHeight: 1.85, margin: 0, whiteSpace: "pre-wrap" }}>
- {menu.treatmentContent}
- </p>
- </div>
- )}
-
- {/* 対象者 */}
- {menu.targetCustomer && (
- <div style={{ marginTop: "0.75rem", background: "#EAF2EA", borderRadius: "6px", padding: "0.6rem 0.9rem", border: `1px solid ${C.light}` }}>
- <p style={{ fontSize: "0.72rem", fontWeight: 600, color: C.sage, marginBottom: "0.25rem" }}>こんな方におすすめ</p>
- <p style={{ fontSize: "0.8rem", color: C.green, lineHeight: 1.7, margin: 0, whiteSpace: "pre-wrap" }}>
- {menu.targetCustomer}
- </p>
- </div>
- )}
-
- {/* このメニューで予約するボタン */}
- <button
- type="button"
- onClick={() => {
- setSelectedMenuId(menu.id);
- setSelectedMenuName(menu.name);
- setStep("form");
- window.scrollTo({ top: 0, behavior: "smooth" });
- }}
- style={{
- marginTop: "1.25rem",
- width: "100%",
- padding: "0.9rem",
- background: isSelected ? C.sage : C.green,
- color: "white",
- border: "none",
- borderRadius: "6px",
- fontSize: "0.9rem",
- fontWeight: 700,
- letterSpacing: "0.05em",
- cursor: "pointer",
- fontFamily: "'Noto Sans JP', sans-serif",
- display: "flex",
- alignItems: "center",
- justifyContent: "center",
- gap: "0.5rem",
- }}
- >
- {isSelected ? (
- <>
- <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
- <polyline points="20 6 9 17 4 12" />
- </svg>
- このメニューで予約する
- </>
- ) : (
- "このメニューで予約する →"
- )}
- </button>
- </div>
- )}
- </div>
- );
- })}
- </div>
-
- <button type="button" onClick={() => { setStep("store"); setSelectedStore(""); }}
- style={{ marginTop: "1.5rem", fontSize: "0.8rem", color: C.sage, background: "none", border: "none", cursor: "pointer", textDecoration: "underline" }}>
- ← 店舗選択に戻る
- </button>
- </div>
- )}
-
- {/* ---- STEP 3: 情報入力フォーム ---- */}
+  {/* ---- STEP 3: 情報入力フォーム ---- */}
  {step === "form" && (
  <form onSubmit={handleSubmit} noValidate>
  {/* 選択中メニュー・店舗 — 強調サマリーカード */}

@@ -662,8 +662,8 @@ export const appRouter = router({
    */
   menu: router({
     list: publicProcedure
-      .input(z.object({ category: z.string().optional(), gender: z.string().optional(), salonId: z.string().optional() }))
-      .query(async ({ input }) => getServiceMenus(input.category, input.gender, input.salonId)),
+      .input(z.object({ category: z.string().optional(), gender: z.string().optional(), salonId: z.string().optional(), showInListOnly: z.boolean().optional() }))
+      .query(async ({ input }) => getServiceMenus(input.category, input.gender, input.salonId, input.showInListOnly ?? false)),
 
     listAdmin: staffOrManusProcedure.query(() => getAllServiceMenusAdmin()),
 
@@ -683,6 +683,7 @@ export const appRouter = router({
         salonId: z.enum(['hankyu', 'salon', 'both']).default('both'),
         sortOrder: z.number().optional(),
         published: z.number().optional(),
+        showInList: z.number().optional(),
       }))
       .mutation(async ({ input }) => {
         await createServiceMenu({
@@ -700,6 +701,7 @@ export const appRouter = router({
           salonId: input.salonId,
           sortOrder: input.sortOrder ?? 0,
           published: input.published ?? 1,
+          showInList: input.showInList ?? 1,
         });
         return { success: true };
       }),
@@ -721,6 +723,7 @@ export const appRouter = router({
         salonId: z.enum(['hankyu', 'salon', 'both']).optional(),
         sortOrder: z.number().optional(),
         published: z.number().optional(),
+        showInList: z.number().optional(),
       }))
       .mutation(async ({ input }) => {
         const { id, ...data } = input;

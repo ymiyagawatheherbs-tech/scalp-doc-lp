@@ -51,11 +51,12 @@ type FormState = {
  salonId: "salon" | "both";
  sortOrder: number;
  published: number;
+ showInList: number;
 };
 const EMPTY: FormState = {
  name: "", nameKana: "", category: "", durationMin: "", price: "", priceLabel: "税込",
  description: "", treatmentContent: "", targetCustomer: "", imageUrl: "",
- gender: "both", salonId: "salon", sortOrder: 0, published: 1,
+ gender: "both", salonId: "salon", sortOrder: 0, published: 1, showInList: 1,
 };
 
 function AdminGuard({ children }: { children: React.ReactNode }) {
@@ -124,6 +125,7 @@ export default function SalonAdminMenus() {
  salonId: (item as any).salonId === "both" ? "both" : "salon",
  sortOrder: item.sortOrder,
  published: item.published,
+ showInList: (item as any).showInList ?? 1,
  });
  setEditId(item.id);
  setShowForm(true);
@@ -284,6 +286,14 @@ export default function SalonAdminMenus() {
  <option value={1}>公開</option>
  <option value={0}>非公開</option>
  </select>
+ </div>
+ <div>
+ <label style={lbl}>メニューリスト表示</label>
+ <select style={inp} value={form.showInList} onChange={e => setForm(f => ({ ...f, showInList: Number(e.target.value) }))}>
+ <option value={1}>表示する</option>
+ <option value={0}>表示しない（非表示）</option>
+ </select>
+ <p style={{ fontSize: "11px", color: C.textLight, marginTop: "4px" }}>「表示しない」にするとお客様の予約フォームに表示されません</p>
  </div>
  </div>
  <div style={{ display: "flex", gap: "12px", marginTop: "20px" }}>

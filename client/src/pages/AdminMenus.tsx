@@ -36,8 +36,9 @@ type FormState = {
  salonId: "hankyu" | "salon" | "both";
  sortOrder: number;
  published: number;
+ showInList: number;
 };
-const EMPTY: FormState = { name: "", nameKana: "", category: "", durationMin: "", price: "", priceLabel: "税込", description: "", treatmentContent: "", targetCustomer: "", imageUrl: "", gender: "both", salonId: "both", sortOrder: 0, published: 1 };
+const EMPTY: FormState = { name: "", nameKana: "", category: "", durationMin: "", price: "", priceLabel: "税込", description: "", treatmentContent: "", targetCustomer: "", imageUrl: "", gender: "both", salonId: "both", sortOrder: 0, published: 1, showInList: 1 };
 
 function AdminGuard({ children }: { children: React.ReactNode }) {
  const { isAuthenticated: isManusAuth, loading: manusLoading } = useAuth();
@@ -78,7 +79,7 @@ export default function AdminMenus() {
  }
 
  function startEdit(item: typeof items[0]) {
- setForm({ name: item.name, nameKana: (item as any).nameKana ?? "", category: item.category, durationMin: item.durationMin ?? "", price: item.price, priceLabel: item.priceLabel ?? "税込", description: item.description ?? "", treatmentContent: (item as any).treatmentContent ?? "", targetCustomer: (item as any).targetCustomer ?? "", imageUrl: (item as any).imageUrl ?? "", gender: item.gender, salonId: (item as any).salonId ?? "both", sortOrder: item.sortOrder, published: item.published });
+ setForm({ name: item.name, nameKana: (item as any).nameKana ?? "", category: item.category, durationMin: item.durationMin ?? "", price: item.price, priceLabel: item.priceLabel ?? "税込", description: item.description ?? "", treatmentContent: (item as any).treatmentContent ?? "", targetCustomer: (item as any).targetCustomer ?? "", imageUrl: (item as any).imageUrl ?? "", gender: item.gender, salonId: (item as any).salonId ?? "both", sortOrder: item.sortOrder, published: item.published, showInList: (item as any).showInList ?? 1 });
  setEditId(item.id); setShowForm(true);
  }
  function handleSubmit(e: React.FormEvent) {
@@ -214,6 +215,14 @@ export default function AdminMenus() {
  <option value={1}>公開</option>
  <option value={0}>非公開</option>
  </select>
+ </div>
+ <div>
+ <label style={lbl}>メニューリスト表示</label>
+ <select style={inp} value={form.showInList} onChange={e => setForm(f => ({ ...f, showInList: Number(e.target.value) }))}>
+ <option value={1}>表示する</option>
+ <option value={0}>表示しない（非表示）</option>
+ </select>
+ <p style={{ fontSize: "11px", color: "#9a8a7a", marginTop: "4px" }}>「表示しない」にするとお客様の予約フォームに表示されません</p>
  </div>
  </div>
  <div style={{ display: "flex", gap: "12px", marginTop: "20px" }}>

@@ -265,6 +265,8 @@ export const serviceMenus = mysqlTable("service_menus", {
   sortOrder: int("sortOrder").default(0).notNull(),
   /** 公開フラグ: 1=公開, 0=非公開 */
   published: int("published").default(1).notNull(),
+  /** メニューリスト表示フラグ: 1=表示, 0=非表示（管理者のみ予約可） */
+  showInList: int("showInList").default(1).notNull(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().onUpdateNow().notNull(),
 });
