@@ -14,6 +14,13 @@ const GENDER_OPTIONS = [
 ];
 const GENDER_LABELS: Record<string, string> = { both: "共通", women: "レディース", men: "メンズ" };
 
+const SALON_OPTIONS = [
+  { value: "both", label: "両店舗共通" },
+  { value: "hankyu", label: "神戸阪急店のみ" },
+  { value: "salon", label: "植物美容サロンのみ" },
+];
+const SALON_LABELS: Record<string, string> = { both: "両店舗", hankyu: "阪急店", salon: "サロン" };
+
 type FormState = {
   name: string;
   nameKana: string;
@@ -26,10 +33,11 @@ type FormState = {
   targetCustomer: string;
   imageUrl: string;
   gender: "women" | "men" | "both";
+  salonId: "hankyu" | "salon" | "both";
   sortOrder: number;
   published: number;
 };
-const EMPTY: FormState = { name: "", nameKana: "", category: "", durationMin: "", price: "", priceLabel: "税込", description: "", treatmentContent: "", targetCustomer: "", imageUrl: "", gender: "both", sortOrder: 0, published: 1 };
+const EMPTY: FormState = { name: "", nameKana: "", category: "", durationMin: "", price: "", priceLabel: "税込", description: "", treatmentContent: "", targetCustomer: "", imageUrl: "", gender: "both", salonId: "both", sortOrder: 0, published: 1 };
 
 function AdminGuard({ children }: { children: React.ReactNode }) {
   const { isAuthenticated: isManusAuth, loading: manusLoading } = useAuth();
@@ -70,7 +78,7 @@ export default function AdminMenus() {
   }
 
   function startEdit(item: typeof items[0]) {
-    setForm({ name: item.name, nameKana: (item as any).nameKana ?? "", category: item.category, durationMin: item.durationMin ?? "", price: item.price, priceLabel: item.priceLabel ?? "税込", description: item.description ?? "", treatmentContent: (item as any).treatmentContent ?? "", targetCustomer: (item as any).targetCustomer ?? "", imageUrl: (item as any).imageUrl ?? "", gender: item.gender, sortOrder: item.sortOrder, published: item.published });
+    setForm({ name: item.name, nameKana: (item as any).nameKana ?? "", category: item.category, durationMin: item.durationMin ?? "", price: item.price, priceLabel: item.priceLabel ?? "税込", description: item.description ?? "", treatmentContent: (item as any).treatmentContent ?? "", targetCustomer: (item as any).targetCustomer ?? "", imageUrl: (item as any).imageUrl ?? "", gender: item.gender, salonId: (item as any).salonId ?? "both", sortOrder: item.sortOrder, published: item.published });
     setEditId(item.id); setShowForm(true);
   }
   function handleSubmit(e: React.FormEvent) {
@@ -161,9 +169,15 @@ export default function AdminMenus() {
                     <input style={inp} value={form.priceLabel} onChange={e => setForm(f => ({ ...f, priceLabel: e.target.value }))} placeholder="税込" />
                   </div>
                   <div>
-                    <label style={lbl}>対象</label>
+                    <label style={lbl}>対象性別</label>
                     <select style={inp} value={form.gender} onChange={e => setForm(f => ({ ...f, gender: e.target.value as any }))}>
                       {GENDER_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
+                    </select>
+                  </div>
+                  <div>
+                    <label style={lbl}>対象店舗 *</label>
+                    <select style={inp} value={form.salonId} onChange={e => setForm(f => ({ ...f, salonId: e.target.value as any }))}>
+                      {SALON_OPTIONS.map(o => <option key={o.value} value={o.value}>{o.label}</option>)}
                     </select>
                   </div>
                   <div style={{ gridColumn: "1 / -1" }}>
@@ -217,6 +231,7 @@ export default function AdminMenus() {
                           {item.durationMin && <span style={{ color: "#6b4c2a", fontSize: "12px" }}>{item.durationMin}分</span>}
                           <span style={{ background: item.published ? "#d1fae5" : "#fee2e2", color: item.published ? "#065f46" : "#991b1b", fontSize: "11px", padding: "2px 8px", borderRadius: "20px" }}>{item.published ? "公開" : "非公開"}</span>
                           <span style={{ background: "#f3ede4", color: "#6b4c2a", fontSize: "11px", padding: "2px 8px", borderRadius: "20px" }}>{GENDER_LABELS[item.gender]}</span>
+                          <span style={{ background: "#e0f2fe", color: "#0369a1", fontSize: "11px", padding: "2px 8px", borderRadius: "20px" }}>{SALON_LABELS[(item as any).salonId ?? "both"]}</span>
                         </div>
                         {item.description && <p style={{ color: "#6b4c2a", fontSize: "13px", margin: 0 }}>{item.description.slice(0, 80)}{item.description.length > 80 ? "…" : ""}</p>}
                       </div>

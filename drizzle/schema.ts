@@ -257,6 +257,8 @@ export const serviceMenus = mysqlTable("service_menus", {
   imageUrl: text("imageUrl"),
   /** 対象性別: women / men / both */
   gender: mysqlEnum("gender", ["women", "men", "both"]).default("both").notNull(),
+  /** 対象店舗: hankyu=神戸阪急店, salon=植物美容サロン, both=両店舗共通 */
+  salonId: mysqlEnum("salonId", ["hankyu", "salon", "both"]).default("both").notNull(),
   /** 表示順（小さいほど上位） */
   sortOrder: int("sortOrder").default(0).notNull(),
   /** 公開フラグ: 1=公開, 0=非公開 */

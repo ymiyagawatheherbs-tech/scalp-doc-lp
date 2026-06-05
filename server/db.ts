@@ -259,7 +259,7 @@ export async function deleteBlogPost(id: number) {
 
 // ===== メニュー・料金 =====
 
-export async function getServiceMenus(category?: string, gender?: string) {
+export async function getServiceMenus(category?: string, gender?: string, salonId?: string) {
   const db = await getDb();
   if (!db) return [];
   const results = await db.select().from(serviceMenus)
@@ -268,6 +268,8 @@ export async function getServiceMenus(category?: string, gender?: string) {
   return results.filter(m => {
     if (category && m.category !== category) return false;
     if (gender && gender !== 'both' && m.gender !== gender && m.gender !== 'both') return false;
+    // salonIdフィルター: 指定店舗 or both のメニューのみ表示
+    if (salonId && salonId !== 'both' && m.salonId !== salonId && m.salonId !== 'both') return false;
     return true;
   });
 }

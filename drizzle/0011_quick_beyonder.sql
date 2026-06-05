@@ -1,0 +1,1 @@
+ALTER TABLE `service_menus` ADD `salonId` enum('hankyu','salon','both') DEFAULT 'both' NOT NULL;

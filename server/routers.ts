@@ -45,7 +45,7 @@ export const appRouter = router({
             return val >= minDate;
           }, { message: "当日予約はお電話にて承ります。070-2642-7366までお問い合わせください。" }),
           desiredTime: z.string().min(1),
-          plan: z.enum(["free", "standard", "personal", "consult"]),
+          plan: z.string().min(1),
           message: z.string().optional(),
           gender: z.enum(["women", "men"]).default("women"),
         })
@@ -244,7 +244,7 @@ export const appRouter = router({
           email: z.string().optional(),
           desiredDate: z.string().min(1),
           desiredTime: z.string().min(1),
-          plan: z.enum(["free", "standard", "personal", "consult"]),
+          plan: z.string().min(1),
           message: z.string().optional(),
           gender: z.enum(["women", "men"]).default("women"),
           source: z.enum(["web", "phone", "walkin"]).default("phone"),
@@ -655,8 +655,8 @@ export const appRouter = router({
    */
   menu: router({
     list: publicProcedure
-      .input(z.object({ category: z.string().optional(), gender: z.string().optional() }))
-      .query(async ({ input }) => getServiceMenus(input.category, input.gender)),
+      .input(z.object({ category: z.string().optional(), gender: z.string().optional(), salonId: z.string().optional() }))
+      .query(async ({ input }) => getServiceMenus(input.category, input.gender, input.salonId)),
 
     listAdmin: staffOrManusProcedure.query(() => getAllServiceMenusAdmin()),
 
@@ -673,6 +673,7 @@ export const appRouter = router({
         targetCustomer: z.string().optional(),
         imageUrl: z.string().optional(),
         gender: z.enum(['women', 'men', 'both']).default('both'),
+        salonId: z.enum(['hankyu', 'salon', 'both']).default('both'),
         sortOrder: z.number().optional(),
         published: z.number().optional(),
       }))
@@ -689,6 +690,7 @@ export const appRouter = router({
           targetCustomer: input.targetCustomer ?? null,
           imageUrl: input.imageUrl ?? null,
           gender: input.gender,
+          salonId: input.salonId,
           sortOrder: input.sortOrder ?? 0,
           published: input.published ?? 1,
         });
@@ -709,6 +711,7 @@ export const appRouter = router({
         targetCustomer: z.string().optional(),
         imageUrl: z.string().optional(),
         gender: z.enum(['women', 'men', 'both']).optional(),
+        salonId: z.enum(['hankyu', 'salon', 'both']).optional(),
         sortOrder: z.number().optional(),
         published: z.number().optional(),
       }))

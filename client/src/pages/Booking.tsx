@@ -3,17 +3,14 @@
  * URL: /booking
  *
  * フロー:
- *   1. メニュー一覧（名前・時間・料金のみ表示）
- *   2. クリックで詳細展開（画像・説明・施術内容・対象者）
- *   3. 「このメニューで予約する」ボタン
- *   4. 店舗選択
- *   5. 情報入力 → 申し込み
+ *   1. 店舗選択（神戸阪急店 / 植物美容サロン）
+ *   2. メニュー選択（選択した店舗のメニューのみ表示）
+ *      - クリックで詳細展開（画像・説明・施術内容・対象者）
+ *   3. 情報入力 → 申し込み
  */
 
 import { useState, useMemo } from "react";
 import { trpc } from "@/lib/trpc";
-
-const SQUARE_BOOKING_URL = "https://book.squareup.com/appointments/jsufqo133zf3ec/location/LEWSC49JS30BF/services";
 
 const STORES = [
   {
@@ -22,13 +19,15 @@ const STORES = [
     address: "神戸阪急本館6階 モーニングフロー内",
     hours: "10:00 〜 20:00",
     checkHours: "頭皮チェック受付：12:00 〜 16:00（随時受付も可）",
-    useSquare: false,
+    phone: "070-2642-7366",
   },
   {
     value: "salon",
     label: "THE HERBS植物美容サロン",
     address: "兵庫県神戸市灘区大内通1-7-17 1F",
-    useSquare: true,
+    hours: "要予約",
+    checkHours: null,
+    phone: "070-2642-7366",
   },
 ];
 
@@ -37,13 +36,17 @@ const HANKYU_TIME_SLOTS = [
 ];
 const HANKYU_TIME_SLOTS_OTHER = ["随時受付（時間帯ご相談）"];
 
+const SALON_TIME_SLOTS = [
+  "10:00", "10:30", "11:00", "11:30", "12:00", "13:00", "13:30",
+  "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00",
+];
+
 type FormState = {
   name: string;
   phone: string;
   email: string;
   desiredDate: string;
   desiredTime: string;
-  plan: string;
   message: string;
   agreeCancel: boolean;
 };
@@ -78,52 +81,50 @@ const errorStyle: React.CSSProperties = {
 };
 
 // ステップ管理
-type Step = "menu" | "store" | "form";
+type Step = "store" | "menu" | "form";
 
 export default function Booking() {
-  const [step, setStep] = useState<Step>("menu");
+  const [step, setStep] = useState<Step>("store");
+  const [selectedStore, setSelectedStore] = useState<string>("");
   const [expandedMenuId, setExpandedMenuId] = useState<string | null>(null);
   const [selectedMenuId, setSelectedMenuId] = useState<string>("");
-  const [selectedStore, setSelectedStore] = useState<string>("");
+  const [selectedMenuName, setSelectedMenuName] = useState<string>("");
   const [form, setForm] = useState<FormState>({
     name: "", phone: "", email: "", desiredDate: "",
-    desiredTime: "", plan: "", message: "", agreeCancel: false,
+    desiredTime: "", message: "", agreeCancel: false,
   });
   const [errors, setErrors] = useState<Errors>({});
   const [submitted, setSubmitted] = useState(false);
 
-  // DBからメニューを取得（全件）
+  // 選択店舗のメニューをDBから取得
   const { data: dbMenus, isLoading: menusLoading } = trpc.menu.list.useQuery(
-    {},
-    { staleTime: 60_000 }
+    { salonId: selectedStore || undefined },
+    {
+      enabled: !!selectedStore,
+      staleTime: 60_000,
+    }
   );
 
   const menus = useMemo(() => {
-    if (dbMenus && dbMenus.length > 0) {
-      return dbMenus.map((m: any) => ({
-        id: String(m.id),
-        name: m.name,
-        kana: m.kana ?? null,
-        category: m.category ?? null,
-        price: m.price,
-        priceLabel: m.priceLabel ?? "税込",
-        durationMin: m.durationMin ?? null,
-        description: m.description ?? "",
-        treatmentContent: m.treatmentContent ?? null,
-        targetCustomer: m.targetCustomer ?? null,
-        imageUrl: m.imageUrl ?? null,
-        sortOrder: m.sortOrder ?? 0,
-      }));
-    }
-    // フォールバック
-    return [
-      { id: "free", name: "無料スカルプチェック", kana: null, category: "スカルプケア", price: 0, priceLabel: "無料", durationMin: 10, description: "マイクロスコープで頭皮の状態を確認します。初めての方に最適です。", treatmentContent: null, targetCustomer: "頭皮の状態が気になる方、初めてご来店の方", imageUrl: null, sortOrder: 1 },
-      { id: "standard", name: "定期チェック＆スカルプケア", kana: null, category: "スカルプケア", price: 3850, priceLabel: "税込〜", durationMin: 45, description: "定期的な頭皮チェック＋ボタニカルミストケア。継続的なサポートを希望の方に。", treatmentContent: null, targetCustomer: "定期的なケアを希望の方", imageUrl: null, sortOrder: 2 },
-      { id: "consult", name: "まずは相談したい", kana: null, category: null, price: 0, priceLabel: "要相談", durationMin: 15, description: "頭皮や髪のお悩みをお聞きし、ケアの見直しなどのカウンセリングを行います。\nご希望があれば頭皮チェックを行い、より具体的なケアをご提案させていただきます。", treatmentContent: null, targetCustomer: null, imageUrl: null, sortOrder: 3 },
-    ];
+    if (!dbMenus || dbMenus.length === 0) return [];
+    return dbMenus.map((m: any) => ({
+      id: String(m.id),
+      name: m.name,
+      kana: m.nameKana ?? null,
+      category: m.category ?? null,
+      price: m.price,
+      priceLabel: m.priceLabel ?? "税込",
+      durationMin: m.durationMin ?? null,
+      description: m.description ?? "",
+      treatmentContent: m.treatmentContent ?? null,
+      targetCustomer: m.targetCustomer ?? null,
+      imageUrl: m.imageUrl ?? null,
+      sortOrder: m.sortOrder ?? 0,
+    }));
   }, [dbMenus]);
 
   const selectedMenu = menus.find((m) => m.id === selectedMenuId);
+  const storeInfo = STORES.find((s) => s.value === selectedStore);
 
   const getMinDate = () => {
     const tomorrow = new Date();
@@ -146,7 +147,6 @@ export default function Booking() {
     else if (!/^[\d\-\+\(\)\s]{7,20}$/.test(form.phone.trim())) e.phone = "正しい電話番号を入力してください";
     if (!form.desiredDate) e.desiredDate = "ご希望日を選択してください";
     if (!form.desiredTime) e.desiredTime = "ご希望時間を選択してください";
-    if (!form.plan) e.plan = "コースを選択してください";
     if (!form.agreeCancel) e.agreeCancel = "キャンセルポリシーへの同意が必要です";
     setErrors(e);
     return Object.keys(e).length === 0;
@@ -155,15 +155,14 @@ export default function Booking() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
     if (!validate()) return;
-    const store = STORES.find((s) => s.value === selectedStore);
     createReservation.mutate({
       name: form.name.trim(),
       phone: form.phone.trim(),
       email: form.email.trim() || undefined,
       desiredDate: form.desiredDate,
       desiredTime: form.desiredTime,
-      plan: form.plan as "free" | "standard" | "personal" | "consult",
-      message: `【店舗】${store?.label ?? selectedStore}\n${form.message.trim()}`.trim(),
+      plan: selectedMenuName || selectedMenuId,
+      message: `【店舗】${storeInfo?.label ?? selectedStore}\n${form.message.trim()}`.trim(),
       gender: "women",
     });
   }
@@ -223,8 +222,8 @@ export default function Booking() {
         {/* ステップインジケーター */}
         <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "0.5rem", marginBottom: "2rem" }}>
           {[
-            { key: "menu", label: "メニュー選択" },
             { key: "store", label: "店舗選択" },
+            { key: "menu", label: "メニュー選択" },
             { key: "form", label: "情報入力" },
           ].map((s, i) => (
             <div key={s.key} style={{ display: "flex", alignItems: "center", gap: "0.5rem" }}>
@@ -241,7 +240,7 @@ export default function Booking() {
                 }}>
                   {i + 1}
                 </div>
-                <span style={{ fontSize: "0.72rem", fontWeight: step === s.key ? 700 : 400, color: step === s.key ? "oklch(0.30 0.045 130)" : "oklch(0.6 0.03 75)", whiteSpace: "nowrap" }}>
+                <span style={{ fontSize: "0.72rem", color: step === s.key ? "oklch(0.30 0.045 130)" : "oklch(0.6 0.03 75)", fontWeight: step === s.key ? 700 : 400 }}>
                   {s.label}
                 </span>
               </div>
@@ -250,16 +249,95 @@ export default function Booking() {
           ))}
         </div>
 
-        {/* ---- STEP 1: メニュー一覧 ---- */}
-        {step === "menu" && (
+        {/* ---- STEP 1: 店舗選択 ---- */}
+        {step === "store" && (
           <div>
             <p style={{ fontSize: "0.72rem", letterSpacing: "0.15em", color: "oklch(0.69 0.060 130)", fontWeight: 600, marginBottom: "1rem" }}>
-              STEP 1 — ご希望のメニューをお選びください
+              STEP 1 — ご来店の店舗をお選びください
+            </p>
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "0.75rem", marginBottom: "1.5rem" }}>
+              {STORES.map((s) => (
+                <button
+                  key={s.value}
+                  type="button"
+                  onClick={() => {
+                    setSelectedStore(s.value);
+                    setSelectedMenuId("");
+                    setSelectedMenuName("");
+                    setExpandedMenuId(null);
+                    setStep("menu");
+                    window.scrollTo({ top: 0, behavior: "smooth" });
+                  }}
+                  style={{
+                    padding: "1.25rem 1.5rem",
+                    border: "1.5px solid oklch(0.88 0.020 130)",
+                    borderRadius: "8px",
+                    background: "white",
+                    cursor: "pointer",
+                    textAlign: "left",
+                    boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "space-between",
+                    gap: "1rem",
+                  }}
+                >
+                  <div>
+                    <p style={{ fontWeight: 700, fontSize: "1rem", color: "oklch(0.30 0.045 130)", marginBottom: "0.3rem", lineHeight: 1.4 }}>
+                      {s.label}
+                    </p>
+                    <p style={{ fontSize: "0.78rem", color: "oklch(0.55 0.060 130)", lineHeight: 1.5, margin: "0 0 0.2rem" }}>
+                      {s.address}
+                    </p>
+                    <p style={{ fontSize: "0.72rem", color: "oklch(0.5 0.04 75)", lineHeight: 1.5, margin: 0 }}>
+                      営業時間：{s.hours}
+                    </p>
+                    {s.checkHours && (
+                      <p style={{ fontSize: "0.68rem", color: "oklch(0.42 0.07 140)", marginTop: "0.2rem", lineHeight: 1.5 }}>
+                        {s.checkHours}
+                      </p>
+                    )}
+                  </div>
+                  <span style={{ color: "oklch(0.69 0.060 130)", fontSize: "1.2rem", flexShrink: 0 }}>›</span>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* ---- STEP 2: メニュー選択 ---- */}
+        {step === "menu" && (
+          <div>
+            {/* 選択中店舗表示 */}
+            {storeInfo && (
+              <div style={{ background: "oklch(0.97 0.025 75)", border: "1px solid oklch(0.85 0.04 70)", borderRadius: "6px", padding: "0.75rem 1rem", marginBottom: "1.5rem", display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                <div>
+                  <p style={{ fontSize: "0.7rem", color: "oklch(0.69 0.060 130)", margin: "0 0 0.2rem" }}>選択中の店舗</p>
+                  <p style={{ fontSize: "0.88rem", fontWeight: 700, color: "oklch(0.30 0.045 130)", margin: 0 }}>{storeInfo.label}</p>
+                </div>
+                <button type="button" onClick={() => { setStep("store"); setSelectedStore(""); }}
+                  style={{ fontSize: "0.72rem", color: "oklch(0.55 0.06 130)", background: "none", border: "none", cursor: "pointer", textDecoration: "underline", flexShrink: 0 }}>
+                  変更
+                </button>
+              </div>
+            )}
+
+            <p style={{ fontSize: "0.72rem", letterSpacing: "0.15em", color: "oklch(0.69 0.060 130)", fontWeight: 600, marginBottom: "1rem" }}>
+              STEP 2 — ご希望のメニューをお選びください
             </p>
 
             {menusLoading && (
               <div style={{ textAlign: "center", padding: "3rem", color: "oklch(0.6 0.04 75)", fontSize: "0.85rem" }}>
                 メニューを読み込んでいます...
+              </div>
+            )}
+
+            {!menusLoading && menus.length === 0 && (
+              <div style={{ textAlign: "center", padding: "2rem", color: "oklch(0.6 0.04 75)", fontSize: "0.85rem", background: "white", borderRadius: "8px" }}>
+                現在この店舗のメニューは準備中です。<br />
+                お電話にてお問い合わせください。<br />
+                <strong style={{ color: "oklch(0.42 0.055 130)" }}>{storeInfo?.phone}</strong>
               </div>
             )}
 
@@ -385,8 +463,8 @@ export default function Booking() {
                           type="button"
                           onClick={() => {
                             setSelectedMenuId(menu.id);
-                            setForm((f) => ({ ...f, plan: menu.id }));
-                            setStep("store");
+                            setSelectedMenuName(menu.name);
+                            setStep("form");
                             window.scrollTo({ top: 0, behavior: "smooth" });
                           }}
                           style={{
@@ -412,117 +490,51 @@ export default function Booking() {
                 );
               })}
             </div>
-          </div>
-        )}
 
-        {/* ---- STEP 2: 店舗選択 ---- */}
-        {step === "store" && (
-          <div>
-            {/* 選択中メニュー表示 */}
-            {selectedMenu && (
-              <div style={{ background: "oklch(0.97 0.025 75)", border: "1px solid oklch(0.85 0.04 70)", borderRadius: "6px", padding: "0.75rem 1rem", marginBottom: "1.5rem", display: "flex", alignItems: "center", gap: "0.75rem" }}>
-                {selectedMenu.imageUrl && (
-                  <img src={selectedMenu.imageUrl} alt={selectedMenu.name}
-                    style={{ width: "40px", height: "40px", objectFit: "cover", borderRadius: "4px", flexShrink: 0 }} />
-                )}
-                <div style={{ flex: 1 }}>
-                  <p style={{ fontSize: "0.7rem", color: "oklch(0.69 0.060 130)", margin: 0 }}>選択中のメニュー</p>
-                  <p style={{ fontSize: "0.88rem", fontWeight: 700, color: "oklch(0.30 0.045 130)", margin: 0 }}>{selectedMenu.name}</p>
-                </div>
-                <button type="button" onClick={() => { setStep("menu"); setSelectedMenuId(""); }}
-                  style={{ fontSize: "0.72rem", color: "oklch(0.55 0.06 130)", background: "none", border: "none", cursor: "pointer", textDecoration: "underline", flexShrink: 0 }}>
-                  変更
-                </button>
-              </div>
-            )}
-
-            <p style={{ fontSize: "0.72rem", letterSpacing: "0.15em", color: "oklch(0.69 0.060 130)", fontWeight: 600, marginBottom: "1rem" }}>
-              STEP 2 — 店舗をお選びください
-            </p>
-
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: "0.75rem", marginBottom: "1.5rem" }}>
-              {STORES.map((s) => (
-                <button
-                  key={s.value}
-                  type="button"
-                  onClick={() => {
-                    setSelectedStore(s.value);
-                    if (s.useSquare) {
-                      window.open(SQUARE_BOOKING_URL, "_blank", "noopener,noreferrer");
-                    } else {
-                      setStep("form");
-                      window.scrollTo({ top: 0, behavior: "smooth" });
-                    }
-                  }}
-                  style={{
-                    padding: "1.25rem 1rem",
-                    border: selectedStore === s.value
-                      ? "2px solid oklch(0.69 0.060 130)"
-                      : "1.5px solid oklch(0.88 0.020 130)",
-                    borderRadius: "8px",
-                    background: selectedStore === s.value ? "oklch(0.97 0.025 75)" : "white",
-                    cursor: "pointer",
-                    textAlign: "left",
-                    boxShadow: "0 2px 8px rgba(0,0,0,0.04)",
-                    transition: "all 0.15s",
-                  }}
-                >
-                  <p style={{ fontWeight: 700, fontSize: "0.88rem", color: "oklch(0.30 0.045 130)", marginBottom: "0.3rem", lineHeight: 1.4 }}>
-                    {s.label}
-                  </p>
-                  <p style={{ fontSize: "0.72rem", color: "oklch(0.55 0.060 130)", lineHeight: 1.5, margin: 0 }}>
-                    {s.address}
-                  </p>
-                  {"hours" in s && s.hours && (
-                    <p style={{ fontSize: "0.68rem", color: "oklch(0.42 0.07 140)", marginTop: "0.3rem", lineHeight: 1.5 }}>
-                      営業時間：{(s as { hours: string }).hours}
-                    </p>
-                  )}
-                  {s.useSquare && (
-                    <p style={{ fontSize: "0.68rem", color: "oklch(0.69 0.060 130)", marginTop: "0.4rem", fontWeight: 600 }}>
-                      Square予約システム利用 ↗
-                    </p>
-                  )}
-                </button>
-              ))}
-            </div>
-
-            <button type="button" onClick={() => setStep("menu")}
-              style={{ fontSize: "0.8rem", color: "oklch(0.55 0.06 130)", background: "none", border: "none", cursor: "pointer", textDecoration: "underline" }}>
-              ← メニュー選択に戻る
+            <button type="button" onClick={() => { setStep("store"); setSelectedStore(""); }}
+              style={{ marginTop: "1.5rem", fontSize: "0.8rem", color: "oklch(0.55 0.06 130)", background: "none", border: "none", cursor: "pointer", textDecoration: "underline" }}>
+              ← 店舗選択に戻る
             </button>
           </div>
         )}
 
-        {/* ---- STEP 3: 情報入力フォーム（神戸阪急店） ---- */}
-        {step === "form" && selectedStore === "hankyu" && (
+        {/* ---- STEP 3: 情報入力フォーム ---- */}
+        {step === "form" && (
           <form onSubmit={handleSubmit} noValidate>
             {/* 選択中メニュー・店舗表示 */}
             <div style={{ background: "oklch(0.97 0.025 75)", border: "1px solid oklch(0.85 0.04 70)", borderRadius: "6px", padding: "0.75rem 1rem", marginBottom: "1.5rem" }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: "0.3rem" }}>
-                <p style={{ fontSize: "0.7rem", color: "oklch(0.69 0.060 130)", margin: 0 }}>選択中のメニュー</p>
-                <button type="button" onClick={() => setStep("menu")}
-                  style={{ fontSize: "0.7rem", color: "oklch(0.55 0.06 130)", background: "none", border: "none", cursor: "pointer", textDecoration: "underline" }}>変更</button>
+              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", marginBottom: "0.5rem" }}>
+                <div>
+                  <p style={{ fontSize: "0.7rem", color: "oklch(0.69 0.060 130)", margin: "0 0 0.15rem" }}>選択中の店舗</p>
+                  <p style={{ fontSize: "0.88rem", fontWeight: 700, color: "oklch(0.30 0.045 130)", margin: 0 }}>{storeInfo?.label}</p>
+                </div>
+                <button type="button" onClick={() => { setStep("store"); setSelectedStore(""); setSelectedMenuId(""); setSelectedMenuName(""); }}
+                  style={{ fontSize: "0.7rem", color: "oklch(0.55 0.06 130)", background: "none", border: "none", cursor: "pointer", textDecoration: "underline", flexShrink: 0, marginTop: "2px" }}>変更</button>
               </div>
-              <p style={{ fontSize: "0.88rem", fontWeight: 700, color: "oklch(0.30 0.045 130)", margin: "0 0 0.5rem" }}>{selectedMenu?.name ?? form.plan}</p>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
-                <p style={{ fontSize: "0.7rem", color: "oklch(0.69 0.060 130)", margin: 0 }}>店舗</p>
-                <button type="button" onClick={() => setStep("store")}
-                  style={{ fontSize: "0.7rem", color: "oklch(0.55 0.06 130)", background: "none", border: "none", cursor: "pointer", textDecoration: "underline" }}>変更</button>
+              <div style={{ borderTop: "1px solid oklch(0.90 0.015 75)", paddingTop: "0.5rem", display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+                <div>
+                  <p style={{ fontSize: "0.7rem", color: "oklch(0.69 0.060 130)", margin: "0 0 0.15rem" }}>選択中のメニュー</p>
+                  <p style={{ fontSize: "0.88rem", fontWeight: 700, color: "oklch(0.30 0.045 130)", margin: 0 }}>{selectedMenuName || selectedMenuId}</p>
+                </div>
+                <button type="button" onClick={() => { setStep("menu"); setSelectedMenuId(""); setSelectedMenuName(""); }}
+                  style={{ fontSize: "0.7rem", color: "oklch(0.55 0.06 130)", background: "none", border: "none", cursor: "pointer", textDecoration: "underline", flexShrink: 0, marginTop: "2px" }}>変更</button>
               </div>
-              <p style={{ fontSize: "0.88rem", fontWeight: 700, color: "oklch(0.30 0.045 130)", margin: 0 }}>THE HERBS神戸阪急店</p>
             </div>
 
             {/* 営業時間インフォ */}
-            <div style={{ background: "oklch(0.97 0.02 70)", border: "1px solid oklch(0.85 0.06 70)", borderRadius: "6px", padding: "0.9rem 1.1rem", marginBottom: "1.5rem" }}>
-              <p style={{ fontSize: "0.75rem", fontWeight: 700, color: "oklch(0.35 0.06 60)", marginBottom: "0.3rem" }}>THE HERBS神戸阪急店</p>
-              <p style={{ fontSize: "0.72rem", color: "oklch(0.4 0.04 42)", lineHeight: 1.6, margin: "0 0 0.2rem" }}>
-                営業時間：<strong>10:00 〜 20:00</strong>
-              </p>
-              <p style={{ fontSize: "0.72rem", color: "oklch(0.4 0.04 42)", lineHeight: 1.6, margin: 0 }}>
-                頭皮チェック予約可能時間帯：<strong>12:00 〜 16:00</strong>（それ以外は随時受付となります）
-              </p>
-            </div>
+            {storeInfo && (
+              <div style={{ background: "oklch(0.97 0.02 70)", border: "1px solid oklch(0.85 0.06 70)", borderRadius: "6px", padding: "0.9rem 1.1rem", marginBottom: "1.5rem" }}>
+                <p style={{ fontSize: "0.75rem", fontWeight: 700, color: "oklch(0.35 0.06 60)", marginBottom: "0.3rem" }}>{storeInfo.label}</p>
+                <p style={{ fontSize: "0.72rem", color: "oklch(0.4 0.04 42)", lineHeight: 1.6, margin: "0 0 0.2rem" }}>
+                  営業時間：<strong>{storeInfo.hours}</strong>
+                </p>
+                {storeInfo.checkHours && (
+                  <p style={{ fontSize: "0.72rem", color: "oklch(0.4 0.04 42)", lineHeight: 1.6, margin: 0 }}>
+                    {storeInfo.checkHours}
+                  </p>
+                )}
+              </div>
+            )}
 
             <p style={{ fontSize: "0.72rem", letterSpacing: "0.15em", color: "oklch(0.69 0.060 130)", fontWeight: 600, marginBottom: "0.75rem" }}>
               STEP 3 — ご予約内容を入力する
@@ -566,7 +578,7 @@ export default function Booking() {
                   style={errors.desiredDate ? { ...inputStyle, borderColor: "#ef4444" } : inputStyle} />
                 {errors.desiredDate && <p style={errorStyle}>{errors.desiredDate}</p>}
                 <p style={{ fontSize: "0.72rem", color: "oklch(0.55 0.06 42)", marginTop: "0.35rem", lineHeight: 1.6 }}>
-                  ※ 当日予約はお電話にて承ります　<strong>070-2642-7366（直通）</strong>
+                  ※ 当日予約はお電話にて承ります　<strong>{storeInfo?.phone ?? "070-2642-7366"}（直通）</strong>
                 </p>
               </div>
 
@@ -577,12 +589,20 @@ export default function Booking() {
                   onChange={(e) => setForm({ ...form, desiredTime: e.target.value })}
                   style={errors.desiredTime ? { ...inputStyle, borderColor: "#ef4444" } : inputStyle}>
                   <option value="">時間を選択してください</option>
-                  <optgroup label="予約可能時間帯（12:00〜16:00）">
-                    {HANKYU_TIME_SLOTS.map((t) => <option key={t} value={t}>{t}</option>)}
-                  </optgroup>
-                  <optgroup label="その他">
-                    {HANKYU_TIME_SLOTS_OTHER.map((t) => <option key={t} value={t}>{t}</option>)}
-                  </optgroup>
+                  {selectedStore === "hankyu" ? (
+                    <>
+                      <optgroup label="予約可能時間帯（12:00〜16:00）">
+                        {HANKYU_TIME_SLOTS.map((t) => <option key={t} value={t}>{t}</option>)}
+                      </optgroup>
+                      <optgroup label="その他">
+                        {HANKYU_TIME_SLOTS_OTHER.map((t) => <option key={t} value={t}>{t}</option>)}
+                      </optgroup>
+                    </>
+                  ) : (
+                    <optgroup label="ご希望時間帯">
+                      {SALON_TIME_SLOTS.map((t) => <option key={t} value={t}>{t}</option>)}
+                    </optgroup>
+                  )}
                 </select>
                 {errors.desiredTime && <p style={errorStyle}>{errors.desiredTime}</p>}
               </div>
