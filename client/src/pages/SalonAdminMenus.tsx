@@ -151,12 +151,23 @@ export default function SalonAdminMenus() {
  };
  const lbl: React.CSSProperties = { display: "block", fontSize: "13px", color: C.accentDk, marginBottom: "4px", fontWeight: "600" };
 
+ // カテゴリー表示順
+ const CATEGORY_ORDER = ["スカルプラボ", "ベーシックケア", "プレミアムパーソナルケア", "セルフケア"];
+
  const grouped = items.reduce<Record<string, typeof items>>((acc, item) => {
  const cat = item.category || "その他";
  if (!acc[cat]) acc[cat] = [];
  acc[cat].push(item);
  return acc;
  }, {});
+
+ const sortedGroupEntries = Object.entries(grouped).sort(([a], [b]) => {
+ const ai = CATEGORY_ORDER.indexOf(a);
+ const bi = CATEGORY_ORDER.indexOf(b);
+ const ca = ai === -1 ? CATEGORY_ORDER.length : ai;
+ const cb = bi === -1 ? CATEGORY_ORDER.length : bi;
+ return ca - cb;
+ });
 
  return (
  <AdminGuard>
@@ -295,7 +306,7 @@ export default function SalonAdminMenus() {
  <p style={{ color: C.textLight, fontSize: "14px" }}>まだ登録されていません。「新規追加」から追加してください。</p>
  </div>
  ) : (
- Object.entries(grouped).map(([cat, catItems]) => (
+ sortedGroupEntries.map(([cat, catItems]) => (
  <div key={cat} style={{ marginBottom: "24px" }}>
  <h3 style={{ color: C.text, fontSize: "15px", fontWeight: "700", marginBottom: "12px", paddingBottom: "8px", borderBottom: `2px solid ${C.accent}` }}>{cat}</h3>
  <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>

@@ -92,6 +92,9 @@ export default function AdminMenus() {
  const inp: React.CSSProperties = { width: "100%", padding: "8px 12px", border: "1px solid #d4c5b0", borderRadius: "6px", fontSize: "14px", fontFamily: "Noto Sans JP, sans-serif", background: "#fff", color: "#2C1810", boxSizing: "border-box" };
  const lbl: React.CSSProperties = { display: "block", fontSize: "13px", color: "#6b4c2a", marginBottom: "4px", fontWeight: "600" };
 
+ // カテゴリー表示順
+ const CATEGORY_ORDER = ["スカルプラボ", "ベーシックケア", "プレミアムパーソナルケア", "セルフケア"];
+
  // カテゴリ別にグループ化
  const grouped = items.reduce<Record<string, typeof items>>((acc, item) => {
  const cat = item.category || "その他";
@@ -99,6 +102,15 @@ export default function AdminMenus() {
  acc[cat].push(item);
  return acc;
  }, {});
+
+ // カテゴリー順にソートしたエントリー
+ const sortedGroupEntries = Object.entries(grouped).sort(([a], [b]) => {
+ const ai = CATEGORY_ORDER.indexOf(a);
+ const bi = CATEGORY_ORDER.indexOf(b);
+ const ca = ai === -1 ? CATEGORY_ORDER.length : ai;
+ const cb = bi === -1 ? CATEGORY_ORDER.length : bi;
+ return ca - cb;
+ });
 
  return (
  <AdminGuard>
@@ -217,7 +229,7 @@ export default function AdminMenus() {
  <p style={{ color: "#6b4c2a", fontSize: "14px" }}>まだ登録されていません。「新規追加」から追加してください。</p>
  </div>
  ) : (
- Object.entries(grouped).map(([cat, catItems]) => (
+ sortedGroupEntries.map(([cat, catItems]) => (
  <div key={cat} style={{ marginBottom: "24px" }}>
  <h3 style={{ color: "#2C1810", fontSize: "15px", fontWeight: "700", marginBottom: "12px", paddingBottom: "8px", borderBottom: "2px solid #c9a96e" }}>{cat}</h3>
  <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>

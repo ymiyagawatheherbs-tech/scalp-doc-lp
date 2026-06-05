@@ -132,9 +132,12 @@ export default function Booking() {
  }
  );
 
+ // カテゴリー表示順
+ const CATEGORY_ORDER = ["スカルプラボ", "ベーシックケア", "プレミアムパーソナルケア", "セルフケア"];
+
  const menus = useMemo(() => {
  if (!dbMenus || dbMenus.length === 0) return [];
- return dbMenus.map((m: any) => ({
+ const mapped = dbMenus.map((m: any) => ({
  id: String(m.id),
  name: m.name,
  kana: m.nameKana ?? null,
@@ -148,6 +151,16 @@ export default function Booking() {
  imageUrl: m.imageUrl ?? null,
  sortOrder: m.sortOrder ?? 0,
  }));
+ // カテゴリー順 → sortOrder順 でソート
+ mapped.sort((a: any, b: any) => {
+ const ai = CATEGORY_ORDER.indexOf(a.category ?? "");
+ const bi = CATEGORY_ORDER.indexOf(b.category ?? "");
+ const catA = ai === -1 ? CATEGORY_ORDER.length : ai;
+ const catB = bi === -1 ? CATEGORY_ORDER.length : bi;
+ if (catA !== catB) return catA - catB;
+ return (a.sortOrder ?? 0) - (b.sortOrder ?? 0);
+ });
+ return mapped;
  }, [dbMenus]);
 
  const selectedMenu = menus.find((m) => m.id === selectedMenuId);
