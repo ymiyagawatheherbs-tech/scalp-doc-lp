@@ -33,7 +33,6 @@ const STORES = [
     checkHours: "頭皮チェック受付時間：12:00 〜 16:00（随時受付も可）",
     courses: ["free", "standard", "consult"],
     useSquare: false,
-    externalUrl: "https://scalp-labo-5tzs3tko.manus.space/booking/hankyu",
     note: "担当者よりメールまたはお電話にてご連絡いたします。",
   },
   {
@@ -253,10 +252,6 @@ export default function Booking() {
                 key={s.value}
                 type="button"
                 onClick={() => {
-                  if ((s as any).externalUrl) {
-                    window.location.href = (s as any).externalUrl;
-                    return;
-                  }
                   setSelectedStore(s.value);
                   setForm({ name: "", phone: "", email: "", desiredDate: "", desiredTime: "", plan: "", message: "", agreeCancel: false });
                   setErrors({});
