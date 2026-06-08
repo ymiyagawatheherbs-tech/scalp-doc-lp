@@ -784,11 +784,50 @@ function LeadForm() {
  </p>
  )}
 
- <p className="text-center text-xs mt-4" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>
- ※ 勧誘・営業は一切ありません。資料の閲覧のみも歓迎です。
- </p>
- </form>
- )}
+        <p className="text-center text-xs mt-4" style={{ color: "rgba(255,255,255,0.4)", fontFamily: "'Noto Sans JP', sans-serif" }}>
+         ※ 勧誘・営業は一切ありません。資料の閲覧のみも歓迎です。
+        </p>
+        </form>
+        )}
+        {/* ── LINE・説明会・体験会ボタン ── */}
+        <div style={{ marginTop: "2rem", borderTop: "1px solid rgba(255,255,255,0.15)", paddingTop: "1.5rem" }}>
+          <p className="text-center text-xs mb-3" style={{ color: "rgba(255,255,255,0.5)", fontFamily: "'Noto Sans JP', sans-serif" }}>または、LINEでお気軽にご相談ください</p>
+          <a
+            href="https://line.me/ti/p/%40723lsjqi"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-full flex items-center justify-center gap-2 py-4 font-bold text-sm tracking-wider"
+            style={{ backgroundColor: "#06C755", color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif", textDecoration: "none", borderRadius: "4px", marginBottom: "10px", display: "flex" }}
+          >
+            LINEで相談する（無料）
+          </a>
+          <div style={{ display: "flex", gap: "8px", marginBottom: "12px" }}>
+            <a
+              href="https://liff.line.me/2010327961-qbWcOTRL?liff_id=2010327961-qbWcOTRL&group_id=176576"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "12px 8px", fontSize: "12px", fontWeight: 700, backgroundColor: "rgba(255,255,255,0.12)", color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif", textDecoration: "none", borderRadius: "4px", border: "1px solid rgba(255,255,255,0.25)", textAlign: "center" }}
+            >
+              オンライン説明会に参加する
+            </a>
+            <a
+              href="https://liff.line.me/2010327961-qbWcOTRL?liff_id=2010327961-qbWcOTRL&group_id=184188"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "12px 8px", fontSize: "12px", fontWeight: 700, backgroundColor: "rgba(255,255,255,0.12)", color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif", textDecoration: "none", borderRadius: "4px", border: "1px solid rgba(255,255,255,0.25)", textAlign: "center" }}
+            >
+              神戸で体験する
+            </a>
+          </div>
+          <div style={{ background: "rgba(6,199,85,0.12)", border: "1px solid rgba(6,199,85,0.4)", borderRadius: "6px", padding: "10px 14px", textAlign: "center" }}>
+            <p style={{ fontSize: "11px", color: "#a8d5a2", fontWeight: 700, marginBottom: "3px", fontFamily: "'Noto Sans JP', sans-serif" }}>📄 詳しい資料をご希望の方へ</p>
+            <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.7)", lineHeight: 1.7, fontFamily: "'Noto Sans JP', sans-serif" }}>
+              お友達登録後に
+              <span style={{ fontWeight: 700, background: "rgba(6,199,85,0.25)", padding: "1px 5px", borderRadius: "3px", margin: "0 3px", color: "#a8d5a2" }}>スカルプラボ</span>
+              とメッセージを送ってください
+            </p>
+          </div>
+        </div>
  </div>
  </div>
  </section>
