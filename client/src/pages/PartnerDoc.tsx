@@ -885,22 +885,9 @@ function FinalCTA() {
           }}>
             LINEで気軽に相談する（無料）
           </a>
-          <p style={{ fontSize: "11px", color: C.textMuted, textAlign: "center", lineHeight: 1.6, marginBottom: "10px" }}>
+          <p style={{ fontSize: "11px", color: C.textMuted, textAlign: "center", lineHeight: 1.6 }}>
             疑問・不安はLINEでもお気軽にどうぞ。
           </p>
-          <div style={{
-            background: "#F0FFF4", border: "1.5px solid #06C755", borderRadius: "6px",
-            padding: "12px 16px", textAlign: "center",
-          }}>
-            <p style={{ fontSize: "12px", color: "#1a7a3a", fontWeight: 700, marginBottom: "4px", lineHeight: 1.5 }}>
-              📄 詳しい資料をご希望の方へ
-            </p>
-            <p style={{ fontSize: "12px", color: "#2d6a4f", lineHeight: 1.7 }}>
-              お友達登録後に
-              <span style={{ fontWeight: 700, background: "#d4edda", padding: "1px 4px", borderRadius: "3px", margin: "0 2px" }}>スカルプラボ</span>
-              とメッセージを送ってください
-            </p>
-          </div>
         </FadeIn>
       </div>
 
