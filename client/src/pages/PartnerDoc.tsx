@@ -28,9 +28,9 @@ const C = {
 };
 
 // ── URL定数 ──────────────────────────────────────────────────
-const LINE_URL = "https://lin.ee/6GDbcebK";
-const SEMINAR_URL = "https://liff.line.me/2009830640-luW0lUXi?liff_id=2009830640-luW0lUXi&is=bcljDz4G8D&option_key=oKCS046HyJ";
-const TRIAL_URL = "https://liff.line.me/2009830640-luW0lUXi?liff_id=2009830640-luW0lUXi&is=bcljDz4G8D&option_key=TFpZH45DAg";
+const LINE_URL = "https://line.me/ti/p/%40723lsjqi";
+const SEMINAR_URL = "https://liff.line.me/2010327961-qbWcOTRL?liff_id=2010327961-qbWcOTRL&group_id=176576";
+const TRIAL_URL = "https://liff.line.me/2010327961-qbWcOTRL?liff_id=2010327961-qbWcOTRL&group_id=184188";
 
 // ── 画像URL ──────────────────────────────────────────────────
 const IMG = {
@@ -885,9 +885,22 @@ function FinalCTA() {
           }}>
             LINEで気軽に相談する（無料）
           </a>
-          <p style={{ fontSize: "11px", color: C.textMuted, textAlign: "center", lineHeight: 1.6 }}>
+          <p style={{ fontSize: "11px", color: C.textMuted, textAlign: "center", lineHeight: 1.6, marginBottom: "10px" }}>
             疑問・不安はLINEでもお気軽にどうぞ。
           </p>
+          <div style={{
+            background: "#F0FFF4", border: "1.5px solid #06C755", borderRadius: "6px",
+            padding: "12px 16px", textAlign: "center",
+          }}>
+            <p style={{ fontSize: "12px", color: "#1a7a3a", fontWeight: 700, marginBottom: "4px", lineHeight: 1.5 }}>
+              📄 詳しい資料をご希望の方へ
+            </p>
+            <p style={{ fontSize: "12px", color: "#2d6a4f", lineHeight: 1.7 }}>
+              お友達登録後に
+              <span style={{ fontWeight: 700, background: "#d4edda", padding: "1px 4px", borderRadius: "3px", margin: "0 2px" }}>スカルプラボ</span>
+              とメッセージを送ってください
+            </p>
+          </div>
         </FadeIn>
       </div>
 
