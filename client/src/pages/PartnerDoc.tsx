@@ -35,11 +35,11 @@ const TRIAL_URL = "https://liff.line.me/2009830640-luW0lUXi?liff_id=2009830640-l
 // ── 画像URL ──────────────────────────────────────────────────
 const IMG = {
   hero: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/hero-main-7WiQYuuxpMEgAPgcyJcPik.webp",
-  microscopeCheck: "/manus-storage/microscope_check_c8034773.jpeg",
-  herbSteamer: "/manus-storage/herb_steamer_72edf538.jpeg",
-  consultation: "/manus-storage/consultation_241b3ba2.png",
-  scalpMicro: "/manus-storage/pptx_image11_28a4825d.jpeg",
-  product: "/manus-storage/product_fillis_BF9I3827_9fb31a78.jpg",
+  microscopeCheck: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp_microscope_real_722e5749.jpg",
+  herbSteamer: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/herb_steamer_8218d07e.jpg",
+  consultation: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/consultation-oBRbvf7238DM5fVXz4vLdS.webp",
+  scalpMicro: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp_check_real_8dbe88ff.png",
+  product: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/herb_bottles_b7827e42.jpg",
 };
 
 // ── スクロールアニメーション ──────────────────────────────────
