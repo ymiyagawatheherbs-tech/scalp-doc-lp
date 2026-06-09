@@ -220,21 +220,21 @@ function Hero() {
 
           {/* メインキャッチ */}
           <h1
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight"
             style={{ fontFamily: "'Shippori Mincho', serif", color: C.text }}
           >
-            頭皮の悩みを持つ人は、<br />
-            <span style={{ color: C.green }}>どこにも行けていない。</span>
+            頭皮ケアが、<br />
+            <span style={{ color: C.green }}>髪の未来を変える。</span>
           </h1>
 
           {/* サブキャッチ */}
-          <p className="text-lg font-medium mb-4 leading-snug" style={{ fontFamily: "'Shippori Mincho', serif", color: C.greenDark }}>
-            その「受け皿」をつくる事業を、一緒に始めませんか。
+          <p className="text-xl md:text-2xl font-bold mb-6 leading-snug" style={{ fontFamily: "'Shippori Mincho', serif", color: C.greenDark }}>
+            第三の美容が、始まります。
           </p>
           <p className="text-base leading-relaxed mb-8" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#444", lineHeight: "1.9" }}>
-            薄毛・抜け毛・うねり・頭皮トラブル。悩みながらも、美容室でも病院でも相談しにくい。
-            THE HERBS SCALP LABOは、そのギャップを埋める「頭皮の定期チェック事業」を
-            エステサロン・美容師・起業希望者とともに展開しています。
+            スキンケアが当たり前になったように、頭皮ケアも日常になる時代が来ています。<br />
+            THE HERBS SCALP LABOは、エステ・美容室・起業希望者とともに
+            「頭皮の定期チェック」という新しい事業領域を切り開いています。
           </p>
 
           {/* 権威性 */}
