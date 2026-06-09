@@ -563,15 +563,30 @@ function StoreSection() {
           ))}
         </div>
         {/* サロン募集バナー */}
-        <div className="mt-16 bg-[oklch(0.22_0.045_42)] p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
-          <div>
-            <p className="font-cormorant text-[oklch(0.72_0.038_93)] text-xs tracking-[0.3em] uppercase mb-2">For Salon Partners</p>
-            <h3 className="font-mincho text-white text-xl md:text-2xl font-bold mb-2">スカルプラボの認定サロンになりませんか？</h3>
-            <p className="font-sans-jp text-white/75 text-sm">エステサロン・美容師の方向けに、頭皮チェックの技術講習と認定制度をご用意しています。</p>
+        <div className="mt-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, oklch(0.22 0.045 42) 0%, oklch(0.28 0.060 80) 50%, oklch(0.22 0.045 42) 100%)' }}>
+          {/* 装飾ライン */}
+          <div className="absolute top-0 left-0 right-0 h-0.5" style={{ background: 'linear-gradient(90deg, transparent, oklch(0.72 0.038 93), transparent)' }} />
+          <div className="absolute bottom-0 left-0 right-0 h-0.5" style={{ background: 'linear-gradient(90deg, transparent, oklch(0.72 0.038 93), transparent)' }} />
+          <div className="p-10 md:p-14 flex flex-col md:flex-row items-center justify-between gap-8">
+            <div className="flex-1">
+              <p className="font-cormorant text-[oklch(0.72_0.038_93)] text-xs tracking-[0.4em] uppercase mb-3">For Salon Partners</p>
+              <h3 className="font-mincho text-white text-2xl md:text-3xl lg:text-4xl font-bold mb-4 leading-tight">
+                競争相手のいない、<br />
+                <span style={{ color: 'oklch(0.82 0.09 93)' }}>まったく新しい美容を</span><br />
+                一緒に始めませんか？
+              </h3>
+              <p className="font-sans-jp text-white/80 text-sm leading-relaxed">
+                頭皮の定期チェックという、まだ誰も開拓していない事業領域。<br />
+                エステ・美容室・起業希望者とともに、先行者として市場をつくります。
+              </p>
+            </div>
+            <div className="flex-shrink-0 flex flex-col gap-3 items-center">
+              <a href="/salon" className="block font-sans-jp font-semibold text-sm px-10 py-4 text-center transition-all whitespace-nowrap" style={{ background: 'oklch(0.72 0.038 93)', color: 'oklch(0.18 0.04 42)', textDecoration: 'none' }}>
+                詳しく見る
+              </a>
+              <p className="font-sans-jp text-white/50 text-xs">資料請求・無料相談あり</p>
+            </div>
           </div>
-          <a href="/salon" className="flex-shrink-0 border border-[oklch(0.72_0.038_93)] text-[oklch(0.72_0.038_93)] font-sans-jp font-medium text-sm px-8 py-3.5 hover:bg-[oklch(0.72_0.038_93)] hover:text-[oklch(0.18_0.04_42)] transition-all whitespace-nowrap" style={{ textDecoration: 'none' }}>
-            認定サロン募集ページへ
-          </a>
         </div>
       </div>
     </section>
