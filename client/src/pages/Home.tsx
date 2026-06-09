@@ -571,9 +571,9 @@ function StoreSection() {
             <div className="flex-1">
               <p className="font-cormorant text-[oklch(0.72_0.038_93)] text-xs tracking-[0.4em] uppercase mb-3">For Salon Partners</p>
               <h3 className="font-mincho text-white text-2xl md:text-3xl lg:text-4xl font-bold mb-4 leading-tight">
-                競争相手のいない、<br />
-                <span style={{ color: 'oklch(0.82 0.09 93)' }}>まったく新しい美容を</span><br />
-                一緒に始めませんか？
+                頭皮ケアの専門家になる、<br />
+                <span style={{ color: 'oklch(0.82 0.09 93)' }}>髪のお困りごとを解決する新規事業。</span><br />
+                チャレンジしてみませんか？
               </h3>
               <p className="font-sans-jp text-white/80 text-sm leading-relaxed">
                 頭皮の定期チェックという、まだ誰も開拓していない事業領域。<br />
