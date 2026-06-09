@@ -223,13 +223,13 @@ function Hero() {
             className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight"
             style={{ fontFamily: "'Shippori Mincho', serif", color: C.text }}
           >
-            頭皮ケアが、<br />
-            <span style={{ color: C.green }}>髪の未来を変える。</span>
+            髪の土台をつくる、<br />
+            <span style={{ color: C.green }}>不安を安心に変える。</span>
           </h1>
 
           {/* サブキャッチ */}
           <p className="text-xl md:text-2xl font-bold mb-6 leading-snug" style={{ fontFamily: "'Shippori Mincho', serif", color: C.greenDark }}>
-            第三の美容が、始まります。
+            誰よりも先に始める、第三の美容。
           </p>
           <p className="text-base leading-relaxed mb-8" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#444", lineHeight: "1.9" }}>
             スキンケアが当たり前になったように、頭皮ケアも日常になる時代が来ています。<br />
