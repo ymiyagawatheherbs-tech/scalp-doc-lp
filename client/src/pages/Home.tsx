@@ -204,7 +204,7 @@ function HeroSection() {
       <div className="relative z-10 max-w-7xl mx-auto px-5 md:px-6 pt-24 pb-16 md:py-32">
         <div className="max-w-2xl">
           <span className="font-cormorant text-xs tracking-[0.4em] uppercase block mb-5 animate-fade-in-up opacity-0-init" style={{ color: '#d4c5a0' }}>
-            ✦ &nbsp;Scalp Wellness Checkup&nbsp; ✦
+            Scalp Wellness Checkup
           </span>
           <h1 className="font-mincho leading-tight mb-6 animate-fade-in-up opacity-0-init delay-100" style={{ textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}>
             <span className="block text-3xl md:text-5xl lg:text-6xl font-bold text-white mb-2">
@@ -263,16 +263,16 @@ function ProblemSection() {
         {/* 比較3カード */}
         <div className={`grid grid-cols-1 md:grid-cols-3 gap-0 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
           {[
-            { icon: "🦷", label: "歯", text: "毎日磨いても\n歯垢は溜まる。\nだから定期検診。" },
-            { icon: "🌿", label: "肌", text: "毎日洗っても\n毛穴の汚れは残る。\nだから定期ケア。" },
-            { icon: "💆", label: "頭皮", text: "毎日洗っても\n皮脂・汚れは蓄積。\nなのに、チェックしない？", highlight: true },
+            { icon: "01", label: "歯", text: "毎日磨いても\n歯垢は溜まる。\nだから定期検診。" },
+          { icon: "02", label: "肌", text: "毎日洗っても\n毛穴の汚れは残る。\nだから定期ケア。" },
+          { icon: "03", label: "頭皮", text: "毎日洗っても\n皮脂・汚れは蓄積。\nなのに、チェックしない？", highlight: true },
           ].map((item, i) => (
             <div
               key={i}
               className={`flex flex-col items-center justify-center py-16 px-8 text-center transition-all duration-700 ${item.highlight ? "bg-[oklch(0.28_0.055_65)]" : "bg-[oklch(0.965_0.010_90)] border-b md:border-b-0 md:border-r border-[oklch(0.88_0.015_90)]"}`}
               style={{ transitionDelay: `${i * 120}ms` }}
             >
-              <span className="text-5xl mb-6 block">{item.icon}</span>
+              <span className="font-cormorant text-4xl font-bold mb-6 block" style={{ color: item.highlight ? 'oklch(0.72 0.038 93)' : 'oklch(0.72 0.038 93)' }}>{item.icon}</span>
               <span className={`font-cormorant text-xs tracking-[0.3em] uppercase mb-4 block ${item.highlight ? "text-[oklch(0.72_0.038_93)]" : "text-[oklch(0.65_0.030_90)]"}`}>{item.label}</span>
               <p className={`font-mincho text-xl md:text-2xl font-bold leading-relaxed whitespace-pre-line ${item.highlight ? "text-white" : "text-[oklch(0.30_0.055_65)]"}`}>{item.text}</p>
             </div>
@@ -319,7 +319,7 @@ function VisualizeSection() {
               <div className="space-y-4">
                 {["毛穴の詰まり・皮脂の蓄積を確認", "毛根の状態・細毛・抜け毛の傾向を把握", "データとして記録し、変化を追跡"].map((item, i) => (
                   <div key={i} className={`flex items-start gap-3 transition-all duration-500 ${inView ? "opacity-100 translate-x-0" : "opacity-0 translate-x-8"}`} style={{ transitionDelay: `${200 + i * 100}ms` }}>
-                    <span className="text-[oklch(0.72_0.038_93)] text-lg mt-0.5 flex-shrink-0">✓</span>
+                    <span className="font-cormorant text-[oklch(0.72_0.038_93)] text-lg mt-0.5 flex-shrink-0 font-bold">+</span>
                     <span className="font-sans-jp text-white/85 text-sm">{item}</span>
                   </div>
                 ))}
@@ -387,7 +387,7 @@ function BotanicalSection() {
                 頭皮環境を根本から整えます。
               </p>
               <a href="/booking" className="inline-flex items-center font-sans-jp text-sm font-bold gap-2 transition-all hover:gap-4" style={{ color: 'oklch(0.55 0.10 70)', textDecoration: 'none' }}>
-                体験を予約する <span>→</span>
+                体験を予約する
               </a>
             </div>
           </div>
@@ -426,8 +426,8 @@ function BeforeAfterSection() {
                 <p className="font-mincho text-white text-lg font-bold">{items[safeActive].label}</p>
               </div>
             </div>
-            <button onClick={() => setActive((prev) => (prev - 1 + items.length) % items.length)} className="absolute left-[-20px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center text-[oklch(0.30_0.055_65)] hover:bg-[oklch(0.72_0.038_93)] hover:text-white transition-all" aria-label="前の画像">‹</button>
-            <button onClick={() => setActive((prev) => (prev + 1) % items.length)} className="absolute right-[-20px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center text-[oklch(0.30_0.055_65)] hover:bg-[oklch(0.72_0.038_93)] hover:text-white transition-all" aria-label="次の画像">›</button>
+            <button onClick={() => setActive((prev) => (prev - 1 + items.length) % items.length)} className="absolute left-[-20px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center text-[oklch(0.30_0.055_65)] hover:bg-[oklch(0.72_0.038_93)] hover:text-white transition-all" aria-label="前の画像">&#8249;</button>
+            <button onClick={() => setActive((prev) => (prev + 1) % items.length)} className="absolute right-[-20px] top-1/2 -translate-y-1/2 w-10 h-10 bg-white shadow-lg rounded-full flex items-center justify-center text-[oklch(0.30_0.055_65)] hover:bg-[oklch(0.72_0.038_93)] hover:text-white transition-all" aria-label="次の画像">&#8250;</button>
           </div>
           <div className="grid grid-cols-4 md:grid-cols-7 gap-2 max-w-2xl mx-auto">
             {items.map((img, i) => (
@@ -570,7 +570,7 @@ function StoreSection() {
             <p className="font-sans-jp text-white/75 text-sm">エステサロン・美容師の方向けに、頭皮チェックの技術講習と認定制度をご用意しています。</p>
           </div>
           <a href="/salon" className="flex-shrink-0 border border-[oklch(0.72_0.038_93)] text-[oklch(0.72_0.038_93)] font-sans-jp font-medium text-sm px-8 py-3.5 hover:bg-[oklch(0.72_0.038_93)] hover:text-[oklch(0.18_0.04_42)] transition-all whitespace-nowrap" style={{ textDecoration: 'none' }}>
-            認定サロン募集ページへ →
+            認定サロン募集ページへ
           </a>
         </div>
       </div>

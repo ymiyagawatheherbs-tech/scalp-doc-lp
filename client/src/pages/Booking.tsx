@@ -288,7 +288,7 @@ export default function Booking() {
  fontSize: "0.7rem", fontWeight: 700, flexShrink: 0,
  border: isActive ? `2px solid ${C.greenDark}` : "none",
  }}>
- {isDone ? "✓" : i + 1}
+ {isDone ? "+" : i + 1}
  </div>
  <span style={{ fontSize: "0.72rem", color: isActive ? C.green : isDone ? C.sage : C.textMuted, fontWeight: isActive ? 700 : 400 }}>
  {s.label}
@@ -623,7 +623,7 @@ export default function Booking() {
  boxShadow: `0 4px 16px rgba(169,192,166,0.2)`,
  }}>
  <p style={{ fontSize: "0.65rem", fontWeight: 700, color: C.sage, letterSpacing: "0.12em", marginBottom: "0.75rem" }}>
- ✓ ご予約内容の確認
+ ご予約内容の確認
  </p>
  <div style={{ display: "grid", gridTemplateColumns: "auto 1fr auto", gap: "0.5rem 0.75rem", alignItems: "start" }}>
  <span style={{ fontSize: "0.72rem", color: C.textMuted, paddingTop: "2px" }}>店舗</span>

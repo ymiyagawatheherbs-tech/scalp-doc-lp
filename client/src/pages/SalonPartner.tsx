@@ -479,7 +479,7 @@ function Concept() {
  <ul className="space-y-2">
  {col.items.map((item, j) => (
  <li key={j} className="flex items-start gap-2 text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#555" }}>
- <span style={{ color: "#5a7a52", flexShrink: 0 }}>✓</span>
+ <span style={{ color: "#5a7a52", flexShrink: 0, fontWeight: 700, fontSize: "12px" }}>+</span>
  {item}
  </li>
  ))}
@@ -664,7 +664,7 @@ function LeadForm() {
 
  {submitted ? (
  <div className="text-center py-12">
- <div style={{ fontSize: "2.5rem", marginBottom: "1rem" }}>✓</div>
+ <div style={{ fontSize: "2.5rem", marginBottom: "1rem", color: "#a8d5a2", fontWeight: 700 }}>OK</div>
  <p style={{ color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif", fontSize: "1.1rem", fontWeight: 700 }}>ご登録ありがとうございます</p>
  <p style={{ color: "rgba(255,255,255,0.6)", fontFamily: "'Noto Sans JP', sans-serif", fontSize: "0.85rem", marginTop: "0.5rem" }}>資料ページへ移動します…</p>
  </div>
@@ -681,7 +681,7 @@ function LeadForm() {
  "サポート体制について",
  ].map((item, i) => (
  <div key={i} className="flex items-center gap-3 px-4 py-3" style={{ backgroundColor: "rgba(255,255,255,0.08)" }}>
- <span style={{ color: "#a8d5a2", flexShrink: 0 }}>✓</span>
+ <span style={{ color: "#a8d5a2", flexShrink: 0, fontWeight: 700, fontSize: "12px" }}>+</span>
  <span className="text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.85)" }}>{item}</span>
  </div>
  ))}
@@ -820,7 +820,7 @@ function LeadForm() {
             </a>
           </div>
           <div style={{ background: "rgba(6,199,85,0.12)", border: "1px solid rgba(6,199,85,0.4)", borderRadius: "6px", padding: "10px 14px", textAlign: "center" }}>
-            <p style={{ fontSize: "11px", color: "#a8d5a2", fontWeight: 700, marginBottom: "3px", fontFamily: "'Noto Sans JP', sans-serif" }}>📄 詳しい資料をご希望の方へ</p>
+            <p style={{ fontSize: "11px", color: "#a8d5a2", fontWeight: 700, marginBottom: "3px", fontFamily: "'Noto Sans JP', sans-serif" }}>詳しい資料をご希望の方へ</p>
             <p style={{ fontSize: "11px", color: "rgba(255,255,255,0.7)", lineHeight: 1.7, fontFamily: "'Noto Sans JP', sans-serif" }}>
               お友達登録後に
               <span style={{ fontWeight: 700, background: "rgba(6,199,85,0.25)", padding: "1px 5px", borderRadius: "3px", margin: "0 3px", color: "#a8d5a2" }}>スカルプラボ</span>
@@ -974,7 +974,7 @@ function HairdresserSection() {
  "お客様の頭皮データを蓄積して信頼関係を深める",
  ].map((item, i) => (
  <div key={i} className="flex items-start gap-3">
- <span className="flex-shrink-0 w-5 h-5 flex items-center justify-center text-xs font-bold mt-0.5" style={{ backgroundColor: "#5a7a52", color: "#ffffff", borderRadius: "50%" }}>✓</span>
+ <span className="flex-shrink-0 w-5 h-5 flex items-center justify-center text-xs font-bold mt-0.5" style={{ backgroundColor: "#5a7a52", color: "#ffffff", borderRadius: "50%" }}>+</span>
  <p className="text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "#444" }}>{item}</p>
  </div>
  ))}

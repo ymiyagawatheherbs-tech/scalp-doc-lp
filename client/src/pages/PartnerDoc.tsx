@@ -204,21 +204,21 @@ function WhyLook() {
         <div style={{ display: "flex", flexDirection: "column", gap: "14px", marginBottom: "24px" }}>
           {[
             {
-              icon: "🦷",
+              icon: "01",
               title: "歯の場合",
               body: "毎日歯磨きしていても、歯垢・歯石は溜まります。だから歯科の定期検診が当たり前になりました。",
               status: "定期検診：当たり前",
               ok: true,
             },
             {
-              icon: "🧴",
+              icon: "02",
               title: "肌の場合",
               body: "毎日洗顔していても、毛穴の汚れや角質は残ります。だからエステの定期ケアが普及しました。",
               status: "定期ケア：普及中",
               ok: true,
             },
             {
-              icon: "💇",
+              icon: "03",
               title: "頭皮の場合",
               body: "毎日シャンプーしていても、皮脂・角質・汚れは蓄積します。でも頭皮の定期チェックは、まだほとんど普及していません。",
               status: "定期チェック：まだほぼゼロ",
@@ -231,7 +231,7 @@ function WhyLook() {
               borderLeft: `3px solid ${item.ok ? C.sage : C.gold}`,
             }}>
               <div style={{ display: "flex", alignItems: "center", gap: "10px", marginBottom: "8px" }}>
-                <span style={{ fontSize: "20px" }}>{item.icon}</span>
+                <span style={{ fontSize: "12px", fontWeight: 800, color: item.ok ? C.sage : C.gold, letterSpacing: "0.05em", minWidth: "24px" }}>{item.icon}</span>
                 <p style={{ fontSize: "14px", fontWeight: 700, color: C.text }}>{item.title}</p>
                 <span style={{
                   marginLeft: "auto", fontSize: "10px", fontWeight: 700,
@@ -315,7 +315,7 @@ function SeeWithMicroscope() {
                   borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center",
                   fontSize: "9px", fontWeight: 800, flexShrink: 0, marginTop: "1px",
                 }}>
-                  ✓
+                  +
                 </span>
                 <p style={{ fontSize: "12px", color: C.text, lineHeight: 1.6 }}>{item}</p>
               </div>

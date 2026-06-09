@@ -1183,7 +1183,7 @@ function Digital() {
  "サロンとのデータ共有機能",
  ].map((item, i) => (
  <li key={i} className="flex items-center gap-3 text-sm" style={{ fontFamily: "'Noto Sans JP', sans-serif", color: "rgba(255,255,255,0.85)" }}>
- <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "oklch(0.69 0.060 130)", fontSize: "10px", color: "oklch(0.14 0.04 140)", fontWeight: 700 }}>✓</span>
+ <span className="w-5 h-5 rounded-full flex items-center justify-center flex-shrink-0" style={{ backgroundColor: "oklch(0.69 0.060 130)", fontSize: "10px", color: "oklch(0.14 0.04 140)", fontWeight: 700 }}>+</span>
  {item}
  </li>
  ))}
