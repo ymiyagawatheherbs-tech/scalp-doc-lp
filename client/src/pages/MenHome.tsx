@@ -101,7 +101,14 @@ function Nav() {
 
  {/* CTA + Hamburger */}
  <div className="flex items-center gap-2 flex-shrink-0">
- {/* サロン向けリンク：一般向けサロンに注力のため一時非表示 */}
+ {/* サロン向けリンク */}
+ <a
+ href="/salon"
+ className="hidden lg:flex items-center px-3 py-1.5 rounded-full border border-[oklch(0.72_0.12_70)/70] text-[oklch(0.82_0.10_75)] text-xs tracking-wider hover:border-[oklch(0.72_0.12_70)] hover:text-[oklch(0.72_0.12_70)] transition-all duration-300 font-['Noto_Sans_JP'] whitespace-nowrap"
+ style={{textDecoration: 'none'}}
+ >
+ サロン向け
+ </a>
  {/* 女性版切り替えリンク */}
  <Link
  href="/"
@@ -142,10 +149,19 @@ function Nav() {
  {link.label}
  </button>
  ))}
+ {/* サロン向けリンク */}
+ <a
+ href="/salon"
+ className="mt-6 flex items-center justify-center gap-2 py-3 border border-[oklch(0.72_0.12_70)/70] text-[oklch(0.82_0.10_75)] text-base tracking-wider hover:border-[oklch(0.72_0.12_70)] hover:text-[oklch(0.72_0.12_70)] transition-all duration-300 font-['Noto_Sans_JP']"
+ onClick={() => setMenuOpen(false)}
+ style={{textDecoration: 'none'}}
+ >
+ サロン・美容師の方へ
+ </a>
  {/* 女性版切り替えリンク */}
  <Link
  href="/"
- className="mt-6 flex items-center justify-center gap-2 py-3 border border-white/30 text-white/60 text-base tracking-wider hover:border-white/60 hover:text-white/80 transition-all duration-300 font-['Noto_Sans_JP']"
+ className="mt-3 flex items-center justify-center gap-2 py-3 border border-white/30 text-white/60 text-base tracking-wider hover:border-white/60 hover:text-white/80 transition-all duration-300 font-['Noto_Sans_JP']"
  onClick={() => setMenuOpen(false)}
  >
  <span>&#9792;</span>
@@ -1897,7 +1913,25 @@ function StoreSection() {
  ))}
  </div>
 
- {/* サロン募集バナー：一般向けサロンに注力のため一時非表示 */}
+ {/* サロン募集バナー */}
+ <div className="mt-16 bg-[oklch(0.20_0.06_140)] border border-[oklch(0.69_0.060_130)/30] p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
+ <div>
+ <p className="font-['Cormorant_Garamond'] italic text-[oklch(0.69_0.060_130)] text-xs tracking-[0.3em] uppercase mb-2">For Salon Partners</p>
+ <h3 className="font-['Shippori_Mincho'] text-white text-xl md:text-2xl font-bold mb-2">
+ スカルプラボの認定サロンになりませんか？
+ </h3>
+ <p className="font-['Noto_Sans_JP'] text-white/75 text-sm leading-relaxed">
+ エステサロン・美容師の方向けに、頭皮チェックの技術講習と認定制度をご用意しています。
+ </p>
+ </div>
+ <a
+ href="/salon"
+ className="flex-shrink-0 border border-[oklch(0.69_0.060_130)] text-[oklch(0.69_0.060_130)] font-['Noto_Sans_JP'] font-medium text-sm px-8 py-3.5 hover:bg-[oklch(0.69_0.060_130)] hover:text-[oklch(0.14_0.04_140)] transition-all duration-300 whitespace-nowrap"
+ style={{textDecoration: 'none'}}
+ >
+ 認定サロン募集ページへ →
+ </a>
+ </div>
  </div>
  </section>
  );

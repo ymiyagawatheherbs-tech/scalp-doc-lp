@@ -221,6 +221,17 @@ function Nav() {
  {item.label}
  </a>
  ))}
+ {/* サロン向けリンク */}
+ <a
+ href="/salon"
+ className={`font-sans-jp text-xs font-medium px-3 py-1.5 rounded-full border transition-all hover:scale-105 ${
+ scrolled
+ ? "border-[oklch(0.72_0.12_70)] text-[oklch(0.72_0.12_70)] hover:bg-[oklch(0.72_0.12_70)] hover:text-white"
+ : "border-[oklch(0.72_0.12_70)/70] text-[oklch(0.82_0.10_75)] hover:border-[oklch(0.72_0.12_70)] hover:text-[oklch(0.72_0.12_70)]"
+ }`}
+ >
+ サロン向け
+ </a>
  <a
  href="/booking"
  className="btn-gold-shimmer text-white font-sans-jp text-sm font-bold px-4 py-2 rounded-sm flex items-center gap-1 flex-shrink-0"
@@ -271,7 +282,13 @@ function Nav() {
  {item.label}
  </a>
  ))}
- {/* サロン向け・メンズ版：準備中のため非表示 */}
+ <a
+ href="/salon"
+ onClick={() => setMobileOpen(false)}
+ className="flex items-center justify-center gap-2 border border-[oklch(0.72_0.12_70)] text-[oklch(0.72_0.12_70)] font-sans-jp font-medium text-sm text-center py-3 rounded-sm mt-2 hover:bg-[oklch(0.72_0.12_70)] hover:text-white transition-colors"
+ >
+ サロン・美容師の方へ
+ </a>
  <a
  href="/booking"
  onClick={() => setMobileOpen(false)}
@@ -2550,7 +2567,24 @@ function StoreSection() {
  ))}
  </div>
 
- {/* サロン募集バナー：一般向けサロンに注力のため一時非表示 */}
+ {/* サロン募集バナー */}
+ <div className={`mt-16 bg-[oklch(0.22_0.045_42)] rounded-sm p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-700 delay-300`}>
+ <div>
+ <p className="font-cormorant text-[oklch(0.72_0.038_93)] text-xs tracking-[0.3em] uppercase mb-2">For Salon Partners</p>
+ <h3 className="font-mincho text-white text-xl md:text-2xl font-bold mb-2">
+ スカルプラボの認定サロンになりませんか？
+ </h3>
+ <p className="font-sans-jp text-white/75 text-sm leading-relaxed">
+ エステサロン・美容師の方向けに、頭皮チェックの技術講習と認定制度をご用意しています。
+ </p>
+ </div>
+ <a
+ href="/salon"
+ className="flex-shrink-0 border border-[oklch(0.72_0.038_93)] text-[oklch(0.72_0.038_93)] font-sans-jp font-medium text-sm px-8 py-3.5 rounded-sm hover:bg-[oklch(0.72_0.038_93)] hover:text-[oklch(0.18_0.04_42)] transition-all duration-300 whitespace-nowrap"
+ >
+ 認定サロン募集ページへ →
+ </a>
+ </div>
  </div>
  </section>
  );
