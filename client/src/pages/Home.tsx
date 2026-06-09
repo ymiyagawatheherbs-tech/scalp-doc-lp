@@ -241,7 +241,7 @@ function HeroSection() {
               ))}
             </div>
             <p className="font-sans-jp text-white/70 text-sm">
-              <span className="text-white font-medium">2,200名以上</span>が体験済み（当社調べ）
+              <span className="text-white font-medium">2,500名以上</span>が体験済み（当社調べ）
             </p>
           </div>
         </div>
@@ -341,18 +341,18 @@ function CredentialSection() {
         <div className={`transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
           <span className="font-cormorant text-[oklch(0.72_0.038_93)] text-xs tracking-[0.4em] uppercase block mb-8">15 Years of Expertise</span>
           <h2 className="font-mincho text-[oklch(0.28_0.055_65)] text-4xl md:text-6xl font-bold leading-tight mb-6">
-            15年間、<br /><span style={{ color: 'oklch(0.55 0.10 70)' }}>2,200名以上</span>の<br />頭皮と向き合ってきた。
+            3年間で<br /><span style={{ color: 'oklch(0.55 0.10 70)' }}>2,500名以上</span>の<br />頭皮を見続けてわかったこと。
           </h2>
           <p className="font-sans-jp text-[oklch(0.45_0.050_65)] text-base md:text-lg max-w-xl mx-auto leading-relaxed mt-8">
             THE HERBSの植物美容メソッドは、15年の頭皮ケア実績から生まれました。<br />
-            蓄積されたデータとノウハウを、惜しみなく提供します。
+            蓄積されたデータとノウハウで、必要なことが見えてきました。
           </p>
         </div>
         <div className={`grid grid-cols-3 gap-8 mt-20 transition-all duration-700 delay-300 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
           {[
             { num: "15", unit: "年", label: "頭皮ケア実績" },
-            { num: "2,200", unit: "名+", label: "体験者数（当社調べ）" },
-            { num: "86", unit: "%", label: "顧客満足度（当社調べ）" },
+            { num: "2,500", unit: "名+", label: "体験者数（当社調べ）" },
+            { num: "86", unit: "%", label: "顧客満足度（2020年当社調べ）" },
           ].map((item, i) => (
             <div key={i} className="text-center">
               <div className="font-cormorant text-[oklch(0.28_0.055_65)] font-bold leading-none mb-2">
@@ -467,7 +467,7 @@ function TestimonialsSection() {
       <div ref={ref} className="max-w-5xl mx-auto px-6">
         <div className={`text-center mb-16 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
           <span className="font-cormorant text-[oklch(0.72_0.038_93)] text-xs tracking-[0.4em] uppercase block mb-6">Voices</span>
-          <h2 className="font-mincho text-[oklch(0.28_0.055_65)] text-3xl md:text-5xl font-bold">不安が、安心に変わった。</h2>
+          <h2 className="font-mincho text-[oklch(0.28_0.055_65)] text-3xl md:text-5xl font-bold">不安が、安心に変わる。</h2>
         </div>
         <div className={`grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-px bg-[oklch(0.88_0.015_90)] transition-all duration-700 delay-200 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
           {testimonials.map((t, i) => (
@@ -530,7 +530,7 @@ function StoreSection() {
       <div ref={ref} className="max-w-5xl mx-auto px-6">
         <div className={`text-center mb-16 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
           <span className="font-cormorant text-[oklch(0.72_0.038_93)] text-xs tracking-[0.4em] uppercase block mb-6">Our Locations</span>
-          <h2 className="font-mincho text-[oklch(0.28_0.055_65)] text-3xl md:text-5xl font-bold">神戸市内2拠点</h2>
+          <h2 className="font-mincho text-[oklch(0.28_0.055_65)] text-3xl md:text-5xl font-bold">THE HERBS直営店</h2>
         </div>
         <div className={`grid grid-cols-1 md:grid-cols-2 gap-8 transition-all duration-700 delay-200 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
           {stores.map((store, i) => (
@@ -590,7 +590,7 @@ function CtaSection() {
         <div className={`transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}>
           <span className="font-cormorant text-[oklch(0.72_0.038_93)] text-xs tracking-[0.4em] uppercase block mb-8">Start Today</span>
           <h2 className="font-mincho text-white text-4xl md:text-6xl font-bold leading-tight mb-8">
-            まず、<br /><span style={{ color: '#f0d98a' }}>見ることから</span><br />始めよう。
+            まず、<br /><span style={{ color: '#f0d98a' }}>頭皮を見ることから</span><br />始めよう。
           </h2>
           <p className="font-sans-jp text-white/70 text-base mb-12">5〜10分の無料スカルプチェックで、今日から始められます。</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
