@@ -28,7 +28,7 @@ const C = {
 };
 
 // ── URL定数 ──────────────────────────────────────────────────
-const LINE_URL = "https://line.me/ti/p/%40723lsjqi";
+const LINE_URL = "https://lin.ee/pDZf3jg";
 const SEMINAR_URL = "https://liff.line.me/2010327961-qbWcOTRL?liff_id=2010327961-qbWcOTRL&group_id=176576";
 const TRIAL_URL = "https://liff.line.me/2010327961-qbWcOTRL?liff_id=2010327961-qbWcOTRL&group_id=184188";
 
@@ -845,8 +845,8 @@ function FinalCTA() {
                 primary: true,
               },
               {
-                label: "神戸 体験会",
-                detail: "神戸（対面・無料）\n約90分\n実際の施術を体験",
+                label: "神戸 現地体験会",
+                detail: "兵庫県神戸市灘区（対面・無料）\n約90分\n実際の施術を体験",
                 url: TRIAL_URL,
                 cta: "体験会に参加する",
                 primary: false,
