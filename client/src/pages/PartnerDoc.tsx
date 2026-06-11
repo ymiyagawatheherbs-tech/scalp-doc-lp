@@ -29,8 +29,8 @@ const C = {
 
 // ── URL定数 ──────────────────────────────────────────────────
 const LINE_URL = "https://lin.ee/pDZf3jg";
-const SEMINAR_URL = "https://liff.line.me/2010327961-qbWcOTRL?liff_id=2010327961-qbWcOTRL&group_id=176576";
-const TRIAL_URL = "https://liff.line.me/2010327961-qbWcOTRL?liff_id=2010327961-qbWcOTRL&group_id=184188";
+const SEMINAR_URL = "https://ymiyagawatheherbs-tech.github.io/school-apply/apply.html?series=スカルプラボ&course=SC-z";
+const TRIAL_URL = "https://ymiyagawatheherbs-tech.github.io/school-apply/apply.html?series=スカルプラボ&course=SC-k";
 
 // ── 画像URL ──────────────────────────────────────────────────
 const IMG = {
