@@ -223,8 +223,7 @@ function Hero() {
             className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4 leading-tight"
             style={{ fontFamily: "'Shippori Mincho', serif", color: C.text }}
           >
-            髪の土台をつくる、<br />
-            <span style={{ color: C.green }}>不安を安心に変える。</span>
+            <span style={{ color: C.green }}>頭皮ケアの専門家になりませんか？</span>
           </h1>
 
           {/* サブキャッチ */}
@@ -1046,7 +1045,7 @@ function LeadForm() {
               または、LINEでお気軽にご相談ください
             </p>
             <a
-              href="https://lin.ee/UF8T8TX"
+              href="https://lin.ee/pDZf3jg"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full flex items-center justify-center gap-2 py-4 font-bold text-sm tracking-wider"
@@ -1056,7 +1055,7 @@ function LeadForm() {
             </a>
             <div style={{ display: "flex", gap: "8px", marginBottom: "12px" }}>
               <a
-                href="https://liff.line.me/2010327961-qbWcOTRL?liff_id=2010327961-qbWcOTRL&group_id=176576"
+                href="https://ymiyagawatheherbs-tech.github.io/school-apply/apply.html?series=スカルプラボ&course=zoom"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "12px 8px", fontSize: "12px", fontWeight: 700, backgroundColor: "rgba(255,255,255,0.12)", color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif", textDecoration: "none", borderRadius: "4px", border: "1px solid rgba(255,255,255,0.25)", textAlign: "center" }}
@@ -1064,7 +1063,7 @@ function LeadForm() {
                 オンライン説明会に参加する
               </a>
               <a
-                href="https://liff.line.me/2010327961-qbWcOTRL?liff_id=2010327961-qbWcOTRL&group_id=184188"
+                href="https://ymiyagawatheherbs-tech.github.io/school-apply/apply.html?series=スカルプラボ&course=現地"
                 target="_blank"
                 rel="noopener noreferrer"
                 style={{ flex: 1, display: "flex", alignItems: "center", justifyContent: "center", padding: "12px 8px", fontSize: "12px", fontWeight: 700, backgroundColor: "rgba(255,255,255,0.12)", color: "#ffffff", fontFamily: "'Noto Sans JP', sans-serif", textDecoration: "none", borderRadius: "4px", border: "1px solid rgba(255,255,255,0.25)", textAlign: "center" }}
