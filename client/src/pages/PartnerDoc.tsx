@@ -29,8 +29,8 @@ const C = {
 
 // ── URL定数 ──────────────────────────────────────────────────
 const LINE_URL = "https://lin.ee/pDZf3jg";
-const SEMINAR_URL = "https://ymiyagawatheherbs-tech.github.io/school-apply/apply.html?series=スカルプラボ&course=SC-z";
-const TRIAL_URL = "https://ymiyagawatheherbs-tech.github.io/school-apply/apply.html?series=スカルプラボ&course=SC-k";
+const SEMINAR_URL = "https://ymiyagawatheherbs-tech.github.io/school-apply/apply.html?series=スカルプラボ&course=zoom";
+const TRIAL_URL = "https://ymiyagawatheherbs-tech.github.io/school-apply/apply.html?series=スカルプラボ&course=現地";
 
 // ── 画像URL ──────────────────────────────────────────────────
 const IMG = {
@@ -910,7 +910,7 @@ function FinalCTA() {
           }}>
             LINE公式アカウント
           </a>
-          <a href="https://scalp-labo.jp" target="_blank" rel="noopener noreferrer" style={{
+          <a href="https://the-herbs.co.jp" target="_blank" rel="noopener noreferrer" style={{
             fontSize: "11px", color: C.green, textDecoration: "none",
             borderBottom: `1px solid ${C.sage}`, paddingBottom: "1px",
           }}>
