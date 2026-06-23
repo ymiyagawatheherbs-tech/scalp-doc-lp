@@ -36,6 +36,10 @@ async function startServer() {
   app.use(express.urlencoded({ limit: "50mb", extended: true }));
   // Storage proxy for /manus-storage/* paths
   registerStorageProxy(app);
+  // /booking へのアクセスを booking.scalp-labo.jp に 301 リダイレクト
+  app.get("/booking", (_req, res) => {
+    res.redirect(301, "https://booking.scalp-labo.jp/");
+  });
   // OAuth callback under /api/oauth/callback
   registerOAuthRoutes(app);
   // tRPC API
