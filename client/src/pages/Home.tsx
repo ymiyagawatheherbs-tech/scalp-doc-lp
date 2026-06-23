@@ -65,8 +65,8 @@ const IMAGES = {
   hero: "/manus-storage/hero-scalp-check-new_90484209.jpg",
   microscope: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-microscope-iVWgVizXNK9WSGwKAftiPS.webp",
   consultation: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/consultation-oBRbvf7238DM5fVXz4vLdS.webp",
-  scalpCheck: "/manus-storage/scalp-check-consultation_9cbcb3b1.jpg",
-  botanicalMist: "/manus-storage/scalp-microscope-closeup_0e9fafee.jpg",
+  scalpCheck: "/manus-storage/scalp-microscope-closeup_0e9fafee.jpg",
+  botanicalMist: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/herb_steamer_8218d07e.jpg",
 };
 
 // Intersection Observer フック
