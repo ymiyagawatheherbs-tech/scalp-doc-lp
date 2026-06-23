@@ -66,7 +66,7 @@ const IMAGES = {
   microscope: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-microscope-iVWgVizXNK9WSGwKAftiPS.webp",
   consultation: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/consultation-oBRbvf7238DM5fVXz4vLdS.webp",
   scalpCheck: "/manus-storage/scalp-check-consultation_9cbcb3b1.jpg",
-  botanicalMist: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/herb_steamer_8218d07e.jpg",
+  botanicalMist: "/manus-storage/scalp-microscope-closeup_0e9fafee.jpg",
 };
 
 // Intersection Observer フック
@@ -392,7 +392,7 @@ function BotanicalSection() {
             </div>
           </div>
           <div className="relative overflow-hidden min-h-[400px] md:min-h-[600px] order-1 md:order-2">
-            <img src={IMAGES.botanicalMist} alt="ハーブスチーマー・ボタニカルミスト" className="w-full h-full object-cover" />
+            <img src={IMAGES.botanicalMist} alt="マイクロスコープによる頭皮拡大撮影" className="w-full h-full object-cover" style={{ objectPosition: 'center center' }} />
           </div>
         </div>
       </div>
