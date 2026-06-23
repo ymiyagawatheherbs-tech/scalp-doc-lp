@@ -65,7 +65,7 @@ const IMAGES = {
   hero: "/manus-storage/hero-scalp-check-new_90484209.jpg",
   microscope: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp-microscope-iVWgVizXNK9WSGwKAftiPS.webp",
   consultation: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/consultation-oBRbvf7238DM5fVXz4vLdS.webp",
-  scalpCheck: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/scalp_check_dfbc71b8.jpg",
+  scalpCheck: "/manus-storage/scalp-check-consultation_9cbcb3b1.jpg",
   botanicalMist: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/herb_steamer_8218d07e.jpg",
 };
 
@@ -302,7 +302,7 @@ function VisualizeSection() {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 min-h-[600px]">
           <div className="relative overflow-hidden min-h-[400px] md:min-h-[600px]">
-            <img src={IMAGES.scalpCheck} alt="マイクロスコープによる頭皮チェック" className="w-full h-full object-cover" />
+            <img src={IMAGES.scalpCheck} alt="マイクロスコープによる頭皮チェック" className="w-full h-full object-cover" style={{ objectPosition: 'center 40%' }} />
             <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[oklch(0.22_0.045_65)/60] hidden md:block" />
           </div>
           <div ref={ref} className="flex flex-col justify-center px-10 md:px-16 py-16 md:py-24">
