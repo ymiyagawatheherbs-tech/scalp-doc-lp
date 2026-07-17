@@ -219,7 +219,7 @@ function HeroSection() {
           </p>
           <div className="flex flex-col sm:flex-row gap-3 md:gap-4 animate-fade-in-up opacity-0-init delay-300">
             <a
-              href="https://line.me/ti/p/%40723lsjqi"
+              href="https://lin.ee/pLwbq4V"
               target="_blank"
               rel="noopener noreferrer"
               className="font-sans-jp font-bold px-7 py-3.5 text-center text-sm tracking-wider transition-all duration-300 hover:-translate-y-1 inline-flex items-center justify-center gap-2"
@@ -504,7 +504,7 @@ function StoreSection() {
       address2: "兵庫県神戸市中央区小野柄通８丁目１−8",
       hours: "10:00 ～ 20:00",
       closed: "1月1日～2日",
-      line: "https://line.me/ti/p/%40723lsjqi",
+      line: "https://lin.ee/pLwbq4V",
       bookingUrl: "/booking",
       mapUrl: "https://maps.google.com/?q=兵庫県神戸市中央区小野柄通8丁目1番8号+神戸阪急本館6階",
       mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.0!2d135.19476!3d34.69344!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6000e6f7b8e5a3a3%3A0x5b1e2c3d4e5f6a7b!2z56aP5oi45YWD5pys5pys6aSo6Ziz5bGxIOOBiOOBj-OBhOOBhOOBhA!5e0!3m2!1sja!2sjp!4v1700000000000!5m2!1sja!2sjp",
@@ -518,7 +518,7 @@ function StoreSection() {
       address2: "",
       hours: "10:00 ～ 20:00",
       closed: "火曜・日曜・祝日定休",
-      line: "https://line.me/ti/p/%40723lsjqi",
+      line: "https://lin.ee/pLwbq4V",
       bookingUrl: "https://book.squareup.com/appointments/jsufqo133zf3ec/location/LEWSC49JS30BF/services",
       mapUrl: "https://maps.app.goo.gl/a96J7E9gnPBXi9tA6",
       mapEmbed: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3279.8!2d135.2257085!3d34.7128842!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60008dba49ad1097%3A0x351be9b6133f830b!2sMODE+VERDE+%E3%82%B5%E3%83%AD%E3%83%B3!5e0!3m2!1sja!2sjp!4v1700000000001!5m2!1sja!2sjp",
@@ -612,7 +612,7 @@ function CtaSection() {
             <a href="/booking" className="btn-gold-shimmer text-white font-sans-jp font-bold px-12 py-5 text-base" style={{ textShadow: '0 1px 2px rgba(0,0,0,0.4)', textDecoration: 'none' }}>
               無料スカルプチェックを予約する
             </a>
-            <a href="https://line.me/ti/p/%40723lsjqi" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 font-sans-jp text-white/85 text-sm border border-white/30 px-8 py-5 hover:bg-white/10 transition-all" style={{ textDecoration: 'none' }}>
+            <a href="https://lin.ee/pLwbq4V" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 font-sans-jp text-white/85 text-sm border border-white/30 px-8 py-5 hover:bg-white/10 transition-all" style={{ textDecoration: 'none' }}>
               <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.02 2 11c0 3.07 1.58 5.8 4.04 7.54L5.5 22l4.14-2.16C10.39 20.27 11.18 20.4 12 20.4c5.52 0 10-4.02 10-9S17.52 2 12 2z" /></svg>
               LINEで相談する（無料）
             </a>
@@ -711,7 +711,7 @@ function FloatingBookingButton() {
   return (
     <div className={`fixed bottom-6 right-4 z-50 md:hidden transition-all duration-300 ${scrolled ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4 pointer-events-none"}`}>
       <a
-        href="https://line.me/ti/p/%40723lsjqi"
+        href="https://lin.ee/pLwbq4V"
         target="_blank"
         rel="noopener noreferrer"
         className="font-sans-jp font-bold text-white text-xs px-5 py-3.5 shadow-2xl flex items-center gap-2"

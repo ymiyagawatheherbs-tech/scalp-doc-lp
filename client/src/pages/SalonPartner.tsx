@@ -1045,7 +1045,7 @@ function LeadForm() {
               または、LINEでお気軽にご相談ください
             </p>
             <a
-              href="https://lin.ee/pDZf3jg"
+              href="https://lin.ee/TfkaqVG"
               target="_blank"
               rel="noopener noreferrer"
               className="w-full flex items-center justify-center gap-2 py-4 font-bold text-sm tracking-wider"

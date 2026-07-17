@@ -28,7 +28,7 @@ const C = {
 };
 
 // ── URL定数 ──────────────────────────────────────────────────
-const LINE_URL = "https://lin.ee/pDZf3jg";
+const LINE_URL = "https://lin.ee/TfkaqVG";
 const SEMINAR_URL = "https://ymiyagawatheherbs-tech.github.io/school-apply/apply.html?series=スカルプラボ&course=zoom";
 const TRIAL_URL = "https://ymiyagawatheherbs-tech.github.io/school-apply/apply.html?series=スカルプラボ&course=現地";
 
