@@ -3,7 +3,7 @@
  * /salons — 地図付きサロン一覧
  */
 import { trpc } from "@/lib/trpc";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { MapView } from "@/components/Map";
 import { Link } from "wouter";
 
@@ -31,8 +31,46 @@ type Salon = {
  updatedAt: Date;
 };
 
+type SalonMenuDetail = {
+ name: string;
+ eyebrow: string;
+ summary: string;
+ detail: string;
+};
+
+const SALON_MENU_DETAILS: Record<string, SalonMenuDetail[]> = {
+ "THE HERBS植物美容サロン": [
+ {
+ name: "コライユ",
+ eyebrow: "COLOR & PERM OPTION · 約5分",
+ summary: "ヘアカラー・パーマ後の頭皮コンディショニングケア",
+ detail: "カラー・パーマ後の頭皮と髪の状態を確認しながら、コライユブレンドを含むケアをご案内します。",
+ },
+ {
+ name: "ヴェルデ",
+ eyebrow: "PERSONAL SCALP CARE",
+ summary: "頭皮と髪のためのパーソナルコンディショニングケア",
+ detail: "頭皮と髪の状態を確認し、その時の状態に合わせてヘアケアハーブを選ぶサロンケアです。カウンセリングをもとにケア内容をご提案します。",
+ },
+ ],
+ "THE HERBS神戸阪急店": [
+ {
+ name: "コライユミスト",
+ eyebrow: "COLOR & PERM OPTION · 約5分",
+ summary: "ヘアカラー・パーマ後の頭皮コンディショニングケア",
+ detail: "カラー・パーマ後の頭皮と髪の状態を確認しながら、コライユミストをご案内します。",
+ },
+ ],
+};
+
+const SALON_QUERY_KEYS: Record<string, string> = {
+ "THE HERBS植物美容サロン": "salon",
+ "THE HERBS神戸阪急店": "hankyu",
+};
+
 function SalonCard({ salon, isSelected, onClick }: { salon: Salon; isSelected: boolean; onClick: () => void }) {
  const services = salon.services ? salon.services.split(",").map(s => s.trim()).filter(Boolean) : [];
+ const salonMenus = SALON_MENU_DETAILS[salon.name] ?? [];
  return (
  <div
  onClick={onClick}
@@ -72,6 +110,11 @@ function SalonCard({ salon, isSelected, onClick }: { salon: Salon; isSelected: b
  }}>{svc}</span>
  ))}
  </div>
+ {salonMenus.length > 0 && (
+ <p style={{ color: isSelected ? "#d4c5b0" : "#7a5b3e", fontSize: "11px", margin: "9px 0 0", lineHeight: 1.6, fontFamily: "Noto Sans JP, sans-serif" }}>
+ 取扱メニュー：{salonMenus.map(menu => menu.name).join("・")}
+ </p>
+ )}
  </div>
  </div>
  );
@@ -83,6 +126,13 @@ export default function Salons() {
  const [filterPref, setFilterPref] = useState<string>("");
  const [mapInstance, setMapInstance] = useState<google.maps.Map | null>(null);
  const { data: salons = [], isLoading } = trpc.salon.list.useQuery({ prefecture: filterPref || undefined }, { refetchOnWindowFocus: false });
+
+ useEffect(() => {
+ if (salons.length === 0 || salons.some(salon => salon.id === selectedId)) return;
+ const requestedKey = new URLSearchParams(window.location.search).get("salon");
+ const requestedSalon = salons.find(salon => SALON_QUERY_KEYS[salon.name] === requestedKey);
+ setSelectedId((requestedSalon ?? salons[0]).id);
+ }, [salons, selectedId]);
 
  const selectedSalon = salons.find(s => s.id === selectedId) ?? null;
 
@@ -132,6 +182,12 @@ export default function Salons() {
  // 選択サロンが変わったら地図を移動
  function handleSelectSalon(salon: Salon) {
  setSelectedId(salon.id);
+ const salonKey = SALON_QUERY_KEYS[salon.name];
+ if (salonKey) {
+ const url = new URL(window.location.href);
+ url.searchParams.set("salon", salonKey);
+ window.history.replaceState({}, "", url);
+ }
  if (mapInstance) {
  const geocoder = new google.maps.Geocoder();
  const fullAddress = `${salon.prefecture}${salon.city}${salon.address ?? ""}`;
@@ -210,7 +266,7 @@ export default function Salons() {
  <p style={{ color: "#9ca3af", fontSize: "13px", marginTop: "8px" }}>サロン認定についてのお問い合わせは、公式LINEよりお気軽にどうぞ。</p>
  </div>
  ) : (
- <div style={{ display: "grid", gridTemplateColumns: "380px 1fr", gap: "24px", alignItems: "start" }}>
+ <div className="grid grid-cols-1 lg:grid-cols-[380px_1fr] gap-6 items-start">
  {/* サロンリスト */}
  <div style={{ display: "flex", flexDirection: "column", gap: "10px", maxHeight: "600px", overflowY: "auto", paddingRight: "4px" }}>
  <p style={{ color: "#6b4c2a", fontSize: "13px", margin: "0 0 8px" }}>{filtered.length}件のサロン</p>
@@ -261,6 +317,22 @@ export default function Salons() {
  <span key={svc} style={{ background: SERVICE_COLORS[svc] || "#c9a96e", color: "#fff", fontSize: "11px", padding: "3px 10px", borderRadius: "20px" }}>{svc}</span>
  ))}
  </div>
+ {(SALON_MENU_DETAILS[selectedSalon.name] ?? []).length > 0 && (
+ <section style={{ marginTop: "20px", paddingTop: "18px", borderTop: "1px solid #e8ddd0" }}>
+ <p style={{ color: "#6b4c2a", fontSize: "11px", fontWeight: 700, letterSpacing: "0.12em", margin: "0 0 12px" }}>SALON CARE MENU</p>
+ <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))", gap: "12px" }}>
+ {(SALON_MENU_DETAILS[selectedSalon.name] ?? []).map(menu => (
+ <div key={menu.name} style={{ background: "#f8f4ee", borderTop: "2px solid #c9a96e", padding: "14px" }}>
+ <p style={{ color: "#9a7c4d", fontSize: "10px", letterSpacing: "0.1em", margin: "0 0 6px" }}>{menu.eyebrow}</p>
+ <h4 style={{ color: "#2C1810", fontSize: "17px", fontWeight: 700, margin: "0 0 6px", fontFamily: "Noto Serif JP, serif" }}>{menu.name}</h4>
+ <p style={{ color: "#6b4c2a", fontSize: "12px", fontWeight: 700, lineHeight: 1.6, margin: "0 0 8px" }}>{menu.summary}</p>
+ <p style={{ color: "#6b4c2a", fontSize: "12px", lineHeight: 1.75, margin: 0 }}>{menu.detail}</p>
+ </div>
+ ))}
+ </div>
+ <p style={{ color: "#8c7b6b", fontSize: "11px", lineHeight: 1.7, margin: "12px 0 0" }}>所要時間・料金・取扱内容は、店舗と状態により異なるためご相談ください。頭皮に違和感・かゆみ・刺激などがある場合は、施術前に必ずお申し出ください。</p>
+ </section>
+ )}
  <div style={{ display: "flex", gap: "10px", marginTop: "12px" }}>
  {selectedSalon.websiteUrl && (
  <a href={selectedSalon.websiteUrl} target="_blank" rel="noopener noreferrer"
