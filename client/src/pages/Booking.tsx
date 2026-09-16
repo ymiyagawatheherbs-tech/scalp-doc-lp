@@ -140,7 +140,7 @@ export default function Booking() {
  );
 
  // カテゴリー表示順
- const CATEGORY_ORDER = ["スカルプラボ", "ベーシックケア", "プレミアムパーソナルケア", "セルフケア"];
+ const CATEGORY_ORDER = ["スカルプラボ", "カラー・パーマ オプション", "ベーシックケア", "プレミアムパーソナルケア", "セルフケア"];
 
  const menus = useMemo(() => {
  if (!dbMenus || dbMenus.length === 0) return [];
@@ -406,7 +406,7 @@ export default function Booking() {
 
    {/* カテゴリー別グループ表示 */}
    {(() => {
-     const CAT_ORDER = ["スカルプラボ", "ベーシックケア", "プレミアムパーソナルケア", "セルフケア"];
+     const CAT_ORDER = ["スカルプラボ", "カラー・パーマ オプション", "ベーシックケア", "プレミアムパーソナルケア", "セルフケア"];
      const grouped = menus.reduce<Record<string, typeof menus>>((acc, m) => {
        const cat = m.category || "その他";
        if (!acc[cat]) acc[cat] = [];
@@ -509,7 +509,7 @@ export default function Booking() {
                        {durationText && <span>{durationText}</span>}
                        {menu.price > 0
                          ? <span>¥{menu.price.toLocaleString()}（{menu.priceLabel ?? "税込"}）</span>
-                         : <span>税込</span>
+                         : menu.priceLabel && menu.priceLabel !== "税込" ? <span>{menu.priceLabel}</span> : null
                        }
                      </p>
                    </div>
