@@ -11,6 +11,27 @@ const SERVICE_COLORS: Record<string, string> = {
  "頭皮チェック": "#c9a96e",
  "定期ケア（ボタニカルミスト）": "#7a9e7e",
  "パーソナルケア": "#9b7ea6",
+ "コライユ（デトックス）": "#a26d46",
+ "ヴェルデ（パーソナルケア）": "#5d8865",
+};
+
+const COMMON_METHODS = ["コライユ（デトックス）", "ヴェルデ（パーソナルケア）"] as const;
+
+const METHOD_QUERY_VALUES: Record<string, (typeof COMMON_METHODS)[number]> = {
+ corail: "コライユ（デトックス）",
+ verde: "ヴェルデ（パーソナルケア）",
+};
+
+const METHOD_QUERY_KEYS: Record<(typeof COMMON_METHODS)[number], string> = {
+ "コライユ（デトックス）": "corail",
+ "ヴェルデ（パーソナルケア）": "verde",
+};
+
+const METHOD_IMAGES = {
+ corail: "/manus-storage/corail-menu-intro_da509ba2.png",
+ corailDiagram: "/manus-storage/corail-method-diagram_6124b401.png",
+ verde: "/manus-storage/verde-menu-intro_bcafa3b8.png",
+ verdeSelection: "/manus-storage/verde-herb-selection_9e0818d4.png",
 };
 
 type Salon = {
@@ -90,6 +111,12 @@ export default function Salons() {
  const { data: salons = [], isLoading } = trpc.salon.list.useQuery({ prefecture: filterPref || undefined }, { refetchOnWindowFocus: false });
 
  useEffect(() => {
+ const methodKey = new URLSearchParams(window.location.search).get("menu");
+ const requestedMethod = methodKey ? METHOD_QUERY_VALUES[methodKey] : undefined;
+ if (requestedMethod) setFilterService(requestedMethod);
+ }, []);
+
+ useEffect(() => {
  if (salons.length === 0 || salons.some(salon => salon.id === selectedId)) return;
  const requestedKey = new URLSearchParams(window.location.search).get("salon");
  const requestedSalon = salons.find(salon => SALON_QUERY_KEYS[salon.name] === requestedKey);
@@ -99,7 +126,8 @@ export default function Salons() {
  const selectedSalon = salons.find(s => s.id === selectedId) ?? null;
 
  const filtered = salons.filter(s => {
- const svcMatch = !filterService || (s.services ?? "").includes(filterService);
+ const isCommonMethod = COMMON_METHODS.includes(filterService as (typeof COMMON_METHODS)[number]);
+ const svcMatch = !filterService || isCommonMethod || (s.services ?? "").includes(filterService);
  const prefMatch = !filterPref || s.prefecture === filterPref;
  return svcMatch && prefMatch;
  });
@@ -162,6 +190,15 @@ export default function Salons() {
  }
  }
 
+ function handleServiceChange(value: string) {
+ setFilterService(value);
+ const url = new URL(window.location.href);
+ const methodKey = METHOD_QUERY_KEYS[value as (typeof COMMON_METHODS)[number]];
+ if (methodKey) url.searchParams.set("menu", methodKey);
+ else url.searchParams.delete("menu");
+ window.history.replaceState({}, "", url);
+ }
+
  const inp: React.CSSProperties = {
  padding: "8px 12px",
  border: "1px solid #d4c5b0",
@@ -204,11 +241,13 @@ export default function Salons() {
  <option value="">都道府県で絞り込み</option>
  {prefectures.map(p => <option key={p} value={p}>{p}</option>)}
  </select>
- <select style={inp} value={filterService} onChange={e => setFilterService(e.target.value)}>
+ <select style={inp} value={filterService} onChange={e => handleServiceChange(e.target.value)}>
  <option value="">対応メニューで絞り込み</option>
  <option value="頭皮チェック">頭皮チェック</option>
  <option value="定期ケア（ボタニカルミスト）">定期ケア（ボタニカルミスト）</option>
  <option value="パーソナルケア">パーソナルケア</option>
+ <option value="コライユ（デトックス）">コライユ（デトックス）</option>
+ <option value="ヴェルデ（パーソナルケア）">ヴェルデ（パーソナルケア）</option>
  </select>
  {(filterPref || filterService) && (
  <button onClick={() => { setFilterPref(""); setFilterService(""); }}
@@ -300,6 +339,44 @@ export default function Salons() {
  </div>
  </div>
  )}
+ 
+ <section id="method" style={{ marginTop: "64px", paddingTop: "48px", borderTop: "1px solid #ddcfbe" }}>
+ <div style={{ maxWidth: "760px", marginBottom: "32px" }}>
+ <p style={{ color: "#9a7c4d", fontSize: "11px", fontWeight: 700, letterSpacing: "0.18em", margin: "0 0 12px" }}>THE HERBS METHOD</p>
+ <h2 style={{ color: "#2C1810", fontSize: "clamp(26px, 4vw, 38px)", lineHeight: 1.45, fontFamily: "Noto Serif JP, serif", margin: "0 0 14px" }}>
+ 髪だけではなく、頭皮から考える植物美容。
+ </h2>
+ <p style={{ color: "#6b4c2a", fontSize: "14px", lineHeight: 1.9, margin: 0 }}>
+ コライユとヴェルデは、スカルプラボ認定パートナーサロンでご案内するTHE HERBS共通のメソッドです。カラー・パーマ後のケアと、その時の状態に合わせたパーソナルケアを分けて考えます。
+ </p>
+ </div>
+
+ <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+ <article style={{ background: "#fff", border: "1px solid #e8ddd0", padding: "24px" }}>
+ <div className="grid grid-cols-[1.2fr_0.8fr] gap-3 items-end" style={{ marginBottom: "22px" }}>
+ <img src={METHOD_IMAGES.corail} alt="コライユのハーブ" style={{ width: "100%", height: "260px", objectFit: "cover", background: "#f8f4ee" }} />
+ <img src={METHOD_IMAGES.corailDiagram} alt="コライユメソッドの構成図" style={{ width: "100%", height: "185px", objectFit: "cover", background: "#f8f4ee", border: "1px solid #eee3d7" }} />
+ </div>
+ <p style={{ color: "#9a7c4d", fontSize: "10px", fontWeight: 700, letterSpacing: "0.14em", margin: "0 0 8px" }}>01 / COLOR &amp; PERM CARE</p>
+ <h3 style={{ color: "#2C1810", fontSize: "26px", fontFamily: "Noto Serif JP, serif", margin: "0 0 8px" }}>コライユ（デトックス）</h3>
+ <p style={{ color: "#6b4c2a", fontSize: "13px", fontWeight: 700, lineHeight: 1.7, margin: "0 0 10px" }}>ヘアカラー・パーマ後の頭皮コンディショニングケア</p>
+ <p style={{ color: "#6b4c2a", fontSize: "13px", lineHeight: 1.85, margin: 0 }}>頭皮と髪の状態を確認しながら、頭皮ケアシャンプー、ハーブスチーム、コライユブレンドを状態に合わせて組み合わせます。カラー・パーマとあわせて行う約5分のオプションケアです。</p>
+ </article>
+
+ <article style={{ background: "#fff", border: "1px solid #e8ddd0", padding: "24px" }}>
+ <div className="grid grid-cols-[0.8fr_1.2fr] gap-3 items-end" style={{ marginBottom: "22px" }}>
+ <img src={METHOD_IMAGES.verdeSelection} alt="ヴェルデで使用するヘアケアハーブ" style={{ width: "100%", height: "185px", objectFit: "cover", background: "#f8f4ee", border: "1px solid #eee3d7" }} />
+ <img src={METHOD_IMAGES.verde} alt="ヴェルデ パーソナル頭皮ケア" style={{ width: "100%", height: "260px", objectFit: "cover", background: "#f8f4ee" }} />
+ </div>
+ <p style={{ color: "#5d8865", fontSize: "10px", fontWeight: 700, letterSpacing: "0.14em", margin: "0 0 8px" }}>02 / PERSONAL SCALP CARE</p>
+ <h3 style={{ color: "#2C1810", fontSize: "26px", fontFamily: "Noto Serif JP, serif", margin: "0 0 8px" }}>ヴェルデ（パーソナルケア）</h3>
+ <p style={{ color: "#6b4c2a", fontSize: "13px", fontWeight: 700, lineHeight: 1.7, margin: "0 0 10px" }}>頭皮と髪のためのパーソナルコンディショニングケア</p>
+ <p style={{ color: "#6b4c2a", fontSize: "13px", lineHeight: 1.85, margin: 0 }}>頭皮と髪の状態を確認したうえで、その時に合うヘアケアハーブを選び、カウンセリングをもとにケア内容をご提案します。</p>
+ </article>
+ </div>
+
+ <p style={{ color: "#8c7b6b", fontSize: "12px", lineHeight: 1.8, margin: "20px 0 0" }}>頭皮に違和感・かゆみ・刺激などがある場合は、施術前に必ずお申し出ください。所要時間・料金・詳細は各サロンへご相談ください。</p>
+ </section>
  </div>
  </div>
  );
