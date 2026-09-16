@@ -562,6 +562,16 @@ function StoreSection() {
             </div>
           ))}
         </div>
+        <div className="mt-10 flex justify-center">
+          <a
+            href="/salons"
+            className="inline-flex items-center justify-center gap-3 font-sans-jp text-sm font-semibold px-8 py-4 border border-[oklch(0.55_0.050_65)] text-[oklch(0.28_0.055_65)] hover:bg-[oklch(0.28_0.055_65)] hover:text-white transition-all"
+            style={{ textDecoration: 'none' }}
+          >
+            全国の認定サロンを探す
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
         {/* サロン募集バナー */}
         <div className="mt-16 relative overflow-hidden" style={{ background: 'linear-gradient(135deg, oklch(0.22 0.045 42) 0%, oklch(0.28 0.060 80) 50%, oklch(0.22 0.045 42) 100%)' }}>
           {/* 装飾ライン */}
