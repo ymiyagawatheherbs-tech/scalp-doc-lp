@@ -69,6 +69,8 @@ const IMAGES = {
   botanicalMist: "https://d2xsxph8kpxj0f.cloudfront.net/310519663471357598/VaHDAviEx4gwhk9t9bxo5K/herb_steamer_8218d07e.jpg",
   corail: "/manus-storage/corail-menu-intro_da509ba2.png",
   verde: "/manus-storage/verde-menu-intro_bcafa3b8.png",
+  corailDiagram: "/manus-storage/corail-method-diagram_6124b401.png",
+  verdeSelection: "/manus-storage/verde-herb-selection_9e0818d4.png",
 };
 
 // Intersection Observer フック
@@ -404,59 +406,79 @@ function BotanicalSection() {
   );
 }
 
-// ── メニュー紹介 ──────────────────────────────────────────
+// ── THE HERBS メソッド ─────────────────────────────────────
 function MenuIntroductionSection() {
   const { ref, inView } = useInView();
   return (
     <section className="bg-[oklch(0.955_0.016_90)] py-28 md:py-36" id="メニュー">
       <div ref={ref} className="max-w-7xl mx-auto px-6">
-        <div className={`max-w-3xl mb-14 md:mb-20 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <span className="font-cormorant text-[oklch(0.58_0.052_65)] text-xs tracking-[0.4em] uppercase block mb-6">Salon Care Menu</span>
+        <div className={`max-w-3xl mb-16 md:mb-24 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <span className="font-cormorant text-[oklch(0.58_0.052_65)] text-xs tracking-[0.4em] uppercase block mb-6">The Herbs Method</span>
           <h2 className="font-mincho text-[oklch(0.28_0.055_65)] text-3xl md:text-5xl font-bold leading-tight mb-6">
-            頭皮と髪に、<br />その時に必要なケアを。
+            髪だけではなく、<br />頭皮から考える植物美容。
           </h2>
           <p className="font-sans-jp text-[oklch(0.40_0.050_65)] text-base leading-relaxed">
-            THE HERBSでは、ヘアカラー・パーマ後のケアと、状態に合わせて行うパーソナルケアを分けてご提案します。<br className="hidden md:block" />
-            施術前に頭皮と髪の状態を確認し、内容をご案内します。
+            THE HERBSでは、施術の後に行うケアと、その時の状態に合わせて行うケアを分けて考えます。<br className="hidden md:block" />
+            コライユとヴェルデは、全店舗でご案内するTHE HERBS独自のメソッドです。
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
-          <article className={`grid grid-cols-1 sm:grid-cols-[190px_1fr] gap-7 sm:gap-8 items-start border-t border-[oklch(0.78_0.030_90)] pt-8 transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-            <img src={IMAGES.corail} alt="コライユに使用するハーブ" className="w-full h-[220px] sm:w-[190px] sm:h-[250px] object-cover bg-white" />
-            <div>
-              <p className="font-cormorant text-[oklch(0.58_0.052_65)] text-xs tracking-[0.28em] uppercase mb-3">Color & Perm Option</p>
-              <h3 className="font-mincho text-[oklch(0.28_0.055_65)] text-3xl font-bold mb-3">コライユ</h3>
-              <p className="font-sans-jp text-[oklch(0.35_0.050_65)] text-sm font-medium leading-relaxed mb-5">ヘアカラー・パーマ後の頭皮コンディショニングケア</p>
-              <p className="font-sans-jp text-[oklch(0.42_0.045_65)] text-sm leading-relaxed mb-6">
-                カラー・パーマとあわせて行う、約5分のオプションメニューです。施術後の頭皮と髪の状態を確認しながら、コライユを取り入れたケアを行います。提供内容は店舗により異なります。
-              </p>
-              <div className="space-y-2 border-l-2 border-[oklch(0.72_0.050_80)] pl-4">
-                <p className="font-sans-jp text-[oklch(0.38_0.048_65)] text-xs leading-relaxed"><span className="font-semibold">THE HERBS植物美容サロン</span>：コライユブレンドを含むケアをご案内します。</p>
-                <p className="font-sans-jp text-[oklch(0.38_0.048_65)] text-xs leading-relaxed"><span className="font-semibold">THE HERBS神戸阪急店</span>：コライユミストをご案内します。</p>
+        <div className="border-t border-[oklch(0.78_0.030_90)]">
+          <article className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 py-12 md:py-16 border-b border-[oklch(0.78_0.030_90)] transition-all duration-700 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+            <div className="order-2 lg:order-1">
+              <div className="flex items-center gap-4 mb-7">
+                <span className="font-cormorant text-[oklch(0.58_0.052_65)] text-4xl leading-none">01</span>
+                <p className="font-cormorant text-[oklch(0.58_0.052_65)] text-xs tracking-[0.28em] uppercase">Color &amp; Perm Care</p>
               </div>
+              <h3 className="font-mincho text-[oklch(0.28_0.055_65)] text-4xl md:text-5xl font-bold mb-4">コライユ</h3>
+              <p className="font-sans-jp text-[oklch(0.35_0.050_65)] text-base font-medium leading-relaxed mb-6">ヘアカラー・パーマ後の頭皮コンディショニングケア</p>
+              <p className="font-sans-jp text-[oklch(0.42_0.045_65)] text-sm leading-8 mb-8">
+                ヘアカラーやパーマの後、頭皮と髪の状態を確認しながら行う約5分のオプションケアです。頭皮ケアシャンプー、ハーブスチーム、コライユブレンドを組み合わせ、施術後の状態に寄り添います。
+              </p>
+              <div className="grid grid-cols-3 gap-0 border-y border-[oklch(0.78_0.030_90)]">
+                {["頭皮と髪を確認", "ハーブを取り入れる", "仕上がりを整える"].map((step, index) => (
+                  <div key={step} className={`py-4 px-3 ${index > 0 ? "border-l border-[oklch(0.78_0.030_90)]" : ""}`}>
+                    <span className="font-cormorant text-[oklch(0.58_0.052_65)] text-xs block mb-2">0{index + 1}</span>
+                    <p className="font-sans-jp text-[oklch(0.38_0.048_65)] text-[11px] leading-relaxed">{step}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div className="order-1 lg:order-2 grid grid-cols-[1.25fr_0.75fr] gap-3 md:gap-5 items-end">
+              <img src={IMAGES.corail} alt="コライユのハーブ" className="w-full h-[340px] md:h-[460px] object-cover bg-white" />
+              <img src={IMAGES.corailDiagram} alt="コライユメソッドの構成図" className="w-full h-[230px] md:h-[310px] object-cover bg-white border border-[oklch(0.83_0.025_90)]" />
             </div>
           </article>
 
-          <article className={`grid grid-cols-1 sm:grid-cols-[190px_1fr] gap-7 sm:gap-8 items-start border-t border-[oklch(0.78_0.030_90)] pt-8 transition-all duration-700 delay-150 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-            <img src={IMAGES.verde} alt="ヴェルデ パーソナル頭皮ケア" className="w-full h-[220px] sm:w-[190px] sm:h-[250px] object-cover bg-white" />
+          <article className={`grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 py-12 md:py-16 transition-all duration-700 delay-150 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+            <div className="grid grid-cols-[0.75fr_1.25fr] gap-3 md:gap-5 items-end">
+              <img src={IMAGES.verdeSelection} alt="ヴェルデで使用するヘアケアハーブ" className="w-full h-[230px] md:h-[310px] object-cover bg-white border border-[oklch(0.83_0.025_90)]" />
+              <img src={IMAGES.verde} alt="ヴェルデ パーソナル頭皮ケア" className="w-full h-[340px] md:h-[460px] object-cover bg-white" />
+            </div>
             <div>
-              <p className="font-cormorant text-[oklch(0.58_0.052_65)] text-xs tracking-[0.28em] uppercase mb-3">Personal Scalp Care</p>
-              <h3 className="font-mincho text-[oklch(0.28_0.055_65)] text-3xl font-bold mb-3">ヴェルデ</h3>
-              <p className="font-sans-jp text-[oklch(0.35_0.050_65)] text-sm font-medium leading-relaxed mb-5">頭皮と髪のためのパーソナルコンディショニングケア</p>
-              <p className="font-sans-jp text-[oklch(0.42_0.045_65)] text-sm leading-relaxed mb-6">
-                頭皮と髪の状態を確認し、その時の状態に合わせてヘアケアハーブを選ぶサロンケアです。毎回同じ内容に決めず、カウンセリングをもとにケア内容をご提案します。
+              <div className="flex items-center gap-4 mb-7">
+                <span className="font-cormorant text-[oklch(0.54_0.080_145)] text-4xl leading-none">02</span>
+                <p className="font-cormorant text-[oklch(0.54_0.080_145)] text-xs tracking-[0.28em] uppercase">Personal Scalp Care</p>
+              </div>
+              <h3 className="font-mincho text-[oklch(0.28_0.055_65)] text-4xl md:text-5xl font-bold mb-4">ヴェルデ</h3>
+              <p className="font-sans-jp text-[oklch(0.35_0.050_65)] text-base font-medium leading-relaxed mb-6">頭皮と髪のためのパーソナルコンディショニングケア</p>
+              <p className="font-sans-jp text-[oklch(0.42_0.045_65)] text-sm leading-8 mb-8">
+                ヴェルデは、毎回同じ内容に決めないパーソナル頭皮ケアです。頭皮と髪の状態を確認したうえで、その時に合うヘアケアハーブを選び、カウンセリングをもとにケア内容をご提案します。
               </p>
-              <div className="space-y-2 border-l-2 border-[oklch(0.54_0.080_145)] pl-4">
-                <p className="font-sans-jp text-[oklch(0.38_0.048_65)] text-xs leading-relaxed">頭皮チェック・カウンセリングをもとに、ケアの内容をご案内します。</p>
-                <p className="font-sans-jp text-[oklch(0.38_0.048_65)] text-xs leading-relaxed">所要時間・料金・取扱内容は、店舗と状態により異なるためご相談ください。</p>
+              <div className="grid grid-cols-3 gap-0 border-y border-[oklch(0.78_0.030_90)]">
+                {["頭皮・髪の状態を確認", "ヘアケアハーブを選ぶ", "内容をご提案"].map((step, index) => (
+                  <div key={step} className={`py-4 px-3 ${index > 0 ? "border-l border-[oklch(0.78_0.030_90)]" : ""}`}>
+                    <span className="font-cormorant text-[oklch(0.54_0.080_145)] text-xs block mb-2">0{index + 1}</span>
+                    <p className="font-sans-jp text-[oklch(0.38_0.048_65)] text-[11px] leading-relaxed">{step}</p>
+                  </div>
+                ))}
               </div>
             </div>
           </article>
         </div>
 
-        <div className={`mt-14 md:mt-16 pt-7 border-t border-[oklch(0.78_0.030_90)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 transition-all duration-700 delay-300 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-          <p className="font-sans-jp text-[oklch(0.48_0.040_65)] text-xs leading-relaxed">頭皮に違和感・かゆみ・刺激などがある場合は、施術前に必ずお申し出ください。</p>
+        <div className={`mt-4 pt-7 border-t border-[oklch(0.78_0.030_90)] flex flex-col sm:flex-row sm:items-center sm:justify-between gap-5 transition-all duration-700 delay-300 ${inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          <p className="font-sans-jp text-[oklch(0.48_0.040_65)] text-xs leading-relaxed">全店舗共通のTHE HERBSメソッドです。頭皮に違和感・かゆみ・刺激などがある場合は、施術前に必ずお申し出ください。</p>
           <a href="/booking" className="inline-flex items-center justify-center font-sans-jp text-sm font-bold px-7 py-3.5 whitespace-nowrap text-white transition-opacity hover:opacity-90" style={{ backgroundColor: "oklch(0.35 0.065 65)", textDecoration: "none" }}>
             店舗へ相談・予約する
           </a>
