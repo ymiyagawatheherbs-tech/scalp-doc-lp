@@ -28,10 +28,8 @@ const METHOD_QUERY_KEYS: Record<(typeof COMMON_METHODS)[number], string> = {
 };
 
 const METHOD_IMAGES = {
- corail: "/manus-storage/corail-menu-intro_da509ba2.png",
- corailDiagram: "/manus-storage/corail-method-diagram_6124b401.png",
- verde: "/manus-storage/verde-menu-intro_bcafa3b8.png",
- verdeSelection: "/manus-storage/verde-herb-selection_9e0818d4.png",
+ corail: "/manus-storage/corail-herbs-only_848ebf13.png",
+ verde: "/manus-storage/verde-herbs-only_983d0923.png",
 };
 
 type Salon = {
@@ -353,9 +351,8 @@ export default function Salons() {
 
  <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
  <article style={{ background: "#fff", border: "1px solid #e8ddd0", padding: "24px" }}>
- <div className="grid grid-cols-[1.2fr_0.8fr] gap-3 items-end" style={{ marginBottom: "22px" }}>
- <img src={METHOD_IMAGES.corail} alt="コライユのハーブ" style={{ width: "100%", height: "260px", objectFit: "cover", background: "#f8f4ee" }} />
- <img src={METHOD_IMAGES.corailDiagram} alt="コライユメソッドの構成図" style={{ width: "100%", height: "185px", objectFit: "cover", background: "#f8f4ee", border: "1px solid #eee3d7" }} />
+ <div style={{ height: "min(320px, 70vw)", marginBottom: "22px", background: "#f8f4ee", display: "flex", alignItems: "center", justifyContent: "center" }}>
+ <img src={METHOD_IMAGES.corail} alt="コライユに使用するハーブ" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
  </div>
  <p style={{ color: "#9a7c4d", fontSize: "10px", fontWeight: 700, letterSpacing: "0.14em", margin: "0 0 8px" }}>01 / COLOR &amp; PERM CARE</p>
  <h3 style={{ color: "#2C1810", fontSize: "26px", fontFamily: "Noto Serif JP, serif", margin: "0 0 8px" }}>コライユ（デトックス）</h3>
@@ -364,9 +361,8 @@ export default function Salons() {
  </article>
 
  <article style={{ background: "#fff", border: "1px solid #e8ddd0", padding: "24px" }}>
- <div className="grid grid-cols-[0.8fr_1.2fr] gap-3 items-end" style={{ marginBottom: "22px" }}>
- <img src={METHOD_IMAGES.verdeSelection} alt="ヴェルデで使用するヘアケアハーブ" style={{ width: "100%", height: "185px", objectFit: "cover", background: "#f8f4ee", border: "1px solid #eee3d7" }} />
- <img src={METHOD_IMAGES.verde} alt="ヴェルデ パーソナル頭皮ケア" style={{ width: "100%", height: "260px", objectFit: "cover", background: "#f8f4ee" }} />
+ <div style={{ height: "min(320px, 70vw)", marginBottom: "22px", background: "#f8f4ee", display: "flex", alignItems: "center", justifyContent: "center" }}>
+ <img src={METHOD_IMAGES.verde} alt="ヴェルデに使用するヘアケアハーブ" style={{ width: "100%", height: "100%", objectFit: "contain" }} />
  </div>
  <p style={{ color: "#5d8865", fontSize: "10px", fontWeight: 700, letterSpacing: "0.14em", margin: "0 0 8px" }}>02 / PERSONAL SCALP CARE</p>
  <h3 style={{ color: "#2C1810", fontSize: "26px", fontFamily: "Noto Serif JP, serif", margin: "0 0 8px" }}>ヴェルデ（パーソナルケア）</h3>
