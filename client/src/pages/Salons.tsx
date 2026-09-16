@@ -226,8 +226,7 @@ export default function Salons() {
  <div style={{ background: "#3d2010", padding: "12px 24px" }}>
  <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
  <p style={{ color: "#d4c5b0", fontSize: "13px", margin: 0, lineHeight: 1.6 }}>
- スカルプラボ認定パートナーサロンは、専門の頭皮ケアトレーニングを受けたスタッフが在籍しています。
- お近くのサロンで定期的な頭皮チェックをお受けください。
+ THE HERBS 取扱サロンは、THE HERBSメソッドによる頭皮ケアを導入しているサロンです。ぜひご相談ください。
  </p>
  </div>
  </div>
